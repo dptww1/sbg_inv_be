@@ -19,6 +19,12 @@ defmodule SbgInv.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", SbgInv do
+    pipe_through :api
+
+    resources "/scenarios", ScenarioController, except: [:new, :edit]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", SbgInv do
   #   pipe_through :api
