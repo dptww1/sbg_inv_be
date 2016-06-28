@@ -35,5 +35,6 @@ defmodule SbgInv.Endpoint do
     key: "_sbg_inv_key",
     signing_salt: "hBU7VwCM"
 
+  plug Corsica
   plug SbgInv.Router
 end
