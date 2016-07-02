@@ -25,7 +25,7 @@ defmodule SbgInv.Data do
 
     site_s1 = Repo.insert! %Scenario {
       name: "The Fall of Amon Barad",
-      blurb: "",
+      blurb: "Easterlings under Khamûl launch a surprise attack on a Gondorian outpost in Ithilien.",
       date_age: 3,
       date_year: 2998,
       is_canonical: true,
@@ -34,7 +34,7 @@ defmodule SbgInv.Data do
 
     site_s2 = Repo.insert! %Scenario {
       name: "Pursuit Through Ithilien",
-      blurb: "",
+      blurb: "Easterlings pursue Cirion after the fall of Amon Barad.",
       date_age: 3,
       date_year: 2998,
       is_canonical: true,
