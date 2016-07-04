@@ -15,6 +15,7 @@
 defmodule SbgInv.Data do
   alias SbgInv.Repo
   alias SbgInv.Scenario
+  alias SbgInv.ScenarioResource
 
   def generate do
     _generate
@@ -32,6 +33,14 @@ defmodule SbgInv.Data do
       size: 30
     }
 
+    Repo.insert! %ScenarioResource {
+      scenario_id: site_s1.id,
+      resource_type: 0,
+      book: :site,
+      sort_order: 1,
+      page: 14
+    }
+
     site_s2 = Repo.insert! %Scenario {
       name: "Pursuit Through Ithilien",
       blurb: "Easterlings pursue Cirion after the fall of Amon Barad.",
@@ -39,6 +48,14 @@ defmodule SbgInv.Data do
       date_year: 2998,
       is_canonical: true,
       size: 28
+    }
+
+    Repo.insert! %ScenarioResource {
+      scenario_id: site_s2.id,
+      resource_type: 0,
+      book: :site,
+      sort_order: 2,
+      page: 16
     }
   end
 end

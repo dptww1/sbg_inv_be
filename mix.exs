@@ -38,7 +38,9 @@ defmodule SbgInv.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:plug, "~> 1.0"},
-     {:corsica, "~> 0.4"}]
+     {:corsica, "~> 0.4"},
+     {:ecto_enum, "~> 0.3.1"}
+    ]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

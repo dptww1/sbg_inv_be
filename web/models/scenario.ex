@@ -10,10 +10,12 @@ defmodule SbgInv.Scenario do
     field :size, :integer
 
     timestamps
+
+    has_many :scenario_resources, SbgInv.ScenarioResource
   end
 
   @required_fields ~w(name blurb date_age date_year is_canonical size)
-  @optional_fields ~w()
+  @optional_fields ~w(scenario_resources)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

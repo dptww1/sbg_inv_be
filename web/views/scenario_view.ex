@@ -16,6 +16,19 @@ defmodule SbgInv.ScenarioView do
       date_age: scenario.date_age,
       date_year: scenario.date_year,
       is_canonical: scenario.is_canonical,
-      size: scenario.size}
+      size: scenario.size,
+      scenario_resources: render_many(scenario.scenario_resources, __MODULE__, "scenario_resource.json", as: :scenario_resource)
+     }
+  end
+
+  def render("scenario_resource.json", %{scenario_resource: resource}) do
+    %{
+      resource_type: resource.resource_type,
+      book: resource.book,
+      url:  resource.url,
+      page: resource.page,
+      notes: resource.notes,
+      sort_order: resource.sort_order
+    }
   end
 end
