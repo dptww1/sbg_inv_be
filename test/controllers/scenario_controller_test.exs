@@ -23,7 +23,8 @@ defmodule SbgInv.ScenarioControllerTest do
       "date_age" => scenario.date_age,
       "date_year" => scenario.date_year,
       "is_canonical" => scenario.is_canonical,
-      "size" => scenario.size}
+      "size" => scenario.size,
+      "scenario_resources" => []}
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do
