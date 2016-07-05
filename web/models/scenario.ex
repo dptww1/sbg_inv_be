@@ -15,7 +15,7 @@ defmodule SbgInv.Scenario do
   end
 
   @required_fields ~w(name blurb date_age date_year is_canonical size)
-  @optional_fields ~w(scenario_resources)
+  @optional_fields ~w()
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -24,7 +24,7 @@ defmodule SbgInv.Scenario do
   with no validation performed.
   """
   def changeset(model, params \\ :empty) do
-    model
-    |> cast(params, @required_fields, @optional_fields)
+    cast(model, params, @required_fields, @optional_fields)
+    |> cast_assoc(:scenario_resources, params)
   end
 end
