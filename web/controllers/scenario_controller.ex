@@ -34,6 +34,7 @@ defmodule SbgInv.ScenarioController do
 
   def update(conn, %{"id" => id, "scenario" => scenario_params}) do
     scenario = Repo.get!(Scenario, id)
+               |> Repo.preload(:scenario_resources)
     changeset = Scenario.changeset(scenario, scenario_params)
 
     case Repo.update(changeset) do
