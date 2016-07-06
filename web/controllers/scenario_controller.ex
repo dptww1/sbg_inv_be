@@ -15,6 +15,7 @@ defmodule SbgInv.ScenarioController do
 
     case Repo.insert(changeset) do
       {:ok, scenario} ->
+        scenario = Repo.preload(scenario, :scenario_resources)
         conn
         |> put_status(:created)
         |> put_resp_header("location", scenario_path(conn, :show, scenario))
