@@ -6,7 +6,7 @@ defmodule SbgInv.ScenarioController do
   plug :scrub_params, "scenario" when action in [:create, :update]
 
   def index(conn, _params) do
-    scenarios = Repo.all(Scenario)
+    scenarios = Repo.all(Scenario) |> Repo.preload(:scenario_resources)
     render(conn, "index.json", scenarios: scenarios)
   end
 
