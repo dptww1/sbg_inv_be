@@ -6,7 +6,8 @@ defmodule SbgInv.ScenarioController do
   plug :scrub_params, "scenario" when action in [:create, :update]
 
   def index(conn, _params) do
-    scenarios = Repo.all(Scenario) |> Repo.preload(:scenario_resources)
+    scenarios = Repo.all(Scenario)
+                |> Repo.preload([:scenario_resources, :scenario_factions])
     render(conn, "index.json", scenarios: scenarios)
   end
 
@@ -15,7 +16,7 @@ defmodule SbgInv.ScenarioController do
 
     case Repo.insert(changeset) do
       {:ok, scenario} ->
-        scenario = Repo.preload(scenario, :scenario_resources)
+        scenario = Repo.preload(scenario, [:scenario_resources, :scenario_factions])
         conn
         |> put_status(:created)
         |> put_resp_header("location", scenario_path(conn, :show, scenario))
@@ -29,13 +30,13 @@ defmodule SbgInv.ScenarioController do
 
   def show(conn, %{"id" => id}) do
     scenario = Repo.get!(Scenario, id)
-               |> Repo.preload([:scenario_resources])
+               |> Repo.preload([:scenario_resources, :scenario_factions])
     render(conn, "show.json", scenario: scenario)
   end
 
   def update(conn, %{"id" => id, "scenario" => scenario_params}) do
     scenario = Repo.get!(Scenario, id)
-               |> Repo.preload(:scenario_resources)
+               |> Repo.preload([:scenario_resources, :scenario_factions])
     changeset = Scenario.changeset(scenario, scenario_params)
 
     case Repo.update(changeset) do

@@ -12,6 +12,7 @@ defmodule SbgInv.Scenario do
     timestamps
 
     has_many :scenario_resources, SbgInv.ScenarioResource
+    has_many :scenario_factions, SbgInv.ScenarioFaction
   end
 
   @required_fields ~w(name blurb date_age date_year is_canonical size)
@@ -26,5 +27,6 @@ defmodule SbgInv.Scenario do
   def changeset(model, params \\ :empty) do
     cast(model, params, @required_fields, @optional_fields)
     |> cast_assoc(:scenario_resources, params)
+    |> cast_assoc(:scenario_factions, params)
   end
 end

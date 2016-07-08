@@ -17,7 +17,8 @@ defmodule SbgInv.ScenarioView do
       date_year: scenario.date_year,
       is_canonical: scenario.is_canonical,
       size: scenario.size,
-      scenario_resources: render_many(scenario.scenario_resources, __MODULE__, "scenario_resource.json", as: :scenario_resource)
+      scenario_resources: render_many(scenario.scenario_resources, __MODULE__, "scenario_resource.json", as: :scenario_resource),
+      scenario_factions: render_many(scenario.scenario_factions, __MODULE__, "scenario_faction.json", as: :scenario_faction)
      }
   end
 
@@ -29,6 +30,15 @@ defmodule SbgInv.ScenarioView do
       page: resource.page,
       notes: resource.notes,
       sort_order: resource.sort_order
+    }
+  end
+
+  def render("scenario_faction.json", %{scenario_faction: faction}) do
+    %{
+      faction: faction.faction,
+      suggested_points: faction.suggested_points,
+      actual_points: faction.actual_points,
+      sort_order: faction.sort_order
     }
   end
 end
