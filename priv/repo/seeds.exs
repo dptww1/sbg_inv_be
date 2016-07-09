@@ -126,6 +126,176 @@ defmodule SbgInv.Data do
       actual_points: 420,
       sort_order: 2
     }
+
+    #========================================================================
+    site_s4 = Repo.insert! %Scenario {
+      name: "Turning the Tide",
+      blurb: "Cirion surprise attacks an Easterling camp at night.",
+      date_age: 3,
+      date_year: 2998,
+      is_canonical: true,
+      size: 121
+    }
+
+    Repo.insert! %ScenarioResource {
+      scenario_id: site_s4.id,
+      resource_type: 0,
+      book: :site,
+      sort_order: 4,
+      page: 30
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s4.id,
+      faction: :minas_tirith,
+      suggested_points: 900,
+      actual_points: 849,
+      sort_order: 1
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s4.id,
+      faction: :easterlings,
+      suggested_points: 600,
+      actual_points: 813,
+      sort_order: 2
+    }
+
+    #========================================================================
+    site_s5 = Repo.insert! %Scenario {
+      name: "Reprisals",
+      blurb: "Dáin Ironfoot leads a dwarven raid against the Easterlings.",
+      date_age: 3,
+      date_year: 3001,
+      is_canonical: true,
+      size: 71
+    }
+
+    Repo.insert! %ScenarioResource {
+      scenario_id: site_s5.id,
+      resource_type: 0,
+      book: :site,
+      sort_order: 5,
+      page: 36
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s5.id,
+      faction: :dwarves,
+      suggested_points: 500,
+      actual_points: 460,
+      sort_order: 1
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s5.id,
+      faction: :easterlings,
+      suggested_points: 550,
+      actual_points: 511,
+      sort_order: 2
+    }
+
+    #========================================================================
+    site_s6 = Repo.insert! %Scenario {
+      name: "Strange Circumstances",
+      blurb: "Cirion joins his Khandish captors to fight off an Orc raid.",
+      date_age: 3,
+      date_year: 3002,
+      is_canonical: true,
+      size: 101
+    }
+
+    Repo.insert! %ScenarioResource {
+      scenario_id: site_s6.id,
+      resource_type: 0,
+      book: :site,
+      sort_order: 6,
+      page: 38
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s6.id,
+      faction: :easterlings,
+      suggested_points: 500,
+      actual_points: 700,
+      sort_order: 1
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s6.id,
+      faction: :mordor,
+      suggested_points: 750,
+      actual_points: 796,
+      sort_order: 2
+    }
+
+    #========================================================================
+    site_s7 = Repo.insert! %Scenario {
+      name: "The Field of Celebrant",
+      blurb: "Eorl the Young saves Gondor from the Khandish and their Orc allies.",
+      date_age: 3,
+      date_year: 2510,
+      is_canonical: true,
+      size: 107
+    }
+
+    Repo.insert! %ScenarioResource {
+      scenario_id: site_s7.id,
+      resource_type: 0,
+      book: :site,
+      sort_order: 7,
+      page: 40
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s7.id,
+      faction: :rohan,
+      suggested_points: 650,
+      actual_points: 635,
+      sort_order: 1
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s7.id,
+      faction: :easterlings,
+      suggested_points: 800,
+      actual_points: 949,
+      sort_order: 2
+    }
+
+    #========================================================================
+    site_s8 = Repo.insert! %Scenario {
+      name: "Hunter & Hunted",
+      blurb: "Easterling raiders under Khamûl encounter the defenders of Fangorn.",
+      date_age: 3,
+      date_year: 2520,
+      is_canonical: true,
+      size: 28
+    }
+
+    Repo.insert! %ScenarioResource {
+      scenario_id: site_s8.id,
+      resource_type: 0,
+      book: :site,
+      sort_order: 8,
+      page: 46
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s8.id,
+      faction: :free_peoples,
+      suggested_points: 400,
+      actual_points: 495,
+      sort_order: 1
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s8.id,
+      faction: :easterlings,
+      suggested_points: 450,
+      actual_points: 430,
+      sort_order: 2
+    }
   end
 end
 

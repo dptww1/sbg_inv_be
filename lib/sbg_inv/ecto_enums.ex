@@ -2,7 +2,11 @@ import EctoEnum
 
 defenum Faction,
   minas_tirith: 0,
-  easterlings: 1
+  easterlings: 1,
+  dwarves: 2,
+  mordor: 3,
+  rohan: 4,
+  free_peoples: 5
 
 defenum ScenarioResourceBook,
   fotr:     0,   # Fellowship of the Ring
