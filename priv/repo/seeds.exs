@@ -92,6 +92,40 @@ defmodule SbgInv.Data do
       actual_points: 197,
       sort_order: 2
     }
+
+    #========================================================================
+    site_s3 = Repo.insert! %Scenario {
+      name: "Gathering Information",
+      blurb: "Cirion's forces try to capture a Khandish leader from a fort.",
+      date_age: 3,
+      date_year: 2998,
+      is_canonical: true,
+      size: 47
+    }
+
+    Repo.insert! %ScenarioResource {
+      scenario_id: site_s3.id,
+      resource_type: 0,
+      book: :site,
+      sort_order: 3,
+      page: 28
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s3.id,
+      faction: :minas_tirith,
+      suggested_points: 350,
+      actual_points: 329,
+      sort_order: 1
+    }
+
+    Repo.insert! %ScenarioFaction {
+      scenario_id: site_s3.id,
+      faction: :easterlings,
+      suggested_points: 350,
+      actual_points: 420,
+      sort_order: 2
+    }
   end
 end
 
