@@ -6,8 +6,15 @@ defmodule SbgInv.ScenarioController do
   plug :scrub_params, "scenario" when action in [:create, :update]
 
   def index(conn, _params) do
-    scenarios = Repo.all(Scenario)
+    import Ecto.Query
+
+    query = from s in Scenario,
+            order_by: [asc: :date_year],
+            select: s
+
+    scenarios = Repo.all(query)
                 |> Repo.preload([:scenario_resources, :scenario_factions])
+
     render(conn, "index.json", scenarios: scenarios)
   end
 
