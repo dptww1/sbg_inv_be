@@ -36,7 +36,7 @@ defmodule SbgInv.Data do
       date_age: 3, date_year: 2998, is_canonical: true, size: 30
     }
 
-    Repo.insert! %ScenarioResource { scenario_id: site_s1.id, resource_type: 0, book: :site, sort_order: 1, page: 14 }
+    Repo.insert! %ScenarioResource { scenario_id: site_s1.id, resource_type: 0, book: :site, title: "A Shadow in the East", sort_order: 1, page: 14 }
 
     Repo.insert! %ScenarioResource { scenario_id: site_s1.id, resource_type: 2, url: "http://www.davetownsend.org/Battles/LotR-20160604/", sort_order: 1 }
 
@@ -51,7 +51,7 @@ defmodule SbgInv.Data do
       date_age: 3, date_year: 2998, is_canonical: true, size: 28
     }
 
-    Repo.insert! %ScenarioResource { scenario_id: site_s2.id, resource_type: 0, book: :site, sort_order: 2, page: 16 }
+    Repo.insert! %ScenarioResource { scenario_id: site_s2.id, resource_type: 0, book: :site, title: "A Shadow in the East", sort_order: 2, page: 16 }
 
     Repo.insert! %ScenarioFaction { scenario_id: site_s2.id, faction: :minas_tirith, suggested_points: 275, actual_points: 279, sort_order: 1 }
 
@@ -64,7 +64,7 @@ defmodule SbgInv.Data do
       date_age: 3, date_year: 2998, is_canonical: true, size: 47
     }
 
-    Repo.insert! %ScenarioResource { scenario_id: site_s3.id, resource_type: 0, book: :site, sort_order: 3, page: 28 }
+    Repo.insert! %ScenarioResource { scenario_id: site_s3.id, resource_type: 0, book: :site, title: "A Shadow in the East", sort_order: 3, page: 28 }
 
     Repo.insert! %ScenarioFaction { scenario_id: site_s3.id, faction: :minas_tirith, suggested_points: 350, actual_points: 329, sort_order: 1 }
 
@@ -77,7 +77,7 @@ defmodule SbgInv.Data do
       date_age: 3, date_year: 2998, is_canonical: true, size: 121
     }
 
-    Repo.insert! %ScenarioResource { scenario_id: site_s4.id, resource_type: 0, book: :site, sort_order: 4, page: 30 }
+    Repo.insert! %ScenarioResource { scenario_id: site_s4.id, resource_type: 0, book: :site, title: "A Shadow in the East", sort_order: 4, page: 30 }
 
     Repo.insert! %ScenarioFaction { scenario_id: site_s4.id, faction: :minas_tirith, suggested_points: 900, actual_points: 849, sort_order: 1 }
 
@@ -90,7 +90,7 @@ defmodule SbgInv.Data do
       date_age: 3, date_year: 3001, is_canonical: true, size: 71
     }
 
-    Repo.insert! %ScenarioResource { scenario_id: site_s5.id, resource_type: 0, book: :site, sort_order: 5, page: 36 }
+    Repo.insert! %ScenarioResource { scenario_id: site_s5.id, resource_type: 0, book: :site, title: "A Shadow in the East", sort_order: 5, page: 36 }
 
     Repo.insert! %ScenarioFaction { scenario_id: site_s5.id, faction: :dwarves, suggested_points: 500, actual_points: 460, sort_order: 1 }
 
@@ -103,7 +103,7 @@ defmodule SbgInv.Data do
       date_age: 3, date_year: 3002, is_canonical: true, size: 101
     }
 
-    Repo.insert! %ScenarioResource { scenario_id: site_s6.id, resource_type: 0, book: :site, sort_order: 6, page: 38 }
+    Repo.insert! %ScenarioResource { scenario_id: site_s6.id, resource_type: 0, book: :site, title: "A Shadow in the East", sort_order: 6, page: 38 }
 
     Repo.insert! %ScenarioFaction { scenario_id: site_s6.id, faction: :easterlings, suggested_points: 500, actual_points: 700, sort_order: 1 }
 
@@ -116,7 +116,7 @@ defmodule SbgInv.Data do
       date_age: 3, date_year: 2510, is_canonical: true, size: 107
     }
 
-    Repo.insert! %ScenarioResource { scenario_id: site_s7.id, resource_type: 0, book: :site, sort_order: 7, page: 40 }
+    Repo.insert! %ScenarioResource { scenario_id: site_s7.id, resource_type: 0, book: :site, title: "A Shadow in the East", sort_order: 7, page: 40 }
 
     Repo.insert! %ScenarioFaction { scenario_id: site_s7.id, faction: :rohan, suggested_points: 650, actual_points: 635, sort_order: 1 }
 
@@ -129,7 +129,7 @@ defmodule SbgInv.Data do
       date_age: 3, date_year: 2520, is_canonical: true, size: 28
     }
 
-    Repo.insert! %ScenarioResource { scenario_id: site_s8.id, resource_type: 0, book: :site, sort_order: 8, page: 46 }
+    Repo.insert! %ScenarioResource { scenario_id: site_s8.id, resource_type: 0, book: :site, title: "A Shadow in the East", sort_order: 8, page: 46 }
 
     Repo.insert! %ScenarioFaction { scenario_id: site_s8.id, faction: :free_peoples, suggested_points: 400, actual_points: 495, sort_order: 1 }
 
@@ -146,9 +146,9 @@ defmodule SbgInv.Data do
       date_age: 3,  date_year: 2060, is_canonical: true, size: 22
     }
 
-    Repo.insert! %ScenarioResource { scenario_id: fotn_s1.id, resource_type: 0, book: :fotn, sort_order: 1, page: 8 }
+    Repo.insert! %ScenarioResource { scenario_id: fotn_s1.id, resource_type: 0, book: :fotn, title: "Fall of the Necromancer", sort_order: 1, page: 8 }
 
-    Repo.insert! %ScenarioResource { scenario_id: fotn_s1.id, resource_type: 1, url: "https://www.youtube.com/watch?v=0_dCdLngsKs&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", sort_order: 1 }
+    Repo.insert! %ScenarioResource { scenario_id: fotn_s1.id, resource_type: 1, url: "https://www.youtube.com/watch?v=0_dCdLngsKs&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1 }
 
     Repo.insert! %ScenarioFaction { scenario_id: fotn_s1.id, faction: :mirkwood, suggested_points: 200, actual_points: 273, sort_order: 1 }
 
@@ -161,9 +161,9 @@ defmodule SbgInv.Data do
       date_age: 3,  date_year: 2061, is_canonical: true, size: 65
     }
 
-    Repo.insert! %ScenarioResource { scenario_id: fotn_s2.id, resource_type: 0, book: :fotn, sort_order: 2, page: 10 }
+    Repo.insert! %ScenarioResource { scenario_id: fotn_s2.id, resource_type: 0, book: :fotn, title: "Fall of the Necromancer", sort_order: 2, page: 10 }
 
-    Repo.insert! %ScenarioResource { scenario_id: fotn_s1.id, resource_type: 1, url: "https://www.youtube.com/watch?v=AMrP8abPj0Q&index=2&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", sort_order: 1 }
+    Repo.insert! %ScenarioResource { scenario_id: fotn_s2.id, resource_type: 1, url: "https://www.youtube.com/watch?v=AMrP8abPj0Q&index=2&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1 }
 
     Repo.insert! %ScenarioFaction { scenario_id: fotn_s2.id, faction: :mirkwood, suggested_points: 600, actual_points: 0, sort_order: 1 }
 

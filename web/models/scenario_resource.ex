@@ -5,6 +5,7 @@ defmodule SbgInv.ScenarioResource do
     field :resource_type, ScenarioResourceType
     field :book, ScenarioResourceBook
     field :page, :integer
+    field :title, :string
     field :url, :string
     field :notes, :string
     field :sort_order, :integer
@@ -15,7 +16,7 @@ defmodule SbgInv.ScenarioResource do
   end
 
   @required_fields ~w(scenario_id resource_type sort_order)
-  @optional_fields ~w(book page url notes)
+  @optional_fields ~w(book page title url notes)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
