@@ -6,7 +6,9 @@ defenum Faction,
   dwarves: 2,
   mordor: 3,
   rohan: 4,
-  free_peoples: 5
+  free_peoples: 5,
+  mirkwood: 6,
+  dol_guldur: 7
 
 defenum ScenarioResourceBook,
   fotr:     0,   # Fellowship of the Ring
@@ -25,4 +27,9 @@ defenum ScenarioResourceBook,
   ttt_jb:  13,   # The Two Towers Journeybook
   rotk_jb: 14    # Return of the King Journeybook
 
-  defenum ScenarioResourceType, source: 0, video_replay: 1, web_replay: 2, terrain_building: 3, podcast: 4
+defenum ScenarioResourceType,
+  source: 0,
+  video_replay: 1,
+  web_replay: 2,
+  terrain_building: 3,
+  podcast: 4
