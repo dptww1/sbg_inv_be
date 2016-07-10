@@ -148,6 +148,8 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource { scenario_id: fotn_s1.id, resource_type: 0, book: :fotn, sort_order: 1, page: 8 }
 
+    Repo.insert! %ScenarioResource { scenario_id: fotn_s1.id, resource_type: 1, url: "https://www.youtube.com/watch?v=0_dCdLngsKs&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", sort_order: 1 }
+
     Repo.insert! %ScenarioFaction { scenario_id: fotn_s1.id, faction: :mirkwood, suggested_points: 200, actual_points: 273, sort_order: 1 }
 
     Repo.insert! %ScenarioFaction { scenario_id: fotn_s1.id, faction: :dol_guldur, suggested_points: 200, actual_points: 150, sort_order: 2 }
@@ -160,6 +162,8 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource { scenario_id: fotn_s2.id, resource_type: 0, book: :fotn, sort_order: 2, page: 10 }
+
+    Repo.insert! %ScenarioResource { scenario_id: fotn_s1.id, resource_type: 1, url: "https://www.youtube.com/watch?v=AMrP8abPj0Q&index=2&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", sort_order: 1 }
 
     Repo.insert! %ScenarioFaction { scenario_id: fotn_s2.id, faction: :mirkwood, suggested_points: 600, actual_points: 0, sort_order: 1 }
 
