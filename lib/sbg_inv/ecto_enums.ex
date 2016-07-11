@@ -8,7 +8,10 @@ defenum Faction,
   rohan: 4,
   free_peoples: 5,
   mirkwood: 6,
-  dol_guldur: 7
+  dol_guldur: 7,
+  rivendell: 8,
+  white_council: 9,
+  lothlorien: 10
 
 defenum ScenarioResourceBook,
   fotr:     0,   # Fellowship of the Ring
