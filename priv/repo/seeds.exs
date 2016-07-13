@@ -93,7 +93,7 @@ defmodule SbgInv.Data do
     saf_s6 = Repo.insert! %Scenario {
       name: "Surrounded!",
       blurb: "Elves under Glorfindel are surrounded by Orcs on one side and Goblins on the other.",
-      date_age: 3, date_year: 2925, is_canonical: true, size: 9
+      date_age: 3, date_year: 2925, is_canonical: true, size: 101
     }
 
     Repo.insert! %ScenarioResource { scenario_id: saf_s6.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 6, page: 42 }
