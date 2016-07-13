@@ -26,6 +26,94 @@ defmodule SbgInv.Data do
     IO.puts "Generating data"
 
     #########################################################################
+    # SHADOW & FLAME
+    #########################################################################
+
+    #========================================================================
+    saf_s1 = Repo.insert! %Scenario {
+      name: "The Eastgate",
+      blurb: "Balin's dwarves assault the east gate of Moria.",
+      date_age: 3, date_year: 2989, is_canonical: true, size: 43
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: saf_s1.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 1, page: 14 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s1.id, faction: :dwarves, suggested_points: 200, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s1.id, faction: :moria,   suggested_points: 200, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    saf_s2 = Repo.insert! %Scenario {
+      name: "Battle for the Dwarrowdelf",
+      blurb: "Balin faces off against Durbûrz deep within Moria.",
+      date_age: 3, date_year: 2990, is_canonical: true, size: 77
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: saf_s2.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 2, page: 20 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s2.id, faction: :dwarves, suggested_points: 600, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s2.id, faction: :moria,   suggested_points: 600, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    saf_s3 = Repo.insert! %Scenario {
+      name: "Mirrormere",
+      blurb: "The Goblins ambush Balin as he gazes into the waters of the Kheled-zâram.",
+      date_age: 3, date_year: 2993, is_canonical: true, size: 51
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: saf_s3.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 3, page: 24 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s3.id, faction: :dwarves, suggested_points: 300, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s3.id, faction: :moria,   suggested_points: 300, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    saf_s4 = Repo.insert! %Scenario {
+      name: "They Are Coming",
+      blurb: "The last dwarves in Moria face the Balrog.",
+      date_age: 3, date_year: 2994, is_canonical: true, size: 55
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: saf_s4.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 4, page: 28 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s4.id, faction: :dwarves, suggested_points: 500, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s4.id, faction: :moria,   suggested_points: 500, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    saf_s5 = Repo.insert! %Scenario {
+      name: "Fog on the Barrow Downs",
+      blurb: "Frodo and friends are attacked by the Barrow Wights.",
+      date_age: 3, date_year: 3018, is_canonical: true, size: 9   # Sep 28
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: saf_s5.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 5, page: 36 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s5.id, faction: :fellowship, suggested_points: 200, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s5.id, faction: :angmar,     suggested_points: 200, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    saf_s6 = Repo.insert! %Scenario {
+      name: "Surrounded!",
+      blurb: "Elves under Glorfindel are surrounded by Orcs on one side and Goblins on the other.",
+      date_age: 3, date_year: 2925, is_canonical: true, size: 9
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: saf_s6.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 6, page: 42 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s6.id, faction: :rivendell, suggested_points: 650, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s6.id, faction: :angmar,    suggested_points: 700, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    saf_s7 = Repo.insert! %Scenario {
+      name: "Fangorn",
+      blurb: "The Rohirrim, chasing down an Orcish raiding party, get some unexpected help.",
+      date_age: 3, date_year: 3016, is_canonical: true, size: 53
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: saf_s7.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 7, page: 46 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s7.id, faction: :rohan,    suggested_points: 500, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: saf_s7.id, faction: :isengard, suggested_points: 500, actual_points: 0, sort_order: 2 }
+
+    #########################################################################
     # A SHADOW IN THE EAST
     #########################################################################
 

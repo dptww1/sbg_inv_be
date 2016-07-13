@@ -11,13 +11,17 @@ defenum Faction,
   dol_guldur: 7,
   rivendell: 8,
   white_council: 9,
-  lothlorien: 10
+  lothlorien: 10,
+  moria: 11,
+  fellowship: 12,
+  angmar: 13,
+  isengard: 14
 
 defenum ScenarioResourceBook,
   fotr:     0,   # Fellowship of the Ring
   ttt:      1,   # The Two Towers
   rotk:     2,   # Return of the King
-  sf:       3,   # Shadow & Flame
+  saf:      3,   # Shadow & Flame
   sog:      4,   # Siege of Gondor
   bpf:      5,   # Battle of the Pelennor Fields
   sots:     6,   # The Scouring of the Shire
