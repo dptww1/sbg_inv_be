@@ -205,7 +205,7 @@ defmodule SbgInv.Data do
     sog_s8 = Repo.insert! %Scenario {
       name: "Forth Eorlingas!",
       blurb: "Theoden leads a mounted charge out from Helm's Deep.",
-      date_age: 3, date_year: 3019, is_canonical: true, size: 109  # Mar 4
+      date_age: 3, date_year: 3019, is_canonical: true, size: 105  # Mar 4
     }
 
     Repo.insert! %ScenarioResource { scenario_id: sog_s8.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 7, page: 62 }
