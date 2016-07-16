@@ -1,7 +1,7 @@
 import EctoEnum
 
 defenum Faction,
-  minas_tirith: 0,
+  gondor: 0,
   easterlings: 1,
   dwarves: 2,
   mordor: 3,

@@ -114,6 +114,106 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioFaction { scenario_id: saf_s7.id, faction: :isengard, suggested_points: 500, actual_points: 0, sort_order: 2 }
 
     #########################################################################
+    # SIEGE OF GONDOR
+    #########################################################################
+
+    #========================================================================
+    sog_s1 = Repo.insert! %Scenario {
+      name: "Osgiliath",
+      blurb: "Boromir and Faramir defend Osgiliath against the initial assault from Mordor.",
+      date_age: 3, date_year: 3018, is_canonical: true, size: 105  # Sep 20
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: sog_s1.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 1, page: 18 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s1.id, faction: :gondor, suggested_points: 800, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s1.id, faction: :mordor, suggested_points: 800, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    sog_s2 = Repo.insert! %Scenario {
+      name: "First Assault on Cair Andros",
+      blurb: "Faramir defends the Anduin crossing north of Osgiliath.",
+      date_age: 3, date_year: 3019, is_canonical: true, size: 100  # Mar 10
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: sog_s2.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 2, page: 32 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s2.id, faction: :gondor, suggested_points: 250, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s2.id, faction: :mordor, suggested_points: 750, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    sog_s3 = Repo.insert! %Scenario {
+      name: "Second Assault on Cair Andros",
+      blurb: "Gothmog leads another assault on Cair Andros.",
+      date_age: 3, date_year: 3019, is_canonical: true, size: 69  # Mar 11?
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: sog_s3.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 3, page: 40 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s3.id, faction: :gondor, suggested_points: 150, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s3.id, faction: :mordor, suggested_points: 600, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    sog_s4 = Repo.insert! %Scenario {
+      name: "The Rammas",
+      blurb: "Gothmog pursues Faramir out of Osgiliath to the edge of the Pelennor Fields.",
+      date_age: 3, date_year: 3019, is_canonical: true, size: 87  # Mar 12
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: sog_s4.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 4, page: 46 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s4.id, faction: :gondor, suggested_points: 500, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s4.id, faction: :mordor, suggested_points: 500, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    sog_s5 = Repo.insert! %Scenario {
+      name: "The Siege of Minas Tirith",
+      blurb: "Gandalf the White defends the walls of Minas Tirith from the forces of Mordor under Gothmog.",
+      date_age: 3, date_year: 3019, is_canonical: true, size: 112  # Mar 14
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: sog_s5.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 5, page: 48 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s5.id, faction: :gondor, suggested_points:  750, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s5.id, faction: :mordor, suggested_points: 1000, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    sog_s6 = Repo.insert! %Scenario {
+      name: "The Pyre of Denethor",
+      blurb: "Gandalf the White rescues Faramir from the insanity of Denethor.",
+      date_age: 3, date_year: 3019, is_canonical: true, size: 84  # Mar 15
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: sog_s6.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 5, page: 52 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s6.id, faction: :gondor, suggested_points:  750, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s6.id, faction: :mordor, suggested_points: 1000, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    sog_s7 = Repo.insert! %Scenario {
+      name: "The Defenses Must Hold!",
+      blurb: "Theoden and friends hold out at Helm's Deep.",
+      date_age: 3, date_year: 3019, is_canonical: true, size: 109  # Mar 3
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: sog_s7.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 6, page: 58 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s7.id, faction: :gondor, suggested_points: 250, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s7.id, faction: :mordor, suggested_points: 375, actual_points: 0, sort_order: 2 }
+
+    #========================================================================
+    sog_s8 = Repo.insert! %Scenario {
+      name: "Forth Eorlingas!",
+      blurb: "Theoden leads a mounted charge out from Helm's Deep.",
+      date_age: 3, date_year: 3019, is_canonical: true, size: 109  # Mar 4
+    }
+
+    Repo.insert! %ScenarioResource { scenario_id: sog_s8.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 7, page: 62 }
+
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s8.id, faction: :gondor, suggested_points: 800, actual_points: 0, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: sog_s8.id, faction: :mordor, suggested_points: 800, actual_points: 0, sort_order: 2 }
+
+    #########################################################################
     # A SHADOW IN THE EAST
     #########################################################################
 
@@ -127,7 +227,7 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource { scenario_id: site_s1.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 1, page: 14 }
     Repo.insert! %ScenarioResource { scenario_id: site_s1.id, resource_type: :web_replay, url: "http://www.davetownsend.org/Battles/LotR-20160604/", sort_order: 1 }
 
-    Repo.insert! %ScenarioFaction { scenario_id: site_s1.id, faction: :minas_tirith, suggested_points: 200, actual_points: 203, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: site_s1.id, faction: :gondor, suggested_points: 200, actual_points: 203, sort_order: 1 }
     Repo.insert! %ScenarioFaction { scenario_id: site_s1.id, faction: :easterlings, suggested_points: 200, actual_points: 220, sort_order: 2 }
 
     #========================================================================
@@ -139,7 +239,7 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource { scenario_id: site_s2.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 2, page: 16 }
 
-    Repo.insert! %ScenarioFaction { scenario_id: site_s2.id, faction: :minas_tirith, suggested_points: 275, actual_points: 279, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: site_s2.id, faction: :gondor, suggested_points: 275, actual_points: 279, sort_order: 1 }
     Repo.insert! %ScenarioFaction { scenario_id: site_s2.id, faction: :easterlings, suggested_points: 225, actual_points: 197, sort_order: 2 }
 
     #========================================================================
@@ -151,7 +251,7 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource { scenario_id: site_s3.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 3, page: 28 }
 
-    Repo.insert! %ScenarioFaction { scenario_id: site_s3.id, faction: :minas_tirith, suggested_points: 350, actual_points: 329, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: site_s3.id, faction: :gondor, suggested_points: 350, actual_points: 329, sort_order: 1 }
     Repo.insert! %ScenarioFaction { scenario_id: site_s3.id, faction: :easterlings, suggested_points: 350, actual_points: 420, sort_order: 2 }
 
     #========================================================================
@@ -163,7 +263,7 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource { scenario_id: site_s4.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 4, page: 30 }
 
-    Repo.insert! %ScenarioFaction { scenario_id: site_s4.id, faction: :minas_tirith, suggested_points: 900, actual_points: 849, sort_order: 1 }
+    Repo.insert! %ScenarioFaction { scenario_id: site_s4.id, faction: :gondor, suggested_points: 900, actual_points: 849, sort_order: 1 }
     Repo.insert! %ScenarioFaction { scenario_id: site_s4.id, faction: :easterlings, suggested_points: 600, actual_points: 813, sort_order: 2 }
 
     #========================================================================
