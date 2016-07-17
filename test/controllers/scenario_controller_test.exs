@@ -24,7 +24,13 @@ defmodule SbgInv.ScenarioControllerTest do
       "date_year" => scenario.date_year,
       "is_canonical" => scenario.is_canonical,
       "size" => scenario.size,
-      "scenario_resources" => [],
+      "scenario_resources" => %{
+        "source" => [],
+        "web_replay" => [],
+        "video_replay" => [],
+        "terrain_building" => [],
+        "podcast" => []
+       },
       "scenario_factions" => []}
   end
 
