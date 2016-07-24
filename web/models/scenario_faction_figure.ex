@@ -1,19 +1,17 @@
-defmodule SbgInv.ScenarioFaction do
+defmodule SbgInv.ScenarioFactionFigure do
   use SbgInv.Web, :model
 
-  schema "scenario_factions" do
-    field :faction, Faction
-    field :suggested_points, :integer
-    field :actual_points, :integer
+  schema "scenario_faction_figures" do
+    field :amount, :integer
     field :sort_order, :integer
 
-    timestamps
+    belongs_to :figure, SbgInv.Figure
+    belongs_to :scenario_faction, SbgInv.ScenarioFaction
 
-    belongs_to :scenario, SbgInv.Scenario
-    has_many :scenario_faction_figures, SbgInv.ScenarioFactionFigure
+    timestamps
   end
 
-  @required_fields ~w(scenario_id faction suggested_points actual_points sort_order)
+  @required_fields ~w(amount sort_order figure_id scenario_faction_id)
   @optional_fields ~w()
 
   @doc """

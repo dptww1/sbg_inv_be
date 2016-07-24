@@ -14,9 +14,11 @@
 
 defmodule SbgInv.Data do
   alias SbgInv.Repo
+  alias SbgInv.Figure
   alias SbgInv.Scenario
-  alias SbgInv.ScenarioResource
   alias SbgInv.ScenarioFaction
+  alias SbgInv.ScenarioFactionFigure
+  alias SbgInv.ScenarioResource
 
   def generate do
     _generate
@@ -24,6 +26,23 @@ defmodule SbgInv.Data do
 
   defp _generate do
     IO.puts "Generating data"
+
+    #########################################################################
+    # FIGURES: EASTERLINGS
+    #########################################################################
+
+    easterling_w_shield       = Repo.insert! %Figure { name: "Easterling Warrior with shield" }
+    easterling_w_bow          = Repo.insert! %Figure { name: "Easterling Warrior with bow" }
+    easterling_w_shield_spear = Repo.insert! %Figure { name: "Easterling Warrior with shield and spear" }
+
+    #########################################################################
+    # FIGURES: GONDOR
+    #########################################################################
+
+    gondor_womt_spear_shield = Repo.insert! %Figure { name: "Warrior of Minas Tirith with spear and shield" }
+    gondor_womt_shield       = Repo.insert! %Figure { name: "Warrior of Minas Tirith with shield" }
+    gondor_womt_bow          = Repo.insert! %Figure { name: "Warrior of Minas Tirith with bow" }
+    gondor_rog               = Repo.insert! %Figure { name: "Ranger of Gondor" }
 
     #########################################################################
     # SHADOW & FLAME
@@ -227,8 +246,18 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource { scenario_id: site_s1.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 1, page: 14 }
     Repo.insert! %ScenarioResource { scenario_id: site_s1.id, resource_type: :web_replay, url: "http://www.davetownsend.org/Battles/LotR-20160604/", sort_order: 1 }
 
-    Repo.insert! %ScenarioFaction { scenario_id: site_s1.id, faction: :gondor, suggested_points: 200, actual_points: 203, sort_order: 1 }
-    Repo.insert! %ScenarioFaction { scenario_id: site_s1.id, faction: :easterlings, suggested_points: 200, actual_points: 220, sort_order: 2 }
+    site_f1 = Repo.insert! %ScenarioFaction { scenario_id: site_s1.id, faction: :gondor, suggested_points: 200, actual_points: 203, sort_order: 1 }
+
+    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_f1.id, amount: 4, sort_order: 2, figure_id: gondor_womt_spear_shield.id }
+    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_f1.id, amount: 4, sort_order: 3, figure_id: gondor_womt_shield.id }
+    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_f1.id, amount: 4, sort_order: 4, figure_id: gondor_womt_bow.id }
+    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_f1.id, amount: 6, sort_order: 5, figure_id: gondor_rog.id }
+
+    site_f2 = Repo.insert! %ScenarioFaction { scenario_id: site_s1.id, faction: :easterlings, suggested_points: 200, actual_points: 220, sort_order: 2 }
+
+    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_f2.id, amount: 4, sort_order: 2, figure_id: easterling_w_shield.id }
+    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_f2.id, amount: 4, sort_order: 3, figure_id: easterling_w_bow.id }
+    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_f2.id, amount: 2, sort_order: 4, figure_id: easterling_w_shield_spear.id }
 
     #========================================================================
     site_s2 = Repo.insert! %Scenario {

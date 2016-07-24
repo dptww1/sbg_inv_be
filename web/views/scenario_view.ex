@@ -2,24 +2,35 @@ defmodule SbgInv.ScenarioView do
   use SbgInv.Web, :view
 
   def render("index.json", %{scenarios: scenarios}) do
-    %{data: render_many(scenarios, __MODULE__, "scenario.json")}
+    %{data: render_many(scenarios, __MODULE__, "scenario_overview.json")}
+  end
+
+  def render("scenario_overview.json", %{scenario: scenario}) do
+    base_scenario(scenario)
   end
 
   def render("show.json", %{scenario: scenario}) do
-    %{data: render_one(scenario, SbgInv.ScenarioView, "scenario.json")}
+    %{data: render_one(scenario, __MODULE__, "scenario.json")}
   end
 
-  def render("scenario.json", %{scenario: scenario}) do
-    %{id: scenario.id,
+  defp base_scenario(scenario) do
+    %{
+      id: scenario.id,
       name: scenario.name,
       blurb: scenario.blurb,
       date_age: scenario.date_age,
       date_year: scenario.date_year,
       is_canonical: scenario.is_canonical,
       size: scenario.size,
+      id: scenario.id,
       scenario_resources: render_one(massage_resources(scenario.scenario_resources), __MODULE__, "scenario_resources.json"),
+    }
+  end
+
+  def render("scenario.json", %{scenario: scenario}) do
+    Map.merge base_scenario(scenario), %{
       scenario_factions: render_many(scenario.scenario_factions, __MODULE__, "scenario_faction.json", as: :scenario_faction)
-     }
+    }
   end
 
   def render("scenario_resources.json", %{scenario: scenario_resources}) do
@@ -49,7 +60,15 @@ defmodule SbgInv.ScenarioView do
       faction: faction.faction,
       suggested_points: faction.suggested_points,
       actual_points: faction.actual_points,
-      sort_order: faction.sort_order
+      sort_order: faction.sort_order,
+      figures: render_many(faction.scenario_faction_figures, __MODULE__ , "scenario_faction_figure.json")
+    }
+  end
+
+  def render("scenario_faction_figure.json", %{scenario: scenario_faction_figure}) do
+    %{
+      id: scenario_faction_figure.id,
+      amount: scenario_faction_figure.amount
     }
   end
 

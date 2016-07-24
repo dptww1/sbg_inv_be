@@ -37,7 +37,8 @@ defmodule SbgInv.ScenarioController do
 
   def show(conn, %{"id" => id}) do
     scenario = Repo.get!(Scenario, id)
-               |> Repo.preload([:scenario_resources, :scenario_factions])
+               |> Repo.preload(:scenario_resources)
+               |> Repo.preload(scenario_factions: :scenario_faction_figures)
     render(conn, "show.json", scenario: scenario)
   end
 
