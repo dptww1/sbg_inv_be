@@ -68,7 +68,8 @@ defmodule SbgInv.ScenarioView do
   def render("scenario_faction_figure.json", %{scenario: scenario_faction_figure}) do
     %{
       id: scenario_faction_figure.id,
-      amount: scenario_faction_figure.amount
+      amount: scenario_faction_figure.amount,
+      name: scenario_faction_figure.figure.name
     }
   end
 

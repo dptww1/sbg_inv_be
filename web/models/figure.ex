@@ -5,6 +5,8 @@ defmodule SbgInv.Figure do
     field :name, :string
 
     timestamps
+
+    has_many :scenario_faction_figure, SbgInv.ScenarioFactionFigure
   end
 
   @required_fields ~w(name)
