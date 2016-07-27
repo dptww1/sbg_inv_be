@@ -2,7 +2,7 @@ defmodule SbgInv.ScenarioControllerTest do
   use SbgInv.ConnCase
 
   alias SbgInv.Scenario
-  @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, is_canonical: true, name: "some content", size: 42}
+  @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, is_canonical: true, name: "some content", size: 42}
   @invalid_attrs %{}
 
   setup %{conn: conn} do

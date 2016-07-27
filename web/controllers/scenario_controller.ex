@@ -9,7 +9,7 @@ defmodule SbgInv.ScenarioController do
     import Ecto.Query
 
     query = from s in Scenario,
-            order_by: [asc: :date_year],
+            order_by: [asc: :date_year, asc: :date_month, asc: :date_day],
             select: s
 
     scenarios = Repo.all(query)
