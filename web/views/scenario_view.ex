@@ -19,6 +19,8 @@ defmodule SbgInv.ScenarioView do
       name: scenario.name,
       blurb: scenario.blurb,
       date_age: scenario.date_age,
+      date_month: scenario.date_month,
+      date_day: scenario.date_day,
       date_year: scenario.date_year,
       is_canonical: scenario.is_canonical,
       size: scenario.size,
