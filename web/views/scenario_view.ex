@@ -6,7 +6,9 @@ defmodule SbgInv.ScenarioView do
   end
 
   def render("scenario_overview.json", %{scenario: scenario}) do
-    base_scenario(scenario)
+    Map.merge base_scenario(scenario), %{
+      scenario_factions: Enum.map(scenario.scenario_factions, fn f -> base_faction(f) end)
+    }
   end
 
   def render("show.json", %{scenario: scenario}) do
@@ -57,13 +59,18 @@ defmodule SbgInv.ScenarioView do
     }
   end
 
-  def render("scenario_faction.json", %{scenario_faction: faction}) do
+  defp base_faction(faction) do
     %{
       faction: faction.faction,
       suggested_points: faction.suggested_points,
       actual_points: faction.actual_points,
       sort_order: faction.sort_order,
-      figures: render_many(faction.scenario_faction_figures, __MODULE__ , "scenario_faction_figure.json")
+    }
+  end
+
+  def render("scenario_faction.json", %{scenario_faction: scenario_faction}) do
+    Map.merge base_faction(scenario_faction), %{
+      figures: render_many(scenario_faction.scenario_faction_figures, __MODULE__ , "scenario_faction_figure.json")
     }
   end
 
