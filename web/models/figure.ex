@@ -3,6 +3,7 @@ defmodule SbgInv.Figure do
 
   schema "figures" do
     field :name, :string
+    field :plural_name, :string
 
     timestamps
 
@@ -10,7 +11,7 @@ defmodule SbgInv.Figure do
   end
 
   @required_fields ~w(name)
-  @optional_fields ~w()
+  @optional_fields ~w(plural_name)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

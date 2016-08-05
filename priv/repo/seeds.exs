@@ -35,13 +35,13 @@ defmodule SbgInv.Data do
     drar  = Repo.insert! %Figure { name: "Drar" }
     murin = Repo.insert! %Figure { name: "Murin" }
 
-    dwarf_captain = Repo.insert! %Figure { name: "Dwarf Captain" }
+    dwarf_captain = Repo.insert! %Figure { name: "Dwarf Captain", plural_name: "Dwarf Captains" }
 
-    dwarf_khazad_gd = Repo.insert! %Figure { name: "Khazad Guard" }
-    dwarf_w_bow     = Repo.insert! %Figure { name: "Dwarf with Dwarf bow" }
-    dwarf_w_shield  = Repo.insert! %Figure { name: "Dwarf with shield" }
-    dwarf_w_axe     = Repo.insert! %Figure { name: "Dwarf with two-handed axe" }
-    dwarf_w_banner  = Repo.insert! %Figure { name: "Dwarf with banner" }
+    dwarf_khazad_gd = Repo.insert! %Figure { name: "Khazad Guard",              plural_name: "Khazad Guards" }
+    dwarf_w_bow     = Repo.insert! %Figure { name: "Dwarf with Dwarf bow",      plural_name: "Dwarves with Dwarf bow" }
+    dwarf_w_shield  = Repo.insert! %Figure { name: "Dwarf with shield",         plural_name: "Dwarves with shield" }
+    dwarf_w_axe     = Repo.insert! %Figure { name: "Dwarf with two-handed axe", plural_name: "Dwarves with two-handed axe" }
+    dwarf_w_banner  = Repo.insert! %Figure { name: "Dwarf with banner",         plural_name: "Dwarves with banner" }
 
     #########################################################################
     # FIGURES: EASTERLINGS
@@ -50,23 +50,23 @@ defmodule SbgInv.Data do
     khamul       = Repo.insert! %Figure { name: "Khamûl the Easterling" }
     khamul_horse = Repo.insert! %Figure { name: "Khamûl the Easterling on horseback" }
 
-    easterling_captain       = Repo.insert! %Figure { name: "Easterling Captain" }
-    khandish_chieftain       = Repo.insert! %Figure { name: "Khandish Chieftain" }
-    khandish_chieftain_horse = Repo.insert! %Figure { name: "Khandish Chieftain on horse" }
-    khandish_king_chariot    = Repo.insert! %Figure { name: "Khandish King in chariot" }
-    khandish_merc_chieftain  = Repo.insert! %Figure { name: "Khandish Mercenary Chieftain" }
+    easterling_captain       = Repo.insert! %Figure { name: "Easterling Captain",           plural_name: "Easterling Captains" }
+    khandish_chieftain       = Repo.insert! %Figure { name: "Khandish Chieftain",           plural_name: "Khandish Chieftains" }
+    khandish_chieftain_horse = Repo.insert! %Figure { name: "Khandish Chieftain on horse",  plural_name: "Khandish Chieftains on horse" }
+    khandish_king_chariot    = Repo.insert! %Figure { name: "Khandish King in chariot",     plural_name: "Khandish Kings in chariot" }
+    khandish_merc_chieftain  = Repo.insert! %Figure { name: "Khandish Mercenary Chieftain", plural_name: "Khandish Mercenary Chieftains" }
 
-    easterling_w_shield        = Repo.insert! %Figure { name: "Easterling Warrior with shield" }
-    easterling_w_bow           = Repo.insert! %Figure { name: "Easterling Warrior with bow" }
-    easterling_w_shield_spear  = Repo.insert! %Figure { name: "Easterling Warrior with shield and spear" }
-    easterling_w_banner        = Repo.insert! %Figure { name: "Easterling Warrior with banner" }
-    easterling_kataphrakt      = Repo.insert! %Figure { name: "Easterling Kataphrakt" }
-    khandish_charioteer        = Repo.insert! %Figure { name: "Khandish Charioteer with bow" }
-    khandish_merc_bow          = Repo.insert! %Figure { name: "Khandish Mercenary with bow" }
-    khandish_merc_axe          = Repo.insert! %Figure { name: "Khandish Mercenary with two handed axe" }
-    khandish_w_bow             = Repo.insert! %Figure { name: "Khandish Warrior with bow" }
-    khandish_w_axe             = Repo.insert! %Figure { name: "Khandish Warrior with two handed axe" }
-    khandish_horseman          = Repo.insert! %Figure { name: "Khandish Horseman" }
+    easterling_w_shield        = Repo.insert! %Figure { name: "Easterling Warrior with shield",           plural_name: "Easterling Warriors with shield" }
+    easterling_w_bow           = Repo.insert! %Figure { name: "Easterling Warrior with bow",              plural_name: "Easterling Warriors with bow" }
+    easterling_w_shield_spear  = Repo.insert! %Figure { name: "Easterling Warrior with shield and spear", plural_name: "Easterling Warriors with shield and spear" }
+    easterling_w_banner        = Repo.insert! %Figure { name: "Easterling Warrior with banner",           plural_name: "Easterling Warriors with banner" }
+    easterling_kataphrakt      = Repo.insert! %Figure { name: "Easterling Kataphrakt",                    plural_name: "Easterling Kataphrakts" }
+    khandish_charioteer        = Repo.insert! %Figure { name: "Khandish Charioteer with bow",             plural_name: "Khandish Charioteers with bow" }
+    khandish_merc_bow          = Repo.insert! %Figure { name: "Khandish Mercenary with bow",              plural_name: "Khandish Mercenaries with bow" }
+    khandish_merc_axe          = Repo.insert! %Figure { name: "Khandish Mercenary with two-handed axe",   plural_name: "Khandish Mercenaries with two-handed axe" }
+    khandish_w_bow             = Repo.insert! %Figure { name: "Khandish Warrior with bow",                plural_name: "Khandish Warriors with bow" }
+    khandish_w_axe             = Repo.insert! %Figure { name: "Khandish Warrior with two-handed axe",     plural_name: "Khandish Warriors with two-handed axe" }
+    khandish_horseman          = Repo.insert! %Figure { name: "Khandish Horseman",                        plural_name: "Khandish Horsemen" }
 
     #########################################################################
     # FIGURES: FREE PEOPLES
@@ -75,7 +75,7 @@ defmodule SbgInv.Data do
     treebeard = Repo.insert! %Figure { name: "Treebeard" }
     gwaihir   = Repo.insert! %Figure { name: "Gwaihir" }
 
-    eagle = Repo.insert! %Figure { name: "Giant Eagle" }
+    eagle = Repo.insert! %Figure { name: "Giant Eagle", plural_name: "Giant Eagles" }
 
     #########################################################################
     # FIGURES: GONDOR
@@ -85,34 +85,34 @@ defmodule SbgInv.Data do
     faramir                  = Repo.insert! %Figure { name: "Faramir" }
     madril                   = Repo.insert! %Figure { name: "Madril" }
 
-    gondor_captain_mt        = Repo.insert! %Figure { name: "Captain of Minas Tirith" }
+    gondor_captain_mt        = Repo.insert! %Figure { name: "Captain of Minas Tirith", plural_name: "Captains of Minas Tirith" }
 
-    gondor_citadel_gd_spear  = Repo.insert! %Figure { name: "Citadel Guard with spear" }
-    gondor_citadel_gd_bow    = Repo.insert! %Figure { name: "Citadel Guard with longbow" }
-    gondor_rog               = Repo.insert! %Figure { name: "Ranger of Gondor" }
-    gondor_womt_banner       = Repo.insert! %Figure { name: "Warrior of Minas Tirith with banner" }
-    gondor_womt_bow          = Repo.insert! %Figure { name: "Warrior of Minas Tirith with bow" }
-    gondor_womt_shield       = Repo.insert! %Figure { name: "Warrior of Minas Tirith with shield" }
-    gondor_womt_spear_shield = Repo.insert! %Figure { name: "Warrior of Minas Tirith with spear and shield" }
+    gondor_citadel_gd_spear  = Repo.insert! %Figure { name: "Citadel Guard with spear",                      plural_name: "Citadel Guards with spear" }
+    gondor_citadel_gd_bow    = Repo.insert! %Figure { name: "Citadel Guard with longbow",                    plural_name: "Citadel Guards with longbow" }
+    gondor_rog               = Repo.insert! %Figure { name: "Ranger of Gondor",                              plural_name: "Ranger of Gondor" }
+    gondor_womt_banner       = Repo.insert! %Figure { name: "Warrior of Minas Tirith with banner",           plural_name: "Warriors of Minas Tirith with banner" }
+    gondor_womt_bow          = Repo.insert! %Figure { name: "Warrior of Minas Tirith with bow",              plural_name: "Warriors of Minas Tirith with bow" }
+    gondor_womt_shield       = Repo.insert! %Figure { name: "Warrior of Minas Tirith with shield",           plural_name: "Warriors of Minas Tirith with shield" }
+    gondor_womt_spear_shield = Repo.insert! %Figure { name: "Warrior of Minas Tirith with spear and shield", plural_name: "Warriors of Minas Tirith with spear and shield" }
 
     #########################################################################
     # FIGURES: MORDOR
     #########################################################################
 
-    orc_captain      = Repo.insert! %Figure { name: "Orc Captain" }
-    orc_captain_warg = Repo.insert! %Figure { name: "Orc Captain on Warg" }
+    orc_captain      = Repo.insert! %Figure { name: "Orc Captain",         plural_name: "Orc Captains" }
+    orc_captain_warg = Repo.insert! %Figure { name: "Orc Captain on Warg", plural_name: "Orc Captains on Warg" }
 
-    orc_w_banner      = Repo.insert! %Figure { name: "Orc with banner" }
-    orc_w_bow         = Repo.insert! %Figure { name: "Orc with Orc bow" }
-    orc_w_shield      = Repo.insert! %Figure { name: "Orc with shield" }
-    orc_w_spear       = Repo.insert! %Figure { name: "Orc with spear" }
-    orc_w_2h          = Repo.insert! %Figure { name: "Orc with two-handed weapon" }
-    warg_rider_bow    = Repo.insert! %Figure { name: "Warg Rider with bow" }
-    warg_rider_shield = Repo.insert! %Figure { name: "Warg Rider with shield" }
-    warg_rider_spear  = Repo.insert! %Figure { name: "Warg Rider with spear" }
+    orc_w_banner      = Repo.insert! %Figure { name: "Orc with banner",            plural_name: "Orcs with banner" }
+    orc_w_bow         = Repo.insert! %Figure { name: "Orc with Orc bow",           plural_name: "Orcs with Orc bow" }
+    orc_w_shield      = Repo.insert! %Figure { name: "Orc with shield",            plural_name: "Orcs with shield" }
+    orc_w_spear       = Repo.insert! %Figure { name: "Orc with spear",             plural_name: "Orcs with spear" }
+    orc_w_2h          = Repo.insert! %Figure { name: "Orc with two-handed weapon", plural_name: "Orcs with two-handed weapon" }
+    warg_rider_bow    = Repo.insert! %Figure { name: "Warg Rider with bow",        plural_name: "Warg Riders with bow" }
+    warg_rider_shield = Repo.insert! %Figure { name: "Warg Rider with shield",     plural_name: "Warg Riders with shield" }
+    warg_rider_spear  = Repo.insert! %Figure { name: "Warg Rider with spear",      plural_name: "Warg Riders with spear" }
 
-    war_catapult       = Repo.insert! %Figure { name: "War Catapult" }
-    war_catapult_troll = Repo.insert! %Figure { name: "War Catapult Troll" }
+    war_catapult       = Repo.insert! %Figure { name: "War Catapult",       plural_name: "War Catapults" }
+    war_catapult_troll = Repo.insert! %Figure { name: "War Catapult Troll", plural_name: "War Catapult Trolls" }
 
     #########################################################################
     # FIGURES: ROHAN
@@ -120,12 +120,12 @@ defmodule SbgInv.Data do
 
     eorl_horse = Repo.insert! %Figure { name: "Eorl the Young on horse" }
 
-    rohan_captain_horse = Repo.insert! %Figure { name: "Captain of Rohan on horse" }
+    rohan_captain_horse = Repo.insert! %Figure { name: "Captain of Rohan on horse", plural_name: "Captains of Rohan on horse" }
 
-    rohan_gd_horse_spear  = Repo.insert! %Figure { name: "Rohan Royal Guard with throwing spear on horseback" }
-    rohan_gd_horse_banner = Repo.insert! %Figure { name: "Rohan Royal Guard with banner" }
-    rohan_rider           = Repo.insert! %Figure { name: "Rider of Rohan" }
-    rohan_rider_spear     = Repo.insert! %Figure { name: "Rider of Rohan with throwing spear" }
+    rohan_gd_horse_spear  = Repo.insert! %Figure { name: "Rohan Royal Guard with throwing spear on horse", plural_name: "Rohan Royal Guards with throwing spear on horse" }
+    rohan_gd_horse_banner = Repo.insert! %Figure { name: "Rohan Royal Guard with banner",                  plural_name: "Rohan Royal Guards with banner" }
+    rohan_rider           = Repo.insert! %Figure { name: "Rider of Rohan",                                 plural_name: "Riders of Rohan" }
+    rohan_rider_spear     = Repo.insert! %Figure { name: "Rider of Rohan with throwing spear",             plural_name: "Riders of Rohan with throwing spear" }
 
     #########################################################################
     # SHADOW & FLAME

@@ -78,7 +78,7 @@ defmodule SbgInv.ScenarioView do
     %{
       id: scenario_faction_figure.id,
       amount: scenario_faction_figure.amount,
-      name: scenario_faction_figure.figure.name
+      name: if(scenario_faction_figure.amount > 1, do: scenario_faction_figure.figure.plural_name, else: scenario_faction_figure.figure.name)
     }
   end
 
