@@ -89,7 +89,7 @@ defmodule SbgInv.Data do
 
     gondor_citadel_gd_spear  = Repo.insert! %Figure { name: "Citadel Guard with spear",                      plural_name: "Citadel Guards with spear" }
     gondor_citadel_gd_bow    = Repo.insert! %Figure { name: "Citadel Guard with longbow",                    plural_name: "Citadel Guards with longbow" }
-    gondor_rog               = Repo.insert! %Figure { name: "Ranger of Gondor",                              plural_name: "Ranger of Gondor" }
+    gondor_rog               = Repo.insert! %Figure { name: "Ranger of Gondor",                              plural_name: "Rangers of Gondor" }
     gondor_womt_banner       = Repo.insert! %Figure { name: "Warrior of Minas Tirith with banner",           plural_name: "Warriors of Minas Tirith with banner" }
     gondor_womt_bow          = Repo.insert! %Figure { name: "Warrior of Minas Tirith with bow",              plural_name: "Warriors of Minas Tirith with bow" }
     gondor_womt_shield       = Repo.insert! %Figure { name: "Warrior of Minas Tirith with shield",           plural_name: "Warriors of Minas Tirith with shield" }
