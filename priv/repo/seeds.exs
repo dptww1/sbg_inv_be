@@ -19,6 +19,7 @@ defmodule SbgInv.Data do
   alias SbgInv.ScenarioFaction
   alias SbgInv.ScenarioFactionFigure
   alias SbgInv.ScenarioResource
+  alias SbgInv.UserFigure
 
   def generate do
     _generate
@@ -126,6 +127,13 @@ defmodule SbgInv.Data do
     rohan_gd_horse_banner = Repo.insert! %Figure { name: "Rohan Royal Guard with banner",                  plural_name: "Rohan Royal Guards with banner" }
     rohan_rider           = Repo.insert! %Figure { name: "Rider of Rohan",                                 plural_name: "Riders of Rohan" }
     rohan_rider_spear     = Repo.insert! %Figure { name: "Rider of Rohan with throwing spear",             plural_name: "Riders of Rohan with throwing spear" }
+
+    #########################################################################
+    # USER_FIGURES
+    #########################################################################
+    Repo.insert! %UserFigure { user_id: 1, figure_id: murin.id,           owned:  1, painted:  1 }
+    Repo.insert! %UserFigure { user_id: 1, figure_id: gondor_womt_bow.id, owned: 36, painted: 24 }
+    Repo.insert! %UserFigure { user_id: 1, figure_id: khandish_w_bow.id,  owned:  6, painted:  0 }
 
     #########################################################################
     # SHADOW & FLAME

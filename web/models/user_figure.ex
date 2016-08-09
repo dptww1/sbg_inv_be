@@ -1,18 +1,18 @@
-defmodule SbgInv.Figure do
+defmodule SbgInv.UserFigure do
   use SbgInv.Web, :model
 
-  schema "figures" do
-    field :name, :string
-    field :plural_name, :string
+  schema "user_figures" do
+    field :user_id, :integer
+    field :owned, :integer
+    field :painted, :integer
+
+    belongs_to :figure, SbgInv.Figure
 
     timestamps
-
-    has_many :scenario_faction_figure, SbgInv.ScenarioFactionFigure
-    has_many :user_figure, SbgInv.UserFigure
   end
 
-  @required_fields ~w(name)
-  @optional_fields ~w(plural_name)
+  @required_fields ~w(user_id owned painted)
+  @optional_fields ~w()
 
   @doc """
   Creates a changeset based on the `model` and `params`.
