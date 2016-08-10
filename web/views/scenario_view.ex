@@ -22,6 +22,8 @@ defmodule SbgInv.ScenarioView do
   end
 
   defp base_scenario(scenario) do
+    user_scenario = if(((length scenario.user_scenarios) > 0), do: hd(scenario.user_scenarios), else: %SbgInv.UserScenario{ rating: 0, owned: 0, painted: 0 })
+
     %{
       id: scenario.id,
       name: scenario.name,
@@ -34,6 +36,7 @@ defmodule SbgInv.ScenarioView do
       size: scenario.size,
       id: scenario.id,
       scenario_resources: render_one(massage_resources(scenario.scenario_resources), SbgInv.ScenarioResourceView, "resources.json"),
+      user_scenario: render_one(user_scenario, SbgInv.UserScenarioView, "user_scenario.json")
     }
   end
 

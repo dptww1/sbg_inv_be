@@ -13,7 +13,7 @@ defmodule SbgInv.ScenarioController do
             select: s
 
     scenarios = Repo.all(query)
-                |> Repo.preload([:scenario_resources, :scenario_factions])
+                |> Repo.preload([:scenario_resources, :scenario_factions, :user_scenarios])
 
     render(conn, "index.json", scenarios: scenarios)
   end
@@ -23,7 +23,7 @@ defmodule SbgInv.ScenarioController do
 
     case Repo.insert(changeset) do
       {:ok, scenario} ->
-        scenario = Repo.preload(scenario, [:scenario_resources, :scenario_factions])
+        scenario = Repo.preload(scenario, [:scenario_resources, :scenario_factions, :user_scenarios])
         conn
         |> put_status(:created)
         |> put_resp_header("location", scenario_path(conn, :show, scenario))
@@ -37,14 +37,14 @@ defmodule SbgInv.ScenarioController do
 
   def show(conn, %{"id" => id}) do
     scenario = Repo.get!(Scenario, id)
-               |> Repo.preload(:scenario_resources)
+               |> Repo.preload([:scenario_resources, :user_scenarios])
                |> Repo.preload(scenario_factions: [scenario_faction_figures: [figure: :user_figure]])
     render(conn, "show.json", scenario: scenario)
   end
 
   def update(conn, %{"id" => id, "scenario" => scenario_params}) do
     scenario = Repo.get!(Scenario, id)
-               |> Repo.preload([:scenario_resources, :scenario_factions])
+               |> Repo.preload([:scenario_resources, :scenario_factions, :user_scenarios])
     changeset = Scenario.changeset(scenario, scenario_params)
 
     case Repo.update(changeset) do

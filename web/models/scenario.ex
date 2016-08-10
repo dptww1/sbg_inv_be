@@ -15,6 +15,7 @@ defmodule SbgInv.Scenario do
 
     has_many :scenario_resources, SbgInv.ScenarioResource
     has_many :scenario_factions, SbgInv.ScenarioFaction
+    has_many :user_scenarios, SbgInv.UserScenario
   end
 
   @required_fields ~w(name blurb date_age date_year date_month date_day is_canonical size)

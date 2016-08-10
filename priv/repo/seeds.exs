@@ -20,6 +20,7 @@ defmodule SbgInv.Data do
   alias SbgInv.ScenarioFactionFigure
   alias SbgInv.ScenarioResource
   alias SbgInv.UserFigure
+  alias SbgInv.UserScenario
 
   def generate do
     _generate
@@ -662,6 +663,11 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioFaction { scenario_id: fotn_s7.id, faction: :rivendell,  suggested_points: 1500, actual_points: 0, sort_order: 1 }
     Repo.insert! %ScenarioFaction { scenario_id: fotn_s7.id, faction: :dol_guldur, suggested_points: 1400, actual_points: 0, sort_order: 2 }
+
+    #########################################################################
+    # USER_SCENARIOS
+    #########################################################################
+    Repo.insert! %UserScenario { user_id: 1, scenario_id: site_s1.id, owned: 20, painted: 6 }
   end
 end
 

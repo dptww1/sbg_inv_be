@@ -17,7 +17,8 @@ defmodule SbgInv.ScenarioControllerTest do
   test "shows chosen resource", %{conn: conn} do
     scenario = Repo.insert! %Scenario{}
     conn = get conn, scenario_path(conn, :show, scenario)
-    assert json_response(conn, 200)["data"] == %{"id" => scenario.id,
+    assert json_response(conn, 200)["data"] == %{
+      "id" => scenario.id,
       "name" => scenario.name,
       "blurb" => scenario.blurb,
       "date_age" => scenario.date_age,
@@ -33,7 +34,9 @@ defmodule SbgInv.ScenarioControllerTest do
         "terrain_building" => [],
         "podcast" => []
        },
-      "scenario_factions" => []}
+      "scenario_factions" => [],
+      "user_scenario" => %{ "rating" => 0, "owned" => 0, "painted" => 0 }
+  }
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do
