@@ -19,7 +19,7 @@ defmodule SbgInv.Mixfile do
   def application do
     [mod: {SbgInv, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :calendar]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +39,8 @@ defmodule SbgInv.Mixfile do
      {:cowboy, "~> 1.0"},
      {:plug, "~> 1.0"},
      {:corsica, "~> 0.4"},
-     {:ecto_enum, "~> 0.3.1"}
+     {:ecto_enum, "~> 0.3.1"},
+     {:calendar, "~> 0.14.2" }
     ]
   end
 
