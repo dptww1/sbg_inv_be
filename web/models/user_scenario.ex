@@ -12,8 +12,8 @@ defmodule SbgInv.UserScenario do
     timestamps
   end
 
-  @required_fields ~w(user_id rating owned painted)
-  @optional_fields ~w()
+  @required_fields ~w(user_id scenario_id)
+  @optional_fields ~w(rating owned painted)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
