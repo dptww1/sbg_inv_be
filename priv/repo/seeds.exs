@@ -346,7 +346,7 @@ defmodule SbgInv.Data do
     site_s1 = Repo.insert! %Scenario {
       name: "The Fall of Amon Barad",
       blurb: "Easterlings under Khamûl launch a surprise attack on a Gondorian outpost in Ithilien.",
-      date_age: 3, date_year: 2998, date_month: 0, date_day: 0, is_canonical: true, size: 30
+      date_age: 3, date_year: 2998, date_month: -4, date_day: 0, is_canonical: true, size: 30
     }
 
     Repo.insert! %ScenarioResource { scenario_id: site_s1.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 1, page: 14 }
@@ -371,7 +371,7 @@ defmodule SbgInv.Data do
     site_s2 = Repo.insert! %Scenario {
       name: "Pursuit Through Ithilien",
       blurb: "Easterlings pursue Cirion after the fall of Amon Barad.",
-      date_age: 3, date_year: 2998, date_month: 0, date_day: 0, is_canonical: true, size: 28
+      date_age: 3, date_year: 2998, date_month: -3, date_day: 0, is_canonical: true, size: 28
     }
 
     Repo.insert! %ScenarioResource { scenario_id: site_s2.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 2, page: 16 }
@@ -399,7 +399,7 @@ defmodule SbgInv.Data do
     site_s3 = Repo.insert! %Scenario {
       name: "Gathering Information",
       blurb: "Cirion's forces try to capture a Khandish leader from a fort.",
-      date_age: 3, date_year: 2998, date_month: 0, date_day: 0, is_canonical: true, size: 47
+      date_age: 3, date_year: 2998, date_month: -2, date_day: 0, is_canonical: true, size: 47
     }
 
     Repo.insert! %ScenarioResource { scenario_id: site_s3.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 3, page: 28 }
@@ -429,7 +429,7 @@ defmodule SbgInv.Data do
     site_s4 = Repo.insert! %Scenario {
       name: "Turning the Tide",
       blurb: "Cirion surprise attacks an Easterling camp at night.",
-      date_age: 3, date_year: 2998, date_month: 0, date_day: 0, is_canonical: true, size: 121
+      date_age: 3, date_year: 2998, date_month: -1, date_day: 0, is_canonical: true, size: 121
     }
 
     Repo.insert! %ScenarioResource { scenario_id: site_s4.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 4, page: 30 }
@@ -630,7 +630,7 @@ defmodule SbgInv.Data do
     fotn_s4 = Repo.insert! %Scenario {
       name: "Meddle Not in the Affairs of Wizards",
       blurb: "The Istari faces the minions of Dol Guldur.",
-      date_age: 3, date_year: 2062, date_month: 0, date_day: 0, is_canonical: true, size: 17
+      date_age: 3, date_year: 2062, date_month: -1, date_day: 0, is_canonical: true, size: 17
     }
 
     Repo.insert! %ScenarioResource { scenario_id: fotn_s4.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 4, page: 14 }
