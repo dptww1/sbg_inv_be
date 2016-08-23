@@ -32,8 +32,10 @@ defmodule SbgInv.ChannelCase do
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(SbgInv.Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(SbgInv.Repo, [])
+      Ecto.Adapters.SQL.Sandbox.mode(SbgInv.Repo, {:shared, self()})
     end
 
     :ok

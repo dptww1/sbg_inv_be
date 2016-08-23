@@ -18,7 +18,7 @@ defmodule SbgInv.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {SbgInv, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :calendar]]
   end
 
@@ -30,16 +30,18 @@ defmodule SbgInv.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.1.6"},
+    [{:phoenix, "~> 1.2.0"},
+     {:phoenix_pubsub, "~> 1.0" },
      {:postgrex, ">= 0.0.0"},
-     {:phoenix_ecto, "~> 2.0.2"},
+     {:phoenix_ecto, "~> 3.0-rc"},
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:plug, "~> 1.0"},
      {:corsica, "~> 0.4"},
-     {:ecto_enum, "~> 0.3.1"},
+     #{:ecto_enum, "~> 0.4.0"},
+     {:ecto_enum, git: "https://github.com/gjaldon/ecto_enum", tag: "ecto-2.0"},
      {:calendar, "~> 0.14.2" }
     ]
   end
@@ -51,7 +53,10 @@ defmodule SbgInv.Mixfile do
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"]]
+    [
+      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+    ]
   end
 end

@@ -8,7 +8,6 @@ use Mix.Config
 # Configures the endpoint
 config :sbg_inv, SbgInv.Endpoint,
   url: [host: "localhost"],
-  root: Path.dirname(__DIR__),
   secret_key_base: "ygLXFi4UG89ZvH/nn1SWdMNw2z4HmJrwj5suStMwI3rqvqD/l1WzaJTHM7ifx+1r",
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: SbgInv.PubSub,
@@ -27,3 +26,5 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
+config :sbg_inv, ecto_repos: [SbgInv.Repo]

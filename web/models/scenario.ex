@@ -27,7 +27,7 @@ defmodule SbgInv.Scenario do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     cast(model, params, @required_fields, @optional_fields)
     |> cast_assoc(:scenario_resources, params)
     |> cast_assoc(:scenario_factions, params)
