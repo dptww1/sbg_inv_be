@@ -10,7 +10,7 @@ defmodule SbgInv.ScenarioFaction do
     timestamps
 
     belongs_to :scenario, SbgInv.Scenario
-    has_many :scenario_faction_figures, SbgInv.ScenarioFactionFigure
+    has_many :roles, SbgInv.Role
   end
 
   @required_fields ~w(scenario_id faction suggested_points actual_points sort_order)

@@ -7,7 +7,7 @@ defmodule SbgInv.Figure do
 
     timestamps
 
-    has_many :scenario_faction_figure, SbgInv.ScenarioFactionFigure
+    has_many :role, SbgInv.Role
     has_many :user_figure, SbgInv.UserFigure
   end
 

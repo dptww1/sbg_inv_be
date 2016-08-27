@@ -6,21 +6,22 @@ defmodule SbgInv.RecalcUserScenarioTask do
   require Logger
 
   def do_task(user_id) do
-    IO.puts("#### START ####")
+    Logger.info("#### START ####")
 
     us_query = from us in SbgInv.UserScenario, where: us.user_id == ^user_id, order_by: :id
     existing_map = Map.new(Repo.all(us_query), fn x -> { x.scenario_id, x } end)
 
-    scenario_factions = Repo.all from sf in SbgInv.ScenarioFaction,
-#           join: sff in assoc(sf, :scenario_faction_figures),
-#           join: f in assoc(sff, :figure),
+    factions = Repo.all from sf in SbgInv.ScenarioFaction,
+#           join: r in assoc(sf, :roles),
+#           join: f in assoc(r, :figures),
 #           left_join: uf in assoc(f, :user_figure),
 #           where: sf.scenario_id == 16,                                         # TODO: limit user id
-           preload: [scenario_faction_figures: [figure: [:user_figure]]]
+           preload: [roles: [figures: [:user_figure]]]
 
-    new_map = Enum.reduce scenario_factions, %{}, fn(sf, stats) ->
+    new_map = Enum.reduce factions, %{}, fn(sf, stats) ->
       Map.put stats, sf.scenario_id, recalc_faction(
-        Map.get(stats, sf.scenario_id) || default_user_scenario(user_id, sf.scenario_id), sf)
+        Map.get(stats, sf.scenario_id) || default_user_scenario(user_id, sf.scenario_id), sf
+      )
     end
 
     for new_user_scenario <- Map.values(new_map) do
@@ -29,7 +30,7 @@ defmodule SbgInv.RecalcUserScenarioTask do
 
       case {existing_user_scenario, new_is_non_empty} do
         {nil, true} ->
-          IO.puts("#{new_user_scenario.scenario_id}: NEW")  # TODO die
+          Logger.info("#{new_user_scenario.scenario_id}: NEW")  # TODO die
           changeset = SbgInv.UserScenario.changeset(%SbgInv.UserScenario{}, Map.from_struct new_user_scenario)  # Map.from_struct is goofy
           IO.inspect changeset
           case Repo.insert changeset do
@@ -55,17 +56,15 @@ defmodule SbgInv.RecalcUserScenarioTask do
       end
     end
 
-
-    IO.puts("####  END  ####")
+    Logger.info("####  END  ####")
   end
 
   defp recalc_faction(user_scenario, scenario_faction) do
-    user_scenario = Enum.reduce scenario_faction.scenario_faction_figures, user_scenario, fn(sff, stats) ->
-      user_figure = if(length(sff.figure.user_figure) > 0, do: hd(sff.figure.user_figure), else: default_user_figure)
-      Map.put(stats, :owned,   stats.owned   + min(user_figure.owned,   sff.amount))
-          |> Map.put(:painted, stats.painted + min(user_figure.painted, sff.amount))
+    Enum.reduce scenario_faction.roles, user_scenario, fn(role, stats) ->
+      ruf = SbgInv.Role.role_user_figures(role, user_scenario.user_id)
+      %{stats | owned:   stats.owned   + ruf.total_owned,
+                painted: stats.painted + ruf.total_painted}
     end
-    user_scenario
   end
 
   defp default_user_scenario(user_id, scenario_id) do
@@ -73,13 +72,6 @@ defmodule SbgInv.RecalcUserScenarioTask do
       user_id: user_id,
       scenario_id: scenario_id,
       rating: 0,
-      owned: 0,
-      painted: 0
-    }
-  end
-
-  defp default_user_figure() do
-    %SbgInv.UserFigure{
       owned: 0,
       painted: 0
     }

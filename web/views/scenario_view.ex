@@ -11,13 +11,13 @@ defmodule SbgInv.ScenarioView do
     }
   end
 
-  def render("show.json", %{scenario: scenario}) do
-    %{data: render_one(scenario, __MODULE__, "scenario.json")}
+  def render("show.json", %{scenario: scenario, user_id: user_id}) do
+    %{data: render_one(scenario, __MODULE__, "scenario.json", %{user_id: user_id})}
   end
 
-  def render("scenario.json", %{scenario: scenario}) do
+  def render("scenario.json", %{scenario: scenario, user_id: user_id}) do
     Map.merge base_scenario(scenario), %{
-      scenario_factions: render_many(scenario.scenario_factions, SbgInv.ScenarioFactionView, "faction_detail.json")
+      scenario_factions: render_many(scenario.scenario_factions, SbgInv.ScenarioFactionView, "faction_detail.json", %{user_id: user_id})
     }
   end
 

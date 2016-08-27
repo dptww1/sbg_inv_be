@@ -1,17 +1,12 @@
-defmodule SbgInv.ScenarioFactionFigure do
+defmodule SbgInv.RoleFigure do
   use SbgInv.Web, :model
 
-  schema "scenario_faction_figures" do
-    field :amount, :integer
-    field :sort_order, :integer
-
+  schema "role_figures" do
+    belongs_to :role, SbgInv.Role
     belongs_to :figure, SbgInv.Figure
-    belongs_to :scenario_faction, SbgInv.ScenarioFaction
-
-    timestamps
   end
 
-  @required_fields ~w(amount sort_order figure_id scenario_faction_id)
+  @required_fields ~w(role_id figure_id)
   @optional_fields ~w()
 
   @doc """
@@ -20,7 +15,7 @@ defmodule SbgInv.ScenarioFactionFigure do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
   end

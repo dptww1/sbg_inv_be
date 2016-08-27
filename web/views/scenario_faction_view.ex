@@ -5,9 +5,9 @@ defmodule SbgInv.ScenarioFactionView do
     base_faction(faction)
   end
 
-  def render("faction_detail.json", %{scenario_faction: faction}) do
+  def render("faction_detail.json", %{scenario_faction: faction, user_id: user_id}) do
     Map.merge base_faction(faction), %{
-      figures: render_many(faction.scenario_faction_figures, SbgInv.ScenarioFactionFigureView, "scenario_faction_figure.json")
+      roles: render_many(faction.roles, SbgInv.RoleView, "role.json", %{user_id: user_id})
     }
   end
 

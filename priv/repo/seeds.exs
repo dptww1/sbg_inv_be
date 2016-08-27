@@ -15,9 +15,10 @@
 defmodule SbgInv.Data do
   alias SbgInv.Repo
   alias SbgInv.Figure
+  alias SbgInv.Role
+  alias SbgInv.RoleFigure
   alias SbgInv.Scenario
   alias SbgInv.ScenarioFaction
-  alias SbgInv.ScenarioFactionFigure
   alias SbgInv.ScenarioResource
   alias SbgInv.UserFigure
   alias SbgInv.UserScenario
@@ -28,6 +29,13 @@ defmodule SbgInv.Data do
 
   defp _generate do
     IO.puts "Generating data"
+
+    #########################################################################
+    # FIGURES: SHADOW & FLAME
+    #########################################################################
+    birch_tree_giant  = Repo.insert! %Figure{name: "Birch Tree Giant",  plural_name: "Birch Tree Giants"}
+    linden_tree_giant = Repo.insert! %Figure{name: "Linden Tree Giant", plural_name: "Linden Tree Giants"}
+    ash_tree_giant    = Repo.insert! %Figure{name: "Ash Tree Giant",    plural_name: "Ash Tree Giants"}
 
     #########################################################################
     # FIGURES: DWARVES
@@ -78,6 +86,7 @@ defmodule SbgInv.Data do
     gwaihir   = Repo.insert! %Figure { name: "Gwaihir" }
 
     eagle = Repo.insert! %Figure { name: "Giant Eagle", plural_name: "Giant Eagles" }
+    ent   = Repo.insert! %Figure { name: "Ent",         plural_name: "Ents" }
 
     #########################################################################
     # FIGURES: GONDOR
@@ -132,6 +141,10 @@ defmodule SbgInv.Data do
     #########################################################################
     # USER_FIGURES
     #########################################################################
+    Repo.insert! %UserFigure{user_id: 1, figure_id: birch_tree_giant.id,  owned: 1, painted: 1}
+    Repo.insert! %UserFigure{user_id: 1, figure_id: linden_tree_giant.id, owned: 1, painted: 1}
+    Repo.insert! %UserFigure{user_id: 1, figure_id: ash_tree_giant.id,    owned: 1, painted: 0}
+
     Repo.insert! %UserFigure { user_id: 1, figure_id: drar.id,               owned:  1, painted:  1 }
     Repo.insert! %UserFigure { user_id: 1, figure_id: murin.id,              owned:  1, painted:  1 }
 
@@ -354,18 +367,34 @@ defmodule SbgInv.Data do
 
     site_s1f1 = Repo.insert! %ScenarioFaction { scenario_id: site_s1.id, faction: :gondor, suggested_points: 200, actual_points: 203, sort_order: 1 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s1f1.id, amount: 1, sort_order: 1, figure_id: cirion.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s1f1.id, amount: 4, sort_order: 2, figure_id: gondor_womt_spear_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s1f1.id, amount: 4, sort_order: 3, figure_id: gondor_womt_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s1f1.id, amount: 4, sort_order: 4, figure_id: gondor_womt_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s1f1.id, amount: 6, sort_order: 5, figure_id: gondor_rog.id }
+    site_s1f1r1 = Repo.insert! %Role{ scenario_faction_id: site_s1f1.id, amount: 1, sort_order: 1, name: "Cirion" }
+    Repo.insert! %RoleFigure{ role_id: site_s1f1r1.id, figure_id: cirion.id }
+
+    site_s1f1r2 = Repo.insert! %Role{ scenario_faction_id: site_s1f1.id, amount: 4, sort_order: 2, name: "Warriors of Minas Tirith with spear and shield" }
+    Repo.insert! %RoleFigure{ role_id: site_s1f1r2.id, figure_id: gondor_womt_spear_shield.id }
+
+    site_s1f1r3 = Repo.insert! %Role{ scenario_faction_id: site_s1f1.id, amount: 4, sort_order: 3, name: "Warriors of Minas Tirith with shield" }
+    Repo.insert! %RoleFigure{ role_id: site_s1f1r3.id, figure_id: gondor_womt_shield.id }
+
+    site_s1f1r4 = Repo.insert! %Role{ scenario_faction_id: site_s1f1.id, amount: 4, sort_order: 4, name: "Warriors of Minas Tirith with bow" }
+    Repo.insert! %RoleFigure{ role_id: site_s1f1r4.id, figure_id: gondor_womt_bow.id }
+
+    site_s1f1r5 = Repo.insert! %Role{ scenario_faction_id: site_s1f1.id, amount: 6, sort_order: 5, name: "Rangers of Gondor" }
+    Repo.insert! %RoleFigure{ role_id: site_s1f1r5.id, figure_id: gondor_rog.id }
 
     site_s1f2 = Repo.insert! %ScenarioFaction { scenario_id: site_s1.id, faction: :easterlings, suggested_points: 200, actual_points: 220, sort_order: 2 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s1f2.id, amount: 1, sort_order: 1, figure_id: khamul.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s1f2.id, amount: 4, sort_order: 2, figure_id: easterling_w_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s1f2.id, amount: 4, sort_order: 3, figure_id: easterling_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s1f2.id, amount: 2, sort_order: 4, figure_id: easterling_w_shield_spear.id }
+    site_s1f2r1 = Repo.insert! %Role{ scenario_faction_id: site_s1f2.id, amount: 1, sort_order: 1, name: "Khamûl the Easterling" }
+    Repo.insert! %RoleFigure{ role_id: site_s1f2r1.id, figure_id: khamul.id }
+
+    site_s1f2r2 = Repo.insert! %Role{ scenario_faction_id: site_s1f2.id, amount: 4, sort_order: 2, name: "Easterling Warriors with shield" }
+    Repo.insert! %RoleFigure{ role_id: site_s1f2r1.id, figure_id: easterling_w_shield.id }
+
+    site_s1f2r3 = Repo.insert! %Role{ scenario_faction_id: site_s1f2.id, amount: 4, sort_order: 3, name: "Easterling Warriors with bow" }
+    Repo.insert! %RoleFigure{ role_id: site_s1f2r1.id, figure_id: easterling_w_bow.id }
+
+    site_s1f2r4 = Repo.insert! %Role{ scenario_faction_id: site_s1f2.id, amount: 2, sort_order: 4, name: "Easterling Warriors with shield and spear" }
+    Repo.insert! %RoleFigure{ role_id: site_s1f2r1.id, figure_id: easterling_w_shield_spear.id }
 
     #========================================================================
     site_s2 = Repo.insert! %Scenario {
@@ -379,21 +408,43 @@ defmodule SbgInv.Data do
 
     site_s2f1 = Repo.insert! %ScenarioFaction { scenario_id: site_s2.id, faction: :gondor, suggested_points: 275, actual_points: 279, sort_order: 1 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f1.id, amount: 1, sort_order: 1, figure_id: cirion.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f1.id, amount: 1, sort_order: 2, figure_id: murin.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f1.id, amount: 1, sort_order: 3, figure_id: drar.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f1.id, amount: 2, sort_order: 4, figure_id: gondor_womt_spear_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f1.id, amount: 2, sort_order: 5, figure_id: gondor_womt_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f1.id, amount: 2, sort_order: 6, figure_id: gondor_womt_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f1.id, amount: 3, sort_order: 7, figure_id: gondor_rog.id }
+    site_s2f1r1 = Repo.insert! %Role{ scenario_faction_id: site_s2f1.id, amount: 1, sort_order: 1, name: "Cirion" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f1r1.id, figure_id: cirion.id }
+
+    site_s2f1r2 = Repo.insert! %Role{ scenario_faction_id: site_s2f1.id, amount: 1, sort_order: 2, name: "Murin" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f1r2.id, figure_id: murin.id }
+
+    site_s2f1r3 = Repo.insert! %Role{ scenario_faction_id: site_s2f1.id, amount: 1, sort_order: 3, name: "Drar" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f1r3.id, figure_id: drar.id }
+
+    site_s2f1r4 = Repo.insert! %Role{ scenario_faction_id: site_s2f1.id, amount: 2, sort_order: 4, name: "Warriors of Minas Tirith with spear and shield" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f1r4.id, figure_id: gondor_womt_spear_shield.id }
+
+    site_s2f1r5 = Repo.insert! %Role{ scenario_faction_id: site_s2f1.id, amount: 2, sort_order: 5, name: "Warriors of Minas Tirith with shield" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f1r5.id, figure_id: gondor_womt_shield.id }
+
+    site_s2f1r6 = Repo.insert! %Role{ scenario_faction_id: site_s2f1.id, amount: 2, sort_order: 6, name: "Warriors of Minas Tirith with bow" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f1r6.id, figure_id: gondor_womt_bow.id }
+
+    site_s2f1r7 = Repo.insert! %Role{ scenario_faction_id: site_s2f1.id, amount: 3, sort_order: 7, name: "Rangers of Gondor" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f1r7.id, figure_id: gondor_rog.id }
 
     site_s2f2 = Repo.insert! %ScenarioFaction { scenario_id: site_s2.id, faction: :easterlings, suggested_points: 225, actual_points: 197, sort_order: 2 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f2.id, amount: 1, sort_order: 1, figure_id: easterling_captain.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f2.id, amount: 4, sort_order: 2, figure_id: easterling_w_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f2.id, amount: 4, sort_order: 3, figure_id: easterling_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f2.id, amount: 2, sort_order: 4, figure_id: easterling_w_shield_spear.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s2f2.id, amount: 5, sort_order: 5, figure_id: easterling_kataphrakt.id }
+    site_s2f2r1 = Repo.insert! %Role{ scenario_faction_id: site_s2f2.id, amount: 1, sort_order: 1, name: "Easterling Captain" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f2r1.id, figure_id: easterling_captain.id }
+
+    site_s2f2r2 = Repo.insert! %Role{ scenario_faction_id: site_s2f2.id, amount: 4, sort_order: 2, name: "Easterling Warriors with shield" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f2r2.id, figure_id: easterling_w_shield.id }
+
+    site_s2f2r3 = Repo.insert! %Role{ scenario_faction_id: site_s2f2.id, amount: 4, sort_order: 3, name: "Easterling Warriors with bow" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f2r3.id, figure_id: easterling_w_bow.id }
+
+    site_s2f2r4 = Repo.insert! %Role{ scenario_faction_id: site_s2f2.id, amount: 2, sort_order: 4, name: "Easterling Warriors with shield and spear" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f2r4.id, figure_id: easterling_w_shield_spear.id }
+
+    site_s2f2r5 = Repo.insert! %Role{ scenario_faction_id: site_s2f2.id, amount: 5, sort_order: 5, name: "Easterling Kataphrakts" }
+    Repo.insert! %RoleFigure{ role_id: site_s2f2r5.id, figure_id: easterling_kataphrakt.id }
 
     #========================================================================
     site_s3 = Repo.insert! %Scenario {
@@ -406,24 +457,24 @@ defmodule SbgInv.Data do
 
     site_s3f1 = Repo.insert! %ScenarioFaction { scenario_id: site_s3.id, faction: :gondor, suggested_points: 350, actual_points: 329, sort_order: 1 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f1.id, amount: 1, sort_order: 1, figure_id: cirion.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f1.id, amount: 1, sort_order: 2, figure_id: murin.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f1.id, amount: 1, sort_order: 3, figure_id: drar.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f1.id, amount: 4, sort_order: 4, figure_id: gondor_womt_spear_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f1.id, amount: 4, sort_order: 5, figure_id: gondor_womt_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f1.id, amount: 4, sort_order: 6, figure_id: gondor_womt_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f1.id, amount: 3, sort_order: 7, figure_id: gondor_rog.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f1.id, amount: 1, sort_order: 1, figure_id: cirion.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f1.id, amount: 1, sort_order: 2, figure_id: murin.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f1.id, amount: 1, sort_order: 3, figure_id: drar.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f1.id, amount: 4, sort_order: 4, figure_id: gondor_womt_spear_shield.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f1.id, amount: 4, sort_order: 5, figure_id: gondor_womt_shield.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f1.id, amount: 4, sort_order: 6, figure_id: gondor_womt_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f1.id, amount: 3, sort_order: 7, figure_id: gondor_rog.id }
 
     site_s3f2 = Repo.insert! %ScenarioFaction { scenario_id: site_s3.id, faction: :easterlings, suggested_points: 350, actual_points: 420, sort_order: 2 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f2.id, amount: 2, sort_order: 1, figure_id: khandish_chieftain.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f2.id, amount: 4, sort_order: 2, figure_id: khandish_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f2.id, amount: 8, sort_order: 3, figure_id: khandish_w_axe.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f2.id, amount: 5, sort_order: 4, figure_id: khandish_horseman.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f2.id, amount: 3, sort_order: 5, figure_id: easterling_w_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f2.id, amount: 2, sort_order: 6, figure_id: easterling_w_shield_spear.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f2.id, amount: 4, sort_order: 7, figure_id: easterling_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s3f2.id, amount: 1, sort_order: 8, figure_id: easterling_w_banner.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f2.id, amount: 2, sort_order: 1, figure_id: khandish_chieftain.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f2.id, amount: 4, sort_order: 2, figure_id: khandish_w_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f2.id, amount: 8, sort_order: 3, figure_id: khandish_w_axe.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f2.id, amount: 5, sort_order: 4, figure_id: khandish_horseman.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f2.id, amount: 3, sort_order: 5, figure_id: easterling_w_shield.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f2.id, amount: 2, sort_order: 6, figure_id: easterling_w_shield_spear.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f2.id, amount: 4, sort_order: 7, figure_id: easterling_w_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s3f2.id, amount: 1, sort_order: 8, figure_id: easterling_w_banner.id }
 
     #========================================================================
     site_s4 = Repo.insert! %Scenario {
@@ -436,33 +487,33 @@ defmodule SbgInv.Data do
 
     site_s4f1 = Repo.insert! %ScenarioFaction { scenario_id: site_s4.id, faction: :gondor, suggested_points: 900, actual_points: 849, sort_order: 1 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  1, figure_id: cirion.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  2, figure_id: murin.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  3, figure_id: drar.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  4, figure_id: madril.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  5, figure_id: faramir.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  6, figure_id: gondor_captain_mt.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount:  3, sort_order:  7, figure_id: gondor_citadel_gd_spear.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount:  3, sort_order:  8, figure_id: gondor_citadel_gd_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount: 12, sort_order:  9, figure_id: gondor_womt_spear_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount: 11, sort_order: 10, figure_id: gondor_womt_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount: 12, sort_order: 11, figure_id: gondor_womt_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount:  1, sort_order: 12, figure_id: gondor_womt_banner.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f1.id, amount:  9, sort_order: 13, figure_id: gondor_rog.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  1, figure_id: cirion.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  2, figure_id: murin.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  3, figure_id: drar.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  4, figure_id: madril.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  5, figure_id: faramir.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount:  1, sort_order:  6, figure_id: gondor_captain_mt.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount:  3, sort_order:  7, figure_id: gondor_citadel_gd_spear.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount:  3, sort_order:  8, figure_id: gondor_citadel_gd_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount: 12, sort_order:  9, figure_id: gondor_womt_spear_shield.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount: 11, sort_order: 10, figure_id: gondor_womt_shield.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount: 12, sort_order: 11, figure_id: gondor_womt_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount:  1, sort_order: 12, figure_id: gondor_womt_banner.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f1.id, amount:  9, sort_order: 13, figure_id: gondor_rog.id }
 
     site_s4f2 = Repo.insert! %ScenarioFaction { scenario_id: site_s4.id, faction: :easterlings, suggested_points: 600, actual_points: 813, sort_order: 2 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f2.id, amount:  1, sort_order:  1, figure_id: khamul.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f2.id, amount:  1, sort_order:  2, figure_id: easterling_captain.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f2.id, amount:  1, sort_order:  3, figure_id: khandish_chieftain.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f2.id, amount: 11, sort_order:  4, figure_id: easterling_w_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f2.id, amount: 12, sort_order:  5, figure_id: easterling_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f2.id, amount:  9, sort_order:  6, figure_id: easterling_w_shield_spear.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f2.id, amount:  1, sort_order:  7, figure_id: easterling_w_banner.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f2.id, amount: 12, sort_order:  8, figure_id: khandish_w_axe.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f2.id, amount:  6, sort_order:  9, figure_id: khandish_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f2.id, amount:  5, sort_order: 10, figure_id: khandish_horseman.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s4f2.id, amount:  5, sort_order: 11, figure_id: easterling_kataphrakt.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f2.id, amount:  1, sort_order:  1, figure_id: khamul.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f2.id, amount:  1, sort_order:  2, figure_id: easterling_captain.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f2.id, amount:  1, sort_order:  3, figure_id: khandish_chieftain.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f2.id, amount: 11, sort_order:  4, figure_id: easterling_w_shield.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f2.id, amount: 12, sort_order:  5, figure_id: easterling_w_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f2.id, amount:  9, sort_order:  6, figure_id: easterling_w_shield_spear.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f2.id, amount:  1, sort_order:  7, figure_id: easterling_w_banner.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f2.id, amount: 12, sort_order:  8, figure_id: khandish_w_axe.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f2.id, amount:  6, sort_order:  9, figure_id: khandish_w_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f2.id, amount:  5, sort_order: 10, figure_id: khandish_horseman.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s4f2.id, amount:  5, sort_order: 11, figure_id: easterling_kataphrakt.id }
 
     #========================================================================
     site_s5 = Repo.insert! %Scenario {
@@ -475,22 +526,22 @@ defmodule SbgInv.Data do
 
     site_s5f1 = Repo.insert! %ScenarioFaction { scenario_id: site_s5.id, faction: :dwarves, suggested_points: 500, actual_points: 460, sort_order: 1 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f1.id, amount:  1, sort_order: 1, figure_id: dain.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f1.id, amount:  1, sort_order: 2, figure_id: dwarf_captain.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f1.id, amount:  6, sort_order: 3, figure_id: dwarf_khazad_gd.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f1.id, amount:  9, sort_order: 4, figure_id: dwarf_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f1.id, amount:  7, sort_order: 5, figure_id: dwarf_w_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f1.id, amount:  4, sort_order: 6, figure_id: dwarf_w_axe.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f1.id, amount:  1, sort_order: 7, figure_id: dwarf_w_banner.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f1.id, amount:  1, sort_order: 1, figure_id: dain.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f1.id, amount:  1, sort_order: 2, figure_id: dwarf_captain.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f1.id, amount:  6, sort_order: 3, figure_id: dwarf_khazad_gd.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f1.id, amount:  9, sort_order: 4, figure_id: dwarf_w_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f1.id, amount:  7, sort_order: 5, figure_id: dwarf_w_shield.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f1.id, amount:  4, sort_order: 6, figure_id: dwarf_w_axe.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f1.id, amount:  1, sort_order: 7, figure_id: dwarf_w_banner.id }
 
     site_s5f2 = Repo.insert! %ScenarioFaction { scenario_id: site_s5.id, faction: :easterlings, suggested_points: 550, actual_points: 511, sort_order: 2 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f2.id, amount:  2, sort_order: 1, figure_id: easterling_captain.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f2.id, amount: 11, sort_order: 2, figure_id: easterling_w_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f2.id, amount: 12, sort_order: 3, figure_id: easterling_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f2.id, amount:  6, sort_order: 4, figure_id: easterling_w_shield_spear.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f2.id, amount:  1, sort_order: 6, figure_id: easterling_w_banner.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s5f2.id, amount: 10, sort_order: 5, figure_id: easterling_kataphrakt.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f2.id, amount:  2, sort_order: 1, figure_id: easterling_captain.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f2.id, amount: 11, sort_order: 2, figure_id: easterling_w_shield.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f2.id, amount: 12, sort_order: 3, figure_id: easterling_w_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f2.id, amount:  6, sort_order: 4, figure_id: easterling_w_shield_spear.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f2.id, amount:  1, sort_order: 6, figure_id: easterling_w_banner.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s5f2.id, amount: 10, sort_order: 5, figure_id: easterling_kataphrakt.id }
 
     #========================================================================
     site_s6 = Repo.insert! %Scenario {
@@ -503,28 +554,28 @@ defmodule SbgInv.Data do
 
     site_s6f1 = Repo.insert! %ScenarioFaction { scenario_id: site_s6.id, faction: :easterlings, suggested_points: 500, actual_points: 700, sort_order: 1 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f1.id, amount:  1, sort_order: 1, figure_id: cirion.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f1.id, amount:  1, sort_order: 2, figure_id: khandish_king_chariot.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f1.id, amount:  2, sort_order: 3, figure_id: khandish_chieftain_horse.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f1.id, amount:  3, sort_order: 4, figure_id: gondor_rog.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f1.id, amount:  8, sort_order: 5, figure_id: khandish_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f1.id, amount: 16, sort_order: 6, figure_id: khandish_w_axe.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f1.id, amount: 12, sort_order: 7, figure_id: khandish_horseman.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f1.id, amount:  1, sort_order: 1, figure_id: cirion.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f1.id, amount:  1, sort_order: 2, figure_id: khandish_king_chariot.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f1.id, amount:  2, sort_order: 3, figure_id: khandish_chieftain_horse.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f1.id, amount:  3, sort_order: 4, figure_id: gondor_rog.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f1.id, amount:  8, sort_order: 5, figure_id: khandish_w_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f1.id, amount: 16, sort_order: 6, figure_id: khandish_w_axe.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f1.id, amount: 12, sort_order: 7, figure_id: khandish_horseman.id }
 
     site_s6f2 = Repo.insert! %ScenarioFaction { scenario_id: site_s6.id, faction: :mordor, suggested_points: 750, actual_points: 796, sort_order: 2 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount:  3, sort_order:  1, figure_id: orc_captain.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount:  1, sort_order:  2, figure_id: orc_captain_warg.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount: 10, sort_order:  3, figure_id: orc_w_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount: 12, sort_order:  4, figure_id: orc_w_spear.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount:  6, sort_order:  5, figure_id: orc_w_2h.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount:  6, sort_order:  6, figure_id: orc_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount:  2, sort_order:  7, figure_id: orc_w_banner.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount:  4, sort_order:  8, figure_id: warg_rider_spear.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount:  4, sort_order:  9, figure_id: warg_rider_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount:  4, sort_order: 10, figure_id: warg_rider_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount:  1, sort_order: 11, figure_id: war_catapult.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s6f2.id, amount:  1, sort_order: 12, figure_id: war_catapult_troll.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount:  3, sort_order:  1, figure_id: orc_captain.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount:  1, sort_order:  2, figure_id: orc_captain_warg.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount: 10, sort_order:  3, figure_id: orc_w_shield.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount: 12, sort_order:  4, figure_id: orc_w_spear.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount:  6, sort_order:  5, figure_id: orc_w_2h.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount:  6, sort_order:  6, figure_id: orc_w_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount:  2, sort_order:  7, figure_id: orc_w_banner.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount:  4, sort_order:  8, figure_id: warg_rider_spear.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount:  4, sort_order:  9, figure_id: warg_rider_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount:  4, sort_order: 10, figure_id: warg_rider_shield.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount:  1, sort_order: 11, figure_id: war_catapult.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s6f2.id, amount:  1, sort_order: 12, figure_id: war_catapult_troll.id }
 
     #========================================================================
     site_s7 = Repo.insert! %Scenario {
@@ -537,28 +588,28 @@ defmodule SbgInv.Data do
 
     site_s7f1 = Repo.insert! %ScenarioFaction { scenario_id: site_s7.id, faction: :rohan, suggested_points: 650, actual_points: 635, sort_order: 1 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f1.id, amount:  1, sort_order:  1, figure_id: eorl_horse.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f1.id, amount:  2, sort_order:  2, figure_id: rohan_captain_horse.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f1.id, amount:  7, sort_order:  3, figure_id: rohan_gd_horse_spear.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f1.id, amount: 12, sort_order:  4, figure_id: rohan_rider.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f1.id, amount:  6, sort_order:  5, figure_id: rohan_rider_spear.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f1.id, amount:  1, sort_order:  6, figure_id: rohan_gd_horse_banner.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f1.id, amount:  1, sort_order:  1, figure_id: eorl_horse.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f1.id, amount:  2, sort_order:  2, figure_id: rohan_captain_horse.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f1.id, amount:  7, sort_order:  3, figure_id: rohan_gd_horse_spear.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f1.id, amount: 12, sort_order:  4, figure_id: rohan_rider.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f1.id, amount:  6, sort_order:  5, figure_id: rohan_rider_spear.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f1.id, amount:  1, sort_order:  6, figure_id: rohan_gd_horse_banner.id }
 
     site_s7f2 = Repo.insert! %ScenarioFaction { scenario_id: site_s7.id, faction: :easterlings, suggested_points: 800, actual_points: 949, sort_order: 2 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount:  1, sort_order:  1, figure_id: khandish_king_chariot.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount:  1, sort_order:  2, figure_id: khandish_chieftain.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount:  1, sort_order:  3, figure_id: khandish_chieftain_horse.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount:  1, sort_order:  4, figure_id: orc_captain.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount:  8, sort_order:  5, figure_id: khandish_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount: 16, sort_order:  6, figure_id: khandish_w_axe.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount: 12, sort_order:  7, figure_id: khandish_horseman.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount:  2, sort_order:  8, figure_id: khandish_charioteer.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount: 11, sort_order:  9, figure_id: orc_w_shield.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount: 12, sort_order: 10, figure_id: orc_w_spear.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount:  6, sort_order: 11, figure_id: orc_w_2h.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount:  6, sort_order: 12, figure_id: orc_w_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s7f2.id, amount:  1, sort_order: 13, figure_id: orc_w_banner.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount:  1, sort_order:  1, figure_id: khandish_king_chariot.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount:  1, sort_order:  2, figure_id: khandish_chieftain.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount:  1, sort_order:  3, figure_id: khandish_chieftain_horse.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount:  1, sort_order:  4, figure_id: orc_captain.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount:  8, sort_order:  5, figure_id: khandish_w_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount: 16, sort_order:  6, figure_id: khandish_w_axe.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount: 12, sort_order:  7, figure_id: khandish_horseman.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount:  2, sort_order:  8, figure_id: khandish_charioteer.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount: 11, sort_order:  9, figure_id: orc_w_shield.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount: 12, sort_order: 10, figure_id: orc_w_spear.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount:  6, sort_order: 11, figure_id: orc_w_2h.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount:  6, sort_order: 12, figure_id: orc_w_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s7f2.id, amount:  1, sort_order: 13, figure_id: orc_w_banner.id }
 
     #========================================================================
     site_s8 = Repo.insert! %Scenario {
@@ -571,17 +622,17 @@ defmodule SbgInv.Data do
 
     site_s8f1 = Repo.insert! %ScenarioFaction { scenario_id: site_s8.id, faction: :free_peoples, suggested_points: 400, actual_points: 495, sort_order: 1 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s8f1.id, amount:  1, sort_order: 1, figure_id: treebeard.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s8f1.id, amount:  1, sort_order: 2, figure_id: gwaihir.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s8f1.id, amount:  2, sort_order: 3, figure_id: eagle.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s8f1.id, amount:  1, sort_order: 1, figure_id: treebeard.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s8f1.id, amount:  1, sort_order: 2, figure_id: gwaihir.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s8f1.id, amount:  2, sort_order: 3, figure_id: eagle.id }
 
     site_s8f2 = Repo.insert! %ScenarioFaction { scenario_id: site_s8.id, faction: :easterlings, suggested_points: 450, actual_points: 430, sort_order: 2 }
 
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s8f2.id, amount:  1, sort_order: 1, figure_id: khamul_horse.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s8f2.id, amount:  1, sort_order: 2, figure_id: khandish_merc_chieftain.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s8f2.id, amount: 10, sort_order: 3, figure_id: easterling_kataphrakt.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s8f2.id, amount:  4, sort_order: 4, figure_id: khandish_merc_bow.id }
-    Repo.insert! %ScenarioFactionFigure { scenario_faction_id: site_s8f2.id, amount:  8, sort_order: 5, figure_id: khandish_merc_axe.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s8f2.id, amount:  1, sort_order: 1, figure_id: khamul_horse.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s8f2.id, amount:  1, sort_order: 2, figure_id: khandish_merc_chieftain.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s8f2.id, amount: 10, sort_order: 3, figure_id: easterling_kataphrakt.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s8f2.id, amount:  4, sort_order: 4, figure_id: khandish_merc_bow.id }
+    # Repo.insert! %Role{ scenario_faction_id: site_s8f2.id, amount:  8, sort_order: 5, figure_id: khandish_merc_axe.id }
 
     #########################################################################
     # THE FALL OF THE NECROMANCER
@@ -677,6 +728,33 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioFaction { scenario_id: fotn_s7.id, faction: :rivendell,  suggested_points: 1500, actual_points: 0, sort_order: 1 }
     Repo.insert! %ScenarioFaction { scenario_id: fotn_s7.id, faction: :dol_guldur, suggested_points: 1400, actual_points: 0, sort_order: 2 }
+
+    #########################################################################
+    # THE TWO TOWERS JOURNEYBOOK
+    #########################################################################
+    tttjb_s8 = Repo.insert! %Scenario{
+      name: "The Last March of the Ents",
+      blurb: "The Ents storm Isengard",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 40
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s8.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 8, page: 38}
+
+    tttjb_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s8.id, faction: :free_peoples, suggested_points: 550, actual_points: 0, sort_order: 1}
+
+    tttjb_s8f1r1 = Repo.insert! %Role{scenario_faction_id: tttjb_s8f1.id, amount: 1, sort_order: 1, name: "Treebeard"}
+    Repo.insert! %RoleFigure{role_id: tttjb_s8f1r1.id, figure_id: treebeard.id}
+
+    tttjb_s8f1r2 = Repo.insert! %Role{scenario_faction_id: tttjb_s8f1.id, amount: 3, sort_order: 2, name: "Ents"}
+    Repo.insert! %RoleFigure{role_id: tttjb_s8f1r2.id, figure_id: ent.id}
+    Repo.insert! %RoleFigure{role_id: tttjb_s8f1r2.id, figure_id: ash_tree_giant.id}
+    Repo.insert! %RoleFigure{role_id: tttjb_s8f1r2.id, figure_id: birch_tree_giant.id}
+    Repo.insert! %RoleFigure{role_id: tttjb_s8f1r2.id, figure_id: linden_tree_giant.id}
+
+    tttjb_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s8.id, faction: :isengard, suggested_points: 575, actual_points: 0, sort_order: 2}
+
+    tttjb_s8f2r1 = Repo.insert! %Role{scenario_faction_id: tttjb_s8f2.id, amount: 2, sort_order: 11, name: "Orcs with bow"}
+    Repo.insert! %RoleFigure{role_id: tttjb_s8f2r1.id, figure_id: orc_w_bow.id}
 
     #########################################################################
     # USER_SCENARIOS
