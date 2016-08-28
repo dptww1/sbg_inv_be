@@ -3,11 +3,11 @@ defmodule SbgInv.ScenarioResourceView do
 
   def render("resources.json", %{scenario_resource: resources}) do
     %{
-      source:           render_many(resources.source,           __MODULE__, "resource.json"),
-      video_replay:     render_many(resources.video_replay,     __MODULE__, "resource.json"),
-      web_replay:       render_many(resources.web_replay,       __MODULE__, "resource.json"),
-      terrain_building: render_many(resources.terrain_building, __MODULE__, "resource.json"),
-      podcast:          render_many(resources.podcast,          __MODULE__, "resource.json")
+      source:           render_many(Enum.sort(resources.source,           &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
+      video_replay:     render_many(Enum.sort(resources.video_replay,     &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
+      web_replay:       render_many(Enum.sort(resources.web_replay,       &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
+      terrain_building: render_many(Enum.sort(resources.terrain_building, &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
+      podcast:          render_many(Enum.sort(resources.podcast,          &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json")
     }
   end
 
