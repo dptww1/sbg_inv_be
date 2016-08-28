@@ -492,7 +492,7 @@ defmodule SbgInv.Data do
 
     site_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: site_s3.id, faction: :easterlings, suggested_points: 350, actual_points: 420, sort_order: 2}
 
-    site_s3f2r1 = Repo.insert! %Role{scenario_faction_id: site_s3f2.id, amount: 2, sort_order: 1, name: "Khandish Chieftain"}
+    site_s3f2r1 = Repo.insert! %Role{scenario_faction_id: site_s3f2.id, amount: 2, sort_order: 1, name: "Khandish Chieftains"}
     Repo.insert! %RoleFigure{role_id: site_s3f2r1.id, figure_id: khandish_chieftain.id}
 
     site_s3f2r2 = Repo.insert! %Role{scenario_faction_id: site_s3f2.id, amount: 4, sort_order: 2, name: "Khandish Warriors with bow"}
@@ -548,7 +548,7 @@ defmodule SbgInv.Data do
     site_s4f1r7  = Repo.insert! %Role{scenario_faction_id: site_s4f1.id, amount:  3, sort_order:  7, name: "Citadel Guards with spear"}
     Repo.insert! %RoleFigure{role_id: site_s4f1r7.id, figure_id: gondor_citadel_gd_spear.id}
 
-    site_s4f1r8  = Repo.insert! %Role{scenario_faction_id: site_s4f1.id, amount:  3, sort_order:  8, name: "Citadel Guards with bow"}
+    site_s4f1r8  = Repo.insert! %Role{scenario_faction_id: site_s4f1.id, amount:  3, sort_order:  8, name: "Citadel Guards with longbow"}
     Repo.insert! %RoleFigure{role_id: site_s4f1r8.id, figure_id: gondor_citadel_gd_bow.id}
 
     site_s4f1r9  = Repo.insert! %Role{scenario_faction_id: site_s4f1.id, amount: 12, sort_order:  9, name: "Warriors of Minas Tirith with spear and shield"}
@@ -595,7 +595,7 @@ defmodule SbgInv.Data do
     site_s4f2r9 = Repo.insert! %Role{scenario_faction_id: site_s4f2.id, amount:  6, sort_order:  9, name: "Khandish Warriors with bow"}
     Repo.insert! %RoleFigure{role_id: site_s4f2r1.id, figure_id: khandish_w_bow.id}
 
-    site_s4f2r10 = Repo.insert! %Role{scenario_faction_id: site_s4f2.id, amount:  5, sort_order: 10, name: "Khandish horsemen"}
+    site_s4f2r10 = Repo.insert! %Role{scenario_faction_id: site_s4f2.id, amount:  5, sort_order: 10, name: "Khandish Horsemen"}
     Repo.insert! %RoleFigure{role_id: site_s4f2r1.id, figure_id: khandish_horseman.id}
 
     site_s4f2r11 = Repo.insert! %Role{scenario_faction_id: site_s4f2.id, amount:  5, sort_order: 11, name: "Easterling Kataphrakts"}
@@ -670,7 +670,7 @@ defmodule SbgInv.Data do
     site_s6f1r2 = Repo.insert! %Role{scenario_faction_id: site_s6f1.id, amount:  1, sort_order: 2, name: "Khandish King in chariot"}
     Repo.insert! %RoleFigure{role_id: site_s6f1r2.id, figure_id: khandish_king_chariot.id}
 
-    site_s6f1r3 = Repo.insert! %Role{scenario_faction_id: site_s6f1.id, amount:  2, sort_order: 3, name: "Khandish Chieftain on horse"}
+    site_s6f1r3 = Repo.insert! %Role{scenario_faction_id: site_s6f1.id, amount:  2, sort_order: 3, name: "Khandish Chieftains on horse"}
     Repo.insert! %RoleFigure{role_id: site_s6f1r3.id, figure_id: khandish_chieftain_horse.id}
 
     site_s6f1r4 = Repo.insert! %Role{scenario_faction_id: site_s6f1.id, amount:  3, sort_order: 4, name: "Rangers of Gondor"}
@@ -708,7 +708,7 @@ defmodule SbgInv.Data do
     site_s6f2r7 = Repo.insert! %Role{scenario_faction_id: site_s6f2.id, amount:  2, sort_order:  7, name: "Orc Warriors with banner"}
     Repo.insert! %RoleFigure{role_id: site_s6f2r7.id, figure_id: orc_w_banner.id}
 
-    site_s6f2r8 = Repo.insert! %Role{scenario_faction_id: site_s6f2.id, amount:  4, sort_order:  8, name: "Warg Riders with spear"}
+    site_s6f2r8 = Repo.insert! %Role{scenario_faction_id: site_s6f2.id, amount:  4, sort_order:  8, name: "Warg Riders with throwing spear"}
     Repo.insert! %RoleFigure{role_id: site_s6f2r8.id, figure_id: warg_rider_spear.id}
 
     site_s6f2r9 = Repo.insert! %Role{scenario_faction_id: site_s6f2.id, amount:  4, sort_order:  9, name: "Warg Riders with bow"}
@@ -737,7 +737,7 @@ defmodule SbgInv.Data do
     site_s7f1r1 = Repo.insert! %Role{scenario_faction_id: site_s7f1.id, amount:  1, sort_order:  1, name: "Eorl the Young on horse"}
     Repo.insert! %RoleFigure{role_id: site_s7f1r1.id, figure_id: eorl_horse.id}
 
-    site_s7f1r2 = Repo.insert! %Role{scenario_faction_id: site_s7f1.id, amount:  2, sort_order:  2, name: "Rohan Captain on horse"}
+    site_s7f1r2 = Repo.insert! %Role{scenario_faction_id: site_s7f1.id, amount:  2, sort_order:  2, name: "Rohan Captains on horse"}
     Repo.insert! %RoleFigure{role_id: site_s7f1r2.id, figure_id: rohan_captain_horse.id}
 
     site_s7f1r3 = Repo.insert! %Role{scenario_faction_id: site_s7f1.id, amount:  7, sort_order:  3, name: "Rohan Royal Guards on horse with throwing spear"}
@@ -810,7 +810,7 @@ defmodule SbgInv.Data do
     site_s8f1r2 = Repo.insert! %Role{scenario_faction_id: site_s8f1.id, amount:  1, sort_order: 2, name: "Gwaihir"}
     Repo.insert! %RoleFigure{role_id: site_s8f1r2.id, figure_id: gwaihir.id}
 
-    site_s8f1r3 = Repo.insert! %Role{scenario_faction_id: site_s8f1.id, amount:  2, sort_order: 3, name: "Eagles"}
+    site_s8f1r3 = Repo.insert! %Role{scenario_faction_id: site_s8f1.id, amount:  2, sort_order: 3, name: "Giant Eagles"}
     Repo.insert! %RoleFigure{role_id: site_s8f1r3.id, figure_id: eagle.id}
 
 
@@ -825,10 +825,10 @@ defmodule SbgInv.Data do
     site_s8f2r3 = Repo.insert! %Role{scenario_faction_id: site_s8f2.id, amount: 10, sort_order: 3, name: "Easterling Kataphrakts"}
     Repo.insert! %RoleFigure{role_id: site_s8f2r3.id, figure_id: easterling_kataphrakt.id}
 
-    site_s8f2r4 = Repo.insert! %Role{scenario_faction_id: site_s8f2.id, amount:  4, sort_order: 4, name: "Khandish Mercenary Warriors with bow"}
+    site_s8f2r4 = Repo.insert! %Role{scenario_faction_id: site_s8f2.id, amount:  4, sort_order: 4, name: "Khandish Mercenaries with bow"}
     Repo.insert! %RoleFigure{role_id: site_s8f2r4.id, figure_id: khandish_w_bow.id}
 
-    site_s8f2r5 = Repo.insert! %Role{scenario_faction_id: site_s8f2.id, amount:  8, sort_order: 5, name: "Khandish Mercenary Warriors with two-handed axe"}
+    site_s8f2r5 = Repo.insert! %Role{scenario_faction_id: site_s8f2.id, amount:  8, sort_order: 5, name: "Khandish Mercenaries Warriors with two-handed axe"}
     Repo.insert! %RoleFigure{role_id: site_s8f2r5.id, figure_id: khandish_w_axe.id}
 
     #########################################################################
