@@ -33,9 +33,18 @@ defmodule SbgInv.Data do
     #########################################################################
     # FIGURES: SHADOW & FLAME
     #########################################################################
+
     birch_tree_giant  = Repo.insert! %Figure{name: "Birch Tree Giant",  plural_name: "Birch Tree Giants"}
     linden_tree_giant = Repo.insert! %Figure{name: "Linden Tree Giant", plural_name: "Linden Tree Giants"}
     ash_tree_giant    = Repo.insert! %Figure{name: "Ash Tree Giant",    plural_name: "Ash Tree Giants"}
+
+    #########################################################################
+    # FIGURES: ANGMAR
+    #########################################################################
+
+    warg_chieftain = Repo.insert! %Figure{name: "Wild Warg Chieftain"}
+
+    warg = Repo.insert! %Figure{name: "Wild Warg", plural_name: "Wild Wargs"}
 
     #########################################################################
     # FIGURES: DWARVES
@@ -52,6 +61,17 @@ defmodule SbgInv.Data do
     dwarf_w_shield  = Repo.insert! %Figure{name: "Dwarf with shield",         plural_name: "Dwarves with shield"}
     dwarf_w_axe     = Repo.insert! %Figure{name: "Dwarf with two-handed axe", plural_name: "Dwarves with two-handed axe"}
     dwarf_w_banner  = Repo.insert! %Figure{name: "Dwarf with banner",         plural_name: "Dwarves with banner"}
+
+    #########################################################################
+    # FIGURES: DOL GULDUR
+    #########################################################################
+
+    necromancer  = Repo.insert! %Figure{name: "The Necromancer"}
+    spider_queen = Repo.insert! %Figure{name: "Spider Queen"}
+
+    castellan    = Repo.insert! %Figure{name: "Castellan of Dol Guldur", plural_name: "Castellans of Dol Guldur"}
+    bat_swarm    = Repo.insert! %Figure{name: "Bat Swarm",               plural_name: "Bat Swarms"}
+    giant_spider = Repo.insert! %Figure{name: "Giant Spider",            plural_name: "Giant Spiders"}
 
     #########################################################################
     # FIGURES: EASTERLINGS
@@ -79,8 +99,12 @@ defmodule SbgInv.Data do
     # FIGURES: FREE PEOPLES
     #########################################################################
 
-    treebeard = Repo.insert! %Figure{name: "Treebeard"}
-    gwaihir   = Repo.insert! %Figure{name: "Gwaihir"}
+    cirdan       = Repo.insert! %Figure{name: "Círdan"}
+    gandalf_grey = Repo.insert! %Figure{name: "Gandalf the Grey"}
+    gwaihir      = Repo.insert! %Figure{name: "Gwaihir"}
+    radagast     = Repo.insert! %Figure{name: "Radagast"}
+    saruman      = Repo.insert! %Figure{name: "Saruman the White"}
+    treebeard    = Repo.insert! %Figure{name: "Treebeard"}
 
     eagle = Repo.insert! %Figure{name: "Giant Eagle", plural_name: "Giant Eagles"}
     ent   = Repo.insert! %Figure{name: "Ent",         plural_name: "Ents"}
@@ -119,12 +143,34 @@ defmodule SbgInv.Data do
     isengard_troll = Repo.insert! %Figure{name: "Isengard Troll"}
 
     #########################################################################
+    # FIGURES: LOTHLORIEN
+    #########################################################################
+
+    celeborn       = Repo.insert! %Figure{name: "Celeborn"}
+    galadriel_lotg = Repo.insert! %Figure{name: "Galadriel, Lady of the Galadhrim"}
+
+    #########################################################################
+    # FIGURES: MIRKWOOD
+    #########################################################################
+
+    thranduil = Repo.insert! %Figure{name: "Thranduil" }
+
+    wood_elf_sentinel = Repo.insert! %Figure{name: "Wood Elf Sentinel", plural_name: "Wood Elf Sentinels"}
+    wood_elf_w_banner = Repo.insert! %Figure{name: "Wood Elf Warrior with banner",                          plural_name: "Wood Elf Warriors with banner"}
+    wood_elf_w_blade  = Repo.insert! %Figure{name: "Wood Elf Warrior with Elven blade and throwing dagger", plural_name: "Wood Elf Warriors with Elven blade and throwing dagger"}
+    wood_elf_w_bow    = Repo.insert! %Figure{name: "Wood Elf Warrior with bow",                             plural_name: "Wood Elf Warriors with bow"}
+    wood_elf_w_spear  = Repo.insert! %Figure{name: "Wood Elf Warrior with spear",                           plural_name: "Wood Elf Warriors with spear"}
+
+    #########################################################################
     # FIGURES: MORDOR
     #########################################################################
 
     orc_captain      = Repo.insert! %Figure{name: "Orc Captain",         plural_name: "Orc Captains"}
     orc_captain_warg = Repo.insert! %Figure{name: "Orc Captain on Warg", plural_name: "Orc Captains on Warg"}
+    ringwraith       = Repo.insert! %Figure{name: "Ringwraith",          plural_name: "Ringwraiths"}
+    troll_chieftain  = Repo.insert! %Figure{name: "Troll Chieftain",     plural_name: "Troll Chieftain"}
 
+    mordor_troll      = Repo.insert! %Figure{name: "Mordor Troll",               plural_name: "Mordor Trolls"}
     orc_w_banner      = Repo.insert! %Figure{name: "Orc with banner",            plural_name: "Orcs with banner"}
     orc_w_bow         = Repo.insert! %Figure{name: "Orc with Orc bow",           plural_name: "Orcs with Orc bow"}
     orc_w_shield      = Repo.insert! %Figure{name: "Orc with shield",            plural_name: "Orcs with shield"}
@@ -136,6 +182,24 @@ defmodule SbgInv.Data do
 
     war_catapult       = Repo.insert! %Figure{name: "War Catapult",       plural_name: "War Catapults"}
     war_catapult_troll = Repo.insert! %Figure{name: "War Catapult Troll", plural_name: "War Catapult Trolls"}
+
+    #########################################################################
+    # FIGURES: RIVENDELL
+    #########################################################################
+
+    arwen           = Repo.insert! %Figure{name: "Arwen (FotR)"}
+    arwen2          = Repo.insert! %Figure{name: "Arwen (LotR)"}
+    elrond          = Repo.insert! %Figure{name: "Elrond"}
+    erestor         = Repo.insert! %Figure{name: "Erestor"}
+    glorfindel_lotw = Repo.insert! %Figure{name: "Glorfindel, Lord of the West"}
+    legolas         = Repo.insert! %Figure{name: "Legolas"}
+
+    high_elf_captain = Repo.insert! %Figure{name: "High Elf Captain", plural_name: "High Elf Captains"}
+
+    high_elf_w_banner       = Repo.insert! %Figure{name: "High Elf with banner",           plural_name: "High Elves with banner"}
+    high_elf_w_blade        = Repo.insert! %Figure{name: "High Elf with Elven blade",      plural_name: "High Elves with Elven blade"}
+    high_elf_w_bow          = Repo.insert! %Figure{name: "High Elf with bow",              plural_name: "High Elves with bow"}
+    high_elf_w_spear_shield = Repo.insert! %Figure{name: "High Elf with spear and shield", plural_name: "High Elves with spear and shield"}
 
     #########################################################################
     # FIGURES: ROHAN
@@ -813,7 +877,6 @@ defmodule SbgInv.Data do
     site_s8f1r3 = Repo.insert! %Role{scenario_faction_id: site_s8f1.id, amount:  2, sort_order: 3, name: "Giant Eagles"}
     Repo.insert! %RoleFigure{role_id: site_s8f1r3.id, figure_id: eagle.id}
 
-
     site_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: site_s8.id, faction: :easterlings, suggested_points: 450, actual_points: 430, sort_order: 2}
 
     site_s8f2r1 = Repo.insert! %Role{scenario_faction_id: site_s8f2.id, amount:  1, sort_order: 1, name: "Khamûl the Easterling on horse"}
@@ -845,8 +908,30 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotn_s1.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 1, page: 8}
     Repo.insert! %ScenarioResource{scenario_id: fotn_s1.id, resource_type: 1, url: "https://www.youtube.com/watch?v=0_dCdLngsKs&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
 
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s1.id, faction: :mirkwood, suggested_points: 200, actual_points: 273, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s1.id, faction: :dol_guldur, suggested_points: 200, actual_points: 150, sort_order: 2}
+    fotn_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s1.id, faction: :mirkwood, suggested_points: 200, actual_points: 273, sort_order: 1}
+
+    fotn_s1f1r1 = Repo.insert! %Role{scenario_faction_id: fotn_s1f1.id, amount: 1, sort_order: 1, name: "Thranduil"}
+    Repo.insert! %RoleFigure{role_id: fotn_s1f1r1.id, figure_id: thranduil.id}
+
+    fotn_s1f1r2 = Repo.insert! %Role{scenario_faction_id: fotn_s1f1.id, amount: 3, sort_order: 2, name: "Wood Elf Sentinels"}
+    Repo.insert! %RoleFigure{role_id: fotn_s1f1r2.id, figure_id: wood_elf_sentinel.id}
+
+    fotn_s1f1r3 = Repo.insert! %Role{scenario_faction_id: fotn_s1f1.id, amount: 4, sort_order: 3, name: "Wood Elf Warriors with Elven blade and throwing dagger"}
+    Repo.insert! %RoleFigure{role_id: fotn_s1f1r3.id, figure_id: wood_elf_w_blade.id}
+
+    fotn_s1f1r4 = Repo.insert! %Role{scenario_faction_id: fotn_s1f1.id, amount: 4, sort_order: 4, name: "Wood Elf Warriors with bow"}
+    Repo.insert! %RoleFigure{role_id: fotn_s1f1r4.id, figure_id: wood_elf_w_bow.id}
+
+    fotn_s1f1r5 = Repo.insert! %Role{scenario_faction_id: fotn_s1f1.id, amount: 4, sort_order: 5, name: "Wood Elf Warriors with spear"}
+    Repo.insert! %RoleFigure{role_id: fotn_s1f1r5.id, figure_id: wood_elf_w_spear.id}
+
+    fotn_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s1.id, faction: :dol_guldur, suggested_points: 200, actual_points: 150, sort_order: 2}
+
+    fotn_s1f2r1 = Repo.insert! %Role{scenario_faction_id: fotn_s1f2.id, amount: 4, sort_order: 1, name: "Giant Spiders"}
+    Repo.insert! %RoleFigure{role_id: fotn_s1f2r1.id, figure_id: giant_spider.id}
+
+    fotn_s1f2r2 = Repo.insert! %Role{scenario_faction_id: fotn_s1f2.id, amount: 2, sort_order: 2, name: "Bat Swarms"}
+    Repo.insert! %RoleFigure{role_id: fotn_s1f2r2.id, figure_id: bat_swarm.id}
 
     #========================================================================
     fotn_s2 = Repo.insert! %Scenario{
@@ -858,8 +943,78 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotn_s2.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 2, page: 10}
     Repo.insert! %ScenarioResource{scenario_id: fotn_s2.id, resource_type: 1, url: "https://www.youtube.com/watch?v=AMrP8abPj0Q&index=2&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
 
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s2.id, faction: :mirkwood, suggested_points: 600, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s2.id, faction: :dol_guldur, suggested_points: 600, actual_points: 0, sort_order: 2}
+    fotn_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s2.id, faction: :mirkwood, suggested_points: 600, actual_points: 0, sort_order: 1}
+
+    fotn_s2f1r1 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 1, sort_order: 1, name: "Thranduil"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r1.id, figure_id: thranduil.id}
+
+    fotn_s2f1r2 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 1, sort_order: 2, name: "Elrond"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r2.id, figure_id: elrond.id}
+
+    fotn_s2f1r3 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 1, sort_order: 3, name: "Legolas"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r3.id, figure_id: legolas.id}
+
+    fotn_s2f1r4 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 3, sort_order: 4, name: "Wood Elf Sentinels"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r4.id, figure_id: wood_elf_sentinel.id}
+
+    fotn_s2f1r5 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 3, sort_order: 5, name: "Wood Elf Warriors with Elven blade and throwing dagger"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r5.id, figure_id: wood_elf_w_blade.id}
+
+    fotn_s2f1r6 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 4, sort_order: 6, name: "Wood Elf Warriors with bow"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r6.id, figure_id: wood_elf_w_bow.id}
+
+    fotn_s2f1r7 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 4, sort_order: 7, name: "Wood Elf Warriors with spear"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r7.id, figure_id: wood_elf_w_spear.id}
+
+    fotn_s2f1r8 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 1, sort_order: 8, name: "Wood Elf Warrior with banner"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r8.id, figure_id: wood_elf_w_banner.id}
+
+    fotn_s2f1r9 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 4, sort_order: 9, name: "High Elf Warriors with Elven blade"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r9.id, figure_id: high_elf_w_blade.id}
+
+    fotn_s2f1r10 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 4, sort_order: 10, name: "High Elf Warriors with bow"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r10.id, figure_id: high_elf_w_bow.id}
+
+    fotn_s2f1r11 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 2, sort_order: 11, name: "High Elf Warriors with spear and shield"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r11.id, figure_id: high_elf_w_spear_shield.id}
+
+    fotn_s2f1r12 = Repo.insert! %Role{scenario_faction_id: fotn_s2f1.id, amount: 1, sort_order: 12, name: "High Elf Warrior with banner"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r12.id, figure_id: high_elf_w_banner.id}
+
+    fotn_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s2.id, faction: :dol_guldur, suggested_points: 600, actual_points: 0, sort_order: 2}
+
+    fotn_s2f2r1 = Repo.insert! %Role{scenario_faction_id: fotn_s2f2.id, amount: 1, sort_order: 1, name: "Khamûl the Easterling"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f2r1.id, figure_id: khamul.id}
+
+    fotn_s2f2r2 = Repo.insert! %Role{scenario_faction_id: fotn_s2f2.id, amount: 1, sort_order: 2, name: "Wild Warg Chieftain"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f2r2.id, figure_id: warg_chieftain.id}
+
+    fotn_s2f2r3 = Repo.insert! %Role{scenario_faction_id: fotn_s2f2.id, amount: 1, sort_order: 3, name: "Orc Captain"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f2r3.id, figure_id: orc_captain.id}
+
+    fotn_s2f2r4 = Repo.insert! %Role{scenario_faction_id: fotn_s2f2.id, amount: 7, sort_order: 4, name: "Orcs with shield"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f2r4.id, figure_id: orc_w_shield.id}
+
+    fotn_s2f2r5 = Repo.insert! %Role{scenario_faction_id: fotn_s2f2.id, amount: 8, sort_order: 5, name: "Orcs with spear"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f2r5.id, figure_id: orc_w_spear.id}
+
+    fotn_s2f2r6 = Repo.insert! %Role{scenario_faction_id: fotn_s2f2.id, amount: 4, sort_order: 6, name: "Orcs with two-handed weapon"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f2r6.id, figure_id: orc_w_2h.id}
+
+    fotn_s2f2r7 = Repo.insert! %Role{scenario_faction_id: fotn_s2f2.id, amount: 4, sort_order: 7, name: "Orcs with bow"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f2r7.id, figure_id: orc_w_bow.id}
+
+    fotn_s2f2r8 = Repo.insert! %Role{scenario_faction_id: fotn_s2f2.id, amount: 1, sort_order: 8, name: "Orc with banner"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f2r8.id, figure_id: orc_w_banner.id}
+
+    fotn_s2f2r9 = Repo.insert! %Role{scenario_faction_id: fotn_s2f2.id, amount: 3, sort_order: 9, name: "Wild Wargs"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f2r9.id, figure_id: warg.id}
+
+    fotn_s2f2r10 = Repo.insert! %Role{scenario_faction_id: fotn_s2f2.id, amount: 4, sort_order: 10, name: "Giant Spiders"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f2r10.id, figure_id: giant_spider.id}
+
+    fotn_s2f2r11 = Repo.insert! %Role{scenario_faction_id: fotn_s2f2.id, amount: 2, sort_order: 11, name: "Bat Swarms"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f2r11.id, figure_id: bat_swarm.id}
 
     #========================================================================
     fotn_s3 = Repo.insert! %Scenario{
@@ -871,8 +1026,43 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotn_s3.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 3, page: 12}
     Repo.insert! %ScenarioResource{scenario_id: fotn_s3.id, resource_type: 1, url: "https://www.youtube.com/watch?v=YN8X_azJfO8&index=3&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
 
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s3.id, faction: :rivendell, suggested_points: 550, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s3.id, faction: :dol_guldur, suggested_points: 300, actual_points: 0, sort_order: 2}
+    fotn_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s3.id, faction: :rivendell, suggested_points: 550, actual_points: 0, sort_order: 1}
+
+    fotn_s3f1r1 = Repo.insert! %Role{scenario_faction_id: fotn_s3f1.id, amount: 1, sort_order: 1, name: "Círdan"}
+    Repo.insert! %RoleFigure{role_id: fotn_s3f1r1.id, figure_id: cirdan.id}
+
+    fotn_s3f1r2 = Repo.insert! %Role{scenario_faction_id: fotn_s3f1.id, amount: 1, sort_order: 2, name: "Arwen Evenstar"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r2.id, figure_id: arwen.id}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r2.id, figure_id: arwen2.id}
+
+    fotn_s3f1r3 = Repo.insert! %Role{scenario_faction_id: fotn_s3f1.id, amount: 1, sort_order: 3, name: "Erestor"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r3.id, figure_id: erestor.id}
+
+    fotn_s3f1r4 = Repo.insert! %Role{scenario_faction_id: fotn_s3f1.id, amount: 1, sort_order: 4, name: "Glorfindel, Lord of the West"}
+    Repo.insert! %RoleFigure{role_id: fotn_s2f1r4.id, figure_id: glorfindel_lotw.id}
+
+    fotn_s3f1r5 = Repo.insert! %Role{scenario_faction_id: fotn_s3f1.id, amount: 1, sort_order: 5, name: "High Elf Captain with heavy armor, shield, and Elven blade"}
+    Repo.insert! %RoleFigure{role_id: fotn_s3f1r5.id, figure_id: high_elf_captain.id}
+
+    fotn_s3f1r6 = Repo.insert! %Role{scenario_faction_id: fotn_s3f1.id, amount: 4, sort_order: 6, name: "High Elf Warriors with heavy armor and bow"}
+    Repo.insert! %RoleFigure{role_id: fotn_s3f1r6.id, figure_id: high_elf_w_bow.id}
+
+    fotn_s3f1r7 = Repo.insert! %Role{scenario_faction_id: fotn_s3f1.id, amount: 3, sort_order: 7, name: "High Elf Warriors with heavy armor and Elven blade"}
+    Repo.insert! %RoleFigure{role_id: fotn_s3f1r7.id, figure_id: high_elf_w_blade.id}
+
+    fotn_s3f1r8 = Repo.insert! %Role{scenario_faction_id: fotn_s3f1.id, amount: 1, sort_order: 8, name: "High Elf Warrior with banner"}
+    Repo.insert! %RoleFigure{role_id: fotn_s3f1r8.id, figure_id: high_elf_w_banner.id}
+
+    fotn_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s3.id, faction: :dol_guldur, suggested_points: 300, actual_points: 0, sort_order: 2}
+
+    fotn_s3f2r1 = Repo.insert! %Role{scenario_faction_id: fotn_s3f2.id, amount: 4, sort_order: 1, name: "Castellans of Dol Guldur with Morgul Blade"}
+    Repo.insert! %RoleFigure{role_id: fotn_s3f2r1.id, figure_id: castellan.id}
+
+    fotn_s3f2r2 = Repo.insert! %Role{scenario_faction_id: fotn_s3f2.id, amount: 2, sort_order: 2, name: "Bat Swarms"}
+    Repo.insert! %RoleFigure{role_id: fotn_s3f2r2.id, figure_id: bat_swarm.id}
+
+    fotn_s3f2r3 = Repo.insert! %Role{scenario_faction_id: fotn_s3f2.id, amount: 4, sort_order: 3, name: "Wild Wargs"}
+    Repo.insert! %RoleFigure{role_id: fotn_s3f2r3.id, figure_id: warg.id}
 
     #========================================================================
     fotn_s4 = Repo.insert! %Scenario{
@@ -884,8 +1074,36 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotn_s4.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 4, page: 14}
     Repo.insert! %ScenarioResource{scenario_id: fotn_s4.id, resource_type: 1, url: "https://www.youtube.com/watch?v=UbIM0XE6jT8&index=4&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
 
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s4.id, faction: :white_council, suggested_points: 500, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s4.id, faction: :dol_guldur,     suggested_points: 400, actual_points: 0, sort_order: 2}
+    fotn_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s4.id, faction: :white_council, suggested_points: 500, actual_points: 0, sort_order: 1}
+
+    fotn_s4f1r1 = Repo.insert! %Role{scenario_faction_id: fotn_s4f1.id, amount: 1, sort_order: 1, name: "Gandalf the Gray"}
+    Repo.insert! %RoleFigure{role_id: fotn_s4f1r1.id, figure_id: gandalf_grey.id}
+
+    fotn_s4f1r2 = Repo.insert! %Role{scenario_faction_id: fotn_s4f1.id, amount: 1, sort_order: 2, name: "Radagast the Brown"}
+    Repo.insert! %RoleFigure{role_id: fotn_s4f1r2.id, figure_id: radagast.id}
+
+    fotn_s4f1r3 = Repo.insert! %Role{scenario_faction_id: fotn_s4f1.id, amount: 1, sort_order: 3, name: "Saruman the White"}
+    Repo.insert! %RoleFigure{role_id: fotn_s4f1r3.id, figure_id: saruman.id}
+
+    fotn_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s4.id, faction: :dol_guldur,     suggested_points: 400, actual_points: 0, sort_order: 2}
+
+    fotn_s4f2r1 = Repo.insert! %Role{scenario_faction_id: fotn_s4f2.id, amount: 4, sort_order: 1, name: "Castellans of Dol Guldur with Morgul Blade"}
+    Repo.insert! %RoleFigure{role_id: fotn_s4f2r1.id, figure_id: castellan.id}
+
+    fotn_s4f2r2 = Repo.insert! %Role{scenario_faction_id: fotn_s4f2.id, amount: 1, sort_order: 2, name: "Orc Captain"}
+    Repo.insert! %RoleFigure{role_id: fotn_s4f2r2.id, figure_id: orc_captain.id}
+
+    fotn_s4f2r3 = Repo.insert! %Role{scenario_faction_id: fotn_s4f2.id, amount: 2, sort_order: 3, name: "Warg Riders with throwing spear"}
+    Repo.insert! %RoleFigure{role_id: fotn_s4f2r3.id, figure_id: warg_rider_spear.id}
+
+    fotn_s4f2r4 = Repo.insert! %Role{scenario_faction_id: fotn_s4f2.id, amount: 2, sort_order: 4, name: "Warg Riders with bow"}
+    Repo.insert! %RoleFigure{role_id: fotn_s4f2r4.id, figure_id: warg_rider_bow.id}
+
+    fotn_s4f2r5 = Repo.insert! %Role{scenario_faction_id: fotn_s4f2.id, amount: 2, sort_order: 5, name: "Warg Riders with shield"}
+    Repo.insert! %RoleFigure{role_id: fotn_s4f2r5.id, figure_id: warg_rider_shield.id}
+
+    fotn_s4f2r6 = Repo.insert! %Role{scenario_faction_id: fotn_s4f2.id, amount: 3, sort_order: 6, name: "Wild Wargs"}
+    Repo.insert! %RoleFigure{role_id: fotn_s4f2r6.id, figure_id: warg.id}
 
     #========================================================================
     fotn_s5 = Repo.insert! %Scenario{
@@ -897,8 +1115,39 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotn_s5.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 5, page: 16}
     Repo.insert! %ScenarioResource{scenario_id: fotn_s5.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=eyHTP-Vjhd8&index=5&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
 
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s5.id, faction: :lothlorien, suggested_points: 450, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s5.id, faction: :dol_guldur, suggested_points: 300, actual_points: 0, sort_order: 2}
+    fotn_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s5.id, faction: :lothlorien, suggested_points: 450, actual_points: 0, sort_order: 1}
+
+    fotn_s5f1r1 = Repo.insert! %Role{scenario_faction_id: fotn_s5f1.id, amount: 1, sort_order: 1, name: "Galadriel, Lady of the Galadhrim"}
+    Repo.insert! %RoleFigure{role_id: fotn_s5f1r1.id, figure_id: galadriel_lotg.id}
+
+    fotn_s5f1r2 = Repo.insert! %Role{scenario_faction_id: fotn_s5f1.id, amount: 1, sort_order: 2, name: "Celeborn"}
+    Repo.insert! %RoleFigure{role_id: fotn_s5f1r2.id, figure_id: celeborn.id}
+
+    fotn_s5f1r3 = Repo.insert! %Role{scenario_faction_id: fotn_s5f1.id, amount: 2, sort_order: 3, name: "Wood Elf Sentinels"}
+    Repo.insert! %RoleFigure{role_id: fotn_s5f1r3.id, figure_id: wood_elf_sentinel.id}
+
+    fotn_s5f1r4 = Repo.insert! %Role{scenario_faction_id: fotn_s5f1.id, amount: 8, sort_order: 4, name: "Wood Elf Warriors with Elven blade and throwing dagger"}
+    Repo.insert! %RoleFigure{role_id: fotn_s5f1r4.id, figure_id: wood_elf_w_blade.id}
+
+    fotn_s5f1r5 = Repo.insert! %Role{scenario_faction_id: fotn_s5f1.id, amount: 8, sort_order: 5, name: "Wood Elf Warriors with bow"}
+    Repo.insert! %RoleFigure{role_id: fotn_s5f1r4.id, figure_id: wood_elf_w_bow.id}
+
+    fotn_s5f1r6 = Repo.insert! %Role{scenario_faction_id: fotn_s5f1.id, amount: 8, sort_order: 6, name: "Wood Elf Warriors with spear"}
+    Repo.insert! %RoleFigure{role_id: fotn_s5f1r4.id, figure_id: wood_elf_w_spear.id}
+
+    fotn_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s5.id, faction: :dol_guldur, suggested_points: 300, actual_points: 0, sort_order: 2}
+
+    fotn_s5f2r1 = Repo.insert! %Role{scenario_faction_id: fotn_s5f2.id, amount: 1, sort_order: 1, name: "Spider Queen"}
+    Repo.insert! %RoleFigure{role_id: fotn_s5f2r1.id, figure_id: spider_queen.id}
+
+    fotn_s5f2r2 = Repo.insert! %Role{scenario_faction_id: fotn_s5f2.id, amount: 4, sort_order: 2, name: "Giant Spiders"}
+    Repo.insert! %RoleFigure{role_id: fotn_s5f2r2.id, figure_id: giant_spider.id}
+
+    fotn_s5f2r3 = Repo.insert! %Role{scenario_faction_id: fotn_s5f2.id, amount: 2, sort_order: 3, name: "Bat Swarms"}
+    Repo.insert! %RoleFigure{role_id: fotn_s5f2r3.id, figure_id: bat_swarm.id}
+
+    fotn_s5f2r4 = Repo.insert! %Role{scenario_faction_id: fotn_s5f2.id, amount: 6, sort_order: 4, name: "Wild Wargs"}
+    Repo.insert! %RoleFigure{role_id: fotn_s5f2r4.id, figure_id: warg.id}
 
     #========================================================================
     fotn_s6 = Repo.insert! %Scenario{
@@ -910,8 +1159,66 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotn_s6.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 6, page: 18}
     Repo.insert! %ScenarioResource{scenario_id: fotn_s6.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=Cug7stLutRQ&index=6&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
 
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s6.id, faction: :rivendell,  suggested_points: 700, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s6.id, faction: :dol_guldur, suggested_points: 800, actual_points: 0, sort_order: 2}
+    fotn_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s6.id, faction: :rivendell,  suggested_points: 700, actual_points: 0, sort_order: 1}
+
+    fotn_s6f1r1 = Repo.insert! %Role{scenario_faction_id: fotn_s6f1.id, amount: 1, sort_order: 1, name: "Elrond"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f1r1.id, figure_id: elrond.id}
+
+    fotn_s6f1r2 = Repo.insert! %Role{scenario_faction_id: fotn_s6f1.id, amount: 3, sort_order: 2, name: "Wood Elf Sentinels"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f1r2.id, figure_id: wood_elf_sentinel.id}
+
+    fotn_s6f1r3 = Repo.insert! %Role{scenario_faction_id: fotn_s6f1.id, amount: 8, sort_order: 3, name: "High Elf Warriors with shield and spear"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f1r3.id, figure_id: high_elf_w_spear_shield.id}
+
+    fotn_s6f1r4 = Repo.insert! %Role{scenario_faction_id: fotn_s6f1.id, amount: 8, sort_order: 4, name: "High Elf Warriors with Elven blade"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f1r4.id, figure_id: high_elf_w_blade.id}
+
+    fotn_s6f1r5 = Repo.insert! %Role{scenario_faction_id: fotn_s6f1.id, amount: 8, sort_order: 5, name: "High Elf Warriors with bow"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f1r5.id, figure_id: high_elf_w_bow.id}
+
+    fotn_s6f1r6 = Repo.insert! %Role{scenario_faction_id: fotn_s6f1.id, amount: 1, sort_order: 6, name: "High Elf Warrior with banner"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f1r6.id, figure_id: high_elf_w_banner.id}
+
+    fotn_s6f1r7 = Repo.insert! %Role{scenario_faction_id: fotn_s6f1.id, amount: 8, sort_order: 7, name: "Wood Elf Warriors with shield and spear"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f1r7.id, figure_id: wood_elf_w_spear.id}
+
+    fotn_s6f1r8 = Repo.insert! %Role{scenario_faction_id: fotn_s6f1.id, amount: 7, sort_order: 8, name: "Wood Elf Warriors with Elven blade"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f1r8.id, figure_id: wood_elf_w_blade.id}
+
+    fotn_s6f1r9 = Repo.insert! %Role{scenario_faction_id: fotn_s6f1.id, amount: 8, sort_order: 9, name: "Wood Elf Warriors with bow"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f1r9.id, figure_id: wood_elf_w_bow.id}
+
+    fotn_s6f1r10 = Repo.insert! %Role{scenario_faction_id: fotn_s6f1.id, amount: 1, sort_order: 10, name: "Wood Elf Warrior with banner"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f1r10.id, figure_id: wood_elf_w_banner.id}
+
+    fotn_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s6.id, faction: :dol_guldur, suggested_points: 800, actual_points: 0, sort_order: 2}
+
+    fotn_s6f2r1 = Repo.insert! %Role{scenario_faction_id: fotn_s6f2.id, amount: 1, sort_order: 1, name: "Ringwraith"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f2r1.id, figure_id: ringwraith.id}
+
+    fotn_s6f2r2 = Repo.insert! %Role{scenario_faction_id: fotn_s6f2.id, amount: 1, sort_order: 2, name: "Wild Warg Chieftain"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f2r2.id, figure_id: warg_chieftain.id}
+
+    fotn_s6f2r3 = Repo.insert! %Role{scenario_faction_id: fotn_s6f2.id, amount: 1, sort_order: 3, name: "Orc Captain"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f2r3.id, figure_id: orc_captain.id}
+
+    fotn_s6f2r4 = Repo.insert! %Role{scenario_faction_id: fotn_s6f2.id, amount: 1, sort_order: 4, name: "Castellan of Dol Guldur"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f2r4.id, figure_id: castellan.id}
+
+    fotn_s6f2r5 = Repo.insert! %Role{scenario_faction_id: fotn_s6f2.id, amount: 7, sort_order: 5, name: "Orc Warriors with shield"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f2r5.id, figure_id: orc_w_shield.id}
+
+    fotn_s6f2r6 = Repo.insert! %Role{scenario_faction_id: fotn_s6f2.id, amount: 8, sort_order: 6, name: "Orc Warriors with spear"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f2r6.id, figure_id: orc_w_spear.id}
+
+    fotn_s6f2r7 = Repo.insert! %Role{scenario_faction_id: fotn_s6f2.id, amount: 4, sort_order: 7, name: "Orc Warriors with two-handed weapon"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f2r7.id, figure_id: orc_w_2h.id}
+
+    fotn_s6f2r8 = Repo.insert! %Role{scenario_faction_id: fotn_s6f2.id, amount: 4, sort_order: 8, name: "Orc Warriors with bow"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f2r8.id, figure_id: orc_w_bow.id}
+
+    fotn_s6f2r9 = Repo.insert! %Role{scenario_faction_id: fotn_s6f2.id, amount: 1, sort_order: 9, name: "Orc Warrior with banner"}
+    Repo.insert! %RoleFigure{role_id: fotn_s6f2r9.id, figure_id: orc_w_banner.id}
 
     #========================================================================
     fotn_s7 = Repo.insert! %Scenario{
@@ -923,8 +1230,67 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotn_s7.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 7, page: 20}
     Repo.insert! %ScenarioResource{scenario_id: fotn_s7.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=2J5px0_J2wQ&index=7&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
 
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s7.id, faction: :rivendell,  suggested_points: 1500, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: fotn_s7.id, faction: :dol_guldur, suggested_points: 1400, actual_points: 0, sort_order: 2}
+    fotn_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s7.id, faction: :rivendell,  suggested_points: 1500, actual_points: 0, sort_order: 1}
+
+    fotn_s7f1r1 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 1, name: "Gandalf the Grey"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r1.id, figure_id: gandalf_grey.id}
+
+    fotn_s7f1r2 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 2, name: "Saruman the White"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r2.id, figure_id: saruman.id}
+
+    fotn_s7f1r3 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 3, name: "Radagast the Brown"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r3.id, figure_id: radagast.id}
+
+    fotn_s7f1r4 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 4, name: "Arwen Evenstar"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r4.id, figure_id: arwen.id}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r4.id, figure_id: arwen2.id}
+
+    fotn_s7f1r5 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 5, name: "Círdan"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r5.id, figure_id: cirdan.id}
+
+    fotn_s7f1r6 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 6, name: "Glorfindel, Lord of the West"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r6.id, figure_id: glorfindel_lotw.id}
+
+    fotn_s7f1r7 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 7, name: "Erestor"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r7.id, figure_id: erestor.id}
+
+    fotn_s7f1r8 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 8, name: "Elrond"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r8.id, figure_id: elrond.id}
+
+    fotn_s7f1r9 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 9, name: "Galadriel, Lady of the Galadhrim"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r9.id, figure_id: galadriel_lotg.id}
+
+    fotn_s7f1r10 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 10, name: "Celeborn"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r10.id, figure_id: celeborn.id}
+
+    fotn_s7f1r11 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 11, name: "Thranduil"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r11.id, figure_id: thranduil.id}
+
+    fotn_s7f1r12 = Repo.insert! %Role{scenario_faction_id: fotn_s7f1.id, amount: 1, sort_order: 12, name: "Legolas"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f1r12.id, figure_id: legolas.id}
+
+    fotn_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s7.id, faction: :dol_guldur, suggested_points: 1400, actual_points: 0, sort_order: 2}
+
+    fotn_s7f2r1 = Repo.insert! %Role{scenario_faction_id: fotn_s7f2.id, amount: 1, sort_order: 1, name: "The Necromancer"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f2r1.id, figure_id: necromancer.id}
+
+    fotn_s7f2r2 = Repo.insert! %Role{scenario_faction_id: fotn_s7f2.id, amount: 1, sort_order: 2, name: "Khamûl the Easterling"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f2r2.id, figure_id: khamul.id}
+
+    fotn_s7f2r3 = Repo.insert! %Role{scenario_faction_id: fotn_s7f2.id, amount: 5, sort_order: 3, name: "Ringwraiths"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f2r3.id, figure_id: ringwraith.id}
+
+    fotn_s7f2r4 = Repo.insert! %Role{scenario_faction_id: fotn_s7f2.id, amount: 4, sort_order: 4, name: "Castellans of Dol Guldur with Morgul Blade"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f2r4.id, figure_id: castellan.id}
+
+    fotn_s7f2r5 = Repo.insert! %Role{scenario_faction_id: fotn_s7f2.id, amount: 1, sort_order: 5, name: "Troll Chieftain"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f2r5.id, figure_id: troll_chieftain.id}
+
+    fotn_s7f2r6 = Repo.insert! %Role{scenario_faction_id: fotn_s7f2.id, amount: 1, sort_order: 6, name: "Mordor Troll"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f2r6.id, figure_id: mordor_troll.id}
+
+    fotn_s7f2r7 = Repo.insert! %Role{scenario_faction_id: fotn_s7f2.id, amount: 4, sort_order: 6, name: "Giant Spiders"}
+    Repo.insert! %RoleFigure{role_id: fotn_s7f2r7.id, figure_id: giant_spider.id}
 
     #########################################################################
     # THE TWO TOWERS JOURNEYBOOK
