@@ -312,6 +312,206 @@ defmodule SbgInv.Data do
     Repo.insert! %UserFigure{user_id: 1, figure_id: gondor_womt_bow.id, owned: 36, painted: 24}
 
     #########################################################################
+    # THE FALL OF THE NECROMANCER
+    #########################################################################
+
+    #========================================================================
+    fotn_s1 = Repo.insert! %Scenario{
+      name: "Dol Guldur Awakens",
+      blurb: "Thranduil leads a warband against the creatures of Mirkwood.",
+      date_age: 3, date_year: 2060, date_month: 0, date_day: 0, is_canonical: true, size: 22
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s1.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 1, page: 8}
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s1.id, resource_type: 1, url: "https://www.youtube.com/watch?v=0_dCdLngsKs&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+
+    fotn_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s1.id, faction: :mirkwood, suggested_points: 200, actual_points: 273, sort_order: 1}
+    _declare_role_figure(fotn_s1f1, 1, 1, [ thranduil ])
+    _declare_role_figure(fotn_s1f1, 3, 2, [ wood_elf_sentinel ])
+    _declare_role_figure(fotn_s1f1, 4, 3, [ wood_elf_w_blade ])
+    _declare_role_figure(fotn_s1f1, 4, 4, [ wood_elf_w_bow ])
+    _declare_role_figure(fotn_s1f1, 4, 5, [ wood_elf_w_spear ])
+
+    fotn_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s1.id, faction: :dol_guldur, suggested_points: 200, actual_points: 150, sort_order: 2}
+    _declare_role_figure(fotn_s1f2, 4, 1, [ giant_spider ])
+    _declare_role_figure(fotn_s1f2, 2, 2, [ bat_swarm ])
+
+    #========================================================================
+    fotn_s2 = Repo.insert! %Scenario{
+      name: "In the Nick of Time",
+      blurb: "Elrond joins Thranduil against an attack from Dol Guldur lead by Khamûl.",
+      date_age: 3,  date_year: 2061, date_month: 0, date_day: 0, is_canonical: true, size: 65
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s2.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 2, page: 10}
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s2.id, resource_type: 1, url: "https://www.youtube.com/watch?v=AMrP8abPj0Q&index=2&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+
+    fotn_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s2.id, faction: :mirkwood, suggested_points: 600, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotn_s2f1, 1, 1, [ thranduil ])
+    _declare_role_figure(fotn_s2f1, 1, 2, [ elrond ])
+    _declare_role_figure(fotn_s2f1, 1, 3, [ legolas ])
+    _declare_role_figure(fotn_s2f1, 3, 4, [ wood_elf_sentinel ])
+    _declare_role_figure(fotn_s2f1, 3, 5, [ wood_elf_w_blade ])
+    _declare_role_figure(fotn_s2f1, 4, 6, [ wood_elf_w_bow ])
+    _declare_role_figure(fotn_s2f1, 4, 7, [ wood_elf_w_spear ])
+    _declare_role_figure(fotn_s2f1, 1, 8, [ wood_elf_w_banner ])
+    _declare_role_figure(fotn_s2f1, 4, 9, [ high_elf_w_blade ])
+    _declare_role_figure(fotn_s2f1, 4, 10, [ high_elf_w_bow ])
+    _declare_role_figure(fotn_s2f1, 2, 11, [ high_elf_w_spear_shield ])
+    _declare_role_figure(fotn_s2f1, 1, 12, [ high_elf_w_banner ])
+
+    fotn_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s2.id, faction: :dol_guldur, suggested_points: 600, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotn_s2f2, 1, 1, [ khamul ])
+    _declare_role_figure(fotn_s2f2, 1, 2, [ warg_chieftain ])
+    _declare_role_figure(fotn_s2f2, 1, 3, [ orc_captain ])
+    _declare_role_figure(fotn_s2f2, 7, 4, [ orc_w_shield ])
+    _declare_role_figure(fotn_s2f2, 8, 5, [ orc_w_spear ])
+    _declare_role_figure(fotn_s2f2, 4, 6, [ orc_w_2h ])
+    _declare_role_figure(fotn_s2f2, 4, 7, [ orc_w_bow ])
+    _declare_role_figure(fotn_s2f2, 1, 8, [ orc_w_banner ])
+    _declare_role_figure(fotn_s2f2, 3, 9, [ warg ])
+    _declare_role_figure(fotn_s2f2, 4, 10, [ giant_spider ])
+    _declare_role_figure(fotn_s2f2, 2, 11, [ bat_swarm ])
+
+    #========================================================================
+    fotn_s3 = Repo.insert! %Scenario{
+      name: "A Walk Through Dark Places",
+      blurb: "A Rivendell band tries to protect Arwen and Círdan from the minions of Dol Guldur.",
+      date_age: 3, date_year: 2062, date_month: 0, date_day: 0, is_canonical: true, size: 23
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s3.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 3, page: 12}
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s3.id, resource_type: 1, url: "https://www.youtube.com/watch?v=YN8X_azJfO8&index=3&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+
+    fotn_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s3.id, faction: :rivendell, suggested_points: 550, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotn_s3f1, 1, 1, [ cirdan ])
+    _declare_role_figure(fotn_s3f1, 1, 2, [ arwen, arwen2 ])
+    _declare_role_figure(fotn_s3f1, 1, 3, [ erestor ])
+    _declare_role_figure(fotn_s3f1, 1, 4, [ glorfindel_lotw ])
+    _declare_role_figure(fotn_s3f1, 1, 5, [ high_elf_captain ])
+    _declare_role_figure(fotn_s3f1, 4, 6, [ high_elf_w_bow ])
+    _declare_role_figure(fotn_s3f1, 3, 7, [ high_elf_w_blade ])
+    _declare_role_figure(fotn_s3f1, 1, 8, [ high_elf_w_banner ])
+
+    fotn_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s3.id, faction: :dol_guldur, suggested_points: 300, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotn_s3f2, 4, 1, [ castellan ])
+    _declare_role_figure(fotn_s3f2, 2, 2, [ bat_swarm ])
+    _declare_role_figure(fotn_s3f2, 4, 3, [ warg ])
+
+    #========================================================================
+    fotn_s4 = Repo.insert! %Scenario{
+      name: "Meddle Not in the Affairs of Wizards",
+      blurb: "The Istari faces the minions of Dol Guldur.",
+      date_age: 3, date_year: 2062, date_month: -1, date_day: 0, is_canonical: true, size: 17
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s4.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 4, page: 14}
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s4.id, resource_type: 1, url: "https://www.youtube.com/watch?v=UbIM0XE6jT8&index=4&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+
+    fotn_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s4.id, faction: :white_council, suggested_points: 500, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotn_s4f1, 1, 1, [ gandalf_grey ])
+    _declare_role_figure(fotn_s4f1, 1, 2, [ radagast ])
+    _declare_role_figure(fotn_s4f1, 1, 3, [ saruman ])
+
+    fotn_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s4.id, faction: :dol_guldur,     suggested_points: 400, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotn_s4f2, 4, 1, [ castellan ])
+    _declare_role_figure(fotn_s4f2, 1, 2, [ orc_captain ])
+    _declare_role_figure(fotn_s4f2, 2, 3, [ warg_rider_spear ])
+    _declare_role_figure(fotn_s4f2, 2, 4, [ warg_rider_bow ])
+    _declare_role_figure(fotn_s4f2, 2, 5, [ warg_rider_shield ])
+    _declare_role_figure(fotn_s4f2, 3, 6, [ warg ])
+
+    #========================================================================
+    fotn_s5 = Repo.insert! %Scenario{
+      name: "The Lair of the Spider Queen",
+      blurb: "Lothlorien attacks the beasts of Mirkwood",
+      date_age: 3, date_year: 2063, date_month: 0, date_day: 0, is_canonical: true, size: 41
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s5.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 5, page: 16}
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s5.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=eyHTP-Vjhd8&index=5&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+
+    fotn_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s5.id, faction: :lothlorien, suggested_points: 450, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotn_s5f1, 1, 1, [ galadriel_lotg ])
+    _declare_role_figure(fotn_s5f1, 1, 2, [ celeborn ])
+    _declare_role_figure(fotn_s5f1, 2, 3, [ wood_elf_sentinel ])
+    _declare_role_figure(fotn_s5f1, 8, 4, [ wood_elf_w_blade ])
+    _declare_role_figure(fotn_s5f1, 8, 5, [ wood_elf_w_bow ])
+    _declare_role_figure(fotn_s5f1, 8, 6, [ wood_elf_w_spear ])
+
+    fotn_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s5.id, faction: :dol_guldur, suggested_points: 300, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotn_s5f2, 1, 1, [ spider_queen ])
+    _declare_role_figure(fotn_s5f2, 4, 2, [ giant_spider ])
+    _declare_role_figure(fotn_s5f2, 2, 3, [ bat_swarm ])
+    _declare_role_figure(fotn_s5f2, 6, 4, [ warg ])
+
+    #========================================================================
+    fotn_s6 = Repo.insert! %Scenario{
+      name: "In the Shadow of Dol Guldur",
+      blurb: "Elrond's elves fight a Ringwraith-led Dol Guldur army.",
+      date_age: 3, date_year: 2850, date_month: 0, date_day: 0, is_canonical: true, size: 91
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s6.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 6, page: 18}
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s6.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=Cug7stLutRQ&index=6&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+
+    fotn_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s6.id, faction: :rivendell,  suggested_points: 700, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotn_s6f1, 1, 1, [ elrond ])
+    _declare_role_figure(fotn_s6f1, 3, 2, [ wood_elf_sentinel ])
+    _declare_role_figure(fotn_s6f1, 8, 3, [ high_elf_w_spear_shield ])
+    _declare_role_figure(fotn_s6f1, 8, 4, [ high_elf_w_blade ])
+    _declare_role_figure(fotn_s6f1, 8, 5, [ high_elf_w_bow ])
+    _declare_role_figure(fotn_s6f1, 1, 6, [ high_elf_w_banner ])
+    _declare_role_figure(fotn_s6f1, 8, 7, [ wood_elf_w_spear ])
+    _declare_role_figure(fotn_s6f1, 7, 8, [ wood_elf_w_blade ])
+    _declare_role_figure(fotn_s6f1, 8, 9, [ wood_elf_w_bow ])
+    _declare_role_figure(fotn_s6f1, 1, 10, [ wood_elf_w_banner ])
+
+    fotn_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s6.id, faction: :dol_guldur, suggested_points: 800, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotn_s6f2, 1, 1, [ ringwraith ])
+    _declare_role_figure(fotn_s6f2, 1, 2, [ warg_chieftain ])
+    _declare_role_figure(fotn_s6f2, 1, 3, [ orc_captain ])
+    _declare_role_figure(fotn_s6f2, 1, 4, [ castellan ])
+    _declare_role_figure(fotn_s6f2, 7, 5, [ orc_w_shield ])
+    _declare_role_figure(fotn_s6f2, 8, 6, [ orc_w_spear ])
+    _declare_role_figure(fotn_s6f2, 4, 7, [ orc_w_2h ])
+    _declare_role_figure(fotn_s6f2, 4, 8, [ orc_w_bow ])
+    _declare_role_figure(fotn_s6f2, 1, 9, [ orc_w_banner ])
+
+    #========================================================================
+    fotn_s7 = Repo.insert! %Scenario{
+      name: "The Fall of the Necromancer",
+      blurb: "The White Council battles the Necromancer himself at Dol Guldur.",
+      date_age: 3, date_year: 2851, date_month: 0, date_day: 0, is_canonical: true, size: 29
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s7.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 7, page: 20}
+    Repo.insert! %ScenarioResource{scenario_id: fotn_s7.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=2J5px0_J2wQ&index=7&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+
+    fotn_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s7.id, faction: :rivendell,  suggested_points: 1500, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotn_s7f1, 1, 1, [ gandalf_grey ])
+    _declare_role_figure(fotn_s7f1, 1, 2, [ saruman ])
+    _declare_role_figure(fotn_s7f1, 1, 3, [ radagast ])
+    _declare_role_figure(fotn_s7f1, 1, 4, [ arwen, arwen2])
+    _declare_role_figure(fotn_s7f1, 1, 5, [ cirdan ])
+    _declare_role_figure(fotn_s7f1, 1, 6, [ glorfindel_lotw ])
+    _declare_role_figure(fotn_s7f1, 1, 7, [ erestor ])
+    _declare_role_figure(fotn_s7f1, 1, 8, [ elrond ])
+    _declare_role_figure(fotn_s7f1, 1, 9, [ galadriel_lotg ])
+    _declare_role_figure(fotn_s7f1, 1, 10, [ celeborn ])
+    _declare_role_figure(fotn_s7f1, 1, 11, [ thranduil ])
+    _declare_role_figure(fotn_s7f1, 1, 12, [ legolas ])
+
+    fotn_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s7.id, faction: :dol_guldur, suggested_points: 1400, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotn_s7f2, 1, 1, [ necromancer ])
+    _declare_role_figure(fotn_s7f2, 1, 2, [ khamul ])
+    _declare_role_figure(fotn_s7f2, 5, 3, [ ringwraith ])
+    _declare_role_figure(fotn_s7f2, 4, 4, [ castellan ])
+    _declare_role_figure(fotn_s7f2, 1, 5, [ troll_chieftain ])
+    _declare_role_figure(fotn_s7f2, 1, 6, [ mordor_troll ])
+    _declare_role_figure(fotn_s7f2, 4, 6, [ giant_spider ])
+
+    #########################################################################
     # SHADOW & FLAME
     #########################################################################
 
@@ -320,7 +520,7 @@ defmodule SbgInv.Data do
       name: "The Eastgate",
       blurb: "Balin's dwarves assault the east gate of Moria.",
       date_age: 3, date_year: 2989, date_month: 0, date_day: 0, is_canonical: true, size: 43
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s1.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 1, page: 14}
 
@@ -332,7 +532,7 @@ defmodule SbgInv.Data do
       name: "Battle for the Dwarrowdelf",
       blurb: "Balin faces off against Durbûrz deep within Moria.",
       date_age: 3, date_year: 2990, date_month: 0, date_day: 0, is_canonical: true, size: 77
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s2.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 2, page: 20}
 
@@ -344,7 +544,7 @@ defmodule SbgInv.Data do
       name: "Mirrormere",
       blurb: "The Goblins ambush Balin as he gazes into the waters of the Kheled-zâram.",
       date_age: 3, date_year: 2993, date_month: 0, date_day: 0, is_canonical: true, size: 51
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s3.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 3, page: 24}
 
@@ -356,7 +556,7 @@ defmodule SbgInv.Data do
       name: "They Are Coming",
       blurb: "The last dwarves in Moria face the Balrog.",
       date_age: 3, date_year: 2994, date_month: 0, date_day: 0, is_canonical: true, size: 55
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s4.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 4, page: 28}
 
@@ -368,7 +568,7 @@ defmodule SbgInv.Data do
       name: "Fog on the Barrow Downs",
       blurb: "Frodo and friends are attacked by the Barrow Wights.",
       date_age: 3, date_year: 3018, date_month: 9, date_day: 28, is_canonical: true, size: 9
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s5.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 5, page: 36}
 
@@ -380,7 +580,7 @@ defmodule SbgInv.Data do
       name: "Surrounded!",
       blurb: "Elves under Glorfindel are surrounded by Orcs on one side and Goblins on the other.",
       date_age: 3, date_year: 2925, date_month: 0, date_day: 0, is_canonical: true, size: 101
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s6.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 6, page: 42}
 
@@ -392,7 +592,7 @@ defmodule SbgInv.Data do
       name: "Fangorn",
       blurb: "The Rohirrim, chasing down an Orcish raiding party, get some unexpected help.",
       date_age: 3, date_year: 3016, date_month: 0, date_day: 0, is_canonical: true, size: 53
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s7.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 7, page: 46}
 
@@ -409,7 +609,7 @@ defmodule SbgInv.Data do
       name: "The Fall of Amon Barad",
       blurb: "Easterlings under Khamûl launch a surprise attack on a Gondorian outpost in Ithilien.",
       date_age: 3, date_year: 2998, date_month: -4, date_day: 0, is_canonical: true, size: 30
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s1.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 1, page: 14}
     Repo.insert! %ScenarioResource{scenario_id: site_s1.id, resource_type: :web_replay, title: "Dave T", url: "http://www.davetownsend.org/Battles/LotR-20160604/", sort_order: 1}
@@ -432,7 +632,7 @@ defmodule SbgInv.Data do
       name: "Pursuit Through Ithilien",
       blurb: "Easterlings pursue Cirion after the fall of Amon Barad.",
       date_age: 3, date_year: 2998, date_month: -3, date_day: 0, is_canonical: true, size: 28
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s2.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 2, page: 16}
     Repo.insert! %ScenarioResource{scenario_id: site_s2.id, resource_type: :web_replay, title: "Dave T", url: "http://davetownsend.org/Battles/LotR-20160727/", sort_order: 1}
@@ -458,7 +658,7 @@ defmodule SbgInv.Data do
       name: "Gathering Information",
       blurb: "Cirion's forces try to capture a Khandish leader from a fort.",
       date_age: 3, date_year: 2998, date_month: -2, date_day: 0, is_canonical: true, size: 47
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s3.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 3, page: 28}
 
@@ -486,7 +686,7 @@ defmodule SbgInv.Data do
       name: "Turning the Tide",
       blurb: "Cirion surprise attacks an Easterling camp at night.",
       date_age: 3, date_year: 2998, date_month: -1, date_day: 0, is_canonical: true, size: 121
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s4.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 4, page: 30}
 
@@ -523,7 +723,7 @@ defmodule SbgInv.Data do
       name: "Reprisals",
       blurb: "Dáin Ironfoot leads a dwarven raid against the Easterlings.",
       date_age: 3, date_year: 3001, date_month: 0, date_day: 0, is_canonical: true, size: 71
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s5.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 5, page: 36}
 
@@ -549,7 +749,7 @@ defmodule SbgInv.Data do
       name: "Strange Circumstances",
       blurb: "Cirion joins his Khandish captors to fight off an Orc raid.",
       date_age: 3, date_year: 3002, date_month: 0, date_day: 0, is_canonical: true, size: 101
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s6.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 6, page: 38}
 
@@ -581,7 +781,7 @@ defmodule SbgInv.Data do
       name: "The Field of Celebrant",
       blurb: "Eorl the Young saves Gondor from the Khandish and their Orc allies.",
       date_age: 3, date_year: 2510, date_month: 0, date_day: 0, is_canonical: true, size: 107
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s7.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 7, page: 40}
 
@@ -613,7 +813,7 @@ defmodule SbgInv.Data do
       name: "Hunter & Hunted",
       blurb: "Easterling raiders under Khamûl encounter the defenders of Fangorn.",
       date_age: 3, date_year: 2520, date_month: 0, date_day: 0, is_canonical: true, size: 28
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s8.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 8, page: 46}
 
@@ -701,7 +901,7 @@ defmodule SbgInv.Data do
       name: "Second Assault on Cair Andros",
       blurb: "Gothmog leads another assault on Cair Andros.",
       date_age: 3, date_year: 3019, date_month: 3, date_day: 11, is_canonical: true, size: 69
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s3.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 3, page: 40}
 
@@ -731,7 +931,7 @@ defmodule SbgInv.Data do
       name: "The Rammas",
       blurb: "Gothmog pursues Faramir out of Osgiliath to the edge of the Pelennor Fields.",
       date_age: 3, date_year: 3019, date_month: 3, date_day: 12, is_canonical: true, size: 87
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s4.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 4, page: 46}
 
@@ -770,7 +970,7 @@ defmodule SbgInv.Data do
       name: "The Siege of Minas Tirith",
       blurb: "Gandalf the White defends the walls of Minas Tirith from the forces of Mordor under Gothmog.",
       date_age: 3, date_year: 3019, date_month: 3, date_day: 14, is_canonical: true, size: 112
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s5.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 5, page: 48}
 
@@ -812,7 +1012,7 @@ defmodule SbgInv.Data do
       name: "The Pyre of Denethor",
       blurb: "Gandalf the White rescues Faramir from the insanity of Denethor.",
       date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 84
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s6.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 5, page: 52}
 
@@ -844,7 +1044,7 @@ defmodule SbgInv.Data do
       name: "The Defenses Must Hold!",
       blurb: "Theoden and friends hold out at Helm's Deep.",
       date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 109
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s7.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 6, page: 58}
 
@@ -883,7 +1083,7 @@ defmodule SbgInv.Data do
       name: "Forth Eorlingas!",
       blurb: "Theoden leads a mounted charge out from Helm's Deep.",
       date_age: 3, date_year: 3019, date_month: 3, date_day: 4, is_canonical: true, size: 105
-   }
+    }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s8.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 7, page: 62}
 
@@ -907,206 +1107,6 @@ defmodule SbgInv.Data do
     _declare_role_figure(sog_s8f2, 15,  5, [ uruk_hai_w_crossbow ])
     _declare_role_figure(sog_s8f2, 20,  6, [ uruk_hai_w_pike ])
     _declare_role_figure(sog_s8f2, 15,  7, [ uruk_hai_berserker ])
-
-    #########################################################################
-    # THE FALL OF THE NECROMANCER
-    #########################################################################
-
-    #========================================================================
-    fotn_s1 = Repo.insert! %Scenario{
-      name: "Dol Guldur Awakens",
-      blurb: "Thranduil leads a warband against the creatures of Mirkwood.",
-      date_age: 3, date_year: 2060, date_month: 0, date_day: 0, is_canonical: true, size: 22
-   }
-
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s1.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 1, page: 8}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s1.id, resource_type: 1, url: "https://www.youtube.com/watch?v=0_dCdLngsKs&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
-
-    fotn_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s1.id, faction: :mirkwood, suggested_points: 200, actual_points: 273, sort_order: 1}
-    _declare_role_figure(fotn_s1f1, 1, 1, [ thranduil ])
-    _declare_role_figure(fotn_s1f1, 3, 2, [ wood_elf_sentinel ])
-    _declare_role_figure(fotn_s1f1, 4, 3, [ wood_elf_w_blade ])
-    _declare_role_figure(fotn_s1f1, 4, 4, [ wood_elf_w_bow ])
-    _declare_role_figure(fotn_s1f1, 4, 5, [ wood_elf_w_spear ])
-
-    fotn_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s1.id, faction: :dol_guldur, suggested_points: 200, actual_points: 150, sort_order: 2}
-    _declare_role_figure(fotn_s1f2, 4, 1, [ giant_spider ])
-    _declare_role_figure(fotn_s1f2, 2, 2, [ bat_swarm ])
-
-    #========================================================================
-    fotn_s2 = Repo.insert! %Scenario{
-      name: "In the Nick of Time",
-      blurb: "Elrond joins Thranduil against an attack from Dol Guldur lead by Khamûl.",
-      date_age: 3,  date_year: 2061, date_month: 0, date_day: 0, is_canonical: true, size: 65
-   }
-
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s2.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 2, page: 10}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s2.id, resource_type: 1, url: "https://www.youtube.com/watch?v=AMrP8abPj0Q&index=2&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
-
-    fotn_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s2.id, faction: :mirkwood, suggested_points: 600, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotn_s2f1, 1, 1, [ thranduil ])
-    _declare_role_figure(fotn_s2f1, 1, 2, [ elrond ])
-    _declare_role_figure(fotn_s2f1, 1, 3, [ legolas ])
-    _declare_role_figure(fotn_s2f1, 3, 4, [ wood_elf_sentinel ])
-    _declare_role_figure(fotn_s2f1, 3, 5, [ wood_elf_w_blade ])
-    _declare_role_figure(fotn_s2f1, 4, 6, [ wood_elf_w_bow ])
-    _declare_role_figure(fotn_s2f1, 4, 7, [ wood_elf_w_spear ])
-    _declare_role_figure(fotn_s2f1, 1, 8, [ wood_elf_w_banner ])
-    _declare_role_figure(fotn_s2f1, 4, 9, [ high_elf_w_blade ])
-    _declare_role_figure(fotn_s2f1, 4, 10, [ high_elf_w_bow ])
-    _declare_role_figure(fotn_s2f1, 2, 11, [ high_elf_w_spear_shield ])
-    _declare_role_figure(fotn_s2f1, 1, 12, [ high_elf_w_banner ])
-
-    fotn_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s2.id, faction: :dol_guldur, suggested_points: 600, actual_points: 0, sort_order: 2}
-    _declare_role_figure(fotn_s2f2, 1, 1, [ khamul ])
-    _declare_role_figure(fotn_s2f2, 1, 2, [ warg_chieftain ])
-    _declare_role_figure(fotn_s2f2, 1, 3, [ orc_captain ])
-    _declare_role_figure(fotn_s2f2, 7, 4, [ orc_w_shield ])
-    _declare_role_figure(fotn_s2f2, 8, 5, [ orc_w_spear ])
-    _declare_role_figure(fotn_s2f2, 4, 6, [ orc_w_2h ])
-    _declare_role_figure(fotn_s2f2, 4, 7, [ orc_w_bow ])
-    _declare_role_figure(fotn_s2f2, 1, 8, [ orc_w_banner ])
-    _declare_role_figure(fotn_s2f2, 3, 9, [ warg ])
-    _declare_role_figure(fotn_s2f2, 4, 10, [ giant_spider ])
-    _declare_role_figure(fotn_s2f2, 2, 11, [ bat_swarm ])
-
-    #========================================================================
-    fotn_s3 = Repo.insert! %Scenario{
-      name: "A Walk Through Dark Places",
-      blurb: "A Rivendell band tries to protect Arwen and Círdan from the minions of Dol Guldur.",
-      date_age: 3, date_year: 2062, date_month: 0, date_day: 0, is_canonical: true, size: 23
-   }
-
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s3.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 3, page: 12}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s3.id, resource_type: 1, url: "https://www.youtube.com/watch?v=YN8X_azJfO8&index=3&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
-
-    fotn_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s3.id, faction: :rivendell, suggested_points: 550, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotn_s3f1, 1, 1, [ cirdan ])
-    _declare_role_figure(fotn_s3f1, 1, 2, [ arwen, arwen2 ])
-    _declare_role_figure(fotn_s3f1, 1, 3, [ erestor ])
-    _declare_role_figure(fotn_s3f1, 1, 4, [ glorfindel_lotw ])
-    _declare_role_figure(fotn_s3f1, 1, 5, [ high_elf_captain ])
-    _declare_role_figure(fotn_s3f1, 4, 6, [ high_elf_w_bow ])
-    _declare_role_figure(fotn_s3f1, 3, 7, [ high_elf_w_blade ])
-    _declare_role_figure(fotn_s3f1, 1, 8, [ high_elf_w_banner ])
-
-    fotn_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s3.id, faction: :dol_guldur, suggested_points: 300, actual_points: 0, sort_order: 2}
-    _declare_role_figure(fotn_s3f2, 4, 1, [ castellan ])
-    _declare_role_figure(fotn_s3f2, 2, 2, [ bat_swarm ])
-    _declare_role_figure(fotn_s3f2, 4, 3, [ warg ])
-
-    #========================================================================
-    fotn_s4 = Repo.insert! %Scenario{
-      name: "Meddle Not in the Affairs of Wizards",
-      blurb: "The Istari faces the minions of Dol Guldur.",
-      date_age: 3, date_year: 2062, date_month: -1, date_day: 0, is_canonical: true, size: 17
-   }
-
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s4.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 4, page: 14}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s4.id, resource_type: 1, url: "https://www.youtube.com/watch?v=UbIM0XE6jT8&index=4&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
-
-    fotn_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s4.id, faction: :white_council, suggested_points: 500, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotn_s4f1, 1, 1, [ gandalf_grey ])
-    _declare_role_figure(fotn_s4f1, 1, 2, [ radagast ])
-    _declare_role_figure(fotn_s4f1, 1, 3, [ saruman ])
-
-    fotn_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s4.id, faction: :dol_guldur,     suggested_points: 400, actual_points: 0, sort_order: 2}
-    _declare_role_figure(fotn_s4f2, 4, 1, [ castellan ])
-    _declare_role_figure(fotn_s4f2, 1, 2, [ orc_captain ])
-    _declare_role_figure(fotn_s4f2, 2, 3, [ warg_rider_spear ])
-    _declare_role_figure(fotn_s4f2, 2, 4, [ warg_rider_bow ])
-    _declare_role_figure(fotn_s4f2, 2, 5, [ warg_rider_shield ])
-    _declare_role_figure(fotn_s4f2, 3, 6, [ warg ])
-
-    #========================================================================
-    fotn_s5 = Repo.insert! %Scenario{
-      name: "The Lair of the Spider Queen",
-      blurb: "Lothlorien attacks the beasts of Mirkwood",
-      date_age: 3, date_year: 2063, date_month: 0, date_day: 0, is_canonical: true, size: 41
-   }
-
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s5.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 5, page: 16}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s5.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=eyHTP-Vjhd8&index=5&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
-
-    fotn_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s5.id, faction: :lothlorien, suggested_points: 450, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotn_s5f1, 1, 1, [ galadriel_lotg ])
-    _declare_role_figure(fotn_s5f1, 1, 2, [ celeborn ])
-    _declare_role_figure(fotn_s5f1, 2, 3, [ wood_elf_sentinel ])
-    _declare_role_figure(fotn_s5f1, 8, 4, [ wood_elf_w_blade ])
-    _declare_role_figure(fotn_s5f1, 8, 5, [ wood_elf_w_bow ])
-    _declare_role_figure(fotn_s5f1, 8, 6, [ wood_elf_w_spear ])
-
-    fotn_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s5.id, faction: :dol_guldur, suggested_points: 300, actual_points: 0, sort_order: 2}
-    _declare_role_figure(fotn_s5f2, 1, 1, [ spider_queen ])
-    _declare_role_figure(fotn_s5f2, 4, 2, [ giant_spider ])
-    _declare_role_figure(fotn_s5f2, 2, 3, [ bat_swarm ])
-    _declare_role_figure(fotn_s5f2, 6, 4, [ warg ])
-
-    #========================================================================
-    fotn_s6 = Repo.insert! %Scenario{
-      name: "In the Shadow of Dol Guldur",
-      blurb: "Elrond's elves fight a Ringwraith-led Dol Guldur army.",
-      date_age: 3, date_year: 2850, date_month: 0, date_day: 0, is_canonical: true, size: 91
-   }
-
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s6.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 6, page: 18}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s6.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=Cug7stLutRQ&index=6&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
-
-    fotn_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s6.id, faction: :rivendell,  suggested_points: 700, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotn_s6f1, 1, 1, [ elrond ])
-    _declare_role_figure(fotn_s6f1, 3, 2, [ wood_elf_sentinel ])
-    _declare_role_figure(fotn_s6f1, 8, 3, [ high_elf_w_spear_shield ])
-    _declare_role_figure(fotn_s6f1, 8, 4, [ high_elf_w_blade ])
-    _declare_role_figure(fotn_s6f1, 8, 5, [ high_elf_w_bow ])
-    _declare_role_figure(fotn_s6f1, 1, 6, [ high_elf_w_banner ])
-    _declare_role_figure(fotn_s6f1, 8, 7, [ wood_elf_w_spear ])
-    _declare_role_figure(fotn_s6f1, 7, 8, [ wood_elf_w_blade ])
-    _declare_role_figure(fotn_s6f1, 8, 9, [ wood_elf_w_bow ])
-    _declare_role_figure(fotn_s6f1, 1, 10, [ wood_elf_w_banner ])
-
-    fotn_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s6.id, faction: :dol_guldur, suggested_points: 800, actual_points: 0, sort_order: 2}
-    _declare_role_figure(fotn_s6f2, 1, 1, [ ringwraith ])
-    _declare_role_figure(fotn_s6f2, 1, 2, [ warg_chieftain ])
-    _declare_role_figure(fotn_s6f2, 1, 3, [ orc_captain ])
-    _declare_role_figure(fotn_s6f2, 1, 4, [ castellan ])
-    _declare_role_figure(fotn_s6f2, 7, 5, [ orc_w_shield ])
-    _declare_role_figure(fotn_s6f2, 8, 6, [ orc_w_spear ])
-    _declare_role_figure(fotn_s6f2, 4, 7, [ orc_w_2h ])
-    _declare_role_figure(fotn_s6f2, 4, 8, [ orc_w_bow ])
-    _declare_role_figure(fotn_s6f2, 1, 9, [ orc_w_banner ])
-
-    #========================================================================
-    fotn_s7 = Repo.insert! %Scenario{
-      name: "The Fall of the Necromancer",
-      blurb: "The White Council battles the Necromancer himself at Dol Guldur.",
-      date_age: 3, date_year: 2851, date_month: 0, date_day: 0, is_canonical: true, size: 29
-   }
-
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s7.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 7, page: 20}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s7.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=2J5px0_J2wQ&index=7&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
-
-    fotn_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s7.id, faction: :rivendell,  suggested_points: 1500, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotn_s7f1, 1, 1, [ gandalf_grey ])
-    _declare_role_figure(fotn_s7f1, 1, 2, [ saruman ])
-    _declare_role_figure(fotn_s7f1, 1, 3, [ radagast ])
-    _declare_role_figure(fotn_s7f1, 1, 4, [ arwen, arwen2])
-    _declare_role_figure(fotn_s7f1, 1, 5, [ cirdan ])
-    _declare_role_figure(fotn_s7f1, 1, 6, [ glorfindel_lotw ])
-    _declare_role_figure(fotn_s7f1, 1, 7, [ erestor ])
-    _declare_role_figure(fotn_s7f1, 1, 8, [ elrond ])
-    _declare_role_figure(fotn_s7f1, 1, 9, [ galadriel_lotg ])
-    _declare_role_figure(fotn_s7f1, 1, 10, [ celeborn ])
-    _declare_role_figure(fotn_s7f1, 1, 11, [ thranduil ])
-    _declare_role_figure(fotn_s7f1, 1, 12, [ legolas ])
-
-    fotn_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s7.id, faction: :dol_guldur, suggested_points: 1400, actual_points: 0, sort_order: 2}
-    _declare_role_figure(fotn_s7f2, 1, 1, [ necromancer ])
-    _declare_role_figure(fotn_s7f2, 1, 2, [ khamul ])
-    _declare_role_figure(fotn_s7f2, 5, 3, [ ringwraith ])
-    _declare_role_figure(fotn_s7f2, 4, 4, [ castellan ])
-    _declare_role_figure(fotn_s7f2, 1, 5, [ troll_chieftain ])
-    _declare_role_figure(fotn_s7f2, 1, 6, [ mordor_troll ])
-    _declare_role_figure(fotn_s7f2, 4, 6, [ giant_spider ])
 
     #########################################################################
     # THE TWO TOWERS JOURNEYBOOK
