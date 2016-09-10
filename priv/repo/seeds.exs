@@ -111,9 +111,13 @@ defmodule SbgInv.Data do
 
     aragorn       = Repo.insert! %Figure{name: "Aragorn"}
     aragorn_horse = Repo.insert! %Figure{name: "Aragorn on horse"}
+    frodo         = Repo.insert! %Figure{name: "Frodo"}
     gimli         = Repo.insert! %Figure{name: "Gimli"}
     legolas       = Repo.insert! %Figure{name: "Legolas"}
     legolas_horse = Repo.insert! %Figure{name: "Legolas on horse"}
+    merry         = Repo.insert! %Figure{name: "Merry"}
+    pippin        = Repo.insert! %Figure{name: "Pippin"}
+    sam           = Repo.insert! %Figure{name: "Sam"}
 
     #########################################################################
     # FIGURES: FREE PEOPLES
@@ -154,6 +158,9 @@ defmodule SbgInv.Data do
     gondor_womt_bow          = Repo.insert! %Figure{name: "Warrior of Minas Tirith with bow",              plural_name: "Warriors of Minas Tirith with bow"}
     gondor_womt_shield       = Repo.insert! %Figure{name: "Warrior of Minas Tirith with shield",           plural_name: "Warriors of Minas Tirith with shield"}
     gondor_womt_spear_shield = Repo.insert! %Figure{name: "Warrior of Minas Tirith with spear and shield", plural_name: "Warriors of Minas Tirith with spear and shield"}
+    osgiliath_v_bow          = Repo.insert! %Figure{name: "Osgiliath Veteran with bow",                    plural_name: "Osgiliath Veterans with bow"}
+    osgiliath_v_shield       = Repo.insert! %Figure{name: "Osgiliath Veteran with shield",                 plural_name: "Osgiliath Veterans with shield"}
+    osgiliath_v_spear        = Repo.insert! %Figure{name: "Osgiliath Veteran with spear",                  plural_name: "Osgiliath Veterans with spear"}
 
     avenger        = Repo.insert! %Figure{name: "Avenger Bolt Thrower",      plural_name: "Avenger Bolt Throwers"}
     avenger_crew   = Repo.insert! %Figure{name: "Avenger Bolt Thrower crew", plural_name: "Avenger Bolt Thrower crew"}
@@ -161,14 +168,35 @@ defmodule SbgInv.Data do
     trebuchet_crew = Repo.insert! %Figure{name: "Battlecry Trebuchet crew",  plural_name: "Battlecry Trebuchet crew"}
 
     #########################################################################
+    # FIGURES: HARAD
+    #########################################################################
+
+    harad_chieftain       = Repo.insert! %Figure{name: "Haradrim Chieftain",          plural_name: "Haradrim Chieftains"}
+    harad_chieftain_horse = Repo.insert! %Figure{name: "Haradrim Chieftain on horse", plural_name: "Haradrim Chieftains on horse"}
+
+    harad_w_banner = Repo.insert! %Figure{name: "Haradrim Warrior with banner", plural_name: "Haradrim Warriors with banner"}
+    harad_w_bow    = Repo.insert! %Figure{name: "Haradrim Warrior with bow",    plural_name: "Haradrim Warriors with bow"}
+    harad_w_spear  = Repo.insert! %Figure{name: "Haradrim Warrior with spear",  plural_name: "Haradrim Warriors with spear"}
+
+    mumak = Repo.insert! %Figure{name: "Mûmak", plural_name: "Mûmakil"}
+
+    #########################################################################
     # FIGURES: ISENGARD
     #########################################################################
 
-    dunlending_chieftain    = Repo.insert! %Figure{name: "Dunlending Chieftain",         plural_name: "Dunlending Chieftains"}
-    uruk_hai_captain_shield = Repo.insert! %Figure{name: "Uruk-hai Captain with shield", plural_name: "Uruk-hai Captains with shield"}
+    ugluk       = Repo.insert! %Figure{name: "Uglúk"}
+    sharku      = Repo.insert! %Figure{name: "Sharku"}
+    sharku_warg = Repo.insert! %Figure{name: "Sharku on Warg"}
+    vrasku      = Repo.insert! %Figure{name: "Vraskû"}
+
+    dunlending_chieftain    = Repo.insert! %Figure{name: "Dunlending Chieftain",                 plural_name: "Dunlending Chieftains"}
+    uruk_hai_captain_shield = Repo.insert! %Figure{name: "Uruk-hai Captain with shield",         plural_name: "Uruk-hai Captains with shield"}
+    uruk_hai_captain_2h     = Repo.insert! %Figure{name: "Uruk-hai Captain with two-handed axe", plural_name: "Uruk-hai Captains with two-handed axe"}
 
     dunlending_w            = Repo.insert! %Figure{name: "Dunlending",                           plural_name: "Dunlendings"}
     dunlending_w_banner     = Repo.insert! %Figure{name: "Dunlending with banner",               plural_name: "Dunlendings with banner"}
+    dunlending_w_bow        = Repo.insert! %Figure{name: "Dunlending with bow",                  plural_name: "Dunlendings with bow"}
+    dunlending_w_shield     = Repo.insert! %Figure{name: "Dunlending with shield",               plural_name: "Dunlendings with shield"}
     dunlending_w_2h         = Repo.insert! %Figure{name: "Dunlending with two-handed weapon",    plural_name: "Dunlendings with two-handed weapon"}
     uruk_hai_berserker      = Repo.insert! %Figure{name: "Uruk-hai Berserker",                   plural_name: "Uruk-hai Berserkers"}
     uruk_hai_feral          = Repo.insert! %Figure{name: "Feral Uruk-hai",                       plural_name: "Feral Uruk-hai"}
@@ -216,17 +244,21 @@ defmodule SbgInv.Data do
     #########################################################################
 
     gothmog          = Repo.insert! %Figure{name: "Gothmog"}
+    grishnakh        = Repo.insert! %Figure{name: "Grishnákh"}
+    smeagol          = Repo.insert! %Figure{name: "Sméagol"}
     witch_king_horse = Repo.insert! %Figure{name: "Witch-king of Angmar on horse"}
 
-    orc_captain      = Repo.insert! %Figure{name: "Orc Captain",         plural_name: "Orc Captains"}
-    orc_captain_warg = Repo.insert! %Figure{name: "Orc Captain on Warg", plural_name: "Orc Captains on Warg"}
-    orc_shaman       = Repo.insert! %Figure{name: "Orc Shaman",          plural_name: "Orc Shamans"}
-    ringwraith       = Repo.insert! %Figure{name: "Ringwraith",          plural_name: "Ringwraiths"}
-    troll_chieftain  = Repo.insert! %Figure{name: "Troll Chieftain",     plural_name: "Troll Chieftain"}
+    orc_captain          = Repo.insert! %Figure{name: "Orc Captain",              plural_name: "Orc Captains"}
+    orc_captain_warg     = Repo.insert! %Figure{name: "Orc Captain on Warg",      plural_name: "Orc Captains on Warg"}
+    orc_shaman           = Repo.insert! %Figure{name: "Orc Shaman",               plural_name: "Orc Shamans"}
+    ringwraith           = Repo.insert! %Figure{name: "Ringwraith",               plural_name: "Ringwraiths"}
+    ringwraith_fellbeast = Repo.insert! %Figure{name: "Ringwraith on Fell Beast", plural_name: "Ringwraiths on Fell Beasts"}
+    troll_chieftain      = Repo.insert! %Figure{name: "Troll Chieftain",          plural_name: "Troll Chieftain"}
 
     m_uruk_hai_shield       = Repo.insert! %Figure{name: "Mordor Uruk-hai with shield",        plural_name: "Mordor Uruk-hai with shield"}
     m_uruk_hai_2h           = Repo.insert! %Figure{name: "Mordor Uruk-hai with two-handed weapon", plural_name: "Mordor Uruk-hai with two-handed weapon"}
     mordor_troll            = Repo.insert! %Figure{name: "Mordor Troll",                       plural_name: "Mordor Trolls"}
+    morgul_stalker          = Repo.insert! %Figure{name: "Morgul Stalker",                     plural_name: "Morgul Stalkers"}
     orc_tracker             = Repo.insert! %Figure{name: "Orc Tracker",                        plural_name: "Orc Trackers"}
     orc_m_shield_spear      = Repo.insert! %Figure{name: "Morannon Orc with shield and spear", plural_name: "Morannon Orcs with shield and spear"}
     orc_w_banner            = Repo.insert! %Figure{name: "Orc with banner",                    plural_name: "Orcs with banner"}
@@ -234,6 +266,7 @@ defmodule SbgInv.Data do
     orc_w_shield            = Repo.insert! %Figure{name: "Orc with shield",                    plural_name: "Orcs with shield"}
     orc_w_spear             = Repo.insert! %Figure{name: "Orc with spear",                     plural_name: "Orcs with spear"}
     orc_w_2h                = Repo.insert! %Figure{name: "Orc with two-handed weapon",         plural_name: "Orcs with two-handed weapon"}
+    spectre                 = Repo.insert! %Figure{name: "Spectre",                            plural_name: "Spectres"}
     warg_rider_bow          = Repo.insert! %Figure{name: "Warg Rider with bow",                plural_name: "Warg Riders with bow"}
     warg_rider_shield       = Repo.insert! %Figure{name: "Warg Rider with shield",             plural_name: "Warg Riders with shield"}
     warg_rider_shield_spear = Repo.insert! %Figure{name: "Warg Rider with shield and throwing spear", plural_name: "Warg Riders with shield and throwing spear"}
@@ -267,23 +300,33 @@ defmodule SbgInv.Data do
     # FIGURES: ROHAN
     #########################################################################
 
-    eomer_horse   = Repo.insert! %Figure{name: "Eomer on horse"}
-    eorl_horse    = Repo.insert! %Figure{name: "Eorl the Young on horse"}
-    gamling       = Repo.insert! %Figure{name: "Gamling"}
-    gamling_horse = Repo.insert! %Figure{name: "Gamling on horse with banner"}
-    theoden       = Repo.insert! %Figure{name: "Théoden"}
-    theoden_horse = Repo.insert! %Figure{name: "Théoden on horse"}
+    eomer               = Repo.insert! %Figure{name: "Eomer"}
+    eomer_horse         = Repo.insert! %Figure{name: "Eomer on horse"}
+    eorl_horse          = Repo.insert! %Figure{name: "Eorl the Young on horse"}
+    erkenbrand          = Repo.insert! %Figure{name: "Erkenbrand"}
+    erkenbrand_horse    = Repo.insert! %Figure{name: "Erkenbrand on horse"}
+    gamling             = Repo.insert! %Figure{name: "Gamling"}
+    gamling_horse       = Repo.insert! %Figure{name: "Gamling on horse with banner"}
+    hama                = Repo.insert! %Figure{name: "Hama"}
+    theoden             = Repo.insert! %Figure{name: "Théoden"}
+    theoden_horse       = Repo.insert! %Figure{name: "Théoden on horse"}
+    theoden_armor_horse = Repo.insert! %Figure{name: "Théoden with armor on armored horse"}
+    theodred_horse      = Repo.insert! %Figure{name: "Théodred on horse"}
 
+    rohan_captain       = Repo.insert! %Figure{name: "Captain of Rohan",          plural_name: "Captains of Rohan"}
     rohan_captain_horse = Repo.insert! %Figure{name: "Captain of Rohan on horse", plural_name: "Captains of Rohan on horse"}
 
     rohan_gd              = Repo.insert! %Figure{name: "Rohan Royal Guard",                               plural_name: "Rohan Royal Guards"}
+    rohan_gd_spear        = Repo.insert! %Figure{name: "Rohan Royal Guard with throwing spear",           plural_name: "Rohan Royal Guards with throwing spear"}
     rohan_gd_horse_spear  = Repo.insert! %Figure{name: "Rohan Royal Guard with throwing spear on horse",  plural_name: "Rohan Royal Guards with throwing spear on horse"}
     rohan_gd_horse_banner = Repo.insert! %Figure{name: "Rohan Royal Guard with banner",                   plural_name: "Rohan Royal Guards with banner"}
+    rohan_outrider        = Repo.insert! %Figure{name: "Rohan Outrider",                                  plural_name: "Rohan Outriders"}
     rohan_rider           = Repo.insert! %Figure{name: "Rider of Rohan",                                  plural_name: "Riders of Rohan"}
     rohan_rider_banner    = Repo.insert! %Figure{name: "Rider of Rohan with banner",                      plural_name: "Riders of Rohan with banner"}
     rohan_rider_spear     = Repo.insert! %Figure{name: "Rider of Rohan with throwing spear",              plural_name: "Riders of Rohan with throwing spear"}
     rohan_w_banner        = Repo.insert! %Figure{name: "Warrior of Rohan with banner",                    plural_name: "Warriors of Rohan with banner"}
     rohan_w_bow           = Repo.insert! %Figure{name: "Warrior of Rohan with bow",                       plural_name: "Warriors of Rohan with bow"}
+    rohan_w_shield        = Repo.insert! %Figure{name: "Warrior of Rohan with shield",                    plural_name: "Warriors of Rohan with shield"}
     rohan_w_spear_shield  = Repo.insert! %Figure{name: "Warrior of Rohan with throwing spear and shield", plural_name: "Warriors of Rohan with throwing spear and shield"}
 
     #########################################################################
@@ -1130,6 +1173,185 @@ defmodule SbgInv.Data do
     _declare_role_figure(tttjb_s1f2, 3, 3, [ uruk_hai_s_bow ])
 
     #========================================================================
+    tttjb_s2 = Repo.insert! %Scenario{
+      name: "The First Battle of the Fords of Isen",
+      blurb: "Saruman's first assault on Rohan, attempting to kill Théodred, the heir to Rohan.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 25, is_canonical: true, size: 83
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s2.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 2, page: 20}
+
+    tttjb_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s2.id, faction: :rohan, suggested_points: 575, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s2f1, 1,  1, [ theodred_horse ])
+    _declare_role_figure(tttjb_s2f1, 1,  2, [ erkenbrand_horse ])
+    _declare_role_figure(tttjb_s2f1, 1,  3, [ rohan_captain ])
+    _declare_role_figure(tttjb_s2f1, 3,  4, [ rohan_outrider ])
+    _declare_role_figure(tttjb_s2f1, 8,  5, [ rohan_w_shield ])
+    _declare_role_figure(tttjb_s2f1, 8,  6, [ rohan_w_spear_shield ])
+    _declare_role_figure(tttjb_s2f1, 8,  7, [ rohan_w_bow ])
+    _declare_role_figure(tttjb_s2f1, 8,  8, [ rohan_rider ])
+    _declare_role_figure(tttjb_s2f1, 4,  9, [ rohan_rider_spear ])
+    _declare_role_figure(tttjb_s2f1, 1, 10, [ rohan_w_banner ])
+
+    tttjb_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s2.id, faction: :isengard, suggested_points: 575, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s2f2, 1,  1, "Vraskû, Scout Uruk-hai Captain", [ vrasku ])
+    _declare_role_figure(tttjb_s2f2, 1,  2, [ dunlending_chieftain ])
+    _declare_role_figure(tttjb_s2f2, 1,  3, [ isengard_troll ])
+    _declare_role_figure(tttjb_s2f2, 3,  4, [ dunlending_w_shield ])
+    _declare_role_figure(tttjb_s2f2, 3,  5, [ dunlending_w_bow ])
+    _declare_role_figure(tttjb_s2f2, 3,  6, [ dunlending_w_2h ])
+    _declare_role_figure(tttjb_s2f2, 8,  7, [ uruk_hai_s ])
+    _declare_role_figure(tttjb_s2f2, 8,  8, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(tttjb_s2f2, 8,  9, [ uruk_hai_s_bow ])
+    _declare_role_figure(tttjb_s2f2, 3, 10, [ uruk_hai_feral ])
+    _declare_role_figure(tttjb_s2f2, 1, 11, [ dunlending_w_banner ])
+
+    #========================================================================
+    tttjb_s3 = Repo.insert! %Scenario{
+      name: "The Scouring of the Westfold",
+      blurb: "A small Isengard force raids a village of the Rohirrim.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, is_canonical: true, size: 43
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s3.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 3, page: 22}
+
+    tttjb_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s3.id, faction: :rohan, suggested_points: 300, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s3f1, 1, 1, [ rohan_captain ])
+    _declare_role_figure(tttjb_s3f1, 1, 2, [ rohan_captain_horse ])
+    _declare_role_figure(tttjb_s3f1, 3, 3, [ rohan_outrider ])
+    _declare_role_figure(tttjb_s3f1, 4, 4, [ rohan_w_shield ])
+    _declare_role_figure(tttjb_s3f1, 4, 5, [ rohan_w_spear_shield ])
+    _declare_role_figure(tttjb_s3f1, 4, 6, [ rohan_w_bow ])
+    _declare_role_figure(tttjb_s3f1, 1, 7, [ rohan_w_banner ])
+    _declare_role_figure(tttjb_s3f1, 1, 8, [ rohan_rider_banner ])
+
+    tttjb_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s3.id, faction: :isengard, suggested_points: 300, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s3f2, 1, 1, [ dunlending_chieftain ])
+    _declare_role_figure(tttjb_s3f2, 1, 2, [ uruk_hai_captain_2h ])
+    _declare_role_figure(tttjb_s3f2, 3, 3, [ dunlending_w_shield ])
+    _declare_role_figure(tttjb_s3f2, 3, 4, [ dunlending_w_2h ])
+    _declare_role_figure(tttjb_s3f2, 3, 5, [ dunlending_w_bow ])
+    _declare_role_figure(tttjb_s3f2, 8, 6, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(tttjb_s3f2, 4, 7, [ uruk_hai_s_bow ])
+    _declare_role_figure(tttjb_s3f2, 1, 8, [ dunlending_w_banner ])
+
+    #========================================================================
+    tttjb_s4 = Repo.insert! %Scenario{
+      name: "The Wrath of Rohan",
+      blurb: "Eomer's riders ambush the Orcs and Uruk-hai as they bring Merry and Pippin to Isengard.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, is_canonical: true, size: 86
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s4.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 4, page: 24}
+
+    tttjb_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s4.id, faction: :rohan, suggested_points: 500, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s4f1,  1, 1, "Meriadoc Brandybuck with Elven cloak", [ merry ])
+    _declare_role_figure(tttjb_s4f1,  1, 2, "Peregrin Took with Elven cloak", [ pippin ])
+    _declare_role_figure(tttjb_s4f1,  1, 3, [ eomer_horse ])
+    _declare_role_figure(tttjb_s4f1,  1, 4, [ rohan_captain_horse ])
+    _declare_role_figure(tttjb_s4f1,  3, 5, [ rohan_outrider ])
+    _declare_role_figure(tttjb_s4f1, 12, 6, [ rohan_rider ])
+    _declare_role_figure(tttjb_s4f1,  6, 7, [ rohan_rider_spear ])
+    _declare_role_figure(tttjb_s4f1,  1, 8, [ rohan_rider_banner ])
+
+    tttjb_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s4.id, faction: :isengard, suggested_points: 475, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s4f2, 1, 1, [ ugluk ])
+    _declare_role_figure(tttjb_s4f2, 1, 2, [ grishnakh ])
+    _declare_role_figure(tttjb_s4f2, 8, 3, [ uruk_hai_s ])
+    _declare_role_figure(tttjb_s4f2, 8, 4, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(tttjb_s4f2, 8, 5, [ uruk_hai_s_bow ])
+    _declare_role_figure(tttjb_s4f2, 8, 6, [ orc_w_shield ])
+    _declare_role_figure(tttjb_s4f2, 8, 7, [ orc_w_spear ])
+    _declare_role_figure(tttjb_s4f2, 4, 8, [ orc_w_bow ])
+    _declare_role_figure(tttjb_s4f2, 4, 9, [ orc_w_2h ])
+
+    #========================================================================
+    tttjb_s5 = Repo.insert! %Scenario{
+      name: "Alone in Fangorn",
+      blurb: "Merry and Pippin escape into Fangorn, pursued by Grishnákh (or a small mixed force of Orcs and Uruk-hai).",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, is_canonical: true, size: 10
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s5.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 5, page: 28}
+
+    tttjb_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s5.id, faction: :fellowship, suggested_points: 225, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s5f1, 1, 1, "Meriadoc Brandybuck with Elven cloak", [ merry ])
+    _declare_role_figure(tttjb_s5f1, 1, 2, "Peregrin Took with Elven cloak", [ pippin ])
+    _declare_role_figure(tttjb_s5f1, 1, 3, [ treebeard ])
+
+    tttjb_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s5.id, faction: :isengard, suggested_points: 50, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s5f2, 1, 1, [ orc_w_shield ])
+    _declare_role_figure(tttjb_s5f2, 1, 2, [ orc_w_spear ])
+    _declare_role_figure(tttjb_s5f2, 1, 3, [ orc_w_bow ])
+    _declare_role_figure(tttjb_s5f2, 1, 4, [ orc_w_2h ])
+    _declare_role_figure(tttjb_s5f2, 1, 5, [ uruk_hai_s ])
+    _declare_role_figure(tttjb_s5f2, 1, 6, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(tttjb_s5f2, 1, 7, [ uruk_hai_s_bow ])
+
+    #========================================================================
+    tttjb_s6 = Repo.insert! %Scenario{
+      name: "Warg Attack",
+      blurb: "A force of Wargs ambushes Théoden and the Three Hunters as they escort the Rohirrim to Helm's Deep.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 2, is_canonical: true, size: 31
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s6.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 6, page: 32}
+
+    tttjb_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s6.id, faction: :rohan, suggested_points: 650, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s6f1, 1, 1, "Aragorn with Andúril, Elven cloak, and horse", [ aragorn_horse ])
+    _declare_role_figure(tttjb_s6f1, 1, 2, "Legolas with Elven cloak and horse", [ legolas_horse ])
+    _declare_role_figure(tttjb_s6f1, 1, 3, "Legolas with Elven cloak and horse", [ legolas_horse ])
+    _declare_role_figure(tttjb_s6f1, 1, 4, "Gimli with Elven cloak", [ gimli ])
+    _declare_role_figure(tttjb_s6f1, 1, 5, [ theoden_horse ])
+    _declare_role_figure(tttjb_s6f1, 1, 6, [ gamling_horse ])
+    _declare_role_figure(tttjb_s6f1, 1, 7, [ rohan_captain_horse ])
+    _declare_role_figure(tttjb_s6f1, 4, 8, [ rohan_rider ])
+    _declare_role_figure(tttjb_s6f1, 2, 9, [ rohan_rider_spear ])
+
+    tttjb_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s6.id, faction: :isengard, suggested_points: 350, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s6f2, 1, 1, [ sharku_warg ])
+    _declare_role_figure(tttjb_s6f2, 6, 2, [ warg_rider_shield ])
+    _declare_role_figure(tttjb_s6f2, 6, 3, [ warg_rider_shield_spear ])
+    _declare_role_figure(tttjb_s6f2, 6, 4, [ warg_rider_bow ])
+
+    #========================================================================
+    tttjb_s7 = Repo.insert! %Scenario{
+      name: "The Second Battle of the Fords of Isen",
+      blurb: "Erkenbrand delays an Isengard force trying to whittle down the Rohirrim.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 2, is_canonical: true, size: 104
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s7.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 7, page: 34}
+
+    tttjb_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s7.id, faction: :rohan, suggested_points: 600, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s7f1, 1,  1, [ erkenbrand ])
+    _declare_role_figure(tttjb_s7f1, 1,  2, [ rohan_captain ])
+    _declare_role_figure(tttjb_s7f1, 1,  3, [ rohan_captain_horse ])
+    _declare_role_figure(tttjb_s7f1, 5,  4, [ rohan_gd_horse_spear ])
+    _declare_role_figure(tttjb_s7f1, 6,  5, [ rohan_gd_spear ])
+    _declare_role_figure(tttjb_s7f1, 4,  6, [ rohan_rider_spear ])
+    _declare_role_figure(tttjb_s7f1, 8,  7, [ rohan_rider ])
+    _declare_role_figure(tttjb_s7f1, 8,  8, [ rohan_w_bow ])
+    _declare_role_figure(tttjb_s7f1, 8,  9, [ rohan_w_shield ])
+    _declare_role_figure(tttjb_s7f1, 8, 10, [ rohan_w_spear_shield ])
+    _declare_role_figure(tttjb_s7f1, 1, 11, [ rohan_w_banner ])
+
+    tttjb_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s7.id, faction: :isengard, suggested_points: 775, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s7f2, 1,  1, [ dunlending_chieftain ])
+    _declare_role_figure(tttjb_s7f2, 1,  2, [ vrasku ])
+    _declare_role_figure(tttjb_s7f2, 1,  3, [ uruk_hai_shaman ])
+    _declare_role_figure(tttjb_s7f2, 5,  4, [ dunlending_w_2h ])
+    _declare_role_figure(tttjb_s7f2, 5,  5, [ dunlending_w_bow ])
+    _declare_role_figure(tttjb_s7f2, 5,  6, [ dunlending_w_shield ])
+    _declare_role_figure(tttjb_s7f2, 8,  7, [ uruk_hai_s_bow ])
+    _declare_role_figure(tttjb_s7f2, 8,  8, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(tttjb_s7f2, 3,  9, [ uruk_hai_feral ])
+    _declare_role_figure(tttjb_s7f2, 6, 10, [ warg_rider_spear ])
+    _declare_role_figure(tttjb_s7f2, 6, 11, [ warg_rider_shield ])
+    _declare_role_figure(tttjb_s7f2, 1, 12, [ isengard_troll ])
+    _declare_role_figure(tttjb_s7f2, 1, 13, [ dunlending_w_banner ])
+
+    #========================================================================
     tttjb_s8 = Repo.insert! %Scenario{
       name: "The Last March of the Ents",
       blurb: "The Ents storm Isengard",
@@ -1159,6 +1381,214 @@ defmodule SbgInv.Data do
     _declare_role_figure(tttjb_s8f2, 2, 12, [ orc_w_2h ])
     _declare_role_figure(tttjb_s8f2, 1, 13, [ uruk_hai_w_banner ])
     _declare_role_figure(tttjb_s8f2, 1, 14, [ orc_w_banner ])
+
+    #========================================================================
+    tttjb_s9 = Repo.insert! %Scenario{
+      name: "The Taming of Sméagol",
+      blurb: "Gollum attempts to sneak up on Sam and Frodo to steal the One Ring.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, is_canonical: true, size: 3
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s9.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 9, page: 46}
+
+    tttjb_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s9.id, faction: :fellowship, suggested_points: 150, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s9f1, 1, 1, "Frodo Baggins with Sting, mithril coat, and Elven cloak", [ frodo ])
+    _declare_role_figure(tttjb_s9f1, 1, 2, "Sam Gamgee with Elven cloak", [ sam ])
+
+    tttjb_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s9.id, faction: :mordor, suggested_points: 150, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s9f2, 1, 1, [ smeagol ])
+
+    #========================================================================
+    tttjb_s10 = Repo.insert! %Scenario{
+      name: "The Passage of the Marshes",
+      blurb: "Sméagol leads Frodo and Sam through the Dead Marshes while a Ringwraith on a Fell Beast searches overhead.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, is_canonical: true, size: 14
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s10.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 10, page: 52}
+
+    tttjb_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s10.id, faction: :fellowship, suggested_points: 150, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s10f1, 1, 1, "Frodo Baggins with Sting, mithril coat, and Elven cloak", [ frodo ])
+    _declare_role_figure(tttjb_s10f1, 1, 2, "Sam Gamgee with Elven cloak", [ sam ])
+    _declare_role_figure(tttjb_s10f1, 1, 3, [ smeagol ])
+
+    tttjb_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s10.id, faction: :mordor, suggested_points: 275, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s10f2, 1, 1, [ ringwraith_fellbeast ])
+    _declare_role_figure(tttjb_s10f2, 3, 2, [ spectre ])
+    _declare_role_figure(tttjb_s10f2, 6, 3, [ morgul_stalker ])
+
+    #========================================================================
+    tttjb_s11 = Repo.insert! %Scenario{
+      name: "Ambush in Ithilien",
+      blurb: "Faramir's Rangers ambush a Southron force, complete with Mumak.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 7, is_canonical: true, size: 55
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s11.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 11, page: 60}
+
+    tttjb_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s11.id, faction: :gondor, suggested_points: 375, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s11f1,  1, 1, "Faramir with bow", [ faramir ])
+    _declare_role_figure(tttjb_s11f1,  1, 2, [ madril ])
+    _declare_role_figure(tttjb_s11f1,  1, 3, [ damrod ])
+    _declare_role_figure(tttjb_s11f1,  1, 4, "Frodo Baggins with Sting, mithril coat, and Elven cloak", [ frodo ])
+    _declare_role_figure(tttjb_s11f1,  1, 5, "Sam Gamgee with Elven cloak", [ sam ])
+    _declare_role_figure(tttjb_s11f1, 10, 6, [ gondor_rog ])
+
+    tttjb_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s11.id, faction: :harad, suggested_points: 625, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s11f2,  1, 1, [ harad_chieftain ])
+    _declare_role_figure(tttjb_s11f2,  1, 1, [ harad_chieftain_horse ])
+    _declare_role_figure(tttjb_s11f2,  1, 1, [ mumak ])
+    _declare_role_figure(tttjb_s11f2, 18, 1, [ harad_w_spear ])
+    _declare_role_figure(tttjb_s11f2, 18, 1, [ harad_w_bow ])
+    _declare_role_figure(tttjb_s11f2,  1, 1, [ harad_w_banner ])
+
+    #========================================================================
+    tttjb_s12 = Repo.insert! %Scenario{
+      name: "Osgiliath",
+      blurb: "Faramir leads a rear-guard action against Mordor's assault on Osgiliath.",
+      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, is_canonical: true, size: 54
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s12.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 12, page: 62}
+
+    tttjb_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s12.id, faction: :gondor, suggested_points: 375, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s12f1, 1, 1, "Faramir with bow", [ faramir ])
+    _declare_role_figure(tttjb_s12f1, 1, 2, [ madril ])
+    _declare_role_figure(tttjb_s12f1, 1, 3, [ damrod ])
+    _declare_role_figure(tttjb_s12f1, 1, 4, [ gondor_captain_mt ])
+    _declare_role_figure(tttjb_s12f1, 6, 5, [ gondor_rog ])
+    _declare_role_figure(tttjb_s12f1, 3, 6, [ osgiliath_v_shield ])
+    _declare_role_figure(tttjb_s12f1, 3, 7, [ osgiliath_v_spear ])
+    _declare_role_figure(tttjb_s12f1, 3, 8, [ osgiliath_v_bow ])
+    _declare_role_figure(tttjb_s12f1, 1, 9, [ gondor_womt_banner ])
+
+    tttjb_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s12.id, faction: :mordor, suggested_points: 375, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s12f2, 2, 1, [ orc_captain ])
+    _declare_role_figure(tttjb_s12f2, 6, 2, [ morgul_stalker ])
+    _declare_role_figure(tttjb_s12f2, 8, 3, [ orc_w_shield ])
+    _declare_role_figure(tttjb_s12f2, 8, 4, [ orc_w_spear ])
+    _declare_role_figure(tttjb_s12f2, 4, 5, [ orc_w_bow ])
+    _declare_role_figure(tttjb_s12f2, 4, 6, [ orc_w_2h ])
+    _declare_role_figure(tttjb_s12f2, 2, 7, [ orc_w_banner ])
+
+    #========================================================================
+    tttjb_s13 = Repo.insert! %Scenario{
+      name: "The Deeping Wall",
+      blurb: "An Isengard siege force attempts to blow up some of the defenses of Helm's Deep.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 80
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s13.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 13, page: 72}
+
+    tttjb_s13f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s13.id, faction: :rohan, suggested_points: 550, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s13f1, 1, 1, "Aragorn with Andúril and armour", [ aragorn ])
+    _declare_role_figure(tttjb_s13f1, 1, 2, "Legolas with armour and Elven cloak", [ legolas ])
+    _declare_role_figure(tttjb_s13f1, 1, 3, "Gimli with Elven cloak", [ gimli ])
+    _declare_role_figure(tttjb_s13f1, 1, 4, [ hama ])
+    _declare_role_figure(tttjb_s13f1, 8, 5, [ rohan_w_spear_shield ])
+    _declare_role_figure(tttjb_s13f1, 8, 6, [ rohan_w_shield ])
+    _declare_role_figure(tttjb_s13f1, 8, 7, [ rohan_w_bow ])
+
+    tttjb_s13f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s13.id, faction: :isengard, suggested_points: 850, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s13f2,  1,  1, [ uruk_hai_captain_2h ])
+    _declare_role_figure(tttjb_s13f2,  1,  2, [ dunlending_chieftain ])
+    _declare_role_figure(tttjb_s13f2, 10,  3, [ uruk_hai_w_pike ])
+    _declare_role_figure(tttjb_s13f2, 10,  4, [ uruk_hai_w_shield ])
+    _declare_role_figure(tttjb_s13f2,  3,  5, [ uruk_hai_berserker ])
+    _declare_role_figure(tttjb_s13f2,  2,  6, [ uruk_hai_w_banner ])
+    _declare_role_figure(tttjb_s13f2,  6,  7, [ dunlending_w_2h ])
+    _declare_role_figure(tttjb_s13f2,  6,  8, [ dunlending_w_shield ])
+    _declare_role_figure(tttjb_s13f2,  6,  9, [ dunlending_w_bow ])
+    _declare_role_figure(tttjb_s13f2,  3, 10, [ uruk_hai_demo_team ])
+    _declare_role_figure(tttjb_s13f2,  1, 11, [ uruk_hai_ballista ])
+    _declare_role_figure(tttjb_s13f2,  3, 12, [ uruk_hai_ballista_crew ])
+
+    #========================================================================
+    tttjb_s14 = Repo.insert! %Scenario{
+      name: "Into the Breach",
+      blurb: "The Isengarders try to exploit the breach in the Deeping Wall.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 67
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s14.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 14, page: 74}
+
+    tttjb_s14f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s14.id, faction: :rohan, suggested_points: 600, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s14f1, 1, 1, "Aragorn with Andúril and armour", [ aragorn ])
+    _declare_role_figure(tttjb_s14f1, 1, 2, [ eomer ])
+    _declare_role_figure(tttjb_s14f1, 1, 3, [ rohan_captain ])
+    _declare_role_figure(tttjb_s14f1, 1, 4, "Gimli with Elven cloak", [ gimli ])
+    _declare_role_figure(tttjb_s14f1, 8, 5, [ rohan_w_spear_shield ])
+    _declare_role_figure(tttjb_s14f1, 8, 6, [ rohan_w_bow ])
+    _declare_role_figure(tttjb_s14f1, 8, 7, [ rohan_w_shield ])
+    _declare_role_figure(tttjb_s14f1, 1, 8, [ rohan_w_banner ])
+
+    tttjb_s14f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s14.id, faction: :isengard, suggested_points: 600, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s14f2,  2, 1, [ uruk_hai_captain_shield ])
+    _declare_role_figure(tttjb_s14f2,  1, 2, [ dunlending_chieftain ])
+    _declare_role_figure(tttjb_s14f2,  3, 3, [ dunlending_w_bow ])
+    _declare_role_figure(tttjb_s14f2,  3, 4, [ dunlending_w_shield ])
+    _declare_role_figure(tttjb_s14f2, 10, 5, [ uruk_hai_w_pike ])
+    _declare_role_figure(tttjb_s14f2, 10, 6, [ uruk_hai_w_shield ])
+    _declare_role_figure(tttjb_s14f2,  6, 7, [ uruk_hai_berserker ])
+    _declare_role_figure(tttjb_s14f2,  2, 8, [ uruk_hai_w_banner ])
+    _declare_role_figure(tttjb_s14f2,  1, 9, [ isengard_troll ])
+
+    #========================================================================
+    tttjb_s15 = Repo.insert! %Scenario{
+      name: "In the Shadow of the Hornburg",
+      blurb: "Aragorn and Gimli must clear the gate of Helm's Deep.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 26
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s15.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 15, page: 80}
+
+    tttjb_s15f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s15.id, faction: :rohan, suggested_points: 300, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s15f1, 1, 1, "Aragorn with Andúril and armour", [ aragorn ])
+    _declare_role_figure(tttjb_s15f1, 1, 2, "Gimli with Elven cloak", [ gimli ])
+
+    tttjb_s15f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s15.id, faction: :isengard, suggested_points: 400, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s15f2,  1, 1, [ uruk_hai_captain_shield ])
+    _declare_role_figure(tttjb_s15f2,  1, 2, [ dunlending_chieftain ])
+    _declare_role_figure(tttjb_s15f2,  3, 3, [ dunlending_w_2h ])
+    _declare_role_figure(tttjb_s15f2,  3, 4, [ dunlending_w_shield ])
+    _declare_role_figure(tttjb_s15f2,  1, 5, [ dunlending_w_banner ])
+    _declare_role_figure(tttjb_s15f2, 10, 6, [ uruk_hai_w_shield ])
+    _declare_role_figure(tttjb_s15f2,  5, 7, [ uruk_hai_berserker ])
+
+    #========================================================================
+    tttjb_s16 = Repo.insert! %Scenario{
+      name: "Théoden Rides Out",
+      blurb: "Théoden leads a ride out to clear the forces in front of the gatehouse of Helm's Deep.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 83
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tttjb_s16.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 16, page: 82}
+
+    tttjb_s16f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s16.id, faction: :rohan, suggested_points: 1000, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tttjb_s16f1,  1,  1, "Aragorn with Andúril, armour and horse", [ aragorn_horse ])
+    _declare_role_figure(tttjb_s16f1,  1,  2, [ theoden_armor_horse ])
+    _declare_role_figure(tttjb_s16f1,  1,  3, "Legolas with Elven cloak", [ legolas_horse ])
+    _declare_role_figure(tttjb_s16f1,  1,  4, [ gamling_horse ])
+    _declare_role_figure(tttjb_s16f1,  1,  5, [ eomer_horse ])
+    _declare_role_figure(tttjb_s16f1,  1,  6, [ erkenbrand_horse ])
+    _declare_role_figure(tttjb_s16f1,  1,  7, [ gandalf_white_horse ])
+    _declare_role_figure(tttjb_s16f1,  3,  8, [ rohan_gd_horse_spear ])
+    _declare_role_figure(tttjb_s16f1,  6,  9, [ rohan_rider_spear ])
+    _declare_role_figure(tttjb_s16f1, 12, 10, [ rohan_rider ])
+
+    tttjb_s16f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s16.id, faction: :isengard, suggested_points: 1100, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tttjb_s16f2,  3,  1, [ uruk_hai_captain_shield ])
+    _declare_role_figure(tttjb_s16f2,  1,  2, [ uruk_hai_shaman ])
+    _declare_role_figure(tttjb_s16f2,  1,  3, [ dunlending_chieftain ])
+    _declare_role_figure(tttjb_s16f2,  3,  4, [ dunlending_w_2h ])
+    _declare_role_figure(tttjb_s16f2,  3,  5, [ dunlending_w_shield ])
+    _declare_role_figure(tttjb_s16f2,  3,  6, [ dunlending_w_bow ])
+    _declare_role_figure(tttjb_s16f2, 10,  7, [ uruk_hai_w_shield ])
+    _declare_role_figure(tttjb_s16f2,  2,  8, [ uruk_hai_w_banner ])
+    _declare_role_figure(tttjb_s16f2,  9,  9, [ uruk_hai_w_crossbow ])
+    _declare_role_figure(tttjb_s16f2, 10, 10, [ uruk_hai_w_pike ])
+    _declare_role_figure(tttjb_s16f2,  9, 11, [ uruk_hai_berserker ])
+    _declare_role_figure(tttjb_s16f2,  1, 12, [ isengard_troll ])
   end
 end
 
