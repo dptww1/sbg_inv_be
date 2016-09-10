@@ -1,21 +1,22 @@
 import EctoEnum
 
 defenum Faction,
-  gondor: 0,
-  easterlings: 1,
+  angmar: 0,
+  dol_guldur: 1,
   dwarves: 2,
-  mordor: 3,
-  rohan: 4,
+  easterlings: 3,
+  fellowship: 4,
   free_peoples: 5,
-  mirkwood: 6,
-  dol_guldur: 7,
-  rivendell: 8,
-  white_council: 9,
-  lothlorien: 10,
-  moria: 11,
-  fellowship: 12,
-  angmar: 13,
-  isengard: 14
+  gondor: 6,
+  harad: 7,
+  isengard: 8,
+  lothlorien:  9,
+  mirkwood: 10,
+  mordor: 11,
+  moria: 12,
+  rivendell: 13,
+  rohan: 14,
+  white_council: 15
 
 defenum ScenarioResourceBook,
   fotr:     0,   # Fellowship of the Ring
