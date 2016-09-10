@@ -27,7 +27,7 @@ defmodule SbgInv.ScenarioController do
         conn
         |> put_status(:created)
         |> put_resp_header("location", scenario_path(conn, :show, scenario))
-        |> render("show.json", scenario: scenario)
+        |> render("show.json", scenario: scenario, user_id: 1)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -49,7 +49,7 @@ defmodule SbgInv.ScenarioController do
 
     case Repo.update(changeset) do
       {:ok, scenario} ->
-        render(conn, "show.json", scenario: scenario)
+        render(conn, "show.json", scenario: scenario, user_id: 1)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
