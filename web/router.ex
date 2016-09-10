@@ -23,11 +23,8 @@ defmodule SbgInv.Router do
     pipe_through :api
 
     resources "/scenarios", ScenarioController, except: [:new, :edit]
-    resources "/recalc", RecalcController, only: [:index]
+    resources "/sessions",  SessionController,  only: [:create]
+    resources "/recalc",    RecalcController,   only: [:index]
+    resources "/users",     UserController,     only: [:create]
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", SbgInv do
-  #   pipe_through :api
-  # end
 end

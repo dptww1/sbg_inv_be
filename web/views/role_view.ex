@@ -2,7 +2,6 @@ defmodule SbgInv.RoleView do
   use SbgInv.Web, :view
 
   alias SbgInv.Role
-  alias SbgInv.UserFigure
 
   def render("role.json", %{role: role, user_id: user_id}) do
     user_figures = Role.role_user_figures role, user_id
