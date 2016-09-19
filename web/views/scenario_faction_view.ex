@@ -5,9 +5,9 @@ defmodule SbgInv.ScenarioFactionView do
     base_faction(faction)
   end
 
-  def render("faction_detail.json", %{scenario_faction: faction, user_id: user_id}) do
+  def render("faction_detail.json", %{scenario_faction: faction}) do
     Map.merge base_faction(faction), %{
-      roles: render_many(Enum.sort(faction.roles, &(&1.sort_order < &2.sort_order)), SbgInv.RoleView, "role.json", %{user_id: user_id})
+      roles: render_many(Enum.sort(faction.roles, &(&1.sort_order < &2.sort_order)), SbgInv.RoleView, "role.json")
     }
   end
 

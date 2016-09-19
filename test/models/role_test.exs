@@ -19,18 +19,14 @@ defmodule SbgInv.RoleTest do
   test "role_user_figures" do
     role = %Role{amount: 10, name: "roleName", figures: [
                     %{id: 11, name: "foo", plural_name: "foos", user_figure: [
-                         %{figure_id: 11, user_id: 1, owned: 8, painted: 4},
-                         %{figure_id: 11, user_id: 2, owned: 15, painted: 15}
-                       ] },
-                    %{id: 7, name: "bar", plural_name: "bars", user_figure: [
-                         %{figure_id: 7, user_id: 2, owned: 6, painted: 0}
+                         %{figure_id: 11, user_id: 1, owned: 8, painted: 4}
                        ] },
                     %{id: 2, name: "bah", plural_name: "bahs", user_figure: [
                          %{figure_id: 2, user_id: 1, owned: 4, painted: 3}
                        ] }
                   ]}
 
-    assert Role.role_user_figures(role, 1) ==
+    assert Role.role_user_figures(role) ==
       %SbgInv.RoleUserFigures{
         total_owned: 10,
         total_painted: 7,
@@ -41,8 +37,7 @@ defmodule SbgInv.RoleTest do
               name: "foo",
               plural_name: "foos",
               user_figure: [
-                %{figure_id: 11, owned: 8, painted: 4, user_id: 1},
-                %{figure_id: 11, owned: 15, painted: 15, user_id: 2}
+                %{figure_id: 11, owned: 8, painted: 4, user_id: 1}
               ]},
             name: "foos",
             owned: 8,

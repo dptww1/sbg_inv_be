@@ -1,7 +1,8 @@
 defmodule SbgInv.ScenarioControllerTest do
   use SbgInv.ConnCase
 
-  alias SbgInv.Scenario
+  alias SbgInv.{Scenario, TestHelper}
+
   @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, is_canonical: true, name: "some content", size: 42}
   @invalid_attrs %{}
 
@@ -74,5 +75,23 @@ defmodule SbgInv.ScenarioControllerTest do
     conn = delete conn, scenario_path(conn, :delete, scenario)
     assert response(conn, 204)
     refute Repo.get(Scenario, scenario.id)
+  end
+
+  test "scenario list query correctly limits itself to the current user's scenario data", %{conn: conn} do
+    %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
+    conn = get conn, scenario_path(conn, :index)
+
+    required_values = %{ const_data | "scenario_factions" => [
+                         Map.take(hd(Map.get(const_data, "scenario_factions")),
+                                  ~w[sort_order actual_points suggested_points faction])
+                       ]}
+
+    assert json_response(conn, 200)["data"] == [ required_values ]
+  end
+
+  test "scenario detail query correctly limits itself to the current user's scenario data", %{conn: conn} do
+    %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
+    conn = get conn, scenario_path(conn, :show, Map.get(const_data, "id"))
+    assert json_response(conn, 200)["data"] == const_data
   end
 end

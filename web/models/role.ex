@@ -31,12 +31,13 @@ defmodule SbgInv.Role do
   end
 
   @doc """
-  Gets a filled-in RoleUserFigures for the given Role and User.  The totals will be capped at
+  Gets a filled-in RoleUserFigures for the given Role.  Caller is assumed to have restricted
+  the UserFigure relation to the proper user_id.  The totals will be capped at
   the Role.amount, so the constituent RoleUserFigure numbers might be smaller than what is in
   the corresponding UserFigure data.  The sort order is per `RoleUserFigure.sorter/2`
   """
-  def role_user_figures(role, user_id) do
-    Enum.map(role.figures, fn(f) -> RoleUserFigure.create(f, user_id) end)
+  def role_user_figures(role) do
+    Enum.map(role.figures, fn(f) -> RoleUserFigure.create(f) end)
     |> Enum.filter(fn(f) -> f.owned > 0 end)
     |> Enum.sort(&RoleUserFigure.sorter/2)
     |> Enum.reduce_while(%SbgInv.RoleUserFigures{}, fn(ruf, acc) ->

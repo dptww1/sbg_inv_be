@@ -6,6 +6,13 @@ defmodule SbgInv.Authentication do
 
   def init(options), do: options
 
+  def optionally(conn) do
+    case find_user(conn) do
+      {:ok, user} -> assign(conn, :current_user, user)
+      _otherwise -> conn
+    end
+  end
+
   def call(conn, _opts) do
     case find_user(conn) do
       {:ok, user} -> assign(conn, :current_user, user)

@@ -3,8 +3,8 @@ defmodule SbgInv.RoleView do
 
   alias SbgInv.Role
 
-  def render("role.json", %{role: role, user_id: user_id}) do
-    user_figures = Role.role_user_figures role, user_id
+  def render("role.json", %{role: role}) do
+    user_figures = Role.role_user_figures role
     %{
       id: role.id,
       amount: role.amount,

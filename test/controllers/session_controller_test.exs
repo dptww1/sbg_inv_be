@@ -16,9 +16,9 @@ defmodule SbgInv.SessionControllerTest do
   test "creates and renders resource when data is valid", %{conn: conn} do
     conn = post conn, session_path(conn, :create), user: @valid_attrs
     resp = json_response(conn, 201)
-    assert token = resp["data"]["token"]
-    assert name = resp["data"]["name"]
-    assert Repo.get_by(Session, token: token)
+    assert resp["data"]["token"]
+    assert resp["data"]["name"]
+    assert Repo.get_by(Session, token: resp["data"]["token"])
   end
 
   test "does not create resource and renders errors when password is invalid", %{conn: conn} do

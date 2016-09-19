@@ -1,22 +1,23 @@
 defmodule SbgInv.RecalcUserScenarioTask do
 
-  alias SbgInv.Repo
-  import Ecto.Query, only: [from: 2]
+  alias SbgInv.{Repo, ScenarioFaction, UserFigure, UserScenario}
+
+  import Ecto.Query
 
   require Logger
 
   def do_task(user_id) do
     Logger.info("#### START ####")
 
-    us_query = from us in SbgInv.UserScenario, where: us.user_id == ^user_id, order_by: :id
-    existing_map = Map.new(Repo.all(us_query), fn x -> { x.scenario_id, x } end)
+    user_scenario_query = from us in UserScenario, where: us.user_id == ^user_id, order_by: :id
+    user_figure_query = from uf in UserFigure, where: uf.user_id == ^user_id
 
-    factions = Repo.all from sf in SbgInv.ScenarioFaction,
-#           join: r in assoc(sf, :roles),
-#           join: f in assoc(r, :figures),
-#           left_join: uf in assoc(f, :user_figure),
-#           where: sf.scenario_id == 16,                                         # TODO: limit user id
-           preload: [roles: [figures: [:user_figure]]]
+    existing_map = Map.new(Repo.all(user_scenario_query), fn x -> { x.scenario_id, x } end)
+
+    query = ScenarioFaction
+            |> preload([roles: [figures: [user_figure: ^user_figure_query]]])
+
+    factions = Repo.all(query)
 
     new_map = Enum.reduce factions, %{}, fn(sf, stats) ->
       Map.put stats, sf.scenario_id, recalc_faction(
@@ -61,7 +62,7 @@ defmodule SbgInv.RecalcUserScenarioTask do
 
   defp recalc_faction(user_scenario, scenario_faction) do
     Enum.reduce scenario_faction.roles, user_scenario, fn(role, stats) ->
-      ruf = SbgInv.Role.role_user_figures(role, user_scenario.user_id)
+      ruf = SbgInv.Role.role_user_figures(role)
       %{stats | owned:   stats.owned   + ruf.total_owned,
                 painted: stats.painted + ruf.total_painted}
     end

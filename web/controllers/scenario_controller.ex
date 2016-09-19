@@ -1,19 +1,26 @@
 defmodule SbgInv.ScenarioController do
   use SbgInv.Web, :controller
 
-  alias SbgInv.Scenario
+  alias SbgInv.{Authentication, Scenario, UserFigure, UserScenario}
 
   plug :scrub_params, "scenario" when action in [:create, :update]
 
   def index(conn, _params) do
     import Ecto.Query
 
-    query = from s in Scenario,
-            order_by: [asc: :date_year, asc: :date_month, asc: :date_day],
-            select: s
+    conn = Authentication.optionally(conn)
+
+    user_id = if(Map.has_key?(conn.assigns, :current_user), do: conn.assigns.current_user.id, else: -1)
+
+    user_query = from us in UserScenario, where: us.user_id == ^user_id
+
+    query = Scenario
+            |> preload(:scenario_resources)
+            |> preload(:scenario_factions)
+            |> preload([user_scenarios: ^user_query])
+            |> order_by([asc: :date_year, asc: :date_month, asc: :date_day])
 
     scenarios = Repo.all(query)
-                |> Repo.preload([:scenario_resources, :scenario_factions, :user_scenarios])
 
     render(conn, "index.json", scenarios: scenarios)
   end
@@ -36,10 +43,23 @@ defmodule SbgInv.ScenarioController do
   end
 
   def show(conn, %{"id" => id}) do
-    scenario = Repo.get!(Scenario, id)
-               |> Repo.preload([:scenario_resources, :user_scenarios])
-               |> Repo.preload(scenario_factions: [roles: [figures: :user_figure]])
-    render(conn, "show.json", %{scenario: scenario, user_id: 1})
+    import Ecto.Query
+
+    conn = Authentication.optionally(conn)
+
+    user_id = if(Map.has_key?(conn.assigns, :current_user), do: conn.assigns.current_user.id, else: -1)
+
+    user_scenario_query = from us in UserScenario, where: us.user_id == ^user_id
+    user_figure_query = from uf in UserFigure, where: uf.user_id == ^user_id
+
+    query = Scenario
+            |> preload(:scenario_resources)
+            |> preload([user_scenarios: ^user_scenario_query])
+            |> preload(scenario_factions: [roles: [figures: [user_figure: ^user_figure_query]]])
+
+    scenario = Repo.get!(query, id)
+
+    render(conn, "show.json", %{scenario: scenario})
   end
 
   def update(conn, %{"id" => id, "scenario" => scenario_params}) do
