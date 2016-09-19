@@ -54,12 +54,14 @@ defmodule SbgInv.Data do
 
     warg_chieftain = Repo.insert! %Figure{name: "Wild Warg Chieftain"}
 
-    warg = Repo.insert! %Figure{name: "Wild Warg", plural_name: "Wild Wargs"}
+    barrow_wight = Repo.insert! %Figure{name: "Barrow Wight", plural_name: "Barrow Wights"}
+    warg         = Repo.insert! %Figure{name: "Wild Warg",    plural_name: "Wild Wargs"}
 
     #########################################################################
     # FIGURES: DWARVES
     #########################################################################
 
+    balin = Repo.insert! %Figure{name: "Balin"}
     dain  = Repo.insert! %Figure{name: "Dáin Ironfoot"}
     drar  = Repo.insert! %Figure{name: "Drar"}
     murin = Repo.insert! %Figure{name: "Murin"}
@@ -69,7 +71,7 @@ defmodule SbgInv.Data do
     dwarf_khazad_gd = Repo.insert! %Figure{name: "Khazad Guard",              plural_name: "Khazad Guards"}
     dwarf_w_bow     = Repo.insert! %Figure{name: "Dwarf with Dwarf bow",      plural_name: "Dwarves with Dwarf bow"}
     dwarf_w_shield  = Repo.insert! %Figure{name: "Dwarf with shield",         plural_name: "Dwarves with shield"}
-    dwarf_w_axe     = Repo.insert! %Figure{name: "Dwarf with two-handed axe", plural_name: "Dwarves with two-handed axe"}
+    dwarf_w_2h      = Repo.insert! %Figure{name: "Dwarf with two-handed axe", plural_name: "Dwarves with two-handed axe"}
     dwarf_w_banner  = Repo.insert! %Figure{name: "Dwarf with banner",         plural_name: "Dwarves with banner"}
 
     #########################################################################
@@ -130,6 +132,7 @@ defmodule SbgInv.Data do
     gwaihir             = Repo.insert! %Figure{name: "Gwaihir"}
     radagast            = Repo.insert! %Figure{name: "Radagast"}
     saruman             = Repo.insert! %Figure{name: "Saruman the White"}
+    tom_bombadil        = Repo.insert! %Figure{name: "Tom Bombadil"}
     treebeard           = Repo.insert! %Figure{name: "Treebeard"}
 
     eagle = Repo.insert! %Figure{name: "Giant Eagle", plural_name: "Giant Eagles"}
@@ -223,21 +226,20 @@ defmodule SbgInv.Data do
     galadriel_lotg = Repo.insert! %Figure{name: "Galadriel, Lady of the Galadhrim"}
     haldir         = Repo.insert! %Figure{name: "Haldir"}
 
-    wood_elf_w_bow   = Repo.insert! %Figure{name: "Wood Elf Warrior with Elf bow",     plural_name: "Wood Elf Warriors with Elf bow"}
-    wood_elf_w_blade = Repo.insert! %Figure{name: "Wood Elf Warrior with Elven blade", plural_name: "Wood Elf Warriors with Elven blade"}
-
     #########################################################################
     # FIGURES: MIRKWOOD
     #########################################################################
 
     thranduil = Repo.insert! %Figure{name: "Thranduil" }
 
-    wood_elf_sentinel = Repo.insert! %Figure{name: "Wood Elf Sentinel", plural_name: "Wood Elf Sentinels"}
-    wood_elf_w_banner = Repo.insert! %Figure{name: "Wood Elf Warrior with banner",                          plural_name: "Wood Elf Warriors with banner"}
-    wood_elf_w_blade  = Repo.insert! %Figure{name: "Wood Elf Warrior with Elven blade and throwing dagger", plural_name: "Wood Elf Warriors with Elven blade and throwing dagger"}
-    wood_elf_w_banner = Repo.insert! %Figure{name: "Wood Elf Warrior with banner",                          plural_name: "Wood Elf Warriors with banner"}
-    wood_elf_w_bow    = Repo.insert! %Figure{name: "Wood Elf Warrior with bow",                             plural_name: "Wood Elf Warriors with bow"}
-    wood_elf_w_spear  = Repo.insert! %Figure{name: "Wood Elf Warrior with spear",                           plural_name: "Wood Elf Warriors with spear"}
+    wood_elf_sentinel      = Repo.insert! %Figure{name: "Wood Elf Sentinel",                                     plural_name: "Wood Elf Sentinels"}
+    wood_elf_w_armor_bow   = Repo.insert! %Figure{name: "Wood Elf Warrior with armour and Elf bow",              plural_name: "Wood Elf Warriors with armour and Elf bow"}
+    wood_elf_w_armor_blade = Repo.insert! %Figure{name: "Wood Elf Warrior with armour and Elven blade",          plural_name: "Wood Elf Warriors with armour and Elven blade"}
+    wood_elf_w_armor_spear = Repo.insert! %Figure{name: "Wood Elf Warrior with armour and spear",                plural_name: "Wood Elf Warriors with armour and spear"}
+    wood_elf_w_banner      = Repo.insert! %Figure{name: "Wood Elf Warrior with banner",                          plural_name: "Wood Elf Warriors with banner"}
+    wood_elf_w_blade       = Repo.insert! %Figure{name: "Wood Elf Warrior with Elven blade and throwing dagger", plural_name: "Wood Elf Warriors with Elven blade and throwing dagger"}
+    wood_elf_w_bow         = Repo.insert! %Figure{name: "Wood Elf Warrior with bow",                             plural_name: "Wood Elf Warriors with bow"}
+    wood_elf_w_spear       = Repo.insert! %Figure{name: "Wood Elf Warrior with spear",                           plural_name: "Wood Elf Warriors with spear"}
 
     #########################################################################
     # FIGURES: MORDOR
@@ -279,13 +281,36 @@ defmodule SbgInv.Data do
     war_catapult_troll   = Repo.insert! %Figure{name: "War Catapult Troll",        plural_name: "War Catapult Trolls"}
 
     #########################################################################
+    # FIGURES: MORIA
+    #########################################################################
+
+    durburz = Repo.insert! %Figure{name: "Durbûrz"}
+
+    balrog        = Repo.insert! %Figure{name: "Balrog",               plural_name: "Balrogs"}
+    moria_captain = Repo.insert! %Figure{name: "Moria Goblin Captain", plural_name: "Moria Goblin Captains"}
+
+    moria_g_bow    = Repo.insert! %Figure{name: "Moria Goblin with Orc bow", plural_name: "Moria Goblins with Orc bow"}
+    moria_g_shield = Repo.insert! %Figure{name: "Moria Goblin with shield",  plural_name: "Moria Goblins with shield"}
+    moria_g_spear  = Repo.insert! %Figure{name: "Moria Goblin with spear",   plural_name: "Moria Goblins with spear"}
+    moria_shaman   = Repo.insert! %Figure{name: "Moria Goblin Shaman",       plural_name: "Moria Goblin Shamans"}
+
+    cave_troll_chain = Repo.insert! %Figure{name: "Cave Troll with chain", plural_name: "Cave Trolls with chain"}
+    cave_troll_spear = Repo.insert! %Figure{name: "Cave Troll with spear", plural_name: "Cave Trolls with spear"}
+
+    moria_drum    = Repo.insert! %Figure{name: "Moria Goblin drum",    plural_name: "Moria Goblin drums"}
+    moria_drummer = Repo.insert! %Figure{name: "Moria Goblin drummer", plural_name: "Moria Goblin drummers"}
+
+    #########################################################################
     # FIGURES: RIVENDELL
     #########################################################################
 
     arwen           = Repo.insert! %Figure{name: "Arwen (FotR)"}
     arwen2          = Repo.insert! %Figure{name: "Arwen (LotR)"}
+    elladan         = Repo.insert! %Figure{name: "Elladan"}
+    elrohir         = Repo.insert! %Figure{name: "Elrohir"}
     elrond          = Repo.insert! %Figure{name: "Elrond"}
     erestor         = Repo.insert! %Figure{name: "Erestor"}
+    glorfindel      = Repo.insert! %Figure{name: "Glorfindel"}
     glorfindel_lotw = Repo.insert! %Figure{name: "Glorfindel, Lord of the West"}
     legolas         = Repo.insert! %Figure{name: "Legolas"}
 
@@ -567,20 +592,46 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s1.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 1, page: 14}
 
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s1.id, faction: :dwarves, suggested_points: 200, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s1.id, faction: :moria,   suggested_points: 200, actual_points: 0, sort_order: 2}
+    saf_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s1.id, faction: :dwarves, suggested_points: 200, actual_points: 0, sort_order: 1}
+    _declare_role_figure(saf_s1f1, 1, 1, [ balin ])
+    _declare_role_figure(saf_s1f1, 4, 2, [ dwarf_khazad_gd ])
+    _declare_role_figure(saf_s1f1, 4, 3, [ dwarf_w_shield ])
+    _declare_role_figure(saf_s1f1, 6, 4, [ dwarf_w_bow ])
+    _declare_role_figure(saf_s1f1, 2, 5, [ dwarf_w_2h ])
+
+    saf_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: saf_s1.id, faction: :moria,   suggested_points: 200, actual_points: 0, sort_order: 2}
+    _declare_role_figure(saf_s1f2, 2, 1, [ moria_captain ])
+    _declare_role_figure(saf_s1f2, 8, 2, [ moria_g_spear ])
+    _declare_role_figure(saf_s1f2, 8, 3, [ moria_g_shield ])
+    _declare_role_figure(saf_s1f2, 8, 4, [ moria_g_bow ])
 
     #========================================================================
     saf_s2 = Repo.insert! %Scenario{
       name: "Battle for the Dwarrowdelf",
       blurb: "Balin faces off against Durbûrz deep within Moria.",
-      date_age: 3, date_year: 2990, date_month: 0, date_day: 0, is_canonical: true, size: 77
+      date_age: 3, date_year: 2990, date_month: 0, date_day: 0, is_canonical: true, size: 79
     }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s2.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 2, page: 20}
 
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s2.id, faction: :dwarves, suggested_points: 600, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s2.id, faction: :moria,   suggested_points: 600, actual_points: 0, sort_order: 2}
+    saf_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s2.id, faction: :dwarves, suggested_points: 600, actual_points: 0, sort_order: 1}
+    _declare_role_figure(saf_s2f1,  1, 1, "Balin with Durin's Axe", [ balin ])
+    _declare_role_figure(saf_s2f1,  2, 2, [ dwarf_captain ])
+    _declare_role_figure(saf_s2f1,  8, 3, [ dwarf_khazad_gd ])
+    _declare_role_figure(saf_s2f1, 10, 4, [ dwarf_w_shield ])
+    _declare_role_figure(saf_s2f1,  9, 5, [ dwarf_w_bow ])
+    _declare_role_figure(saf_s2f1,  5, 6, [ dwarf_w_2h ])
+
+    saf_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: saf_s2.id, faction: :moria,   suggested_points: 600, actual_points: 0, sort_order: 2}
+    _declare_role_figure(saf_s2f2,  1, 1, [ durburz ])
+    _declare_role_figure(saf_s2f2,  1, 2, [ moria_drum ])
+    _declare_role_figure(saf_s2f2,  2, 3, [ moria_drummer ])
+    _declare_role_figure(saf_s2f2,  1, 4, [ moria_captain ])
+    _declare_role_figure(saf_s2f2,  2, 5, [ moria_shaman ])
+    _declare_role_figure(saf_s2f2, 12, 6, [ moria_g_shield ])
+    _declare_role_figure(saf_s2f2, 12, 7, [ moria_g_spear ])
+    _declare_role_figure(saf_s2f2, 12, 8, [ moria_g_bow ])
+    _declare_role_figure(saf_s2f2,  1, 9, [ cave_troll_chain, cave_troll_spear ])
 
     #========================================================================
     saf_s3 = Repo.insert! %Scenario{
@@ -591,8 +642,21 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s3.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 3, page: 24}
 
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s3.id, faction: :dwarves, suggested_points: 300, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s3.id, faction: :moria,   suggested_points: 300, actual_points: 0, sort_order: 2}
+    saf_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s3.id, faction: :dwarves, suggested_points: 300, actual_points: 0, sort_order: 1}
+    _declare_role_figure(saf_s3f1,  1, 1, "Balin with Durin's Axe", [ balin ])
+    _declare_role_figure(saf_s3f1,  1, 2, [ dwarf_captain ])
+    _declare_role_figure(saf_s3f1,  8, 3, [ dwarf_khazad_gd ])
+    _declare_role_figure(saf_s3f1,  2, 4, [ dwarf_w_shield ])
+    _declare_role_figure(saf_s3f1,  3, 5, [ dwarf_w_bow ])
+    _declare_role_figure(saf_s3f1,  1, 6, [ dwarf_w_2h ])
+
+    saf_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: saf_s3.id, faction: :moria,   suggested_points: 300, actual_points: 0, sort_order: 2}
+    _declare_role_figure(saf_s3f2,  1, 1, [ moria_captain ])
+    _declare_role_figure(saf_s3f2,  1, 2, [ moria_shaman ])
+    _declare_role_figure(saf_s3f2, 16, 3, [ moria_g_bow ])
+    _declare_role_figure(saf_s3f2,  8, 4, [ moria_g_shield ])
+    _declare_role_figure(saf_s3f2,  8, 5, [ moria_g_spear ])
+    _declare_role_figure(saf_s3f2,  1, 6, [ cave_troll_chain ])
 
     #========================================================================
     saf_s4 = Repo.insert! %Scenario{
@@ -603,8 +667,20 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s4.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 4, page: 28}
 
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s4.id, faction: :dwarves, suggested_points: 500, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s4.id, faction: :moria,   suggested_points: 500, actual_points: 0, sort_order: 2}
+    saf_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s4.id, faction: :dwarves, suggested_points: 500, actual_points: 0, sort_order: 1}
+    _declare_role_figure(saf_s4f1,  2, 1, [ dwarf_captain ])
+    _declare_role_figure(saf_s4f1,  5, 2, [ dwarf_khazad_gd ])
+    _declare_role_figure(saf_s4f1, 10, 3, [ dwarf_w_shield ])
+    _declare_role_figure(saf_s4f1,  5, 4, [ dwarf_w_bow ])
+    _declare_role_figure(saf_s4f1,  5, 5, [ dwarf_w_2h ])
+
+    saf_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: saf_s4.id, faction: :moria,   suggested_points: 500, actual_points: 0, sort_order: 2}
+    _declare_role_figure(saf_s4f2, 1, 1, [ balrog ])
+    _declare_role_figure(saf_s4f2, 2, 2, [ moria_captain ])
+    _declare_role_figure(saf_s4f2, 1, 3, [ moria_shaman ])
+    _declare_role_figure(saf_s4f2, 8, 4, [ moria_g_bow ])
+    _declare_role_figure(saf_s4f2, 8, 5, [ moria_g_shield ])
+    _declare_role_figure(saf_s4f2, 8, 6, [ moria_g_spear ])
 
     #========================================================================
     saf_s5 = Repo.insert! %Scenario{
@@ -615,8 +691,15 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s5.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 5, page: 36}
 
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s5.id, faction: :fellowship, suggested_points: 200, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s5.id, faction: :angmar,     suggested_points: 200, actual_points: 0, sort_order: 2}
+    saf_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s5.id, faction: :fellowship, suggested_points: 200, actual_points: 0, sort_order: 1}
+    _declare_role_figure(saf_s5f1, 1, 1, [ frodo ])
+    _declare_role_figure(saf_s5f1, 1, 2, [ sam ])
+    _declare_role_figure(saf_s5f1, 1, 3, [ merry ])
+    _declare_role_figure(saf_s5f1, 1, 4, [ pippin ])
+    _declare_role_figure(saf_s5f1, 1, 5, [ tom_bombadil ])
+
+    saf_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: saf_s5.id, faction: :angmar,     suggested_points: 200, actual_points: 0, sort_order: 2}
+    _declare_role_figure(saf_s5f2, 4, 1, [ barrow_wight ])
 
     #========================================================================
     saf_s6 = Repo.insert! %Scenario{
@@ -627,8 +710,28 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s6.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 6, page: 42}
 
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s6.id, faction: :rivendell, suggested_points: 650, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s6.id, faction: :angmar,    suggested_points: 700, actual_points: 0, sort_order: 2}
+    saf_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s6.id, faction: :rivendell, suggested_points: 650, actual_points: 0, sort_order: 1}
+    _declare_role_figure(saf_s6f1,  1, 1, [ glorfindel ])
+    _declare_role_figure(saf_s6f1,  1, 2, [ elladan ])
+    _declare_role_figure(saf_s6f1,  1, 3, [ elrohir ])
+    _declare_role_figure(saf_s6f1,  1, 4, [ arwen, arwen2 ])
+    _declare_role_figure(saf_s6f1, 15, 5, [ wood_elf_w_armor_bow ])
+    _declare_role_figure(saf_s6f1, 18, 6, "Wood Elf Warriors with armour and Elven blades or spears", [ wood_elf_w_armor_blade, wood_elf_w_armor_spear ])
+
+    saf_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: saf_s6.id, faction: :angmar,    suggested_points: 700, actual_points: 0, sort_order: 2}
+    _declare_role_figure(saf_s6f2,  2,  1, [ orc_captain ])
+    _declare_role_figure(saf_s6f2,  1,  2, [ orc_captain_warg ])
+    _declare_role_figure(saf_s6f2,  5,  3, [ orc_w_2h ])
+    _declare_role_figure(saf_s6f2, 10,  4, [ orc_w_shield ])
+    _declare_role_figure(saf_s6f2,  5,  5, [ orc_w_bow ])
+    _declare_role_figure(saf_s6f2,  4,  6, [ warg_rider_bow ])
+    _declare_role_figure(saf_s6f2,  4,  7, [ warg_rider_shield_spear ])
+    _declare_role_figure(saf_s6f2,  2,  8, [ moria_captain ])
+    _declare_role_figure(saf_s6f2,  1,  9, [ cave_troll_chain ])
+    _declare_role_figure(saf_s6f2,  1, 10, [ cave_troll_spear])
+    _declare_role_figure(saf_s6f2,  8, 11, [ moria_g_spear ])
+    _declare_role_figure(saf_s6f2,  8, 12, [ moria_g_shield ])
+    _declare_role_figure(saf_s6f2,  8, 13, [ moria_g_bow ])
 
     #========================================================================
     saf_s7 = Repo.insert! %Scenario{
@@ -639,9 +742,22 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s7.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 7, page: 46}
 
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s7.id, faction: :rohan,    suggested_points: 500, actual_points: 0, sort_order: 1}
-    Repo.insert! %ScenarioFaction{scenario_id: saf_s7.id, faction: :isengard, suggested_points: 500, actual_points: 0, sort_order: 2}
+    saf_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s7.id, faction: :rohan,    suggested_points: 500, actual_points: 0, sort_order: 1}
+    _declare_role_figure(saf_s7f1,  1, 1, [ radagast ])
+    _declare_role_figure(saf_s7f1,  1, 2, [ gwaihir ])
+    _declare_role_figure(saf_s7f1,  1, 3, [ treebeard ])
+    _declare_role_figure(saf_s7f1,  1, 4, [ rohan_captain_horse ])
+    _declare_role_figure(saf_s7f1,  8, 5, [ rohan_rider ])
+    _declare_role_figure(saf_s7f1,  8, 6, [ rohan_rider_spear ])
 
+    saf_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: saf_s7.id, faction: :isengard, suggested_points: 500, actual_points: 0, sort_order: 2}
+    _declare_role_figure(saf_s7f2,  2, 1, [ uruk_hai_shaman ])
+    _declare_role_figure(saf_s7f2,  2, 2, [ uruk_hai_captain_shield ])
+    _declare_role_figure(saf_s7f2, 12, 3, [ uruk_hai_w_shield ])
+    _declare_role_figure(saf_s7f2,  4, 4, [ uruk_hai_w_crossbow ])
+    _declare_role_figure(saf_s7f2,  5, 5, [ uruk_hai_berserker ])
+    _declare_role_figure(saf_s7f2,  4, 6, [ warg_rider_shield_spear ])
+    _declare_role_figure(saf_s7f2,  4, 7, [ warg_rider_bow ])
 
     #########################################################################
     # A SHADOW IN THE EAST
@@ -776,7 +892,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(site_s5f1,  6, 3, [ dwarf_khazad_gd ])
     _declare_role_figure(site_s5f1,  9, 4, [ dwarf_w_bow ])
     _declare_role_figure(site_s5f1,  7, 5, [ dwarf_w_shield ])
-    _declare_role_figure(site_s5f1,  4, 6, [ dwarf_w_axe ])
+    _declare_role_figure(site_s5f1,  4, 6, [ dwarf_w_2h ])
     _declare_role_figure(site_s5f1,  1, 7, [ dwarf_w_banner ])
 
     site_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: site_s5.id, faction: :easterlings, suggested_points: 550, actual_points: 511, sort_order: 2}
