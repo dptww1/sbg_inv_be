@@ -28,6 +28,8 @@ defmodule SbgInv.ScenarioControllerTest do
       "date_year" => scenario.date_year,
       "is_canonical" => scenario.is_canonical,
       "size" => scenario.size,
+      "rating" => 0,
+      "num_votes" => 0,
       "scenario_resources" => %{
         "source" => [],
         "web_replay" => [],
@@ -36,7 +38,7 @@ defmodule SbgInv.ScenarioControllerTest do
         "podcast" => []
        },
       "scenario_factions" => [],
-      "user_scenario" => %{ "rating" => 0, "owned" => 0, "painted" => 0 }
+      "user_scenario" => %{ "rating" => 0, "owned" => 0, "painted" => 0, "rating" => 0, "avg_rating" => 0, "num_votes" => 0 }
   }
   end
 

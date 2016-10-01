@@ -10,6 +10,8 @@ defmodule SbgInv.Scenario do
     field :date_day,     :integer
     field :is_canonical, :boolean, default: false
     field :size,         :integer
+    field :rating,       :float
+    field :num_votes,    :integer
 
     timestamps
 
@@ -19,7 +21,7 @@ defmodule SbgInv.Scenario do
   end
 
   @required_fields ~w(name blurb date_age date_year date_month date_day is_canonical size)
-  @optional_fields ~w()
+  @optional_fields ~w(rating num_votes)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -28,8 +30,14 @@ defmodule SbgInv.Scenario do
   with no validation performed.
   """
   def changeset(model, params \\ %{}) do
-    cast(model, params, @required_fields, @optional_fields)
+    model
+    |> base_changeset(params)
     |> cast_assoc(:scenario_resources, params)
     |> cast_assoc(:scenario_factions, params)
+  end
+
+  def base_changeset(model, params \\ %{}) do
+    model
+    |> cast(params, @required_fields, @optional_fields)
   end
 end

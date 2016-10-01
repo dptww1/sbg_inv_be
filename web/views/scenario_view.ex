@@ -22,7 +22,7 @@ defmodule SbgInv.ScenarioView do
   end
 
   defp base_scenario(scenario) do
-    user_scenario = if(((length scenario.user_scenarios) > 0), do: hd(scenario.user_scenarios), else: %SbgInv.UserScenario{ rating: 0, owned: 0, painted: 0 })
+    user_scenario = if(((length scenario.user_scenarios) > 0), do: hd(scenario.user_scenarios), else: %SbgInv.UserScenario{scenario: scenario})
 
     %{
       id: scenario.id,
@@ -35,8 +35,10 @@ defmodule SbgInv.ScenarioView do
       is_canonical: scenario.is_canonical,
       size: scenario.size,
       id: scenario.id,
+      rating: if(scenario.rating, do: scenario.rating, else: 0),
+      num_votes: if(scenario.num_votes, do: scenario.num_votes, else: 0),
       scenario_resources: render_one(massage_resources(scenario.scenario_resources), SbgInv.ScenarioResourceView, "resources.json"),
-      user_scenario: render_one(user_scenario, SbgInv.UserScenarioView, "user_scenario.json")
+      user_scenario: render_one(%{user_scenario | scenario: scenario}, SbgInv.UserScenarioView, "user_scenario.json")
     }
   end
 

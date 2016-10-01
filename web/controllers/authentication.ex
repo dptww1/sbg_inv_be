@@ -13,6 +13,10 @@ defmodule SbgInv.Authentication do
     end
   end
 
+  def required(conn) do
+    call(conn, %{})
+  end
+
   def call(conn, _opts) do
     case find_user(conn) do
       {:ok, user} -> assign(conn, :current_user, user)

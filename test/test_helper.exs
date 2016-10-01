@@ -7,6 +7,13 @@ defmodule SbgInv.TestHelper do
 
   alias SbgInv.{Figure, RoleFigure, Scenario, ScenarioFaction, Role, Session, User, UserScenario, UserFigure}
 
+  def pinspect(conn, obj) do
+    IO.puts "---"
+    IO.inspect obj
+    IO.puts "---"
+    conn
+  end
+
   def create_user(name \\ "anonymous", email \\ "anonymous@example.com") do
     Repo.insert! %User{name: name, email: email}
   end
@@ -59,6 +66,8 @@ defmodule SbgInv.TestHelper do
         "date_day" => 1,
         "is_canonical" => true,
         "size" => 0,
+        "rating" => 0,
+        "num_votes" => 0,
         "scenario_factions" => [
           %{
             "actual_points" => 0,
@@ -92,9 +101,9 @@ defmodule SbgInv.TestHelper do
         },
         "user_scenario" =>
           if user == :user1 do
-            %{"owned" => 8, "painted" => 6, "rating" => nil}
+            %{"owned" => 8, "painted" => 6, "rating" => 0, "avg_rating" => 0, "num_votes" => 0}
           else
-            %{"owned" => 7, "painted" => 5, "rating" => nil}
+            %{"owned" => 7, "painted" => 5, "rating" => 0, "avg_rating" => 0, "num_votes" => 0}
           end
       }
     }

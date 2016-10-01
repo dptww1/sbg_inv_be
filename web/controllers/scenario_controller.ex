@@ -69,7 +69,7 @@ defmodule SbgInv.ScenarioController do
 
     case Repo.update(changeset) do
       {:ok, scenario} ->
-        render(conn, "show.json", scenario: scenario, user_id: 1)
+        render(conn, "show.json", scenario: scenario, user_id: 1)   # TODO: user_id shouldn't be needed here
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
