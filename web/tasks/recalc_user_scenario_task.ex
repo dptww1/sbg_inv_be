@@ -32,8 +32,8 @@ defmodule SbgInv.RecalcUserScenarioTask do
       case {existing_user_scenario, new_is_non_empty} do
         {nil, true} ->
           Logger.info("#{new_user_scenario.scenario_id}: NEW")  # TODO die
-          changeset = SbgInv.UserScenario.changeset(%SbgInv.UserScenario{}, Map.from_struct new_user_scenario)  # Map.from_struct is goofy
-          IO.inspect changeset
+          changeset = SbgInv.UserScenario.changeset(%SbgInv.UserScenario{}, Map.from_struct new_user_scenario)  # TODO Map.from_struct is goofy
+          #IO.inspect changeset
           case Repo.insert changeset do
             {:ok, _}            -> Logger.info "Added scenario #{new_user_scenario.scenario_id} for user #{user_id}"
             {:error, changeset} -> Logger.error "Couldn't add scenario #{new_user_scenario.scenario_id} for user #{user_id}: #{Enum.join changeset.errors, "\n"}"
