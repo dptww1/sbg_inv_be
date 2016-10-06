@@ -25,7 +25,7 @@ defmodule SbgInv.Router do
     resources "/scenarios",     ScenarioController,     except: [:new, :edit]
     resources "/sessions",      SessionController,      only: [:create]
     resources "/recalc",        RecalcController,       only: [:index]
-    resources "/userscenarios", UserScenarioController, only: [:create, :update]
+    resources "/userscenarios", UserScenarioController, only: [:create]
     resources "/users",         UserController,         only: [:create]
   end
 end

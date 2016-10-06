@@ -10,14 +10,19 @@ defmodule SbgInv.UserScenarioController do
       conn
 
     else
-      changeset = UserScenario.changeset(%UserScenario{user_id: conn.assigns.current_user.id}, user_scenario_params)
+      result =
+        case Repo.get_by(UserScenario, user_id: conn.assigns.current_user.id, scenario_id: Map.get(user_scenario_params, "scenario_id")) do
+          nil -> %UserScenario{user_id: conn.assigns.current_user.id, scenario_id: Map.get(user_scenario_params, "scenario_id")}
+          user_scenario -> user_scenario
+        end
+      |> UserScenario.changeset(user_scenario_params)
+      |> Repo.insert_or_update
 
-      case Repo.insert(changeset) do
+      case result do
         {:ok, user_scenario} ->
           user_scenario = Repo.preload(user_scenario, [:scenario])
           scenario = update_scenario_rating(conn, user_scenario.scenario)
           conn
-          |> put_status(:created)
           |> render("user_scenario.json", user_scenario: %{user_scenario | scenario: scenario})
         {:error, changeset} ->
           conn
@@ -27,34 +32,16 @@ defmodule SbgInv.UserScenarioController do
     end
   end
 
-  def update(conn, %{"id" => id, "user_scenario" => user_scenario_params}) do
-    conn = Authentication.required(conn)
-
-    if conn.halted do
-      conn
-
-    else
-      user_scenario = Repo.get!(UserScenario, id) |> Repo.preload(:scenario)
-      changeset = UserScenario.changeset(user_scenario, user_scenario_params)
-      case Repo.update(changeset) do
-        {:ok, user_scenario} ->
-          scenario = update_scenario_rating(conn, user_scenario.scenario)
-          render(conn, "user_scenario.json", user_scenario: %{user_scenario | scenario: scenario})
-        {:error, changeset} ->
-          conn
-          |> put_status(:unprocessable_entity)
-          |> render(SbgInv.ChangesetView, "error.json", changeset: changeset)
-      end
-    end
-  end
-
-  defp update_scenario_rating(conn, scenario) do
-    [num_votes, rating] = Repo.one(from p in UserScenario, select: [count("*"), fragment("?::float", avg(p.rating))])
-    changeset = Scenario.base_changeset(%Scenario{}, Map.merge(Map.delete(scenario, :__struct__), %{rating: rating, num_votes: num_votes}))
-    case Repo.insert(changeset) do
+  defp update_scenario_rating(_conn, scenario) do
+    [num_votes, rating] = Repo.one(
+      from p in UserScenario,
+      where: p.scenario_id == ^scenario.id,
+      select: [count("*"), fragment("?::float", avg(p.rating))])
+    changeset = Scenario.base_changeset(scenario, %{rating: rating, num_votes: num_votes})
+    case Repo.update(changeset) do
       {:ok, scenario} ->
         scenario
-      {:error, changeset} ->
+      {:error, _changeset} ->
         %Scenario{}
     end
   end
