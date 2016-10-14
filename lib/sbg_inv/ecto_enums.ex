@@ -33,7 +33,12 @@ defenum ScenarioResourceBook,
   kd:      11,   # Khazad-dûm
   fotr_jb: 12,   # Fellowship of the Ring Journeybook
   ttt_jb:  13,   # The Two Towers Journeybook
-  rotk_jb: 14    # Return of the King Journeybook
+  rotk_jb: 14,   # Return of the King Journeybook
+  mordor:  15,   # Mordor
+  fr:      16,   # Fallen Realms
+  ma:      17,   # Moria & Angmar
+  kom:     18,   # Kingdoms of Men
+  fp:      19    # Free Peoples
 
 defenum ScenarioResourceType,
   source: 0,
