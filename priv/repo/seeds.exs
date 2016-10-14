@@ -469,7 +469,7 @@ defmodule SbgInv.Data do
     #========================================================================
     fotn_s4 = Repo.insert! %Scenario{
       name: "Meddle Not in the Affairs of Wizards",
-      blurb: "The Istari faces the minions of Dol Guldur.",
+      blurb: "The Istari face the minions of Dol Guldur.",
       date_age: 3, date_year: 2062, date_month: -1, date_day: 0, is_canonical: true, size: 17
     }
 
