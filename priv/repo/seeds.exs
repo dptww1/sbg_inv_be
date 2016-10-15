@@ -58,6 +58,12 @@ defmodule SbgInv.Data do
     warg         = Repo.insert! %Figure{name: "Wild Warg",    plural_name: "Wild Wargs"}
 
     #########################################################################
+    # FIGURES: ARNOR
+    #########################################################################
+
+    ranger_north = Repo.insert! %Figure{name: "Ranger of the North", plural_name: "Rangers of the North"}
+
+    #########################################################################
     # FIGURES: DWARVES
     #########################################################################
 
@@ -118,12 +124,16 @@ defmodule SbgInv.Data do
     aragorn       = Repo.insert! %Figure{name: "Aragorn"}
     aragorn_horse = Repo.insert! %Figure{name: "Aragorn on horse"}
     frodo         = Repo.insert! %Figure{name: "Frodo"}
+    frodo_pony    = Repo.insert! %Figure{name: "Frodo on pony"}
     gimli         = Repo.insert! %Figure{name: "Gimli"}
     legolas       = Repo.insert! %Figure{name: "Legolas"}
     legolas_horse = Repo.insert! %Figure{name: "Legolas on horse"}
     merry         = Repo.insert! %Figure{name: "Merry"}
+    merry_pony    = Repo.insert! %Figure{name: "Merry on pony"}
     pippin        = Repo.insert! %Figure{name: "Pippin"}
+    pippin_pony   = Repo.insert! %Figure{name: "Pippin on pony"}
     sam           = Repo.insert! %Figure{name: "Sam"}
+    sam_pony      = Repo.insert! %Figure{name: "Sam on pony"}
 
     #########################################################################
     # FIGURES: FREE PEOPLES
@@ -133,6 +143,7 @@ defmodule SbgInv.Data do
     gandalf_grey        = Repo.insert! %Figure{name: "Gandalf the Grey"}
     gandalf_white       = Repo.insert! %Figure{name: "Gandalf the White"}
     gandalf_white_horse = Repo.insert! %Figure{name: "Gandalf the White on horse"}
+    goldberry           = Repo.insert! %Figure{name: "Goldberry"}
     gwaihir             = Repo.insert! %Figure{name: "Gwaihir"}
     radagast            = Repo.insert! %Figure{name: "Radagast"}
     saruman             = Repo.insert! %Figure{name: "Saruman the White"}
@@ -195,9 +206,11 @@ defmodule SbgInv.Data do
     #########################################################################
 
     ugluk       = Repo.insert! %Figure{name: "Uglúk"}
+    sharkey     = Repo.insert! %Figure{name: "Sharkey"}
     sharku      = Repo.insert! %Figure{name: "Sharku"}
     sharku_warg = Repo.insert! %Figure{name: "Sharku on Warg"}
     vrasku      = Repo.insert! %Figure{name: "Vraskû"}
+    worm        = Repo.insert! %Figure{name: "Worm"}
 
     dunlending_chieftain    = Repo.insert! %Figure{name: "Dunlending Chieftain",                 plural_name: "Dunlending Chieftains"}
     uruk_hai_captain_shield = Repo.insert! %Figure{name: "Uruk-hai Captain with shield",         plural_name: "Uruk-hai Captains with shield"}
@@ -208,6 +221,9 @@ defmodule SbgInv.Data do
     dunlending_w_bow        = Repo.insert! %Figure{name: "Dunlending with bow",                  plural_name: "Dunlendings with bow"}
     dunlending_w_shield     = Repo.insert! %Figure{name: "Dunlending with shield",               plural_name: "Dunlendings with shield"}
     dunlending_w_2h         = Repo.insert! %Figure{name: "Dunlending with two-handed weapon",    plural_name: "Dunlendings with two-handed weapon"}
+    ruffian                 = Repo.insert! %Figure{name: "Ruffian",                              plural_name: "Ruffians"}
+    ruffian_bow             = Repo.insert! %Figure{name: "Ruffian with bow",                     plural_name: "Ruffians with bow"}
+    ruffian_whip            = Repo.insert! %Figure{name: "Ruffian with whip",                    plural_name: "Ruffians with whip"}
     uruk_hai_berserker      = Repo.insert! %Figure{name: "Uruk-hai Berserker",                   plural_name: "Uruk-hai Berserkers"}
     uruk_hai_feral          = Repo.insert! %Figure{name: "Feral Uruk-hai",                       plural_name: "Feral Uruk-hai"}
     uruk_hai_s              = Repo.insert! %Figure{name: "Uruk-hai Scout",                       plural_name: "Uruk-hai Scouts"}
@@ -306,7 +322,9 @@ defmodule SbgInv.Data do
     # FIGURES: MORIA
     #########################################################################
 
-    durburz = Repo.insert! %Figure{name: "Durbûrz"}
+    durburz        = Repo.insert! %Figure{name: "Durbûrz"}
+    golfimbul      = Repo.insert! %Figure{name: "Golfimbul"}
+    golfimbul_warg = Repo.insert! %Figure{name: "Golfimbul on warg"}
 
     balrog        = Repo.insert! %Figure{name: "Balrog",               plural_name: "Balrogs"}
     moria_captain = Repo.insert! %Figure{name: "Moria Goblin Captain", plural_name: "Moria Goblin Captains"}
@@ -388,6 +406,26 @@ defmodule SbgInv.Data do
     rohan_w_bow           = Repo.insert! %Figure{name: "Warrior of Rohan with bow",                       plural_name: "Warriors of Rohan with bow"}
     rohan_w_shield        = Repo.insert! %Figure{name: "Warrior of Rohan with shield",                    plural_name: "Warriors of Rohan with shield"}
     rohan_w_spear_shield  = Repo.insert! %Figure{name: "Warrior of Rohan with throwing spear and shield", plural_name: "Warriors of Rohan with throwing spear and shield"}
+
+    #########################################################################
+    # SHIRE
+    #########################################################################
+
+    bandobras      = Repo.insert! %Figure{name: "Bandobras Took"}
+    bandobras_pony = Repo.insert! %Figure{name: "Bandobras Took on pony"}
+    bilbo          = Repo.insert! %Figure{name: "Bilbo Baggins"}
+    maggot         = Repo.insert! %Figure{name: "Farmer Maggot"}
+    fang           = Repo.insert! %Figure{name: "Fang"}
+    fatty          = Repo.insert! %Figure{name: "Fredegar Bolger"}
+    grip           = Repo.insert! %Figure{name: "Grip"}
+    lobelia        = Repo.insert! %Figure{name: "Lobelia Sackville-Baggins"}
+    paladin        = Repo.insert! %Figure{name: "Paladin Took"}
+    wolf           = Repo.insert! %Figure{name: "Wolf"}
+
+    hobbit_archer      = Repo.insert! %Figure{name: "Hobbit Archer",                  plural_name: "Hobbit Archers"}
+    hobbit_archer_horn = Repo.insert! %Figure{name: "Hobbit Archer with signal horn", plural_name: "Hobbit Archers with signal horn"}
+    hobbit_militia     = Repo.insert! %Figure{name: "Hobbit Militia",                 plural_name: "Hobbit Militia"}
+    hobbit_shirriff    = Repo.insert! %Figure{name: "Hobbit Shirriff",                plural_name: "Hobbit Shirriffs"}
 
     #########################################################################
     # USER_FIGURES
@@ -613,6 +651,247 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotn_s7f2, 1, 5, [ troll_chieftain ])
     _declare_role_figure(fotn_s7f2, 1, 6, [ mordor_troll ])
     _declare_role_figure(fotn_s7f2, 4, 6, [ giant_spider ])
+
+    #########################################################################
+    # SCOURING OF THE SHIRE
+    #########################################################################
+
+    #========================================================================
+    sots_s1 = Repo.insert! %Scenario{
+      name: "Maggot's Farm",
+      blurb: "Sharkey's ruffians begin infiltrating the Shire.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 9
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s1.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 1, page: 18}
+
+    sots_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s1.id, faction: :shire, suggested_points: 50, actual_points: 50, sort_order: 1}
+    _declare_role_figure(sots_s1f1, 1, 1, [ maggot ])
+    _declare_role_figure(sots_s1f1, 1, 2, [ grip ])
+    _declare_role_figure(sots_s1f1, 1, 3, [ fang ])
+    _declare_role_figure(sots_s1f1, 1, 4, [ wolf ])
+
+    sots_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s1.id, faction: :isengard, suggested_points: 25, actual_points: 25, sort_order: 2}
+    _declare_role_figure(sots_s1f2, 1, 1, [ ruffian_bow ])
+    _declare_role_figure(sots_s1f2, 4, 2, [ ruffian_whip ])
+
+    #========================================================================
+    sots_s2 = Repo.insert! %Scenario{
+      name: "Beating the Bounds",
+      blurb: "The Shire's militia tries to keep out the Ruffians.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 18, is_canonical: true, size: 15
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s2.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 2, page: 22}
+
+    sots_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s2.id, faction: :shire, suggested_points: 17, actual_points: 17, sort_order: 1}
+    _declare_role_figure(sots_s2f1, 2, 1, [ hobbit_archer ])
+    _declare_role_figure(sots_s2f1, 3, 2, [ hobbit_militia ])
+
+    sots_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s2.id, faction: :isengard, suggested_points: 50, actual_points: 50, sort_order: 2}
+    _declare_role_figure(sots_s2f2, 5, 1, [ ruffian_bow ])
+    _declare_role_figure(sots_s2f2, 5, 2, [ ruffian_whip ])
+
+    #========================================================================
+    sots_s3 = Repo.insert! %Scenario{
+      name: "Brockenborings",
+      blurb: "Sharkey breaks up a meeting led by Fatty and Lobelia.",
+      date_age: 3, date_year: 3019, date_month: 6, date_day: 15, is_canonical: true, size: 18
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s3.id, resource_type: :source, book: :sots, title: "The Scouring of the Shite", sort_order: 3, page: 26}
+
+    sots_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s3.id, faction: :shire, suggested_points: 39, actual_points: 39, sort_order: 1}
+    _declare_role_figure(sots_s3f1, 1, 1, [ fatty ])
+    _declare_role_figure(sots_s3f1, 1, 2, [ lobelia ])
+    _declare_role_figure(sots_s3f1, 8, 3, [ hobbit_militia ])
+
+    sots_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s3.id, faction: :isengard, suggested_points: 90, actual_points: 90, sort_order: 2}
+    _declare_role_figure(sots_s3f2, 1, 1, [ sharkey ])
+    _declare_role_figure(sots_s3f2, 1, 1, [ worm ])
+    _declare_role_figure(sots_s3f2, 3, 3, [ ruffian_whip ])
+    _declare_role_figure(sots_s3f2, 3, 4, [ ruffian_bow ])
+
+    #========================================================================
+    sots_s4 = Repo.insert! %Scenario{
+      name: "The Old Store House",
+      blurb: "The hobbits try to get some of the food \"gathered\" by the ruffians.",
+      date_age: 3, date_year: 3019, date_month: 8, date_day: 16, is_canonical: true, size: 20
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s4.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 4, page: 28}
+
+    sots_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s4.id, faction: :shire, suggested_points: 40, actual_points: 40, sort_order: 1}
+    _declare_role_figure(sots_s4f1, 4, 1, [ hobbit_shirriff ])
+    _declare_role_figure(sots_s4f1, 8, 2, [ hobbit_militia ])
+
+    sots_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s4.id, faction: :isengard, suggested_points: 40, actual_points: 40, sort_order: 2}
+    _declare_role_figure(sots_s4f2, 8, 1, [ ruffian_whip ])
+
+    #========================================================================
+    sots_s5 = Repo.insert! %Scenario{
+      name: "The Southfarthing",
+      blurb: "Paladin Took leads the revolt against the ruffians in the Southfarthing.",
+      date_age: 3, date_year: 3019, date_month: 10, date_day: 30, is_canonical: true, size: 32
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s5.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 5, page: 28}
+
+    sots_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s5.id, faction: :shire, suggested_points: 101, actual_points: 101, sort_order: 1}
+    _declare_role_figure(sots_s5f1, 1, 1, [ paladin ])
+    _declare_role_figure(sots_s5f1, 4, 2, [ hobbit_shirriff ])
+    _declare_role_figure(sots_s5f1, 3, 3, [ hobbit_archer ])
+    _declare_role_figure(sots_s5f1, 1, 4, [ hobbit_archer_horn ])
+    _declare_role_figure(sots_s5f1, 8, 5, [ hobbit_militia ])
+
+    sots_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s5.id, faction: :isengard, suggested_points: 72, actual_points: 72, sort_order: 1}
+    _declare_role_figure(sots_s5f2, 6, 1, [ ruffian_bow ])
+    _declare_role_figure(sots_s5f2, 6, 2, [ ruffian_whip ])
+    _declare_role_figure(sots_s5f2, 3, 3, [ ruffian ])
+
+    #========================================================================
+    sots_s6 = Repo.insert! %Scenario{
+      name: "The Battle of Bywater",
+      blurb: "The last battle of the War of the Ring.",
+      date_age: 3, date_year: 3019, date_month: 11, date_day: 1, is_canonical: true, size: 44
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s6.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 6, page: 40}
+
+    sots_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s6.id, faction: :shire, suggested_points: 269, actual_points: 269, sort_order: 1}
+    _declare_role_figure(sots_s6f1,  1, 1, [ frodo_pony ])
+    _declare_role_figure(sots_s6f1,  1, 2, [ sam_pony ])
+    _declare_role_figure(sots_s6f1,  1, 3, [ merry_pony ])
+    _declare_role_figure(sots_s6f1,  1, 4, [ pippin_pony ])
+    _declare_role_figure(sots_s6f1,  4, 5, [ hobbit_shirriff ])
+    _declare_role_figure(sots_s6f1,  8, 6, [ hobbit_archer ])
+    _declare_role_figure(sots_s6f1, 12, 7, [ hobbit_militia ])
+
+    sots_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s6.id, faction: :isengard, suggested_points: 135, actual_points: 135, sort_order: 2}
+    _declare_role_figure(sots_s6f2, 1, 1, [ sharkey ])
+    _declare_role_figure(sots_s6f2, 1, 2, [ worm ])
+    _declare_role_figure(sots_s6f2, 9, 3, [ ruffian_whip ])
+    _declare_role_figure(sots_s6f2, 6, 4, [ ruffian_bow ])
+
+    #========================================================================
+    sots_s7 = Repo.insert! %Scenario{
+      name: "The Founding of the Shire",
+      blurb: "The hobbits move in to the area that will become the Shire ... if they can overcome the local goblins.",
+      date_age: 3, date_year: 1601, date_month: 0, date_day: 0, is_canonical: true, size: 38
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s7.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 7, page: 50}
+
+    sots_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s7.id, faction: :shire, suggested_points: 84, actual_points: 84, sort_order: 1}
+    _declare_role_figure(sots_s7f1,  4, 1, [ hobbit_shirriff ])
+    _declare_role_figure(sots_s7f1,  7, 2, [ hobbit_archer ])
+    _declare_role_figure(sots_s7f1,  1, 3, [ hobbit_archer_horn ])
+    _declare_role_figure(sots_s7f1, 12, 4, [ hobbit_militia ])
+
+    sots_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s7.id, faction: :moria, suggested_points: 190, actual_points: 190, sort_order: 2}
+    _declare_role_figure(sots_s7f2,  1, 1, [ moria_shaman ])
+    _declare_role_figure(sots_s7f2,  4, 2, [ moria_g_bow ])
+    _declare_role_figure(sots_s7f2,  4, 3, [ moria_g_spear ])
+    _declare_role_figure(sots_s7f2,  4, 4, [ moria_g_shield ])
+    _declare_role_figure(sots_s7f2,  1, 5, [ cave_troll_chain ])
+
+    #========================================================================
+    sots_s8 = Repo.insert! %Scenario{
+      name: "Whatever Happened to Halfast?",
+      blurb: "Halfast Bracegirdle goes exploring with some of his hobbit friends, and runs into trouble.",
+      date_age: 3, date_year: 1903, date_month: 0, date_day: 0, is_canonical: true, size: 21
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s8.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 8, page: 54}
+
+    sots_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s8.id, faction: :shire, suggested_points: 50, actual_points: 44, sort_order: 1}
+    _declare_role_figure(sots_s8f1, 1, 1, "Halfast Bracegirdle (Shirriff)", [ hobbit_shirriff ])
+    _declare_role_figure(sots_s8f1, 4, 2, [ hobbit_archer ])
+    _declare_role_figure(sots_s8f1, 8, 3, [ hobbit_militia ])
+
+    sots_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s8.id, faction: :angmar, suggested_points: 250, actual_points: 232, sort_order: 2}
+    _declare_role_figure(sots_s8f2, 4, 1, [ barrow_wight ])
+    _declare_role_figure(sots_s8f2, 4, 2, [ warg ])
+
+    #========================================================================
+    sots_s9 = Repo.insert! %Scenario{
+      name: "The Battle of Greenfields",
+      blurb: "Bandobras Took protects the Shire against goblins lead by Golfimbul, and invents the game of golf.",
+      date_age: 3, date_year: 2747, date_month: 0, date_day: 0, is_canonical: true, size: 33
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s9.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 9, page: 56}
+
+    sots_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s9.id, faction: :shire, suggested_points: 175, actual_points: 171, sort_order: 1}
+    _declare_role_figure(sots_s9f1, 1, 1, [ bandobras_pony ])
+    _declare_role_figure(sots_s9f1, 3, 2, [ ranger_north ])
+    _declare_role_figure(sots_s9f1, 8, 3, [ hobbit_militia ])
+    _declare_role_figure(sots_s9f1, 4, 4, [ hobbit_archer ])
+    _declare_role_figure(sots_s9f1, 4, 5, [ hobbit_shirriff ])
+
+    sots_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s9.id, faction: :moria, suggested_points: 175, actual_points: 171, sort_order: 2}
+    _declare_role_figure(sots_s9f2, 1, 1, [ golfimbul_warg ])
+    _declare_role_figure(sots_s9f2, 6, 2, [ warg_rider_shield_spear ])
+    _declare_role_figure(sots_s9f2, 6, 3, [ warg_rider_bow ])
+
+    #========================================================================
+    sots_s10 = Repo.insert! %Scenario{
+      name: "The Wolves of Winter",
+      blurb: "Gandalf helps the Shirefolk during the long winter.",
+      date_age: 3, date_year: 2911, date_month: 0, date_day: 0, is_canonical: true, size: 26
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s10.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 10, page: 58}
+
+    sots_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s10.id, faction: :shire, suggested_points: 200, actual_points: 126, sort_order: 1}
+    _declare_role_figure(sots_s10f1, 1, 1, [ gandalf_grey ])
+    _declare_role_figure(sots_s10f1, 8, 2, [ hobbit_militia ])
+    _declare_role_figure(sots_s10f1, 4, 3, [ hobbit_archer ])
+    _declare_role_figure(sots_s10f1, 4, 4, [ hobbit_shirriff ])
+
+    sots_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s10.id, faction: :angmar, suggested_points: 200, actual_points: 139, sort_order: 2}
+    _declare_role_figure(sots_s10f2, 1, 1, [ warg_chieftain ])
+    _declare_role_figure(sots_s10f2, 8, 1, [ warg ])
+
+    #========================================================================
+    sots_s11 = Repo.insert! %Scenario{
+      name: "Odovacar Bolger's Promenade",
+      blurb: "A jolly picnic in the Old Forest turns into the stuff of nighmares.",
+      date_age: 3, date_year: 2981, date_month: 0, date_day: 0, is_canonical: true, size: 10
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s11.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 11, page: 60}
+
+    sots_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s11.id, faction: :shire, suggested_points: 175, actual_points: 174, sort_order: 1}
+    _declare_role_figure(sots_s11f1, 1, 1, [ tom_bombadil ])
+    _declare_role_figure(sots_s11f1, 1, 2, [ goldberry ])
+    _declare_role_figure(sots_s11f1, 8, 3, [ hobbit_militia ])
+
+    Repo.insert! %ScenarioFaction{scenario_id: sots_s11.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
+
+    #========================================================================
+    sots_s12 = Repo.insert! %Scenario{
+      name: "The Road to Rivendell",
+      blurb: "Bilbo's journey to Rivendell is discovered by a Moria force. Fortunately some friends are around to help him.",
+      date_age: 3, date_year: 3001, date_month: 0, date_day: 0, is_canonical: true, size: 35
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sots_s12.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 12, page: 62}
+
+    sots_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s12.id, faction: :free_peoples, suggested_points: 400, actual_points: 397, sort_order: 1}
+    _declare_role_figure(sots_s12f1, 1, 1, [ bilbo ])
+    _declare_role_figure(sots_s12f1, 1, 2, [ aragorn ])
+    _declare_role_figure(sots_s12f1, 3, 3, [ wood_elf_w_armor_blade ])
+    _declare_role_figure(sots_s12f1, 3, 4, [ wood_elf_w_armor_bow ])
+    _declare_role_figure(sots_s12f1, 3, 5, [ ranger_north ])
+
+    sots_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s12.id, faction: :moria, suggested_points: 200, actual_points: 397, sort_order: 2}
+    _declare_role_figure(sots_s12f2, 4, 1, [ warg_rider_bow ])
+    _declare_role_figure(sots_s12f2, 4, 2, [ warg_rider_shield_spear ])
+    _declare_role_figure(sots_s12f2, 4, 3, [ warg_rider_shield ])
+    _declare_role_figure(sots_s12f2, 4, 4, [ moria_g_shield ])
+    _declare_role_figure(sots_s12f2, 4, 5, [ moria_g_bow ])
+    _declare_role_figure(sots_s12f2, 4, 6, [ moria_g_spear ])
 
     #########################################################################
     # SHADOW & FLAME

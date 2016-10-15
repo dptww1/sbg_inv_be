@@ -16,7 +16,8 @@ defenum Faction,
   moria: 12,
   rivendell: 13,
   rohan: 14,
-  white_council: 15
+  shire: 15,
+  white_council: 16
 
 defenum ScenarioResourceBook,
   fotr:     0,   # Fellowship of the Ring
