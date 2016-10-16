@@ -18,7 +18,7 @@ defmodule SbgInv.ScenarioController do
             |> preload(:scenario_resources)
             |> preload(:scenario_factions)
             |> preload([user_scenarios: ^user_query])
-            |> order_by([asc: :date_year, asc: :date_month, asc: :date_day])
+            |> order_by([asc: :date_age, asc: :date_year, asc: :date_month, asc: :date_day])
 
     scenarios = Repo.all(query)
 
