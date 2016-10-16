@@ -61,6 +61,8 @@ defmodule SbgInv.Data do
     # FIGURES: ARNOR
     #########################################################################
 
+    halbarad = Repo.insert! %Figure{name: "Halbarad"}
+
     ranger_north = Repo.insert! %Figure{name: "Ranger of the North", plural_name: "Rangers of the North"}
 
     #########################################################################
@@ -165,14 +167,19 @@ defmodule SbgInv.Data do
     cirion              = Repo.insert! %Figure{name: "Cirion"}
     faramir             = Repo.insert! %Figure{name: "Faramir"}
     faramir_armor_horse = Repo.insert! %Figure{name: "Faramir, Captain of Gondor with heavy armour and horse"}
+    imrahil             = Repo.insert! %Figure{name: "Prince Imrahil of Dol Amroth"}
+    imrahil_horse       = Repo.insert! %Figure{name: "Prince Imrahil on horse"}
     madril              = Repo.insert! %Figure{name: "Madril"}
     pippin_gondor       = Repo.insert! %Figure{name: "Pippin"}
 
-    gondor_captain_mt = Repo.insert! %Figure{name: "Captain of Minas Tirith", plural_name: "Captains of Minas Tirith"}
+    gondor_captain_mt       = Repo.insert! %Figure{name: "Captain of Minas Tirith",          plural_name: "Captains of Minas Tirith"}
+    gondor_captain_mt_horse = Repo.insert! %Figure{name: "Captain of Minas Tirith on horse", plural_name: "Captains of Minas Tirith on horse"} # exists?
 
     gondor_citadel_gd_spear  = Repo.insert! %Figure{name: "Citadel Guard with spear",                      plural_name: "Citadel Guards with spear"}
     gondor_citadel_gd_bow    = Repo.insert! %Figure{name: "Citadel Guard with longbow",                    plural_name: "Citadel Guards with longbow"}
     gondor_knight            = Repo.insert! %Figure{name: "Knight of Minas Tirith",                        plural_name: "Knights of Minas Tirith"}
+    gondor_knight_da_foot    = Repo.insert! %Figure{name: "Foot Knight of Dol Amroth",                     plural_name: "Foot Knights of Dol Amroth"}
+    gondor_knight_da_horse   = Repo.insert! %Figure{name: "Knight of Dol Amroth",                          plural_name: "Knights of Dol Amroth"}
     gondor_rog               = Repo.insert! %Figure{name: "Ranger of Gondor",                              plural_name: "Rangers of Gondor"}
     gondor_rog_spear         = Repo.insert! %Figure{name: "Ranger of Gondor with spear",                   plural_name: "Rangers of Gondor with spear"}
     gondor_womt_banner       = Repo.insert! %Figure{name: "Warrior of Minas Tirith with banner",           plural_name: "Warriors of Minas Tirith with banner"}
@@ -192,12 +199,18 @@ defmodule SbgInv.Data do
     # FIGURES: HARAD
     #########################################################################
 
+    suladan = Repo.insert! %Figure{name: "Suladân"}
+
     harad_chieftain       = Repo.insert! %Figure{name: "Haradrim Chieftain",          plural_name: "Haradrim Chieftains"}
     harad_chieftain_horse = Repo.insert! %Figure{name: "Haradrim Chieftain on horse", plural_name: "Haradrim Chieftains on horse"}
 
-    harad_w_banner = Repo.insert! %Figure{name: "Haradrim Warrior with banner", plural_name: "Haradrim Warriors with banner"}
-    harad_w_bow    = Repo.insert! %Figure{name: "Haradrim Warrior with bow",    plural_name: "Haradrim Warriors with bow"}
-    harad_w_spear  = Repo.insert! %Figure{name: "Haradrim Warrior with spear",  plural_name: "Haradrim Warriors with spear"}
+    harad_raider       = Repo.insert! %Figure{name: "Haradrim Raider",              plural_name: "Haradrim Raider"}
+    harad_raider_lance = Repo.insert! %Figure{name: "Haradrim Raider with lance",   plural_name: "Haradrim Raider with lance"}
+    harad_w_banner     = Repo.insert! %Figure{name: "Haradrim Warrior with banner", plural_name: "Haradrim Warriors with banner"}
+    harad_w_bow        = Repo.insert! %Figure{name: "Haradrim Warrior with bow",    plural_name: "Haradrim Warriors with bow"}
+    harad_w_spear      = Repo.insert! %Figure{name: "Haradrim Warrior with spear",  plural_name: "Haradrim Warriors with spear"}
+    hasharin           = Repo.insert! %Figure{name: "Hâsharin",                     plural_name: "Hâsharin"}
+    mahud_beastmaster  = Repo.insert! %Figure{name: "Mahûd Beastmaster Chieftain",  plural_name: "Mahûd Beastmaster Chieftain"}
 
     mumak = Repo.insert! %Figure{name: "Mûmak", plural_name: "Mûmakil"}
 
@@ -268,24 +281,26 @@ defmodule SbgInv.Data do
     # FIGURES: MORDOR
     #########################################################################
 
-    dark_marshal     = Repo.insert! %Figure{name: "The Dark Marshal"}
-    gorbag           = Repo.insert! %Figure{name: "Gorbag"}
-    gothmog          = Repo.insert! %Figure{name: "Gothmog"}
-    grishnakh        = Repo.insert! %Figure{name: "Grishnákh"}
+    dark_marshal         = Repo.insert! %Figure{name: "The Dark Marshal"}
+    gorbag               = Repo.insert! %Figure{name: "Gorbag"}
+    gothmog              = Repo.insert! %Figure{name: "Gothmog"}
+    grishnakh            = Repo.insert! %Figure{name: "Grishnákh"}
     #khamul in Easterlings
-    mouth_horse      = Repo.insert! %Figure{name: "Mouth of Sauron on armoured horse"}
-    sauron           = Repo.insert! %Figure{name: "Sauron"}
-    shadow_lord      = Repo.insert! %Figure{name: "The Shadow Lord"}
-    shagrat          = Repo.insert! %Figure{name: "Shagrat"}
-    shelob           = Repo.insert! %Figure{name: "Shelob"}
-    smeagol          = Repo.insert! %Figure{name: "Sméagol"}
-    tainted          = Repo.insert! %Figure{name: "The Tainted"}
-    undying          = Repo.insert! %Figure{name: "The Undying"}
-    witch_king       = Repo.insert! %Figure{name: "Witch-king of Angmar"}
-    witch_king_horse = Repo.insert! %Figure{name: "Witch-king of Angmar on horse"}
+    mouth_horse          = Repo.insert! %Figure{name: "Mouth of Sauron on armoured horse"}
+    sauron               = Repo.insert! %Figure{name: "Sauron"}
+    shadow_lord          = Repo.insert! %Figure{name: "The Shadow Lord"}
+    shagrat              = Repo.insert! %Figure{name: "Shagrat"}
+    shelob               = Repo.insert! %Figure{name: "Shelob"}
+    smeagol              = Repo.insert! %Figure{name: "Sméagol"}
+    tainted              = Repo.insert! %Figure{name: "The Tainted"}
+    undying              = Repo.insert! %Figure{name: "The Undying"}
+    witch_king           = Repo.insert! %Figure{name: "Witch-king of Angmar"}
+    witch_king_horse     = Repo.insert! %Figure{name: "Witch-king of Angmar on horse"}
+    witch_king_fellbeast = Repo.insert! %Figure{name: "Witch-king of Angmar on Fell Beast"}
 
     m_orc_captain        = Repo.insert! %Figure{name: "Morannon Orc Captain",     plural_name: "Morannon Orc Captains"}
     m_orc_captain_2h     = Repo.insert! %Figure{name: "Morannon Orc Captain with two-handed weapon", plural_name: "Morannon Orc Captains with two-handed weapon"}
+    mordor_uruk_captain  = Repo.insert! %Figure{name: "Mordor Uruk-hai Captain",  plural_name: "Mordor Uruk-hai Captains"}
     orc_captain          = Repo.insert! %Figure{name: "Orc Captain",              plural_name: "Orc Captains"}
     orc_captain_warg     = Repo.insert! %Figure{name: "Orc Captain on Warg",      plural_name: "Orc Captains on Warg"}
     orc_drummer          = Repo.insert! %Figure{name: "Orc Drummer",              plural_name: "Orc Drummers"}
@@ -381,11 +396,13 @@ defmodule SbgInv.Data do
     eomer               = Repo.insert! %Figure{name: "Eomer"}
     eomer_horse         = Repo.insert! %Figure{name: "Eomer on horse"}
     eorl_horse          = Repo.insert! %Figure{name: "Eorl the Young on horse"}
+    eowyn_horse         = Repo.insert! %Figure{name: "Éowyn on horse"}
     erkenbrand          = Repo.insert! %Figure{name: "Erkenbrand"}
     erkenbrand_horse    = Repo.insert! %Figure{name: "Erkenbrand on horse"}
     gamling             = Repo.insert! %Figure{name: "Gamling"}
     gamling_horse       = Repo.insert! %Figure{name: "Gamling on horse with banner"}
     hama                = Repo.insert! %Figure{name: "Hama"}
+    merry_rohan         = Repo.insert! %Figure{name: "Meriadoc, Knight of the Mark"}
     theoden             = Repo.insert! %Figure{name: "Théoden"}
     theoden_horse       = Repo.insert! %Figure{name: "Théoden on horse"}
     theoden_armor_horse = Repo.insert! %Figure{name: "Théoden with armor on armored horse"}
@@ -451,6 +468,322 @@ defmodule SbgInv.Data do
     Repo.insert! %UserFigure{user_id: 1, figure_id: madril.id,  owned:  1, painted: 1}
 
     Repo.insert! %UserFigure{user_id: 1, figure_id: gondor_womt_bow.id, owned: 36, painted: 24}
+
+    #########################################################################
+    # THE BATTLE OF THE PELENNOR FIELDS
+    #########################################################################
+
+    #========================================================================
+    bpf_s1 = Repo.insert! %Scenario{
+      name: "The Banks of the Harnen",
+      blurb: "The Haradrim attempt to cross the Harnen river to enter Gondorian lands.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, is_canonical: true, size: 50
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bpf_s1.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 1, page: 14}
+
+    bpf_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s1.id, faction: :gondor, suggested_points: 280, actual_points: 280, sort_order: 1}
+    _declare_role_figure(bpf_s1f1, 1, 1, [ gondor_captain_mt ])
+    _declare_role_figure(bpf_s1f1, 8, 2, [ gondor_womt_spear_shield ])
+    _declare_role_figure(bpf_s1f1, 7, 3, [ gondor_womt_shield ])
+    _declare_role_figure(bpf_s1f1, 8, 4, [ gondor_womt_bow ])
+    _declare_role_figure(bpf_s1f1, 1, 5, [ gondor_womt_banner ])
+
+    bpf_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s1.id, faction: :harad, suggested_points: 280, actual_points: 244, sort_order: 2}
+    _declare_role_figure(bpf_s1f2,  1, 1, [ harad_chieftain ])
+    _declare_role_figure(bpf_s1f2, 12, 2, [ harad_w_spear ])
+    _declare_role_figure(bpf_s1f2, 12, 3, [ harad_w_bow ])
+    _declare_role_figure(bpf_s1f2,  1, 4, [ harad_w_banner ])
+
+    #========================================================================
+    bpf_s2 = Repo.insert! %Scenario{
+      name: "A Blade in the Night",
+      blurb: "A lone Hâsharin tries to assassinate Prince Imrahil.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 1, is_canonical: true, size: 26
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bpf_s2.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 2, page: 20}
+
+    bpf_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s2.id, faction: :gondor, suggested_points: 300, actual_points: 331, sort_order: 1}
+    _declare_role_figure(bpf_s2f1,  1, 1, [ imrahil ])
+    _declare_role_figure(bpf_s2f1, 12, 2, [ gondor_womt_shield ])
+    _declare_role_figure(bpf_s2f1,  4, 3, [ gondor_womt_spear_shield ])
+    _declare_role_figure(bpf_s2f1,  4, 4, [ gondor_knight_da_horse ])
+    _declare_role_figure(bpf_s2f1,  4, 5, [ gondor_womt_bow ])
+
+    bpf_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s2.id, faction: :harad, suggested_points: 100, actual_points: 90, sort_order: 2}
+    _declare_role_figure(bpf_s2f2,  1, 1, [ hasharin ])
+
+    #========================================================================
+    bpf_s3 = Repo.insert! %Scenario{
+      name: "The Harad Road",
+      blurb: "A separated force of Gondor infantry and cavalry are surrounded by Haradrim.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 5, is_canonical: true, size: 102
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bpf_s3.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 3, page: 26}
+
+    bpf_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s3.id, faction: :gondor, suggested_points: 500, actual_points: 688, sort_order: 1}
+    _declare_role_figure(bpf_s3f1,  1, 1, [ gondor_captain_mt ])
+    _declare_role_figure(bpf_s3f1,  1, 2, [ gondor_captain_mt_horse ])
+    _declare_role_figure(bpf_s3f1,  6, 3, [ gondor_womt_shield ])
+    _declare_role_figure(bpf_s3f1,  2, 4, [ gondor_womt_banner ])
+    _declare_role_figure(bpf_s3f1,  8, 5, [ gondor_womt_spear_shield ])
+    _declare_role_figure(bpf_s3f1,  8, 6, [ gondor_womt_bow ])
+    _declare_role_figure(bpf_s3f1,  4, 7, [ gondor_knight_da_foot ])
+    _declare_role_figure(bpf_s3f1, 12, 8, [ gondor_knight ])
+    _declare_role_figure(bpf_s3f1,  6, 9, [ gondor_knight_da_horse ])
+
+    bpf_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s3.id, faction: :harad, suggested_points: 500, actual_points: 611, sort_order: 2}
+    _declare_role_figure(bpf_s3f2,  1, 1, [ harad_chieftain ])
+    _declare_role_figure(bpf_s3f2,  1, 2, [ harad_chieftain_horse ])
+    _declare_role_figure(bpf_s3f2, 16, 3, [ harad_w_spear ])
+    _declare_role_figure(bpf_s3f2, 18, 4, [ harad_w_bow ])
+    _declare_role_figure(bpf_s3f2,  2, 5, [ harad_w_banner ])
+    _declare_role_figure(bpf_s3f2,  8, 6, [ harad_raider ])
+    _declare_role_figure(bpf_s3f2,  8, 7, [ harad_raider_lance ])
+
+    #========================================================================
+    bpf_s4 = Repo.insert! %Scenario{
+      name: "The Fall of Harmindon",
+      blurb: "Imrahil, aided by a rogue Hâsharin defends the town of Harmindon from Suladan's assault.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 15, is_canonical: true, size: 67
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bpf_s4.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 4, page: 28}
+
+    bpf_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s4.id, faction: :gondor, suggested_points: 500, actual_points: 0, sort_order: 1}
+    _declare_role_figure(bpf_s4f1,  1, 1, [ imrahil ])
+    _declare_role_figure(bpf_s4f1,  1, 2, [ gondor_captain_mt_horse ])
+    _declare_role_figure(bpf_s4f1,  1, 3, [ hasharin ])
+    _declare_role_figure(bpf_s4f1,  4, 4, [ gondor_womt_shield ])
+    _declare_role_figure(bpf_s4f1,  2, 5, [ gondor_womt_banner ])
+    _declare_role_figure(bpf_s4f1,  6, 6, [ gondor_womt_spear_shield ])
+    _declare_role_figure(bpf_s4f1,  6, 7, [ gondor_womt_bow ])
+    _declare_role_figure(bpf_s4f1,  6, 8, [ gondor_knight_da_foot ])
+    _declare_role_figure(bpf_s4f1,  6, 9, [ gondor_knight_da_horse ])
+
+    bpf_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s4.id, faction: :harad, suggested_points: 500, actual_points: 0, sort_order: 2}
+    _declare_role_figure(bpf_s4f2,  1, 1, [ suladan ])
+    _declare_role_figure(bpf_s4f2,  1, 2, [ harad_chieftain_horse ])
+    _declare_role_figure(bpf_s4f2,  8, 3, [ harad_raider_lance ])
+    _declare_role_figure(bpf_s4f2,  8, 4, [ harad_raider ])
+    _declare_role_figure(bpf_s4f2,  8, 5, [ harad_w_bow ])
+    _declare_role_figure(bpf_s4f2,  6, 6, [ harad_w_spear ])
+    _declare_role_figure(bpf_s4f2,  2, 7, [ harad_w_banner ])
+
+    #========================================================================
+    bpf_s5 = Repo.insert! %Scenario{
+      name: "Hunt the Mumak",
+      blurb: "Prince Imrahil's force tries to take down a Mumak in the middle of a sand storm.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 20, is_canonical: true, size: 39
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bpf_s5.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 5, page: 34}
+
+    bpf_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s5.id, faction: :gondor, suggested_points: 400, actual_points: 0, sort_order: 1}
+    _declare_role_figure(bpf_s5f1,  1, 1, [ imrahil ])
+    _declare_role_figure(bpf_s5f1,  1, 2, [ gondor_captain_mt ])
+    _declare_role_figure(bpf_s5f1,  8, 3, [ gondor_knight_da_horse ])
+    _declare_role_figure(bpf_s5f1,  7, 4, [ gondor_womt_bow ])
+    _declare_role_figure(bpf_s5f1,  1, 5, [ gondor_womt_banner ])
+
+    bpf_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s5.id, faction: :harad, suggested_points: 400, actual_points: 0, sort_order: 2}
+    _declare_role_figure(bpf_s5f2,  1, 1, [ mumak ])
+    _declare_role_figure(bpf_s5f2, 12, 2, [ harad_w_bow ])
+    _declare_role_figure(bpf_s5f2,  8, 3, [ harad_w_spear ])
+
+    #========================================================================
+    bpf_s6 = Repo.insert! %Scenario{
+      name: "Rebellion",
+      blurb: "Two Hâsharin lead a revolt against Suladân in his own camp.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 27, is_canonical: true, size: 64
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bpf_s6.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 6, page: 40}
+
+    bpf_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s6.id, faction: :harad, suggested_points: 1200, actual_points: 0, sort_order: 1}
+    _declare_role_figure(bpf_s6f1,  1, 1, [ suladan ])
+    _declare_role_figure(bpf_s6f1,  2, 2, [ harad_chieftain_horse ])
+    _declare_role_figure(bpf_s6f1,  2, 3, [ harad_chieftain ])
+    _declare_role_figure(bpf_s6f1, 24, 4, [ harad_w_spear ])
+    _declare_role_figure(bpf_s6f1, 24, 5, [ harad_w_bow ])
+    _declare_role_figure(bpf_s6f1,  4, 6, [ harad_raider ])
+    _declare_role_figure(bpf_s6f1,  4, 7, [ harad_raider_lance ])
+    _declare_role_figure(bpf_s6f1,  1, 8, [ mumak ])
+
+    bpf_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s6.id, faction: :harad, suggested_points: 200, actual_points: 0, sort_order: 2}
+    _declare_role_figure(bpf_s6f2,  2, 1, [ hasharin ])
+
+    #========================================================================
+    bpf_s7 = Repo.insert! %Scenario{
+      name: "Assault on Glamorgath",
+      blurb: "Prince Imrahil conducts a fighting withdrawal against Suladân's assault on the ruins of Glamorgath.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, is_canonical: true, size: 110
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bpf_s7.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 7, page: 44}
+
+    bpf_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s7.id, faction: :gondor, suggested_points: 750, actual_points: 0, sort_order: 1}
+    _declare_role_figure(bpf_s7f1,  1, 1, [ imrahil ])
+    _declare_role_figure(bpf_s7f1,  1, 2, [ gondor_captain_mt ])
+    _declare_role_figure(bpf_s7f1, 10, 3, [ gondor_knight_da_foot ])
+    _declare_role_figure(bpf_s7f1, 11, 4, [ gondor_womt_shield ])
+    _declare_role_figure(bpf_s7f1, 12, 5, [ gondor_womt_spear_shield ])
+    _declare_role_figure(bpf_s7f1, 12, 6, [ gondor_womt_bow ])
+    _declare_role_figure(bpf_s7f1,  1, 7, [ gondor_womt_banner ])
+
+    bpf_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s7.id, faction: :harad, suggested_points: 1500, actual_points: 0, sort_order: 2}
+    _declare_role_figure(bpf_s7f2,  1, 1, [ suladan ])
+    _declare_role_figure(bpf_s7f2,  1, 2, [ mumak ])
+    _declare_role_figure(bpf_s7f2,  1, 3, [ harad_chieftain ])
+    _declare_role_figure(bpf_s7f2,  1, 4, [ harad_chieftain_horse ])
+    _declare_role_figure(bpf_s7f2, 22, 5, [ harad_w_spear ])
+    _declare_role_figure(bpf_s7f2, 24, 6, [ harad_w_bow ])
+    _declare_role_figure(bpf_s7f2,  2, 7, [ harad_w_banner ])
+    _declare_role_figure(bpf_s7f2,  5, 8, [ harad_raider_lance ])
+    _declare_role_figure(bpf_s7f2,  5, 9, [ harad_raider ])
+
+    #========================================================================
+    bpf_s8 = Repo.insert! %Scenario{
+      name: "Ambush in Ithilien",
+      blurb: "Faramir's Rangers ambush a large Southron force, complete with Mûmak.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 7, is_canonical: true, size: 74
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bpf_s8.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 8, page: 48}
+
+    bpf_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s8.id, faction: :gondor, suggested_points: 400, actual_points: 0, sort_order: 1}
+    _declare_role_figure(bpf_s8f1,  1, 1, [ faramir ])
+    _declare_role_figure(bpf_s8f1,  1, 2, [ madril ])
+    _declare_role_figure(bpf_s8f1,  1, 3, [ damrod ])
+    _declare_role_figure(bpf_s8f1,  1, 4, [ frodo ])
+    _declare_role_figure(bpf_s8f1,  1, 5, [ sam ])
+    _declare_role_figure(bpf_s8f1, 20, 6, [ gondor_rog ])
+
+    bpf_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s8.id, faction: :harad, suggested_points: 800, actual_points: 0, sort_order: 2}
+    _declare_role_figure(bpf_s8f2,  1, 1, [ harad_chieftain ])
+    _declare_role_figure(bpf_s8f2,  1, 2, [ harad_chieftain_horse ])
+    _declare_role_figure(bpf_s8f2, 11, 3, [ harad_w_spear ])
+    _declare_role_figure(bpf_s8f2, 24, 4, [ harad_w_bow ])
+    _declare_role_figure(bpf_s8f2,  1, 5, [ harad_w_banner ])
+    _declare_role_figure(bpf_s8f2,  5, 6, [ harad_raider ])
+    _declare_role_figure(bpf_s8f2,  5, 7, [ harad_raider_lance ])
+    _declare_role_figure(bpf_s8f2,  1, 8, [ mumak ])
+
+    #========================================================================
+    bpf_s9 = Repo.insert! %Scenario{
+      name: "The Glory of Dol Amroth",
+      blurb: "Gandalf and Prince Imrahil ride out from Gondor to save Faramir from the forces of Mordor.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, is_canonical: true, size: 93
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bpf_s9.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 9, page: 52}
+
+    bpf_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s9.id, faction: :gondor, suggested_points: 1250, actual_points: 0, sort_order: 1}
+    _declare_role_figure(bpf_s9f1,  1,  1, [ faramir_armor_horse ])
+    _declare_role_figure(bpf_s9f1,  1,  2, [ gandalf_white_horse ])
+    _declare_role_figure(bpf_s9f1,  1,  3, [ imrahil_horse ])
+    _declare_role_figure(bpf_s9f1,  2,  4, [ gondor_captain_mt_horse ])
+    _declare_role_figure(bpf_s9f1,  5,  5, [ gondor_womt_spear_shield ])
+    _declare_role_figure(bpf_s9f1,  4,  6, [ gondor_womt_bow ])
+    _declare_role_figure(bpf_s9f1,  1,  7, [ gondor_womt_banner ])
+    _declare_role_figure(bpf_s9f1, 10,  8, [ gondor_rog ])
+    _declare_role_figure(bpf_s9f1, 10,  9, [ gondor_knight ])
+    _declare_role_figure(bpf_s9f1,  8, 10, [ gondor_knight_da_horse ])
+
+    bpf_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s9.id, faction: :mordor, suggested_points: 1000, actual_points: 0, sort_order: 2}
+    _declare_role_figure(bpf_s9f2,  2,  1, [ ringwraith_fellbeast ])
+    _declare_role_figure(bpf_s9f2,  2,  2, [ harad_chieftain_horse ])
+    _declare_role_figure(bpf_s9f2,  1,  3, [ orc_captain ])
+    _declare_role_figure(bpf_s9f2,  1,  4, [ orc_captain_warg ])
+    _declare_role_figure(bpf_s9f2,  6,  5, [ orc_w_shield ])
+    _declare_role_figure(bpf_s9f2,  2,  6, [ orc_w_banner ])
+    _declare_role_figure(bpf_s9f2,  8,  7, [ orc_w_spear ])
+    _declare_role_figure(bpf_s9f2,  4,  8, [ orc_w_bow ])
+    _declare_role_figure(bpf_s9f2,  4,  9, [ orc_w_2h ])
+    _declare_role_figure(bpf_s9f2,  6, 10, [ harad_raider ])
+    _declare_role_figure(bpf_s9f2,  6, 11, [ harad_raider_lance ])
+    _declare_role_figure(bpf_s9f2,  4, 12, [ warg_rider_spear ])
+    _declare_role_figure(bpf_s9f2,  4, 13, [ warg_rider_bow ])
+
+    #========================================================================
+    bpf_s10 = Repo.insert! %Scenario{
+      name: "The Horse and the Serpent",
+      blurb: "Théoden and Suladân face off in the Pelennor Fields.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 47
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bpf_s10.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 9, page: 56}
+
+    bpf_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s10.id, faction: :gondor, suggested_points: 800, actual_points: 0, sort_order: 1}
+    _declare_role_figure(bpf_s10f1,  1,  1, [ theoden_armor_horse ])
+    _declare_role_figure(bpf_s10f1,  1,  2, [ gamling_horse ])
+    _declare_role_figure(bpf_s10f1,  1,  3, [ eowyn_horse ])
+    _declare_role_figure(bpf_s10f1,  1,  4, [ merry_rohan ])
+    _declare_role_figure(bpf_s10f1,  1,  5, [ rohan_captain_horse ])
+    _declare_role_figure(bpf_s10f1,  6,  6, [ rohan_gd_horse_spear ])
+    _declare_role_figure(bpf_s10f1, 12,  7, [ rohan_rider ])
+    _declare_role_figure(bpf_s10f1,  6,  8, [ rohan_rider_spear ])
+
+    bpf_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s10.id, faction: :mordor, suggested_points: 800, actual_points: 0, sort_order: 2}
+    _declare_role_figure(bpf_s10f2,  1,  1, [ suladan ])
+    _declare_role_figure(bpf_s10f2,  1,  2, [ witch_king_fellbeast ])
+    _declare_role_figure(bpf_s10f2,  2,  3, [ harad_chieftain_horse ])
+    _declare_role_figure(bpf_s10f2,  8,  4, [ harad_raider ])
+    _declare_role_figure(bpf_s10f2,  8,  6, [ harad_raider_lance ])
+    _declare_role_figure(bpf_s10f2,  4,  7, [ warg_rider_spear ])
+    _declare_role_figure(bpf_s10f2,  4,  8, [ warg_rider_bow ])
+
+    #========================================================================
+    bpf_s11 = Repo.insert! %Scenario{
+      name: "Éomer's Rage",
+      blurb: "Aragorn and Imrahil rush to save Éomer as he is surrounded by forces of Mordor and Harad.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 136
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bpf_s11.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 9, page: 60}
+
+    bpf_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s11.id, faction: :gondor, suggested_points: 1000, actual_points: 0, sort_order: 1}
+    _declare_role_figure(bpf_s11f1,  1,  1, [ imrahil_horse ])
+    _declare_role_figure(bpf_s11f1,  1,  2, "Aragorn with Elven cloak and Andúril", [ aragorn ])
+    _declare_role_figure(bpf_s11f1,  1,  3, [ legolas ])
+    _declare_role_figure(bpf_s11f1,  1,  4, [ gimli ])
+    _declare_role_figure(bpf_s11f1,  1,  5, [ halbarad ])
+    _declare_role_figure(bpf_s11f1,  1,  6, [ elladan ])
+    _declare_role_figure(bpf_s11f1,  1,  7, [ elrohir ])
+    _declare_role_figure(bpf_s11f1,  9,  8, [ ranger_north ])
+    _declare_role_figure(bpf_s11f1,  1,  9, [ eomer ])
+    _declare_role_figure(bpf_s11f1,  2, 10, [ rohan_captain ])
+    _declare_role_figure(bpf_s11f1,  8, 11, [ gondor_knight_da_horse ])
+    _declare_role_figure(bpf_s11f1,  8, 12, [ gondor_knight ])
+    _declare_role_figure(bpf_s11f1,  4, 13, [ rohan_gd_spear ])
+    _declare_role_figure(bpf_s11f1,  6, 14, [ rohan_w_bow ])
+    _declare_role_figure(bpf_s11f1,  6, 15, [ rohan_w_spear_shield ])
+    _declare_role_figure(bpf_s11f1,  5, 16, [ rohan_w_shield ])
+    _declare_role_figure(bpf_s11f1,  1, 17, [ rohan_w_banner ])
+
+    bpf_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s11.id, faction: :mordor, suggested_points: 1000, actual_points: 0, sort_order: 2}
+    _declare_role_figure(bpf_s11f2,  1,  1, "Gothmog, Lieutenant of Morgul", [ gothmog ])
+    _declare_role_figure(bpf_s11f2,  1,  2, [ orc_shaman ])
+    _declare_role_figure(bpf_s11f2,  1,  3, [ easterling_captain ])
+    _declare_role_figure(bpf_s11f2,  1,  4, [ mordor_uruk_captain ])
+    _declare_role_figure(bpf_s11f2,  1,  5, [ troll_chieftain ])
+    _declare_role_figure(bpf_s11f2,  1,  6, [ harad_chieftain ])
+    _declare_role_figure(bpf_s11f2,  6,  7, [ orc_w_shield ])
+    _declare_role_figure(bpf_s11f2,  2,  8, [ orc_w_banner ])
+    _declare_role_figure(bpf_s11f2,  8,  9, [ orc_w_spear ])
+    _declare_role_figure(bpf_s11f2,  4, 10, [ orc_w_2h ])
+    _declare_role_figure(bpf_s11f2,  4, 11, [ orc_w_bow ])
+    _declare_role_figure(bpf_s11f2,  6, 12, [ easterling_w_shield_spear ])
+    _declare_role_figure(bpf_s11f2,  6, 13, [ easterling_w_shield ])
+    _declare_role_figure(bpf_s11f2, 18, 14, [ harad_w_bow ])
+    _declare_role_figure(bpf_s11f2,  6, 15, [ harad_w_spear ])
+    _declare_role_figure(bpf_s11f2,  4, 16, [ m_uruk_hai_shield ])
+    _declare_role_figure(bpf_s11f2,  4, 17, [ m_uruk_hai_2h ])
+    _declare_role_figure(bpf_s11f2,  2, 18, [ mordor_troll ])
+    _declare_role_figure(bpf_s11f2,  1, 19, [ mumak ])
+    _declare_role_figure(bpf_s11f2,  1, 20, [ mahud_beastmaster])
 
     #########################################################################
     # THE FALL OF THE NECROMANCER
@@ -744,7 +1077,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(sots_s5f1, 1, 4, [ hobbit_archer_horn ])
     _declare_role_figure(sots_s5f1, 8, 5, [ hobbit_militia ])
 
-    sots_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s5.id, faction: :isengard, suggested_points: 72, actual_points: 72, sort_order: 1}
+    sots_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s5.id, faction: :isengard, suggested_points: 72, actual_points: 72, sort_order: 2}
     _declare_role_figure(sots_s5f2, 6, 1, [ ruffian_bow ])
     _declare_role_figure(sots_s5f2, 6, 2, [ ruffian_whip ])
     _declare_role_figure(sots_s5f2, 3, 3, [ ruffian ])
@@ -1766,7 +2099,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tttjb_s7f1, 8, 10, [ rohan_w_spear_shield ])
     _declare_role_figure(tttjb_s7f1, 1, 11, [ rohan_w_banner ])
 
-    tttjb_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s7.id, faction: :isengard, suggested_points: 775, actual_points: 0, sort_order: 1}
+    tttjb_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s7.id, faction: :isengard, suggested_points: 775, actual_points: 0, sort_order: 2}
     _declare_role_figure(tttjb_s7f2, 1,  1, [ dunlending_chieftain ])
     _declare_role_figure(tttjb_s7f2, 1,  2, [ vrasku ])
     _declare_role_figure(tttjb_s7f2, 1,  3, [ uruk_hai_shaman ])
@@ -1850,7 +2183,7 @@ defmodule SbgInv.Data do
     #========================================================================
     tttjb_s11 = Repo.insert! %Scenario{
       name: "Ambush in Ithilien",
-      blurb: "Faramir's Rangers ambush a Southron force, complete with Mumak.",
+      blurb: "Faramir's Rangers ambush a Southron force, complete with Mûmak.",
       date_age: 3, date_year: 3019, date_month: 3, date_day: 7, is_canonical: true, size: 55
     }
 
@@ -1892,7 +2225,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tttjb_s12f1, 3, 8, [ osgiliath_v_bow ])
     _declare_role_figure(tttjb_s12f1, 1, 9, [ gondor_womt_banner ])
 
-    tttjb_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s12.id, faction: :mordor, suggested_points: 375, actual_points: 0, sort_order: 1}
+    tttjb_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s12.id, faction: :mordor, suggested_points: 375, actual_points: 0, sort_order: 2}
     _declare_role_figure(tttjb_s12f2, 2, 1, [ orc_captain ])
     _declare_role_figure(tttjb_s12f2, 6, 2, [ morgul_stalker ])
     _declare_role_figure(tttjb_s12f2, 8, 3, [ orc_w_shield ])
@@ -2178,7 +2511,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(mordor_s5f1, 16, 6, [ gondor_womt_bow ])
     _declare_role_figure(mordor_s5f1,  2, 7, [ gondor_womt_banner ])
 
-    mordor_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s5.id, faction: :mordor, suggested_points: 815, actual_points: 0, sort_order: 1}
+    mordor_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s5.id, faction: :mordor, suggested_points: 815, actual_points: 0, sort_order: 2}
     _declare_role_figure(mordor_s5f2,  1, 1, [ mouth_horse ])
     _declare_role_figure(mordor_s5f2,  1, 2, [ troll_chieftain ])
     _declare_role_figure(mordor_s5f2,  1, 3, [ m_orc_captain ])
