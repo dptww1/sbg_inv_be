@@ -7,7 +7,7 @@ defmodule SbgInv.ScenarioView do
 
   def render("scenario_overview.json", %{scenario: scenario}) do
     Map.merge base_scenario(scenario), %{
-      scenario_factions: render_many(Enum.sort(scenario.scenario_factions, &(&1.sort_order < &2.sortorder)), SbgInv.ScenarioFactionView, "faction_overview.json")
+      scenario_factions: render_many(Enum.sort(scenario.scenario_factions, &(&1.sort_order < &2.sort_order)), SbgInv.ScenarioFactionView, "faction_overview.json")
     }
   end
 
