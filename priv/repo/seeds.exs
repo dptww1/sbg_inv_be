@@ -52,18 +52,31 @@ defmodule SbgInv.Data do
     # FIGURES: ANGMAR
     #########################################################################
 
+    buhrdur  = Repo.insert! %Figure{name: "Bûhrdur"}
+    gulavhar = Repo.insert! %Figure{name: "Gûlavhar"}
+
     warg_chieftain = Repo.insert! %Figure{name: "Wild Warg Chieftain"}
 
     barrow_wight = Repo.insert! %Figure{name: "Barrow Wight", plural_name: "Barrow Wights"}
+    shade        = Repo.insert! %Figure{name: "Shade",        plural_name: "Shades"}
+    spectre      = Repo.insert! %Figure{name: "Spectre",      plural_name: "Spectres"}
     warg         = Repo.insert! %Figure{name: "Wild Warg",    plural_name: "Wild Wargs"}
 
     #########################################################################
     # FIGURES: ARNOR
     #########################################################################
 
+    arathorn = Repo.insert! %Figure{name: "Arathorn"}
+    arvedui  = Repo.insert! %Figure{name: "Arvedui, Last King of Arnor"}
     halbarad = Repo.insert! %Figure{name: "Halbarad"}
+    malbeth  = Repo.insert! %Figure{name: "Malbeth the Seer"}
 
-    ranger_north = Repo.insert! %Figure{name: "Ranger of the North", plural_name: "Rangers of the North"}
+    arnor_captain = Repo.insert! %Figure{name: "Captain of Arnor", plural_name: "Captains of Arnor"}
+
+    arnor_w            = Repo.insert! %Figure{name: "Warrior of Arnor",               plural_name: "Warriors of Arnor"}
+    dunedain           = Repo.insert! %Figure{name: "Dúnedan",                        plural_name: "Dúnedain"}
+    ranger_north       = Repo.insert! %Figure{name: "Ranger of the North",            plural_name: "Rangers of the North"}
+    ranger_north_spear = Repo.insert! %Figure{name: "Ranger of the North with spear", plural_name: "Rangers of the North with spear"}
 
     #########################################################################
     # FIGURES: DWARVES
@@ -374,7 +387,9 @@ defmodule SbgInv.Data do
     arwen           = Repo.insert! %Figure{name: "Arwen (FotR)"}
     arwen2          = Repo.insert! %Figure{name: "Arwen (LotR)"}
     elladan         = Repo.insert! %Figure{name: "Elladan"}
+    elladan_armor   = Repo.insert! %Figure{name: "Elladan with heavy armour"}
     elrohir         = Repo.insert! %Figure{name: "Elrohir"}
+    elrohir_armor   = Repo.insert! %Figure{name: "Elrohir with heavy armour"}
     elrond          = Repo.insert! %Figure{name: "Elrond"}
     erestor         = Repo.insert! %Figure{name: "Erestor"}
     gil_galad       = Repo.insert! %Figure{name: "Gil-galad"}
@@ -984,6 +999,166 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotn_s7f2, 1, 5, [ troll_chieftain ])
     _declare_role_figure(fotn_s7f2, 1, 6, [ mordor_troll ])
     _declare_role_figure(fotn_s7f2, 4, 6, [ giant_spider ])
+
+    #########################################################################
+    # THE RUIN OF ARNOR
+    #########################################################################
+
+    #========================================================================
+    roa_s1 = Repo.insert! %Scenario{
+      name: "To Kill a King",
+      blurb: "Arvedui and Malbeth try to survive an eerie assault on Fornost.",
+      date_age: 3, date_year: 1974, date_month: 0, date_day: 0, is_canonical: true, size: 21
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: roa_s1.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 1, page: 50}
+
+    roa_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: roa_s1.id, faction: :arnor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(roa_s1f1, 1, 1, [ arvedui ])
+    _declare_role_figure(roa_s1f1, 1, 2, [ malbeth ])
+    _declare_role_figure(roa_s1f1, 1, 3, [ arnor_captain ])
+    _declare_role_figure(roa_s1f1, 9, 4, [ arnor_w ])
+
+    roa_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: roa_s1.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(roa_s1f2, 1, 1, [ shade ])
+    _declare_role_figure(roa_s1f2, 2, 2, [ barrow_wight ])
+    _declare_role_figure(roa_s1f2, 6, 3, [ spectre ])
+
+    #========================================================================
+    roa_s2 = Repo.insert! %Scenario{
+      name: "Flight Into the North",
+      blurb: "Arvedui flees before the horror of Gûlavhar, the Terror of Arnor.",
+      date_age: 3, date_year: 1975, date_month: 0, date_day: 0, is_canonical: true, size: 36
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: roa_s2.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 2, page: 52}
+
+    roa_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: roa_s2.id, faction: :arnor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(roa_s2f1, 1, 1, [ arvedui ])
+    _declare_role_figure(roa_s2f1, 1, 2, [ arnor_captain ])
+    _declare_role_figure(roa_s2f1, 9, 3, [ arnor_w ])
+    _declare_role_figure(roa_s2f1, 8, 4, [ ranger_north ])
+    _declare_role_figure(roa_s2f1, 4, 5, [ ranger_north_spear ])
+
+    roa_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: roa_s2.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(roa_s2f2, 1, 1, [ gulavhar ])
+    _declare_role_figure(roa_s2f2, 1, 2, [ barrow_wight ])
+    _declare_role_figure(roa_s2f2, 1, 3, [ warg_chieftain ])
+    _declare_role_figure(roa_s2f2, 6, 4, [ warg ])
+    _declare_role_figure(roa_s2f2, 2, 5, [ orc_w_shield ])
+    _declare_role_figure(roa_s2f2, 2, 6, [ orc_w_bow ])
+
+    #========================================================================
+    roa_s3 = Repo.insert! %Scenario{
+      name: "The Battle of Fornost",
+      blurb: "A coalition of free peoples combine to end the rule of the Witch-King in the North.",
+      date_age: 3, date_year: 1975, date_month: 0, date_day: 0, is_canonical: true, size: 112
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: roa_s3.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 3, page: 54}
+
+    roa_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: roa_s3.id, faction: :arnor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(roa_s3f1, 1,  1, [ arnor_captain ])
+    _declare_role_figure(roa_s3f1, 8,  2, [ ranger_north ])
+    _declare_role_figure(roa_s3f1, 4,  3, [ hobbit_archer ])
+    _declare_role_figure(roa_s3f1, 1,  4, [ gondor_captain_mt ])
+    _declare_role_figure(roa_s3f1, 8,  5, [ gondor_womt_shield ])
+    _declare_role_figure(roa_s3f1, 8,  6, [ gondor_womt_spear_shield ])
+    _declare_role_figure(roa_s3f1, 8,  7, [ gondor_womt_bow ])
+    _declare_role_figure(roa_s3f1, 1,  8, [ gondor_womt_banner ])
+    _declare_role_figure(roa_s3f1, 1,  9, [ high_elf_captain ])
+    _declare_role_figure(roa_s3f1, 8, 10, [ high_elf_w_spear_shield ])
+    _declare_role_figure(roa_s3f1, 6, 11, [ high_elf_w_blade ])
+    _declare_role_figure(roa_s3f1, 6, 12, [ high_elf_w_bow ])
+
+    roa_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: roa_s3.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(roa_s3f2,  1,  1, [ witch_king_horse ])
+    _declare_role_figure(roa_s3f2,  1,  2, [ gulavhar ])
+    _declare_role_figure(roa_s3f2,  1,  3, [ shade ])
+    _declare_role_figure(roa_s3f2,  1,  4, [ barrow_wight ])
+    _declare_role_figure(roa_s3f2,  1,  5, [ warg_chieftain ])
+    _declare_role_figure(roa_s3f2,  5,  6, [ warg ])
+    _declare_role_figure(roa_s3f2, 12,  7, [ orc_w_spear ])
+    _declare_role_figure(roa_s3f2, 12,  8, [ orc_w_shield ])
+    _declare_role_figure(roa_s3f2,  6,  9, [ orc_w_bow ])
+    _declare_role_figure(roa_s3f2,  6, 10, [ orc_w_2h ])
+    _declare_role_figure(roa_s3f2,  1, 11, [ cave_troll_chain ])
+    _declare_role_figure(roa_s3f2,  5, 12, [ spectre ])
+
+    #========================================================================
+    roa_s4 = Repo.insert! %Scenario{
+      name: "Ambush in Rhudaur",
+      blurb: "Aragorn's father Arathorn is ambushedby villains in the wild.",
+      date_age: 3, date_year: 2933, date_month: 0, date_day: 0, is_canonical: true, size: 40
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: roa_s4.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 4, page: 56}
+
+    roa_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: roa_s4.id, faction: :arnor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(roa_s4f1, 1,  1, [ arathorn ])
+    _declare_role_figure(roa_s4f1, 1,  2, [ elladan_armor ])
+    _declare_role_figure(roa_s4f1, 1,  3, [ elrohir_armor ])
+    _declare_role_figure(roa_s4f1, 8,  4, [ ranger_north ])
+    _declare_role_figure(roa_s4f1, 4,  5, [ ranger_north_spear ])
+
+    roa_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: roa_s4.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(roa_s4f2, 1,  1, [ buhrdur ])
+    _declare_role_figure(roa_s4f2, 1,  2, [ warg_chieftain ])
+    _declare_role_figure(roa_s4f2, 4,  3, [ orc_w_spear ])
+    _declare_role_figure(roa_s4f2, 4,  4, [ orc_w_shield ])
+    _declare_role_figure(roa_s4f2, 2,  5, [ orc_w_bow ])
+    _declare_role_figure(roa_s4f2, 2,  6, [ orc_w_2h ])
+    _declare_role_figure(roa_s4f2, 1,  7, [ orc_w_banner ])
+    _declare_role_figure(roa_s4f2, 6,  8, [ warg ])
+    _declare_role_figure(roa_s4f2, 2,  9, [ cave_troll_chain ])
+
+    #========================================================================
+    roa_s5 = Repo.insert! %Scenario{
+      name: "Aragorn's Revenge",
+      blurb: "Aragorn sets out to avenge his father by slaying Bûhrdur.",
+      date_age: 3, date_year: 2957, date_month: 0, date_day: 0, is_canonical: true, size: 53
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: roa_s5.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 5, page: 58}
+
+    roa_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: roa_s5.id, faction: :arnor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(roa_s5f1, 1,  1, [ aragorn ])
+    _declare_role_figure(roa_s5f1, 1,  1, [ halbarad ])
+    _declare_role_figure(roa_s5f1, 1,  3, [ elladan_armor ])
+    _declare_role_figure(roa_s5f1, 1,  4, [ elrohir_armor ])
+    _declare_role_figure(roa_s5f1, 8,  5, [ ranger_north ])
+    _declare_role_figure(roa_s5f1, 4,  6, [ ranger_north_spear ])
+
+    roa_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: roa_s5.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(roa_s5f2,  1,  1, [ buhrdur ])
+    _declare_role_figure(roa_s5f2,  2,  2, [ cave_troll_chain ])
+    _declare_role_figure(roa_s5f2,  1,  3, [ warg_chieftain ])
+    _declare_role_figure(roa_s5f2,  8,  4, [ orc_w_spear ])
+    _declare_role_figure(roa_s5f2,  8,  5, [ orc_w_shield ])
+    _declare_role_figure(roa_s5f2,  2,  6, [ orc_w_bow ])
+    _declare_role_figure(roa_s5f2,  2,  7, [ orc_w_2h ])
+    _declare_role_figure(roa_s5f2,  1,  8, [ orc_w_banner ])
+    _declare_role_figure(roa_s5f2, 12,  9, [ warg ])
+
+    #========================================================================
+    roa_s6 = Repo.insert! %Scenario{
+      name: "The Terror of Arnor",
+      blurb: "Aragorn leads the Dúnedain against Gûlavhar.",
+      date_age: 3, date_year: 2958, date_month: 0, date_day: 0, is_canonical: true, size: 24
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: roa_s6.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 6, page: 60}
+
+    roa_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: roa_s6.id, faction: :arnor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(roa_s6f1, 1,  1, [ aragorn ])
+    _declare_role_figure(roa_s6f1, 1,  2, [ halbarad ])
+    _declare_role_figure(roa_s6f1, 5,  3, [ dunedain ])
+    _declare_role_figure(roa_s6f1, 8,  4, [ ranger_north ])
+    _declare_role_figure(roa_s6f1, 4,  5, [ ranger_north_spear ])
+
+    roa_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: roa_s6.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(roa_s6f2, 1,  1, [ gulavhar ])
+    _declare_role_figure(roa_s6f2, 4,  2, [ spectre ])
 
     #########################################################################
     # SCOURING OF THE SHIRE
