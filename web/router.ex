@@ -22,10 +22,11 @@ defmodule SbgInv.Router do
   scope "/api", SbgInv do
     pipe_through :api
 
-    resources "/scenarios",     ScenarioController,     except: [:new, :edit]
-    resources "/sessions",      SessionController,      only: [:create]
-    resources "/recalc",        RecalcController,       only: [:index]
-    resources "/userscenarios", UserScenarioController, only: [:create]
-    resources "/users",         UserController,         only: [:create]
+    resources "/recalc",         RecalcController,        only: [:index]
+    resources "/reset-password", ResetPasswordController, only: [:create]
+    resources "/scenarios",      ScenarioController,      except: [:new, :edit]
+    resources "/sessions",       SessionController,       only: [:create]
+    resources "/userscenarios",  UserScenarioController,  only: [:create]
+    resources "/users",          UserController,          only: [:create]
   end
 end
