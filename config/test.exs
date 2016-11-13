@@ -17,3 +17,6 @@ config :sbg_inv, SbgInv.Repo,
   database: "sbg_inv_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :sbg_inv, SbgInv.Mailer,
+  adapter: Bamboo.TestAdapter

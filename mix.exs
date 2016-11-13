@@ -19,7 +19,7 @@ defmodule SbgInv.Mixfile do
   def application do
     [mod: {SbgInv, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :calendar, :comeonin]]
+                    :phoenix_ecto, :postgrex, :calendar, :comeonin, :bamboo]]
   end
 
   # Specifies which paths to compile per environment.
@@ -43,7 +43,9 @@ defmodule SbgInv.Mixfile do
      {:ecto_enum, git: "https://github.com/gjaldon/ecto_enum", tag: "ecto-2.0"},
      {:calendar, "~> 0.14.2"},
      {:comeonin, "~> 2.0"},
-     {:secure_random, "~> 0.2"}
+     {:secure_random, "~> 0.2"},
+     {:bamboo, "~> 0.7"},
+     {:bamboo_smtp, "~> 1.2.1"}
     ]
   end
 

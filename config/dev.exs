@@ -40,3 +40,13 @@ config :sbg_inv, SbgInv.Repo,
   database: "sbg_inv_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :sbg_inv, SbgInv.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "smtp.davetownsend.org",
+  port: 587,
+  username: System.get_env("SMTP_USERNAME"),
+  password: System.get_env("SMTP_PASSWORD"),
+  tls: :if_available,
+  ssl: false,
+  retries: 1

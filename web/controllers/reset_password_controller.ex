@@ -1,18 +1,23 @@
 defmodule SbgInv.ResetPasswordController do
   use SbgInv.Web, :controller
 
-  alias SbgInv.User
+  alias SbgInv.{Email, Mailer, User}
 
   def create(conn, %{"user" => user_params}) do
     user = Repo.get_by(User, email: Map.get(user_params, "email"))
+    new_password = random_string(12)
     if user do
-      changeset = User.registration_changeset(user, %{"password" => random_string(12)})
+      changeset = User.registration_changeset(user, %{"password" => new_password})
       case Repo.update(changeset) do
-        {:ok, _}    -> put_status(conn, :no_content)
-        {:error, _} -> put_status(conn, :internal_server_error)
+        {:ok, _} ->
+          Email.forgot_password_email(Map.get(user_params, "email"), new_password) |> Mailer.deliver_later
+          send_resp(conn, :no_content, "")
+
+        {:error, _} ->
+          send_resp(conn, :internal_server_error, "")
       end
     else
-      put_status(conn, :not_found)
+      send_resp(conn, :not_found, "")
     end
   end
 
