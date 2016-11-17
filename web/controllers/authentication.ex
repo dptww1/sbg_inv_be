@@ -51,6 +51,6 @@ defmodule SbgInv.Authentication do
   end
 
   defp auth_error!(conn) do
-    conn |> put_status(:unauthorized) |> halt()
+    send_resp(conn, :unauthorized, "")
   end
 end

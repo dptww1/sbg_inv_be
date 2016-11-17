@@ -27,12 +27,10 @@ defmodule SbgInv.AuthenticationTest do
     |> Authentication.call(@opts)
 
     assert conn.status == 401
-    assert conn.halted
   end
 
   test "no token", %{conn: conn} do
     conn = Authentication.call(conn, @opts)
     assert conn.status == 401
-    assert conn.halted
   end
 end
