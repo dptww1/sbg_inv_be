@@ -82,12 +82,16 @@ defmodule SbgInv.Data do
     # FIGURES: DWARVES
     #########################################################################
 
-    balin = Repo.insert! %Figure{name: "Balin"}
-    dain  = Repo.insert! %Figure{name: "Dáin Ironfoot"}
-    drar  = Repo.insert! %Figure{name: "Drar"}
-    murin = Repo.insert! %Figure{name: "Murin"}
+    balin  = Repo.insert! %Figure{name: "Balin"}
+    dain   = Repo.insert! %Figure{name: "Dáin Ironfoot"}
+    drar   = Repo.insert! %Figure{name: "Drar"}
+    durin  = Repo.insert! %Figure{name: "Durin"}
+    mardin = Repo.insert! %Figure{name: "Mardin"}
+    murin  = Repo.insert! %Figure{name: "Murin"}
 
-    dwarf_captain = Repo.insert! %Figure{name: "Dwarf Captain", plural_name: "Dwarf Captains"}
+    dwarf_king    = Repo.insert! %Figure{name: "Dwarf King",                        plural_name: "Dwarf Kings"}
+    dwarf_king_2h = Repo.insert! %Figure{name: "Dwarf King with two-handed weapon", plural_name: "Dwarf Kings with two-handed weapon"}
+    dwarf_captain = Repo.insert! %Figure{name: "Dwarf Captain",                     plural_name: "Dwarf Captains"}
 
     dwarf_iron_gd   = Repo.insert! %Figure{name: "Iron Guard",                          plural_name: "Iron Guards"}
     dwarf_khazad_gd = Repo.insert! %Figure{name: "Khazad Guard",                        plural_name: "Khazad Guards"}
@@ -98,6 +102,9 @@ defmodule SbgInv.Data do
     dwarf_w_shield  = Repo.insert! %Figure{name: "Dwarf with shield",                   plural_name: "Dwarves with shield"}
     dwarf_w_2h      = Repo.insert! %Figure{name: "Dwarf with two-handed axe",           plural_name: "Dwarves with two-handed axe"}
     dwarf_w_banner  = Repo.insert! %Figure{name: "Dwarf with banner",                   plural_name: "Dwarves with banner"}
+    vault_team      = Repo.insert! %Figure{name: "Vault Warden Team",                   plural_name: "Vault Warden Teams"}
+
+    dwarf_ballista = Repo.insert! %Figure{name: "Dwarf Ballista", plural_name: "Dwarf Ballistas"}
 
     #########################################################################
     # FIGURES: DOL GULDUR
@@ -354,12 +361,15 @@ defmodule SbgInv.Data do
     golfimbul      = Repo.insert! %Figure{name: "Golfimbul"}
     golfimbul_warg = Repo.insert! %Figure{name: "Golfimbul on warg"}
 
-    balrog        = Repo.insert! %Figure{name: "Balrog",               plural_name: "Balrogs"}
-    moria_captain = Repo.insert! %Figure{name: "Moria Goblin Captain", plural_name: "Moria Goblin Captains"}
+    moria_captain     = Repo.insert! %Figure{name: "Moria Goblin Captain",          plural_name: "Moria Goblin Captains"}
+    moria_captain_bow = Repo.insert! %Figure{name: "Moria Goblin Captain with bow", plural_name: "Moria Goblin Captains with bow"}
 
     moria_g_bow    = Repo.insert! %Figure{name: "Moria Goblin with Orc bow", plural_name: "Moria Goblins with Orc bow"}
     moria_g_shield = Repo.insert! %Figure{name: "Moria Goblin with shield",  plural_name: "Moria Goblins with shield"}
     moria_g_spear  = Repo.insert! %Figure{name: "Moria Goblin with spear",   plural_name: "Moria Goblins with spear"}
+    moria_p_bow    = Repo.insert! %Figure{name: "Moria Goblin Prowler with Orc bow",             plural_name: "Moria Goblin Prowlers with Orc bow"}
+    moria_p_shield = Repo.insert! %Figure{name: "Moria Goblin Prowler with shield",              plural_name: "Moria Goblin Prowlers with shield"}
+    moria_p_2h     = Repo.insert! %Figure{name: "Moria Goblin Prowler with two-handed weapon",   plural_name: "Moria Goblin Prowlers with two-handed weapon"}
     moria_shaman   = Repo.insert! %Figure{name: "Moria Goblin Shaman",       plural_name: "Moria Goblin Shamans"}
 
     cave_troll_chain = Repo.insert! %Figure{name: "Cave Troll with chain", plural_name: "Cave Trolls with chain"}
@@ -367,6 +377,9 @@ defmodule SbgInv.Data do
 
     moria_drum    = Repo.insert! %Figure{name: "Moria Goblin drum",    plural_name: "Moria Goblin drums"}
     moria_drummer = Repo.insert! %Figure{name: "Moria Goblin drummer", plural_name: "Moria Goblin drummers"}
+
+    balrog = Repo.insert! %Figure{name: "Balrog", plural_name: "Balrogs"}
+    dragon = Repo.insert! %Figure{name: "Dragon", plural_name: "Dragons"}
 
     #########################################################################
     # FIGURES: NUMENOR
@@ -999,6 +1012,166 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotn_s7f2, 1, 5, [ troll_chieftain ])
     _declare_role_figure(fotn_s7f2, 1, 6, [ mordor_troll ])
     _declare_role_figure(fotn_s7f2, 4, 6, [ giant_spider ])
+
+    #########################################################################
+    # KHAZAD-DÛM
+    #########################################################################
+
+    #========================================================================
+    kd_s1 = Repo.insert! %Scenario{
+      name: "Durin's Tower",
+      blurb: "A Dragon attacks the topmost outpost of the Dwarven realm of Moria.",
+      date_age: 3, date_year: 1970, date_month: 0, date_day: 0, is_canonical: true, size: 36
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: kd_s1.id, resource_type: :source, book: :kd, title: "Khazad-dûm", sort_order: 1, page: 54}
+
+    kd_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: kd_s1.id, faction: :dwarves, suggested_points: 500, actual_points: 0, sort_order: 1}
+    _declare_role_figure(kd_s1f1, 1,  1, [ dwarf_captain ])
+    _declare_role_figure(kd_s1f1, 3,  2, [ vault_team ])
+    _declare_role_figure(kd_s1f1, 4,  3, [ dwarf_r_axe ])
+    _declare_role_figure(kd_s1f1, 4,  4, [ dwarf_r_bow ])
+    _declare_role_figure(kd_s1f1, 4,  5, [ dwarf_r_2h ])
+    _declare_role_figure(kd_s1f1, 6,  6, [ dwarf_iron_gd ])
+    _declare_role_figure(kd_s1f1, 4,  7, [ dwarf_w_bow ])
+    _declare_role_figure(kd_s1f1, 4,  8, [ dwarf_w_shield ])
+    _declare_role_figure(kd_s1f1, 4,  9, [ dwarf_w_2h ])
+    _declare_role_figure(kd_s1f1, 1, 10, [ dwarf_w_banner ])
+
+    kd_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: kd_s1.id, faction: :moria, suggested_points: 350, actual_points: 350, sort_order: 2}
+    _declare_role_figure(kd_s1f2, 1, 1, [ dragon ])
+
+    #========================================================================
+    kd_s2 = Repo.insert! %Scenario{
+      name: "Attack on the East Gate",
+      blurb: "A Dragon attacks the topmost outpost of the Dwarven realm of Moria.",
+      date_age: 3, date_year: 1971, date_month: 0, date_day: 0, is_canonical: true, size: 34
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: kd_s2.id, resource_type: :source, book: :kd, title: "Khazad-dûm", sort_order: 2, page: 56}
+
+    kd_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: kd_s2.id, faction: :dwarves, suggested_points: 200, actual_points: 0, sort_order: 1}
+    _declare_role_figure(kd_s2f1, 1,  1, [ dwarf_captain ])
+    _declare_role_figure(kd_s2f1, 4,  2, [ dwarf_w_shield ])
+    _declare_role_figure(kd_s2f1, 4,  3, [ dwarf_w_bow ])
+    _declare_role_figure(kd_s2f1, 4,  4, [ dwarf_w_2h ])
+    _declare_role_figure(kd_s2f1, 1,  5, [ dwarf_w_banner ])
+
+    kd_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: kd_s2.id, faction: :moria, suggested_points: 150, actual_points: 0, sort_order: 2}
+    _declare_role_figure(kd_s2f2, 1,  1, [ moria_captain ])
+    _declare_role_figure(kd_s2f2, 1,  2, [ moria_captain_bow ])
+    _declare_role_figure(kd_s2f2, 2,  3, [ moria_p_bow ])
+    _declare_role_figure(kd_s2f2, 2,  4, [ moria_p_shield ])
+    _declare_role_figure(kd_s2f2, 2,  5, [ moria_p_2h ])
+    _declare_role_figure(kd_s2f2, 4,  6, [ moria_g_shield ])
+    _declare_role_figure(kd_s2f2, 4,  7, [ moria_g_spear ])
+    _declare_role_figure(kd_s2f2, 4,  8, [ moria_g_bow ])
+
+    #========================================================================
+    kd_s3 = Repo.insert! %Scenario{
+      name: "Battle of the Barazinbar Deeps",
+      blurb: "The forces of King Durin have awoken a nameless terror.",
+      date_age: 3, date_year: 1980, date_month: 0, date_day: 0, is_canonical: true, size: 126
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: kd_s3.id, resource_type: :source, book: :kd, title: "Khazad-dûm", sort_order: 3, page: 58}
+
+    kd_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: kd_s3.id, faction: :dwarves, suggested_points: 985, actual_points: 0, sort_order: 1}
+    _declare_role_figure(kd_s3f1, 1,  1, [ durin ])
+    _declare_role_figure(kd_s3f1, 1,  2, [ mardin ])
+    _declare_role_figure(kd_s3f1, 1,  3, [ dwarf_captain ])
+    _declare_role_figure(kd_s3f1, 8,  4, [ dwarf_w_shield ])
+    _declare_role_figure(kd_s3f1, 8,  5, [ dwarf_w_bow ])
+    _declare_role_figure(kd_s3f1, 8,  6, [ dwarf_w_2h ])
+    _declare_role_figure(kd_s3f1, 9,  7, [ dwarf_khazad_gd ])
+    _declare_role_figure(kd_s3f1, 6,  8, [ dwarf_iron_gd ])
+    _declare_role_figure(kd_s3f1, 3,  9, [ vault_team ])
+    _declare_role_figure(kd_s3f1, 2, 10, [ dwarf_ballista ])
+    _declare_role_figure(kd_s3f1, 4, 11, [ dwarf_r_2h ])
+    _declare_role_figure(kd_s3f1, 4, 12, [ dwarf_r_bow ])
+    _declare_role_figure(kd_s3f1, 4, 13, [ dwarf_r_axe ])
+
+    kd_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: kd_s3.id, faction: :moria, suggested_points: 1000, actual_points: 0, sort_order: 2}
+    _declare_role_figure(kd_s3f2,  1,  1, [ balrog ])
+    _declare_role_figure(kd_s3f2,  1,  2, [ moria_captain ])
+    _declare_role_figure(kd_s3f2,  1,  3, [ moria_captain_bow ])
+    _declare_role_figure(kd_s3f2,  2,  4, [ moria_shaman ])
+    _declare_role_figure(kd_s3f2, 16,  5, [ moria_g_shield ])
+    _declare_role_figure(kd_s3f2, 16,  6, [ moria_g_spear ])
+    _declare_role_figure(kd_s3f2, 16,  7, [ moria_g_bow ])
+    _declare_role_figure(kd_s3f2,  2,  8, [ moria_p_2h ])
+    _declare_role_figure(kd_s3f2,  2,  9, [ moria_p_bow ])
+    _declare_role_figure(kd_s3f2,  2, 10, [ moria_p_shield ])
+    _declare_role_figure(kd_s3f2,  2, 11, "Cave Trolls", [ cave_troll_chain, cave_troll_spear ])
+    _declare_role_figure(kd_s3f2,  3, 12, [ bat_swarm ])
+    _declare_role_figure(kd_s3f2,  1, 13, [ moria_drum ])
+    _declare_role_figure(kd_s3f2,  2, 14, [ moria_drummer ])
+
+    #========================================================================
+    kd_s4 = Repo.insert! %Scenario{
+      name: "Ambush at the Crossroads",
+      blurb: "Durburz sets a trap for Balin and his expedition to reclaim the kingdom of Khazad-dûm.",
+      date_age: 3, date_year: 2989, date_month: 0, date_day: 0, is_canonical: true, size: 79
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: kd_s4.id, resource_type: :source, book: :kd, title: "Khazad-dûm", sort_order: 4, page: 60}
+
+    kd_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: kd_s4.id, faction: :dwarves, suggested_points: 595, actual_points: 0, sort_order: 1}
+    _declare_role_figure(kd_s4f1, 1,  1, "Balin with Durin's Axe", [ balin ])
+    _declare_role_figure(kd_s4f1, 1,  2, [ dwarf_captain ])
+    _declare_role_figure(kd_s3f1, 4,  3, [ dwarf_w_shield ])
+    _declare_role_figure(kd_s3f1, 4,  4, [ dwarf_w_bow ])
+    _declare_role_figure(kd_s3f1, 4,  5, [ dwarf_w_2h ])
+    _declare_role_figure(kd_s4f1, 4,  6, [ dwarf_r_2h ])
+    _declare_role_figure(kd_s4f1, 4,  7, [ dwarf_r_axe ])
+    _declare_role_figure(kd_s4f1, 4,  8, [ dwarf_r_bow ])
+    _declare_role_figure(kd_s4f1, 1,  9, [ dwarf_w_banner ])
+    _declare_role_figure(kd_s4f1, 6, 10, [ dwarf_khazad_gd ])
+    _declare_role_figure(kd_s4f1, 6, 11, [ dwarf_iron_gd ])
+
+    kd_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: kd_s4.id, faction: :moria, suggested_points: 560, actual_points: 0, sort_order: 2}
+    _declare_role_figure(kd_s4f2, 1,  1, [ durburz ])
+    _declare_role_figure(kd_s4f2, 1,  2, [ moria_captain_bow ])
+    _declare_role_figure(kd_s4f2, 1,  3, [ moria_shaman ])
+    _declare_role_figure(kd_s4f2, 1,  4, [ moria_drum ])
+    _declare_role_figure(kd_s4f2, 2,  5, [ moria_drummer ])
+    _declare_role_figure(kd_s4f2, 2,  6, [ moria_p_2h ])
+    _declare_role_figure(kd_s4f2, 2,  7, [ moria_p_bow ])
+    _declare_role_figure(kd_s4f2, 2,  8, [ moria_p_shield ])
+    _declare_role_figure(kd_s4f2, 8,  9, [ moria_g_shield ])
+    _declare_role_figure(kd_s4f2, 8, 10, [ moria_g_spear ])
+    _declare_role_figure(kd_s4f2, 8, 11, [ moria_g_bow ])
+    _declare_role_figure(kd_s4f2, 2, 12, "Cave Trolls", [ cave_troll_chain, cave_troll_spear ])
+
+    #========================================================================
+    kd_s5 = Repo.insert! %Scenario{
+      name: "The Razing of High Water",
+      blurb: "A dragon-led Goblin force attacks the dwarven town of High Water.",
+      date_age: 3, date_year: 2954, date_month: 0, date_day: 0, is_canonical: true, size: 56
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: kd_s5.id, resource_type: :source, book: :kd, title: "Khazad-dûm", sort_order: 5, page: 62}
+
+    kd_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: kd_s5.id, faction: :dwarves, suggested_points: 600, actual_points: 0, sort_order: 1}
+    _declare_role_figure(kd_s5f1, 1,  1, [ dwarf_king_2h ])
+    _declare_role_figure(kd_s5f1, 1,  2, [ dwarf_captain ])
+    _declare_role_figure(kd_s5f1, 1,  3, [ murin ])
+    _declare_role_figure(kd_s5f1, 1,  4, [ drar ])
+    _declare_role_figure(kd_s5f1, 3,  5, [ dwarf_khazad_gd ])
+    _declare_role_figure(kd_s5f1, 7,  6, [ dwarf_w_bow ])
+    _declare_role_figure(kd_s5f1, 7,  7, [ dwarf_w_shield ])
+    _declare_role_figure(kd_s5f1, 6,  8, [ dwarf_w_2h ])
+    _declare_role_figure(kd_s5f1, 1,  9, [ dwarf_w_banner ])
+    _declare_role_figure(kd_s5f1, 1, 10, [ dwarf_ballista ])
+
+    kd_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: kd_s5.id, faction: :moria, suggested_points: 600, actual_points: 0, sort_order: 2}
+    _declare_role_figure(kd_s5f2, 1,  1, "Dragon with Fly and Wyrmtongue", [ dragon ])
+    _declare_role_figure(kd_s5f2, 1,  2, [ moria_captain ])
+    _declare_role_figure(kd_s5f2, 1,  3, [ warg_chieftain ])
+    _declare_role_figure(kd_s5f2, 6,  4, [ warg ])
+    _declare_role_figure(kd_s5f2, 6,  5, [ moria_g_spear ])
+    _declare_role_figure(kd_s5f2, 6,  6, [ moria_g_bow ])
+    _declare_role_figure(kd_s5f2, 6,  7, [ moria_g_shield ])
 
     #########################################################################
     # THE RUIN OF ARNOR
