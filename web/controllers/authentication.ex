@@ -9,7 +9,8 @@ defmodule SbgInv.Authentication do
   def optionally(conn) do
     case find_user(conn) do
       {:ok, user} -> assign(conn, :current_user, user)
-      _otherwise -> conn
+      :error -> auth_error!(conn)
+      _ -> conn
     end
   end
 
@@ -34,7 +35,7 @@ defmodule SbgInv.Authentication do
   defp parse_token(["Token token=" <> token]) do
     {:ok, String.replace(token, "\"", "")}
   end
-  defp parse_token(_non_token_header), do: :error
+  defp parse_token(_non_token_header), do: :no_token
 
   defp find_session_by_token(token) do
     case Repo.one(from s in Session, where: s.token == ^token) do
@@ -51,6 +52,7 @@ defmodule SbgInv.Authentication do
   end
 
   defp auth_error!(conn) do
-    send_resp(conn, :unauthorized, "")
+    conn
+    |> put_status(:unauthorized)
   end
 end

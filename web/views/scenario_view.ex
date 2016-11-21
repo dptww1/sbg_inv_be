@@ -51,4 +51,8 @@ defmodule SbgInv.ScenarioView do
       podcast: Enum.filter(scenario_resources, fn r -> r.resource_type == :podcast end),
     }
   end
+
+  def render("error.json", _anything) do
+    %{errors: "failed to authenticate"}
+  end
 end

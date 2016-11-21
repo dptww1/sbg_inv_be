@@ -6,9 +6,15 @@ defmodule SbgInv.ScenarioController do
   plug :scrub_params, "scenario" when action in [:create, :update]
 
   def index(conn, _params) do
-    import Ecto.Query
-
     conn = Authentication.optionally(conn)
+    _index(conn, conn.status)  # TODO: simplify
+  end
+
+  defp _index(conn, 401) do
+    render(conn, "error.json", %{})
+  end
+  defp _index(conn, _) do
+    import Ecto.Query
 
     user_id = if(Map.has_key?(conn.assigns, :current_user), do: conn.assigns.current_user.id, else: -1)
 
@@ -24,6 +30,7 @@ defmodule SbgInv.ScenarioController do
 
     render(conn, "index.json", scenarios: scenarios)
   end
+
 
   def create(conn, %{"scenario" => scenario_params}) do
     changeset = Scenario.changeset(%Scenario{}, scenario_params)
@@ -43,9 +50,16 @@ defmodule SbgInv.ScenarioController do
   end
 
   def show(conn, %{"id" => id}) do
+    conn = Authentication.optionally(conn)
+    _show(conn, id, conn.status)
+  end
+
+  defp _show(conn, id, 401) do
+    render(conn, "error.json", %{})
+  end
+  defp _show(conn, id, _) do
     import Ecto.Query
 
-    conn = Authentication.optionally(conn)
 
     user_id = if(Map.has_key?(conn.assigns, :current_user), do: conn.assigns.current_user.id, else: -1)
 

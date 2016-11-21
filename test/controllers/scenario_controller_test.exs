@@ -10,7 +10,7 @@ defmodule SbgInv.ScenarioControllerTest do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
 
-  test "lists all entries on index", %{conn: conn} do
+  test "lists all entries on index (no authorization)", %{conn: conn} do
     conn = get conn, scenario_path(conn, :index)
     assert json_response(conn, 200)["data"] == []
   end
@@ -95,5 +95,20 @@ defmodule SbgInv.ScenarioControllerTest do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
     conn = get conn, scenario_path(conn, :show, Map.get(const_data, "id"))
     assert json_response(conn, 200)["data"] == const_data
+  end
+
+  test "index with bad cookie fails", %{conn: conn} do
+    conn = conn
+           |> put_req_header("authorization", "Token token=\"123bcd\"")
+           |> get(scenario_path(conn, :index))
+    assert json_response(conn, 401)["errors"] != %{}
+  end
+
+  test "show with bad cookie fails", %{conn: conn} do
+    %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
+    resp = conn
+           |> put_req_header("authorization", "Token token=\"123bcd\"")
+           |> get(scenario_path(conn, :show, Map.get(const_data, "id")))
+    assert json_response(resp, 401)["errors"] != %{}
   end
 end
