@@ -15,32 +15,34 @@ defenum Faction,
   mirkwood:      11,
   mordor:        12,
   moria:         13,
-  rivendell:     14,
-  rohan:         15,
-  shire:         16,
-  white_council: 17
+  numenor:       14,
+  rivendell:     15,
+  rohan:         16,
+  shire:         17,
+  white_council: 18
 
 defenum ScenarioResourceBook,
-  fotr:     0,   # Fellowship of the Ring
-  ttt:      1,   # The Two Towers
-  rotk:     2,   # Return of the King
-  saf:      3,   # Shadow & Flame
-  sog:      4,   # Siege of Gondor
-  bpf:      5,   # Battle of the Pelennor Fields
-  sots:     6,   # The Scouring of the Shire
-  site:     7,   # A Shadow in the East
-  fotn:     8,   # The Fall of the Necromancer
-  roa:      9,   # The Ruin of Arnor
-  harad:   10,   # Harad
-  kd:      11,   # Khazad-dûm
-  fotr_jb: 12,   # Fellowship of the Ring Journeybook
-  ttt_jb:  13,   # The Two Towers Journeybook
+  bpf:      0,   # Battle of the Pelennor Fields
+  fotn:     1,   # The Fall of the Necromancer
+  fotr:     2,   # Fellowship of the Ring
+  fotr_jb:  3,   # Fellowship of the Ring Journeybook
+  fp:       4,   # Free Peoples
+  fr:       5,   # Fallen Realms
+  gif:      6,   # Gondor in Flames
+  harad:    7,   # Harad
+  kd:       8,   # Khazad-dûm
+  kom:      9,   # Kingdoms of Men
+  ma:      10,   # Moria & Angmar
+  mordor:  11,   # Mordor
+  roa:     12,   # The Ruin of Arnor
+  rotk:    13,   # Return of the King
   rotk_jb: 14,   # Return of the King Journeybook
-  mordor:  15,   # Mordor
-  fr:      16,   # Fallen Realms
-  ma:      17,   # Moria & Angmar
-  kom:     18,   # Kingdoms of Men
-  fp:      19    # Free Peoples
+  saf:     15,   # Shadow & Flame
+  site:    16,   # A Shadow in the East
+  sog:     17,   # Siege of Gondor
+  sots:    18,   # The Scouring of the Shire
+  ttt:     19,   # The Two Towers
+  ttt_jb:  20    # The Two Towers Journeybook
 
 defenum ScenarioResourceType,
   source: 0,
