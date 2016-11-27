@@ -271,10 +271,11 @@ defmodule SbgInv.Data do
     # FIGURES: ISENGARD
     #########################################################################
 
-    ugluk       = Repo.insert! %Figure{name: "Uglúk"}
+    lurtz       = Repo.insert! %Figure{name: "Lurtz"}
     sharkey     = Repo.insert! %Figure{name: "Sharkey"}
     sharku      = Repo.insert! %Figure{name: "Sharku"}
     sharku_warg = Repo.insert! %Figure{name: "Sharku on Warg"}
+    ugluk       = Repo.insert! %Figure{name: "Uglúk"}
     vrasku      = Repo.insert! %Figure{name: "Vraskû"}
     worm        = Repo.insert! %Figure{name: "Worm"}
 
@@ -360,6 +361,7 @@ defmodule SbgInv.Data do
     orc_drummer          = Repo.insert! %Figure{name: "Orc Drummer",              plural_name: "Orc Drummers"}
     orc_shaman           = Repo.insert! %Figure{name: "Orc Shaman",               plural_name: "Orc Shamans"}
     ringwraith           = Repo.insert! %Figure{name: "Ringwraith",               plural_name: "Ringwraiths"}
+    ringwraith_horse     = Repo.insert! %Figure{name: "Ringwraith on horse",      plural_name: "Ringwraiths on horse"}
     ringwraith_fellbeast = Repo.insert! %Figure{name: "Ringwraith on Fell Beast", plural_name: "Ringwraiths on Fell Beasts"}
     troll_chieftain      = Repo.insert! %Figure{name: "Troll Chieftain",          plural_name: "Troll Chieftain"}
 
@@ -414,8 +416,9 @@ defmodule SbgInv.Data do
     moria_drum    = Repo.insert! %Figure{name: "Moria Goblin drum",    plural_name: "Moria Goblin drums"}
     moria_drummer = Repo.insert! %Figure{name: "Moria Goblin drummer", plural_name: "Moria Goblin drummers"}
 
-    balrog = Repo.insert! %Figure{name: "Balrog", plural_name: "Balrogs"}
-    dragon = Repo.insert! %Figure{name: "Dragon", plural_name: "Dragons"}
+    balrog   = Repo.insert! %Figure{name: "Balrog",   plural_name: "Balrogs"}
+    dragon   = Repo.insert! %Figure{name: "Dragon",   plural_name: "Dragons"}
+    tentacle = Repo.insert! %Figure{name: "Tentacle", plural_name: "Tentacles"}
 
     #########################################################################
     # FIGURES: NUMENOR
@@ -434,18 +437,21 @@ defmodule SbgInv.Data do
     # FIGURES: RIVENDELL
     #########################################################################
 
-    arwen           = Repo.insert! %Figure{name: "Arwen (FotR)"}
-    arwen2          = Repo.insert! %Figure{name: "Arwen (LotR)"}
-    elladan         = Repo.insert! %Figure{name: "Elladan"}
-    elladan_armor   = Repo.insert! %Figure{name: "Elladan with heavy armour"}
-    elrohir         = Repo.insert! %Figure{name: "Elrohir"}
-    elrohir_armor   = Repo.insert! %Figure{name: "Elrohir with heavy armour"}
-    elrond          = Repo.insert! %Figure{name: "Elrond"}
-    erestor         = Repo.insert! %Figure{name: "Erestor"}
-    gil_galad       = Repo.insert! %Figure{name: "Gil-galad"}
-    glorfindel      = Repo.insert! %Figure{name: "Glorfindel"}
-    glorfindel_lotw = Repo.insert! %Figure{name: "Glorfindel, Lord of the West"}
-    legolas         = Repo.insert! %Figure{name: "Legolas"}
+    arwen            = Repo.insert! %Figure{name: "Arwen (FotR)"}
+    arwen_horse      = Repo.insert! %Figure{name: "Arwen on Asfaloth"}
+    arwen2           = Repo.insert! %Figure{name: "Arwen (LotR)"}
+    elladan          = Repo.insert! %Figure{name: "Elladan"}
+    elladan_armor    = Repo.insert! %Figure{name: "Elladan with heavy armour"}
+    elrohir          = Repo.insert! %Figure{name: "Elrohir"}
+    elrohir_armor    = Repo.insert! %Figure{name: "Elrohir with heavy armour"}
+    elrond           = Repo.insert! %Figure{name: "Elrond"}
+    erestor          = Repo.insert! %Figure{name: "Erestor"}
+    gil_galad        = Repo.insert! %Figure{name: "Gil-galad"}
+    gildor           = Repo.insert! %Figure{name: "Gildor"}
+    glorfindel       = Repo.insert! %Figure{name: "Glorfindel"}
+    glorfindel_horse = Repo.insert! %Figure{name: "Glorfindel on horse"}
+    glorfindel_lotw  = Repo.insert! %Figure{name: "Glorfindel, Lord of the West"}
+    legolas          = Repo.insert! %Figure{name: "Legolas"}
 
     high_elf_captain = Repo.insert! %Figure{name: "High Elf Captain", plural_name: "High Elf Captains"}
 
@@ -1049,6 +1055,391 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotn_s7f2, 1, 5, [ troll_chieftain ])
     _declare_role_figure(fotn_s7f2, 1, 6, [ mordor_troll ])
     _declare_role_figure(fotn_s7f2, 4, 6, [ giant_spider ])
+
+    #########################################################################
+    # THE FELLOWSHIP OF THE RING JOURNEYBOOK
+    #########################################################################
+
+    #========================================================================
+    fotrjb_s1 = Repo.insert! %Scenario{
+      name: "The Hunt Begins",
+      blurb: "The Nazgul probe the edges of the Shire, where the Dúnedain drive them off.",
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 21, is_canonical: true, size: 12
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s1.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 1, page: 16}
+
+    fotrjb_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s1.id, faction: :arnor, suggested_points: 216, actual_points: 216, sort_order: 1}
+    _declare_role_figure(fotrjb_s1f1, 9, 1, [ dunedain ])
+
+    fotrjb_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s1.id, faction: :mordor, suggested_points: 180, actual_points: 180, sort_order: 2}
+    _declare_role_figure(fotrjb_s1f2, 1, 1, [ witch_king ])
+    _declare_role_figure(fotrjb_s1f2, 2, 2, [ ringwraith ])
+
+    #========================================================================
+    fotrjb_s2 = Repo.insert! %Scenario{
+      name: "The Trust of Arnor",
+      blurb: "The Nazgul drive off the Dúnedain protecting the Shire (well, in the story they do...).",
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 22, is_canonical: true, size: 18
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s2.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 2, page: 18}
+
+    fotrjb_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s2.id, faction: :arnor, suggested_points: 216, actual_points: 216, sort_order: 1}
+    _declare_role_figure(fotrjb_s2f1, 9, 1, [ dunedain ])
+
+    fotrjb_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s2.id, faction: :mordor, suggested_points: 550, actual_points: 550, sort_order: 2}
+    _declare_role_figure(fotrjb_s2f2, 1, 1, [ witch_king ])
+    _declare_role_figure(fotrjb_s2f2, 8, 2, [ ringwraith ])
+
+    #========================================================================
+    fotrjb_s3 = Repo.insert! %Scenario{
+      name: "Short Cuts Make Long Delays",
+      blurb: "Frodo and friends escape from searching Ringwraiths thanks to the timely appearance of Gildor Inglorion.",
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 23, is_canonical: true, size: 8
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s3.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 3, page: 20}
+
+    fotrjb_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s3.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s3f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotrjb_s3f1, 1, 2, [ sam ])
+    _declare_role_figure(fotrjb_s3f1, 1, 3, [ pippin ])
+    _declare_role_figure(fotrjb_s3f1, 1, 4, [ merry ])
+    _declare_role_figure(fotrjb_s3f1, 1, 5, [ gildor ])
+
+    fotrjb_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s3.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s3f2, 3, 1, [ ringwraith ])
+
+    #========================================================================
+    fotrjb_s4 = Repo.insert! %Scenario{
+      name: "Bucklebury Ferry",
+      blurb: "Frodo and friends dodge the Ringwraiths by crossing the Brandywine River.",
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 24, is_canonical: true, size: 7
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s4.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 4, page: 26}
+
+    fotrjb_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s4.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s4f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotrjb_s4f1, 1, 2, [ sam ])
+    _declare_role_figure(fotrjb_s4f1, 1, 3, [ pippin ])
+    _declare_role_figure(fotrjb_s4f1, 1, 4, [ merry ])
+
+    fotrjb_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s4f2, 3, 1, [ ringwraith ])
+
+    #========================================================================
+    fotrjb_s5 = Repo.insert! %Scenario{
+      name: "Fog on the Barrow Downs",
+      blurb: "Frodo's band must escape from the dead spirits of Angmar.",
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 28, is_canonical: true, size: 9
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s5.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 5, page: 30}
+
+    fotrjb_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s5.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s5f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotrjb_s5f1, 1, 2, [ sam ])
+    _declare_role_figure(fotrjb_s5f1, 1, 3, [ pippin ])
+    _declare_role_figure(fotrjb_s5f1, 1, 4, [ merry ])
+
+    fotrjb_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s5.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s5f2, 4, 1, [ barrow_wight ])
+
+    #========================================================================
+    fotrjb_s6 = Repo.insert! %Scenario{
+      name: "The Grey Pilgrim and the Black Riders",
+      blurb: "Gandalf is attacked by the Ringwraiths at Weathertop.",
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 3, is_canonical: true, size: 10
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s6.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 6, page: 42}
+
+    fotrjb_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s6.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s6f1, 1, 1, [ gandalf_grey ])
+
+    fotrjb_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s6.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s6f2, 1, 1, [ witch_king ])
+    _declare_role_figure(fotrjb_s6f2, 8, 2, [ ringwraith ])
+
+    #========================================================================
+    fotrjb_s7 = Repo.insert! %Scenario{
+      name: "Pursuit Into the Wild",
+      blurb: "Gandalf draws off the Ringwraiths.",
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 4, is_canonical: true, size: 11
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s7.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 7, page: 44}
+
+    fotrjb_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s7.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s7f1, 1, 1, [ gandalf_grey ])
+    _declare_role_figure(fotrjb_s7f1, 6, 2, [ dunedain ])
+
+    fotrjb_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s7.id, faction: :mordor, suggested_points: 220, actual_points: 220, sort_order: 2}
+    _declare_role_figure(fotrjb_s7f2, 4, 1, [ ringwraith ])
+
+    #========================================================================
+    fotrjb_s8 = Repo.insert! %Scenario{
+      name: "Amon Sûl",
+      blurb: "Frodo and friends are attacked by the Ringwraiths at Weathertop.",
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 6, is_canonical: true, size: 10
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s8.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 8, page: 46}
+
+    fotrjb_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s8.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s8f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotrjb_s8f1, 1, 2, [ sam ])
+    _declare_role_figure(fotrjb_s8f1, 1, 3, [ merry ])
+    _declare_role_figure(fotrjb_s8f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s8f1, 1, 5, [ aragorn ])
+
+    fotrjb_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s8.id, faction: :mordor, suggested_points: 330, actual_points: 330, sort_order: 2}
+    _declare_role_figure(fotrjb_s8f2, 1, 1, [ witch_king ])
+    _declare_role_figure(fotrjb_s8f2, 4, 2, [ ringwraith ])
+
+    #========================================================================
+    fotrjb_s9 = Repo.insert! %Scenario{
+      name: "Flight to the Ford",
+      blurb: "A wounded Frodo must get to Rivendell before succumbing to the effects of the Morgul blade.  Can Glorfindel (or possibly Arwen) help?",
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 20, is_canonical: true, size: 15
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s9.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 9, page: 50}
+
+    fotrjb_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s9.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s9f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotrjb_s9f1, 1, 2, [ sam ])
+    _declare_role_figure(fotrjb_s9f1, 1, 3, [ merry ])
+    _declare_role_figure(fotrjb_s9f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s9f1, 1, 5, [ aragorn ])
+    _declare_role_figure(fotrjb_s9f1, 1, 6, [ gandalf_grey ])
+    _declare_role_figure(fotrjb_s9f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotrjb_s9f1, 1, 8, [ legolas ])
+    _declare_role_figure(fotrjb_s9f1, 1, 9, [ gimli ])
+
+    fotrjb_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s9.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s9f2, 1, 1, [ witch_king_horse ])
+    _declare_role_figure(fotrjb_s9f2, 8, 2, [ ringwraith_horse ])
+
+    #========================================================================
+    fotrjb_s10 = Repo.insert! %Scenario{
+      name: "The Hounds of Sauron",
+      blurb: "The Fellowship is attacked by a pack of wild wargs.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 12, is_canonical: true, size: 28
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s10.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 10, page: 54}
+
+    fotrjb_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s10.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s10f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotrjb_s10f1, 1, 2, [ sam ])
+    _declare_role_figure(fotrjb_s10f1, 1, 3, [ merry ])
+    _declare_role_figure(fotrjb_s10f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s10f1, 1, 5, [ aragorn ])
+    _declare_role_figure(fotrjb_s10f1, 1, 6, [ gandalf_grey ])
+    _declare_role_figure(fotrjb_s10f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotrjb_s10f1, 1, 8, [ legolas ])
+    _declare_role_figure(fotrjb_s10f1, 1, 9, [ gimli ])
+
+    fotrjb_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s10.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s10f2,  1, 1, [ warg_chieftain ])
+    _declare_role_figure(fotrjb_s10f2, 18, 2, [ warg ])
+
+    #========================================================================
+    fotrjb_s11 = Repo.insert! %Scenario{
+      name: "The Watcher in the Water",
+      blurb: "The Fellowship is chased into Moria by the Watcher in the Water.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 13, is_canonical: true, size: 15
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s11.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 11, page: 58}
+
+    fotrjb_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s11.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s11f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotrjb_s11f1, 1, 2, [ sam ])
+    _declare_role_figure(fotrjb_s11f1, 1, 3, [ merry ])
+    _declare_role_figure(fotrjb_s11f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s11f1, 1, 5, [ aragorn ])
+    _declare_role_figure(fotrjb_s11f1, 1, 6, [ gandalf_grey ])
+    _declare_role_figure(fotrjb_s11f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotrjb_s11f1, 1, 8, [ legolas ])
+    _declare_role_figure(fotrjb_s11f1, 1, 9, [ gimli ])
+
+    fotrjb_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s11.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s11f2, 6, 1, [ tentacle ])
+
+    #========================================================================
+    fotrjb_s12 = Repo.insert! %Scenario{
+      name: "Balin's Tomb",
+      blurb: "The Fellowship are cornered in Balin's Tomb by goblins, and They Have a Cave Troll.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 14, is_canonical: true, size: 36
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s12.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 12, page: 64}
+
+    fotrjb_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s12.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s12f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotrjb_s12f1, 1, 2, [ sam ])
+    _declare_role_figure(fotrjb_s12f1, 1, 3, [ merry ])
+    _declare_role_figure(fotrjb_s12f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s12f1, 1, 5, [ aragorn ])
+    _declare_role_figure(fotrjb_s12f1, 1, 6, [ gandalf_grey ])
+    _declare_role_figure(fotrjb_s12f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotrjb_s12f1, 1, 8, [ legolas ])
+    _declare_role_figure(fotrjb_s12f1, 1, 9, [ gimli ])
+
+    fotrjb_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s12.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s12f2, 2, 1, [ moria_captain ])
+    _declare_role_figure(fotrjb_s12f2, 8, 2, [ moria_g_shield ])
+    _declare_role_figure(fotrjb_s12f2, 8, 3, [ moria_g_spear ])
+    _declare_role_figure(fotrjb_s12f2, 8, 4, [ moria_g_bow ])
+    _declare_role_figure(fotrjb_s12f2, 1, 5, "Cave Troll", [ cave_troll_spear, cave_troll_chain ])
+
+    #========================================================================
+    fotrjb_s13 = Repo.insert! %Scenario{
+      name: "The Escape from the Dwarrowdelf",
+      blurb: "The Fellowship escape from the ambush in Balin's Tomb into yet another ambush.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, is_canonical: true, size: 36
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s13.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 13, page: 70}
+
+    fotrjb_s13f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s13.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s13f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotrjb_s13f1, 1, 2, [ sam ])
+    _declare_role_figure(fotrjb_s13f1, 1, 3, [ merry ])
+    _declare_role_figure(fotrjb_s13f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s13f1, 1, 5, [ aragorn ])
+    _declare_role_figure(fotrjb_s13f1, 1, 6, [ gandalf_grey ])
+    _declare_role_figure(fotrjb_s13f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotrjb_s13f1, 1, 8, [ legolas ])
+    _declare_role_figure(fotrjb_s13f1, 1, 9, [ gimli ])
+
+    fotrjb_s13f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s13.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s13f2, 2, 1, [ moria_captain ])
+    _declare_role_figure(fotrjb_s13f2, 8, 2, [ moria_g_shield ])
+    _declare_role_figure(fotrjb_s13f2, 8, 3, [ moria_g_spear ])
+    _declare_role_figure(fotrjb_s13f2, 8, 4, [ moria_g_bow ])
+    _declare_role_figure(fotrjb_s13f2, 1, 5, "Cave Troll", [ cave_troll_spear, cave_troll_chain ])
+
+    #========================================================================
+    fotrjb_s14 = Repo.insert! %Scenario{
+      name: "The Bridge of Khazad-dûm",
+      blurb: "Gandalf sacrifices himself against the Balrog. \"Fly, you fools!\"",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, is_canonical: true, size: 36
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s14.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 14, page: 76}
+
+    fotrjb_s14f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s14.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s14f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotrjb_s14f1, 1, 2, [ sam ])
+    _declare_role_figure(fotrjb_s14f1, 1, 3, [ merry ])
+    _declare_role_figure(fotrjb_s14f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s14f1, 1, 5, [ aragorn ])
+    _declare_role_figure(fotrjb_s14f1, 1, 6, [ gandalf_grey ])
+    _declare_role_figure(fotrjb_s14f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotrjb_s14f1, 1, 8, [ legolas ])
+    _declare_role_figure(fotrjb_s14f1, 1, 9, [ gimli ])
+
+    fotrjb_s14f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s14.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s14f2, 1, 1, [ balrog ])
+    _declare_role_figure(fotrjb_s14f2, 2, 2, [ moria_captain ])
+    _declare_role_figure(fotrjb_s14f2, 8, 3, [ moria_g_shield ])
+    _declare_role_figure(fotrjb_s14f2, 8, 4, [ moria_g_spear ])
+    _declare_role_figure(fotrjb_s14f2, 8, 5, [ moria_g_bow ])
+
+    #========================================================================
+    fotrjb_s15 = Repo.insert! %Scenario{
+      name: "Lothlorien",
+      blurb: "The Fellowship finds refuge from a Goblin search party within the edges of Lothlorien.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, is_canonical: true, size: 50
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s15.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 15, page: 78}
+
+    fotrjb_s15f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s15.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s15f1, 1,  1, [ frodo ])
+    _declare_role_figure(fotrjb_s15f1, 1,  2, [ sam ])
+    _declare_role_figure(fotrjb_s15f1, 1,  3, [ merry ])
+    _declare_role_figure(fotrjb_s15f1, 1,  4, [ pippin ])
+    _declare_role_figure(fotrjb_s15f1, 1,  5, [ aragorn ])
+    _declare_role_figure(fotrjb_s15f1, 1,  6, [ boromir ])
+    _declare_role_figure(fotrjb_s15f1, 1,  7, [ legolas ])
+    _declare_role_figure(fotrjb_s15f1, 1,  8, [ gimli ])
+    _declare_role_figure(fotrjb_s15f1, 1,  9, [ haldir ])
+    _declare_role_figure(fotrjb_s15f1, 6, 10, "Elves with Elf bows & Elven blades", [ wood_elf_w_bow, wood_elf_w_blade ])
+
+    fotrjb_s15f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s15.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s15f2,  2, 1, [ moria_captain ])
+    _declare_role_figure(fotrjb_s15f2,  1, 1, [ warg_chieftain ])
+    _declare_role_figure(fotrjb_s15f2,  8, 3, [ moria_g_shield ])
+    _declare_role_figure(fotrjb_s15f2,  8, 4, [ moria_g_spear ])
+    _declare_role_figure(fotrjb_s15f2,  8, 5, [ moria_g_bow ])
+    _declare_role_figure(fotrjb_s15f2, 18, 6, [ warg ])
+
+    #========================================================================
+    fotrjb_s16 = Repo.insert! %Scenario{
+      name: "Aragorn's Stand",
+      blurb: "Aragorn protects Frodo from marauding Uruk-hai.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, is_canonical: true, size: 24
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s16.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 16, page: 84}
+
+    fotrjb_s16f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s16.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s16f1, 1,  1, [ aragorn ])
+    _declare_role_figure(fotrjb_s16f1, 1,  2, [ legolas ])
+    _declare_role_figure(fotrjb_s16f1, 1,  3, [ gimli ])
+    _declare_role_figure(fotrjb_s16f1, 1,  4, [ frodo ])
+
+    fotrjb_s16f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s16.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s16f2,  1, 1, [ lurtz ])
+    _declare_role_figure(fotrjb_s16f2,  1, 2, "Uruk-hai Captain", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
+    _declare_role_figure(fotrjb_s16f2,  6, 3, [ uruk_hai_s_bow ])
+    _declare_role_figure(fotrjb_s16f2, 12, 4, [ uruk_hai_s_sword_shield ])
+
+    #========================================================================
+    fotrjb_s17 = Repo.insert! %Scenario{
+      name: "Boromir's Redemption",
+      blurb: "Boromir protects Merry and Pipping from marauding Uruk-hai.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, is_canonical: true, size: 22
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s17.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 17, page: 86}
+
+    fotrjb_s17f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s17.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s17f1, 1,  1, [ boromir ])
+    _declare_role_figure(fotrjb_s17f1, 1,  2, [ merry ])
+    _declare_role_figure(fotrjb_s17f1, 1,  3, [ pippin ])
+
+    fotrjb_s17f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s17.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s17f2,  1, 1, "Uruk-hai Captain", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
+    _declare_role_figure(fotrjb_s17f2, 12, 2, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(fotrjb_s17f2,  6, 3, [ uruk_hai_s_bow ])
+
+    #========================================================================
+    fotrjb_s18 = Repo.insert! %Scenario{
+      name: "The Breaking of the Fellowship",
+      blurb: "Can the Three Hunters save the wounded Boromir?",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, is_canonical: true, size: 24
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s18.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 18, page: 88}
+
+    fotrjb_s18f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s18.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s18f1, 1,  1, [ aragorn ])
+    _declare_role_figure(fotrjb_s18f1, 1,  2, [ legolas ])
+    _declare_role_figure(fotrjb_s18f1, 1,  3, [ gimli ])
+    _declare_role_figure(fotrjb_s18f1, 1,  4, [ boromir ])
+
+    fotrjb_s18f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s18.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s18f2,  1, 1, [ lurtz ])
+    _declare_role_figure(fotrjb_s18f2,  1, 2, "Uruk-hai Captain", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
+    _declare_role_figure(fotrjb_s18f2,  6, 3, [ uruk_hai_s_bow ])
+    _declare_role_figure(fotrjb_s18f2, 12, 4, [ uruk_hai_s_sword_shield ])
 
     #########################################################################
     # GONDOR IN FLAMES
