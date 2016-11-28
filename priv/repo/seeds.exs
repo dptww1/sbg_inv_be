@@ -165,12 +165,15 @@ defmodule SbgInv.Data do
     gandalf_grey        = Repo.insert! %Figure{name: "Gandalf the Grey"}
     gandalf_white       = Repo.insert! %Figure{name: "Gandalf the White"}
     gandalf_white_horse = Repo.insert! %Figure{name: "Gandalf the White on horse"}
+    ghan_buri_ghan      = Repo.insert! %Figure{name: "Ghân-buri-ghân"}
     goldberry           = Repo.insert! %Figure{name: "Goldberry"}
     gwaihir             = Repo.insert! %Figure{name: "Gwaihir"}
     radagast            = Repo.insert! %Figure{name: "Radagast"}
     saruman             = Repo.insert! %Figure{name: "Saruman the White"}
     tom_bombadil        = Repo.insert! %Figure{name: "Tom Bombadil"}
     treebeard           = Repo.insert! %Figure{name: "Treebeard"}
+
+    wose = Repo.insert! %Figure{name: "Wose", plural_name: "Woses"}
 
     eagle = Repo.insert! %Figure{name: "Giant Eagle", plural_name: "Giant Eagles"}
     ent   = Repo.insert! %Figure{name: "Ent",         plural_name: "Ents"}
@@ -194,7 +197,7 @@ defmodule SbgInv.Data do
     imrahil_horse       = Repo.insert! %Figure{name: "Prince Imrahil on horse"}
     king_dead           = Repo.insert! %Figure{name: "King of the Dead"}
     madril              = Repo.insert! %Figure{name: "Madril"}
-    pippin_gondor       = Repo.insert! %Figure{name: "Pippin"}
+    pippin_gondor       = Repo.insert! %Figure{name: "Peregrin, Guard of the Citadel"}
 
     king_of_men             = Repo.insert! %Figure{name: "King of Men",                      plural_name: "Kings of Men"}
     gondor_captain_mt       = Repo.insert! %Figure{name: "Captain of Minas Tirith",          plural_name: "Captains of Minas Tirith"}
@@ -265,7 +268,8 @@ defmodule SbgInv.Data do
     serpent_rider      = Repo.insert! %Figure{name: "Serpent Rider",                plural_name: "Serpent Riders"}
     watcher_karna      = Repo.insert! %Figure{name: "Watcher of Karna",             plural_name: "Watchers of Karna"}
 
-    mumak = Repo.insert! %Figure{name: "Mûmak", plural_name: "Mûmakil"}
+    mumak       = Repo.insert! %Figure{name: "Mûmak",       plural_name: "Mûmakil"}
+    mumak_mahud = Repo.insert! %Figure{name: "Mûmak Mahud", plural_name: "Mûmak Mahuds"}
 
     #########################################################################
     # FIGURES: ISENGARD
@@ -336,10 +340,12 @@ defmodule SbgInv.Data do
     #########################################################################
 
     dark_marshal         = Repo.insert! %Figure{name: "The Dark Marshal"}
+    gollum               = Repo.insert! %Figure{name: "Gollum"}
     gorbag               = Repo.insert! %Figure{name: "Gorbag"}
     gothmog              = Repo.insert! %Figure{name: "Gothmog"}
     grishnakh            = Repo.insert! %Figure{name: "Grishnákh"}
     #khamul in Easterlings
+    mouth                = Repo.insert! %Figure{name: "Mouth of Sauron"}
     mouth_horse          = Repo.insert! %Figure{name: "Mouth of Sauron on armoured horse"}
     sauron               = Repo.insert! %Figure{name: "Sauron"}
     shadow_lord          = Repo.insert! %Figure{name: "The Shadow Lord"}
@@ -365,6 +371,7 @@ defmodule SbgInv.Data do
     ringwraith_fellbeast = Repo.insert! %Figure{name: "Ringwraith on Fell Beast", plural_name: "Ringwraiths on Fell Beasts"}
     troll_chieftain      = Repo.insert! %Figure{name: "Troll Chieftain",          plural_name: "Troll Chieftain"}
 
+    m_uruk_hai              = Repo.insert! %Figure{name: "Mordor Uruk-hai",                    plural_name: "Mordor Uruk-hai"}
     m_uruk_hai_shield       = Repo.insert! %Figure{name: "Mordor Uruk-hai with shield",        plural_name: "Mordor Uruk-hai with shield"}
     m_uruk_hai_2h           = Repo.insert! %Figure{name: "Mordor Uruk-hai with two-handed weapon", plural_name: "Mordor Uruk-hai with two-handed weapon"}
     morgul_stalker          = Repo.insert! %Figure{name: "Morgul Stalker",                     plural_name: "Morgul Stalkers"}
@@ -467,6 +474,7 @@ defmodule SbgInv.Data do
     eomer               = Repo.insert! %Figure{name: "Eomer"}
     eomer_horse         = Repo.insert! %Figure{name: "Eomer on horse"}
     eorl_horse          = Repo.insert! %Figure{name: "Eorl the Young on horse"}
+    eowyn_armor         = Repo.insert! %Figure{name: "Éowyn with armour"}
     eowyn_horse         = Repo.insert! %Figure{name: "Éowyn on horse"}
     erkenbrand          = Repo.insert! %Figure{name: "Erkenbrand"}
     erkenbrand_horse    = Repo.insert! %Figure{name: "Erkenbrand on horse"}
@@ -1959,6 +1967,370 @@ defmodule SbgInv.Data do
     _declare_role_figure(kd_s5f2, 6,  5, [ moria_g_spear ])
     _declare_role_figure(kd_s5f2, 6,  6, [ moria_g_bow ])
     _declare_role_figure(kd_s5f2, 6,  7, [ moria_g_shield ])
+
+    #########################################################################
+    # THE RETURN OF THE KING JOURNEYBOOK
+    #########################################################################
+
+    #========================================================================
+    rotkjb_s1 = Repo.insert! %Scenario{
+      name: "Shelob's Lair",
+      blurb: "Gollum leads Frodo and Sam into the lair of the giant spider.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 12, is_canonical: true, size: 4
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s1.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 1, page: 12}
+
+    rotkjb_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s1.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s1f1, 1, 1, [ frodo ])
+    _declare_role_figure(rotkjb_s1f1, 1, 2, [ sam ])
+
+    rotkjb_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s1.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s1f2, 1, 1, [ shelob ])
+    _declare_role_figure(rotkjb_s1f2, 1, 2, [ gollum ])
+
+    #========================================================================
+    rotkjb_s2 = Repo.insert! %Scenario{
+      name: "Ride of the Rohirrim",
+      blurb: "The Druadan help the Rohirrim through their forest to bypass the bulk of the Mordor forces.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, is_canonical: true, size: 4
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s2.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 2, page: 20}
+
+    rotkjb_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s2.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s2f1,  1, 1, [ theoden_armor_horse ])
+    _declare_role_figure(rotkjb_s2f1,  1, 2, [ ghan_buri_ghan ])
+    _declare_role_figure(rotkjb_s2f1,  9, 3, [ wose ])
+    _declare_role_figure(rotkjb_s2f1,  1, 4, [ eomer_horse ])
+    _declare_role_figure(rotkjb_s2f1, 13, 5, [ rohan_rider ])
+    _declare_role_figure(rotkjb_s2f1,  3, 6, [ rohan_rider_spear ])
+
+    rotkjb_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s2.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s2f2,  3,  1, "Orc Captains with shield", [ orc_captain ])
+    _declare_role_figure(rotkjb_s2f2, 12,  2, [ orc_w_shield ])
+    _declare_role_figure(rotkjb_s2f2, 12,  3, [ orc_w_spear ])
+    _declare_role_figure(rotkjb_s2f2,  6,  4, [ orc_w_bow ])
+    _declare_role_figure(rotkjb_s2f2,  6,  5, [ orc_w_2h ])
+    _declare_role_figure(rotkjb_s2f2,  6,  6, [ orc_m_shield ])
+    _declare_role_figure(rotkjb_s2f2,  6,  7, [ orc_m_spear ])
+    _declare_role_figure(rotkjb_s2f2,  4,  8, [ warg_rider_shield ])
+    _declare_role_figure(rotkjb_s2f2,  4,  9, [ warg_rider_spear ])
+    _declare_role_figure(rotkjb_s2f2,  4, 10, [ warg_rider_bow ])
+
+    #========================================================================
+    rotkjb_s3 = Repo.insert! %Scenario{
+      name: "The Rescue of Faramir",
+      blurb: "Gandalf and Imrahil ride out to save Faramir and his troops from a Ringwraith on a Fell beast.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, is_canonical: true, size: 106
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s3.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 3, page: 34}
+
+    rotkjb_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s3.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s3f1,  1,  1, [ faramir_armor_horse ])
+    _declare_role_figure(rotkjb_s3f1,  1,  2, [ gandalf_white_horse ])
+    _declare_role_figure(rotkjb_s3f1,  1,  3, [ imrahil_horse ])
+    _declare_role_figure(rotkjb_s3f1,  1,  4, [ gondor_captain_mt ])
+    _declare_role_figure(rotkjb_s3f1,  8,  5, [ gondor_womt_spear_shield ])
+    _declare_role_figure(rotkjb_s3f1,  8,  6, [ gondor_womt_shield ])
+    _declare_role_figure(rotkjb_s3f1,  8,  7, [ gondor_womt_bow ])
+    _declare_role_figure(rotkjb_s3f1,  4,  8, [ gondor_rog ])
+    _declare_role_figure(rotkjb_s3f1,  5,  9, [ gondor_knight_shield ])
+    _declare_role_figure(rotkjb_s3f1,  1, 10, [ gondor_knight_banner ])
+    _declare_role_figure(rotkjb_s3f1,  6, 11, "Knight of Dol Amroth on horse with lance", [ gondor_knight_da_horse ])
+
+    rotkjb_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s3.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s3f2,  1,  1, [ ringwraith_fellbeast ])
+    _declare_role_figure(rotkjb_s3f2,  2,  2, "Orc Captain with shield", [ orc_captain ])
+    _declare_role_figure(rotkjb_s3f2,  8,  3, [ orc_w_shield ])
+    _declare_role_figure(rotkjb_s3f2,  8,  4, [ orc_w_spear ])
+    _declare_role_figure(rotkjb_s3f2,  4,  5, [ orc_w_bow ])
+    _declare_role_figure(rotkjb_s3f2,  4,  6, [ orc_w_2h ])
+    _declare_role_figure(rotkjb_s3f2,  5,  7, [ orc_m_shield ])
+    _declare_role_figure(rotkjb_s3f2,  5,  8, [ orc_m_spear ])
+    _declare_role_figure(rotkjb_s3f2,  2,  9, [ warg_rider_shield ])
+    _declare_role_figure(rotkjb_s3f2,  2, 10, [ warg_rider_spear ])
+    _declare_role_figure(rotkjb_s3f2,  2, 11, [ warg_rider_bow ])
+    _declare_role_figure(rotkjb_s3f2,  1, 12, "Haradrim Chieftain with spear", [ harad_chieftain ])
+    _declare_role_figure(rotkjb_s3f2,  6, 13, [ harad_w_spear ])
+    _declare_role_figure(rotkjb_s3f2,  6, 14, [ harad_w_bow ])
+    _declare_role_figure(rotkjb_s3f2,  3, 15, [ harad_raider ])
+    _declare_role_figure(rotkjb_s3f2,  3, 16, [ harad_raider_lance ])
+
+    #========================================================================
+    rotkjb_s4 = Repo.insert! %Scenario{
+      name: "The Walls of Minas Tirith",
+      blurb: "The forces of Mordor lay siege to Minas Tirith.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 14, is_canonical: true, size: 67
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s4.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 4, page: 48}
+
+    rotkjb_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s4.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s4f1,  1,  1, [ gandalf_white ])
+    _declare_role_figure(rotkjb_s4f1,  1,  2, [ pippin_gondor ])
+    _declare_role_figure(rotkjb_s4f1,  1,  3, [ forlong ])
+    _declare_role_figure(rotkjb_s4f1,  8,  4, [ gondor_womt_shield ])
+    _declare_role_figure(rotkjb_s4f1,  8,  5, [ gondor_womt_spear_shield ])
+    _declare_role_figure(rotkjb_s4f1,  8,  6, [ gondor_womt_bow ])
+    _declare_role_figure(rotkjb_s4f1,  1,  7, [ gondor_womt_banner ])
+    _declare_role_figure(rotkjb_s4f1,  3,  8, [ axemen_lossarnach ])
+    _declare_role_figure(rotkjb_s4f1,  6,  9, [ clansmen_lamedon ])
+
+    rotkjb_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s4f2,  1,  1, "Orc Captain with shield", [ orc_captain ])
+    _declare_role_figure(rotkjb_s4f2,  4,  2, [ orc_w_spear ])
+    _declare_role_figure(rotkjb_s4f2,  4,  3, [ orc_w_shield ])
+    _declare_role_figure(rotkjb_s4f2,  2,  4, [ orc_w_bow ])
+    _declare_role_figure(rotkjb_s4f2,  2,  5, [ orc_w_2h ])
+    _declare_role_figure(rotkjb_s4f2,  3,  6, [ orc_m_shield ])
+    _declare_role_figure(rotkjb_s4f2,  3,  7, [ orc_m_spear ])
+    _declare_role_figure(rotkjb_s4f2,  1,  8, [ easterling_captain ])
+    _declare_role_figure(rotkjb_s4f2,  4,  9, [ easterling_w_shield ])
+    _declare_role_figure(rotkjb_s4f2,  4, 10, [ easterling_w_bow ])
+    _declare_role_figure(rotkjb_s4f2,  2, 11, [ easterling_w_shield_spear ])
+    _declare_role_figure(rotkjb_s4f2,  1, 12, [ war_catapult ])
+    _declare_role_figure(rotkjb_s4f2,  3, 13, [ war_catapult_orc ])
+    _declare_role_figure(rotkjb_s4f2,  1, 14, [ war_catapult_troll ])
+
+    #========================================================================
+    rotkjb_s5 = Repo.insert! %Scenario{
+      name: "The White Rider and the Black",
+      blurb: "The Witch-King of Angmar confronts Gandalf at the Gate of Minas Tirith.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 83
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s5.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 5, page: 50}
+
+    rotkjb_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s5.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s5f1,  1,  1, [ gandalf_white ])
+    _declare_role_figure(rotkjb_s5f1,  1,  2, [ pippin_gondor ])
+    _declare_role_figure(rotkjb_s5f1,  1,  3, [ imrahil ])
+    _declare_role_figure(rotkjb_s5f1,  7,  4, [ gondor_womt_shield ])
+    _declare_role_figure(rotkjb_s5f1,  8,  5, [ gondor_womt_spear_shield ])
+    _declare_role_figure(rotkjb_s5f1,  8,  6, [ gondor_womt_bow ])
+    _declare_role_figure(rotkjb_s5f1,  1,  7, [ gondor_womt_banner ])
+    _declare_role_figure(rotkjb_s5f1,  9,  8, [ gondor_knight_da_foot ])
+
+    rotkjb_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s5.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s5f2,  1,  1, [ witch_king_horse ])
+    _declare_role_figure(rotkjb_s5f2,  2,  1, "Orc Captain with shield", [ orc_captain ])
+    _declare_role_figure(rotkjb_s5f2,  8,  2, [ orc_w_spear ])
+    _declare_role_figure(rotkjb_s5f2,  8,  3, [ orc_w_shield ])
+    _declare_role_figure(rotkjb_s5f2,  4,  4, [ orc_w_bow ])
+    _declare_role_figure(rotkjb_s5f2,  4,  5, [ orc_w_2h ])
+    _declare_role_figure(rotkjb_s5f2,  4,  6, [ orc_m_shield ])
+    _declare_role_figure(rotkjb_s5f2,  4,  7, [ orc_m_spear ])
+    _declare_role_figure(rotkjb_s5f2,  1,  8, [ easterling_captain ])
+    _declare_role_figure(rotkjb_s5f2,  4,  9, [ easterling_w_shield ])
+    _declare_role_figure(rotkjb_s5f2,  4, 10, [ easterling_w_bow ])
+    _declare_role_figure(rotkjb_s5f2,  2, 11, [ easterling_w_shield_spear ])
+
+    #========================================================================
+    rotkjb_s6 = Repo.insert! %Scenario{
+      name: "The Horse and the Serpent",
+      blurb: "The Rohirrim encounter the Southrons on the Pelennor Fields.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 46
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s6.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 6, page: 52}
+
+    rotkjb_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s6.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s6f1,  1,  1, [ theoden_armor_horse ])
+    _declare_role_figure(rotkjb_s6f1,  1,  2, [ gamling_horse ])
+    _declare_role_figure(rotkjb_s6f1,  1,  3, [ eowyn_horse ])
+    _declare_role_figure(rotkjb_s6f1,  1,  4, [ merry_rohan ])
+    _declare_role_figure(rotkjb_s6f1,  1,  5, [ eomer_horse ])
+    _declare_role_figure(rotkjb_s6f1, 13,  6, [ rohan_rider ])
+    _declare_role_figure(rotkjb_s6f1,  3,  7, [ rohan_rider_spear ])
+
+    rotkjb_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s6.id, faction: :harad, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s6f2,  1,  1, "Suladân the Serpent Lord on horse with lance", [ suladan_horse ])
+    _declare_role_figure(rotkjb_s6f2,  2,  2, "Haradrim Chieftain on horse with lance", [ harad_chieftain_horse ])
+    _declare_role_figure(rotkjb_s6f2,  6,  3, [ harad_raider ])
+    _declare_role_figure(rotkjb_s6f2,  6,  4, [ harad_raider_lance ])
+    _declare_role_figure(rotkjb_s6f2, 10,  5, [ serpent_rider ])
+
+    #========================================================================
+    rotkjb_s7 = Repo.insert! %Scenario{
+      name: "The Death of Kings",
+      blurb: "Théoden faces off against the Witch-King of Angmar.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 4
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s7.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 7, page: 54}
+
+    rotkjb_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s7.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s7f1,  1,  1, [ theoden_armor_horse ])
+    _declare_role_figure(rotkjb_s7f1,  1,  2, [ eowyn_horse ])
+    _declare_role_figure(rotkjb_s7f1,  1,  3, [ merry_rohan ])
+
+    rotkjb_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s7.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s7f2,  1,  1, [ witch_king_fellbeast ])
+
+    #========================================================================
+    rotkjb_s8 = Repo.insert! %Scenario{
+      name: "The Glory of Dol Amroth",
+      blurb: "Prince Imrahil rides out from Minas Tirith.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 140
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s8.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 8, page: 56}
+
+    rotkjb_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s8.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s8f1,  1,  1, [ imrahil_horse ])
+    _declare_role_figure(rotkjb_s8f1,  9,  2, [ gondor_knight_shield ])
+    _declare_role_figure(rotkjb_s8f1,  9,  3, "Knights of Dol Amroth on horse with lance", [ gondor_knight_da_horse ])
+    _declare_role_figure(rotkjb_s8f1,  8,  4, [ gondor_womt_shield ])
+    _declare_role_figure(rotkjb_s8f1,  8,  5, [ gondor_womt_spear_shield ])
+    _declare_role_figure(rotkjb_s8f1,  8,  6, [ gondor_womt_bow ])
+    _declare_role_figure(rotkjb_s8f1, 12,  7, "Men-at-arms of Dol Amroth with lance", [ maa_da ])
+
+    rotkjb_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s8.id, faction: :easterlings, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s8f2,  1,  1, "Orc Captain with shield", [ orc_captain ])
+    _declare_role_figure(rotkjb_s8f2,  1,  2, "Khandish Chieftain with bow", [ khandish_chieftain ])
+    _declare_role_figure(rotkjb_s8f2,  1,  3, [ easterling_captain ])
+    _declare_role_figure(rotkjb_s8f2, 12,  4, [ orc_w_shield ])
+    _declare_role_figure(rotkjb_s8f2, 12,  5, [ orc_w_spear ])
+    _declare_role_figure(rotkjb_s8f2,  6,  6, [ orc_w_bow ])
+    _declare_role_figure(rotkjb_s8f2,  6,  7, [ orc_w_2h ])
+    _declare_role_figure(rotkjb_s8f2,  5,  8, [ orc_m_spear ])
+    _declare_role_figure(rotkjb_s8f2,  5,  9, [ orc_m_shield ])
+    _declare_role_figure(rotkjb_s8f2,  8, 10, [ easterling_w_shield ])
+    _declare_role_figure(rotkjb_s8f2,  8, 11, [ easterling_w_bow ])
+    _declare_role_figure(rotkjb_s8f2,  4, 12, [ easterling_w_shield_spear ])
+    _declare_role_figure(rotkjb_s8f2, 10, 13, [ khandish_w_axe ])
+    _declare_role_figure(rotkjb_s8f2,  6, 14, [ khandish_w_bow ])
+
+    #========================================================================
+    rotkjb_s9 = Repo.insert! %Scenario{
+      name: "Charge of the Mûmakil",
+      blurb: "Éomer and the Rohirrim are counterattacked by Oliphaunts.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 61
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s9.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 9, page: 60}
+
+    rotkjb_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s9.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s9f1,  1,  1, "Éomer, Marshal of the Riddermark on horse", [ eomer_horse ])
+    _declare_role_figure(rotkjb_s9f1,  2,  2, "Captain of Rohan on horse with shield", [ rohan_captain_horse ])
+    _declare_role_figure(rotkjb_s9f1, 18,  3, [ rohan_rider ])
+    _declare_role_figure(rotkjb_s9f1,  6,  4, [ rohan_rider_spear ])
+    _declare_role_figure(rotkjb_s9f1,  5,  5, [ rohan_gd_horse_spear ])
+    _declare_role_figure(rotkjb_s9f1,  1,  6, [ rohan_gd_horse_banner ])
+
+    rotkjb_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s9.id, faction: :harad, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s9f2,  2,  1,  [ mumak ])
+    _declare_role_figure(rotkjb_s9f2,  2,  2,  [ mumak_mahud ])
+    _declare_role_figure(rotkjb_s9f2, 12,  3,  [ harad_w_spear ])
+    _declare_role_figure(rotkjb_s9f2, 12,  4,  [ harad_w_bow ])
+
+    #========================================================================
+    rotkjb_s10 = Repo.insert! %Scenario{
+      name: "The Return of the King",
+      blurb: "Aragorn arrives at the Pelennor Fields just in the nick of time.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 92
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s10.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 10, page: 66}
+
+    rotkjb_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s10.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s10f1,  1,  1, "Aragorn with Andúril", [ aragorn ])
+    _declare_role_figure(rotkjb_s10f1,  1,  2, [ legolas ])
+    _declare_role_figure(rotkjb_s10f1,  1,  3, [ gimli ])
+    _declare_role_figure(rotkjb_s10f1,  1,  4, [ angbor ])
+    _declare_role_figure(rotkjb_s10f1,  8,  5, [ ranger_north ])
+    _declare_role_figure(rotkjb_s10f1,  4,  6, [ ranger_north_spear ])
+    _declare_role_figure(rotkjb_s10f1, 12,  7, [ axemen_lossarnach ])
+    _declare_role_figure(rotkjb_s10f1, 11,  8, [ clansmen_lamedon ])
+
+    rotkjb_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s10.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s10f2,  1,  1, [ gothmog ])
+    _declare_role_figure(rotkjb_s10f2,  1,  2, [ troll_chieftain ])
+    _declare_role_figure(rotkjb_s10f2,  1,  3, [ m_orc_captain ])
+    _declare_role_figure(rotkjb_s10f2,  8,  4, [ orc_w_shield ])
+    _declare_role_figure(rotkjb_s10f2,  8,  5, [ orc_w_spear ])
+    _declare_role_figure(rotkjb_s10f2,  4,  6, [ orc_w_bow ])
+    _declare_role_figure(rotkjb_s10f2,  4,  7, [ orc_w_2h ])
+    _declare_role_figure(rotkjb_s10f2, 12,  8, [ orc_m_spear ])
+    _declare_role_figure(rotkjb_s10f2, 12,  9, [ orc_m_shield ])
+    _declare_role_figure(rotkjb_s10f2,  2, 10, [ mordor_troll ])
+
+    #========================================================================
+    rotkjb_s11 = Repo.insert! %Scenario{
+      name: "The Pyre of Denethor",
+      blurb: "Driven to madness, Denethor tries to burn the not-dead-yet-Faramir.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 7
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s11.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 11, page: 70}
+
+    rotkjb_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s11.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s11f1,  1,  1, [ gandalf_white_horse ])
+    _declare_role_figure(rotkjb_s11f1,  1,  2, [ pippin_gondor ])
+    _declare_role_figure(rotkjb_s11f1,  1,  3, [ beregond ])
+
+    rotkjb_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s11.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s11f2,  1,  1, [ denethor ])
+    _declare_role_figure(rotkjb_s11f2,  3,  2, "Citadel Guard", [ gondor_citadel_gd_spear, gondor_citadel_gd_bow ])
+
+    #========================================================================
+    rotkjb_s12 = Repo.insert! %Scenario{
+      name: "The Tower of Cirith Ungol",
+      blurb: "The guards of Cirith Ungol fight over the captured Frodo and Sam and their gear.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 40
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s12.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 12, page: 74}
+
+    rotkjb_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s12.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s12f1,  1,  1, [ frodo ])
+    _declare_role_figure(rotkjb_s12f1,  1,  2, "Samwise the Brave with Elven cloak", [ sam ])
+    _declare_role_figure(rotkjb_s12f1,  1,  3, [ shagrat ])
+    _declare_role_figure(rotkjb_s12f1,  8,  4, [ m_uruk_hai ])
+    _declare_role_figure(rotkjb_s12f1,  4,  5, [ m_uruk_hai_2h ])
+
+    rotkjb_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s12.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s12f2,  1,  1, [ gorbag ])
+    _declare_role_figure(rotkjb_s12f2,  8,  2, [ orc_w_shield ])
+    _declare_role_figure(rotkjb_s12f2,  8,  3, [ orc_w_spear ])
+    _declare_role_figure(rotkjb_s12f2,  4,  4, [ orc_w_bow ])
+    _declare_role_figure(rotkjb_s12f2,  4,  5, [ orc_w_2h ])
+
+    #========================================================================
+    rotkjb_s13 = Repo.insert! %Scenario{
+      name: "The Black Gate Opens",
+      blurb: "Aragorn and the bravest of the brave march to the very gates of Mordor to win time for Frodo to complete his quest.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, is_canonical: true, size: 37
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotkjb_s13.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 13, page: 78}
+
+    rotkjb_s13f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s13.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotkjb_s13f1,  1,  1, "Aragorn the King", [ aragorn ])
+    _declare_role_figure(rotkjb_s13f1,  1,  2, [ gwaihir ])
+    _declare_role_figure(rotkjb_s13f1,  1,  3, [ gandalf_white ])
+    _declare_role_figure(rotkjb_s13f1,  1,  4, "Éomer, Knight of the Pelennor", [ eomer ])
+    _declare_role_figure(rotkjb_s13f1,  1,  5, [ eowyn_armor ])
+    _declare_role_figure(rotkjb_s13f1,  1,  6, "Meriadoc, Knight of the Mark with Elven cloak and shield", [ merry_rohan ])
+    _declare_role_figure(rotkjb_s13f1,  1,  7, [ erkenbrand ])
+    _declare_role_figure(rotkjb_s13f1,  1,  8, "Peregrin, Guard of the Citade with Elven cloak", [ pippin_gondor ])
+    _declare_role_figure(rotkjb_s13f1,  1,  9, [ imrahil ])
+    _declare_role_figure(rotkjb_s13f1,  1, 10, [ forlong ])
+    _declare_role_figure(rotkjb_s13f1,  1, 11, [ angbor ])
+    _declare_role_figure(rotkjb_s13f1,  1, 12, [ elladan ])
+    _declare_role_figure(rotkjb_s13f1,  1, 13, [ elrohir ])
+    _declare_role_figure(rotkjb_s13f1,  1, 14, "Halbarad with Banner of Arwen Evenstar", [ halbarad ])
+
+    rotkjb_s13f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s13.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotkjb_s13f2,  1,  1, [ troll_chieftain ])
+    _declare_role_figure(rotkjb_s13f2,  3,  2, [ ringwraith_fellbeast ])
+    _declare_role_figure(rotkjb_s13f2,  1,  3, [ mouth ])
+    _declare_role_figure(rotkjb_s13f2, 13,  4, "Orc Captain with shield", [ orc_captain ])
+    _declare_role_figure(rotkjb_s13f2,  2,  5, [ m_orc_captain ])
+    _declare_role_figure(rotkjb_s13f2,  1,  6, [ m_orc_captain_2h ])
+    _declare_role_figure(rotkjb_s13f2,  2,  7, [ mordor_troll ])
 
     #########################################################################
     # THE RUIN OF ARNOR
