@@ -6,7 +6,11 @@ defmodule SbgInv.SessionView do
   end
 
   def render("session.json", %{session: session}) do
-    %{token: session.token, name: session.user.name}
+    %{
+      token: session.token,
+      name: session.user.name,
+      user_id: session.user.id
+    }
   end
 
   def render("error.json", _anything) do

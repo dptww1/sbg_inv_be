@@ -21,6 +21,25 @@ defmodule SbgInv.UserController do
     end
   end
 
-  def index(_conn, _params) do
+  def update(conn, %{"id" => id, "user" => user_params}) do
+    user = Repo.get!(User, id)
+    changeset = cond do
+      is_nil(Map.get user_params, "email")
+        -> User.update_password_changeset(user, user_params)
+
+      is_nil(Map.get user_params, "password")
+        -> User.update_email_changeset(user, user_params)
+
+      true
+        -> User.update_changeset(user, user_params)
+    end
+
+    case Repo.update(changeset) do
+      {:ok, user} -> render(conn, "show.json", user: user)
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(SbgInv.ChangesetView, "error.json", changeset: changeset)
+    end
   end
 end

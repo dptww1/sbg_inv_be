@@ -1,7 +1,8 @@
 defmodule SbgInv.UserControllerTest do
   use SbgInv.ConnCase
 
-  alias SbgInv.User
+  alias SbgInv.{TestHelper, User}
+
   @valid_attrs %{name: "nobody", email: "foo@bar.com", password: "s3cr3t"}
   @invalid_attrs %{}
 
@@ -23,4 +24,37 @@ defmodule SbgInv.UserControllerTest do
     assert json_response(conn, 422)["errors"] != %{}
   end
 
+  test "updates user's email and password with proper credentials", %{conn: conn} do
+    user = TestHelper.create_user
+    conn = TestHelper.create_session(conn, user)
+    conn = put conn, user_path(conn, :update, user), user: %{email: "abc@example.com", password: "123456" }
+
+    assert json_response(conn, 200)["data"]["id"] == user.id
+    user_chk = Repo.get_by(User, %{email: "abc@example.com"})
+    assert user_chk
+    assert user_chk.password_hash != user.password_hash
+  end
+
+  test "updates email only when no password supplied", %{conn: conn} do
+    user = TestHelper.create_user
+    conn = TestHelper.create_session(conn, user)
+    conn = put conn, user_path(conn, :update, user), user: %{email: "abc@example.com" }
+
+    assert json_response(conn, 200)["data"]["id"] == user.id
+    user_chk = Repo.get_by(User, %{email: "abc@example.com"})
+    assert user_chk
+    assert user_chk.password_hash == user.password_hash
+  end
+
+  test "updates password only when no email supplied", %{conn: conn} do
+    user = TestHelper.create_user
+    conn = TestHelper.create_session(conn, user)
+    conn = put conn, user_path(conn, :update, user), user: %{password: "random string" }
+
+    assert json_response(conn, 200)["data"]["id"] == user.id
+    user_chk = Repo.get_by(User, %{id: user.id})
+    assert user_chk
+    assert user_chk.password_hash != user.password_hash
+    assert user_chk.email == user.email
+  end
 end

@@ -18,6 +18,7 @@ defmodule SbgInv.SessionControllerTest do
     resp = json_response(conn, 201)
     assert resp["data"]["token"]
     assert resp["data"]["name"]
+    assert resp["data"]["user_id"]
     assert Repo.get_by(Session, token: resp["data"]["token"])
   end
 
