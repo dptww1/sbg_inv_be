@@ -8,7 +8,6 @@ defmodule SbgInv.Scenario do
     field :date_year,    :integer
     field :date_month,   :integer
     field :date_day,     :integer
-    field :is_canonical, :boolean, default: false
     field :size,         :integer
     field :rating,       :float
     field :num_votes,    :integer
@@ -20,7 +19,7 @@ defmodule SbgInv.Scenario do
     has_many :user_scenarios, SbgInv.UserScenario
   end
 
-  @required_fields ~w(name blurb date_age date_year date_month date_day is_canonical size)
+  @required_fields ~w(name blurb date_age date_year date_month date_day size)
   @optional_fields ~w(rating num_votes)
 
   @doc """

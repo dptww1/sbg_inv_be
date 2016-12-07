@@ -5,7 +5,7 @@ defmodule SbgInv.UserScenarioControllerTest do
   alias SbgInv.{Scenario, TestHelper, UserScenario}
 
   @valid_attrs %{rating: 3, owned: 2, painted: 1}
-  @valid_scenario_attrs %{blurb: "A", date_age: 1, date_year: 2, date_month: 3, date_day: 4, is_canonical: true, name: "B", size: 2}
+  @valid_scenario_attrs %{blurb: "A", date_age: 1, date_year: 2, date_month: 3, date_day: 4, name: "B", size: 2}
 
   test "creates and renders resource when data is valid", %{conn: conn} do
     scenario = Repo.insert! struct(Scenario, @valid_scenario_attrs)

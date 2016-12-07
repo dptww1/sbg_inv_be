@@ -556,7 +556,7 @@ defmodule SbgInv.Data do
     bpf_s1 = Repo.insert! %Scenario{
       name: "The Banks of the Harnen",
       blurb: "The Haradrim attempt to cross the Harnen river to enter Gondorian lands.",
-      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, is_canonical: true, size: 50
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 50
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s1.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 1, page: 14}
@@ -578,7 +578,7 @@ defmodule SbgInv.Data do
     bpf_s2 = Repo.insert! %Scenario{
       name: "A Blade in the Night",
       blurb: "A lone Hâsharin tries to assassinate Prince Imrahil.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 1, is_canonical: true, size: 26
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 1, size: 26
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s2.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 2, page: 20}
@@ -597,7 +597,7 @@ defmodule SbgInv.Data do
     bpf_s3 = Repo.insert! %Scenario{
       name: "The Harad Road",
       blurb: "A separated force of Gondor infantry and cavalry are surrounded by Haradrim.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 5, is_canonical: true, size: 102
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 5, size: 102
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s3.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 3, page: 26}
@@ -626,7 +626,7 @@ defmodule SbgInv.Data do
     bpf_s4 = Repo.insert! %Scenario{
       name: "The Fall of Harmindon",
       blurb: "Imrahil, aided by a rogue Hâsharin defends the town of Harmindon from Suladan's assault.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 15, is_canonical: true, size: 67
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 15, size: 67
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s4.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 4, page: 28}
@@ -655,7 +655,7 @@ defmodule SbgInv.Data do
     bpf_s5 = Repo.insert! %Scenario{
       name: "Hunt the Mumak",
       blurb: "Prince Imrahil's force tries to take down a Mumak in the middle of a sand storm.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 20, is_canonical: true, size: 39
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 20, size: 39
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s5.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 5, page: 34}
@@ -676,7 +676,7 @@ defmodule SbgInv.Data do
     bpf_s6 = Repo.insert! %Scenario{
       name: "Rebellion",
       blurb: "Two Hâsharin lead a revolt against Suladân in his own camp.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 27, is_canonical: true, size: 64
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 27, size: 64
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s6.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 6, page: 40}
@@ -698,7 +698,7 @@ defmodule SbgInv.Data do
     bpf_s7 = Repo.insert! %Scenario{
       name: "Assault on Glamorgath",
       blurb: "Prince Imrahil conducts a fighting withdrawal against Suladân's assault on the ruins of Glamorgath.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, is_canonical: true, size: 110
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, size: 110
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s7.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 7, page: 44}
@@ -727,7 +727,7 @@ defmodule SbgInv.Data do
     bpf_s8 = Repo.insert! %Scenario{
       name: "Ambush in Ithilien",
       blurb: "Faramir's Rangers ambush a large Southron force, complete with Mûmak.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 7, is_canonical: true, size: 74
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 7, size: 74
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s8.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 8, page: 48}
@@ -754,7 +754,7 @@ defmodule SbgInv.Data do
     bpf_s9 = Repo.insert! %Scenario{
       name: "The Glory of Dol Amroth",
       blurb: "Gandalf and Prince Imrahil ride out from Gondor to save Faramir from the forces of Mordor.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, is_canonical: true, size: 93
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, size: 93
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s9.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 9, page: 52}
@@ -790,7 +790,7 @@ defmodule SbgInv.Data do
     bpf_s10 = Repo.insert! %Scenario{
       name: "The Horse and the Serpent",
       blurb: "Théoden and Suladân face off in the Pelennor Fields.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 47
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 47
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s10.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 9, page: 56}
@@ -818,7 +818,7 @@ defmodule SbgInv.Data do
     bpf_s11 = Repo.insert! %Scenario{
       name: "Éomer's Rage",
       blurb: "Aragorn and Imrahil rush to save Éomer as he is surrounded by forces of Mordor and Harad.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 136
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 136
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s11.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 9, page: 60}
@@ -872,7 +872,7 @@ defmodule SbgInv.Data do
     fotn_s1 = Repo.insert! %Scenario{
       name: "Dol Guldur Awakens",
       blurb: "Thranduil leads a warband against the creatures of Mirkwood.",
-      date_age: 3, date_year: 2060, date_month: 0, date_day: 0, is_canonical: true, size: 22
+      date_age: 3, date_year: 2060, date_month: 0, date_day: 0, size: 22
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s1.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 1, page: 8}
@@ -893,7 +893,7 @@ defmodule SbgInv.Data do
     fotn_s2 = Repo.insert! %Scenario{
       name: "In the Nick of Time",
       blurb: "Elrond joins Thranduil against an attack from Dol Guldur lead by Khamûl.",
-      date_age: 3,  date_year: 2061, date_month: 0, date_day: 0, is_canonical: true, size: 65
+      date_age: 3,  date_year: 2061, date_month: 0, date_day: 0, size: 65
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s2.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 2, page: 10}
@@ -930,7 +930,7 @@ defmodule SbgInv.Data do
     fotn_s3 = Repo.insert! %Scenario{
       name: "A Walk Through Dark Places",
       blurb: "A Rivendell band tries to protect Arwen and Círdan from the minions of Dol Guldur.",
-      date_age: 3, date_year: 2062, date_month: 0, date_day: 0, is_canonical: true, size: 23
+      date_age: 3, date_year: 2062, date_month: 0, date_day: 0, size: 23
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s3.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 3, page: 12}
@@ -955,7 +955,7 @@ defmodule SbgInv.Data do
     fotn_s4 = Repo.insert! %Scenario{
       name: "Meddle Not in the Affairs of Wizards",
       blurb: "The Istari face the minions of Dol Guldur.",
-      date_age: 3, date_year: 2062, date_month: -1, date_day: 0, is_canonical: true, size: 17
+      date_age: 3, date_year: 2062, date_month: -1, date_day: 0, size: 17
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s4.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 4, page: 14}
@@ -978,7 +978,7 @@ defmodule SbgInv.Data do
     fotn_s5 = Repo.insert! %Scenario{
       name: "The Lair of the Spider Queen",
       blurb: "Lothlorien attacks the beasts of Mirkwood",
-      date_age: 3, date_year: 2063, date_month: 0, date_day: 0, is_canonical: true, size: 41
+      date_age: 3, date_year: 2063, date_month: 0, date_day: 0, size: 41
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s5.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 5, page: 16}
@@ -1002,7 +1002,7 @@ defmodule SbgInv.Data do
     fotn_s6 = Repo.insert! %Scenario{
       name: "In the Shadow of Dol Guldur",
       blurb: "Elrond's elves fight a Ringwraith-led Dol Guldur army.",
-      date_age: 3, date_year: 2850, date_month: 0, date_day: 0, is_canonical: true, size: 91
+      date_age: 3, date_year: 2850, date_month: 0, date_day: 0, size: 91
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s6.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 6, page: 18}
@@ -1035,7 +1035,7 @@ defmodule SbgInv.Data do
     fotn_s7 = Repo.insert! %Scenario{
       name: "The Fall of the Necromancer",
       blurb: "The White Council battles the Necromancer himself at Dol Guldur.",
-      date_age: 3, date_year: 2851, date_month: 0, date_day: 0, is_canonical: true, size: 29
+      date_age: 3, date_year: 2851, date_month: 0, date_day: 0, size: 29
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s7.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 7, page: 20}
@@ -1072,7 +1072,7 @@ defmodule SbgInv.Data do
     fotrjb_s1 = Repo.insert! %Scenario{
       name: "The Hunt Begins",
       blurb: "The Nazgul probe the edges of the Shire, where the Dúnedain drive them off.",
-      date_age: 3, date_year: 3018, date_month: 9, date_day: 21, is_canonical: true, size: 12
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 21, size: 12
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s1.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 1, page: 16}
@@ -1088,7 +1088,7 @@ defmodule SbgInv.Data do
     fotrjb_s2 = Repo.insert! %Scenario{
       name: "The Trust of Arnor",
       blurb: "The Nazgul drive off the Dúnedain protecting the Shire (well, in the story they do...).",
-      date_age: 3, date_year: 3018, date_month: 9, date_day: 22, is_canonical: true, size: 18
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 22, size: 18
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s2.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 2, page: 18}
@@ -1104,7 +1104,7 @@ defmodule SbgInv.Data do
     fotrjb_s3 = Repo.insert! %Scenario{
       name: "Short Cuts Make Long Delays",
       blurb: "Frodo and friends escape from searching Ringwraiths thanks to the timely appearance of Gildor Inglorion.",
-      date_age: 3, date_year: 3018, date_month: 9, date_day: 23, is_canonical: true, size: 8
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 23, size: 8
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s3.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 3, page: 20}
@@ -1123,7 +1123,7 @@ defmodule SbgInv.Data do
     fotrjb_s4 = Repo.insert! %Scenario{
       name: "Bucklebury Ferry",
       blurb: "Frodo and friends dodge the Ringwraiths by crossing the Brandywine River.",
-      date_age: 3, date_year: 3018, date_month: 9, date_day: 24, is_canonical: true, size: 7
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 24, size: 7
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s4.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 4, page: 26}
@@ -1141,7 +1141,7 @@ defmodule SbgInv.Data do
     fotrjb_s5 = Repo.insert! %Scenario{
       name: "Fog on the Barrow Downs",
       blurb: "Frodo's band must escape from the dead spirits of Angmar.",
-      date_age: 3, date_year: 3018, date_month: 9, date_day: 28, is_canonical: true, size: 9
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 28, size: 9
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s5.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 5, page: 30}
@@ -1159,7 +1159,7 @@ defmodule SbgInv.Data do
     fotrjb_s6 = Repo.insert! %Scenario{
       name: "The Grey Pilgrim and the Black Riders",
       blurb: "Gandalf is attacked by the Ringwraiths at Weathertop.",
-      date_age: 3, date_year: 3018, date_month: 10, date_day: 3, is_canonical: true, size: 10
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 3, size: 10
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s6.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 6, page: 42}
@@ -1175,7 +1175,7 @@ defmodule SbgInv.Data do
     fotrjb_s7 = Repo.insert! %Scenario{
       name: "Pursuit Into the Wild",
       blurb: "Gandalf draws off the Ringwraiths.",
-      date_age: 3, date_year: 3018, date_month: 10, date_day: 4, is_canonical: true, size: 11
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 4, size: 11
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s7.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 7, page: 44}
@@ -1191,7 +1191,7 @@ defmodule SbgInv.Data do
     fotrjb_s8 = Repo.insert! %Scenario{
       name: "Amon Sûl",
       blurb: "Frodo and friends are attacked by the Ringwraiths at Weathertop.",
-      date_age: 3, date_year: 3018, date_month: 10, date_day: 6, is_canonical: true, size: 10
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 6, size: 10
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s8.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 8, page: 46}
@@ -1211,7 +1211,7 @@ defmodule SbgInv.Data do
     fotrjb_s9 = Repo.insert! %Scenario{
       name: "Flight to the Ford",
       blurb: "A wounded Frodo must get to Rivendell before succumbing to the effects of the Morgul blade.  Can Glorfindel (or possibly Arwen) help?",
-      date_age: 3, date_year: 3018, date_month: 10, date_day: 20, is_canonical: true, size: 15
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 20, size: 15
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s9.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 9, page: 50}
@@ -1235,7 +1235,7 @@ defmodule SbgInv.Data do
     fotrjb_s10 = Repo.insert! %Scenario{
       name: "The Hounds of Sauron",
       blurb: "The Fellowship is attacked by a pack of wild wargs.",
-      date_age: 3, date_year: 3019, date_month: 1, date_day: 12, is_canonical: true, size: 28
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 12, size: 28
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s10.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 10, page: 54}
@@ -1259,7 +1259,7 @@ defmodule SbgInv.Data do
     fotrjb_s11 = Repo.insert! %Scenario{
       name: "The Watcher in the Water",
       blurb: "The Fellowship is chased into Moria by the Watcher in the Water.",
-      date_age: 3, date_year: 3019, date_month: 1, date_day: 13, is_canonical: true, size: 15
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 13, size: 15
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s11.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 11, page: 58}
@@ -1282,7 +1282,7 @@ defmodule SbgInv.Data do
     fotrjb_s12 = Repo.insert! %Scenario{
       name: "Balin's Tomb",
       blurb: "The Fellowship are cornered in Balin's Tomb by goblins, and They Have a Cave Troll.",
-      date_age: 3, date_year: 3019, date_month: 1, date_day: 14, is_canonical: true, size: 36
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 14, size: 36
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s12.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 12, page: 64}
@@ -1309,7 +1309,7 @@ defmodule SbgInv.Data do
     fotrjb_s13 = Repo.insert! %Scenario{
       name: "The Escape from the Dwarrowdelf",
       blurb: "The Fellowship escape from the ambush in Balin's Tomb into yet another ambush.",
-      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, is_canonical: true, size: 36
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 36
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s13.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 13, page: 70}
@@ -1336,7 +1336,7 @@ defmodule SbgInv.Data do
     fotrjb_s14 = Repo.insert! %Scenario{
       name: "The Bridge of Khazad-dûm",
       blurb: "Gandalf sacrifices himself against the Balrog. \"Fly, you fools!\"",
-      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, is_canonical: true, size: 36
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 36
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s14.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 14, page: 76}
@@ -1363,7 +1363,7 @@ defmodule SbgInv.Data do
     fotrjb_s15 = Repo.insert! %Scenario{
       name: "Lothlorien",
       blurb: "The Fellowship finds refuge from a Goblin search party within the edges of Lothlorien.",
-      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, is_canonical: true, size: 50
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 50
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s15.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 15, page: 78}
@@ -1392,7 +1392,7 @@ defmodule SbgInv.Data do
     fotrjb_s16 = Repo.insert! %Scenario{
       name: "Aragorn's Stand",
       blurb: "Aragorn protects Frodo from marauding Uruk-hai.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, is_canonical: true, size: 24
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, size: 24
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s16.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 16, page: 84}
@@ -1413,7 +1413,7 @@ defmodule SbgInv.Data do
     fotrjb_s17 = Repo.insert! %Scenario{
       name: "Boromir's Redemption",
       blurb: "Boromir protects Merry and Pipping from marauding Uruk-hai.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, is_canonical: true, size: 22
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, size: 22
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s17.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 17, page: 86}
@@ -1432,7 +1432,7 @@ defmodule SbgInv.Data do
     fotrjb_s18 = Repo.insert! %Scenario{
       name: "The Breaking of the Fellowship",
       blurb: "Can the Three Hunters save the wounded Boromir?",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, is_canonical: true, size: 24
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, size: 24
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s18.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 18, page: 88}
@@ -1457,7 +1457,7 @@ defmodule SbgInv.Data do
     gif_s1 = Repo.insert! %Scenario{
       name: "The Gladden Fields",
       blurb: "Isildur must escape from an Orcish ambush to keep the One Ring.",
-      date_age: 3, date_year: 2, date_month: 0, date_day: 0, is_canonical: true, size: 121
+      date_age: 3, date_year: 2, date_month: 0, date_day: 0, size: 121
     }
 
     Repo.insert! %ScenarioResource{scenario_id: gif_s1.id, resource_type: :source, book: :gif, title: "Gondor in Flames", sort_order: 1, page: 52}
@@ -1490,7 +1490,7 @@ defmodule SbgInv.Data do
     gif_s2 = Repo.insert! %Scenario{
       name: "The Fall of Minas Ithil",
       blurb: "The Nazgûl use their terrifying powers to conquer Minas Ithil (Tower of the Moon) and turn it into Minas Morgul (Tower of Black Sorcery).",
-      date_age: 3, date_year: 2002, date_month: 0, date_day: 0, is_canonical: true, size: 67
+      date_age: 3, date_year: 2002, date_month: 0, date_day: 0, size: 67
     }
 
     Repo.insert! %ScenarioResource{scenario_id: gif_s2.id, resource_type: :source, book: :gif, title: "Gondor in Flames", sort_order: 2, page: 54}
@@ -1517,7 +1517,7 @@ defmodule SbgInv.Data do
     gif_s3 = Repo.insert! %Scenario{
       name: "Osgiliath",
       blurb: "Sauron probes Osgiliath, defended by the cream of Gondorian leadership.",
-      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, is_canonical: true, size: 117
+      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, size: 117
     }
 
     Repo.insert! %ScenarioResource{scenario_id: gif_s3.id, resource_type: :source, book: :gif, title: "Gondor in Flames", sort_order: 3, page: 56}
@@ -1558,7 +1558,7 @@ defmodule SbgInv.Data do
     gif_s4 = Repo.insert! %Scenario{
       name: "Against the Southron Horde",
       blurb: "Boromir leads a charge of knights on a ride through a Haradrim camp.",
-      date_age: 3, date_year: 3001, date_month: 0, date_day: 0, is_canonical: true, size: 97
+      date_age: 3, date_year: 3001, date_month: 0, date_day: 0, size: 97
     }
 
     Repo.insert! %ScenarioResource{scenario_id: gif_s4.id, resource_type: :source, book: :gif, title: "Gondor in Flames", sort_order: 4, page: 58}
@@ -1584,7 +1584,7 @@ defmodule SbgInv.Data do
     gif_s5 = Repo.insert! %Scenario{
       name: "The Battle for Pelargir",
       blurb: "Aragorn and his Grey Company assault the Corsairs of Umbar.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 19, is_canonical: true, size: 100
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 19, size: 100
     }
 
     Repo.insert! %ScenarioResource{scenario_id: gif_s5.id, resource_type: :source, book: :gif, title: "Gondor in Flames", sort_order: 4, page: 60}
@@ -1624,7 +1624,7 @@ defmodule SbgInv.Data do
     harad_s1 = Repo.insert! %Scenario{
       name: "The Battle of Kârna",
       blurb: "Gondor tries to reassert control over the city of Kârna.",
-      date_age: 3, date_year: 1050, date_month: 0, date_day: 0, is_canonical: true, size: 50
+      date_age: 3, date_year: 1050, date_month: 0, date_day: 0, size: 50
     }
 
     Repo.insert! %ScenarioResource{scenario_id: harad_s1.id, resource_type: :source, book: :harad, title: "Harad", sort_order: 1, page: 50}
@@ -1645,7 +1645,7 @@ defmodule SbgInv.Data do
     harad_s2 = Repo.insert! %Scenario{
       name: "The Spoils of War",
       blurb: "Gondor heroic questers try to escape with treasures from the now-haunted city of Kârna.",
-      date_age: 3, date_year: 1071, date_month: 0, date_day: 0, is_canonical: true, size: 37
+      date_age: 3, date_year: 1071, date_month: 0, date_day: 0, size: 37
     }
 
     Repo.insert! %ScenarioResource{scenario_id: harad_s2.id, resource_type: :source, book: :harad, title: "Harad", sort_order: 2, page: 52}
@@ -1669,7 +1669,7 @@ defmodule SbgInv.Data do
     harad_s3 = Repo.insert! %Scenario{
       name: "Uprising!",
       blurb: "The Southrons drive the Gondorians out of Umbar.",
-      date_age: 3, date_year: 2954, date_month: 0, date_day: 0, is_canonical: true, size: 63
+      date_age: 3, date_year: 2954, date_month: 0, date_day: 0, size: 63
     }
 
     Repo.insert! %ScenarioResource{scenario_id: harad_s3.id, resource_type: :source, book: :harad, title: "Harad", sort_order: 3, page: 54}
@@ -1691,7 +1691,7 @@ defmodule SbgInv.Data do
     harad_s4 = Repo.insert! %Scenario{
       name: "Raid on Anfalas",
       blurb: "Corsairs of Umbar raid Gondor's southern coast, where they are intercepted by Boromir with some local troops.",
-      date_age: 3, date_year: 3008, date_month: 0, date_day: 0, is_canonical: true, size: 63
+      date_age: 3, date_year: 3008, date_month: 0, date_day: 0, size: 63
     }
 
     Repo.insert! %ScenarioResource{scenario_id: harad_s4.id, resource_type: :source, book: :harad, title: "Harad", sort_order: 4, page: 56}
@@ -1721,7 +1721,7 @@ defmodule SbgInv.Data do
     harad_s5 = Repo.insert! %Scenario{
       name: "Assault on Glamorgath",
       blurb: "Prince Imrahil fights a delaying action against a Mûmak.",
-      date_age: 3, date_year: 3017, date_month: 0, date_day: 0, is_canonical: true, size: 115
+      date_age: 3, date_year: 3017, date_month: 0, date_day: 0, size: 115
     }
 
     Repo.insert! %ScenarioResource{scenario_id: harad_s5.id, resource_type: :source, book: :harad, title: "Harad", sort_order: 4, page: 58}
@@ -1751,7 +1751,7 @@ defmodule SbgInv.Data do
     harad_s6 = Repo.insert! %Scenario{
       name: "The Great Army of Harad",
       blurb: "What if Boromir had lead the army of Gondor against Suladân's hordes?",
-      date_age: 3, date_year: 3018, date_month: 0, date_day: 0, is_canonical: true, size: 237
+      date_age: 3, date_year: 3018, date_month: 0, date_day: 0, size: 237
     }
 
     Repo.insert! %ScenarioResource{scenario_id: harad_s6.id, resource_type: :source, book: :harad, title: "Harad", sort_order: 4, page: 60}
@@ -1816,7 +1816,7 @@ defmodule SbgInv.Data do
     kd_s1 = Repo.insert! %Scenario{
       name: "Durin's Tower",
       blurb: "A Dragon attacks the topmost outpost of the Dwarven realm of Moria.",
-      date_age: 3, date_year: 1970, date_month: 0, date_day: 0, is_canonical: true, size: 36
+      date_age: 3, date_year: 1970, date_month: 0, date_day: 0, size: 36
     }
 
     Repo.insert! %ScenarioResource{scenario_id: kd_s1.id, resource_type: :source, book: :kd, title: "Khazad-dûm", sort_order: 1, page: 54}
@@ -1840,7 +1840,7 @@ defmodule SbgInv.Data do
     kd_s2 = Repo.insert! %Scenario{
       name: "Attack on the East Gate",
       blurb: "A Dragon attacks the topmost outpost of the Dwarven realm of Moria.",
-      date_age: 3, date_year: 1971, date_month: 0, date_day: 0, is_canonical: true, size: 34
+      date_age: 3, date_year: 1971, date_month: 0, date_day: 0, size: 34
     }
 
     Repo.insert! %ScenarioResource{scenario_id: kd_s2.id, resource_type: :source, book: :kd, title: "Khazad-dûm", sort_order: 2, page: 56}
@@ -1866,7 +1866,7 @@ defmodule SbgInv.Data do
     kd_s3 = Repo.insert! %Scenario{
       name: "Battle of the Barazinbar Deeps",
       blurb: "The forces of King Durin have awoken a nameless terror.",
-      date_age: 3, date_year: 1980, date_month: 0, date_day: 0, is_canonical: true, size: 126
+      date_age: 3, date_year: 1980, date_month: 0, date_day: 0, size: 126
     }
 
     Repo.insert! %ScenarioResource{scenario_id: kd_s3.id, resource_type: :source, book: :kd, title: "Khazad-dûm", sort_order: 3, page: 58}
@@ -1906,7 +1906,7 @@ defmodule SbgInv.Data do
     kd_s4 = Repo.insert! %Scenario{
       name: "Ambush at the Crossroads",
       blurb: "Durburz sets a trap for Balin and his expedition to reclaim the kingdom of Khazad-dûm.",
-      date_age: 3, date_year: 2989, date_month: 0, date_day: 0, is_canonical: true, size: 79
+      date_age: 3, date_year: 2989, date_month: 0, date_day: 0, size: 79
     }
 
     Repo.insert! %ScenarioResource{scenario_id: kd_s4.id, resource_type: :source, book: :kd, title: "Khazad-dûm", sort_order: 4, page: 60}
@@ -1942,7 +1942,7 @@ defmodule SbgInv.Data do
     kd_s5 = Repo.insert! %Scenario{
       name: "The Razing of High Water",
       blurb: "A dragon-led Goblin force attacks the dwarven town of High Water.",
-      date_age: 3, date_year: 2954, date_month: 0, date_day: 0, is_canonical: true, size: 56
+      date_age: 3, date_year: 2954, date_month: 0, date_day: 0, size: 56
     }
 
     Repo.insert! %ScenarioResource{scenario_id: kd_s5.id, resource_type: :source, book: :kd, title: "Khazad-dûm", sort_order: 5, page: 62}
@@ -1976,7 +1976,7 @@ defmodule SbgInv.Data do
     rotkjb_s1 = Repo.insert! %Scenario{
       name: "Shelob's Lair",
       blurb: "Gollum leads Frodo and Sam into the lair of the giant spider.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 12, is_canonical: true, size: 4
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 12, size: 4
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s1.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 1, page: 12}
@@ -1993,7 +1993,7 @@ defmodule SbgInv.Data do
     rotkjb_s2 = Repo.insert! %Scenario{
       name: "Ride of the Rohirrim",
       blurb: "The Druadan help the Rohirrim through their forest to bypass the bulk of the Mordor forces.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, is_canonical: true, size: 4
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, size: 4
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s2.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 2, page: 20}
@@ -2022,7 +2022,7 @@ defmodule SbgInv.Data do
     rotkjb_s3 = Repo.insert! %Scenario{
       name: "The Rescue of Faramir",
       blurb: "Gandalf and Imrahil ride out to save Faramir and his troops from a Ringwraith on a Fell beast.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, is_canonical: true, size: 106
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, size: 106
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s3.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 3, page: 34}
@@ -2062,7 +2062,7 @@ defmodule SbgInv.Data do
     rotkjb_s4 = Repo.insert! %Scenario{
       name: "The Walls of Minas Tirith",
       blurb: "The forces of Mordor lay siege to Minas Tirith.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 14, is_canonical: true, size: 67
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 14, size: 67
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s4.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 4, page: 48}
@@ -2098,7 +2098,7 @@ defmodule SbgInv.Data do
     rotkjb_s5 = Repo.insert! %Scenario{
       name: "The White Rider and the Black",
       blurb: "The Witch-King of Angmar confronts Gandalf at the Gate of Minas Tirith.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 83
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 83
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s5.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 5, page: 50}
@@ -2131,7 +2131,7 @@ defmodule SbgInv.Data do
     rotkjb_s6 = Repo.insert! %Scenario{
       name: "The Horse and the Serpent",
       blurb: "The Rohirrim encounter the Southrons on the Pelennor Fields.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 46
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 46
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s6.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 6, page: 52}
@@ -2156,7 +2156,7 @@ defmodule SbgInv.Data do
     rotkjb_s7 = Repo.insert! %Scenario{
       name: "The Death of Kings",
       blurb: "Théoden faces off against the Witch-King of Angmar.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 4
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 4
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s7.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 7, page: 54}
@@ -2173,7 +2173,7 @@ defmodule SbgInv.Data do
     rotkjb_s8 = Repo.insert! %Scenario{
       name: "The Glory of Dol Amroth",
       blurb: "Prince Imrahil rides out from Minas Tirith.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 140
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 140
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s8.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 8, page: 56}
@@ -2207,7 +2207,7 @@ defmodule SbgInv.Data do
     rotkjb_s9 = Repo.insert! %Scenario{
       name: "Charge of the Mûmakil",
       blurb: "Éomer and the Rohirrim are counterattacked by Oliphaunts.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 61
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 61
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s9.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 9, page: 60}
@@ -2230,7 +2230,7 @@ defmodule SbgInv.Data do
     rotkjb_s10 = Repo.insert! %Scenario{
       name: "The Return of the King",
       blurb: "Aragorn arrives at the Pelennor Fields just in the nick of time.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 92
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 92
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s10.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 10, page: 66}
@@ -2261,7 +2261,7 @@ defmodule SbgInv.Data do
     rotkjb_s11 = Repo.insert! %Scenario{
       name: "The Pyre of Denethor",
       blurb: "Driven to madness, Denethor tries to burn the not-dead-yet-Faramir.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 7
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 7
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s11.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 11, page: 70}
@@ -2279,7 +2279,7 @@ defmodule SbgInv.Data do
     rotkjb_s12 = Repo.insert! %Scenario{
       name: "The Tower of Cirith Ungol",
       blurb: "The guards of Cirith Ungol fight over the captured Frodo and Sam and their gear.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 40
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 40
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s12.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 12, page: 74}
@@ -2302,7 +2302,7 @@ defmodule SbgInv.Data do
     rotkjb_s13 = Repo.insert! %Scenario{
       name: "The Black Gate Opens",
       blurb: "Aragorn and the bravest of the brave march to the very gates of Mordor to win time for Frodo to complete his quest.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, is_canonical: true, size: 37
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 37
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s13.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 13, page: 78}
@@ -2340,7 +2340,7 @@ defmodule SbgInv.Data do
     roa_s1 = Repo.insert! %Scenario{
       name: "To Kill a King",
       blurb: "Arvedui and Malbeth try to survive an eerie assault on Fornost.",
-      date_age: 3, date_year: 1974, date_month: 0, date_day: 0, is_canonical: true, size: 21
+      date_age: 3, date_year: 1974, date_month: 0, date_day: 0, size: 21
     }
 
     Repo.insert! %ScenarioResource{scenario_id: roa_s1.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 1, page: 50}
@@ -2360,7 +2360,7 @@ defmodule SbgInv.Data do
     roa_s2 = Repo.insert! %Scenario{
       name: "Flight Into the North",
       blurb: "Arvedui flees before the horror of Gûlavhar, the Terror of Arnor.",
-      date_age: 3, date_year: 1975, date_month: 0, date_day: 0, is_canonical: true, size: 36
+      date_age: 3, date_year: 1975, date_month: 0, date_day: 0, size: 36
     }
 
     Repo.insert! %ScenarioResource{scenario_id: roa_s2.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 2, page: 52}
@@ -2384,7 +2384,7 @@ defmodule SbgInv.Data do
     roa_s3 = Repo.insert! %Scenario{
       name: "The Battle of Fornost",
       blurb: "A coalition of free peoples combine to end the rule of the Witch-King in the North.",
-      date_age: 3, date_year: 1975, date_month: 0, date_day: 0, is_canonical: true, size: 112
+      date_age: 3, date_year: 1975, date_month: 0, date_day: 0, size: 112
     }
 
     Repo.insert! %ScenarioResource{scenario_id: roa_s3.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 3, page: 54}
@@ -2421,7 +2421,7 @@ defmodule SbgInv.Data do
     roa_s4 = Repo.insert! %Scenario{
       name: "Ambush in Rhudaur",
       blurb: "Aragorn's father Arathorn is ambushedby villains in the wild.",
-      date_age: 3, date_year: 2933, date_month: 0, date_day: 0, is_canonical: true, size: 40
+      date_age: 3, date_year: 2933, date_month: 0, date_day: 0, size: 40
     }
 
     Repo.insert! %ScenarioResource{scenario_id: roa_s4.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 4, page: 56}
@@ -2448,7 +2448,7 @@ defmodule SbgInv.Data do
     roa_s5 = Repo.insert! %Scenario{
       name: "Aragorn's Revenge",
       blurb: "Aragorn sets out to avenge his father by slaying Bûhrdur.",
-      date_age: 3, date_year: 2957, date_month: 0, date_day: 0, is_canonical: true, size: 53
+      date_age: 3, date_year: 2957, date_month: 0, date_day: 0, size: 53
     }
 
     Repo.insert! %ScenarioResource{scenario_id: roa_s5.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 5, page: 58}
@@ -2476,7 +2476,7 @@ defmodule SbgInv.Data do
     roa_s6 = Repo.insert! %Scenario{
       name: "The Terror of Arnor",
       blurb: "Aragorn leads the Dúnedain against Gûlavhar.",
-      date_age: 3, date_year: 2958, date_month: 0, date_day: 0, is_canonical: true, size: 24
+      date_age: 3, date_year: 2958, date_month: 0, date_day: 0, size: 24
     }
 
     Repo.insert! %ScenarioResource{scenario_id: roa_s6.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 6, page: 60}
@@ -2500,7 +2500,7 @@ defmodule SbgInv.Data do
     sots_s1 = Repo.insert! %Scenario{
       name: "Maggot's Farm",
       blurb: "Sharkey's ruffians begin infiltrating the Shire.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 9
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 9
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s1.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 1, page: 18}
@@ -2519,7 +2519,7 @@ defmodule SbgInv.Data do
     sots_s2 = Repo.insert! %Scenario{
       name: "Beating the Bounds",
       blurb: "The Shire's militia tries to keep out the Ruffians.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 18, is_canonical: true, size: 15
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 18, size: 15
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s2.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 2, page: 22}
@@ -2536,7 +2536,7 @@ defmodule SbgInv.Data do
     sots_s3 = Repo.insert! %Scenario{
       name: "Brockenborings",
       blurb: "Sharkey breaks up a meeting led by Fatty and Lobelia.",
-      date_age: 3, date_year: 3019, date_month: 6, date_day: 15, is_canonical: true, size: 18
+      date_age: 3, date_year: 3019, date_month: 6, date_day: 15, size: 18
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s3.id, resource_type: :source, book: :sots, title: "The Scouring of the Shite", sort_order: 3, page: 26}
@@ -2556,7 +2556,7 @@ defmodule SbgInv.Data do
     sots_s4 = Repo.insert! %Scenario{
       name: "The Old Store House",
       blurb: "The hobbits try to get some of the food \"gathered\" by the ruffians.",
-      date_age: 3, date_year: 3019, date_month: 8, date_day: 16, is_canonical: true, size: 20
+      date_age: 3, date_year: 3019, date_month: 8, date_day: 16, size: 20
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s4.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 4, page: 28}
@@ -2572,7 +2572,7 @@ defmodule SbgInv.Data do
     sots_s5 = Repo.insert! %Scenario{
       name: "The Southfarthing",
       blurb: "Paladin Took leads the revolt against the ruffians in the Southfarthing.",
-      date_age: 3, date_year: 3019, date_month: 10, date_day: 30, is_canonical: true, size: 32
+      date_age: 3, date_year: 3019, date_month: 10, date_day: 30, size: 32
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s5.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 5, page: 28}
@@ -2593,7 +2593,7 @@ defmodule SbgInv.Data do
     sots_s6 = Repo.insert! %Scenario{
       name: "The Battle of Bywater",
       blurb: "The last battle of the War of the Ring.",
-      date_age: 3, date_year: 3019, date_month: 11, date_day: 1, is_canonical: true, size: 44
+      date_age: 3, date_year: 3019, date_month: 11, date_day: 1, size: 44
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s6.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 6, page: 40}
@@ -2617,7 +2617,7 @@ defmodule SbgInv.Data do
     sots_s7 = Repo.insert! %Scenario{
       name: "The Founding of the Shire",
       blurb: "The hobbits move in to the area that will become the Shire ... if they can overcome the local goblins.",
-      date_age: 3, date_year: 1601, date_month: 0, date_day: 0, is_canonical: true, size: 38
+      date_age: 3, date_year: 1601, date_month: 0, date_day: 0, size: 38
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s7.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 7, page: 50}
@@ -2639,7 +2639,7 @@ defmodule SbgInv.Data do
     sots_s8 = Repo.insert! %Scenario{
       name: "Whatever Happened to Halfast?",
       blurb: "Halfast Bracegirdle goes exploring with some of his hobbit friends, and runs into trouble.",
-      date_age: 3, date_year: 1903, date_month: 0, date_day: 0, is_canonical: true, size: 21
+      date_age: 3, date_year: 1903, date_month: 0, date_day: 0, size: 21
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s8.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 8, page: 54}
@@ -2657,7 +2657,7 @@ defmodule SbgInv.Data do
     sots_s9 = Repo.insert! %Scenario{
       name: "The Battle of Greenfields",
       blurb: "Bandobras Took protects the Shire against goblins lead by Golfimbul, and invents the game of golf.",
-      date_age: 3, date_year: 2747, date_month: 0, date_day: 0, is_canonical: true, size: 33
+      date_age: 3, date_year: 2747, date_month: 0, date_day: 0, size: 33
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s9.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 9, page: 56}
@@ -2678,7 +2678,7 @@ defmodule SbgInv.Data do
     sots_s10 = Repo.insert! %Scenario{
       name: "The Wolves of Winter",
       blurb: "Gandalf helps the Shirefolk during the long winter.",
-      date_age: 3, date_year: 2911, date_month: 0, date_day: 0, is_canonical: true, size: 26
+      date_age: 3, date_year: 2911, date_month: 0, date_day: 0, size: 26
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s10.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 10, page: 58}
@@ -2697,7 +2697,7 @@ defmodule SbgInv.Data do
     sots_s11 = Repo.insert! %Scenario{
       name: "Odovacar Bolger's Promenade",
       blurb: "A jolly picnic in the Old Forest turns into the stuff of nighmares.",
-      date_age: 3, date_year: 2981, date_month: 0, date_day: 0, is_canonical: true, size: 10
+      date_age: 3, date_year: 2981, date_month: 0, date_day: 0, size: 10
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s11.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 11, page: 60}
@@ -2713,7 +2713,7 @@ defmodule SbgInv.Data do
     sots_s12 = Repo.insert! %Scenario{
       name: "The Road to Rivendell",
       blurb: "Bilbo's journey to Rivendell is discovered by a Moria force. Fortunately some friends are around to help him.",
-      date_age: 3, date_year: 3001, date_month: 0, date_day: 0, is_canonical: true, size: 35
+      date_age: 3, date_year: 3001, date_month: 0, date_day: 0, size: 35
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s12.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 12, page: 62}
@@ -2741,7 +2741,7 @@ defmodule SbgInv.Data do
     saf_s1 = Repo.insert! %Scenario{
       name: "The Eastgate",
       blurb: "Balin's dwarves assault the east gate of Moria.",
-      date_age: 3, date_year: 2989, date_month: 0, date_day: 0, is_canonical: true, size: 43
+      date_age: 3, date_year: 2989, date_month: 0, date_day: 0, size: 43
     }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s1.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 1, page: 14}
@@ -2763,7 +2763,7 @@ defmodule SbgInv.Data do
     saf_s2 = Repo.insert! %Scenario{
       name: "Battle for the Dwarrowdelf",
       blurb: "Balin faces off against Durbûrz deep within Moria.",
-      date_age: 3, date_year: 2990, date_month: 0, date_day: 0, is_canonical: true, size: 79
+      date_age: 3, date_year: 2990, date_month: 0, date_day: 0, size: 79
     }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s2.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 2, page: 20}
@@ -2791,7 +2791,7 @@ defmodule SbgInv.Data do
     saf_s3 = Repo.insert! %Scenario{
       name: "Mirrormere",
       blurb: "The Goblins ambush Balin as he gazes into the waters of the Kheled-zâram.",
-      date_age: 3, date_year: 2993, date_month: 0, date_day: 0, is_canonical: true, size: 51
+      date_age: 3, date_year: 2993, date_month: 0, date_day: 0, size: 51
     }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s3.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 3, page: 24}
@@ -2816,7 +2816,7 @@ defmodule SbgInv.Data do
     saf_s4 = Repo.insert! %Scenario{
       name: "They Are Coming",
       blurb: "The last dwarves in Moria face the Balrog.",
-      date_age: 3, date_year: 2994, date_month: 0, date_day: 0, is_canonical: true, size: 55
+      date_age: 3, date_year: 2994, date_month: 0, date_day: 0, size: 55
     }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s4.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 4, page: 28}
@@ -2840,7 +2840,7 @@ defmodule SbgInv.Data do
     saf_s5 = Repo.insert! %Scenario{
       name: "Fog on the Barrow Downs",
       blurb: "Frodo and friends are attacked by the Barrow Wights.",
-      date_age: 3, date_year: 3018, date_month: 9, date_day: 28, is_canonical: true, size: 9
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 28, size: 9
     }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s5.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 5, page: 36}
@@ -2859,7 +2859,7 @@ defmodule SbgInv.Data do
     saf_s6 = Repo.insert! %Scenario{
       name: "Surrounded!",
       blurb: "Elves under Glorfindel are surrounded by Orcs on one side and Goblins on the other.",
-      date_age: 3, date_year: 2925, date_month: 0, date_day: 0, is_canonical: true, size: 101
+      date_age: 3, date_year: 2925, date_month: 0, date_day: 0, size: 101
     }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s6.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 6, page: 42}
@@ -2891,7 +2891,7 @@ defmodule SbgInv.Data do
     saf_s7 = Repo.insert! %Scenario{
       name: "Fangorn",
       blurb: "The Rohirrim, chasing down an Orcish raiding party, get some unexpected help.",
-      date_age: 3, date_year: 3016, date_month: 0, date_day: 0, is_canonical: true, size: 53
+      date_age: 3, date_year: 3016, date_month: 0, date_day: 0, size: 53
     }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s7.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 7, page: 46}
@@ -2921,7 +2921,7 @@ defmodule SbgInv.Data do
     site_s1 = Repo.insert! %Scenario{
       name: "The Fall of Amon Barad",
       blurb: "Easterlings under Khamûl launch a surprise attack on a Gondorian outpost in Ithilien.",
-      date_age: 3, date_year: 2998, date_month: -4, date_day: 0, is_canonical: true, size: 30
+      date_age: 3, date_year: 2998, date_month: -4, date_day: 0, size: 30
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s1.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 1, page: 14}
@@ -2944,7 +2944,7 @@ defmodule SbgInv.Data do
     site_s2 = Repo.insert! %Scenario{
       name: "Pursuit Through Ithilien",
       blurb: "Easterlings pursue Cirion after the fall of Amon Barad.",
-      date_age: 3, date_year: 2998, date_month: -3, date_day: 0, is_canonical: true, size: 28
+      date_age: 3, date_year: 2998, date_month: -3, date_day: 0, size: 28
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s2.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 2, page: 16}
@@ -2970,7 +2970,7 @@ defmodule SbgInv.Data do
     site_s3 = Repo.insert! %Scenario{
       name: "Gathering Information",
       blurb: "Cirion's forces try to capture a Khandish leader from a fort.",
-      date_age: 3, date_year: 2998, date_month: -2, date_day: 0, is_canonical: true, size: 47
+      date_age: 3, date_year: 2998, date_month: -2, date_day: 0, size: 47
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s3.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 3, page: 28}
@@ -2998,7 +2998,7 @@ defmodule SbgInv.Data do
     site_s4 = Repo.insert! %Scenario{
       name: "Turning the Tide",
       blurb: "Cirion surprise attacks an Easterling camp at night.",
-      date_age: 3, date_year: 2998, date_month: -1, date_day: 0, is_canonical: true, size: 121
+      date_age: 3, date_year: 2998, date_month: -1, date_day: 0, size: 121
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s4.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 4, page: 30}
@@ -3035,7 +3035,7 @@ defmodule SbgInv.Data do
     site_s5 = Repo.insert! %Scenario{
       name: "Reprisals",
       blurb: "Dáin Ironfoot leads a dwarven raid against the Easterlings.",
-      date_age: 3, date_year: 3001, date_month: 0, date_day: 0, is_canonical: true, size: 71
+      date_age: 3, date_year: 3001, date_month: 0, date_day: 0, size: 71
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s5.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 5, page: 36}
@@ -3061,7 +3061,7 @@ defmodule SbgInv.Data do
     site_s6 = Repo.insert! %Scenario{
       name: "Strange Circumstances",
       blurb: "Cirion joins his Khandish captors to fight off an Orc raid.",
-      date_age: 3, date_year: 3002, date_month: 0, date_day: 0, is_canonical: true, size: 101
+      date_age: 3, date_year: 3002, date_month: 0, date_day: 0, size: 101
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s6.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 6, page: 38}
@@ -3093,7 +3093,7 @@ defmodule SbgInv.Data do
     site_s7 = Repo.insert! %Scenario{
       name: "The Field of Celebrant",
       blurb: "Eorl the Young saves Gondor from the Khandish and their Orc allies.",
-      date_age: 3, date_year: 2510, date_month: 0, date_day: 0, is_canonical: true, size: 107
+      date_age: 3, date_year: 2510, date_month: 0, date_day: 0, size: 107
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s7.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 7, page: 40}
@@ -3125,7 +3125,7 @@ defmodule SbgInv.Data do
     site_s8 = Repo.insert! %Scenario{
       name: "Hunter & Hunted",
       blurb: "Easterling raiders under Khamûl encounter the defenders of Fangorn.",
-      date_age: 3, date_year: 2520, date_month: 0, date_day: 0, is_canonical: true, size: 28
+      date_age: 3, date_year: 2520, date_month: 0, date_day: 0, size: 28
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s8.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 8, page: 46}
@@ -3149,7 +3149,7 @@ defmodule SbgInv.Data do
     sog_s1 = Repo.insert! %Scenario{
       name: "Prologue: Osgiliath",
       blurb: "Sauron launches his army, led by Gothmog, against a Gondorian force led by Boromir and Faramir",
-      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, is_canonical: true, size: 110
+      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, size: 110
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s1.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 1, page: 18}
@@ -3185,7 +3185,7 @@ defmodule SbgInv.Data do
     sog_s2 = Repo.insert! %Scenario{
       name: "First Assault on Cair Andros",
       blurb: "Faramir defends the walls of Cair Andros against the Orcs of Mordor.",
-      date_age: 3, date_year: 3018, date_month: 3, date_day: 9, is_canonical: true, size: 100
+      date_age: 3, date_year: 3018, date_month: 3, date_day: 9, size: 100
     }
 
     Repo.insert %ScenarioResource{scenario_id: sog_s2.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 2, page: 32}
@@ -3213,7 +3213,7 @@ defmodule SbgInv.Data do
     sog_s3 = Repo.insert! %Scenario{
       name: "Second Assault on Cair Andros",
       blurb: "Gothmog leads another assault on Cair Andros.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 11, is_canonical: true, size: 69
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 11, size: 69
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s3.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 3, page: 40}
@@ -3243,7 +3243,7 @@ defmodule SbgInv.Data do
     sog_s4 = Repo.insert! %Scenario{
       name: "The Rammas",
       blurb: "Gothmog pursues Faramir out of Osgiliath to the edge of the Pelennor Fields.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 12, is_canonical: true, size: 87
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 12, size: 87
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s4.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 4, page: 46}
@@ -3282,7 +3282,7 @@ defmodule SbgInv.Data do
     sog_s5 = Repo.insert! %Scenario{
       name: "The Siege of Minas Tirith",
       blurb: "Gandalf the White defends the walls of Minas Tirith from the forces of Mordor under Gothmog.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 14, is_canonical: true, size: 112
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 14, size: 112
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s5.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 5, page: 48}
@@ -3324,7 +3324,7 @@ defmodule SbgInv.Data do
     sog_s6 = Repo.insert! %Scenario{
       name: "The Pyre of Denethor",
       blurb: "Gandalf the White rescues Faramir from the insanity of Denethor.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, is_canonical: true, size: 84
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 84
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s6.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 5, page: 52}
@@ -3356,7 +3356,7 @@ defmodule SbgInv.Data do
     sog_s7 = Repo.insert! %Scenario{
       name: "The Defenses Must Hold!",
       blurb: "Theoden and friends hold out at Helm's Deep.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 109
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 109
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s7.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 6, page: 58}
@@ -3395,7 +3395,7 @@ defmodule SbgInv.Data do
     sog_s8 = Repo.insert! %Scenario{
       name: "Forth Eorlingas!",
       blurb: "Theoden leads a mounted charge out from Helm's Deep.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 4, is_canonical: true, size: 105
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 4, size: 105
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s8.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 7, page: 62}
@@ -3427,7 +3427,7 @@ defmodule SbgInv.Data do
     tttjb_s1 = Repo.insert! %Scenario{
       name: "Let's Hunt Some Orc",
       blurb: "Aragorn, Legolas, and Gimli encounter the rear guard of the Uruk-hai which have captured Merry and Pippin.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 27, is_canonical: true, size: 18
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 27, size: 18
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s1.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 1, page: 14}
@@ -3446,7 +3446,7 @@ defmodule SbgInv.Data do
     tttjb_s2 = Repo.insert! %Scenario{
       name: "The First Battle of the Fords of Isen",
       blurb: "Saruman's first assault on Rohan, attempting to kill Théodred, the heir to Rohan.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 25, is_canonical: true, size: 83
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 25, size: 83
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s2.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 2, page: 20}
@@ -3480,7 +3480,7 @@ defmodule SbgInv.Data do
     tttjb_s3 = Repo.insert! %Scenario{
       name: "The Scouring of the Westfold",
       blurb: "A small Isengard force raids a village of the Rohirrim.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, is_canonical: true, size: 43
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, size: 43
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s3.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 3, page: 22}
@@ -3509,7 +3509,7 @@ defmodule SbgInv.Data do
     tttjb_s4 = Repo.insert! %Scenario{
       name: "The Wrath of Rohan",
       blurb: "Eomer's riders ambush the Orcs and Uruk-hai as they bring Merry and Pippin to Isengard.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, is_canonical: true, size: 86
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, size: 86
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s4.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 4, page: 24}
@@ -3539,7 +3539,7 @@ defmodule SbgInv.Data do
     tttjb_s5 = Repo.insert! %Scenario{
       name: "Alone in Fangorn",
       blurb: "Merry and Pippin escape into Fangorn, pursued by Grishnákh (or a small mixed force of Orcs and Uruk-hai).",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, is_canonical: true, size: 10
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, size: 10
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s5.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 5, page: 28}
@@ -3562,7 +3562,7 @@ defmodule SbgInv.Data do
     tttjb_s6 = Repo.insert! %Scenario{
       name: "Warg Attack",
       blurb: "A force of Wargs ambushes Théoden and the Three Hunters as they escort the Rohirrim to Helm's Deep.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 2, is_canonical: true, size: 31
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 2, size: 31
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s6.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 6, page: 32}
@@ -3588,7 +3588,7 @@ defmodule SbgInv.Data do
     tttjb_s7 = Repo.insert! %Scenario{
       name: "The Second Battle of the Fords of Isen",
       blurb: "Erkenbrand delays an Isengard force trying to whittle down the Rohirrim.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 2, is_canonical: true, size: 104
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 2, size: 104
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s7.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 7, page: 34}
@@ -3625,7 +3625,7 @@ defmodule SbgInv.Data do
     tttjb_s8 = Repo.insert! %Scenario{
       name: "The Last March of the Ents",
       blurb: "The Ents storm Isengard",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 40
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 40
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s8.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 8, page: 38}
@@ -3656,7 +3656,7 @@ defmodule SbgInv.Data do
     tttjb_s9 = Repo.insert! %Scenario{
       name: "The Taming of Sméagol",
       blurb: "Gollum attempts to sneak up on Sam and Frodo to steal the One Ring.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, is_canonical: true, size: 3
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, size: 3
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s9.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 9, page: 46}
@@ -3672,7 +3672,7 @@ defmodule SbgInv.Data do
     tttjb_s10 = Repo.insert! %Scenario{
       name: "The Passage of the Marshes",
       blurb: "Sméagol leads Frodo and Sam through the Dead Marshes while a Ringwraith on a Fell Beast searches overhead.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, is_canonical: true, size: 14
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, size: 14
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s10.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 10, page: 52}
@@ -3691,7 +3691,7 @@ defmodule SbgInv.Data do
     tttjb_s11 = Repo.insert! %Scenario{
       name: "Ambush in Ithilien",
       blurb: "Faramir's Rangers ambush a Southron force, complete with Mûmak.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 7, is_canonical: true, size: 55
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 7, size: 55
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s11.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 11, page: 60}
@@ -3716,7 +3716,7 @@ defmodule SbgInv.Data do
     tttjb_s12 = Repo.insert! %Scenario{
       name: "Osgiliath",
       blurb: "Faramir leads a rear-guard action against Mordor's assault on Osgiliath.",
-      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, is_canonical: true, size: 54
+      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, size: 54
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s12.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 12, page: 62}
@@ -3745,7 +3745,7 @@ defmodule SbgInv.Data do
     tttjb_s13 = Repo.insert! %Scenario{
       name: "The Deeping Wall",
       blurb: "An Isengard siege force attempts to blow up some of the defenses of Helm's Deep.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 80
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 80
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s13.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 13, page: 72}
@@ -3777,7 +3777,7 @@ defmodule SbgInv.Data do
     tttjb_s14 = Repo.insert! %Scenario{
       name: "Into the Breach",
       blurb: "The Isengarders try to exploit the breach in the Deeping Wall.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 67
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 67
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s14.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 14, page: 74}
@@ -3807,7 +3807,7 @@ defmodule SbgInv.Data do
     tttjb_s15 = Repo.insert! %Scenario{
       name: "In the Shadow of the Hornburg",
       blurb: "Aragorn and Gimli must clear the gate of Helm's Deep.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 26
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 26
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s15.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 15, page: 80}
@@ -3829,7 +3829,7 @@ defmodule SbgInv.Data do
     tttjb_s16 = Repo.insert! %Scenario{
       name: "Théoden Rides Out",
       blurb: "Théoden leads a ride out to clear the forces in front of the gatehouse of Helm's Deep.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, is_canonical: true, size: 83
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 83
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s16.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 16, page: 82}
@@ -3868,7 +3868,7 @@ defmodule SbgInv.Data do
     mordor_s1 = Repo.insert! %Scenario{
       name: "The Slopes of Mount Doom",
       blurb: "The Last Alliance of Elves and Men confronts Sauron.",
-      date_age: 2, date_year: 3441, date_month: 0, date_day: 0, is_canonical: true, size: 131
+      date_age: 2, date_year: 3441, date_month: 0, date_day: 0, size: 131
     }
 
     Repo.insert! %ScenarioResource{scenario_id: mordor_s1.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 1, page: 60}
@@ -3902,7 +3902,7 @@ defmodule SbgInv.Data do
     mordor_s2 = Repo.insert! %Scenario{
       name: "The Sacking of Osgiliath",
       blurb: "Gothmog tries to drive the forces of Gondor out of Osgiliath.",
-      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, is_canonical: true, size: 88
+      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, size: 88
     }
 
     Repo.insert! %ScenarioResource{scenario_id: mordor_s2.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 2, page: 62}
@@ -3936,7 +3936,7 @@ defmodule SbgInv.Data do
     mordor_s3 = Repo.insert! %Scenario{
       name: "The Pass of Cirith Ungol",
       blurb: "Elladan and Elrohir pass through Cirith Ungol to bring news of Sauron back the White Council.",
-      date_age: 3, date_year: 2951, date_month: 0, date_day: 0, is_canonical: true, size: 95
+      date_age: 3, date_year: 2951, date_month: 0, date_day: 0, size: 95
     }
 
     Repo.insert! %ScenarioResource{scenario_id: mordor_s3.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 3, page: 64}
@@ -3973,7 +3973,7 @@ defmodule SbgInv.Data do
     mordor_s4 = Repo.insert! %Scenario{
       name: "Vengeance of the Nazgul",
       blurb: "Most of the ringwraiths ambush Dáin Ironfoot and his escort.",
-      date_age: 3, date_year: 3017, date_month: 0, date_day: 0, is_canonical: true, size: 61
+      date_age: 3, date_year: 3017, date_month: 0, date_day: 0, size: 61
     }
 
     Repo.insert! %ScenarioResource{scenario_id: mordor_s4.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 4, page: 66}
@@ -4004,7 +4004,7 @@ defmodule SbgInv.Data do
     mordor_s5 = Repo.insert! %Scenario{
       name: "The Siege of the Black Gate",
       blurb: "What if Boromir led the forces of Gondor against Sauron's realm?",
-      date_age: 3, date_year: 3018, date_month: 4, date_day: 2, is_canonical: true, size: 93
+      date_age: 3, date_year: 3018, date_month: 4, date_day: 2, size: 93
     }
 
     Repo.insert! %ScenarioResource{scenario_id: mordor_s5.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 4, page: 68}

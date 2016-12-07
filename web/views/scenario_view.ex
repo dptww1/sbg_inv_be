@@ -32,7 +32,6 @@ defmodule SbgInv.ScenarioView do
       date_month: scenario.date_month,
       date_day: scenario.date_day,
       date_year: scenario.date_year,
-      is_canonical: scenario.is_canonical,
       size: scenario.size,
       id: scenario.id,
       rating: if(scenario.rating, do: scenario.rating, else: 0),

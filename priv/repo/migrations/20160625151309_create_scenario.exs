@@ -7,7 +7,6 @@ defmodule SbgInv.Repo.Migrations.CreateScenario do
       add :blurb, :text
       add :date_age, :integer
       add :date_year, :integer
-      add :is_canonical, :boolean, default: false
       add :size, :integer
 
       timestamps

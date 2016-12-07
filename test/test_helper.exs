@@ -34,7 +34,7 @@ defmodule SbgInv.TestHelper do
     user2 = create_user("nobody", "def@ghi.com")
     conn = create_session(conn, if(user == :user1, do: user1, else: user2))
 
-    scenario = Repo.insert! %Scenario{name: "A", blurb: "B", date_age: 3, date_year: 1, date_month: 1, date_day: 1, is_canonical: true, size: 0}
+    scenario = Repo.insert! %Scenario{name: "A", blurb: "B", date_age: 3, date_year: 1, date_month: 1, date_day: 1, size: 0}
     Repo.insert!(%UserScenario{user_id: user1.id, scenario_id: scenario.id, painted: 6, owned: 8})
     Repo.insert!(%UserScenario{user_id: user2.id, scenario_id: scenario.id, painted: 5, owned: 7})
 
@@ -64,7 +64,6 @@ defmodule SbgInv.TestHelper do
         "date_year" => 1,
         "date_month" => 1,
         "date_day" => 1,
-        "is_canonical" => true,
         "size" => 0,
         "rating" => 0,
         "num_votes" => 0,
