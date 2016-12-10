@@ -9,6 +9,9 @@ defmodule SbgInv.Scenario do
     field :date_month,   :integer
     field :date_day,     :integer
     field :size,         :integer
+    field :map_width,    :integer
+    field :map_height,   :integer
+    field :location,     Location
     field :rating,       :float
     field :num_votes,    :integer
 
@@ -19,7 +22,7 @@ defmodule SbgInv.Scenario do
     has_many :user_scenarios, SbgInv.UserScenario
   end
 
-  @required_fields ~w(name blurb date_age date_year date_month date_day size)
+  @required_fields ~w(name blurb date_age date_year date_month date_day size map_width map_height location)
   @optional_fields ~w(rating num_votes)
 
   @doc """

@@ -54,7 +54,7 @@ defmodule SbgInv.ScenarioController do
     _show(conn, id, conn.status)
   end
 
-  defp _show(conn, id, 401) do
+  defp _show(conn, _id, 401) do
     render(conn, "error.json", %{})
   end
   defp _show(conn, id, _) do

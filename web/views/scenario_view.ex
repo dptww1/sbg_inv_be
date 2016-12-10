@@ -21,6 +21,10 @@ defmodule SbgInv.ScenarioView do
     }
   end
 
+  def render("error.json", _anything) do
+    %{errors: "failed to authenticate"}
+  end
+
   defp base_scenario(scenario) do
     user_scenario = if(((length scenario.user_scenarios) > 0), do: hd(scenario.user_scenarios), else: %SbgInv.UserScenario{scenario: scenario})
 
@@ -33,7 +37,9 @@ defmodule SbgInv.ScenarioView do
       date_day: scenario.date_day,
       date_year: scenario.date_year,
       size: scenario.size,
-      id: scenario.id,
+      map_width: scenario.map_width,
+      map_height: scenario.map_height,
+      location: scenario.location,
       rating: if(scenario.rating, do: scenario.rating, else: 0),
       num_votes: if(scenario.num_votes, do: scenario.num_votes, else: 0),
       scenario_resources: render_one(massage_resources(scenario.scenario_resources), SbgInv.ScenarioResourceView, "resources.json"),
@@ -49,9 +55,5 @@ defmodule SbgInv.ScenarioView do
       terrain_building: Enum.filter(scenario_resources, fn r -> r.resource_type == :terrain_building end),
       podcast: Enum.filter(scenario_resources, fn r -> r.resource_type == :podcast end),
     }
-  end
-
-  def render("error.json", _anything) do
-    %{errors: "failed to authenticate"}
   end
 end

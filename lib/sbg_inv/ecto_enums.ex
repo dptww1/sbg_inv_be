@@ -21,6 +21,33 @@ defenum Faction,
   shire:         17,
   white_council: 18
 
+defenum Location,
+  amon_hen:      0,
+  arnor:         1,
+  dol_guldur:    2,
+  eriador:       3,
+  fangorn:       4,
+  fornost:       5,
+  gondor:        6,
+  harad:         7,
+  harondor:      8,
+  helms_deep:    9,
+  isengard:     10,
+  ithilien:     11,
+  lothlorien:   12,
+  minas_morgul: 13,
+  minas_tirith: 14,
+  mirkwood:     15,
+  mordor:       16,
+  moria:        17,
+  morannon:     18,
+  osgiliath:    19,
+  rhovanion:    20,
+  rhun:         21,
+  rohan:        22,
+  the_shire:    23,
+  weathertop:   24
+
 defenum ScenarioResourceBook,
   bpf:      0,   # Battle of the Pelennor Fields
   fotn:     1,   # The Fall of the Necromancer

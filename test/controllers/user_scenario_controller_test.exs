@@ -5,7 +5,8 @@ defmodule SbgInv.UserScenarioControllerTest do
   alias SbgInv.{Scenario, TestHelper, UserScenario}
 
   @valid_attrs %{rating: 3, owned: 2, painted: 1}
-  @valid_scenario_attrs %{blurb: "A", date_age: 1, date_year: 2, date_month: 3, date_day: 4, name: "B", size: 2}
+  @valid_scenario_attrs %{blurb: "A", date_age: 1, date_year: 2, date_month: 3, date_day: 4, name: "B", size: 2,
+                          map_width: 7, map_height: 8, location: :the_shire}
 
   test "creates and renders resource when data is valid", %{conn: conn} do
     scenario = Repo.insert! struct(Scenario, @valid_scenario_attrs)
@@ -22,7 +23,8 @@ defmodule SbgInv.UserScenarioControllerTest do
     user1 = TestHelper.create_user
     user2 = TestHelper.create_user "guy2", "guy2@example.com"
     user3 = TestHelper.create_user "guy3", "guy3@example.com"
-    scenario = Repo.insert! %Scenario{rating: 1.0, num_votes: 2, name: "a", blurb: "a", date_age: 1, date_year: 0, date_month: 0, date_day: 0, size: 0}
+    scenario = Repo.insert! %Scenario{rating: 1.0, num_votes: 2, name: "a", blurb: "a", date_age: 1, date_year: 0, date_month: 0, date_day: 0, size: 0,
+                                      map_width: 7, map_height: 12, location: :the_shire}
     Repo.insert! %UserScenario{user_id: user1.id, scenario_id: scenario.id, rating: 1}
     Repo.insert! %UserScenario{user_id: user2.id, scenario_id: scenario.id, rating: 1}
     conn = TestHelper.create_session(conn, user3)

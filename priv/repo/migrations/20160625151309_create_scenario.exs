@@ -8,6 +8,9 @@ defmodule SbgInv.Repo.Migrations.CreateScenario do
       add :date_age, :integer
       add :date_year, :integer
       add :size, :integer
+      add :map_width, :integer
+      add :map_height, :integer
+      add :location, :integer
 
       timestamps
     end

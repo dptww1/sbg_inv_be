@@ -3,7 +3,8 @@ defmodule SbgInv.ScenarioControllerTest do
 
   alias SbgInv.{Scenario, TestHelper}
 
-  @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, name: "some content", size: 42}
+  @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, name: "some content", size: 42,
+                 map_width: 48, map_height: 48, location: :the_shire}
   @invalid_attrs %{}
 
   setup %{conn: conn} do
@@ -27,6 +28,9 @@ defmodule SbgInv.ScenarioControllerTest do
       "date_month" => scenario.date_month,
       "date_year" => scenario.date_year,
       "size" => scenario.size,
+      "map_width" => scenario.map_width,
+      "map_height" => scenario.map_height,
+      "location" => scenario.location,
       "rating" => 0,
       "num_votes" => 0,
       "scenario_resources" => %{
