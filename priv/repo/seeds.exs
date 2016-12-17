@@ -320,6 +320,9 @@ defmodule SbgInv.Data do
     galadriel_lotg = Repo.insert! %Figure{name: "Galadriel, Lady of the Galadhrim"}
     haldir         = Repo.insert! %Figure{name: "Haldir"}
 
+    galadhrim_w_blade = Repo.insert! %Figure{name: "Galadhrim Warrior with Elven blade", plural_name: "Galadhrim Warriors with Elven blade"}
+    galadhrim_w_bow   = Repo.insert! %Figure{name: "Galadhrim Warrior with Elf bow",     plural_name: "Galadhrim Warriors with Elf bow"}
+
     #########################################################################
     # FIGURES: MIRKWOOD
     #########################################################################
@@ -1081,6 +1084,67 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotn_s7f2, 1, 5, [ troll_chieftain ])
     _declare_role_figure(fotn_s7f2, 1, 6, [ mordor_troll ])
     _declare_role_figure(fotn_s7f2, 4, 6, [ giant_spider ])
+
+    #########################################################################
+    # FALLEN REALMS
+    #########################################################################
+
+    #========================================================================
+    fr_s1 = Repo.insert! %Scenario{
+      name: "The Deeping Wall",
+      blurb: "The Uruk-hai attempt to breach the outer defenses of Helm's Deep.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 73,
+      map_width: 48, map_height: 24, location: :helms_deep
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fr_s1.id, resource_type: :source, book: :fr, title: "Fallen Realms", sort_order: 1, page: 46}
+
+    fr_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: fr_s1.id, faction: :rohan,  suggested_points: 600, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fr_s1f1, 1,  1, "Aragorn with Elven cloak", [ aragorn ])
+    _declare_role_figure(fr_s1f1, 1,  2, "Legolas with Elven cloak", [ legolas ])
+    _declare_role_figure(fr_s1f1, 1,  3, "Gimli with Elven cloak", [ gimli ])
+    _declare_role_figure(fr_s1f1, 1,  4, "Rohan Captain with Heavy Armour", [ rohan_captain ])
+    _declare_role_figure(fr_s1f1, 1,  5, "Haldir, Defender of Helm's Deep", [ haldir ])
+    _declare_role_figure(fr_s1f1, 3,  6, [ rohan_gd ])
+    _declare_role_figure(fr_s1f1, 3,  7, [ rohan_w_spear_shield ])
+    _declare_role_figure(fr_s1f1, 3,  8, [ rohan_w_bow ])
+    _declare_role_figure(fr_s1f1, 2,  9, [ rohan_w_shield ])
+    _declare_role_figure(fr_s1f1, 2, 10, [ rohan_w_spear_shield ])
+    _declare_role_figure(fr_s1f1, 3, 11, [ galadhrim_w_bow ])
+    _declare_role_figure(fr_s1f1, 5, 12, [ galadhrim_w_blade ])
+
+    fr_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: fr_s1.id, faction: :isengard,  suggested_points: 900, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fr_s1f2,  2,  1, "Uruk-hai Captains with shield and heavy armour", [ uruk_hai_captain_shield ])
+    _declare_role_figure(fr_s1f2,  2,  2, "Uruk-hai Captains with two-handed weapon and heavy armour", [ uruk_hai_captain_2h ])
+    _declare_role_figure(fr_s1f2,  9,  3, [ uruk_hai_berserker ])
+    _declare_role_figure(fr_s1f2,  9,  4, [ uruk_hai_w_crossbow ])
+    _declare_role_figure(fr_s1f2, 13,  5, [ uruk_hai_w_shield ])
+    _declare_role_figure(fr_s1f2, 14,  6, [ uruk_hai_w_pike ])
+    _declare_role_figure(fr_s1f2,  2,  7, [ uruk_hai_demo_team ])
+
+    #========================================================================
+    fr_s2 = Repo.insert! %Scenario{
+      name: "Charge of the Mûmakil",
+      blurb: "Eomer attempts to ride down the Mûmakil at the Pelennor Fields.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 62,
+      map_width: 48, map_height: 48, location: :minas_tirith
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fr_s2.id, resource_type: :source, book: :fr, title: "Fallen Realms", sort_order: 2, page: 47}
+
+    fr_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: fr_s2.id, faction: :rohan,  suggested_points: 500, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fr_s2f1,  1,  1, "Éomer, Knight of the Pelennor, on horse", [ eomer_horse ])
+    _declare_role_figure(fr_s2f1,  1,  2, "Rohan Captain on horse with heavy armour and shield", [ rohan_captain_horse ])
+    _declare_role_figure(fr_s2f1,  9,  3, [ rohan_rider_spear ])
+    _declare_role_figure(fr_s2f1, 13,  4, [ rohan_rider ])
+
+    fr_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fr_s2.id, faction: :harad,  suggested_points: 900, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fr_s2f2,  1,  1, "Haradrim Chieftain on horse with war spear", [ harad_chieftain_horse ])
+    _declare_role_figure(fr_s2f2,  2,  2, [ mumak ])
+    _declare_role_figure(fr_s2f2, 14,  3, [ harad_w_bow ])
+    _declare_role_figure(fr_s2f2, 13,  4, [ harad_w_spear ])
+    _declare_role_figure(fr_s2f2,  4,  5, [ harad_raider ])
+    _declare_role_figure(fr_s2f2,  4,  6, [ harad_raider_lance ])
 
     #########################################################################
     # THE FELLOWSHIP OF THE RING JOURNEYBOOK
