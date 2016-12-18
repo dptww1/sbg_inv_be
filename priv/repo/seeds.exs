@@ -320,6 +320,8 @@ defmodule SbgInv.Data do
     galadriel_lotg = Repo.insert! %Figure{name: "Galadriel, Lady of the Galadhrim"}
     haldir         = Repo.insert! %Figure{name: "Haldir"}
 
+    galadhrim_captain = Repo.insert! %Figure{name: "Galadhrim Captain", plural_name: "Galadhrim Captains"}
+
     galadhrim_w_blade = Repo.insert! %Figure{name: "Galadhrim Warrior with Elven blade", plural_name: "Galadhrim Warriors with Elven blade"}
     galadhrim_w_bow   = Repo.insert! %Figure{name: "Galadhrim Warrior with Elf bow",     plural_name: "Galadhrim Warriors with Elf bow"}
 
@@ -328,6 +330,8 @@ defmodule SbgInv.Data do
     #########################################################################
 
     thranduil = Repo.insert! %Figure{name: "Thranduil" }
+
+    wood_elf_captain = Repo.insert! %Figure{name: "Wood Elf Captain", plural_name: "Wood Elf Captains"}
 
     wood_elf_sentinel      = Repo.insert! %Figure{name: "Wood Elf Sentinel",                                     plural_name: "Wood Elf Sentinels"}
     wood_elf_w_armor_bow   = Repo.insert! %Figure{name: "Wood Elf Warrior with armour and Elf bow",              plural_name: "Wood Elf Warriors with armour and Elf bow"}
@@ -997,7 +1001,7 @@ defmodule SbgInv.Data do
     #========================================================================
     fotn_s5 = Repo.insert! %Scenario{
       name: "The Lair of the Spider Queen",
-      blurb: "Lothlorien attacks the beasts of Mirkwood",
+      blurb: "Lothlórien attacks the beasts of Mirkwood",
       date_age: 3, date_year: 2063, date_month: 0, date_day: 0, size: 41,
       map_width: 24, map_height: 24, location: :mirkwood
     }
@@ -1459,8 +1463,8 @@ defmodule SbgInv.Data do
 
     #========================================================================
     fotrjb_s15 = Repo.insert! %Scenario{
-      name: "Lothlorien",
-      blurb: "The Fellowship finds refuge from a Goblin search party within the edges of Lothlorien.",
+      name: "Lothlórien",
+      blurb: "The Fellowship finds refuge from a Goblin search party within the edges of Lothlórien.",
       date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 50,
       map_width: 48, map_height: 48, location: :lothlorien
     }
@@ -2222,6 +2226,110 @@ defmodule SbgInv.Data do
     _declare_role_figure(kd_s5f2, 6,  5, [ moria_g_spear ])
     _declare_role_figure(kd_s5f2, 6,  6, [ moria_g_bow ])
     _declare_role_figure(kd_s5f2, 6,  7, [ moria_g_shield ])
+
+    #########################################################################
+    # MORIA AND ANGMAR
+    #########################################################################
+
+    #========================================================================
+    ma_s1 = Repo.insert! %Scenario{
+      name: "They Are Coming...",
+      blurb: "A Balrog-led Goblin force defeats the last remnants of Balin's Kingdom of Moria.",
+      date_age: 3, date_year: 2994, date_month: 0, date_day: 0, size: 47,
+      map_width: 48, map_height: 48, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ma_s1.id, resource_type: :source, book: :ma, title: "Moria & Angmar", sort_order: 1, page: 44}
+
+    ma_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: ma_s1.id, faction: :dwarves, suggested_points: 300, actual_points: 293, sort_order: 1}
+    _declare_role_figure(ma_s1f1, 1,  1, "Dwarf Captains with shield", [ dwarf_captain ])
+    _declare_role_figure(ma_s1f1, 4,  2, [ dwarf_w_shield ])
+    _declare_role_figure(ma_s1f1, 4,  3, [ dwarf_w_bow ])
+    _declare_role_figure(ma_s1f1, 4,  4, [ dwarf_w_2h ])
+    _declare_role_figure(ma_s1f1, 5,  5, [ dwarf_khazad_gd ])
+
+    ma_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: ma_s1.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ma_s1f2, 1,  1, [ balrog ])
+    _declare_role_figure(ma_s1f2, 3,  2, "Moria Goblin Captains with shield", [ moria_captain ])
+    _declare_role_figure(ma_s1f2, 8,  3, [ moria_g_spear ])
+    _declare_role_figure(ma_s1f2, 8,  4, [ moria_g_bow ])
+    _declare_role_figure(ma_s1f2, 9,  5, [ moria_g_shield ])
+
+    #========================================================================
+    ma_s2 = Repo.insert! %Scenario{
+      name: "The Bridge of Khazad-dûm",
+      blurb: "Gandalf faces down the Balrog.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 38,
+      map_width: 48, map_height: 48, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ma_s2.id, resource_type: :source, book: :ma, title: "Moria & Angmar", sort_order: 2, page: 45}
+
+    ma_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: ma_s2.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ma_s2f1, 1,  1, [ gandalf_grey ])
+    _declare_role_figure(ma_s2f1, 1,  2, "Aragorn with bow", [ aragorn ])
+    _declare_role_figure(ma_s2f1, 1,  3, [ boromir ])
+    _declare_role_figure(ma_s2f1, 1,  4, [ legolas ])
+    _declare_role_figure(ma_s2f1, 1,  5, [ gimli ])
+    _declare_role_figure(ma_s2f1, 1,  6, "Frodo with Sting and mithril coat", [ frodo ])
+    _declare_role_figure(ma_s2f1, 1,  7, [ sam ])
+    _declare_role_figure(ma_s2f1, 1,  8, [ merry ])
+    _declare_role_figure(ma_s2f1, 1,  9, [ pippin ])
+
+    ma_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: ma_s2.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ma_s2f2, 1,  1, [ balrog ])
+    _declare_role_figure(ma_s2f2, 2,  2, "Moria Goblin Captains with shield", [ moria_captain ])
+    _declare_role_figure(ma_s2f2, 1,  1, [ moria_shaman ])
+    _declare_role_figure(ma_s2f2, 8,  5, [ moria_g_spear ])
+    _declare_role_figure(ma_s2f2, 8,  6, [ moria_g_bow ])
+    _declare_role_figure(ma_s2f2, 9,  7, [ moria_g_shield ])
+
+    #========================================================================
+    ma_s3 = Repo.insert! %Scenario{
+      name: "Flight to Lothlórien",
+      blurb: "The Moria force hunting for the Fellowship become the hunted.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 93,
+      map_width: 48, map_height: 48, location: :lothlorien
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ma_s3.id, resource_type: :source, book: :ma, title: "Moria & Angmar", sort_order: 3, page: 46}
+
+    ma_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: ma_s3.id, faction: :lothlorien, suggested_points: 500, actual_points: 494, sort_order: 1}
+    _declare_role_figure(ma_s3f1, 2,  1, "Galadhrim Captains with Elven blade", [ galadhrim_captain ])
+    _declare_role_figure(ma_s3f1, 1,  2, "Wood Elf Captain with Elf bow", [ wood_elf_captain ])
+    _declare_role_figure(ma_s3f1, 5,  3, [ galadhrim_w_bow ])
+    _declare_role_figure(ma_s3f1, 4,  4, [ galadhrim_w_blade ])
+    _declare_role_figure(ma_s3f1, 8,  5, [ wood_elf_w_blade ])
+    _declare_role_figure(ma_s3f1, 8,  6, [ wood_elf_w_spear ])
+    _declare_role_figure(ma_s3f1, 8,  7, [ wood_elf_w_bow ])
+
+    ma_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: ma_s3.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ma_s3f2,  3,  1, "Moria Captains with shield", [ moria_captain ])
+    _declare_role_figure(ma_s3f2,  1,  2, [ warg_chieftain ])
+    _declare_role_figure(ma_s3f2, 12,  3, [ moria_g_shield ])
+    _declare_role_figure(ma_s3f2, 12,  4, [ moria_g_spear ])
+    _declare_role_figure(ma_s3f2, 12,  5, [ moria_g_bow ])
+    _declare_role_figure(ma_s3f2, 15,  6, [ warg ])
+
+    #========================================================================
+    ma_s4 = Repo.insert! %Scenario{
+      name: "Fog on the Barrow Downs",
+      blurb: "The wights of Angmar attack Frodo's band.",
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 28, size: 9,
+      map_width: 48, map_height: 48, location: :eriador
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ma_s4.id, resource_type: :source, book: :ma, title: "Moria & Angmar", sort_order: 4, page: 47}
+
+    ma_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: ma_s4.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ma_s4f1, 1,  1, [ frodo ])
+    _declare_role_figure(ma_s4f1, 1,  1, [ sam ])
+    _declare_role_figure(ma_s4f1, 1,  1, [ merry ])
+    _declare_role_figure(ma_s4f1, 1,  1, [ pippin ])
+    _declare_role_figure(ma_s4f1, 1,  1, [ tom_bombadil ])
+
+    ma_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: ma_s4.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ma_s4f2, 4,  1, [ barrow_wight ])
 
     #########################################################################
     # THE RETURN OF THE KING JOURNEYBOOK
