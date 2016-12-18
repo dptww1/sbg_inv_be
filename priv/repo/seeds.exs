@@ -438,6 +438,8 @@ defmodule SbgInv.Data do
     isildur       = Repo.insert! %Figure{name: "Isildur"}
     isildur_horse = Repo.insert! %Figure{name: "Isildur on horse"}
 
+    numenor_captain = Repo.insert! %Figure{name: "Captain of Numenor", plural_name: "Captains of Numenor"}
+
     numenor_w_banner       = Repo.insert! %Figure{name: "Warrior of Numenor with banner",           plural_name: "Warriors of Numenor with banner"}
     numenor_w_bow          = Repo.insert! %Figure{name: "Warrior of Numenor with bow",              plural_name: "Warriors of Numenor with bow"}
     numenor_w_shield       = Repo.insert! %Figure{name: "Warrior of Numenor with shield",           plural_name: "Warriors of Numenor with shield"}
@@ -513,11 +515,11 @@ defmodule SbgInv.Data do
     bandobras      = Repo.insert! %Figure{name: "Bandobras Took"}
     bandobras_pony = Repo.insert! %Figure{name: "Bandobras Took on pony"}
     bilbo          = Repo.insert! %Figure{name: "Bilbo Baggins"}
-    maggot         = Repo.insert! %Figure{name: "Farmer Maggot"}
     fang           = Repo.insert! %Figure{name: "Fang"}
     fatty          = Repo.insert! %Figure{name: "Fredegar Bolger"}
     grip           = Repo.insert! %Figure{name: "Grip"}
     lobelia        = Repo.insert! %Figure{name: "Lobelia Sackville-Baggins"}
+    maggot         = Repo.insert! %Figure{name: "Farmer Maggot"}
     paladin        = Repo.insert! %Figure{name: "Paladin Took"}
     wolf           = Repo.insert! %Figure{name: "Wolf"}
 
@@ -1548,6 +1550,143 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s18f2,  1, 2, "Uruk-hai Captain", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
     _declare_role_figure(fotrjb_s18f2,  6, 3, [ uruk_hai_s_bow ])
     _declare_role_figure(fotrjb_s18f2, 12, 4, [ uruk_hai_s_sword_shield ])
+
+    #########################################################################
+    # THE FREE PEOPLES
+    #########################################################################
+
+    #========================================================================
+    fp_s1 = Repo.insert! %Scenario{
+      name: "The Battle of Bywater",
+      blurb: "The final battle of the War of the Ring.",
+      date_age: 3, date_year: 3019, date_month: 11, date_day: 1, size: 58,
+      map_width: 36, map_height: 24, location: :the_shire
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fp_s1.id, resource_type: :source, book: :fp, title: "The Free Peoples", sort_order: 1, page: 57}
+
+    fp_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s1.id, faction: :shire, suggested_points: 275, actual_points: 275, sort_order: 1}
+    _declare_role_figure(fp_s1f1,  1,  1, "Frodo of the Nine Fingers on pony", [ frodo_pony ])
+    _declare_role_figure(fp_s1f1,  1,  2, "Samwise the Brave on pony", [ sam_pony ])
+    _declare_role_figure(fp_s1f1,  1,  3, "Meriadoc, Captain of the Shire on pony", [ merry_pony ])
+    _declare_role_figure(fp_s1f1,  1,  4, "Pippin, Captain of the Shire on pony", [ pippin_pony ])
+    _declare_role_figure(fp_s1f1, 12,  5, [ hobbit_militia ])
+    _declare_role_figure(fp_s1f1,  8,  6, [ hobbit_archer ])
+    _declare_role_figure(fp_s1f1,  3,  7, [ hobbit_shirriff ])
+
+    fp_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s1.id, faction: :isengard, suggested_points: 175, actual_points: 175, sort_order: 1}
+    _declare_role_figure(fp_s1f2,   1,  1, [ sharkey ])
+    _declare_role_figure(fp_s1f2,   1,  2, [ worm ])
+    _declare_role_figure(fp_s1f2,  10,  3, [ ruffian ])
+    _declare_role_figure(fp_s1f2,   9,  4, [ ruffian_bow ])
+    _declare_role_figure(fp_s1f2,  10,  5, [ ruffian_whip ])
+
+    #========================================================================
+    fp_s2 = Repo.insert! %Scenario{
+      name: "The Last Alliance",
+      blurb: "Elendil and Gil-Galad lead the forces of Men and Elves against Sauron himself.",
+      date_age: 2, date_year: 3441, date_month: 0, date_day: 0, size: 113,
+      map_width: 72, map_height: 48, location: :mordor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fp_s2.id, resource_type: :source, book: :fp, title: "The Free Peoples", sort_order: 2, page: 58}
+
+    fp_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s2.id, faction: :rivendell, suggested_points: 710, actual_points: 710, sort_order: 1}
+    _declare_role_figure(fp_s2f1,  1,  1, [ gil_galad ])
+    _declare_role_figure(fp_s2f1,  1,  2, [ elrond ])
+    _declare_role_figure(fp_s2f1, 10,  3, [ high_elf_w_blade ])
+    _declare_role_figure(fp_s2f1, 10,  4, [ high_elf_w_bow ])
+    _declare_role_figure(fp_s2f1,  9,  5, [ high_elf_w_spear_shield ])
+    _declare_role_figure(fp_s2f1,  1,  6, [ high_elf_w_banner ])
+    _declare_role_figure(fp_s2f1,  1,  7, [ elendil ])
+    _declare_role_figure(fp_s2f1,  1,  8, [ isildur ])
+    _declare_role_figure(fp_s2f1,  1,  9, "Numenor Captain with heavy armour and shield", [ numenor_captain ])
+    _declare_role_figure(fp_s2f1,  7, 10, [ numenor_w_shield ])
+    _declare_role_figure(fp_s2f1,  7, 11, [ numenor_w_bow ])
+    _declare_role_figure(fp_s2f1,  6, 12, [ numenor_w_shield_spear ])
+    _declare_role_figure(fp_s2f1,  1, 13, [ numenor_w_banner ])
+
+    fp_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s2.id, faction: :mordor, suggested_points: 1575, actual_points: 1575, sort_order: 2}
+    _declare_role_figure(fp_s2f2,  1,  1, [ sauron ])
+    _declare_role_figure(fp_s2f2,  1,  2, "Witch-King of Angmar on horse (full M/W/F)", [ witch_king_horse ])
+    _declare_role_figure(fp_s2f2,  2,  3, "Ringwraiths on horse (full M/W/F)", [ ringwraith_horse ])
+    _declare_role_figure(fp_s2f2,  1,  4, [ troll_chieftain ])
+    _declare_role_figure(fp_s2f2,  2,  5, [ orc_captain ])
+    _declare_role_figure(fp_s2f2, 12,  6, [ orc_w_shield ])
+    _declare_role_figure(fp_s2f2, 12,  7, [ orc_w_spear ])
+    _declare_role_figure(fp_s2f2,  6,  8, [ orc_w_bow ])
+    _declare_role_figure(fp_s2f2,  6,  9, [ orc_w_2h ])
+    _declare_role_figure(fp_s2f2,  4, 10, [ warg_rider_bow ])
+    _declare_role_figure(fp_s2f2,  4, 11, [ warg_rider_shield ])
+    _declare_role_figure(fp_s2f2,  4, 12, [ warg_rider_shield_spear ])
+    _declare_role_figure(fp_s2f2,  2, 13, [ mordor_troll ])
+
+    #========================================================================
+    fp_s3 = Repo.insert! %Scenario{
+      name: "The East Gate",
+      blurb: "Balin attempts to reclaim Moria from the Goblins.",
+      date_age: 3, date_year: 2989, date_month: 0, date_day: 0, size: 40,
+      map_width: 48, map_height: 48, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fp_s3.id, resource_type: :source, book: :fp, title: "The Free Peoples", sort_order: 3, page: 59}
+
+    fp_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s3.id, faction: :dwarves, suggested_points: 200, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fp_s3f1,  1,  1, [ balin ])
+    _declare_role_figure(fp_s3f1,  4,  2, [ dwarf_w_shield ])
+    _declare_role_figure(fp_s3f1,  3,  3, [ dwarf_w_bow ])
+    _declare_role_figure(fp_s3f1,  3,  4, [ dwarf_w_2h ])
+    _declare_role_figure(fp_s3f1,  3,  5, [ dwarf_khazad_gd ])
+
+    fp_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s3.id, faction: :moria, suggested_points: 200, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fp_s3f2,  2,  1, "Moria Captains with Shield", [ moria_captain ])
+    _declare_role_figure(fp_s3f2,  8,  2, [ moria_g_shield ])
+    _declare_role_figure(fp_s3f2,  8,  3, [ moria_g_spear ])
+    _declare_role_figure(fp_s3f2,  8,  4, [ moria_g_bow ])
+
+    #========================================================================
+    fp_s4 = Repo.insert! %Scenario{
+      name: "Attack on Weathertop",
+      blurb: "The Ringwraiths attempt to wrest the One Ring from Frodo.",
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 6, size: 10,
+      map_width: 48, map_height: 48, location: :weathertop
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fp_s4.id, resource_type: :source, book: :fp, title: "The Free Peoples", sort_order: 4, page: 60}
+
+    fp_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s4.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fp_s4f1,  1,  1, [ frodo ])
+    _declare_role_figure(fp_s4f1,  1,  2, [ sam ])
+    _declare_role_figure(fp_s4f1,  1,  3, [ merry ])
+    _declare_role_figure(fp_s4f1,  1,  4, [ pippin ])
+    _declare_role_figure(fp_s4f1,  1,  5, [ aragorn ])
+
+    fp_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fp_s4f2,  1,  1, [ witch_king ])
+    _declare_role_figure(fp_s4f2,  4,  2, [ ringwraith ])
+
+    #========================================================================
+    fp_s5 = Repo.insert! %Scenario{
+      name: "Flight to the Ford",
+      blurb: "Can Frodo reach Rivendell before succumbing to the effects of the Morgul Blade?",
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 20, size: 16,
+      map_width: 48, map_height: 48, location: :eriador
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fp_s5.id, resource_type: :source, book: :fp, title: "The Free Peoples", sort_order: 5, page: 61}
+
+    fp_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s5.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fp_s5f1,  1,  1, [ frodo ])
+    _declare_role_figure(fp_s5f1,  1,  2, [ sam ])
+    _declare_role_figure(fp_s5f1,  1,  3, [ merry ])
+    _declare_role_figure(fp_s5f1,  1,  4, [ pippin ])
+    _declare_role_figure(fp_s5f1,  1,  5, [ aragorn ])
+    _declare_role_figure(fp_s5f1,  1,  6, [ aragorn ])
+    _declare_role_figure(fp_s5f1,  1,  7, [ glorfindel_horse ])
+
+    fp_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s5.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fp_s5f2,  1,  1, [ witch_king_horse ])
+    _declare_role_figure(fp_s5f2,  8,  2, [ ringwraith_horse ])
 
     #########################################################################
     # GONDOR IN FLAMES
