@@ -58,7 +58,7 @@ defenum ScenarioResourceBook,
   gif:      6,   # Gondor in Flames
   harad:    7,   # Harad
   kd:       8,   # Khazad-dûm
-  kom:      9,   # Kingdoms of Men
+  km:       9,   # Kingdoms of Men
   ma:      10,   # Moria & Angmar
   mordor:  11,   # Mordor
   roa:     12,   # The Ruin of Arnor

@@ -276,6 +276,7 @@ defmodule SbgInv.Data do
     #########################################################################
 
     lurtz       = Repo.insert! %Figure{name: "Lurtz"}
+    mauhur      = Repo.insert! %Figure{name: "Mauhúr"}
     sharkey     = Repo.insert! %Figure{name: "Sharkey"}
     sharku      = Repo.insert! %Figure{name: "Sharku"}
     sharku_warg = Repo.insert! %Figure{name: "Sharku on Warg"}
@@ -480,8 +481,8 @@ defmodule SbgInv.Data do
     # FIGURES: ROHAN
     #########################################################################
 
-    eomer               = Repo.insert! %Figure{name: "Eomer"}
-    eomer_horse         = Repo.insert! %Figure{name: "Eomer on horse"}
+    eomer               = Repo.insert! %Figure{name: "Éomer"}
+    eomer_horse         = Repo.insert! %Figure{name: "Éomer on horse"}
     eorl_horse          = Repo.insert! %Figure{name: "Eorl the Young on horse"}
     eowyn_armor         = Repo.insert! %Figure{name: "Éowyn with armour"}
     eowyn_horse         = Repo.insert! %Figure{name: "Éowyn on horse"}
@@ -2276,6 +2277,111 @@ defmodule SbgInv.Data do
     _declare_role_figure(kd_s5f2, 6,  5, [ moria_g_spear ])
     _declare_role_figure(kd_s5f2, 6,  6, [ moria_g_bow ])
     _declare_role_figure(kd_s5f2, 6,  7, [ moria_g_shield ])
+
+    #########################################################################
+    # KINGDOMS OF MEN
+    #########################################################################
+
+    #========================================================================
+    km_s1 = Repo.insert! %Scenario{
+      name: "The Gladden Fields",
+      blurb: "Isildur discovers that the forces of Evil have not been entirely defeated.",
+      date_age: 3, date_year: 2, date_month: 0, date_day: 0, size: 71,
+      map_width: 72, map_height: 48, location: :rhovanion
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: km_s1.id, resource_type: :source, book: :km, title: "Kingdoms of Men", sort_order: 1, page: 44}
+
+    km_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: km_s1.id, faction: :numenor, suggested_points: 300, actual_points: 300, sort_order: 1}
+    _declare_role_figure(km_s1f1, 1,  1, "Isildur with the One Ring", [ isildur ])
+    _declare_role_figure(km_s1f1, 9,  2, [ numenor_w_shield ])
+    _declare_role_figure(km_s1f1, 8,  3, [ numenor_w_shield_spear ])
+    _declare_role_figure(km_s1f1, 8,  4, [ numenor_w_bow ])
+
+    km_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: km_s1.id, faction: :mordor, suggested_points: 300, actual_points: 399, sort_order: 2}
+    _declare_role_figure(km_s1f2,  2,  1, "Mordor Orc Captains with shield", [ orc_captain ])
+    _declare_role_figure(km_s1f2, 12,  2, [ orc_w_shield ])
+    _declare_role_figure(km_s1f2, 12,  3, [ orc_w_spear ])
+    _declare_role_figure(km_s1f2,  6,  4, [ orc_w_bow ])
+    _declare_role_figure(km_s1f2,  6,  5, [ orc_w_2h ])
+    _declare_role_figure(km_s1f2,  2,  6, [ warg_rider_shield_spear ])
+    _declare_role_figure(km_s1f2,  2,  7, [ warg_rider_shield ])
+    _declare_role_figure(km_s1f2,  3,  8, [ warg_rider_bow ])
+
+    #========================================================================
+    km_s2 = Repo.insert! %Scenario{
+      name: "Ambush in Ithilien",
+      blurb: "Faramir's Rangers encounter a Mûmak.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 7, size: 47,
+      map_width: 72, map_height: 48, location: :ithilien
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: km_s2.id, resource_type: :source, book: :km, title: "Kingdoms of Men", sort_order: 2, page: 45}
+
+    km_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: km_s2.id, faction: :gondor, suggested_points: 300, actual_points: 294, sort_order: 1}
+    _declare_role_figure(km_s2f1,  1,  1, [ faramir ])
+    _declare_role_figure(km_s2f1,  1,  2, [ madril ])
+    _declare_role_figure(km_s2f1,  1,  3, [ damrod ])
+    _declare_role_figure(km_s2f1, 18,  4, [ gondor_rog ])
+
+    km_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: km_s2.id, faction: :harad, suggested_points: 500, actual_points: 493, sort_order: 2}
+    _declare_role_figure(km_s2f2,  1,  1, [ harad_chieftain ])
+    _declare_role_figure(km_s2f2, 12,  2, [ harad_w_bow ])
+    _declare_role_figure(km_s2f2, 12,  3, [ harad_w_spear ])
+    _declare_role_figure(km_s2f2,  1,  4, [ mumak ])
+
+    #========================================================================
+    km_s3 = Repo.insert! %Scenario{
+      name: "Relief of Helm's Deep",
+      blurb: "The besiegers at Helm's Deep are enveloped.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 77,
+      map_width: 48, map_height: 48, location: :helms_deep
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: km_s3.id, resource_type: :source, book: :km, title: "Kingdoms of Men", sort_order: 3, page: 46}
+
+    km_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: km_s3.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(km_s3f1,  1,  1, [ aragorn_horse ])
+    _declare_role_figure(km_s3f1,  1,  2, [ gandalf_white_horse ])
+    _declare_role_figure(km_s3f1,  1,  3, [ legolas_horse ])
+    _declare_role_figure(km_s3f1,  1,  4, [ gimli ])
+    _declare_role_figure(km_s3f1,  1,  5, [ theoden_horse ])
+    _declare_role_figure(km_s3f1,  1,  6, [ gamling_horse ])
+    _declare_role_figure(km_s3f1,  1,  7, [ eomer_horse ])
+    _declare_role_figure(km_s3f1,  5,  8, [ rohan_gd_horse_spear ])
+    _declare_role_figure(km_s3f1,  1,  9, [ rohan_gd_horse_banner ])
+    _declare_role_figure(km_s3f1, 10, 10, [ rohan_rider ])
+    _declare_role_figure(km_s3f1,  9, 11, [ rohan_rider_spear ])
+
+    km_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: km_s3.id, faction: :isengard, suggested_points: 600, actual_points: 0, sort_order: 2}
+    _declare_role_figure(km_s3f2,  3,  1, [ uruk_hai_captain_shield ])
+    _declare_role_figure(km_s3f2,  9,  2, [ uruk_hai_w_crossbow ])
+    _declare_role_figure(km_s3f2, 11,  3, [ uruk_hai_w_shield ])
+    _declare_role_figure(km_s3f2, 22,  4, [ uruk_hai_w_pike ])
+
+    #========================================================================
+    km_s4 = Repo.insert! %Scenario{
+      name: "The Wrath of Rohan",
+      blurb: "Éomer's warband unwittingly helps Merry and Pippin escape to Fangorn forest.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, size: 53,
+      map_width: 72, map_height: 48, location: :rohan
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: km_s4.id, resource_type: :source, book: :km, title: "Kingdoms of Men", sort_order: 4, page: 47}
+
+    km_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: km_s4.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(km_s4f1,  1,  1, [ eomer_horse ])
+    _declare_role_figure(km_s4f1,  1,  1, "Rohan Captain on horse with shield", [ rohan_captain_horse ])
+    _declare_role_figure(km_s4f1,  1,  3, [ merry ])
+    _declare_role_figure(km_s4f1,  1,  4, [ pippin ])
+    _declare_role_figure(km_s4f1,  4,  5, [ rohan_rider_spear ])
+    _declare_role_figure(km_s4f1, 10,  5, [ rohan_rider ])
+
+    km_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: km_s4.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(km_s4f1,  1,  1, [ ugluk ])
+    _declare_role_figure(km_s4f1,  1,  2, [ mauhur ])
+    _declare_role_figure(km_s4f1, 17,  3, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(km_s4f1, 16,  4, [ uruk_hai_s_bow ])
 
     #########################################################################
     # MORIA AND ANGMAR
