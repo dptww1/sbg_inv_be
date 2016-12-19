@@ -1578,7 +1578,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fp_s1f1,  8,  6, [ hobbit_archer ])
     _declare_role_figure(fp_s1f1,  3,  7, [ hobbit_shirriff ])
 
-    fp_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s1.id, faction: :isengard, suggested_points: 175, actual_points: 175, sort_order: 1}
+    fp_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s1.id, faction: :isengard, suggested_points: 175, actual_points: 175, sort_order: 2}
     _declare_role_figure(fp_s1f2,   1,  1, [ sharkey ])
     _declare_role_figure(fp_s1f2,   1,  2, [ worm ])
     _declare_role_figure(fp_s1f2,  10,  3, [ ruffian ])
@@ -1688,9 +1688,59 @@ defmodule SbgInv.Data do
     _declare_role_figure(fp_s5f1,  1,  6, [ aragorn ])
     _declare_role_figure(fp_s5f1,  1,  7, [ glorfindel_horse ])
 
-    fp_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s5.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    fp_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s5.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fp_s5f2,  1,  1, [ witch_king_horse ])
     _declare_role_figure(fp_s5f2,  8,  2, [ ringwraith_horse ])
+
+    #========================================================================
+    fp_s6 = Repo.insert! %Scenario{
+      name: "Amon Hen",
+      blurb: "The Uruk-hai split the Fellowship and run off with some hobbits.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, size: 36,
+      map_width: 72, map_height: 48, location: :amon_hen
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fp_s6.id, resource_type: :source, book: :fp, title: "The Free Peoples", sort_order: 6, page: 62}
+
+    fp_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s6.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fp_s6f1,  1,  1, "Aragorn with bow and Elven cloak", [ aragorn ])
+    _declare_role_figure(fp_s6f1,  1,  2, "Boromir with Elven cloak", [ boromir ])
+    _declare_role_figure(fp_s6f1,  1,  3, "Legolas with Elven cloak", [ legolas ])
+    _declare_role_figure(fp_s6f1,  1,  4, "Gimli with Elven cloak", [ gimli ])
+    _declare_role_figure(fp_s6f1,  1,  5, "Frodo with Elven cloak, mithril coat, and Sting", [ frodo ])
+    _declare_role_figure(fp_s6f1,  1,  6, "Sam with Elven cloak", [ sam ])
+    _declare_role_figure(fp_s6f1,  1,  7, "Merry with Elven cloak", [ merry ])
+    _declare_role_figure(fp_s6f1,  1,  8, "Pippin with Elven cloak", [ pippin ])
+
+    fp_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s6.id, faction: :isengard, suggested_points: 360, actual_points: 358, sort_order: 2}
+    _declare_role_figure(fp_s6f2,  1,  1, [ lurtz ])
+    _declare_role_figure(fp_s6f2, 13,  2, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(fp_s6f2, 14,  3, [ uruk_hai_s_bow ])
+
+    #========================================================================
+    fp_s7 = Repo.insert! %Scenario{
+      name: "The Last March of the Ents",
+      blurb: "The Ents exact revenge for Saruman's treatment of the forest of Fangorn.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 56,
+      map_width: 48, map_height: 24, location: :isengard
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fp_s7.id, resource_type: :source, book: :fp, title: "The Free Peoples", sort_order: 7, page: 63}
+
+    fp_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s7.id, faction: :free_peoples, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fp_s7f1,  1,  1, [ treebeard ])
+    _declare_role_figure(fp_s7f1,  3,  2, [ ent ])
+
+    fp_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s7.id, faction: :isengard, suggested_points: 500, actual_points: 495, sort_order: 2}
+    _declare_role_figure(fp_s7f2,  1,  1, [ uruk_hai_captain_shield ])
+    _declare_role_figure(fp_s7f2,  1,  2, "Orc Captain with shield", [ orc_captain ])
+    _declare_role_figure(fp_s7f2,  3,  3, [ uruk_hai_w_crossbow ])
+    _declare_role_figure(fp_s7f2, 10,  4, [ uruk_hai_w_shield ])
+    _declare_role_figure(fp_s7f2, 10,  5, [ uruk_hai_w_pike ])
+    _declare_role_figure(fp_s7f2,  9,  6, [ orc_w_shield ])
+    _declare_role_figure(fp_s7f2,  9,  7, [ orc_w_spear ])
+    _declare_role_figure(fp_s7f2,  5,  8, [ orc_w_bow ])
+    _declare_role_figure(fp_s7f2,  4,  9, [ orc_w_2h ])
 
     #########################################################################
     # GONDOR IN FLAMES
@@ -2799,7 +2849,7 @@ defmodule SbgInv.Data do
     #========================================================================
     roa_s4 = Repo.insert! %Scenario{
       name: "Ambush in Rhudaur",
-      blurb: "Aragorn's father Arathorn is ambushedby villains in the wild.",
+      blurb: "Aragorn's father Arathorn is ambushed by villains in the wild.",
       date_age: 3, date_year: 2933, date_month: 0, date_day: 0, size: 40,
       map_width: 48, map_height: 48, location: :arnor
     }
