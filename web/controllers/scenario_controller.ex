@@ -41,7 +41,7 @@ defmodule SbgInv.ScenarioController do
         conn
         |> put_status(:created)
         |> put_resp_header("location", scenario_path(conn, :show, scenario))
-        |> render("show.json", scenario: scenario, user_id: 1)
+        |> render("show.json", scenario: scenario, user_id: 1, rating_breakdown: [])
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -65,6 +65,11 @@ defmodule SbgInv.ScenarioController do
 
     user_scenario_query = from us in UserScenario, where: us.user_id == ^user_id
     user_figure_query = from uf in UserFigure, where: uf.user_id == ^user_id
+    rating_breakdown_query = from us in UserScenario, group_by: us.rating, where: us.scenario_id == ^id, select: [us.rating, count(us.rating)]
+
+    rating_breakdown = Repo.all(rating_breakdown_query)
+                       |> Enum.filter(fn(x) -> hd(x) != nil end)
+                       |> Enum.reduce([0, 0, 0, 0, 0], fn(x, acc) -> List.replace_at(acc, hd(x) - 1, hd(tl(x))) end)
 
     query = Scenario
             |> preload(:scenario_resources)
@@ -73,7 +78,7 @@ defmodule SbgInv.ScenarioController do
 
     scenario = Repo.get!(query, id)
 
-    render(conn, "show.json", %{scenario: scenario})
+    render(conn, "show.json", %{scenario: scenario, rating_breakdown: rating_breakdown})
   end
 
   def update(conn, %{"id" => id, "scenario" => scenario_params}) do
@@ -83,7 +88,7 @@ defmodule SbgInv.ScenarioController do
 
     case Repo.update(changeset) do
       {:ok, scenario} ->
-        render(conn, "show.json", scenario: scenario, user_id: 1)   # TODO: user_id shouldn't be needed here
+        render(conn, "show.json", scenario: scenario, rating_breakdown: [])
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)

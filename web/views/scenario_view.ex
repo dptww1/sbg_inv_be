@@ -11,13 +11,14 @@ defmodule SbgInv.ScenarioView do
     }
   end
 
-  def render("show.json", %{scenario: scenario}) do
-    %{data: render_one(scenario, __MODULE__, "scenario.json")}
+  def render("show.json", %{scenario: scenario, rating_breakdown: rating_breakdown}) do
+    %{data: render_one(scenario, __MODULE__, "scenario.json", rating_breakdown: rating_breakdown)}
   end
 
-  def render("scenario.json", %{scenario: scenario}) do
+  def render("scenario.json", %{scenario: scenario, rating_breakdown: rating_breakdown}) do
     Map.merge base_scenario(scenario), %{
-      scenario_factions: render_many(Enum.sort(scenario.scenario_factions, &(&1.sort_order < &2.sort_order)), SbgInv.ScenarioFactionView, "faction_detail.json")
+      scenario_factions: render_many(Enum.sort(scenario.scenario_factions, &(&1.sort_order < &2.sort_order)), SbgInv.ScenarioFactionView, "faction_detail.json"),
+      rating_breakdown: rating_breakdown
     }
   end
 

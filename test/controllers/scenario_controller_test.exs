@@ -1,7 +1,7 @@
 defmodule SbgInv.ScenarioControllerTest do
   use SbgInv.ConnCase
 
-  alias SbgInv.{Scenario, TestHelper}
+  alias SbgInv.{Scenario, TestHelper, UserScenario}
 
   @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, name: "some content", size: 42,
                  map_width: 48, map_height: 48, location: :the_shire}
@@ -33,6 +33,7 @@ defmodule SbgInv.ScenarioControllerTest do
       "location" => scenario.location,
       "rating" => 0,
       "num_votes" => 0,
+      "rating_breakdown" => [0, 0, 0, 0, 0],
       "scenario_resources" => %{
         "source" => [],
         "web_replay" => [],
@@ -91,7 +92,7 @@ defmodule SbgInv.ScenarioControllerTest do
                                   ~w[sort_order actual_points suggested_points faction])
                        ]}
 
-    assert json_response(conn, 200)["data"] == [ required_values ]
+    assert json_response(conn, 200)["data"] == [ Map.drop(required_values, ["rating_breakdown"]) ]
   end
 
   test "scenario detail query correctly limits itself to the current user's scenario data", %{conn: conn} do
@@ -113,5 +114,22 @@ defmodule SbgInv.ScenarioControllerTest do
            |> put_req_header("authorization", "Token token=\"123bcd\"")
            |> get(scenario_path(conn, :show, Map.get(const_data, "id")))
     assert json_response(resp, 401)["errors"] != %{}
+  end
+
+  test "rating breakdowns are correctly returned", %{conn: conn} do
+    %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
+    user1 = TestHelper.create_user("user1", "user1@example.com")
+    user2 = TestHelper.create_user("user2", "user2@example.com")
+    user3 = TestHelper.create_user("user3", "user3@example.com")
+    user4 = TestHelper.create_user("user4", "user4@example.com")
+    user5 = TestHelper.create_user("user5", "user5@example.com")
+    Repo.insert! %UserScenario{user_id: user1.id, scenario_id: const_data["id"], rating: 5}
+    Repo.insert! %UserScenario{user_id: user2.id, scenario_id: const_data["id"], rating: 4}
+    Repo.insert! %UserScenario{user_id: user3.id, scenario_id: const_data["id"], rating: 3}
+    Repo.insert! %UserScenario{user_id: user4.id, scenario_id: const_data["id"], rating: 2}
+    Repo.insert! %UserScenario{user_id: user5.id, scenario_id: const_data["id"], rating: 1}
+
+    conn = get conn, scenario_path(conn, :show, const_data["id"])
+    assert json_response(conn, 200)["data"]["rating_breakdown"] == [1, 1, 1, 1, 1]
   end
 end

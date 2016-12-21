@@ -71,6 +71,7 @@ defmodule SbgInv.TestHelper do
         "location" => "the_shire",
         "rating" => 0,
         "num_votes" => 0,
+        "rating_breakdown" => [0, 0, 0, 0, 0],
         "scenario_factions" => [
           %{
             "actual_points" => 0,
