@@ -26,6 +26,14 @@ defmodule SbgInv.Data do
     _generate
   end
 
+  defp _declare_unique(name) do
+    Repo.insert! %Figure{name: name}
+  end
+
+  defp _declare_warrior(name, plural_name) do
+    Repo.insert! %Figure{name: name, plural_name: plural_name}
+  end
+
   defp _declare_role_figure(faction, amount, sort_order, name \\ "", figure_list) do
     role = Repo.insert! %Role{
       scenario_faction_id: faction.id,
@@ -77,6 +85,17 @@ defmodule SbgInv.Data do
     dunedain           = Repo.insert! %Figure{name: "Dúnedan",                        plural_name: "Dúnedain"}
     ranger_north       = Repo.insert! %Figure{name: "Ranger of the North",            plural_name: "Rangers of the North"}
     ranger_north_spear = Repo.insert! %Figure{name: "Ranger of the North with spear", plural_name: "Rangers of the North with spear"}
+
+    #########################################################################
+    # AZOG'S HUNTERS
+    #########################################################################
+
+    azog_warg = Repo.insert!   %Figure{name: "Azog on White warg"}
+    fimbul_warg = Repo.insert! %Figure{name: "Fimbul on warg"}
+    narzug_warg = Repo.insert! %Figure{name: "Narzug on warg"}
+
+    fell_warg       = Repo.insert! %Figure{name: "Fell Warg", plural_name: "Fell Wargs"}
+    hunter_orc_warg = Repo.insert! %Figure{name: "Hunter Orc on warg", plural_name: "Hunter Orcs on warg"}
 
     #########################################################################
     # FIGURES: DWARVES
@@ -168,7 +187,8 @@ defmodule SbgInv.Data do
     ghan_buri_ghan      = Repo.insert! %Figure{name: "Ghân-buri-ghân"}
     goldberry           = Repo.insert! %Figure{name: "Goldberry"}
     gwaihir             = Repo.insert! %Figure{name: "Gwaihir"}
-    radagast            = Repo.insert! %Figure{name: "Radagast"}
+    radagast            = Repo.insert! %Figure{name: "Radagast the Brown"}
+    radagast_sled       = Repo.insert! %Figure{name: "Radagast the Brown on sleigh"}
     saruman             = Repo.insert! %Figure{name: "Saruman the White"}
     tom_bombadil        = Repo.insert! %Figure{name: "Tom Bombadil"}
     treebeard           = Repo.insert! %Figure{name: "Treebeard"}
@@ -177,6 +197,16 @@ defmodule SbgInv.Data do
 
     eagle = Repo.insert! %Figure{name: "Giant Eagle", plural_name: "Giant Eagles"}
     ent   = Repo.insert! %Figure{name: "Ent",         plural_name: "Ents"}
+
+    #########################################################################
+    # FIGURES: GOBLINTOWN
+    #########################################################################
+
+    goblin_king   = _declare_unique("The Goblin King")
+    goblin_scribe = _declare_unique("The Goblin Scribe")
+    grinnah       = _declare_unique("Grinnah")
+
+    goblintown_g = _declare_warrior("Goblin Warrior", "Goblin Warriors")
 
     #########################################################################
     # FIGURES: GONDOR
@@ -193,6 +223,7 @@ defmodule SbgInv.Data do
     faramir             = Repo.insert! %Figure{name: "Faramir"}
     faramir_armor_horse = Repo.insert! %Figure{name: "Faramir, Captain of Gondor with heavy armour and horse"}
     forlong             = Repo.insert! %Figure{name: "Forlong the Fat"}
+    forlong_horse       = Repo.insert! %Figure{name: "Forlong the Fat on horse"}
     imrahil             = Repo.insert! %Figure{name: "Prince Imrahil of Dol Amroth"}
     imrahil_horse       = Repo.insert! %Figure{name: "Prince Imrahil on horse"}
     king_dead           = Repo.insert! %Figure{name: "King of the Dead"}
@@ -494,7 +525,7 @@ defmodule SbgInv.Data do
     merry_rohan         = Repo.insert! %Figure{name: "Meriadoc, Knight of the Mark"}
     theoden             = Repo.insert! %Figure{name: "Théoden"}
     theoden_horse       = Repo.insert! %Figure{name: "Théoden on horse"}
-    theoden_armor_horse = Repo.insert! %Figure{name: "Théoden with armor on armored horse"}
+    theoden_armor_horse = Repo.insert! %Figure{name: "Théoden with armour on armored horse"}
     theodred_horse      = Repo.insert! %Figure{name: "Théodred on horse"}
 
     rohan_captain       = Repo.insert! %Figure{name: "Captain of Rohan",          plural_name: "Captains of Rohan"}
@@ -532,6 +563,33 @@ defmodule SbgInv.Data do
     hobbit_archer_horn = Repo.insert! %Figure{name: "Hobbit Archer with signal horn", plural_name: "Hobbit Archers with signal horn"}
     hobbit_militia     = Repo.insert! %Figure{name: "Hobbit Militia",                 plural_name: "Hobbit Militia"}
     hobbit_shirriff    = Repo.insert! %Figure{name: "Hobbit Shirriff",                plural_name: "Hobbit Shirriffs"}
+
+    #########################################################################
+    # THORIN'S COMPANY
+    #########################################################################
+
+    balin  = Repo.insert! %Figure{name: "Balin"}
+    bifur  = Repo.insert! %Figure{name: "Bifur"}
+    young_bilbo = Repo.insert! %Figure{name: "Bilbo Baggins"}
+    bofur  = Repo.insert! %Figure{name: "Bofur"}
+    bombur = Repo.insert! %Figure{name: "Bombur"}
+    dori   = Repo.insert! %Figure{name: "Dori"}
+    dwalin = Repo.insert! %Figure{name: "Dwalin"}
+    fili   = Repo.insert! %Figure{name: "Fili"}
+    gloin  = Repo.insert! %Figure{name: "Gloin"}
+    kili   = Repo.insert! %Figure{name: "Kili"}
+    nori   = Repo.insert! %Figure{name: "Nori"}
+    oin    = Repo.insert! %Figure{name: "Oin"}
+    ori    = Repo.insert! %Figure{name: "Ori"}
+    thorin = Repo.insert! %Figure{name: "Thorin Oakenshield"}
+
+    #########################################################################
+    # THE TROLLS
+    #########################################################################
+
+    bert    = Repo.insert! %Figure{name: "Bert"}
+    tom     = Repo.insert! %Figure{name: "Tom"}
+    william = Repo.insert! %Figure{name: "William"}
 
     #########################################################################
     # USER_FIGURES
@@ -2112,6 +2170,519 @@ defmodule SbgInv.Data do
     _declare_role_figure(harad_s6f2,  4, 23, [ corsair_w_bow ])
     _declare_role_figure(harad_s6f2,  3, 24, [ corsair_reaver ])
     _declare_role_figure(harad_s6f2,  6, 25, [ corsair_arbalester ])
+
+    #########################################################################
+    # THE HOBBIT: AN UNEXPECTED JOURNEY
+    #########################################################################
+
+    #========================================================================
+    hobbit_s1 = Repo.insert! %Scenario{
+      name: "Roast Mutton",
+      blurb: "Thorin's Company runs into some hungry Trolls on the Ettenmoors.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 17,
+      map_width: 48, map_height: 48, location: :eriador
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 1, page: 112}
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=lwc1bqolr7g", title: "Spillforeningen the Fellowship", sort_order: 2}
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=qo23ETd11oI&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=1&t=7s", title: "DHCL", sort_order: 3}
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :web_replay, url: "http://davetownsend.org/Battles/LotR-20160528/", title: "DaveT", sort_order: 4}
+
+    hobbit_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s1.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s1f1, 1,  1, [ thorin ])
+    _declare_role_figure(hobbit_s1f1, 1,  2, [ balin ])
+    _declare_role_figure(hobbit_s1f1, 1,  3, [ dwalin ])
+    _declare_role_figure(hobbit_s1f1, 1,  4, [ fili ])
+    _declare_role_figure(hobbit_s1f1, 1,  5, [ kili ])
+    _declare_role_figure(hobbit_s1f1, 1,  6, [ oin ])
+    _declare_role_figure(hobbit_s1f1, 1,  7, [ gloin ])
+    _declare_role_figure(hobbit_s1f1, 1,  8, [ ori ])
+    _declare_role_figure(hobbit_s1f1, 1,  9, [ nori ])
+    _declare_role_figure(hobbit_s1f1, 1, 10, [ dori ])
+    _declare_role_figure(hobbit_s1f1, 1, 11, [ bifur ])
+    _declare_role_figure(hobbit_s1f1, 1, 12, [ bofur ])
+    _declare_role_figure(hobbit_s1f1, 1, 13, [ bombur ])
+    _declare_role_figure(hobbit_s1f1, 1, 14, [ young_bilbo ])
+
+    hobbit_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s1.id, faction: :trolls, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s1f2, 1,  1, [ william ])
+    _declare_role_figure(hobbit_s1f2, 1,  2, [ tom ])
+    _declare_role_figure(hobbit_s1f2, 1,  3, [ bert ])
+
+    #========================================================================
+    hobbit_s2 = Repo.insert! %Scenario{
+      name: "The Chase",
+      blurb: "Radagast attempts to lead Azog's hunters on a wild rabbit chase.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 31,
+      map_width: 48, map_height: 48, location: :eriador
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s2.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 2, page: 114}
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s2.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=ek6FHqDp2-w", title: "Spillforeningen the Fellowship", sort_order: 2}
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s2.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=DE8qtshNA7I&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=2", title: "DHCL", sort_order: 3}
+
+    hobbit_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s2.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s2f1, 1,  1, [ thorin ])
+    _declare_role_figure(hobbit_s2f1, 1,  2, [ balin ])
+    _declare_role_figure(hobbit_s2f1, 1,  3, [ dwalin ])
+    _declare_role_figure(hobbit_s2f1, 1,  4, [ fili ])
+    _declare_role_figure(hobbit_s2f1, 1,  5, [ kili ])
+    _declare_role_figure(hobbit_s2f1, 1,  6, [ oin ])
+    _declare_role_figure(hobbit_s2f1, 1,  7, [ gloin ])
+    _declare_role_figure(hobbit_s2f1, 1,  8, [ ori ])
+    _declare_role_figure(hobbit_s2f1, 1,  9, [ nori ])
+    _declare_role_figure(hobbit_s2f1, 1, 10, [ dori ])
+    _declare_role_figure(hobbit_s2f1, 1, 11, [ bifur ])
+    _declare_role_figure(hobbit_s2f1, 1, 12, [ bofur ])
+    _declare_role_figure(hobbit_s2f1, 1, 13, [ bombur ])
+    _declare_role_figure(hobbit_s2f1, 1, 14, [ young_bilbo ])
+    _declare_role_figure(hobbit_s2f1, 1, 15, [ gandalf_grey ])
+    _declare_role_figure(hobbit_s2f1, 1, 16, [ radagast_sled ])
+
+    hobbit_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s2.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s2f2,  1, 1, [ azog_warg ])
+    _declare_role_figure(hobbit_s2f2,  1, 2, [ fimbul_warg ])
+    _declare_role_figure(hobbit_s2f2,  1, 3, [ narzug_warg ])
+    _declare_role_figure(hobbit_s2f2, 12, 4, [ hunter_orc_warg ])
+
+    #========================================================================
+    hobbit_s3 = Repo.insert! %Scenario{
+      name: "The Capture",
+      blurb: "Thorin's company's camping spot turns out to be swarming with Goblins.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 45,
+      map_width: 48, map_height: 48, location: :eriador
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s3.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 3, page: 116}
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s3.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=PahHhcXCNPY", title: "Spillforeningen the Fellowship", sort_order: 2}
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s3.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=mn7yH5lXXMg&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=3", title: "DHCL", sort_order: 3}
+
+    hobbit_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s3.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s3f1, 1,  1, [ thorin ])
+    _declare_role_figure(hobbit_s3f1, 1,  2, [ balin ])
+    _declare_role_figure(hobbit_s3f1, 1,  3, [ dwalin ])
+    _declare_role_figure(hobbit_s3f1, 1,  4, [ fili ])
+    _declare_role_figure(hobbit_s3f1, 1,  5, [ kili ])
+    _declare_role_figure(hobbit_s3f1, 1,  6, [ oin ])
+    _declare_role_figure(hobbit_s3f1, 1,  7, [ gloin ])
+    _declare_role_figure(hobbit_s3f1, 1,  8, [ ori ])
+    _declare_role_figure(hobbit_s3f1, 1,  9, [ nori ])
+    _declare_role_figure(hobbit_s3f1, 1, 10, [ dori ])
+    _declare_role_figure(hobbit_s3f1, 1, 11, [ bifur ])
+    _declare_role_figure(hobbit_s3f1, 1, 12, [ bofur ])
+    _declare_role_figure(hobbit_s3f1, 1, 13, [ bombur ])
+    _declare_role_figure(hobbit_s3f1, 1, 14, [ young_bilbo ])
+    _declare_role_figure(hobbit_s3f1, 1, 15, [ gandalf_grey ])
+
+    hobbit_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s3.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s3f2, 30, 1, [ goblintown_g ])
+
+    #========================================================================
+    hobbit_s4 = Repo.insert! %Scenario{
+      name: "Flight to Freedom",
+      blurb: "With the help of Gandalf, Thorin's company escapes the clutches of the Goblin King.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 53,
+      map_width: 48, map_height: 48, location: :goblintown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s4.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 4, page: 118}
+
+    hobbit_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s4.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s4f1, 1,  1, [ thorin ])
+    _declare_role_figure(hobbit_s4f1, 1,  2, [ balin ])
+    _declare_role_figure(hobbit_s4f1, 1,  3, [ dwalin ])
+    _declare_role_figure(hobbit_s4f1, 1,  4, [ fili ])
+    _declare_role_figure(hobbit_s4f1, 1,  5, [ kili ])
+    _declare_role_figure(hobbit_s4f1, 1,  6, [ oin ])
+    _declare_role_figure(hobbit_s4f1, 1,  7, [ gloin ])
+    _declare_role_figure(hobbit_s4f1, 1,  8, [ ori ])
+    _declare_role_figure(hobbit_s4f1, 1,  9, [ nori ])
+    _declare_role_figure(hobbit_s4f1, 1, 10, [ dori ])
+    _declare_role_figure(hobbit_s4f1, 1, 11, [ bifur ])
+    _declare_role_figure(hobbit_s4f1, 1, 12, [ bofur ])
+    _declare_role_figure(hobbit_s4f1, 1, 13, [ bombur ])
+    _declare_role_figure(hobbit_s4f1, 1, 14, [ gandalf_grey ])
+
+    hobbit_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s4.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s4f2,  1, 1, [ goblin_king ])
+    _declare_role_figure(hobbit_s4f2,  1, 2, [ grinnah ])
+    _declare_role_figure(hobbit_s4f2,  1, 3, [ goblin_scribe ])
+    _declare_role_figure(hobbit_s4f2, 36, 4, [ goblintown_g ])
+
+    #========================================================================
+    hobbit_s5 = Repo.insert! %Scenario{
+      name: "Breakout",
+      blurb: "Thorin's company continues their escape from Goblintown.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 45,
+      map_width: 48, map_height: 48, location: :goblintown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s5.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 5, page: 122}
+
+    hobbit_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s5.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s5f1, 1,  1, [ thorin ])
+    _declare_role_figure(hobbit_s5f1, 1,  2, [ balin ])
+    _declare_role_figure(hobbit_s5f1, 1,  3, [ dwalin ])
+    _declare_role_figure(hobbit_s5f1, 1,  4, [ fili ])
+    _declare_role_figure(hobbit_s5f1, 1,  5, [ kili ])
+    _declare_role_figure(hobbit_s5f1, 1,  6, [ oin ])
+    _declare_role_figure(hobbit_s5f1, 1,  7, [ gloin ])
+    _declare_role_figure(hobbit_s5f1, 1,  8, [ ori ])
+    _declare_role_figure(hobbit_s5f1, 1,  9, [ nori ])
+    _declare_role_figure(hobbit_s5f1, 1, 10, [ dori ])
+    _declare_role_figure(hobbit_s5f1, 1, 11, [ bifur ])
+    _declare_role_figure(hobbit_s5f1, 1, 12, [ bofur ])
+    _declare_role_figure(hobbit_s5f1, 1, 13, [ bombur ])
+    _declare_role_figure(hobbit_s5f1, 1, 14, [ gandalf_grey ])
+
+    hobbit_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s5.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s5f2,  1, 1, [ goblin_king ])
+    _declare_role_figure(hobbit_s5f2,  1, 2, [ grinnah ])
+    _declare_role_figure(hobbit_s5f2, 36, 4, [ goblintown_g ])
+
+    #========================================================================
+    hobbit_s6 = Repo.insert! %Scenario{
+      name: "Out of the Frying Pan",
+      blurb: "Azog's Hunters resume chasing Thorin's company on the far side of the Misty Mountains.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 41,
+      map_width: 48, map_height: 48, location: :rhovanion
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s6.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 7, page: 126}
+
+    hobbit_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s6.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s6f1, 1,  1, [ thorin ])
+    _declare_role_figure(hobbit_s6f1, 1,  2, [ balin ])
+    _declare_role_figure(hobbit_s6f1, 1,  3, [ dwalin ])
+    _declare_role_figure(hobbit_s6f1, 1,  4, [ fili ])
+    _declare_role_figure(hobbit_s6f1, 1,  5, [ kili ])
+    _declare_role_figure(hobbit_s6f1, 1,  6, [ oin ])
+    _declare_role_figure(hobbit_s6f1, 1,  7, [ gloin ])
+    _declare_role_figure(hobbit_s6f1, 1,  8, [ ori ])
+    _declare_role_figure(hobbit_s6f1, 1,  9, [ nori ])
+    _declare_role_figure(hobbit_s6f1, 1, 10, [ dori ])
+    _declare_role_figure(hobbit_s6f1, 1, 11, [ bifur ])
+    _declare_role_figure(hobbit_s6f1, 1, 12, [ bofur ])
+    _declare_role_figure(hobbit_s6f1, 1, 13, [ bombur ])
+    _declare_role_figure(hobbit_s6f1, 1, 14, [ young_bilbo ])
+    _declare_role_figure(hobbit_s6f1, 1, 15, [ gandalf_grey ])
+
+    hobbit_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s6.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s6f2,  1, 1, [ azog_warg ])
+    _declare_role_figure(hobbit_s6f2,  1, 2, [ narzug_warg ])
+    _declare_role_figure(hobbit_s6f2,  1, 3, [ fimbul_warg ])
+    _declare_role_figure(hobbit_s6f2,  6, 4, [ hunter_orc_warg ])
+    _declare_role_figure(hobbit_s6f2,  6, 5, [ fell_warg ])
+
+    #========================================================================
+    hobbit_s7 = Repo.insert! %Scenario{
+      name: "Into the Fire",
+      blurb: "Thorin defends his company against Azog himself.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 45,
+      map_width: 48, map_height: 48, location: :rhovanion
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s7.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 7, page: 126}
+
+    hobbit_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s7.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s7f1, 1,  1, [ thorin ])
+    _declare_role_figure(hobbit_s7f1, 1,  2, [ young_bilbo ])
+    _declare_role_figure(hobbit_s7f1, 1,  3, [ gwaihir ])
+    _declare_role_figure(hobbit_s7f1, 4,  4, [ eagle ])
+
+    hobbit_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s7.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s7f2,  1, 1, [ fimbul_warg ])
+
+    #========================================================================
+    hobbit_s8 = Repo.insert! %Scenario{
+      name: "The Last Alliance",
+      blurb: "Sauron is defeated at Mount Doom by elves and men.",
+      date_age: 2, date_year: 3441, date_month: 0, date_day: 0, size: 113,
+      map_width: 72, map_height: 48, location: :mordor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s8.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 8, page: 136}
+
+    hobbit_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s8.id, faction: :rivendell, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s8f1,  1,  1, [ gil_galad ])
+    _declare_role_figure(hobbit_s8f1,  1,  2, [ elrond ])
+    _declare_role_figure(hobbit_s8f1, 10,  3, [ high_elf_w_blade ])
+    _declare_role_figure(hobbit_s8f1, 10,  4, [ high_elf_w_bow ])
+    _declare_role_figure(hobbit_s8f1,  9,  5, [ high_elf_w_spear_shield ])
+    _declare_role_figure(hobbit_s8f1,  1,  6, [ high_elf_w_banner ])
+    _declare_role_figure(hobbit_s8f1,  1,  7, [ elendil ])
+    _declare_role_figure(hobbit_s8f1,  1,  8, [ isildur ])
+    _declare_role_figure(hobbit_s8f1,  1,  9, "Numenor Captain with heavy armour and shield", [ numenor_captain ])
+    _declare_role_figure(hobbit_s8f1,  7, 10, [ numenor_w_shield ])
+    _declare_role_figure(hobbit_s8f1,  7, 11, [ numenor_w_bow ])
+    _declare_role_figure(hobbit_s8f1,  6, 12, [ numenor_w_shield_spear ])
+    _declare_role_figure(hobbit_s8f1,  1, 13, [ numenor_w_banner ])
+
+    hobbit_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s8.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s8f2,  1,  1, [ sauron ])
+    _declare_role_figure(hobbit_s8f2,  1,  2, "Witch-King of Angmar on horse (full M/W/F)", [ witch_king_horse ])
+    _declare_role_figure(hobbit_s8f2,  2,  3, "Ringwraiths on horse (full M/W/F)", [ ringwraith_horse ])
+    _declare_role_figure(hobbit_s8f2,  1,  4, [ troll_chieftain ])
+    _declare_role_figure(hobbit_s8f2,  2,  5, [ orc_captain ])
+    _declare_role_figure(hobbit_s8f2, 12,  6, [ orc_w_shield ])
+    _declare_role_figure(hobbit_s8f2, 12,  7, [ orc_w_spear ])
+    _declare_role_figure(hobbit_s8f2,  6,  8, [ orc_w_bow ])
+    _declare_role_figure(hobbit_s8f2,  6,  9, [ orc_w_2h ])
+    _declare_role_figure(hobbit_s8f2,  4, 10, [ warg_rider_bow ])
+    _declare_role_figure(hobbit_s8f2,  4, 11, [ warg_rider_shield ])
+    _declare_role_figure(hobbit_s8f2,  4, 12, [ warg_rider_shield_spear ])
+    _declare_role_figure(hobbit_s8f2,  2, 13, [ mordor_troll ])
+
+    #========================================================================
+    hobbit_s9 = Repo.insert! %Scenario{
+      name: "The Attack at Weathertop",
+      blurb: "The Witch-King and his minions attempt to seize the One Ring from Frodo.",
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 6, size: 10,
+      map_width: 48, map_height: 48, location: :eriador
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s9.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 9, page: 140}
+
+    hobbit_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s9.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s9f1, 1, 1, [ frodo ])
+    _declare_role_figure(hobbit_s9f1, 1, 2, [ sam ])
+    _declare_role_figure(hobbit_s9f1, 1, 3, [ merry ])
+    _declare_role_figure(hobbit_s9f1, 1, 4, [ pippin ])
+    _declare_role_figure(hobbit_s9f1, 1, 5, [ aragorn ])
+
+    hobbit_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s9.id, faction: :mordor, suggested_points: 330, actual_points: 330, sort_order: 2}
+    _declare_role_figure(hobbit_s9f2, 1, 1, [ witch_king ])
+    _declare_role_figure(hobbit_s9f2, 4, 2, [ ringwraith ])
+
+    #========================================================================
+    hobbit_s10 = Repo.insert! %Scenario{
+      name: "Balin's Tomb",
+      blurb: "The Fellowship takes a break on their trek through Moria ... and are cornered in Balin's Tomb.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 14, size: 48,
+      map_width: 24, map_height: 24, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s10.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 10, page: 142}
+
+    hobbit_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s10.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s10f1, 1, 1, [ frodo ])
+    _declare_role_figure(hobbit_s10f1, 1, 2, [ sam ])
+    _declare_role_figure(hobbit_s10f1, 1, 3, [ merry ])
+    _declare_role_figure(hobbit_s10f1, 1, 4, [ pippin ])
+    _declare_role_figure(hobbit_s10f1, 1, 5, [ aragorn ])
+    _declare_role_figure(hobbit_s10f1, 1, 6, [ gandalf_grey ])
+    _declare_role_figure(hobbit_s10f1, 1, 7, [ boromir ])
+    _declare_role_figure(hobbit_s10f1, 1, 8, [ legolas ])
+    _declare_role_figure(hobbit_s10f1, 1, 9, [ gimli ])
+
+    hobbit_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s10.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s10f2,  2, 1, [ moria_captain ])
+    _declare_role_figure(hobbit_s10f2, 12, 2, [ moria_g_shield ])
+    _declare_role_figure(hobbit_s10f2, 12, 3, [ moria_g_spear ])
+    _declare_role_figure(hobbit_s10f2, 12, 4, [ moria_g_bow ])
+    _declare_role_figure(hobbit_s10f2,  1, 5, "Cave Troll", [ cave_troll_spear, cave_troll_chain ])
+
+    #========================================================================
+    hobbit_s11 = Repo.insert! %Scenario{
+      name: "The Bridge of Khazad-dûm",
+      blurb: "The Fellowship escape from the Balrog, but not without some heartbreak.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 48,
+      map_width: 48, map_height: 48, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s11.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 11, page: 144}
+
+    hobbit_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s11.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s11f1, 1, 1, [ frodo ])
+    _declare_role_figure(hobbit_s11f1, 1, 2, [ sam ])
+    _declare_role_figure(hobbit_s11f1, 1, 3, [ merry ])
+    _declare_role_figure(hobbit_s11f1, 1, 4, [ pippin ])
+    _declare_role_figure(hobbit_s11f1, 1, 5, [ aragorn ])
+    _declare_role_figure(hobbit_s11f1, 1, 6, [ gandalf_grey ])
+    _declare_role_figure(hobbit_s11f1, 1, 7, [ boromir ])
+    _declare_role_figure(hobbit_s11f1, 1, 8, [ legolas ])
+    _declare_role_figure(hobbit_s11f1, 1, 9, [ gimli ])
+
+    hobbit_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s11.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s11f2,  1, 1, [ balrog ])
+    _declare_role_figure(hobbit_s11f2,  2, 2, [ moria_captain ])
+    _declare_role_figure(hobbit_s11f2, 12, 3, [ moria_g_shield ])
+    _declare_role_figure(hobbit_s11f2, 12, 4, [ moria_g_spear ])
+    _declare_role_figure(hobbit_s11f2, 12, 5, [ moria_g_bow ])
+
+    #========================================================================
+    hobbit_s12 = Repo.insert! %Scenario{
+      name: "Ambush at Amon Hen",
+      blurb: "The Uruk-hai attempt to run off with the hobbits.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, size: 38,
+      map_width: 72, map_height: 48, location: :amon_hen
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s12.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 12, page: 146}
+
+    hobbit_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s12.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s12f1, 1, 1, [ frodo ])
+    _declare_role_figure(hobbit_s12f1, 1, 2, [ sam ])
+    _declare_role_figure(hobbit_s12f1, 1, 3, [ merry ])
+    _declare_role_figure(hobbit_s12f1, 1, 4, [ pippin ])
+    _declare_role_figure(hobbit_s12f1, 1, 5, [ aragorn ])
+    _declare_role_figure(hobbit_s12f1, 1, 6, [ boromir ])
+    _declare_role_figure(hobbit_s12f1, 1, 7, [ legolas ])
+    _declare_role_figure(hobbit_s12f1, 1, 8, [ gimli ])
+
+    hobbit_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s12.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s12f2,  1, 1, [ lurtz ])
+    _declare_role_figure(hobbit_s12f2,  1, 2, [ ugluk ])
+    _declare_role_figure(hobbit_s12f2,  1, 3, [ uruk_hai_captain_shield ])
+    _declare_role_figure(hobbit_s12f2, 14, 3, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(hobbit_s12f2, 13, 3, [ uruk_hai_s_bow ])
+
+    #========================================================================
+    hobbit_s13 = Repo.insert! %Scenario{
+      name: "The Siege of Helm's Deep",
+      blurb: "The Rohirrim hold their fortress against the attacks of the Uruk-hai.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 133,
+      map_width: 72, map_height: 48, location: :helms_deep
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s13.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 13, page: 148}
+
+    hobbit_s13f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s13.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s13f1,  1, 1, [ theoden ])
+    _declare_role_figure(hobbit_s13f1,  1, 2, [ aragorn ])
+    _declare_role_figure(hobbit_s13f1,  1, 3, [ legolas ])
+    _declare_role_figure(hobbit_s13f1,  1, 4, [ gimli ])
+    _declare_role_figure(hobbit_s13f1,  2, 5, "Captains of Rohan with heavy armour and shield", [ rohan_captain ])
+    _declare_role_figure(hobbit_s13f1,  9, 6, [ rohan_gd_spear ])
+    _declare_role_figure(hobbit_s13f1, 12, 7, [ rohan_w_spear_shield ])
+    _declare_role_figure(hobbit_s13f1, 12, 8, [ rohan_w_shield ])
+    _declare_role_figure(hobbit_s13f1, 12, 9, [ rohan_w_bow ])
+
+    hobbit_s13f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s13.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s13f2,  5, 1, [ uruk_hai_captain_shield ])
+    _declare_role_figure(hobbit_s13f2, 27, 2, [ uruk_hai_w_shield ])
+    _declare_role_figure(hobbit_s13f2, 27, 3, [ uruk_hai_w_pike ])
+    _declare_role_figure(hobbit_s13f2,  6, 4, [ uruk_hai_w_crossbow ])
+    _declare_role_figure(hobbit_s13f2, 12, 5, [ uruk_hai_berserker ])
+    _declare_role_figure(hobbit_s13f2,  3, 6, [ uruk_hai_ballista ])
+    _declare_role_figure(hobbit_s13f2,  9, 7, [ uruk_hai_ballista_crew ])
+    _declare_role_figure(hobbit_s13f2,  3, 8, [ uruk_hai_demo_team ])
+
+    #========================================================================
+    hobbit_s14 = Repo.insert! %Scenario{
+      name: "The Battle of Pelennor Fields",
+      blurb: "The forces of Good counterattack the Evil forces besieging Minas Tirith.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 257,
+      map_width: 120, map_height: 72, location: :minas_tirith
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s14.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 14, page: 152}
+
+    hobbit_s14f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s14.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s14f1,  1,  1, [ gandalf_white_horse ])
+    _declare_role_figure(hobbit_s14f1,  1,  2, "Captain of Minas Tirith on horse with lance and shield", [ gondor_captain_mt_horse ])
+    _declare_role_figure(hobbit_s14f1, 12,  3, [ gondor_womt_spear_shield ])
+    _declare_role_figure(hobbit_s14f1, 12,  4, [ gondor_womt_shield ])
+    _declare_role_figure(hobbit_s14f1, 12,  5, [ gondor_womt_bow ])
+    _declare_role_figure(hobbit_s14f1,  1,  6, [ imrahil_horse ])
+    _declare_role_figure(hobbit_s14f1,  1,  7, [ forlong_horse ])
+    _declare_role_figure(hobbit_s14f1,  1,  8, [ angbor ])
+    _declare_role_figure(hobbit_s14f1,  6,  9, "Knights of Dol Amroth with armoured horse and lance",[ gondor_knight_da_horse ])
+    _declare_role_figure(hobbit_s14f1, 12, 10, [ maa_da ])
+    _declare_role_figure(hobbit_s14f1,  9, 11, [ axemen_lossarnach ])
+    _declare_role_figure(hobbit_s14f1,  9, 12, [ clansmen_lamedon ])
+    _declare_role_figure(hobbit_s14f1,  1, 13, [ aragorn ])
+    _declare_role_figure(hobbit_s14f1,  1, 14, [ legolas ])
+    _declare_role_figure(hobbit_s14f1,  1, 15, [ gimli ])
+    _declare_role_figure(hobbit_s14f1,  1, 16, [ king_dead ])
+    _declare_role_figure(hobbit_s14f1,  6, 17, [ dead_rider ])
+    _declare_role_figure(hobbit_s14f1, 16, 18, [ dead_w ])
+    _declare_role_figure(hobbit_s14f1,  1, 19, [ theoden_armor_horse ])
+    _declare_role_figure(hobbit_s14f1,  1, 20, "Éomer, Knight of the Pelennor on horse", [ eomer_horse ])
+    _declare_role_figure(hobbit_s14f1,  1, 21, [ gamling_horse ])
+    _declare_role_figure(hobbit_s14f1,  1, 22, [ eowyn_horse ])
+    _declare_role_figure(hobbit_s14f1,  1, 23, [ merry_rohan ])
+    _declare_role_figure(hobbit_s14f1,  3, 24, "Rohan Royal Guard on horse with throwing spears", [ rohan_gd_horse_spear ])
+    _declare_role_figure(hobbit_s14f1, 16, 25, [ rohan_rider ])
+    _declare_role_figure(hobbit_s14f1,  8, 26, [ rohan_rider_spear ])
+
+    hobbit_s14f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s14.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s14f2,  1,  1, "Witch-King of Angmar on horse (full M/W/F)", [ witch_king_horse ])
+    _declare_role_figure(hobbit_s14f2,  3,  2, "Ringwraiths on horse (full M/W/F)", [ ringwraith_horse ])
+    _declare_role_figure(hobbit_s14f2,  1,  3, [ troll_chieftain ])
+    _declare_role_figure(hobbit_s14f2,  5,  4, [ orc_captain ])
+    _declare_role_figure(hobbit_s14f2,  2,  5, [ m_orc_captain ])
+    _declare_role_figure(hobbit_s14f2, 20,  6, [ orc_w_shield ])
+    _declare_role_figure(hobbit_s14f2, 20,  7, [ orc_w_spear ])
+    _declare_role_figure(hobbit_s14f2, 10,  8, [ orc_w_bow ])
+    _declare_role_figure(hobbit_s14f2, 10,  9, [ orc_w_2h ])
+    _declare_role_figure(hobbit_s14f2, 12, 10, [ orc_m_shield ])
+    _declare_role_figure(hobbit_s14f2, 12, 11, [ orc_m_spear ])
+    _declare_role_figure(hobbit_s14f2,  7, 12, [ warg_rider_bow ])
+    _declare_role_figure(hobbit_s14f2,  8, 13, [ warg_rider_shield ])
+    _declare_role_figure(hobbit_s14f2,  8, 14, [ warg_rider_shield_spear ])
+    _declare_role_figure(hobbit_s14f2,  4, 15, [ mordor_troll ])
+    _declare_role_figure(hobbit_s14f2,  2, 16, [ harad_chieftain ])
+    _declare_role_figure(hobbit_s14f2,  2, 17, [ mumak ])
+    _declare_role_figure(hobbit_s14f2, 18, 18, [ harad_w_spear ])
+    _declare_role_figure(hobbit_s14f2, 18, 19, [ harad_w_bow ])
+    _declare_role_figure(hobbit_s14f2,  4, 20, [ harad_raider ])
+    _declare_role_figure(hobbit_s14f2,  4, 21, [ harad_raider_lance ])
+
+    #========================================================================
+    hobbit_s15 = Repo.insert! %Scenario{
+      name: "The Black Gate Opens",
+      blurb: "Can the forces of Good distract Sauron from detecting Frodo's mission?",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 234,
+      map_width: 48, map_height: 48, location: :mordor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s15.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 15, page: 156}
+
+    hobbit_s15f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s15.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(hobbit_s15f1,  1,  1, [ gandalf_white_horse ])
+    _declare_role_figure(hobbit_s15f1,  1,  2, [ aragorn ])
+    _declare_role_figure(hobbit_s15f1,  1,  3, [ legolas ])
+    _declare_role_figure(hobbit_s15f1,  1,  4, [ gimli ])
+    _declare_role_figure(hobbit_s15f1,  1,  5, [ pippin_gondor ])
+    _declare_role_figure(hobbit_s15f1,  2,  6, [ gondor_captain_mt ])
+    _declare_role_figure(hobbit_s15f1, 12,  7, [ gondor_womt_spear_shield ])
+    _declare_role_figure(hobbit_s15f1, 12,  8, [ gondor_womt_shield ])
+    _declare_role_figure(hobbit_s15f1, 12,  9, [ gondor_womt_bow ])
+    _declare_role_figure(hobbit_s15f1, 12, 10, [ gondor_rog ])
+    _declare_role_figure(hobbit_s15f1,  1, 11, [ imrahil ])
+    _declare_role_figure(hobbit_s15f1,  1, 12, [ forlong ])
+    _declare_role_figure(hobbit_s15f1,  1, 13, [ angbor ])
+    _declare_role_figure(hobbit_s15f1,  9, 14, [ maa_da ])
+    _declare_role_figure(hobbit_s15f1,  6, 15, [ axemen_lossarnach ])
+    _declare_role_figure(hobbit_s15f1,  6, 16, [ clansmen_lamedon ])
+    _declare_role_figure(hobbit_s15f1,  1, 17, "Éomer, Knight of the Pelennor", [ eomer ])
+    _declare_role_figure(hobbit_s15f1,  1, 18, "Captain of Rohan with shield", [ rohan_captain ])
+    _declare_role_figure(hobbit_s15f1,  7, 19, [ rohan_gd ])
+    _declare_role_figure(hobbit_s15f1,  8, 20, [ rohan_w_shield ])
+    _declare_role_figure(hobbit_s15f1,  8, 21, [ rohan_w_spear_shield ])
+    _declare_role_figure(hobbit_s15f1,  8, 22, [ rohan_w_bow ])
+    _declare_role_figure(hobbit_s15f1,  1, 23, [ gwaihir ])
+    _declare_role_figure(hobbit_s15f1,  4, 24, [ eagle ])
+
+    hobbit_s15f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s15.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(hobbit_s15f2,  3,  1, [ ringwraith_fellbeast ])
+    _declare_role_figure(hobbit_s15f2,  1,  2, [ troll_chieftain ])
+    _declare_role_figure(hobbit_s15f2,  3,  3, [ orc_captain ])
+    _declare_role_figure(hobbit_s15f2, 12,  4, [ orc_w_shield ])
+    _declare_role_figure(hobbit_s15f2, 12,  5, [ orc_w_spear ])
+    _declare_role_figure(hobbit_s15f2,  6,  6, [ orc_w_bow ])
+    _declare_role_figure(hobbit_s15f2,  6,  7, [ orc_w_2h ])
+    _declare_role_figure(hobbit_s15f2, 12,  8, [ orc_m_shield ])
+    _declare_role_figure(hobbit_s15f2, 12,  9, [ orc_w_spear ])
+    _declare_role_figure(hobbit_s15f2,  2, 10, [ mordor_troll ])
+    _declare_role_figure(hobbit_s15f2,  2, 11, [ easterling_captain ])
+    _declare_role_figure(hobbit_s15f2,  8, 12, [ easterling_w_shield ])
+    _declare_role_figure(hobbit_s15f2,  8, 13, [ easterling_w_bow ])
+    _declare_role_figure(hobbit_s15f2,  4, 14, [ easterling_w_shield_spear ])
+    _declare_role_figure(hobbit_s15f2,  2, 15, [ harad_chieftain ])
+    _declare_role_figure(hobbit_s15f2, 12, 16, [ harad_w_spear ])
+    _declare_role_figure(hobbit_s15f2, 12, 17, [ harad_w_bow ])
 
     #########################################################################
     # KHAZAD-DÛM
