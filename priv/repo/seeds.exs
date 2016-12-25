@@ -26,14 +26,37 @@ defmodule SbgInv.Data do
     _generate
   end
 
+  #========================================================================
   defp _declare_unique(name) do
     Repo.insert! %Figure{name: name}
   end
 
+  #========================================================================
+  defp _declare_hero(name, plural_name) do
+    Repo.insert! %Figure{name: name}
+  end
+
+  #========================================================================
   defp _declare_warrior(name, plural_name) do
     Repo.insert! %Figure{name: name, plural_name: plural_name}
   end
 
+  #========================================================================
+  defp _declare_monster(name, plural_name) do
+    Repo.insert! %Figure{name: name}
+  end
+
+  #========================================================================
+  defp _declare_unique_monster(name) do
+    Repo.insert! %Figure{name: name}
+  end
+
+  #========================================================================
+  defp _declare_siege(name, plural_name) do
+    Repo.insert! %Figure{name: name}
+  end
+
+  #========================================================================
   defp _declare_role_figure(faction, amount, sort_order, name \\ "", figure_list) do
     role = Repo.insert! %Role{
       scenario_faction_id: faction.id,
@@ -45,6 +68,7 @@ defmodule SbgInv.Data do
     Enum.each figure_list, fn(fig) -> Repo.insert %RoleFigure{role_id: role.id, figure_id: fig.id} end
   end
 
+  #========================================================================
   defp _generate do
     IO.puts "Generating data"
 
@@ -52,151 +76,150 @@ defmodule SbgInv.Data do
     # FIGURES: SHADOW & FLAME
     #########################################################################
 
-    birch_tree_giant  = Repo.insert! %Figure{name: "Birch Tree Giant",  plural_name: "Birch Tree Giants"}
-    linden_tree_giant = Repo.insert! %Figure{name: "Linden Tree Giant", plural_name: "Linden Tree Giants"}
-    ash_tree_giant    = Repo.insert! %Figure{name: "Ash Tree Giant",    plural_name: "Ash Tree Giants"}
+    birch_tree_giant  = _declare_monster("Birch Tree Giant",  "Birch Tree Giants")
+    linden_tree_giant = _declare_monster("Linden Tree Giant", "Linden Tree Giants")
+    ash_tree_giant    = _declare_monster("Ash Tree Giant",    "Ash Tree Giants")
 
     #########################################################################
     # FIGURES: ANGMAR
     #########################################################################
 
-    buhrdur  = Repo.insert! %Figure{name: "Bûhrdur"}
-    gulavhar = Repo.insert! %Figure{name: "Gûlavhar"}
+    buhrdur        = _declare_unique("Bûhrdur")
+    gulavhar       = _declare_unique("Gûlavhar")
+    warg_chieftain = _declare_unique("Wild Warg Chieftain")
 
-    warg_chieftain = Repo.insert! %Figure{name: "Wild Warg Chieftain"}
-
-    barrow_wight = Repo.insert! %Figure{name: "Barrow Wight", plural_name: "Barrow Wights"}
-    shade        = Repo.insert! %Figure{name: "Shade",        plural_name: "Shades"}
-    spectre      = Repo.insert! %Figure{name: "Spectre",      plural_name: "Spectres"}
-    warg         = Repo.insert! %Figure{name: "Wild Warg",    plural_name: "Wild Wargs"}
+    barrow_wight = _declare_warrior("Barrow Wight", "Barrow Wights")
+    shade        = _declare_warrior("Shade",        "Shades")
+    spectre      = _declare_warrior("Spectre",      "Spectres")
+    warg         = _declare_warrior("Wild Warg",    "Wild Wargs")
 
     #########################################################################
     # FIGURES: ARNOR
     #########################################################################
 
-    arathorn = Repo.insert! %Figure{name: "Arathorn"}
-    arvedui  = Repo.insert! %Figure{name: "Arvedui, Last King of Arnor"}
-    halbarad = Repo.insert! %Figure{name: "Halbarad"}
-    malbeth  = Repo.insert! %Figure{name: "Malbeth the Seer"}
+    arathorn = _declare_unique("Arathorn")
+    arvedui  = _declare_unique("Arvedui, Last King of Arnor")
+    halbarad = _declare_unique("Halbarad")
+    malbeth  = _declare_unique("Malbeth the Seer")
 
-    arnor_captain = Repo.insert! %Figure{name: "Captain of Arnor", plural_name: "Captains of Arnor"}
+    arnor_captain = _declare_hero("Captain of Arnor", "Captains of Arnor")
 
-    arnor_w            = Repo.insert! %Figure{name: "Warrior of Arnor",               plural_name: "Warriors of Arnor"}
-    dunedain           = Repo.insert! %Figure{name: "Dúnedan",                        plural_name: "Dúnedain"}
-    ranger_north       = Repo.insert! %Figure{name: "Ranger of the North",            plural_name: "Rangers of the North"}
-    ranger_north_spear = Repo.insert! %Figure{name: "Ranger of the North with spear", plural_name: "Rangers of the North with spear"}
+    arnor_w            = _declare_warrior("Warrior of Arnor",               "Warriors of Arnor")
+    dunedain           = _declare_warrior("Dúnedan",                        "Dúnedain")
+    ranger_north       = _declare_warrior("Ranger of the North",            "Rangers of the North")
+    ranger_north_spear = _declare_warrior("Ranger of the North with spear", "Rangers of the North with spear")
 
     #########################################################################
-    # AZOG'S HUNTERS
+    # FIGURES: AZOG'S HUNTERS
     #########################################################################
 
-    azog_warg = Repo.insert!   %Figure{name: "Azog on White warg"}
-    fimbul_warg = Repo.insert! %Figure{name: "Fimbul on warg"}
-    narzug_warg = Repo.insert! %Figure{name: "Narzug on warg"}
+    azog_warg   = _declare_unique("Azog on White warg")
+    fimbul_warg = _declare_unique("Fimbul on warg")
+    narzug_warg = _declare_unique("Narzug on warg")
 
-    fell_warg       = Repo.insert! %Figure{name: "Fell Warg", plural_name: "Fell Wargs"}
-    hunter_orc_warg = Repo.insert! %Figure{name: "Hunter Orc on warg", plural_name: "Hunter Orcs on warg"}
+    fell_warg       = _declare_warrior("Fell Warg",          "Fell Wargs")
+    hunter_orc_warg = _declare_warrior("Hunter Orc on warg", "Hunter Orcs on warg")
 
     #########################################################################
     # FIGURES: DWARVES
     #########################################################################
 
-    balin  = Repo.insert! %Figure{name: "Balin"}
-    dain   = Repo.insert! %Figure{name: "Dáin Ironfoot"}
-    drar   = Repo.insert! %Figure{name: "Drar"}
-    durin  = Repo.insert! %Figure{name: "Durin"}
-    mardin = Repo.insert! %Figure{name: "Mardin"}
-    murin  = Repo.insert! %Figure{name: "Murin"}
+    balin  = _declare_unique("Balin")
+    dain   = _declare_unique("Dáin Ironfoot")
+    drar   = _declare_unique("Drar")
+    durin  = _declare_unique("Durin")
+    mardin = _declare_unique("Mardin")
+    murin  = _declare_unique("Murin")
 
-    dwarf_king    = Repo.insert! %Figure{name: "Dwarf King",                        plural_name: "Dwarf Kings"}
-    dwarf_king_2h = Repo.insert! %Figure{name: "Dwarf King with two-handed weapon", plural_name: "Dwarf Kings with two-handed weapon"}
-    dwarf_captain = Repo.insert! %Figure{name: "Dwarf Captain",                     plural_name: "Dwarf Captains"}
+    dwarf_king    = _declare_hero("Dwarf King",                        "Dwarf Kings")
+    dwarf_king_2h = _declare_hero("Dwarf King with two-handed weapon", "Dwarf Kings with two-handed weapon")
+    dwarf_captain = _declare_hero("Dwarf Captain",                     "Dwarf Captains")
 
-    dwarf_iron_gd   = Repo.insert! %Figure{name: "Iron Guard",                          plural_name: "Iron Guards"}
-    dwarf_khazad_gd = Repo.insert! %Figure{name: "Khazad Guard",                        plural_name: "Khazad Guards"}
-    dwarf_r_bow     = Repo.insert! %Figure{name: "Dwarf Ranger with Dwarf longbow",     plural_name: "Dwarf Rangers with Dwarf longbow"}
-    dwarf_r_axe     = Repo.insert! %Figure{name: "Dwarf Ranger with throwing axe",      plural_name: "Dwarf Rangers with throwing axe"}
-    dwarf_r_2h      = Repo.insert! %Figure{name: "Dwarf Ranger with two-handed weapon", plural_name: "Dwarf Rangers with two-handed weapons"}
-    dwarf_w_bow     = Repo.insert! %Figure{name: "Dwarf with Dwarf bow",                plural_name: "Dwarves with Dwarf bow"}
-    dwarf_w_shield  = Repo.insert! %Figure{name: "Dwarf with shield",                   plural_name: "Dwarves with shield"}
-    dwarf_w_2h      = Repo.insert! %Figure{name: "Dwarf with two-handed axe",           plural_name: "Dwarves with two-handed axe"}
-    dwarf_w_banner  = Repo.insert! %Figure{name: "Dwarf with banner",                   plural_name: "Dwarves with banner"}
-    vault_team      = Repo.insert! %Figure{name: "Vault Warden Team",                   plural_name: "Vault Warden Teams"}
+    dwarf_iron_gd   = _declare_warrior("Iron Guard",                          "Iron Guards")
+    dwarf_khazad_gd = _declare_warrior("Khazad Guard",                        "Khazad Guards")
+    dwarf_r_bow     = _declare_warrior("Dwarf Ranger with Dwarf longbow",     "Dwarf Rangers with Dwarf longbow")
+    dwarf_r_axe     = _declare_warrior("Dwarf Ranger with throwing axe",      "Dwarf Rangers with throwing axe")
+    dwarf_r_2h      = _declare_warrior("Dwarf Ranger with two-handed weapon", "Dwarf Rangers with two-handed weapons")
+    dwarf_w_bow     = _declare_warrior("Dwarf with Dwarf bow",                "Dwarves with Dwarf bow")
+    dwarf_w_shield  = _declare_warrior("Dwarf with shield",                   "Dwarves with shield")
+    dwarf_w_2h      = _declare_warrior("Dwarf with two-handed axe",           "Dwarves with two-handed axe")
+    dwarf_w_banner  = _declare_warrior("Dwarf with banner",                   "Dwarves with banner")
+    vault_team      = _declare_warrior("Vault Warden Team",                   "Vault Warden Teams")
 
-    dwarf_ballista = Repo.insert! %Figure{name: "Dwarf Ballista", plural_name: "Dwarf Ballistas"}
+    dwarf_ballista = _declare_siege("Dwarf Ballista", "Dwarf Ballistas")
 
     #########################################################################
     # FIGURES: DOL GULDUR
     #########################################################################
 
-    necromancer  = Repo.insert! %Figure{name: "The Necromancer"}
-    spider_queen = Repo.insert! %Figure{name: "Spider Queen"}
+    necromancer  = _declare_unique("The Necromancer")
+    spider_queen = _declare_unique("Spider Queen")
 
-    castellan    = Repo.insert! %Figure{name: "Castellan of Dol Guldur", plural_name: "Castellans of Dol Guldur"}
-    bat_swarm    = Repo.insert! %Figure{name: "Bat Swarm",               plural_name: "Bat Swarms"}
-    giant_spider = Repo.insert! %Figure{name: "Giant Spider",            plural_name: "Giant Spiders"}
+    castellan    = _declare_warrior("Castellan of Dol Guldur", "Castellans of Dol Guldur")
+    bat_swarm    = _declare_warrior("Bat Swarm",               "Bat Swarms")
+    giant_spider = _declare_warrior("Giant Spider",            "Giant Spiders")
 
     #########################################################################
     # FIGURES: EASTERLINGS
     #########################################################################
 
-    khamul       = Repo.insert! %Figure{name: "Khamûl the Easterling"}
-    khamul_horse = Repo.insert! %Figure{name: "Khamûl the Easterling on horseback"}
+    khamul       = _declare_unique("Khamûl the Easterling")
+    khamul_horse = _declare_unique("Khamûl the Easterling on horseback")
 
-    easterling_captain       = Repo.insert! %Figure{name: "Easterling Captain",           plural_name: "Easterling Captains"}
-    khandish_chieftain       = Repo.insert! %Figure{name: "Khandish Chieftain",           plural_name: "Khandish Chieftains"}
-    khandish_chieftain_horse = Repo.insert! %Figure{name: "Khandish Chieftain on horse",  plural_name: "Khandish Chieftains on horse"}
-    khandish_king_chariot    = Repo.insert! %Figure{name: "Khandish King in chariot",     plural_name: "Khandish Kings in chariot"}
+    easterling_captain       = _declare_warrior("Easterling Captain",          "Easterling Captains")
+    khandish_chieftain       = _declare_warrior("Khandish Chieftain",          "Khandish Chieftains")
+    khandish_chieftain_horse = _declare_warrior("Khandish Chieftain on horse", "Khandish Chieftains on horse")
+    khandish_king_chariot    = _declare_warrior("Khandish King in chariot",    "Khandish Kings in chariot")
 
-    easterling_w_shield        = Repo.insert! %Figure{name: "Easterling Warrior with shield",           plural_name: "Easterling Warriors with shield"}
-    easterling_w_bow           = Repo.insert! %Figure{name: "Easterling Warrior with bow",              plural_name: "Easterling Warriors with bow"}
-    easterling_w_shield_spear  = Repo.insert! %Figure{name: "Easterling Warrior with shield and spear", plural_name: "Easterling Warriors with shield and spear"}
-    easterling_w_banner        = Repo.insert! %Figure{name: "Easterling Warrior with banner",           plural_name: "Easterling Warriors with banner"}
-    easterling_kataphrakt      = Repo.insert! %Figure{name: "Easterling Kataphrakt",                    plural_name: "Easterling Kataphrakts"}
-    khandish_charioteer        = Repo.insert! %Figure{name: "Khandish Charioteer with bow",             plural_name: "Khandish Charioteers with bow"}
-    khandish_w_bow             = Repo.insert! %Figure{name: "Khandish Warrior with bow",                plural_name: "Khandish Warriors with bow"}
-    khandish_w_axe             = Repo.insert! %Figure{name: "Khandish Warrior with two-handed axe",     plural_name: "Khandish Warriors with two-handed axe"}
-    khandish_horseman          = Repo.insert! %Figure{name: "Khandish Horseman",                        plural_name: "Khandish Horsemen"}
+    easterling_w_shield        = _declare_warrior("Easterling Warrior with shield",           "Easterling Warriors with shield")
+    easterling_w_bow           = _declare_warrior("Easterling Warrior with bow",              "Easterling Warriors with bow")
+    easterling_w_shield_spear  = _declare_warrior("Easterling Warrior with shield and spear", "Easterling Warriors with shield and spear")
+    easterling_w_banner        = _declare_warrior("Easterling Warrior with banner",           "Easterling Warriors with banner")
+    easterling_kataphrakt      = _declare_warrior("Easterling Kataphrakt",                    "Easterling Kataphrakts")
+    khandish_charioteer        = _declare_warrior("Khandish Charioteer with bow",             "Khandish Charioteers with bow")
+    khandish_w_bow             = _declare_warrior("Khandish Warrior with bow",                "Khandish Warriors with bow")
+    khandish_w_axe             = _declare_warrior("Khandish Warrior with two-handed axe",     "Khandish Warriors with two-handed axe")
+    khandish_horseman          = _declare_warrior("Khandish Horseman",                        "Khandish Horsemen")
 
     #########################################################################
     # FIGURES: FELLOWSHIP
     #########################################################################
 
-    aragorn       = Repo.insert! %Figure{name: "Aragorn"}
-    aragorn_horse = Repo.insert! %Figure{name: "Aragorn on horse"}
-    frodo         = Repo.insert! %Figure{name: "Frodo"}
-    frodo_pony    = Repo.insert! %Figure{name: "Frodo on pony"}
-    gimli         = Repo.insert! %Figure{name: "Gimli"}
-    legolas       = Repo.insert! %Figure{name: "Legolas"}
-    legolas_horse = Repo.insert! %Figure{name: "Legolas on horse"}
-    merry         = Repo.insert! %Figure{name: "Merry"}
-    merry_pony    = Repo.insert! %Figure{name: "Merry on pony"}
-    pippin        = Repo.insert! %Figure{name: "Pippin"}
-    pippin_pony   = Repo.insert! %Figure{name: "Pippin on pony"}
-    sam           = Repo.insert! %Figure{name: "Sam"}
-    sam_pony      = Repo.insert! %Figure{name: "Sam on pony"}
+    aragorn       = _declare_unique("Aragorn")
+    aragorn_horse = _declare_unique("Aragorn on horse")
+    frodo         = _declare_unique("Frodo")
+    frodo_pony    = _declare_unique("Frodo on pony")
+    gimli         = _declare_unique("Gimli")
+    legolas       = _declare_unique("Legolas")
+    legolas_horse = _declare_unique("Legolas on horse")
+    merry         = _declare_unique("Merry")
+    merry_pony    = _declare_unique("Merry on pony")
+    pippin        = _declare_unique("Pippin")
+    pippin_pony   = _declare_unique("Pippin on pony")
+    sam           = _declare_unique("Sam")
+    sam_pony      = _declare_unique("Sam on pony")
 
     #########################################################################
     # FIGURES: FREE PEOPLES
     #########################################################################
 
-    cirdan              = Repo.insert! %Figure{name: "Círdan"}
-    gandalf_grey        = Repo.insert! %Figure{name: "Gandalf the Grey"}
-    gandalf_white       = Repo.insert! %Figure{name: "Gandalf the White"}
-    gandalf_white_horse = Repo.insert! %Figure{name: "Gandalf the White on horse"}
-    ghan_buri_ghan      = Repo.insert! %Figure{name: "Ghân-buri-ghân"}
-    goldberry           = Repo.insert! %Figure{name: "Goldberry"}
-    gwaihir             = Repo.insert! %Figure{name: "Gwaihir"}
-    radagast            = Repo.insert! %Figure{name: "Radagast the Brown"}
-    radagast_sled       = Repo.insert! %Figure{name: "Radagast the Brown on sleigh"}
-    saruman             = Repo.insert! %Figure{name: "Saruman the White"}
-    tom_bombadil        = Repo.insert! %Figure{name: "Tom Bombadil"}
-    treebeard           = Repo.insert! %Figure{name: "Treebeard"}
+    cirdan              = _declare_unique("Círdan")
+    gandalf_grey        = _declare_unique("Gandalf the Grey")
+    gandalf_white       = _declare_unique("Gandalf the White")
+    gandalf_white_horse = _declare_unique("Gandalf the White on horse")
+    ghan_buri_ghan      = _declare_unique("Ghân-buri-ghân")
+    goldberry           = _declare_unique("Goldberry")
+    gwaihir             = _declare_unique("Gwaihir")
+    radagast            = _declare_unique("Radagast the Brown")
+    radagast_sled       = _declare_unique("Radagast the Brown on sleigh")
+    saruman             = _declare_unique("Saruman the White")
+    tom_bombadil        = _declare_unique("Tom Bombadil")
+    treebeard           = _declare_unique("Treebeard")
 
-    wose = Repo.insert! %Figure{name: "Wose", plural_name: "Woses"}
+    wose = _declare_warrior("Wose", "Woses")
 
-    eagle = Repo.insert! %Figure{name: "Giant Eagle", plural_name: "Giant Eagles"}
-    ent   = Repo.insert! %Figure{name: "Ent",         plural_name: "Ents"}
+    eagle = _declare_monster("Giant Eagle", "Giant Eagles")
+    ent   = _declare_monster("Ent",         "Ents")
 
     #########################################################################
     # FIGURES: GOBLINTOWN
@@ -212,384 +235,384 @@ defmodule SbgInv.Data do
     # FIGURES: GONDOR
     #########################################################################
 
-    angbor              = Repo.insert! %Figure{name: "Angbor the Fearless"}
-    beregond            = Repo.insert! %Figure{name: "Beregond"}
-    boromir             = Repo.insert! %Figure{name: "Boromir"}
-    boromir_wt_banner   = Repo.insert! %Figure{name: "Boromir of the White Tower with Banner"}
-    boromir_wt_horse    = Repo.insert! %Figure{name: "Boromir of the White Tower on horse"}
-    damrod              = Repo.insert! %Figure{name: "Damrod"}
-    denethor            = Repo.insert! %Figure{name: "Denethor"}
-    cirion              = Repo.insert! %Figure{name: "Cirion"}
-    faramir             = Repo.insert! %Figure{name: "Faramir"}
-    faramir_armor_horse = Repo.insert! %Figure{name: "Faramir, Captain of Gondor with heavy armour and horse"}
-    forlong             = Repo.insert! %Figure{name: "Forlong the Fat"}
-    forlong_horse       = Repo.insert! %Figure{name: "Forlong the Fat on horse"}
-    imrahil             = Repo.insert! %Figure{name: "Prince Imrahil of Dol Amroth"}
-    imrahil_horse       = Repo.insert! %Figure{name: "Prince Imrahil on horse"}
-    king_dead           = Repo.insert! %Figure{name: "King of the Dead"}
-    madril              = Repo.insert! %Figure{name: "Madril"}
-    pippin_gondor       = Repo.insert! %Figure{name: "Peregrin, Guard of the Citadel"}
+    angbor              = _declare_unique("Angbor the Fearless")
+    beregond            = _declare_unique("Beregond")
+    boromir             = _declare_unique("Boromir")
+    boromir_wt_banner   = _declare_unique("Boromir of the White Tower with Banner")
+    boromir_wt_horse    = _declare_unique("Boromir of the White Tower on horse")
+    damrod              = _declare_unique("Damrod")
+    denethor            = _declare_unique("Denethor")
+    cirion              = _declare_unique("Cirion")
+    faramir             = _declare_unique("Faramir")
+    faramir_armor_horse = _declare_unique("Faramir, Captain of Gondor with heavy armour and horse")
+    forlong             = _declare_unique("Forlong the Fat")
+    forlong_horse       = _declare_unique("Forlong the Fat on horse")
+    imrahil             = _declare_unique("Prince Imrahil of Dol Amroth")
+    imrahil_horse       = _declare_unique("Prince Imrahil on horse")
+    king_dead           = _declare_unique("King of the Dead")
+    madril              = _declare_unique("Madril")
+    pippin_gondor       = _declare_unique("Peregrin, Guard of the Citadel")
 
-    king_of_men             = Repo.insert! %Figure{name: "King of Men",                      plural_name: "Kings of Men"}
-    gondor_captain_mt       = Repo.insert! %Figure{name: "Captain of Minas Tirith",          plural_name: "Captains of Minas Tirith"}
-    gondor_captain_mt_horse = Repo.insert! %Figure{name: "Captain of Minas Tirith on horse", plural_name: "Captains of Minas Tirith on horse"} # exists?
-    gondor_captain_da       = Repo.insert! %Figure{name: "Captain of Dol Amroth",            plural_name: "Captains of Dol Amroth"}
+    king_of_men             = _declare_hero("King of Men",                      "Kings of Men")
+    gondor_captain_mt       = _declare_hero("Captain of Minas Tirith",          "Captains of Minas Tirith")
+    gondor_captain_mt_horse = _declare_hero("Captain of Minas Tirith on horse", "Captains of Minas Tirith on horse")
+    gondor_captain_da       = _declare_hero("Captain of Dol Amroth",            "Captains of Dol Amroth")
 
-    axemen_lossarnach        = Repo.insert! %Figure{name: "Axeman of Lossarnach",                          plural_name: "Axemen of Lossarnach"}
-    clansmen_lamedon         = Repo.insert! %Figure{name: "Clansman of Lamedon",                           plural_name: "Clansmen of Lamedon"}
-    fountain_court_gd        = Repo.insert! %Figure{name: "Guard of the Fountain Court",                   plural_name: "Guards of the Fountain Court"}
-    dead_rider               = Repo.insert! %Figure{name: "Rider of the Dead",                             plural_name: "Riders of the Dead"}
-    dead_w                   = Repo.insert! %Figure{name: "Warrior of the Dead",                           plural_name: "Warriors of the Dead"}
-    gondor_citadel_gd_spear  = Repo.insert! %Figure{name: "Citadel Guard with spear",                      plural_name: "Citadel Guards with spear"}
-    gondor_citadel_gd_bow    = Repo.insert! %Figure{name: "Citadel Guard with longbow",                    plural_name: "Citadel Guards with longbow"}
-    gondor_knight            = Repo.insert! %Figure{name: "Knight of Minas Tirith",                        plural_name: "Knights of Minas Tirith"}
-    gondor_knight_banner     = Repo.insert! %Figure{name: "Knight of Minas Tirith with banner",            plural_name: "Knights of Minas Tirith with banner"}
-    gondor_knight_shield     = Repo.insert! %Figure{name: "Knight of Minas Tirith with shield",            plural_name: "Knights of Minas Tirith with shield"}
-    gondor_knight_da_foot    = Repo.insert! %Figure{name: "Foot Knight of Dol Amroth",                     plural_name: "Foot Knights of Dol Amroth"}
-    gondor_knight_da_foot_banner  = Repo.insert! %Figure{name: "Foot Knight of Dol Amroth with banner",         plural_name: "Foot Knights of Dol Amroth with banner"}
-    gondor_knight_da_horse   = Repo.insert! %Figure{name: "Knight of Dol Amroth",                          plural_name: "Knights of Dol Amroth"}
-    gondor_rog               = Repo.insert! %Figure{name: "Ranger of Gondor",                              plural_name: "Rangers of Gondor"}
-    gondor_rog_spear         = Repo.insert! %Figure{name: "Ranger of Gondor with spear",                   plural_name: "Rangers of Gondor with spear"}
-    gondor_womt_banner       = Repo.insert! %Figure{name: "Warrior of Minas Tirith with banner",           plural_name: "Warriors of Minas Tirith with banner"}
-    gondor_womt_bow          = Repo.insert! %Figure{name: "Warrior of Minas Tirith with bow",              plural_name: "Warriors of Minas Tirith with bow"}
-    gondor_womt_shield       = Repo.insert! %Figure{name: "Warrior of Minas Tirith with shield",           plural_name: "Warriors of Minas Tirith with shield"}
-    gondor_womt_spear_shield = Repo.insert! %Figure{name: "Warrior of Minas Tirith with spear and shield", plural_name: "Warriors of Minas Tirith with spear and shield"}
-    maa_da                   = Repo.insert! %Figure{name: "Man at Arms of Dol Amroth",                     plural_name: "Men at Arms of Dol Amroth"}
-    osgiliath_v_bow          = Repo.insert! %Figure{name: "Osgiliath Veteran with bow",                    plural_name: "Osgiliath Veterans with bow"}
-    osgiliath_v_shield       = Repo.insert! %Figure{name: "Osgiliath Veteran with shield",                 plural_name: "Osgiliath Veterans with shield"}
-    osgiliath_v_spear        = Repo.insert! %Figure{name: "Osgiliath Veteran with spear",                  plural_name: "Osgiliath Veterans with spear"}
+    axemen_lossarnach            = _declare_warrior("Axeman of Lossarnach",                          "Axemen of Lossarnach")
+    clansmen_lamedon             = _declare_warrior("Clansman of Lamedon",                           "Clansmen of Lamedon")
+    fountain_court_gd            = _declare_warrior("Guard of the Fountain Court",                   "Guards of the Fountain Court")
+    dead_rider                   = _declare_warrior("Rider of the Dead",                             "Riders of the Dead")
+    dead_w                       = _declare_warrior("Warrior of the Dead",                           "Warriors of the Dead")
+    gondor_citadel_gd_spear      = _declare_warrior("Citadel Guard with spear",                      "Citadel Guards with spear")
+    gondor_citadel_gd_bow        = _declare_warrior("Citadel Guard with longbow",                    "Citadel Guards with longbow")
+    gondor_knight                = _declare_warrior("Knight of Minas Tirith",                        "Knights of Minas Tirith")
+    gondor_knight_banner         = _declare_warrior("Knight of Minas Tirith with banner",            "Knights of Minas Tirith with banner")
+    gondor_knight_shield         = _declare_warrior("Knight of Minas Tirith with shield",            "Knights of Minas Tirith with shield")
+    gondor_knight_da_foot        = _declare_warrior("Foot Knight of Dol Amroth",                     "Foot Knights of Dol Amroth")
+    gondor_knight_da_foot_banner = _declare_warrior("Foot Knight of Dol Amroth with banner",         "Foot Knights of Dol Amroth with banner")
+    gondor_knight_da_horse       = _declare_warrior("Knight of Dol Amroth",                          "Knights of Dol Amroth")
+    gondor_rog                   = _declare_warrior("Ranger of Gondor",                              "Rangers of Gondor")
+    gondor_rog_spear             = _declare_warrior("Ranger of Gondor with spear",                   "Rangers of Gondor with spear")
+    gondor_womt_banner           = _declare_warrior("Warrior of Minas Tirith with banner",           "Warriors of Minas Tirith with banner")
+    gondor_womt_bow              = _declare_warrior("Warrior of Minas Tirith with bow",              "Warriors of Minas Tirith with bow")
+    gondor_womt_shield           = _declare_warrior("Warrior of Minas Tirith with shield",           "Warriors of Minas Tirith with shield")
+    gondor_womt_spear_shield     = _declare_warrior("Warrior of Minas Tirith with spear and shield", "Warriors of Minas Tirith with spear and shield")
+    maa_da                       = _declare_warrior("Man at Arms of Dol Amroth",                     "Men at Arms of Dol Amroth")
+    osgiliath_v_bow              = _declare_warrior("Osgiliath Veteran with bow",                    "Osgiliath Veterans with bow")
+    osgiliath_v_shield           = _declare_warrior("Osgiliath Veteran with shield",                 "Osgiliath Veterans with shield")
+    osgiliath_v_spear            = _declare_warrior("Osgiliath Veteran with spear",                  "Osgiliath Veterans with spear")
 
-    avenger        = Repo.insert! %Figure{name: "Avenger Bolt Thrower",      plural_name: "Avenger Bolt Throwers"}
-    avenger_crew   = Repo.insert! %Figure{name: "Avenger Bolt Thrower crew", plural_name: "Avenger Bolt Thrower crew"}
-    trebuchet      = Repo.insert! %Figure{name: "Battlecry Trebuchet",       plural_name: "Battlecry Trebuchets"}
-    trebuchet_crew = Repo.insert! %Figure{name: "Battlecry Trebuchet crew",  plural_name: "Battlecry Trebuchet crew"}
+    avenger        = _declare_siege("Avenger Bolt Thrower",      "Avenger Bolt Throwers")
+    avenger_crew   = _declare_siege("Avenger Bolt Thrower crew", "Avenger Bolt Thrower crew")
+    trebuchet      = _declare_siege("Battlecry Trebuchet",       "Battlecry Trebuchets")
+    trebuchet_crew = _declare_siege("Battlecry Trebuchet crew",  "Battlecry Trebuchet crew")
 
     #########################################################################
     # FIGURES: HARAD
     #########################################################################
 
-    dalamyr       = Repo.insert! %Figure{name: "Dalamyr, Corsair Fleet Master"}
-    suladan       = Repo.insert! %Figure{name: "Suladân"}
-    suladan_horse = Repo.insert! %Figure{name: "Suladân the Serpent Lord on horse"}
+    dalamyr       = _declare_unique("Dalamyr, Corsair Fleet Master")
+    suladan       = _declare_unique("Suladân")
+    suladan_horse = _declare_unique("Suladân the Serpent Lord on horse")
 
-    corsair_bosun         = Repo.insert! %Figure{name: "Corsair Bo'sun",              plural_name: "Corsair Bo'suns"}
-    corsair_captain       = Repo.insert! %Figure{name: "Corsair Captain",             plural_name: "Corsair Captains"}
-    harad_chieftain       = Repo.insert! %Figure{name: "Haradrim Chieftain",          plural_name: "Haradrim Chieftains"}
-    harad_chieftain_horse = Repo.insert! %Figure{name: "Haradrim Chieftain on horse", plural_name: "Haradrim Chieftains on horse"}
-    harad_king_horse      = Repo.insert! %Figure{name: "Haradrim King on horse",      plural_name: "Haradrim Kings on horse"}
-    mahud_tribesmaster    = Repo.insert! %Figure{name: "Mahûd Tribesmaster",          plural_name: "Mahûd Tribesmasters"}
+    corsair_bosun         = _declare_hero("Corsair Bo'sun",              "Corsair Bo'suns")
+    corsair_captain       = _declare_hero("Corsair Captain",             "Corsair Captains")
+    harad_chieftain       = _declare_hero("Haradrim Chieftain",          "Haradrim Chieftains")
+    harad_chieftain_horse = _declare_hero("Haradrim Chieftain on horse", "Haradrim Chieftains on horse")
+    harad_king_horse      = _declare_hero("Haradrim King on horse",      "Haradrim Kings on horse")
+    mahud_tribesmaster    = _declare_hero("Mahûd Tribesmaster",          "Mahûd Tribesmasters")
 
-    corsair_arbalester = Repo.insert! %Figure{name: "Corsair Arbalester",           plural_name: "Corsair Arbalesters"}
-    corsair_reaver     = Repo.insert! %Figure{name: "Corsair Reaver",               plural_name: "Corsair Reavers"}
-    corsair_w_bow      = Repo.insert! %Figure{name: "Corsair of Umbar with bow",    plural_name: "Corsair of Umbar with bow"}
-    corsair_w_shield   = Repo.insert! %Figure{name: "Corsair of Umbar with shield", plural_name: "Corsair of Umbar with shield"}
-    corsair_w_spear    = Repo.insert! %Figure{name: "Corsair of Umbar with spear",  plural_name: "Corsair of Umbar with spear"}
-    half_troll         = Repo.insert! %Figure{name: "Half Troll",                   plural_name: "Half Trolls"}
-    half_troll_2h      = Repo.insert! %Figure{name: "Half Troll with two-handed weapon", plural_name: "Half Trolls with two-handed-weapon"}
-    harad_raider       = Repo.insert! %Figure{name: "Haradrim Raider",              plural_name: "Haradrim Raiders"}
-    harad_raider_lance = Repo.insert! %Figure{name: "Haradrim Raider with lance",   plural_name: "Haradrim Raiders with lance"}
-    harad_w_banner     = Repo.insert! %Figure{name: "Haradrim Warrior with banner", plural_name: "Haradrim Warriors with banner"}
-    harad_w_bow        = Repo.insert! %Figure{name: "Haradrim Warrior with bow",    plural_name: "Haradrim Warriors with bow"}
-    harad_w_spear      = Repo.insert! %Figure{name: "Haradrim Warrior with spear",  plural_name: "Haradrim Warriors with spear"}
-    hasharin           = Repo.insert! %Figure{name: "Hâsharin",                     plural_name: "Hâsharii"}
-    mahud_beastmaster  = Repo.insert! %Figure{name: "Mahûd Beastmaster Chieftain",  plural_name: "Mahûd Beastmaster Chieftain"}
-    mahud_w_blowpipe   = Repo.insert! %Figure{name: "Mahûd Warrior with blowpipe",  plural_name: "Mahûd Warriors with blowpipe"}
-    mahud_w_spear      = Repo.insert! %Figure{name: "Mahûd Warrior with spear",     plural_name: "Mahûd Warriors with spear"}
-    serpent_gd         = Repo.insert! %Figure{name: "Serpent Guard",                plural_name: "Serpent Guards"}
-    serpent_rider      = Repo.insert! %Figure{name: "Serpent Rider",                plural_name: "Serpent Riders"}
-    watcher_karna      = Repo.insert! %Figure{name: "Watcher of Karna",             plural_name: "Watchers of Karna"}
+    corsair_arbalester = _declare_warrior("Corsair Arbalester",                "Corsair Arbalesters")
+    corsair_reaver     = _declare_warrior("Corsair Reaver",                    "Corsair Reavers")
+    corsair_w_bow      = _declare_warrior("Corsair of Umbar with bow",         "Corsair of Umbar with bow")
+    corsair_w_shield   = _declare_warrior("Corsair of Umbar with shield",      "Corsair of Umbar with shield")
+    corsair_w_spear    = _declare_warrior("Corsair of Umbar with spear",       "Corsair of Umbar with spear")
+    half_troll         = _declare_warrior("Half Troll",                        "Half Trolls")
+    half_troll_2h      = _declare_warrior("Half Troll with two-handed weapon", "Half Trolls with two-handed-weapon")
+    harad_raider       = _declare_warrior("Haradrim Raider",                   "Haradrim Raiders")
+    harad_raider_lance = _declare_warrior("Haradrim Raider with lance",        "Haradrim Raiders with lance")
+    harad_w_banner     = _declare_warrior("Haradrim Warrior with banner",      "Haradrim Warriors with banner")
+    harad_w_bow        = _declare_warrior("Haradrim Warrior with bow",         "Haradrim Warriors with bow")
+    harad_w_spear      = _declare_warrior("Haradrim Warrior with spear",       "Haradrim Warriors with spear")
+    hasharin           = _declare_warrior("Hâsharin",                          "Hâsharii")
+    mahud_beastmaster  = _declare_warrior("Mahûd Beastmaster Chieftain",       "Mahûd Beastmaster Chieftain")
+    mahud_w_blowpipe   = _declare_warrior("Mahûd Warrior with blowpipe",       "Mahûd Warriors with blowpipe")
+    mahud_w_spear      = _declare_warrior("Mahûd Warrior with spear",          "Mahûd Warriors with spear")
+    serpent_gd         = _declare_warrior("Serpent Guard",                     "Serpent Guards")
+    serpent_rider      = _declare_warrior("Serpent Rider",                     "Serpent Riders")
+    watcher_karna      = _declare_warrior("Watcher of Karna",                  "Watchers of Karna")
 
-    mumak       = Repo.insert! %Figure{name: "Mûmak",       plural_name: "Mûmakil"}
-    mumak_mahud = Repo.insert! %Figure{name: "Mûmak Mahud", plural_name: "Mûmak Mahuds"}
+    mumak       = _declare_monster("Mûmak",       "Mûmakil")
+    mumak_mahud = _declare_warrior("Mûmak Mahud", "Mûmak Mahuds")
 
     #########################################################################
     # FIGURES: ISENGARD
     #########################################################################
 
-    lurtz       = Repo.insert! %Figure{name: "Lurtz"}
-    mauhur      = Repo.insert! %Figure{name: "Mauhúr"}
-    sharkey     = Repo.insert! %Figure{name: "Sharkey"}
-    sharku      = Repo.insert! %Figure{name: "Sharku"}
-    sharku_warg = Repo.insert! %Figure{name: "Sharku on Warg"}
-    ugluk       = Repo.insert! %Figure{name: "Uglúk"}
-    vrasku      = Repo.insert! %Figure{name: "Vraskû"}
-    worm        = Repo.insert! %Figure{name: "Worm"}
+    lurtz       = _declare_unique("Lurtz")
+    mauhur      = _declare_unique("Mauhúr")
+    sharkey     = _declare_unique("Sharkey")
+    sharku      = _declare_unique("Sharku")
+    sharku_warg = _declare_unique("Sharku on Warg")
+    ugluk       = _declare_unique("Uglúk")
+    vrasku      = _declare_unique("Vraskû")
+    worm        = _declare_unique("Worm")
 
-    dunlending_chieftain    = Repo.insert! %Figure{name: "Dunlending Chieftain",                 plural_name: "Dunlending Chieftains"}
-    uruk_hai_captain_shield = Repo.insert! %Figure{name: "Uruk-hai Captain with shield",         plural_name: "Uruk-hai Captains with shield"}
-    uruk_hai_captain_2h     = Repo.insert! %Figure{name: "Uruk-hai Captain with two-handed axe", plural_name: "Uruk-hai Captains with two-handed axe"}
+    dunlending_chieftain    = _declare_hero("Dunlending Chieftain",                 "Dunlending Chieftains")
+    uruk_hai_captain_shield = _declare_hero("Uruk-hai Captain with shield",         "Uruk-hai Captains with shield")
+    uruk_hai_captain_2h     = _declare_hero("Uruk-hai Captain with two-handed axe", "Uruk-hai Captains with two-handed axe")
 
-    dunlending_w            = Repo.insert! %Figure{name: "Dunlending",                           plural_name: "Dunlendings"}
-    dunlending_w_banner     = Repo.insert! %Figure{name: "Dunlending with banner",               plural_name: "Dunlendings with banner"}
-    dunlending_w_bow        = Repo.insert! %Figure{name: "Dunlending with bow",                  plural_name: "Dunlendings with bow"}
-    dunlending_w_shield     = Repo.insert! %Figure{name: "Dunlending with shield",               plural_name: "Dunlendings with shield"}
-    dunlending_w_2h         = Repo.insert! %Figure{name: "Dunlending with two-handed weapon",    plural_name: "Dunlendings with two-handed weapon"}
-    ruffian                 = Repo.insert! %Figure{name: "Ruffian",                              plural_name: "Ruffians"}
-    ruffian_bow             = Repo.insert! %Figure{name: "Ruffian with bow",                     plural_name: "Ruffians with bow"}
-    ruffian_whip            = Repo.insert! %Figure{name: "Ruffian with whip",                    plural_name: "Ruffians with whip"}
-    uruk_hai_berserker      = Repo.insert! %Figure{name: "Uruk-hai Berserker",                   plural_name: "Uruk-hai Berserkers"}
-    uruk_hai_feral          = Repo.insert! %Figure{name: "Feral Uruk-hai",                       plural_name: "Feral Uruk-hai"}
-    uruk_hai_s              = Repo.insert! %Figure{name: "Uruk-hai Scout",                       plural_name: "Uruk-hai Scouts"}
-    uruk_hai_s_sword_shield = Repo.insert! %Figure{name: "Uruk-hai Scout with sword and shield", plural_name: "Uruk-hai Scouts with sword and shield"}
-    uruk_hai_s_bow          = Repo.insert! %Figure{name: "Uruk-hai Scout with bow",              plural_name: "Uruk-hai Scouts with bow"}
-    uruk_hai_shaman         = Repo.insert! %Figure{name: "Uruk-hai Shaman",                      plural_name: "Uruk-hai Shamans"}
-    uruk_hai_w_banner       = Repo.insert! %Figure{name: "Uruk-hai Warrior with banner",         plural_name: "Uruk-hai Warriors with banner"}
-    uruk_hai_w_crossbow     = Repo.insert! %Figure{name: "Uruk-hai Warrior with crossbow",       plural_name: "Uruk-hai Warriors with crossbow"}
-    uruk_hai_w_pike         = Repo.insert! %Figure{name: "Uruk-hai Warrior with pike",           plural_name: "Uruk-hai Warriors with pike"}
-    uruk_hai_w_shield       = Repo.insert! %Figure{name: "Uruk-hai Warrior with shield",         plural_name: "Uruk-hai Warriors with shield"}
+    dunlending_w            = _declare_warrior("Dunlending",                           "Dunlendings")
+    dunlending_w_banner     = _declare_warrior("Dunlending with banner",               "Dunlendings with banner")
+    dunlending_w_bow        = _declare_warrior("Dunlending with bow",                  "Dunlendings with bow")
+    dunlending_w_shield     = _declare_warrior("Dunlending with shield",               "Dunlendings with shield")
+    dunlending_w_2h         = _declare_warrior("Dunlending with two-handed weapon",    "Dunlendings with two-handed weapon")
+    ruffian                 = _declare_warrior("Ruffian",                              "Ruffians")
+    ruffian_bow             = _declare_warrior("Ruffian with bow",                     "Ruffians with bow")
+    ruffian_whip            = _declare_warrior("Ruffian with whip",                    "Ruffians with whip")
+    uruk_hai_berserker      = _declare_warrior("Uruk-hai Berserker",                   "Uruk-hai Berserkers")
+    uruk_hai_feral          = _declare_warrior("Feral Uruk-hai",                       "Feral Uruk-hai")
+    uruk_hai_s              = _declare_warrior("Uruk-hai Scout",                       "Uruk-hai Scouts")
+    uruk_hai_s_sword_shield = _declare_warrior("Uruk-hai Scout with sword and shield", "Uruk-hai Scouts with sword and shield")
+    uruk_hai_s_bow          = _declare_warrior("Uruk-hai Scout with bow",              "Uruk-hai Scouts with bow")
+    uruk_hai_shaman         = _declare_warrior("Uruk-hai Shaman",                      "Uruk-hai Shamans")
+    uruk_hai_w_banner       = _declare_warrior("Uruk-hai Warrior with banner",         "Uruk-hai Warriors with banner")
+    uruk_hai_w_crossbow     = _declare_warrior("Uruk-hai Warrior with crossbow",       "Uruk-hai Warriors with crossbow")
+    uruk_hai_w_pike         = _declare_warrior("Uruk-hai Warrior with pike",           "Uruk-hai Warriors with pike")
+    uruk_hai_w_shield       = _declare_warrior("Uruk-hai Warrior with shield",         "Uruk-hai Warriors with shield")
 
-    isengard_troll = Repo.insert! %Figure{name: "Isengard Troll"}
+    isengard_troll = _declare_monster("Isengard Troll", "Isengard Trolls")
 
-    uruk_hai_demo_team     = Repo.insert! %Figure{name: "Uruk-hai Demolition Team",      plural_name: "Uruk-hai Demolition Team"}
-    uruk_hai_ballista      = Repo.insert! %Figure{name: "Uruk-hai Siege Ballista",       plural_name: "Uruk-hai Siege Ballistas"}
-    uruk_hai_ballista_crew = Repo.insert! %Figure{name: "Uruk-hai Siege Ballista crew",  plural_name: "Uruk-hai Siege Ballista crew"}
+    uruk_hai_demo_team     = _declare_siege("Uruk-hai Demolition Team",     "Uruk-hai Demolition Teams")
+    uruk_hai_ballista      = _declare_siege("Uruk-hai Siege Ballista",      "Uruk-hai Siege Ballistas")
+    uruk_hai_ballista_crew = _declare_siege("Uruk-hai Siege Ballista crew", "Uruk-hai Siege Ballista crew")
 
     #########################################################################
     # FIGURES: LOTHLORIEN
     #########################################################################
 
-    celeborn       = Repo.insert! %Figure{name: "Celeborn"}
-    galadriel_lotg = Repo.insert! %Figure{name: "Galadriel, Lady of the Galadhrim"}
-    haldir         = Repo.insert! %Figure{name: "Haldir"}
+    celeborn       = _declare_unique("Celeborn")
+    galadriel_lotg = _declare_unique("Galadriel, Lady of the Galadhrim")
+    haldir         = _declare_unique("Haldir")
 
-    galadhrim_captain = Repo.insert! %Figure{name: "Galadhrim Captain", plural_name: "Galadhrim Captains"}
+    galadhrim_captain = _declare_hero("Galadhrim Captain", "Galadhrim Captains")
 
-    galadhrim_w_blade = Repo.insert! %Figure{name: "Galadhrim Warrior with Elven blade", plural_name: "Galadhrim Warriors with Elven blade"}
-    galadhrim_w_bow   = Repo.insert! %Figure{name: "Galadhrim Warrior with Elf bow",     plural_name: "Galadhrim Warriors with Elf bow"}
+    galadhrim_w_blade = _declare_warrior("Galadhrim Warrior with Elven blade", "Galadhrim Warriors with Elven blade")
+    galadhrim_w_bow   = _declare_warrior("Galadhrim Warrior with Elf bow",     "Galadhrim Warriors with Elf bow")
 
     #########################################################################
     # FIGURES: MIRKWOOD
     #########################################################################
 
-    thranduil = Repo.insert! %Figure{name: "Thranduil" }
+    thranduil = _declare_unique("Thranduil" )
 
-    wood_elf_captain = Repo.insert! %Figure{name: "Wood Elf Captain", plural_name: "Wood Elf Captains"}
+    wood_elf_captain = _declare_hero("Wood Elf Captain", "Wood Elf Captains")
 
-    wood_elf_sentinel      = Repo.insert! %Figure{name: "Wood Elf Sentinel",                                     plural_name: "Wood Elf Sentinels"}
-    wood_elf_w_armor_bow   = Repo.insert! %Figure{name: "Wood Elf Warrior with armour and Elf bow",              plural_name: "Wood Elf Warriors with armour and Elf bow"}
-    wood_elf_w_armor_blade = Repo.insert! %Figure{name: "Wood Elf Warrior with armour and Elven blade",          plural_name: "Wood Elf Warriors with armour and Elven blade"}
-    wood_elf_w_armor_spear = Repo.insert! %Figure{name: "Wood Elf Warrior with armour and spear",                plural_name: "Wood Elf Warriors with armour and spear"}
-    wood_elf_w_banner      = Repo.insert! %Figure{name: "Wood Elf Warrior with banner",                          plural_name: "Wood Elf Warriors with banner"}
-    wood_elf_w_blade       = Repo.insert! %Figure{name: "Wood Elf Warrior with Elven blade and throwing dagger", plural_name: "Wood Elf Warriors with Elven blade and throwing dagger"}
-    wood_elf_w_bow         = Repo.insert! %Figure{name: "Wood Elf Warrior with bow",                             plural_name: "Wood Elf Warriors with bow"}
-    wood_elf_w_spear       = Repo.insert! %Figure{name: "Wood Elf Warrior with spear",                           plural_name: "Wood Elf Warriors with spear"}
+    wood_elf_sentinel      = _declare_warrior("Wood Elf Sentinel",                                     "Wood Elf Sentinels")
+    wood_elf_w_armor_bow   = _declare_warrior("Wood Elf Warrior with armour and Elf bow",              "Wood Elf Warriors with armour and Elf bow")
+    wood_elf_w_armor_blade = _declare_warrior("Wood Elf Warrior with armour and Elven blade",          "Wood Elf Warriors with armour and Elven blade")
+    wood_elf_w_armor_spear = _declare_warrior("Wood Elf Warrior with armour and spear",                "Wood Elf Warriors with armour and spear")
+    wood_elf_w_banner      = _declare_warrior("Wood Elf Warrior with banner",                          "Wood Elf Warriors with banner")
+    wood_elf_w_blade       = _declare_warrior("Wood Elf Warrior with Elven blade and throwing dagger", "Wood Elf Warriors with Elven blade and throwing dagger")
+    wood_elf_w_bow         = _declare_warrior("Wood Elf Warrior with bow",                             "Wood Elf Warriors with bow")
+    wood_elf_w_spear       = _declare_warrior("Wood Elf Warrior with spear",                           "Wood Elf Warriors with spear")
 
     #########################################################################
     # FIGURES: MORDOR
     #########################################################################
 
-    dark_marshal         = Repo.insert! %Figure{name: "The Dark Marshal"}
-    gollum               = Repo.insert! %Figure{name: "Gollum"}
-    gorbag               = Repo.insert! %Figure{name: "Gorbag"}
-    gothmog              = Repo.insert! %Figure{name: "Gothmog"}
-    grishnakh            = Repo.insert! %Figure{name: "Grishnákh"}
+    dark_marshal         = _declare_unique("The Dark Marshal")
+    gollum               = _declare_unique("Gollum")
+    gorbag               = _declare_unique("Gorbag")
+    gothmog              = _declare_unique("Gothmog")
+    grishnakh            = _declare_unique("Grishnákh")
     #khamul in Easterlings
-    mouth                = Repo.insert! %Figure{name: "Mouth of Sauron"}
-    mouth_horse          = Repo.insert! %Figure{name: "Mouth of Sauron on armoured horse"}
-    sauron               = Repo.insert! %Figure{name: "Sauron"}
-    shadow_lord          = Repo.insert! %Figure{name: "The Shadow Lord"}
-    shagrat              = Repo.insert! %Figure{name: "Shagrat"}
-    shelob               = Repo.insert! %Figure{name: "Shelob"}
-    smeagol              = Repo.insert! %Figure{name: "Sméagol"}
-    tainted              = Repo.insert! %Figure{name: "The Tainted"}
-    undying              = Repo.insert! %Figure{name: "The Undying"}
-    witch_king           = Repo.insert! %Figure{name: "Witch-king of Angmar"}
-    witch_king_flail     = Repo.insert! %Figure{name: "Witch-king of Angmar with flail"}
-    witch_king_horse     = Repo.insert! %Figure{name: "Witch-king of Angmar on horse"}
-    witch_king_fellbeast = Repo.insert! %Figure{name: "Witch-king of Angmar on Fell Beast"}
+    mouth                = _declare_unique("Mouth of Sauron")
+    mouth_horse          = _declare_unique("Mouth of Sauron on armoured horse")
+    sauron               = _declare_unique("Sauron")
+    shadow_lord          = _declare_unique("The Shadow Lord")
+    shagrat              = _declare_unique("Shagrat")
+    shelob               = _declare_unique("Shelob")
+    smeagol              = _declare_unique("Sméagol")
+    tainted              = _declare_unique("The Tainted")
+    undying              = _declare_unique("The Undying")
+    witch_king           = _declare_unique("Witch-king of Angmar")
+    witch_king_flail     = _declare_unique("Witch-king of Angmar with flail")
+    witch_king_horse     = _declare_unique("Witch-king of Angmar on horse")
+    witch_king_fellbeast = _declare_unique("Witch-king of Angmar on Fell Beast")
 
-    m_orc_captain        = Repo.insert! %Figure{name: "Morannon Orc Captain",     plural_name: "Morannon Orc Captains"}
-    m_orc_captain_2h     = Repo.insert! %Figure{name: "Morannon Orc Captain with two-handed weapon", plural_name: "Morannon Orc Captains with two-handed weapon"}
-    mordor_uruk_captain  = Repo.insert! %Figure{name: "Mordor Uruk-hai Captain",  plural_name: "Mordor Uruk-hai Captains"}
-    orc_captain          = Repo.insert! %Figure{name: "Orc Captain",              plural_name: "Orc Captains"}
-    orc_captain_warg     = Repo.insert! %Figure{name: "Orc Captain on Warg",      plural_name: "Orc Captains on Warg"}
-    orc_drummer          = Repo.insert! %Figure{name: "Orc Drummer",              plural_name: "Orc Drummers"}
-    orc_shaman           = Repo.insert! %Figure{name: "Orc Shaman",               plural_name: "Orc Shamans"}
-    ringwraith           = Repo.insert! %Figure{name: "Ringwraith",               plural_name: "Ringwraiths"}
-    ringwraith_horse     = Repo.insert! %Figure{name: "Ringwraith on horse",      plural_name: "Ringwraiths on horse"}
-    ringwraith_fellbeast = Repo.insert! %Figure{name: "Ringwraith on Fell Beast", plural_name: "Ringwraiths on Fell Beasts"}
-    troll_chieftain      = Repo.insert! %Figure{name: "Troll Chieftain",          plural_name: "Troll Chieftain"}
+    m_orc_captain        = _declare_hero("Morannon Orc Captain",                        "Morannon Orc Captains")
+    m_orc_captain_2h     = _declare_hero("Morannon Orc Captain with two-handed weapon", "Morannon Orc Captains with two-handed weapon")
+    mordor_uruk_captain  = _declare_hero("Mordor Uruk-hai Captain",                     "Mordor Uruk-hai Captains")
+    orc_captain          = _declare_hero("Orc Captain",                                 "Orc Captains")
+    orc_captain_warg     = _declare_hero("Orc Captain on Warg",                         "Orc Captains on Warg")
+    orc_drummer          = _declare_hero("Orc Drummer",                                 "Orc Drummers")
+    orc_shaman           = _declare_hero("Orc Shaman",                                  "Orc Shamans")
+    ringwraith           = _declare_hero("Ringwraith",                                  "Ringwraiths")
+    ringwraith_horse     = _declare_hero("Ringwraith on horse",                         "Ringwraiths on horse")
+    ringwraith_fellbeast = _declare_hero("Ringwraith on Fell Beast",                    "Ringwraiths on Fell Beasts")
+    troll_chieftain      = _declare_hero("Troll Chieftain",                             "Troll Chieftains")
 
-    m_uruk_hai              = Repo.insert! %Figure{name: "Mordor Uruk-hai",                    plural_name: "Mordor Uruk-hai"}
-    m_uruk_hai_shield       = Repo.insert! %Figure{name: "Mordor Uruk-hai with shield",        plural_name: "Mordor Uruk-hai with shield"}
-    m_uruk_hai_2h           = Repo.insert! %Figure{name: "Mordor Uruk-hai with two-handed weapon", plural_name: "Mordor Uruk-hai with two-handed weapon"}
-    morgul_stalker          = Repo.insert! %Figure{name: "Morgul Stalker",                     plural_name: "Morgul Stalkers"}
-    orc_m_shield            = Repo.insert! %Figure{name: "Morannon Orc with shield",           plural_name: "Morannon Orcs with shield"}
-    orc_m_shield_spear      = Repo.insert! %Figure{name: "Morannon Orc with shield and spear", plural_name: "Morannon Orcs with shield and spear"}
-    orc_m_spear             = Repo.insert! %Figure{name: "Morannon Orc with spear",            plural_name: "Morannon Orcs with spear"}
-    orc_tracker             = Repo.insert! %Figure{name: "Orc Tracker",                        plural_name: "Orc Trackers"}
-    orc_w_banner            = Repo.insert! %Figure{name: "Orc with banner",                    plural_name: "Orcs with banner"}
-    orc_w_bow               = Repo.insert! %Figure{name: "Orc with Orc bow",                   plural_name: "Orcs with Orc bow"}
-    orc_w_shield            = Repo.insert! %Figure{name: "Orc with shield",                    plural_name: "Orcs with shield"}
-    orc_w_spear             = Repo.insert! %Figure{name: "Orc with spear",                     plural_name: "Orcs with spear"}
-    orc_w_2h                = Repo.insert! %Figure{name: "Orc with two-handed weapon",         plural_name: "Orcs with two-handed weapon"}
-    spectre                 = Repo.insert! %Figure{name: "Spectre",                            plural_name: "Spectres"}
-    warg_rider_bow          = Repo.insert! %Figure{name: "Warg Rider with bow",                plural_name: "Warg Riders with bow"}
-    warg_rider_shield       = Repo.insert! %Figure{name: "Warg Rider with shield",             plural_name: "Warg Riders with shield"}
-    warg_rider_shield_spear = Repo.insert! %Figure{name: "Warg Rider with shield and throwing spear", plural_name: "Warg Riders with shield and throwing spear"}
-    warg_rider_spear        = Repo.insert! %Figure{name: "Warg Rider with spear",              plural_name: "Warg Riders with spear"}
+    m_uruk_hai              = _declare_warrior("Mordor Uruk-hai",                           "Mordor Uruk-hai")
+    m_uruk_hai_shield       = _declare_warrior("Mordor Uruk-hai with shield",               "Mordor Uruk-hai with shield")
+    m_uruk_hai_2h           = _declare_warrior("Mordor Uruk-hai with two-handed weapon",    "Mordor Uruk-hai with two-handed weapon")
+    morgul_stalker          = _declare_warrior("Morgul Stalker",                            "Morgul Stalkers")
+    orc_m_shield            = _declare_warrior("Morannon Orc with shield",                  "Morannon Orcs with shield")
+    orc_m_shield_spear      = _declare_warrior("Morannon Orc with shield and spear",        "Morannon Orcs with shield and spear")
+    orc_m_spear             = _declare_warrior("Morannon Orc with spear",                   "Morannon Orcs with spear")
+    orc_tracker             = _declare_warrior("Orc Tracker",                               "Orc Trackers")
+    orc_w_banner            = _declare_warrior("Orc with banner",                           "Orcs with banner")
+    orc_w_bow               = _declare_warrior("Orc with Orc bow",                          "Orcs with Orc bow")
+    orc_w_shield            = _declare_warrior("Orc with shield",                           "Orcs with shield")
+    orc_w_spear             = _declare_warrior("Orc with spear",                            "Orcs with spear")
+    orc_w_2h                = _declare_warrior("Orc with two-handed weapon",                "Orcs with two-handed weapon")
+    spectre                 = _declare_warrior("Spectre",                                   "Spectres")
+    warg_rider_bow          = _declare_warrior("Warg Rider with bow",                       "Warg Riders with bow")
+    warg_rider_shield       = _declare_warrior("Warg Rider with shield",                    "Warg Riders with shield")
+    warg_rider_shield_spear = _declare_warrior("Warg Rider with shield and throwing spear", "Warg Riders with shield and throwing spear")
+    warg_rider_spear        = _declare_warrior("Warg Rider with spear",                     "Warg Riders with spear")
 
-    mordor_troll            = Repo.insert! %Figure{name: "Mordor Troll",                       plural_name: "Mordor Trolls"}
+    mordor_troll = _declare_monster("Mordor Troll", "Mordor Trolls")
 
-    mordor_siege_bow     = Repo.insert! %Figure{name: "Mordor Siege Bow",          plural_name: "Mordor Siege Bows"}
-    mordor_siege_bow_orc = Repo.insert! %Figure{name: "Mordor Siege Bow Orc crew", plural_name: "Mordor Siege Bow Orc crew" }
-    war_catapult         = Repo.insert! %Figure{name: "War Catapult",              plural_name: "War Catapults"}
-    war_catapult_orc     = Repo.insert! %Figure{name: "War Catapult Orc crew",     plural_name: "War Catapult Orc crew" }
-    war_catapult_troll   = Repo.insert! %Figure{name: "War Catapult Troll",        plural_name: "War Catapult Trolls"}
+    mordor_siege_bow     = _declare_siege("Mordor Siege Bow",          "Mordor Siege Bows")
+    mordor_siege_bow_orc = _declare_siege("Mordor Siege Bow Orc crew", "Mordor Siege Bow Orc crew" )
+    war_catapult         = _declare_siege("War Catapult",              "War Catapults")
+    war_catapult_orc     = _declare_siege("War Catapult Orc crew",     "War Catapult Orc crew" )
+    war_catapult_troll   = _declare_siege("War Catapult Troll",        "War Catapult Trolls")
 
     #########################################################################
     # FIGURES: MORIA
     #########################################################################
 
-    durburz        = Repo.insert! %Figure{name: "Durbûrz"}
-    golfimbul      = Repo.insert! %Figure{name: "Golfimbul"}
-    golfimbul_warg = Repo.insert! %Figure{name: "Golfimbul on warg"}
+    durburz        = _declare_unique("Durbûrz")
+    golfimbul      = _declare_unique("Golfimbul")
+    golfimbul_warg = _declare_unique("Golfimbul on warg")
 
-    moria_captain     = Repo.insert! %Figure{name: "Moria Goblin Captain",          plural_name: "Moria Goblin Captains"}
-    moria_captain_bow = Repo.insert! %Figure{name: "Moria Goblin Captain with bow", plural_name: "Moria Goblin Captains with bow"}
+    moria_captain     = _declare_hero("Moria Goblin Captain",          "Moria Goblin Captains")
+    moria_captain_bow = _declare_hero("Moria Goblin Captain with bow", "Moria Goblin Captains with bow")
 
-    moria_g_bow    = Repo.insert! %Figure{name: "Moria Goblin with Orc bow", plural_name: "Moria Goblins with Orc bow"}
-    moria_g_shield = Repo.insert! %Figure{name: "Moria Goblin with shield",  plural_name: "Moria Goblins with shield"}
-    moria_g_spear  = Repo.insert! %Figure{name: "Moria Goblin with spear",   plural_name: "Moria Goblins with spear"}
-    moria_p_bow    = Repo.insert! %Figure{name: "Moria Goblin Prowler with Orc bow",             plural_name: "Moria Goblin Prowlers with Orc bow"}
-    moria_p_shield = Repo.insert! %Figure{name: "Moria Goblin Prowler with shield",              plural_name: "Moria Goblin Prowlers with shield"}
-    moria_p_2h     = Repo.insert! %Figure{name: "Moria Goblin Prowler with two-handed weapon",   plural_name: "Moria Goblin Prowlers with two-handed weapon"}
-    moria_shaman   = Repo.insert! %Figure{name: "Moria Goblin Shaman",       plural_name: "Moria Goblin Shamans"}
+    moria_g_bow    = _declare_warrior("Moria Goblin with Orc bow",                   "Moria Goblins with Orc bow")
+    moria_g_shield = _declare_warrior("Moria Goblin with shield",                    "Moria Goblins with shield")
+    moria_g_spear  = _declare_warrior("Moria Goblin with spear",                     "Moria Goblins with spear")
+    moria_p_bow    = _declare_warrior("Moria Goblin Prowler with Orc bow",           "Moria Goblin Prowlers with Orc bow")
+    moria_p_shield = _declare_warrior("Moria Goblin Prowler with shield",            "Moria Goblin Prowlers with shield")
+    moria_p_2h     = _declare_warrior("Moria Goblin Prowler with two-handed weapon", "Moria Goblin Prowlers with two-handed weapon")
+    moria_shaman   = _declare_warrior("Moria Goblin Shaman",                         "Moria Goblin Shamans")
 
-    cave_troll_chain = Repo.insert! %Figure{name: "Cave Troll with chain", plural_name: "Cave Trolls with chain"}
-    cave_troll_spear = Repo.insert! %Figure{name: "Cave Troll with spear", plural_name: "Cave Trolls with spear"}
+    cave_troll_chain = _declare_monster("Cave Troll with chain", "Cave Trolls with chain")
+    cave_troll_spear = _declare_monster("Cave Troll with spear", "Cave Trolls with spear")
 
-    moria_drum    = Repo.insert! %Figure{name: "Moria Goblin drum",    plural_name: "Moria Goblin drums"}
-    moria_drummer = Repo.insert! %Figure{name: "Moria Goblin drummer", plural_name: "Moria Goblin drummers"}
+    moria_drum    = _declare_warrior("Moria Goblin drum",    "Moria Goblin drums")
+    moria_drummer = _declare_warrior("Moria Goblin drummer", "Moria Goblin drummers")
 
-    balrog   = Repo.insert! %Figure{name: "Balrog",   plural_name: "Balrogs"}
-    dragon   = Repo.insert! %Figure{name: "Dragon",   plural_name: "Dragons"}
-    tentacle = Repo.insert! %Figure{name: "Tentacle", plural_name: "Tentacles"}
+    balrog   = _declare_monster("Balrog",   "Balrogs")
+    dragon   = _declare_monster("Dragon",   "Dragons")
+    tentacle = _declare_monster("Tentacle", "Tentacles")
 
     #########################################################################
     # FIGURES: NUMENOR
     #########################################################################
 
-    elendil       = Repo.insert! %Figure{name: "Elendil"}
-    isildur       = Repo.insert! %Figure{name: "Isildur"}
-    isildur_horse = Repo.insert! %Figure{name: "Isildur on horse"}
+    elendil       = _declare_unique("Elendil")
+    isildur       = _declare_unique("Isildur")
+    isildur_horse = _declare_unique("Isildur on horse")
 
-    numenor_captain = Repo.insert! %Figure{name: "Captain of Numenor", plural_name: "Captains of Numenor"}
+    numenor_captain = _declare_hero("Captain of Numenor", "Captains of Numenor")
 
-    numenor_w_banner       = Repo.insert! %Figure{name: "Warrior of Numenor with banner",           plural_name: "Warriors of Numenor with banner"}
-    numenor_w_bow          = Repo.insert! %Figure{name: "Warrior of Numenor with bow",              plural_name: "Warriors of Numenor with bow"}
-    numenor_w_shield       = Repo.insert! %Figure{name: "Warrior of Numenor with shield",           plural_name: "Warriors of Numenor with shield"}
-    numenor_w_shield_spear = Repo.insert! %Figure{name: "Warrior of Numenor with shield and spear", plural_name: "Warriors of Numenor with shield and spear"}
+    numenor_w_banner       = _declare_warrior("Warrior of Numenor with banner",           "Warriors of Numenor with banner")
+    numenor_w_bow          = _declare_warrior("Warrior of Numenor with bow",              "Warriors of Numenor with bow")
+    numenor_w_shield       = _declare_warrior("Warrior of Numenor with shield",           "Warriors of Numenor with shield")
+    numenor_w_shield_spear = _declare_warrior("Warrior of Numenor with shield and spear", "Warriors of Numenor with shield and spear")
 
     #########################################################################
     # FIGURES: RIVENDELL
     #########################################################################
 
-    arwen            = Repo.insert! %Figure{name: "Arwen (FotR)"}
-    arwen_horse      = Repo.insert! %Figure{name: "Arwen on Asfaloth"}
-    arwen2           = Repo.insert! %Figure{name: "Arwen (LotR)"}
-    elladan          = Repo.insert! %Figure{name: "Elladan"}
-    elladan_armor    = Repo.insert! %Figure{name: "Elladan with heavy armour"}
-    elrohir          = Repo.insert! %Figure{name: "Elrohir"}
-    elrohir_armor    = Repo.insert! %Figure{name: "Elrohir with heavy armour"}
-    elrond           = Repo.insert! %Figure{name: "Elrond"}
-    erestor          = Repo.insert! %Figure{name: "Erestor"}
-    gil_galad        = Repo.insert! %Figure{name: "Gil-galad"}
-    gildor           = Repo.insert! %Figure{name: "Gildor"}
-    glorfindel       = Repo.insert! %Figure{name: "Glorfindel"}
-    glorfindel_horse = Repo.insert! %Figure{name: "Glorfindel on horse"}
-    glorfindel_lotw  = Repo.insert! %Figure{name: "Glorfindel, Lord of the West"}
-    legolas          = Repo.insert! %Figure{name: "Legolas"}
+    arwen            = _declare_unique("Arwen (FotR)")
+    arwen_horse      = _declare_unique("Arwen on Asfaloth")
+    arwen2           = _declare_unique("Arwen (LotR)")
+    elladan          = _declare_unique("Elladan")
+    elladan_armor    = _declare_unique("Elladan with heavy armour")
+    elrohir          = _declare_unique("Elrohir")
+    elrohir_armor    = _declare_unique("Elrohir with heavy armour")
+    elrond           = _declare_unique("Elrond")
+    erestor          = _declare_unique("Erestor")
+    gil_galad        = _declare_unique("Gil-galad")
+    gildor           = _declare_unique("Gildor")
+    glorfindel       = _declare_unique("Glorfindel")
+    glorfindel_horse = _declare_unique("Glorfindel on horse")
+    glorfindel_lotw  = _declare_unique("Glorfindel, Lord of the West")
+    legolas          = _declare_unique("Legolas")
 
-    high_elf_captain = Repo.insert! %Figure{name: "High Elf Captain", plural_name: "High Elf Captains"}
+    high_elf_captain = _declare_hero("High Elf Captain", "High Elf Captains")
 
-    high_elf_w_banner       = Repo.insert! %Figure{name: "High Elf with banner",           plural_name: "High Elves with banner"}
-    high_elf_w_blade        = Repo.insert! %Figure{name: "High Elf with Elven blade",      plural_name: "High Elves with Elven blade"}
-    high_elf_w_bow          = Repo.insert! %Figure{name: "High Elf with bow",              plural_name: "High Elves with bow"}
-    high_elf_w_spear_shield = Repo.insert! %Figure{name: "High Elf with spear and shield", plural_name: "High Elves with spear and shield"}
+    high_elf_w_banner       = _declare_warrior("High Elf with banner",           "High Elves with banner")
+    high_elf_w_blade        = _declare_warrior("High Elf with Elven blade",      "High Elves with Elven blade")
+    high_elf_w_bow          = _declare_warrior("High Elf with bow",              "High Elves with bow")
+    high_elf_w_spear_shield = _declare_warrior("High Elf with spear and shield", "High Elves with spear and shield")
 
     #########################################################################
     # FIGURES: ROHAN
     #########################################################################
 
-    eomer               = Repo.insert! %Figure{name: "Éomer"}
-    eomer_horse         = Repo.insert! %Figure{name: "Éomer on horse"}
-    eorl_horse          = Repo.insert! %Figure{name: "Eorl the Young on horse"}
-    eowyn_armor         = Repo.insert! %Figure{name: "Éowyn with armour"}
-    eowyn_horse         = Repo.insert! %Figure{name: "Éowyn on horse"}
-    erkenbrand          = Repo.insert! %Figure{name: "Erkenbrand"}
-    erkenbrand_horse    = Repo.insert! %Figure{name: "Erkenbrand on horse"}
-    gamling             = Repo.insert! %Figure{name: "Gamling"}
-    gamling_horse       = Repo.insert! %Figure{name: "Gamling on horse with banner"}
-    hama                = Repo.insert! %Figure{name: "Hama"}
-    merry_rohan         = Repo.insert! %Figure{name: "Meriadoc, Knight of the Mark"}
-    theoden             = Repo.insert! %Figure{name: "Théoden"}
-    theoden_horse       = Repo.insert! %Figure{name: "Théoden on horse"}
-    theoden_armor_horse = Repo.insert! %Figure{name: "Théoden with armour on armored horse"}
-    theodred_horse      = Repo.insert! %Figure{name: "Théodred on horse"}
+    eomer               = _declare_unique("Éomer")
+    eomer_horse         = _declare_unique("Éomer on horse")
+    eorl_horse          = _declare_unique("Eorl the Young on horse")
+    eowyn_armor         = _declare_unique("Éowyn with armour")
+    eowyn_horse         = _declare_unique("Éowyn on horse")
+    erkenbrand          = _declare_unique("Erkenbrand")
+    erkenbrand_horse    = _declare_unique("Erkenbrand on horse")
+    gamling             = _declare_unique("Gamling")
+    gamling_horse       = _declare_unique("Gamling on horse with banner")
+    hama                = _declare_unique("Hama")
+    merry_rohan         = _declare_unique("Meriadoc, Knight of the Mark")
+    theoden             = _declare_unique("Théoden")
+    theoden_horse       = _declare_unique("Théoden on horse")
+    theoden_armor_horse = _declare_unique("Théoden with armour on armored horse")
+    theodred_horse      = _declare_unique("Théodred on horse")
 
-    rohan_captain       = Repo.insert! %Figure{name: "Captain of Rohan",          plural_name: "Captains of Rohan"}
-    rohan_captain_horse = Repo.insert! %Figure{name: "Captain of Rohan on horse", plural_name: "Captains of Rohan on horse"}
+    rohan_captain       = _declare_hero("Captain of Rohan",          "Captains of Rohan")
+    rohan_captain_horse = _declare_hero("Captain of Rohan on horse", "Captains of Rohan on horse")
 
-    rohan_gd              = Repo.insert! %Figure{name: "Rohan Royal Guard",                               plural_name: "Rohan Royal Guards"}
-    rohan_gd_spear        = Repo.insert! %Figure{name: "Rohan Royal Guard with throwing spear",           plural_name: "Rohan Royal Guards with throwing spear"}
-    rohan_gd_horse_spear  = Repo.insert! %Figure{name: "Rohan Royal Guard with throwing spear on horse",  plural_name: "Rohan Royal Guards with throwing spear on horse"}
-    rohan_gd_horse_banner = Repo.insert! %Figure{name: "Rohan Royal Guard with banner",                   plural_name: "Rohan Royal Guards with banner"}
-    rohan_outrider        = Repo.insert! %Figure{name: "Rohan Outrider",                                  plural_name: "Rohan Outriders"}
-    rohan_rider           = Repo.insert! %Figure{name: "Rider of Rohan",                                  plural_name: "Riders of Rohan"}
-    rohan_rider_banner    = Repo.insert! %Figure{name: "Rider of Rohan with banner",                      plural_name: "Riders of Rohan with banner"}
-    rohan_rider_spear     = Repo.insert! %Figure{name: "Rider of Rohan with throwing spear",              plural_name: "Riders of Rohan with throwing spear"}
-    rohan_w_banner        = Repo.insert! %Figure{name: "Warrior of Rohan with banner",                    plural_name: "Warriors of Rohan with banner"}
-    rohan_w_bow           = Repo.insert! %Figure{name: "Warrior of Rohan with bow",                       plural_name: "Warriors of Rohan with bow"}
-    rohan_w_shield        = Repo.insert! %Figure{name: "Warrior of Rohan with shield",                    plural_name: "Warriors of Rohan with shield"}
-    rohan_w_spear_shield  = Repo.insert! %Figure{name: "Warrior of Rohan with throwing spear and shield", plural_name: "Warriors of Rohan with throwing spear and shield"}
+    rohan_gd              = _declare_warrior("Rohan Royal Guard",                               "Rohan Royal Guards")
+    rohan_gd_spear        = _declare_warrior("Rohan Royal Guard with throwing spear",           "Rohan Royal Guards with throwing spear")
+    rohan_gd_horse_spear  = _declare_warrior("Rohan Royal Guard with throwing spear on horse",  "Rohan Royal Guards with throwing spear on horse")
+    rohan_gd_horse_banner = _declare_warrior("Rohan Royal Guard with banner",                   "Rohan Royal Guards with banner")
+    rohan_outrider        = _declare_warrior("Rohan Outrider",                                  "Rohan Outriders")
+    rohan_rider           = _declare_warrior("Rider of Rohan",                                  "Riders of Rohan")
+    rohan_rider_banner    = _declare_warrior("Rider of Rohan with banner",                      "Riders of Rohan with banner")
+    rohan_rider_spear     = _declare_warrior("Rider of Rohan with throwing spear",              "Riders of Rohan with throwing spear")
+    rohan_w_banner        = _declare_warrior("Warrior of Rohan with banner",                    "Warriors of Rohan with banner")
+    rohan_w_bow           = _declare_warrior("Warrior of Rohan with bow",                       "Warriors of Rohan with bow")
+    rohan_w_shield        = _declare_warrior("Warrior of Rohan with shield",                    "Warriors of Rohan with shield")
+    rohan_w_spear_shield  = _declare_warrior("Warrior of Rohan with throwing spear and shield", "Warriors of Rohan with throwing spear and shield")
 
     #########################################################################
     # SHIRE
     #########################################################################
 
-    bandobras      = Repo.insert! %Figure{name: "Bandobras Took"}
-    bandobras_pony = Repo.insert! %Figure{name: "Bandobras Took on pony"}
-    bilbo          = Repo.insert! %Figure{name: "Bilbo Baggins"}
-    fang           = Repo.insert! %Figure{name: "Fang"}
-    fatty          = Repo.insert! %Figure{name: "Fredegar Bolger"}
-    grip           = Repo.insert! %Figure{name: "Grip"}
-    lobelia        = Repo.insert! %Figure{name: "Lobelia Sackville-Baggins"}
-    maggot         = Repo.insert! %Figure{name: "Farmer Maggot"}
-    paladin        = Repo.insert! %Figure{name: "Paladin Took"}
-    wolf           = Repo.insert! %Figure{name: "Wolf"}
+    bandobras      = _declare_unique("Bandobras Took")
+    bandobras_pony = _declare_unique("Bandobras Took on pony")
+    bilbo          = _declare_unique("Bilbo Baggins")
+    fang           = _declare_unique("Fang")
+    fatty          = _declare_unique("Fredegar Bolger")
+    grip           = _declare_unique("Grip")
+    lobelia        = _declare_unique("Lobelia Sackville-Baggins")
+    maggot         = _declare_unique("Farmer Maggot")
+    paladin        = _declare_unique("Paladin Took")
+    wolf           = _declare_unique("Wolf")
 
-    hobbit_archer      = Repo.insert! %Figure{name: "Hobbit Archer",                  plural_name: "Hobbit Archers"}
-    hobbit_archer_horn = Repo.insert! %Figure{name: "Hobbit Archer with signal horn", plural_name: "Hobbit Archers with signal horn"}
-    hobbit_militia     = Repo.insert! %Figure{name: "Hobbit Militia",                 plural_name: "Hobbit Militia"}
-    hobbit_shirriff    = Repo.insert! %Figure{name: "Hobbit Shirriff",                plural_name: "Hobbit Shirriffs"}
+    hobbit_archer      = _declare_warrior("Hobbit Archer",                  "Hobbit Archers")
+    hobbit_archer_horn = _declare_warrior("Hobbit Archer with signal horn", "Hobbit Archers with signal horn")
+    hobbit_militia     = _declare_warrior("Hobbit Militia",                 "Hobbit Militia")
+    hobbit_shirriff    = _declare_warrior("Hobbit Shirriff",                "Hobbit Shirriffs")
 
     #########################################################################
     # THORIN'S COMPANY
     #########################################################################
 
-    balin  = Repo.insert! %Figure{name: "Balin"}
-    bifur  = Repo.insert! %Figure{name: "Bifur"}
-    young_bilbo = Repo.insert! %Figure{name: "Bilbo Baggins"}
-    bofur  = Repo.insert! %Figure{name: "Bofur"}
-    bombur = Repo.insert! %Figure{name: "Bombur"}
-    dori   = Repo.insert! %Figure{name: "Dori"}
-    dwalin = Repo.insert! %Figure{name: "Dwalin"}
-    fili   = Repo.insert! %Figure{name: "Fili"}
-    gloin  = Repo.insert! %Figure{name: "Gloin"}
-    kili   = Repo.insert! %Figure{name: "Kili"}
-    nori   = Repo.insert! %Figure{name: "Nori"}
-    oin    = Repo.insert! %Figure{name: "Oin"}
-    ori    = Repo.insert! %Figure{name: "Ori"}
-    thorin = Repo.insert! %Figure{name: "Thorin Oakenshield"}
+    balin       = _declare_unique("Balin")
+    bifur       = _declare_unique("Bifur")
+    young_bilbo = _declare_unique("Bilbo Baggins")
+    bofur       = _declare_unique("Bofur")
+    bombur      = _declare_unique("Bombur")
+    dori        = _declare_unique("Dori")
+    dwalin      = _declare_unique("Dwalin")
+    fili        = _declare_unique("Fili")
+    gloin       = _declare_unique("Gloin")
+    kili        = _declare_unique("Kili")
+    nori        = _declare_unique("Nori")
+    oin         = _declare_unique("Oin")
+    ori         = _declare_unique("Ori")
+    thorin      = _declare_unique("Thorin Oakenshield")
 
     #########################################################################
     # THE TROLLS
     #########################################################################
 
-    bert    = Repo.insert! %Figure{name: "Bert"}
-    tom     = Repo.insert! %Figure{name: "Tom"}
-    william = Repo.insert! %Figure{name: "William"}
+    bert    = _declare_unique_monster("Bert")
+    tom     = _declare_unique_monster("Tom")
+    william = _declare_unique_monster("William")
 
     #########################################################################
     # USER_FIGURES
