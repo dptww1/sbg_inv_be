@@ -57,6 +57,11 @@ defmodule SbgInv.Data do
   end
 
   #========================================================================
+  defp _declare_web_replay(scenario_id, url, title, sort_order) do
+    Repo.insert! %ScenarioResource{scenario_id: scenario_id, resource_type: :web_replay, url: url, title: title, sort_order: sort_order}
+  end
+
+  #========================================================================
   defp _declare_role_figure(faction, amount, sort_order, name \\ "", figure_list) do
     role = Repo.insert! %Role{
       scenario_faction_id: faction.id,
@@ -652,6 +657,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bpf_s1.id, resource_type: :source, book: :bpf, title: "Battle of the Pelennor Fields", sort_order: 1, page: 14}
+    _declare_web_replay(bpf_s1.id, "http://davetownsend.org/Battles/LotR-20090208/", "DaveT", 1)
 
     bpf_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s1.id, faction: :gondor, suggested_points: 280, actual_points: 280, sort_order: 1}
     _declare_role_figure(bpf_s1f1, 1, 1, [ gondor_captain_mt ])
@@ -1281,6 +1287,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s3.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 3, page: 20}
+    _declare_web_replay(fotrjb_s3.id, "http://davetownsend.org/Battles/LotR-20050929/", "DaveT", 1)
 
     fotrjb_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s3.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotrjb_s3f1, 1, 1, [ frodo ])
@@ -2210,7 +2217,7 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 1, page: 112}
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=lwc1bqolr7g", title: "Spillforeningen the Fellowship", sort_order: 2}
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=qo23ETd11oI&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=1&t=7s", title: "DHCL", sort_order: 3}
-    Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :web_replay, url: "http://davetownsend.org/Battles/LotR-20160528/", title: "DaveT", sort_order: 4}
+    _declare_web_replay(hobbit_s1.id, "http://davetownsend.org/Battles/LotR-20160528/", "DaveT", 4)
 
     hobbit_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s1.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(hobbit_s1f1, 1,  1, [ thorin ])
@@ -3638,6 +3645,8 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s1.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 1, page: 18}
+    _declare_web_replay(sots_s1.id, "http://davetownsend.org/Battles/LotR-20070619/", "DaveT", 1)
+    _declare_web_replay(sots_s1.id, "http://davetownsend.org/Battles/LotR-20141115/", "DaveT", 2)
 
     sots_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s1.id, faction: :shire, suggested_points: 50, actual_points: 50, sort_order: 1}
     _declare_role_figure(sots_s1f1, 1, 1, [ maggot ])
@@ -3658,6 +3667,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s2.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 2, page: 22}
+    _declare_web_replay(sots_s2.id, "http://davetownsend.org/Battles/LotR-20151120/", "DaveT", 1)
 
     sots_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s2.id, faction: :shire, suggested_points: 17, actual_points: 17, sort_order: 1}
     _declare_role_figure(sots_s2f1, 2, 1, [ hobbit_archer ])
@@ -3676,6 +3686,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s3.id, resource_type: :source, book: :sots, title: "The Scouring of the Shite", sort_order: 3, page: 26}
+    _declare_web_replay(sots_s3.id, "http://davetownsend.org/Battles/LotR-20151123/", "DaveT", 1)
 
     sots_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s3.id, faction: :shire, suggested_points: 39, actual_points: 39, sort_order: 1}
     _declare_role_figure(sots_s3f1, 1, 1, [ fatty ])
@@ -3994,6 +4005,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: saf_s5.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 5, page: 36}
+    _declare_web_replay(saf_s5.id, "http://davetownsend.org/Battles/LotR-20070809/", "DaveT", 1)
 
     saf_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s5.id, faction: :fellowship, suggested_points: 200, actual_points: 0, sort_order: 1}
     _declare_role_figure(saf_s5f1, 1, 1, [ frodo ])
@@ -4078,7 +4090,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s1.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 1, page: 14}
-    Repo.insert! %ScenarioResource{scenario_id: site_s1.id, resource_type: :web_replay, title: "Dave T", url: "http://www.davetownsend.org/Battles/LotR-20160604/", sort_order: 1}
+    _declare_web_replay(site_s1.id, "http://www.davetownsend.org/Battles/LotR-20160604/", "DaveT", 1)
 
     site_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: site_s1.id, faction: :gondor, suggested_points: 200, actual_points: 203, sort_order: 1}
     _declare_role_figure(site_s1f1, 1, 1, [ cirion ])
@@ -4102,7 +4114,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s2.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 2, page: 16}
-    Repo.insert! %ScenarioResource{scenario_id: site_s2.id, resource_type: :web_replay, title: "Dave T", url: "http://davetownsend.org/Battles/LotR-20160727/", sort_order: 1}
+    _declare_web_replay(site_s2.id, "http://davetownsend.org/Battles/LotR-20160727/", "DaveT", 1)
 
     site_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: site_s2.id, faction: :gondor, suggested_points: 275, actual_points: 279, sort_order: 1}
     _declare_role_figure(site_s2f1, 1, 1, [ cirion ])
@@ -4129,6 +4141,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s3.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 3, page: 28}
+    _declare_web_replay(site_s3.id, "http://davetownsend.org/Battles/LotR-20161021/", "DaveT", 1)
 
     site_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: site_s3.id, faction: :gondor, suggested_points: 350, actual_points: 329, sort_order: 1}
     _declare_role_figure(site_s3f1, 1, 1, [ cirion ])
@@ -4685,6 +4698,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s4.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 4, page: 24}
+    _declare_web_replay(tttjb_s4.id, "http://davetownsend.org/Battles/LotR-20061029/", "DaveT", 1)
 
     tttjb_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s4.id, faction: :rohan, suggested_points: 500, actual_points: 0, sort_order: 1}
     _declare_role_figure(tttjb_s4f1,  1, 1, "Meriadoc Brandybuck with Elven cloak", [ merry ])
@@ -4805,8 +4819,8 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s8.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 8, page: 38}
-    Repo.insert! %ScenarioResource{scenario_id: tttjb_s8.id, resource_type: :web_replay, title: "Dave T", url: "http://www.davetownsend.org/Battles/LotR-20150922/", sort_order: 1}
-    Repo.insert! %ScenarioResource{scenario_id: tttjb_s8.id, resource_type: :web_replay, title: "Dave T", url: "http://www.davetownsend.org/Battles/LotR-20151011/", sort_order: 2}
+    _declare_web_replay(tttjb_s8.id, "http://www.davetownsend.org/Battles/LotR-20150922/", "DaveT", 1)
+    _declare_web_replay(tttjb_s8.id, "http://www.davetownsend.org/Battles/LotR-20151011/", "DaveT", 2)
 
     tttjb_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s8.id, faction: :free_peoples, suggested_points: 550, actual_points: 0, sort_order: 1}
     _declare_role_figure(tttjb_s8f1, 1, 1, [ treebeard ])
