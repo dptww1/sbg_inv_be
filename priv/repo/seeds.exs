@@ -1326,6 +1326,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s5f1, 1, 2, [ sam ])
     _declare_role_figure(fotrjb_s5f1, 1, 3, [ pippin ])
     _declare_role_figure(fotrjb_s5f1, 1, 4, [ merry ])
+    _declare_role_figure(fotrjb_s5f1, 1, 5, [ tom_bombadil ])
 
     fotrjb_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s5.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotrjb_s5f2, 4, 1, [ barrow_wight ])
