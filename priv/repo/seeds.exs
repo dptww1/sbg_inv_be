@@ -136,6 +136,7 @@ defmodule SbgInv.Data do
 
     azog_warg   = _declare_unique("Azog on White warg")
     azog        = _declare_unique("Azog")
+    bolg        = _declare_unique("Bolg")
     fimbul_warg = _declare_unique("Fimbul on warg")
     narzug_warg = _declare_unique("Narzug on warg")
     narzug      = _declare_unique("Narzug")
@@ -149,6 +150,12 @@ defmodule SbgInv.Data do
     gundabad_orc    = _declare_warrior("Gundabad Orc",       "Gundabad Orcs")
     hunter_orc      = _declare_warrior("Hunter Orc",         "Hunter Orcs")
     hunter_orc_warg = _declare_warrior("Hunter Orc on warg", "Hunter Orcs on warg")
+
+    #########################################################################
+    # FIGURES: DESOLATOR OF THE NORTH
+    #########################################################################
+
+    smaug = _declare_unique("Smaug")
 
     #########################################################################
     # FIGURES: DWARVES
@@ -243,6 +250,7 @@ defmodule SbgInv.Data do
     goldberry           = _declare_unique("Goldberry")
     gwaihir             = _declare_unique("Gwaihir")
     radagast            = _declare_unique("Radagast the Brown")
+    radagast_eagle      = _declare_unique("Radagast the Brown on Great Eagle")
     radagast_sled       = _declare_unique("Radagast the Brown on sleigh")
     saruman             = _declare_unique("Saruman the White")
     tom_bombadil        = _declare_unique("Tom Bombadil")
@@ -398,6 +406,19 @@ defmodule SbgInv.Data do
     uruk_hai_demo_team     = _declare_siege("Uruk-hai Demolition Team",     "Uruk-hai Demolition Teams")
     uruk_hai_ballista      = _declare_siege("Uruk-hai Siege Ballista",      "Uruk-hai Siege Ballistas")
     uruk_hai_ballista_crew = _declare_siege("Uruk-hai Siege Ballista crew", "Uruk-hai Siege Ballista crew")
+
+    #########################################################################
+    # FIGURES: LAKETOWN
+    #########################################################################
+
+    alfrid          = _declare_unique("Alfrid")
+    bard_windlance  = _declare_unique("Bard the Bowman with Windlance")
+    master_laketown = _declare_unique("The Master of Lake-town")
+
+    laketown_gd_captain = _declare_hero("Lake-town Guard Captain", "Lake-town Guard Captains")
+
+    laketown_gd_w_bow   = _declare_warrior("Lake-town Guard with bow",   "Lake-town Guards with bow")
+    laketown_gd_w_spear = _declare_warrior("Lake-town Guard with spear", "Lake-town Guards with spear")
 
     #########################################################################
     # FIGURES: LOTHLORIEN
@@ -687,6 +708,65 @@ defmodule SbgInv.Data do
     Repo.insert! %UserFigure{user_id: 1, figure_id: madril.id,  owned:  1, painted: 1}
 
     Repo.insert! %UserFigure{user_id: 1, figure_id: gondor_womt_bow.id, owned: 36, painted: 24}
+
+    #########################################################################
+    # THE BATTLE OF THE FIVE ARMIES
+    #########################################################################
+
+    #========================================================================
+    bo5a_s1 = Repo.insert! %Scenario{
+      name: "Fire and Water",
+      blurb: "Bard attempts to take down Smaug as the dragon attacks Laketown.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 34,
+      map_width: 48, map_height: 48, location: :laketown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bo5a_s1.id, resource_type: :source, book: :bot5a, title: "Battle of the Five Armies", sort_order: 1, page: 6}
+
+    bo5a_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: bo5a_s1.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(bo5a_s1f1,  1,  1, [ bard_windlance ])
+    _declare_role_figure(bo5a_s1f1,  1,  2, [ fili ])
+    _declare_role_figure(bo5a_s1f1,  1,  3, [ kili ])
+    _declare_role_figure(bo5a_s1f1,  1,  4, [ bofur ])
+    _declare_role_figure(bo5a_s1f1,  1,  5, [ oin ])
+    _declare_role_figure(bo5a_s1f1,  1,  6, [ tauriel ])
+    _declare_role_figure(bo5a_s1f1,  1,  7, [ master_laketown ])
+    _declare_role_figure(bo5a_s1f1,  1,  8, [ alfrid ])
+    _declare_role_figure(bo5a_s1f1,  1,  9, [ laketown_gd_captain ])
+    _declare_role_figure(bo5a_s1f1, 12, 10, [ laketown_gd_w_spear ])
+    _declare_role_figure(bo5a_s1f1, 12, 11, [ laketown_gd_w_bow ])
+
+    bo5a_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: bo5a_s1.id, faction: :desolator_north, suggested_points: 700, actual_points: 700, sort_order: 2}
+    _declare_role_figure(bo5a_s1f2,  1, 1, [ smaug ])
+
+    #========================================================================
+    bo5a_s2 = Repo.insert! %Scenario{
+      name: "Assault on Ravenhill",
+      blurb: "Thorin's Company gets help to decapitate the Evil army assaulting the Good forces at Erebor.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 53,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: bo5a_s2.id, resource_type: :source, book: :bot5a, title: "Battle of the Five Armies", sort_order: 2, page: 8}
+
+    bo5a_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: bo5a_s2.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(bo5a_s2f1,  1,  1, [ thorin ])
+    _declare_role_figure(bo5a_s2f1,  1,  2, [ fili ])
+    _declare_role_figure(bo5a_s2f1,  1,  3, [ kili ])
+    _declare_role_figure(bo5a_s2f1,  1,  4, [ dwalin ])
+    _declare_role_figure(bo5a_s2f1,  1,  5, [ young_bilbo ])
+    _declare_role_figure(bo5a_s2f1,  1,  6, [ radagast_eagle ])
+    _declare_role_figure(bo5a_s2f1,  1,  7, [ tauriel ])
+    _declare_role_figure(bo5a_s2f1,  1,  8, [ legolas ])
+    _declare_role_figure(bo5a_s2f1,  1,  9, [ beorn ])
+    _declare_role_figure(bo5a_s2f1,  1, 10, [ gwaihir ])
+    _declare_role_figure(bo5a_s2f1,  2, 11, [ eagle ])
+
+    bo5a_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: bo5a_s2.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(bo5a_s2f2,  1, 1, [ azog ])
+    _declare_role_figure(bo5a_s2f2,  1, 2, [ bolg ])
+    _declare_role_figure(bo5a_s2f2,  3, 3, [ gundabad_orc_captain ])
+    _declare_role_figure(bo5a_s2f2, 36, 4, [ gundabad_orc ])
 
     #########################################################################
     # THE BATTLE OF THE PELENNOR FIELDS
