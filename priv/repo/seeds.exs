@@ -33,7 +33,7 @@ defmodule SbgInv.Data do
 
   #========================================================================
   defp _declare_hero(name, plural_name) do
-    Repo.insert! %Figure{name: name}
+    Repo.insert! %Figure{name: name, plural_name: plural_name}
   end
 
   #========================================================================
@@ -99,6 +99,22 @@ defmodule SbgInv.Data do
     warg         = _declare_warrior("Wild Warg",    "Wild Wargs")
 
     #########################################################################
+    # FIGURES: ARMY OF THROR
+    #########################################################################
+
+    thror  = _declare_unique("Thror")
+    thrain = _declare_unique("Thrain")
+
+    erebor_captain      = _declare_hero("Erebor Captain",      "Erebor Captains")
+    grim_hammer_captain = _declare_hero("Grim Hammer Captain", "Grim Hammer Captains")
+
+    erebor_w_banner      = _declare_warrior("Warrior of Erebor with banner",   "Warriors of Erebor with banner")
+    erebor_w_shield      = _declare_warrior("Warrior of Erebor with shield",   "Warriors of Erebor with shield")
+    erebor_w_spear       = _declare_warrior("Warrior of Erebor with spear",    "Warriors of Erebor with spear")
+    grim_hammer_w_banner = _declare_warrior("Grim Hammer Warrior with banner", "Grim Hammer Warriors with banner")
+    grim_hammer_w        = _declare_warrior("Grim Hammer Warrior",             "Grim Hammer Warriors")
+
+    #########################################################################
     # FIGURES: ARNOR
     #########################################################################
 
@@ -119,10 +135,19 @@ defmodule SbgInv.Data do
     #########################################################################
 
     azog_warg   = _declare_unique("Azog on White warg")
+    azog        = _declare_unique("Azog")
     fimbul_warg = _declare_unique("Fimbul on warg")
     narzug_warg = _declare_unique("Narzug on warg")
+    narzug      = _declare_unique("Narzug")
+    yazneg      = _declare_unique("Yazneg")
+
+    gundabad_orc_captain    = _declare_hero("Gundabad Orc Captain",            "Gundabad Orc Captains")
+    hunter_orc_captain      = _declare_hero("Hunter Orc Captain",              "Hunter Orc Captains")
+    hunter_orc_captain_warg = _declare_hero("Hunter Orc Captain on Fell Warg", "Hunter Orc Captains on Fell Warg")
 
     fell_warg       = _declare_warrior("Fell Warg",          "Fell Wargs")
+    gundabad_orc    = _declare_warrior("Gundabad Orc",       "Gundabad Orcs")
+    hunter_orc      = _declare_warrior("Hunter Orc",         "Hunter Orcs")
     hunter_orc_warg = _declare_warrior("Hunter Orc on warg", "Hunter Orcs on warg")
 
     #########################################################################
@@ -160,9 +185,10 @@ defmodule SbgInv.Data do
     necromancer  = _declare_unique("The Necromancer")
     spider_queen = _declare_unique("Spider Queen")
 
-    castellan    = _declare_warrior("Castellan of Dol Guldur", "Castellans of Dol Guldur")
-    bat_swarm    = _declare_warrior("Bat Swarm",               "Bat Swarms")
-    giant_spider = _declare_warrior("Giant Spider",            "Giant Spiders")
+    castellan       = _declare_warrior("Castellan of Dol Guldur", "Castellans of Dol Guldur")
+    bat_swarm       = _declare_warrior("Bat Swarm",               "Bat Swarms")
+    giant_spider    = _declare_warrior("Giant Spider",            "Giant Spiders")
+    mirkwood_spider = _declare_warrior("Mirkwood Spider",         "Mirkwood Spiders")
 
     #########################################################################
     # FIGURES: EASTERLINGS
@@ -208,6 +234,7 @@ defmodule SbgInv.Data do
     # FIGURES: FREE PEOPLES
     #########################################################################
 
+    beorn               = _declare_unique("Beorn")
     cirdan              = _declare_unique("Círdan")
     gandalf_grey        = _declare_unique("Gandalf the Grey")
     gandalf_white       = _declare_unique("Gandalf the White")
@@ -389,10 +416,13 @@ defmodule SbgInv.Data do
     # FIGURES: MIRKWOOD
     #########################################################################
 
+    tauriel   = _declare_unique("Tauriel")
     thranduil = _declare_unique("Thranduil" )
 
     wood_elf_captain = _declare_hero("Wood Elf Captain", "Wood Elf Captains")
 
+    mirkwood_palace_gd     = _declare_warrior("Mirkwood Palace Guard",                                 "Mirkwood Palace Guards")
+    mirkwood_ranger        = _declare_warrior("Mirkwood Ranger",                                       "Mirkwood Rangers")
     wood_elf_sentinel      = _declare_warrior("Wood Elf Sentinel",                                     "Wood Elf Sentinels")
     wood_elf_w_armor_bow   = _declare_warrior("Wood Elf Warrior with armour and Elf bow",              "Wood Elf Warriors with armour and Elf bow")
     wood_elf_w_armor_blade = _declare_warrior("Wood Elf Warrior with armour and Elven blade",          "Wood Elf Warriors with armour and Elven blade")
@@ -573,7 +603,7 @@ defmodule SbgInv.Data do
     rohan_w_spear_shield  = _declare_warrior("Warrior of Rohan with throwing spear and shield", "Warriors of Rohan with throwing spear and shield")
 
     #########################################################################
-    # SHIRE
+    # FIGURES: SHIRE
     #########################################################################
 
     bandobras      = _declare_unique("Bandobras Took")
@@ -593,23 +623,37 @@ defmodule SbgInv.Data do
     hobbit_shirriff    = _declare_warrior("Hobbit Shirriff",                "Hobbit Shirriffs")
 
     #########################################################################
-    # THORIN'S COMPANY
+    # FIGURES: THORIN'S COMPANY
     #########################################################################
 
-    balin       = _declare_unique("Balin")
-    bifur       = _declare_unique("Bifur")
-    young_bilbo = _declare_unique("Bilbo Baggins")
-    bofur       = _declare_unique("Bofur")
-    bombur      = _declare_unique("Bombur")
-    dori        = _declare_unique("Dori")
-    dwalin      = _declare_unique("Dwalin")
-    fili        = _declare_unique("Fili")
-    gloin       = _declare_unique("Gloin")
-    kili        = _declare_unique("Kili")
-    nori        = _declare_unique("Nori")
-    oin         = _declare_unique("Oin")
-    ori         = _declare_unique("Ori")
-    thorin      = _declare_unique("Thorin Oakenshield")
+    balin              = _declare_unique("Balin")
+    balin_barrel       = _declare_unique("Balin in barrel")
+    bifur              = _declare_unique("Bifur")
+    bifur_barrel       = _declare_unique("Bifur in barrel")
+    young_bilbo        = _declare_unique("Bilbo Baggins")
+    young_bilbo_barrel = _declare_unique("Bilbo Baggins on barrel")
+    bofur              = _declare_unique("Bofur")
+    bofur_barrel       = _declare_unique("Bofur in barrel")
+    bombur             = _declare_unique("Bombur")
+    bombur_barrel      = _declare_unique("Bombur in barrel")
+    dori               = _declare_unique("Dori")
+    dori_barrel        = _declare_unique("Dori in barrel")
+    dwalin             = _declare_unique("Dwalin")
+    dwalin_barrel      = _declare_unique("Dwalin in barrel")
+    fili               = _declare_unique("Fili")
+    fili_barrel        = _declare_unique("Fili in barrel")
+    gloin              = _declare_unique("Gloin")
+    gloin_barrel       = _declare_unique("Gloin in barrel")
+    kili               = _declare_unique("Kili")
+    kili_barrel        = _declare_unique("Kili in barrel")
+    nori               = _declare_unique("Nori")
+    nori_barrel        = _declare_unique("Nori in barrel")
+    oin                = _declare_unique("Oin")
+    oin_barrel         = _declare_unique("Oin in barrel")
+    ori                = _declare_unique("Ori")
+    ori_barrel         = _declare_unique("Ori in barrel")
+    thorin             = _declare_unique("Thorin Oakenshield")
+    thorin_barrel      = _declare_unique("Thorin Oakenshield in barrel")
 
     #########################################################################
     # THE TROLLS
@@ -971,6 +1015,221 @@ defmodule SbgInv.Data do
     _declare_role_figure(bpf_s11f2,  2, 18, [ mordor_troll ])
     _declare_role_figure(bpf_s11f2,  1, 19, [ mumak ])
     _declare_role_figure(bpf_s11f2,  1, 20, [ mahud_beastmaster])
+
+    #########################################################################
+    # THE DESOLATION OF SMAUG
+    #########################################################################
+
+    #========================================================================
+    dos_s1 = Repo.insert! %Scenario{
+      name: "Alone in the Woods",
+      blurb: "Beorn is cornered by Azog's Hunters.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 21,
+      map_width: 48, map_height: 48, location: :mirkwood
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: dos_s1.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 1, page: 6}
+
+    dos_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s1.id, faction: :free_peoples, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(dos_s1f1, 1, 1, [ beorn ])
+
+    dos_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: dos_s1.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(dos_s1f2,  1, 1, [ azog ])
+    _declare_role_figure(dos_s1f2,  1, 2, [ narzug ])
+    _declare_role_figure(dos_s1f2,  6, 3, [ hunter_orc_warg ])
+    _declare_role_figure(dos_s1f2, 12, 4, [ hunter_orc ])
+
+    #========================================================================
+    dos_s2 = Repo.insert! %Scenario{
+      name: "Flies and Spiders, Part I",
+      blurb: "Bilbo attempts to rescue the dwarves from the clutches of the spiders.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 7,
+      map_width: 48, map_height: 48, location: :mirkwood
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: dos_s2.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 2, page: 8}
+
+    dos_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s2.id, faction: :free_peoples, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(dos_s2f1, 1, 1, [ young_bilbo ])
+
+    dos_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: dos_s2.id, faction: :dol_guldur, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(dos_s2f2,  6, 1, [ mirkwood_spider ])
+
+    #========================================================================
+    dos_s3 = Repo.insert! %Scenario{
+      name: "Flies and Spiders, Part II",
+      blurb: "Elves inadvertently rescue Thorin's company from the spiders of Mirkwood.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 58,
+      map_width: 48, map_height: 48, location: :mirkwood
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: dos_s3.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 3, page: 10}
+
+    dos_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s3.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(dos_s3f1,  1, 1, [ thorin ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ balin ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ dwalin ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ fili ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ kili ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ oin ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ gloin ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ ori ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ nori ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ dori ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ bifur ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ bofur ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ bombur ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ young_bilbo ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ legolas ])
+    _declare_role_figure(dos_s3f1,  1, 1, [ tauriel ])
+    _declare_role_figure(dos_s3f1, 24, 1, [ mirkwood_ranger ])
+
+    dos_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: dos_s3.id, faction: :dol_guldur, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(dos_s3f2, 18, 1, [ mirkwood_spider ])
+
+    #========================================================================
+    dos_s4 = Repo.insert! %Scenario{
+      name: "Barrels Out of Bond, Part I",
+      blurb: "Azog's troops catch up to the dwarves, who are escaping in barrels from the elves.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 74,
+      map_width: 72, map_height: 48, location: :mirkwood
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: dos_s4.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 4, page: 12}
+
+    dos_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s4.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(dos_s4f1,  1,  1, [ thorin_barrel ])
+    _declare_role_figure(dos_s4f1,  1,  2, [ balin_barrel ])
+    _declare_role_figure(dos_s4f1,  1,  3, [ dwalin_barrel ])
+    _declare_role_figure(dos_s4f1,  1,  4, [ fili_barrel ])
+    _declare_role_figure(dos_s4f1,  1,  5, [ kili_barrel ])
+    _declare_role_figure(dos_s4f1,  1,  6, [ oin_barrel ])
+    _declare_role_figure(dos_s4f1,  1,  7, [ gloin_barrel ])
+    _declare_role_figure(dos_s4f1,  1,  8, [ ori_barrel ])
+    _declare_role_figure(dos_s4f1,  1,  9, [ nori_barrel ])
+    _declare_role_figure(dos_s4f1,  1, 10, [ dori_barrel ])
+    _declare_role_figure(dos_s4f1,  1, 11, [ bifur_barrel ])
+    _declare_role_figure(dos_s4f1,  1, 12, [ bofur_barrel ])
+    _declare_role_figure(dos_s4f1,  1, 13, [ bombur_barrel ])
+    _declare_role_figure(dos_s4f1,  1, 14, [ young_bilbo_barrel ])
+    _declare_role_figure(dos_s4f1,  1, 15, [ legolas ])
+    _declare_role_figure(dos_s4f1,  1, 16, [ tauriel ])
+    _declare_role_figure(dos_s4f1, 20, 17, [ mirkwood_ranger ])
+
+    dos_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: dos_s4.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(dos_s4f2,  1, 1, [ azog_warg ])
+    _declare_role_figure(dos_s4f2,  1, 2, [ fimbul_warg ])
+    _declare_role_figure(dos_s4f2,  1, 3, [ narzug ])
+    _declare_role_figure(dos_s4f2, 24, 4, [ hunter_orc ])
+    _declare_role_figure(dos_s4f2, 12, 5, [ hunter_orc_warg ])
+
+    #========================================================================
+    dos_s5 = Repo.insert! %Scenario{
+      name: "Barrels Out of Bond, Part II",
+      blurb: "Azog's troops attempt to capture or kill Kili.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 72,
+      map_width: 72, map_height: 48, location: :mirkwood
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: dos_s5.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 5, page: 14}
+
+    dos_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s5.id, faction: :mirkwood, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(dos_s5f1,  1, 1, [ legolas ])
+    _declare_role_figure(dos_s5f1,  1, 2, [ tauriel ])
+    _declare_role_figure(dos_s5f1,  1, 3, [ kili ])
+    _declare_role_figure(dos_s5f1, 20, 4, [ mirkwood_ranger ])
+    _declare_role_figure(dos_s5f1, 10, 5, [ mirkwood_palace_gd ])
+
+    dos_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: dos_s5.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(dos_s5f2,  1, 1, [ azog_warg ])
+    _declare_role_figure(dos_s5f2,  1, 2, [ fimbul_warg ])
+    _declare_role_figure(dos_s5f2,  1, 3, [ narzug ])
+    _declare_role_figure(dos_s5f2, 24, 4, [ hunter_orc ])
+    _declare_role_figure(dos_s5f2, 12, 5, [ hunter_orc_warg ])
+
+    #========================================================================
+    dos_s6 = Repo.insert! %Scenario{
+      name: "The Battle of Dimrill Dale, Part I",
+      blurb: "Azog goes after Thror.",
+      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 123,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: dos_s6.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 6, page: 16}
+
+    dos_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s6.id, faction: :army_thror, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(dos_s6f1,  1,  1, [ thror ])
+    _declare_role_figure(dos_s6f1,  1,  2, [ thrain ])
+    _declare_role_figure(dos_s6f1,  1,  3, [ thorin ])
+    _declare_role_figure(dos_s6f1,  2,  4, "Captains of Erebor with shield", [ erebor_captain ])
+    _declare_role_figure(dos_s6f1,  2,  5, [ grim_hammer_captain ])
+    _declare_role_figure(dos_s6f1, 13,  6, [ erebor_w_shield ])
+    _declare_role_figure(dos_s6f1, 12,  7, [ erebor_w_spear ])
+    _declare_role_figure(dos_s6f1,  1,  8, [ erebor_w_banner ])
+    _declare_role_figure(dos_s6f1, 23,  9, [ grim_hammer_w ])
+    _declare_role_figure(dos_s6f1,  1, 10, [ grim_hammer_w_banner ])
+
+    dos_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: dos_s6.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(dos_s6f2,  1,  1, [ azog ])
+    _declare_role_figure(dos_s6f2,  1,  2, [ fimbul_warg ])
+    _declare_role_figure(dos_s6f2,  1,  3, [ narzug ])
+    _declare_role_figure(dos_s6f2,  1,  4, [ yazneg ])
+    _declare_role_figure(dos_s6f2,  3,  5, [ hunter_orc_captain ])
+    _declare_role_figure(dos_s6f2,  2,  6, [ hunter_orc_captain_warg ])
+    _declare_role_figure(dos_s6f2, 12,  7, [ hunter_orc_warg ])
+    _declare_role_figure(dos_s6f2, 12,  8, [ hunter_orc ])
+    _declare_role_figure(dos_s6f2, 24,  9, [ fell_warg ])
+
+    #========================================================================
+    dos_s7 = Repo.insert! %Scenario{
+      name: "The Battle of Dimrill Dale, Part II",
+      blurb: "Azog goes after Thrain.",
+      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 93,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: dos_s7.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 7, page: 18}
+
+    dos_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s7.id, faction: :army_thror, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(dos_s7f1,  1,  1, [ thrain ])
+    _declare_role_figure(dos_s7f1,  1,  2, [ thorin ])
+    _declare_role_figure(dos_s7f1,  2,  3, "Captains of Erebor with shield", [ erebor_captain ])
+    _declare_role_figure(dos_s7f1,  2,  4, [ grim_hammer_captain ])
+    _declare_role_figure(dos_s7f1, 12,  5, [ erebor_w_shield ])
+    _declare_role_figure(dos_s7f1, 12,  6, [ erebor_w_spear ])
+    _declare_role_figure(dos_s7f1, 20,  7, [ grim_hammer_w ])
+
+    dos_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: dos_s7.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(dos_s7f2,  1,  1, [ azog ])
+    _declare_role_figure(dos_s7f2,  1,  2, [ fimbul_warg ])
+    _declare_role_figure(dos_s7f2,  1,  3, [ narzug ])
+    _declare_role_figure(dos_s7f2,  1,  4, [ yazneg ])
+    _declare_role_figure(dos_s7f2,  3,  5, [ hunter_orc_captain_warg ])
+    _declare_role_figure(dos_s7f2, 12,  7, [ hunter_orc_warg ])
+    _declare_role_figure(dos_s7f2, 12,  8, [ hunter_orc ])
+    _declare_role_figure(dos_s7f2, 12,  9, [ fell_warg ])
+
+    #========================================================================
+    dos_s8 = Repo.insert! %Scenario{
+      name: "The Battle of Dimrill Dale, Part III",
+      blurb: "Azog goes after Thorin.",
+      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 66,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: dos_s8.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 8, page: 20}
+
+    dos_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s8.id, faction: :army_thror, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(dos_s8f1,  1,  1, [ thorin ])
+    _declare_role_figure(dos_s8f1,  1,  2, [ balin ])
+    _declare_role_figure(dos_s8f1,  1,  3, [ dwalin ])
+    _declare_role_figure(dos_s8f1, 12,  4, [ erebor_w_shield ])
+    _declare_role_figure(dos_s8f1, 12,  5, [ erebor_w_spear ])
+
+    dos_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: dos_s8.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(dos_s8f2,  1,  1, [ azog ])
+    _declare_role_figure(dos_s8f2,  2,  2, [ gundabad_orc_captain ])
+    _declare_role_figure(dos_s8f2, 36,  3, [ gundabad_orc ])
 
     #########################################################################
     # THE FALL OF THE NECROMANCER

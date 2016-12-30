@@ -2,80 +2,83 @@ import EctoEnum
 
 defenum Faction,
   angmar:         0,
-  azogs_hunters:  1,
+  army_thror:     1,
   arnor:          2,
-  dol_guldur:     3,
-  dwarves:        4,
-  easterlings:    5,
-  fellowship:     6,
-  free_peoples:   7,
-  goblintown:     8,
-  gondor:         9,
-  harad:         10,
-  isengard:      11,
-  lothlorien:    12,
-  mirkwood:      13,
-  mordor:        14,
-  moria:         15,
-  numenor:       16,
-  rivendell:     17,
-  rohan:         18,
-  shire:         19,
-  thorins_co:    20,
-  trolls:        21,
-  white_council: 22
+  azogs_hunters:  3,
+  dol_guldur:     4,
+  dwarves:        5,
+  easterlings:    6,
+  fellowship:     7,
+  free_peoples:   8,
+  goblintown:     9,
+  gondor:        10,
+  harad:         11,
+  isengard:      12,
+  lothlorien:    13,
+  mirkwood:      14,
+  mordor:        15,
+  moria:         16,
+  numenor:       17,
+  rivendell:     18,
+  rohan:         19,
+  shire:         20,
+  thorins_co:    21,
+  trolls:        22,
+  white_council: 23
 
 defenum Location,
   amon_hen:      0,
   arnor:         1,
   dol_guldur:    2,
-  eriador:       3,
-  fangorn:       4,
-  fornost:       5,
-  goblintown:    6,
-  gondor:        7,
-  harad:         8,
-  harondor:      9,
-  helms_deep:   10,
-  isengard:     11,
-  ithilien:     12,
-  lothlorien:   13,
-  minas_morgul: 14,
-  minas_tirith: 15,
-  mirkwood:     16,
-  mordor:       17,
-  moria:        18,
-  morannon:     19,
-  osgiliath:    20,
-  rhovanion:    21,
-  rhun:         22,
-  rohan:        23,
-  the_shire:    24,
-  weathertop:   25
+  erebor:        3,
+  eriador:       4,
+  fangorn:       5,
+  fornost:       6,
+  goblintown:    7,
+  gondor:        8,
+  harad:         9,
+  harondor:     10,
+  helms_deep:   11,
+  isengard:     12,
+  ithilien:     13,
+  lothlorien:   14,
+  minas_morgul: 15,
+  minas_tirith: 16,
+  mirkwood:     17,
+  mordor:       18,
+  moria:        19,
+  morannon:     20,
+  osgiliath:    21,
+  rhovanion:    22,
+  rhun:         23,
+  rohan:        24,
+  the_shire:    25,
+  weathertop:   26
 
 defenum ScenarioResourceBook,
   bpf:      0,   # Battle of the Pelennor Fields
-  fotn:     1,   # The Fall of the Necromancer
-  fotr:     2,   # Fellowship of the Ring
-  fotr_jb:  3,   # Fellowship of the Ring Journeybook
-  fp:       4,   # Free Peoples
-  fr:       5,   # Fallen Realms
-  gif:      6,   # Gondor in Flames
-  harad:    7,   # Harad
-  hobbit:   8,   # The Hobbit (An Unexpected Journey)
-  kd:       9,   # Khazad-dûm
-  km:      10,   # Kingdoms of Men
-  ma:      11,   # Moria & Angmar
-  mordor:  12,   # Mordor
-  roa:     13,   # The Ruin of Arnor
-  rotk:    14,   # Return of the King
-  rotk_jb: 15,   # Return of the King Journeybook
-  saf:     16,   # Shadow & Flame
-  site:    17,   # A Shadow in the East
-  sog:     18,   # Siege of Gondor
-  sots:    19,   # The Scouring of the Shire
-  ttt:     20,   # The Two Towers
-  ttt_jb:  21    # The Two Towers Journeybook
+  dos:      1,   # The Desolation of Smaug
+  fotn:     2,   # The Fall of the Necromancer
+  fotr:     3,   # Fellowship of the Ring
+  fotr_jb:  4,   # Fellowship of the Ring Journeybook
+  fp:       5,   # Free Peoples
+  fr:       6,   # Fallen Realms
+  gif:      7,   # Gondor in Flames
+  harad:    8,   # Harad
+  hobbit:   9,   # The Hobbit (An Unexpected Journey)
+  kd:      10,   # Khazad-dûm
+  km:      11,   # Kingdoms of Men
+  ma:      12,   # Moria & Angmar
+  mordor:  13,   # Mordor
+  roa:     14,   # The Ruin of Arnor
+  rotk:    15,   # Return of the King
+  rotk_jb: 16,   # Return of the King Journeybook
+  saf:     17,   # Shadow & Flame
+  site:    18,   # A Shadow in the East
+  sog:     19,   # Siege of Gondor
+  sots:    20,   # The Scouring of the Shire
+  ttt:     21,   # The Two Towers
+  ttt_jb:  22    # The Two Towers Journeybook
 
 defenum ScenarioResourceType,
   source: 0,
