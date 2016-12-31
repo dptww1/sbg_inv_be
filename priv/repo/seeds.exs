@@ -308,6 +308,8 @@ defmodule SbgInv.Data do
     goblin_scribe = _declare_unique("The Goblin Scribe")
     grinnah       = _declare_unique("Grinnah")
 
+    goblintown_captain = _declare_hero("Goblin Captain", "Goblin Captains")
+
     goblintown_g = _declare_warrior("Goblin Warrior", "Goblin Warriors")
 
     #########################################################################
@@ -2273,6 +2275,134 @@ defmodule SbgInv.Data do
     _declare_role_figure(fp_s7f2,  9,  7, [ orc_w_spear ])
     _declare_role_figure(fp_s7f2,  5,  8, [ orc_w_bow ])
     _declare_role_figure(fp_s7f2,  4,  9, [ orc_w_2h ])
+
+    #########################################################################
+    # GOBLINTOWN
+    #########################################################################
+
+    #========================================================================
+    gt_s1 = Repo.insert! %Scenario{
+      name: "Wizards in the Dark",
+      blurb: "Gandalf and Radagast investigate Goblintown.",
+      date_age: 3, date_year: 2938, date_month: 0, date_day: 0, size: 23,
+      map_width: 48, map_height: 48, location: :goblintown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: gt_s1.id, resource_type: :source, book: :gt, title: "Goblintown Starter Set", sort_order: 1, page: 0}
+    _declare_podcast(gt_s1.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-4f-wizards-in-the-dark", "The Green Dragon", 1)
+
+    gt_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: gt_s1.id, faction: :white_council, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(gt_s1f1,  1,  1, [ gandalf_grey ])
+    _declare_role_figure(gt_s1f1,  1,  2, [ radagast ])
+
+    gt_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: gt_s1.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(gt_s1f2,  1,  1, [ goblin_king ])
+    _declare_role_figure(gt_s1f2, 20,  2, [ goblintown_g ])
+
+    #========================================================================
+    gt_s2 = Repo.insert! %Scenario{
+      name: "The Breakthrough",
+      blurb: "A few dwarves from Thorin's Company try to escape from Goblintown.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 17,
+      map_width: 24, map_height: 24, location: :goblintown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: gt_s2.id, resource_type: :source, book: :gt, title: "Goblintown Starter Set", sort_order: 2, page: 28}
+    _declare_podcast(gt_s2.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-4a-the-breakthrough", "The Green Dragon", 1)
+    _declare_video_replay(gt_s2.id, "https://www.youtube.com/watch?v=uW4hOlxrtig&list=PLzZ6-_-l-0I52yFFoGzMSuyhscqAy6RmV&index=41", "Spilforeningen the Fellowship", 2)
+
+    gt_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: gt_s2.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(gt_s2f1,  1,  1, [ fili ])
+    _declare_role_figure(gt_s2f1,  1,  2, [ kili ])
+    _declare_role_figure(gt_s2f1,  1,  3, [ oin ])
+    _declare_role_figure(gt_s2f1,  1,  4, [ gloin ])
+
+    gt_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: gt_s2.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(gt_s2f2,  1,  1, [ goblintown_captain ])
+    _declare_role_figure(gt_s2f2, 12,  2, [ goblintown_g ])
+
+    #========================================================================
+    gt_s3 = Repo.insert! %Scenario{
+      name: "Rescue the Baggage",
+      blurb: "A few dwarves from Thorin's Company try to recover their baggage and escape from Goblintown.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 16,
+      map_width: 24, map_height: 24, location: :goblintown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: gt_s3.id, resource_type: :source, book: :gt, title: "Goblintown Starter Set", sort_order: 3, page: 30}
+    _declare_podcast(gt_s3.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-4b-rescue-the-baggage", "The Green Dragon", 1)
+    _declare_video_replay(gt_s3.id, "https://www.youtube.com/watch?v=HbczOIRKY-I&list=PLzZ6-_-l-0I52yFFoGzMSuyhscqAy6RmV&index=42", "Spilforeningen the Fellowship", 2)
+
+    gt_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: gt_s3.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(gt_s3f1,  1,  1, [ bifur ])
+    _declare_role_figure(gt_s3f1,  1,  2, [ bofur ])
+    _declare_role_figure(gt_s3f1,  1,  3, [ bombur ])
+
+    gt_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: gt_s3.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(gt_s3f2,  1,  1, [ grinnah ])
+    _declare_role_figure(gt_s3f2, 12,  2, [ goblintown_g ])
+
+    #========================================================================
+    gt_s4 = Repo.insert! %Scenario{
+      name: "Brothers in Arms",
+      blurb: "A few dwarves from Thorin's Company try to find their weapons and escape from Goblintown.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 16,
+      map_width: 24, map_height: 24, location: :goblintown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: gt_s4.id, resource_type: :source, book: :gt, title: "Goblintown Starter Set", sort_order: 4, page: 32}
+    _declare_podcast(gt_s4.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-4c-brothers-in-arms", "The Green Dragon", 1)
+    _declare_video_replay(gt_s4.id, "https://www.youtube.com/watch?v=ah0m1ldoPNI&t=464s&list=PLzZ6-_-l-0I52yFFoGzMSuyhscqAy6RmV&index=43", "Spilforeningen the Fellowship", 2)
+
+    gt_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: gt_s4.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(gt_s4f1,  1,  1, [ ori ])
+    _declare_role_figure(gt_s4f1,  1,  2, [ nori ])
+    _declare_role_figure(gt_s4f1,  1,  3, [ dori ])
+
+    gt_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: gt_s4.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(gt_s4f2,  1,  1, [ goblin_scribe ])
+    _declare_role_figure(gt_s4f2, 12,  2, [ goblintown_g ])
+
+    #========================================================================
+    gt_s5 = Repo.insert! %Scenario{
+      name: "Guard the Crossing",
+      blurb: "The heavy hitters from Thorin's Company try prevent the goblins from escaping their own kingdom.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 16,
+      map_width: 24, map_height: 24, location: :goblintown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: gt_s5.id, resource_type: :source, book: :gt, title: "Goblintown Starter Set", sort_order: 5, page: 34}
+    _declare_podcast(gt_s5.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-4d-guard-the-crossing", "The Green Dragon", 1)
+    _declare_video_replay(gt_s5.id, "https://www.youtube.com/watch?v=9H2_pXdQAMU&list=PLzZ6-_-l-0I52yFFoGzMSuyhscqAy6RmV&index=44", "Spilforeningen the Fellowship", 2)
+
+    gt_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: gt_s5.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(gt_s5f1,  1,  1, [ thorin ])
+    _declare_role_figure(gt_s5f1,  1,  2, [ balin ])
+    _declare_role_figure(gt_s5f1,  1,  3, [ dwalin ])
+
+    gt_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: gt_s5.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(gt_s5f2,  1,  1, [ goblin_king ])
+    _declare_role_figure(gt_s5f2, 12,  2, [ goblintown_g ])
+
+    #========================================================================
+    gt_s6 = Repo.insert! %Scenario{
+      name: "The Wizard and the Burglar",
+      blurb: "Gandalf tries to reach Bilbo in the depths of Goblintown.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 10,
+      map_width: 24, map_height: 24, location: :goblintown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: gt_s6.id, resource_type: :source, book: :gt, title: "Goblintown Starter Set", sort_order: 6, page: 36}
+    _declare_podcast(gt_s6.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-4e-the-wizard-and-the-burglar", "The Green Dragon", 1)
+
+    gt_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: gt_s6.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(gt_s6f1,  1,  1, [ gandalf_grey ])
+    _declare_role_figure(gt_s6f1,  1,  2, [ young_bilbo ])
+
+    gt_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: gt_s6.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(gt_s6f2,  1,  1, [ goblin_king ])
+    _declare_role_figure(gt_s6f2,  1,  2, [ grinnah ])
+    _declare_role_figure(gt_s6f2,  6,  3, [ goblintown_g ])
 
     #########################################################################
     # GONDOR IN FLAMES

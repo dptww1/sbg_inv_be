@@ -72,22 +72,23 @@ defenum ScenarioResourceBook,
   fp:       6,   # Free Peoples
   fr:       7,   # Fallen Realms
   gif:      8,   # Gondor in Flames
-  harad:    9,   # Harad
-  hobbit:  10,   # The Hobbit (An Unexpected Journey)
-  kd:      11,   # Khazad-dûm
-  km:      12,   # Kingdoms of Men
-  ma:      13,   # Moria & Angmar
-  mordor:  14,   # Mordor
-  roa:     15,   # The Ruin of Arnor
-  rotk:    16,   # Return of the King
-  rotk_jb: 17,   # Return of the King Journeybook
-  saf:     18,   # Shadow & Flame
-  site:    19,   # A Shadow in the East
-  sog:     20,   # Siege of Gondor
-  sots:    21,   # The Scouring of the Shire
-  tba:     22,   # There and Back Again
-  ttt:     23,   # The Two Towers
-  ttt_jb:  24    # The Two Towers Journeybook
+  gt:       9,   # Escape from Goblintown
+  harad:   10,   # Harad
+  hobbit:  11,   # The Hobbit (An Unexpected Journey)
+  kd:      12,   # Khazad-dûm
+  km:      13,   # Kingdoms of Men
+  ma:      14,   # Moria & Angmar
+  mordor:  15,   # Mordor
+  roa:     16,   # The Ruin of Arnor
+  rotk:    17,   # Return of the King
+  rotk_jb: 18,   # Return of the King Journeybook
+  saf:     19,   # Shadow & Flame
+  site:    20,   # A Shadow in the East
+  sog:     21,   # Siege of Gondor
+  sots:    22,   # The Scouring of the Shire
+  tba:     23,   # There and Back Again
+  ttt:     24,   # The Two Towers
+  ttt_jb:  25    # The Two Towers Journeybook
 
 defenum ScenarioResourceType,
   source: 0,
