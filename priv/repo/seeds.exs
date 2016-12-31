@@ -2789,7 +2789,7 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 1, page: 112}
     _declare_video_replay(hobbit_s1.id, "https://www.youtube.com/watch?v=lwc1bqolr7g", "Spillforeningen the Fellowship", 1)
-    _declare_video_replay(hobbit_s1.id, "https://www.youtube.com/watch?v=qo23ETd11oI&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=1&t=7s", "DHCL", 2)
+    _declare_video_replay(hobbit_s1.id, "https://www.youtube.com/watch?v=qo23ETd11oI&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=1&t=7s", "DCHL", 2)
     _declare_web_replay(hobbit_s1.id, "http://davetownsend.org/Battles/LotR-20160528/", "DaveT", 3)
 
     hobbit_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s1.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
@@ -2823,7 +2823,7 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s2.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 2, page: 114}
     _declare_video_replay(hobbit_s2.id, "https://www.youtube.com/watch?v=ek6FHqDp2-w", "Spillforeningen the Fellowship", 2)
-    _declare_video_replay(hobbit_s2.id, "https://www.youtube.com/watch?v=DE8qtshNA7I&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=2", "DHCL", 3)
+    _declare_video_replay(hobbit_s2.id, "https://www.youtube.com/watch?v=DE8qtshNA7I&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=2", "DCHL", 3)
 
     hobbit_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s2.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(hobbit_s2f1, 1,  1, [ thorin ])
@@ -2859,7 +2859,7 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s3.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 3, page: 116}
     _declare_video_replay(hobbit_s3.id, "https://www.youtube.com/watch?v=PahHhcXCNPY", "Spillforeningen the Fellowship", 2)
-    _declare_video_replay(hobbit_s3.id, "https://www.youtube.com/watch?v=mn7yH5lXXMg&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=3", "DHCL", 3)
+    _declare_video_replay(hobbit_s3.id, "https://www.youtube.com/watch?v=mn7yH5lXXMg&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=3", "DCHL", 3)
 
     hobbit_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s3.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(hobbit_s3f1, 1,  1, [ thorin ])
