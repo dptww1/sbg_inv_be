@@ -1259,6 +1259,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: dos_s4.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 4, page: 12}
+    _declare_web_replay(dos_s4.id, "http://davetownsend.org/Battles/LotR-20160507/", "DaveT", 1)
 
     dos_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s4.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(dos_s4f1,  1,  1, [ thorin_barrel ])
