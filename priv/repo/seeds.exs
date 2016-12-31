@@ -57,6 +57,16 @@ defmodule SbgInv.Data do
   end
 
   #========================================================================
+  defp _declare_podcast(scenario_id, url, title, sort_order) do
+    Repo.insert! %ScenarioResource{scenario_id: scenario_id, resource_type: :podcast, url: url, title: title, sort_order: sort_order}
+  end
+
+  #========================================================================
+  defp _declare_video_replay(scenario_id, url, title, sort_order) do
+    Repo.insert! %ScenarioResource{scenario_id: scenario_id, resource_type: :video_replay, url: url, title: title, sort_order: sort_order}
+  end
+
+  #========================================================================
   defp _declare_web_replay(scenario_id, url, title, sort_order) do
     Repo.insert! %ScenarioResource{scenario_id: scenario_id, resource_type: :web_replay, url: url, title: title, sort_order: sort_order}
   end
@@ -805,6 +815,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bo5a_s1.id, resource_type: :source, book: :bot5a, title: "Battle of the Five Armies", sort_order: 1, page: 6}
+    _declare_video_replay(bo5a_s1.id, "https://www.youtube.com/watch?v=e_CKPe8raRk&list=PLeIywh8H3Kc7ylraUCzZyMf2Jo_eXEt4a&index=4", "DCHL", 1)
 
     bo5a_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: bo5a_s1.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(bo5a_s1f1,  1,  1, [ bard_windlance ])
@@ -831,6 +842,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: bo5a_s2.id, resource_type: :source, book: :bot5a, title: "Battle of the Five Armies", sort_order: 2, page: 8}
+    _declare_podcast(bo5a_s2.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-7-assaul", "The Green Dragon", 1)
 
     bo5a_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: bo5a_s2.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(bo5a_s2f1,  1,  1, [ thorin ])
@@ -1211,6 +1223,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: dos_s2.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 2, page: 8}
+    _declare_podcast(dos_s2.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-11-flies-and-spiders", "The Green Dragon", 1)
 
     dos_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s2.id, faction: :free_peoples, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(dos_s2f1, 1, 1, [ young_bilbo ])
@@ -1260,6 +1273,7 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: dos_s4.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 4, page: 12}
     _declare_web_replay(dos_s4.id, "http://davetownsend.org/Battles/LotR-20160507/", "DaveT", 1)
+    _declare_podcast(dos_s4.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-8-barrels-out-of-bond", "The Green Dragon", 1)
 
     dos_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s4.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(dos_s4f1,  1,  1, [ thorin_barrel ])
@@ -1518,7 +1532,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s5.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 5, page: 16}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s5.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=eyHTP-Vjhd8&index=5&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+    _declare_video_replay(fotn_s5.id, "https://www.youtube.com/watch?v=eyHTP-Vjhd8&index=5&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", "Mid-Sussex Wargamers", 1)
 
     fotn_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s5.id, faction: :lothlorien, suggested_points: 450, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotn_s5f1, 1, 1, [ galadriel_lotg ])
@@ -1543,7 +1557,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s6.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 6, page: 18}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s6.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=Cug7stLutRQ&index=6&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+    _declare_video_replay(fotn_s6.id, "https://www.youtube.com/watch?v=Cug7stLutRQ&index=6&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", "Mid-Sussex Wargamers", 1)
 
     fotn_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s6.id, faction: :rivendell,  suggested_points: 700, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotn_s6f1, 1, 1, [ elrond ])
@@ -1577,7 +1591,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s7.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 7, page: 20}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s7.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=2J5px0_J2wQ&index=7&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+    _declare_video_replay(fotn_s7.id, "https://www.youtube.com/watch?v=2J5px0_J2wQ&index=7&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", "Mid-Sussex Wargamers", 1)
 
     fotn_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s7.id, faction: :rivendell,  suggested_points: 1500, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotn_s7f1, 1, 1, [ gandalf_grey ])
@@ -1804,6 +1818,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s8.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 8, page: 46}
+    _declare_podcast(fotrjb_s8.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-1-amon-sul", "The Green Dragon", 1)
 
     fotrjb_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s8.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotrjb_s8f1, 1, 1, [ frodo ])
@@ -1899,6 +1914,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s12.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 12, page: 64}
+    _declare_podcast(fotrjb_s12.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-13-balins-tomb", "The Green Dragon", 1)
 
     fotrjb_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s12.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotrjb_s12f1, 1, 1, [ frodo ])
@@ -2013,6 +2029,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s16.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 16, page: 84}
+    _declare_podcast(fotrjb_s16.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-9-amon-hen", "The Green Dragon", 1)
 
     fotrjb_s16f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s16.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotrjb_s16f1, 1,  1, [ aragorn ])
@@ -2035,6 +2052,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s17.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 17, page: 86}
+    _declare_podcast(fotrjb_s17.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-9-amon-hen", "The Green Dragon", 1)
 
     fotrjb_s17f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s17.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotrjb_s17f1, 1,  1, [ boromir ])
@@ -2055,6 +2073,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s18.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 18, page: 88}
+    _declare_podcast(fotrjb_s18.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-9-amon-hen", "The Green Dragon", 1)
 
     fotrjb_s18f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s18.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotrjb_s18f1, 1,  1, [ aragorn ])
@@ -2372,6 +2391,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: gif_s4.id, resource_type: :source, book: :gif, title: "Gondor in Flames", sort_order: 4, page: 58}
+    _declare_podcast(gif_s4.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-12-against-the-southron-horde", "The Green Dragon", 1)
 
     gif_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: gif_s4.id, faction: :gondor, suggested_points: 600, actual_points: 0, sort_order: 1}
     _declare_role_figure(gif_s4f1,  1,  1, "Boromir, Captain of the White Tower on horse with lance and shield", [ boromir_wt_horse ])
@@ -2638,9 +2658,9 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 1, page: 112}
-    Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=lwc1bqolr7g", title: "Spillforeningen the Fellowship", sort_order: 2}
-    Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=qo23ETd11oI&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=1&t=7s", title: "DHCL", sort_order: 3}
-    _declare_web_replay(hobbit_s1.id, "http://davetownsend.org/Battles/LotR-20160528/", "DaveT", 4)
+    _declare_video_replay(hobbit_s1.id, "https://www.youtube.com/watch?v=lwc1bqolr7g", "Spillforeningen the Fellowship", 1)
+    _declare_video_replay(hobbit_s1.id, "https://www.youtube.com/watch?v=qo23ETd11oI&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=1&t=7s", "DHCL", 2)
+    _declare_web_replay(hobbit_s1.id, "http://davetownsend.org/Battles/LotR-20160528/", "DaveT", 3)
 
     hobbit_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s1.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(hobbit_s1f1, 1,  1, [ thorin ])
@@ -2672,8 +2692,8 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s2.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 2, page: 114}
-    Repo.insert! %ScenarioResource{scenario_id: hobbit_s2.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=ek6FHqDp2-w", title: "Spillforeningen the Fellowship", sort_order: 2}
-    Repo.insert! %ScenarioResource{scenario_id: hobbit_s2.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=DE8qtshNA7I&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=2", title: "DHCL", sort_order: 3}
+    _declare_video_replay(hobbit_s2.id, "https://www.youtube.com/watch?v=ek6FHqDp2-w", "Spillforeningen the Fellowship", 2)
+    _declare_video_replay(hobbit_s2.id, "https://www.youtube.com/watch?v=DE8qtshNA7I&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=2", "DHCL", 3)
 
     hobbit_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s2.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(hobbit_s2f1, 1,  1, [ thorin ])
@@ -2708,8 +2728,8 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s3.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 3, page: 116}
-    Repo.insert! %ScenarioResource{scenario_id: hobbit_s3.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=PahHhcXCNPY", title: "Spillforeningen the Fellowship", sort_order: 2}
-    Repo.insert! %ScenarioResource{scenario_id: hobbit_s3.id, resource_type: :video_replay, url: "https://www.youtube.com/watch?v=mn7yH5lXXMg&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=3", title: "DHCL", sort_order: 3}
+    _declare_video_replay(hobbit_s3.id, "https://www.youtube.com/watch?v=PahHhcXCNPY", "Spillforeningen the Fellowship", 2)
+    _declare_video_replay(hobbit_s3.id, "https://www.youtube.com/watch?v=mn7yH5lXXMg&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=3", "DHCL", 3)
 
     hobbit_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s3.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(hobbit_s3f1, 1,  1, [ thorin ])
@@ -3902,6 +3922,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: roa_s1.id, resource_type: :source, book: :roa, title: "The Ruin of Arnor", sort_order: 1, page: 50}
+    _declare_podcast(roa_s1.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-15-to-kill-a-king", "The Green Dragon", 1)
 
     roa_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: roa_s1.id, faction: :arnor, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(roa_s1f1, 1, 1, [ arvedui ])
@@ -4170,6 +4191,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s6.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 6, page: 40}
+    _declare_podcast(sots_s6.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-6-the-battle-of-bywater", "The Green Dragon", 1)
 
     sots_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s6.id, faction: :shire, suggested_points: 269, actual_points: 269, sort_order: 1}
     _declare_role_figure(sots_s6f1,  1, 1, [ frodo_pony ])
@@ -4963,6 +4985,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: sog_s7.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 6, page: 58}
+    _declare_podcast(sog_s7.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-2-helms-deep", "The Green Dragon", 1)
 
     sog_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: sog_s7.id, faction: :gondor, suggested_points: 250, actual_points: 0, sort_order: 1}
     _declare_role_figure(sog_s7f1, 1,  1, [ aragorn ])
@@ -5838,6 +5861,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s3.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 3, page: 22}
+    _declare_podcast(tttjb_s3.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-10-scouring-of-the-westfold", "The Green Dragon", 1)
 
     tttjb_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s3.id, faction: :rohan, suggested_points: 300, actual_points: 0, sort_order: 1}
     _declare_role_figure(tttjb_s3f1, 1, 1, [ rohan_captain ])
@@ -6349,7 +6373,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: mordor_s4.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 4, page: 66}
-    Repo.insert! %ScenarioResource{scenario_id: mordor_s4.id, resource_type: :podcast, title: "The Green Dragon", sort_order: 1, url: "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-16-vengeance-of-the-nazgul"}
+    _declare_podcast(mordor_s4.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-16-vengeance-of-the-nazgul", "The Green Dragon", 1)
 
     mordor_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s4.id, faction: :dwarves, suggested_points: 700, actual_points: 0, sort_order: 1}
     _declare_role_figure(mordor_s4f1,  1,  1, [ dain ])
