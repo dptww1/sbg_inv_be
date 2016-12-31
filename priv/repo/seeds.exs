@@ -43,7 +43,7 @@ defmodule SbgInv.Data do
 
   #========================================================================
   defp _declare_monster(name, plural_name) do
-    Repo.insert! %Figure{name: name}
+    Repo.insert! %Figure{name: name, plural_name: plural_name}
   end
 
   #========================================================================
@@ -53,7 +53,7 @@ defmodule SbgInv.Data do
 
   #========================================================================
   defp _declare_siege(name, plural_name) do
-    Repo.insert! %Figure{name: name}
+    Repo.insert! %Figure{name: name, plural_name: plural_name}
   end
 
   #========================================================================
@@ -102,8 +102,9 @@ defmodule SbgInv.Data do
     # FIGURES: ARMY OF THROR
     #########################################################################
 
-    thror  = _declare_unique("Thror")
-    thrain = _declare_unique("Thrain")
+    thror         = _declare_unique("Thror")
+    thrain        = _declare_unique("Thrain")
+    thrain_broken = _declare_unique("Thrain the Broken")
 
     erebor_captain      = _declare_hero("Erebor Captain",      "Erebor Captains")
     grim_hammer_captain = _declare_hero("Grim Hammer Captain", "Grim Hammer Captains")
@@ -131,25 +132,46 @@ defmodule SbgInv.Data do
     ranger_north_spear = _declare_warrior("Ranger of the North with spear", "Rangers of the North with spear")
 
     #########################################################################
-    # FIGURES: AZOG'S HUNTERS
+    # FIGURES: AZOG'S HUNTERS/AZOG'S LEGION
     #########################################################################
 
     azog_warg   = _declare_unique("Azog on White warg")
     azog        = _declare_unique("Azog")
     bolg        = _declare_unique("Bolg")
+    fimbul      = _declare_unique("Fimbul")
     fimbul_warg = _declare_unique("Fimbul on warg")
     narzug_warg = _declare_unique("Narzug on warg")
     narzug      = _declare_unique("Narzug")
     yazneg      = _declare_unique("Yazneg")
 
-    gundabad_orc_captain    = _declare_hero("Gundabad Orc Captain",            "Gundabad Orc Captains")
-    hunter_orc_captain      = _declare_hero("Hunter Orc Captain",              "Hunter Orc Captains")
-    hunter_orc_captain_warg = _declare_hero("Hunter Orc Captain on Fell Warg", "Hunter Orc Captains on Fell Warg")
+    goblin_mercenary_captain = _declare_hero("Goblin Mercenary Captain",        "Goblin Mercenary Captains")
+    gundabad_orc_captain     = _declare_hero("Gundabad Orc Captain",            "Gundabad Orc Captains")
+    hunter_orc_captain       = _declare_hero("Hunter Orc Captain",              "Hunter Orc Captains")
+    hunter_orc_captain_warg  = _declare_hero("Hunter Orc Captain on Fell Warg", "Hunter Orc Captains on Fell Warg")
 
-    fell_warg       = _declare_warrior("Fell Warg",          "Fell Wargs")
-    gundabad_orc    = _declare_warrior("Gundabad Orc",       "Gundabad Orcs")
-    hunter_orc      = _declare_warrior("Hunter Orc",         "Hunter Orcs")
-    hunter_orc_warg = _declare_warrior("Hunter Orc on warg", "Hunter Orcs on warg")
+    fell_warg           = _declare_warrior("Fell Warg",                "Fell Wargs")
+    goblin_mercenary    = _declare_warrior("Goblin Mercenary",         "Goblin Mercenaries")
+    gundabad_berserker  = _declare_warrior("Gundabad Berserker",       "Gundabad Berserkers")
+    gundabad_orc_shield = _declare_warrior("Gundabad Orc with shield", "Gundabad Orcs with shield")
+    gundabad_orc_spear  = _declare_warrior("Gundabad Orc with spear",  "Gundabad Orcs with spear")
+    hunter_orc          = _declare_warrior("Hunter Orc",               "Hunter Orcs")
+    hunter_orc_warg     = _declare_warrior("Hunter Orc on warg",       "Hunter Orcs on warg")
+    war_bat             = _declare_warrior("War Bat",                  "War Bats")
+
+    catapult_troll = _declare_monster("Catapult Troll", "Catapult Trolls")
+    gundabad_ogre  = _declare_monster("Gundabad Ogre",  "Gundabad Ogres")
+    gundabad_troll = _declare_monster("Gundabad Troll", "Gundabad Trolls")
+    troll_brute    = _declare_monster("Troll Brute",    "Troll Brutes")
+
+    #########################################################################
+    # FIGURES: DALE
+    #########################################################################
+
+    girion = _declare_unique("Girion, Lord of Dale")
+
+    dale_captain = _declare_hero("Captain of Dale", "Captains of Dale")
+
+    dale_w = _declare_warrior("Man of Dale", "Men of Dale")
 
     #########################################################################
     # FIGURES: DESOLATOR OF THE NORTH
@@ -189,8 +211,15 @@ defmodule SbgInv.Data do
     # FIGURES: DOL GULDUR
     #########################################################################
 
-    necromancer  = _declare_unique("The Necromancer")
-    spider_queen = _declare_unique("Spider Queen")
+    dark_headsman    = _declare_unique("The Dark Headsman")
+    dungeon_keeper   = _declare_unique("The Keeper of the Dungeons")
+    forsaken         = _declare_unique("The Forsaken")
+    lingering_shadow = _declare_unique("The Lingering Shadow")
+    necromancer      = _declare_unique("The Necromancer")
+    spider_queen     = _declare_unique("Spider Queen")
+
+    abyssal_knight   = _declare_hero("The Abyssal Knight", "Abyssal Knights")
+    slayer_of_men    = _declare_hero("The Slayer of Men",  "Slayers of Men")
 
     castellan       = _declare_warrior("Castellan of Dol Guldur", "Castellans of Dol Guldur")
     bat_swarm       = _declare_warrior("Bat Swarm",               "Bat Swarms")
@@ -366,6 +395,23 @@ defmodule SbgInv.Data do
     mumak_mahud = _declare_warrior("Mûmak Mahud", "Mûmak Mahuds")
 
     #########################################################################
+    # FIGURES: IRON HILLS
+    #########################################################################
+
+    dain_ironfoot = _declare_unique("Dain Ironfoot")
+    dain_ironfoot_boar = _declare_unique("Dain Ironfoot on war boar")
+
+    iron_hills_captain_goat = _declare_hero("Iron Hills Captain on goat", "Iron Hills Captains on goat")
+    iron_hills_captain      = _declare_hero("Iron Hills Captain",         "Iron Hills Captains")
+
+    iron_hills_chariot            = _declare_warrior("Iron Hills Chariot",                     "Iron Hills Chariots")
+    iron_hills_goat_rider         = _declare_warrior("Iron Hills Goat Rider",                  "Iron Hills Goat Riders")
+    iron_hills_dwarf              = _declare_warrior("Iron Hills Dwarf",                       "Iron Hills Dwarves")
+    iron_hills_dwarf_shield_spear = _declare_warrior("Iron Hills Dwarf with spear and shield", "Iron Hills Dwarves with spear and shield")
+
+    iron_hills_ballista = _declare_siege("Iron Hills Ballista", "Iron Hills Ballistae")
+
+    #########################################################################
     # FIGURES: ISENGARD
     #########################################################################
 
@@ -412,19 +458,31 @@ defmodule SbgInv.Data do
     #########################################################################
 
     alfrid          = _declare_unique("Alfrid")
+    bain            = _declare_unique("Bain, Son of Bard")
+    bard            = _declare_unique("Bard the Bowman")
     bard_windlance  = _declare_unique("Bard the Bowman with Windlance")
+    braga           = _declare_unique("Braga, Captain of the Guard")
+    hilda           = _declare_unique("Hilda Bianca")
     master_laketown = _declare_unique("The Master of Lake-town")
+    percy           = _declare_unique("Percy")
+    sigrid          = _declare_unique("Sigrid")
+    tilda           = _declare_unique("Tilda")
 
     laketown_gd_captain = _declare_hero("Lake-town Guard Captain", "Lake-town Guard Captains")
 
-    laketown_gd_w_bow   = _declare_warrior("Lake-town Guard with bow",   "Lake-town Guards with bow")
-    laketown_gd_w_spear = _declare_warrior("Lake-town Guard with spear", "Lake-town Guards with spear")
+    laketown_gd_w_bow       = _declare_warrior("Lake-town Guard with bow",      "Lake-town Guards with bow")
+    laketown_gd_w_spear     = _declare_warrior("Lake-town Guard with spear",    "Lake-town Guards with spear")
+    laketown_gd_w_sword     = _declare_warrior("Lake-town Guard with sword",    "Lake-town Guards with sword")
+    laketown_militia_bow    = _declare_warrior("Lake-town Militia with bow",    "Lake-town Militia with bow")
+    laketown_militia_shield = _declare_warrior("Lake-town Militia with shield", "Lake-town Militia with shield")
+    laketown_militia_spear  = _declare_warrior("Lake-town Militia with spear",  "Lake-town Militia with spear")
 
     #########################################################################
     # FIGURES: LOTHLORIEN
     #########################################################################
 
     celeborn       = _declare_unique("Celeborn")
+    galadriel      = _declare_unique("Galadriel")
     galadriel_lotg = _declare_unique("Galadriel, Lady of the Galadhrim")
     haldir         = _declare_unique("Haldir")
 
@@ -440,9 +498,14 @@ defmodule SbgInv.Data do
     tauriel   = _declare_unique("Tauriel")
     thranduil = _declare_unique("Thranduil" )
 
-    wood_elf_captain = _declare_hero("Wood Elf Captain", "Wood Elf Captains")
+    palace_gd_captain = _declare_hero("Palace Guard Captain", "Palace Guard Captains")
+    mirkwood_captain  = _declare_hero("Mirkwood Captain",     "Mirkwood Captains")
+    wood_elf_captain  = _declare_hero("Wood Elf Captain",     "Wood Elf Captains")
 
-    mirkwood_palace_gd     = _declare_warrior("Mirkwood Palace Guard",                                 "Mirkwood Palace Guards")
+    mirkwood_elf_bow       = _declare_warrior("Mirkwood Elf with bow",                                 "Mirkwood Elves with bow")
+    mirkwood_elf_glaive    = _declare_warrior("Mirkwood Elf with glaive",                              "Mirkwood Elves with glaive")
+    mirkwood_elf_shield    = _declare_warrior("Mirkwood Elf with shield",                              "Mirkwood Elves with shield")
+    mirkwood_palace_gd     = _declare_warrior("Palace Guard",                                          "Palace Guards")
     mirkwood_ranger        = _declare_warrior("Mirkwood Ranger",                                       "Mirkwood Rangers")
     wood_elf_sentinel      = _declare_warrior("Wood Elf Sentinel",                                     "Wood Elf Sentinels")
     wood_elf_w_armor_bow   = _declare_warrior("Wood Elf Warrior with armour and Elf bow",              "Wood Elf Warriors with armour and Elf bow")
@@ -649,32 +712,52 @@ defmodule SbgInv.Data do
 
     balin              = _declare_unique("Balin")
     balin_barrel       = _declare_unique("Balin in barrel")
+    balin_erebor       = _declare_unique("Balin, Champion of Erebor")
+    balin_young        = _declare_unique("Young Balin")
     bifur              = _declare_unique("Bifur")
     bifur_barrel       = _declare_unique("Bifur in barrel")
+    bifur_erebor       = _declare_unique("Bifur, Champion of Erebor")
     young_bilbo        = _declare_unique("Bilbo Baggins")
     young_bilbo_barrel = _declare_unique("Bilbo Baggins on barrel")
     bofur              = _declare_unique("Bofur")
     bofur_barrel       = _declare_unique("Bofur in barrel")
+    bofur_erebor       = _declare_unique("Bofur, Champion of Erebor")
     bombur             = _declare_unique("Bombur")
     bombur_barrel      = _declare_unique("Bombur in barrel")
+    bombur_erebor      = _declare_unique("Bombur, Champion of Erebor")
     dori               = _declare_unique("Dori")
     dori_barrel        = _declare_unique("Dori in barrel")
+    dori_erebor        = _declare_unique("Dori, Champion of Erebor")
     dwalin             = _declare_unique("Dwalin")
     dwalin_barrel      = _declare_unique("Dwalin in barrel")
+    dwalin_erebor      = _declare_unique("Dwalin, Champion of Erebor")
+    dwalin_goat        = _declare_unique("Dwalin on goat")
+    dwalin_young       = _declare_unique("Young Dwalin")
     fili               = _declare_unique("Fili")
     fili_barrel        = _declare_unique("Fili in barrel")
+    fili_erebor        = _declare_unique("Fili, Champion of Erebor")
+    fili_goat          = _declare_unique("Fili on goat")
     gloin              = _declare_unique("Gloin")
     gloin_barrel       = _declare_unique("Gloin in barrel")
+    gloin_erebor       = _declare_unique("Gloin, Champion of Erebor")
     kili               = _declare_unique("Kili")
     kili_barrel        = _declare_unique("Kili in barrel")
+    kili_erebor        = _declare_unique("Kili, Champion of Erebor")
+    kili_goat          = _declare_unique("Kili on goat")
     nori               = _declare_unique("Nori")
     nori_barrel        = _declare_unique("Nori in barrel")
+    nori_erebor        = _declare_unique("Nori, Champion of Erebor")
     oin                = _declare_unique("Oin")
     oin_barrel         = _declare_unique("Oin in barrel")
+    oin_erebor         = _declare_unique("Oin, Champion of Erebor")
     ori                = _declare_unique("Ori")
     ori_barrel         = _declare_unique("Ori in barrel")
+    ori_erebor         = _declare_unique("Ori, Champion of Erebor")
     thorin             = _declare_unique("Thorin Oakenshield")
     thorin_barrel      = _declare_unique("Thorin Oakenshield in barrel")
+    thorin_erebor      = _declare_unique("Thorin Oakenshield, King Under the Mountain")
+    thorin_goat        = _declare_unique("Thorin Oakenshield on goat")
+    thorin_young       = _declare_unique("Young Thorin Oakenshield")
 
     #########################################################################
     # THE TROLLS
@@ -716,7 +799,7 @@ defmodule SbgInv.Data do
     #========================================================================
     bo5a_s1 = Repo.insert! %Scenario{
       name: "Fire and Water",
-      blurb: "Bard attempts to take down Smaug as the dragon attacks Laketown.",
+      blurb: "Bard attempts to take down Smaug as the dragon attacks Lake-town.",
       date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 34,
       map_width: 48, map_height: 48, location: :laketown
     }
@@ -766,7 +849,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(bo5a_s2f2,  1, 1, [ azog ])
     _declare_role_figure(bo5a_s2f2,  1, 2, [ bolg ])
     _declare_role_figure(bo5a_s2f2,  3, 3, [ gundabad_orc_captain ])
-    _declare_role_figure(bo5a_s2f2, 36, 4, [ gundabad_orc ])
+    _declare_role_figure(bo5a_s2f2, 36, 4, "Gundabad Orcs", [ gundabad_orc_shield, gundabad_orc_spear ])
 
     #########################################################################
     # THE BATTLE OF THE PELENNOR FIELDS
@@ -1232,7 +1315,7 @@ defmodule SbgInv.Data do
       name: "The Battle of Dimrill Dale, Part I",
       blurb: "Azog goes after Thror.",
       date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 123,
-      map_width: 48, map_height: 48, location: :erebor
+      map_width: 48, map_height: 48, location: :moria
     }
 
     Repo.insert! %ScenarioResource{scenario_id: dos_s6.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 6, page: 16}
@@ -1265,7 +1348,7 @@ defmodule SbgInv.Data do
       name: "The Battle of Dimrill Dale, Part II",
       blurb: "Azog goes after Thrain.",
       date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 93,
-      map_width: 48, map_height: 48, location: :erebor
+      map_width: 48, map_height: 48, location: :moria
     }
 
     Repo.insert! %ScenarioResource{scenario_id: dos_s7.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 7, page: 18}
@@ -1294,7 +1377,7 @@ defmodule SbgInv.Data do
       name: "The Battle of Dimrill Dale, Part III",
       blurb: "Azog goes after Thorin.",
       date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 66,
-      map_width: 48, map_height: 48, location: :erebor
+      map_width: 48, map_height: 48, location: :moria
     }
 
     Repo.insert! %ScenarioResource{scenario_id: dos_s8.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 8, page: 20}
@@ -1309,7 +1392,7 @@ defmodule SbgInv.Data do
     dos_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: dos_s8.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(dos_s8f2,  1,  1, [ azog ])
     _declare_role_figure(dos_s8f2,  2,  2, [ gundabad_orc_captain ])
-    _declare_role_figure(dos_s8f2, 36,  3, [ gundabad_orc ])
+    _declare_role_figure(dos_s8f2, 36,  3, "Gundabad Orcs", [ gundabad_orc_shield, gundabad_orc_spear ])
 
     #########################################################################
     # THE FALL OF THE NECROMANCER
@@ -4942,8 +5025,755 @@ defmodule SbgInv.Data do
     _declare_role_figure(sog_s8f2, 15,  7, [ uruk_hai_berserker ])
 
     #########################################################################
+    # THERE AND BACK AGAIN
+    #########################################################################
+
+    #========================================================================
+    tba_s1 = Repo.insert! %Scenario{
+      name: "Flies and Spiders Part I",
+      blurb: "Can Bilbo rescure Thorin's company from the spiders of Mirkwood?",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 7,
+      map_width: 48, map_height: 48, location: :mirkwood
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s1.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 1, page: 10}
+
+    tba_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s1.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s1f1,  1,  1, [ young_bilbo ])
+
+    tba_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s1.id, faction: :dol_guldur, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s1f2,  6,  1, [ mirkwood_spider ])
+
+    #========================================================================
+    tba_s2 = Repo.insert! %Scenario{
+      name: "Flies and Spiders, Part II",
+      blurb: "Legolas and Tauriel attack the spiders attacking Thorin's company.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 54,
+      map_width: 48, map_height: 48, location: :mirkwood
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s2.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 2, page: 12}
+
+    tba_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s2.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s2f1,  1, 1, [ thorin ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ balin ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ dwalin ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ fili ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ kili ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ oin ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ gloin ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ ori ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ nori ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ dori ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ bifur ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ bofur ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ bombur ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ young_bilbo ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ legolas ])
+    _declare_role_figure(tba_s2f1,  1, 1, [ tauriel ])
+    _declare_role_figure(tba_s2f1, 20, 1, [ mirkwood_ranger ])
+
+    tba_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s2.id, faction: :dol_guldur, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s2f2, 18, 1, [ mirkwood_spider ])
+
+    #========================================================================
+    tba_s3 = Repo.insert! %Scenario{
+      name: "Barrels Out of Bond, Part I: Open the Gate",
+      blurb: "Azog's troops catch up to the dwarves, who are escaping in barrels from the elves.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 74,
+      map_width: 72, map_height: 48, location: :mirkwood
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s3.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 3, page: 14}
+
+    tba_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s3.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s3f1,  1,  1, [ thorin_barrel ])
+    _declare_role_figure(tba_s3f1,  1,  2, [ balin_barrel ])
+    _declare_role_figure(tba_s3f1,  1,  3, [ dwalin_barrel ])
+    _declare_role_figure(tba_s3f1,  1,  4, [ fili_barrel ])
+    _declare_role_figure(tba_s3f1,  1,  5, [ kili_barrel ])
+    _declare_role_figure(tba_s3f1,  1,  6, [ oin_barrel ])
+    _declare_role_figure(tba_s3f1,  1,  7, [ gloin_barrel ])
+    _declare_role_figure(tba_s3f1,  1,  8, [ ori_barrel ])
+    _declare_role_figure(tba_s3f1,  1,  9, [ nori_barrel ])
+    _declare_role_figure(tba_s3f1,  1, 10, [ dori_barrel ])
+    _declare_role_figure(tba_s3f1,  1, 11, [ bifur_barrel ])
+    _declare_role_figure(tba_s3f1,  1, 12, [ bofur_barrel ])
+    _declare_role_figure(tba_s3f1,  1, 13, [ bombur_barrel ])
+    _declare_role_figure(tba_s3f1,  1, 14, [ young_bilbo_barrel ])
+    _declare_role_figure(tba_s3f1,  1, 15, [ legolas ])
+    _declare_role_figure(tba_s3f1,  1, 16, [ tauriel ])
+    _declare_role_figure(tba_s3f1,  1, 17, [ palace_gd_captain ])
+    _declare_role_figure(tba_s3f1, 10, 18, [ mirkwood_ranger ])
+    _declare_role_figure(tba_s3f1, 10, 19, [ mirkwood_palace_gd ])
+
+    tba_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s3.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s3f2,  1, 1, [ bolg ])
+    _declare_role_figure(tba_s3f2,  1, 2, [ narzug ])
+    _declare_role_figure(tba_s3f2,  1, 3, [ fimbul ])
+    _declare_role_figure(tba_s3f2, 24, 4, [ hunter_orc ])
+    _declare_role_figure(tba_s3f2, 12, 5, [ hunter_orc_warg ])
+
+    #========================================================================
+    tba_s4 = Repo.insert! %Scenario{
+      name: "Barrels Out of Bond, Part II: Down the Forest River",
+      blurb: "Thorin's company continues its escape while the Elves try to capture an Orc hero for interrogation.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 76,
+      map_width: 72, map_height: 48, location: :mirkwood
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s4.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 4, page: 16}
+
+    tba_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s4.id, faction: :mirkwood, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s4f1,  1,  1, [ thorin_barrel ])
+    _declare_role_figure(tba_s4f1,  1,  2, [ balin_barrel ])
+    _declare_role_figure(tba_s4f1,  1,  3, [ dwalin_barrel ])
+    _declare_role_figure(tba_s4f1,  1,  4, [ fili_barrel ])
+    _declare_role_figure(tba_s4f1,  1,  5, [ kili_barrel ])
+    _declare_role_figure(tba_s4f1,  1,  6, [ oin_barrel ])
+    _declare_role_figure(tba_s4f1,  1,  7, [ gloin_barrel ])
+    _declare_role_figure(tba_s4f1,  1,  8, [ ori_barrel ])
+    _declare_role_figure(tba_s4f1,  1,  9, [ nori_barrel ])
+    _declare_role_figure(tba_s4f1,  1, 10, [ dori_barrel ])
+    _declare_role_figure(tba_s4f1,  1, 11, [ bifur_barrel ])
+    _declare_role_figure(tba_s4f1,  1, 12, [ bofur_barrel ])
+    _declare_role_figure(tba_s4f1,  1, 13, [ bombur_barrel ])
+    _declare_role_figure(tba_s4f1,  1, 14, [ young_bilbo_barrel ])
+    _declare_role_figure(tba_s4f1,  1, 15, [ legolas ])
+    _declare_role_figure(tba_s4f1,  1, 16, [ tauriel ])
+    _declare_role_figure(tba_s4f1,  1, 17, [ palace_gd_captain ])
+    _declare_role_figure(tba_s4f1, 10, 18, [ mirkwood_ranger ])
+    _declare_role_figure(tba_s4f1, 10, 19, [ mirkwood_palace_gd ])
+
+    tba_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s4.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s4f2,  1, 1, [ bolg ])
+    _declare_role_figure(tba_s4f2,  1, 2, [ fimbul ])
+    _declare_role_figure(tba_s4f2,  1, 3, [ narzug ])
+    _declare_role_figure(tba_s4f2, 24, 4, [ hunter_orc ])
+    _declare_role_figure(tba_s4f2, 12, 5, [ hunter_orc_warg ])
+
+    #========================================================================
+    tba_s5 = Repo.insert! %Scenario{
+      name: "Lake-town Chase",
+      blurb: "Bard tries to prepare for Smaug's attack while being hindered by the Master of Lake-town.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 17,
+      map_width: 48, map_height: 48, location: :laketown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s5.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 5, page: 18}
+
+    tba_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s5.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s5f1,  1,  1, [ bard ])
+    _declare_role_figure(tba_s5f1,  1,  2, [ bain ])
+
+    tba_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s5.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s5f2,  1, 1, [ master_laketown ])
+    _declare_role_figure(tba_s5f2,  1, 2, [ alfrid ])
+    _declare_role_figure(tba_s5f2,  1, 3, [ braga ])
+    _declare_role_figure(tba_s5f2,  4, 4, [ laketown_gd_w_sword ])
+    _declare_role_figure(tba_s5f2,  4, 5, [ laketown_gd_w_spear ])
+    _declare_role_figure(tba_s5f2,  4, 6, [ laketown_gd_w_bow ])
+
+    #========================================================================
+    tba_s6 = Repo.insert! %Scenario{
+      name: "Assassins in the Night",
+      blurb: "Fimbul the Hunter attacks the Dwarves hiding out in Bard's house.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 22,
+      map_width: 12, map_height: 12, location: :laketown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s6.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 6, page: 20}
+
+    tba_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s6.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s6f1,  1,  1, [ fili ])
+    _declare_role_figure(tba_s6f1,  1,  2, [ kili ])
+    _declare_role_figure(tba_s6f1,  1,  3, [ bofur ])
+    _declare_role_figure(tba_s6f1,  1,  4, [ oin ])
+    _declare_role_figure(tba_s6f1,  1,  5, [ bain ])
+    _declare_role_figure(tba_s6f1,  1,  6, [ tauriel ])
+    _declare_role_figure(tba_s6f1,  1,  7, [ legolas ])
+    _declare_role_figure(tba_s6f1,  1,  8, [ sigrid ])
+    _declare_role_figure(tba_s6f1,  1,  9, [ tilda ])
+
+    tba_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s6.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s6f2,  1, 1, [ fimbul ])
+    _declare_role_figure(tba_s6f2, 12, 2, [ hunter_orc ])
+
+    #========================================================================
+    tba_s7 = Repo.insert! %Scenario{
+      name: "The Capture of the Grey Wizard",
+      blurb: "Gandalf is captured by the denizens of Dol Guldur.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 22,
+      map_width: 36, map_height: 24, location: :dol_guldur
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s7.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 7, page: 22}
+
+    tba_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s7.id, faction: :white_council, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s7f1,  1,  1, [ gandalf_grey ])
+    _declare_role_figure(tba_s7f1,  1,  2, [ thrain_broken ])
+
+    tba_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s7.id, faction: :dol_guldur, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s7f2,  1, 1, [ necromancer ])
+    _declare_role_figure(tba_s7f2,  1, 2, [ azog ])
+    _declare_role_figure(tba_s7f2,  6, 4, [ hunter_orc_warg ])
+    _declare_role_figure(tba_s7f2, 12, 4, [ hunter_orc ])
+
+    #========================================================================
+    tba_s8 = Repo.insert! %Scenario{
+      name: "Fire and Water",
+      blurb: "Smaug attacks Lake-town.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 38,
+      map_width: 48, map_height: 48, location: :laketown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s8.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 8, page: 28}
+
+    tba_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s8.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s8f1,  1,  1, [ bard ])
+    _declare_role_figure(tba_s8f1,  1,  2, [ bain ])
+    _declare_role_figure(tba_s8f1,  1,  3, [ sigrid ])
+    _declare_role_figure(tba_s8f1,  1,  4, [ tilda ])
+    _declare_role_figure(tba_s8f1,  1,  5, [ tauriel ])
+    _declare_role_figure(tba_s8f1,  1,  6, [ kili ])
+    _declare_role_figure(tba_s8f1,  1,  7, [ fili ])
+    _declare_role_figure(tba_s8f1,  1,  8, [ bofur ])
+    _declare_role_figure(tba_s8f1,  1,  9, [ oin ])
+    _declare_role_figure(tba_s8f1,  1, 10, [ master_laketown ])
+    _declare_role_figure(tba_s8f1,  1, 11, [ alfrid ])
+    _declare_role_figure(tba_s8f1,  1, 12, [ braga ])
+    _declare_role_figure(tba_s8f1,  8, 13, [ laketown_gd_w_sword ])
+    _declare_role_figure(tba_s8f1,  8, 14, [ laketown_gd_w_spear ])
+    _declare_role_figure(tba_s8f1,  8, 15, [ laketown_gd_w_bow ])
+
+    tba_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s8.id, faction: :desolator_north, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s8f2,  1, 1, [ smaug ])
+
+    #========================================================================
+    tba_s9 = Repo.insert! %Scenario{
+      name: "The Fall of the Necromancer",
+      blurb: "The White Council attacks the forces of Evil in Dol Guldur.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 16,
+      map_width: 24, map_height: 24, location: :dol_guldur
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s9.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 9, page: 30}
+
+    tba_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s9.id, faction: :white_council, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s9f1,  1,  1, [ gandalf_grey ])
+    _declare_role_figure(tba_s9f1,  1,  2, [ galadriel ])
+    _declare_role_figure(tba_s9f1,  1,  3, [ elrond ])
+    _declare_role_figure(tba_s9f1,  1,  4, [ saruman ])
+    _declare_role_figure(tba_s9f1,  1,  5, [ radagast ])
+
+    tba_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s9.id, faction: :dol_guldur, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s9f2,  1, 1, [ dungeon_keeper ])
+    _declare_role_figure(tba_s9f2,  1, 2, [ witch_king ])
+    _declare_role_figure(tba_s9f2,  1, 3, [ khamul ])
+    _declare_role_figure(tba_s9f2,  1, 4, [ dark_headsman ])
+    _declare_role_figure(tba_s9f2,  1, 5, [ forsaken ])
+    _declare_role_figure(tba_s9f2,  1, 6, [ lingering_shadow ])
+    _declare_role_figure(tba_s9f2,  2, 7, [ abyssal_knight ])
+    _declare_role_figure(tba_s9f2,  2, 8, [ slayer_of_men ])
+
+    #========================================================================
+    tba_s10 = Repo.insert! %Scenario{
+      name: "The Iron Hills Arrive",
+      blurb: "Fighting breaks out between the Elves at Erebor and the newly-arrived Iron Hills dwarves led by Dain Ironfoot.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 67,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s10.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 10, page: 36}
+
+    tba_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s10.id, faction: :mirkwood, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s10f1,  1,  1, [ thranduil ])
+    _declare_role_figure(tba_s10f1,  2,  2, [ mirkwood_captain ])
+    _declare_role_figure(tba_s10f1, 12,  3, [ mirkwood_elf_shield ])
+    _declare_role_figure(tba_s10f1, 12,  4, [ mirkwood_elf_glaive ])
+    _declare_role_figure(tba_s10f1, 12,  5, [ mirkwood_elf_bow ])
+
+    tba_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s10.id, faction: :iron_hills, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s10f2,  1, 1, [ dain_ironfoot ])
+    _declare_role_figure(tba_s10f2,  1, 2, [ iron_hills_captain_goat ])
+    _declare_role_figure(tba_s10f2, 24, 3, [ iron_hills_goat_rider ])
+    _declare_role_figure(tba_s10f2,  2, 4, [ iron_hills_ballista ])
+
+    #========================================================================
+    tba_s11 = Repo.insert! %Scenario{
+      name: "The Clouds Burst",
+      blurb: "The Orcs arrive at Erebor to break up the fighting between the Elves and the Dwarves.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 85,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s11.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 11, page: 38}
+
+    tba_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s11.id, faction: :iron_hills, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s11f1,  1,  1, [ thranduil ])
+    _declare_role_figure(tba_s11f1,  8,  2, [ mirkwood_elf_shield ])
+    _declare_role_figure(tba_s11f1,  8,  3, [ mirkwood_elf_glaive ])
+    _declare_role_figure(tba_s11f1,  8,  4, [ mirkwood_elf_bow ])
+    _declare_role_figure(tba_s11f1,  1,  5, [ dain_ironfoot_boar ])
+    _declare_role_figure(tba_s11f1, 24,  6, [ iron_hills_dwarf ])
+
+    tba_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s11.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s11f2,  3, 1, [ gundabad_orc_captain ])
+    _declare_role_figure(tba_s11f2,  3, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s11f2, 18, 3, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s11f2, 18, 4, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s12 = Repo.insert! %Scenario{
+      name: "The Chariots Charge",
+      blurb: "The Dwarven war machines counterttack the Orcs at Erebor.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 55,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s12.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 12, page: 40}
+
+    tba_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s12.id, faction: :iron_hills, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s12f1,  1,  1, [ iron_hills_captain ])
+    _declare_role_figure(tba_s12f1, 12,  2, [ iron_hills_dwarf_shield_spear ])
+    _declare_role_figure(tba_s12f1,  2,  3, [ iron_hills_chariot ])
+
+    tba_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s12.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s12f2,  3, 1, [ gundabad_orc_captain ])
+    _declare_role_figure(tba_s12f2,  1, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s12f2, 18, 3, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s12f2, 18, 4, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s13 = Repo.insert! %Scenario{
+      name: "Unleash the War Beasts",
+      blurb: "The Gundabad Ogres are called in to handle the Iron Hills Chariots.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 71,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s13.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 13, page: 42}
+
+    tba_s13f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s13.id, faction: :iron_hills, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s13f1,  2,  1, [ iron_hills_captain ])
+    _declare_role_figure(tba_s13f1, 24,  2, [ iron_hills_dwarf_shield_spear ])
+    _declare_role_figure(tba_s13f1,  2,  3, [ iron_hills_chariot ])
+
+    tba_s13f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s13.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s13f2,  3, 1, [ gundabad_orc_captain ])
+    _declare_role_figure(tba_s13f2,  4, 2, [ gundabad_ogre ])
+    _declare_role_figure(tba_s13f2, 18, 3, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s13f2, 18, 4, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s14 = Repo.insert! %Scenario{
+      name: "The Breakthrough",
+      blurb: "Bard and friends try to break through to the town of Dale.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 36,
+      map_width: 48, map_height: 48, location: :dale
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s14.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 14, page: 44}
+
+    tba_s14f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s14.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s14f1,  1,  1, [ bard ])
+    _declare_role_figure(tba_s14f1,  1,  2, [ gandalf_grey ])
+    _declare_role_figure(tba_s14f1,  1,  3, [ young_bilbo ])
+    _declare_role_figure(tba_s14f1,  4,  4, [ laketown_militia_shield ])
+    _declare_role_figure(tba_s14f1,  4,  5, [ laketown_militia_spear])
+    _declare_role_figure(tba_s14f1,  4,  6, [ laketown_militia_bow ])
+
+    tba_s14f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s14.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s14f2,  2, 1, [ gundabad_orc_captain ])
+    _declare_role_figure(tba_s14f2,  1, 2, [ catapult_troll ])
+    _declare_role_figure(tba_s14f2,  9, 3, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s14f2,  9, 4, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s15 = Repo.insert! %Scenario{
+      name: "Battle in the Streets",
+      blurb: "Bard and friends defend Dale from the depredations of the Gundabads.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 70,
+      map_width: 48, map_height: 48, location: :dale
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s15.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 15, page: 46}
+
+    tba_s15f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s15.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s15f1,  1,  1, [ bard ])
+    _declare_role_figure(tba_s15f1,  1,  2, [ percy ])
+    _declare_role_figure(tba_s15f1,  1,  3, [ gandalf_grey ])
+    _declare_role_figure(tba_s15f1,  1,  4, [ young_bilbo ])
+    _declare_role_figure(tba_s15f1,  1,  5, [ alfrid ])
+    _declare_role_figure(tba_s15f1,  8,  6, [ laketown_militia_shield ])
+    _declare_role_figure(tba_s15f1,  8,  7, [ laketown_militia_spear])
+    _declare_role_figure(tba_s15f1,  8,  8, [ laketown_militia_bow ])
+
+    tba_s15f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s15.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s15f2,  3, 1, [ gundabad_orc_captain ])
+    _declare_role_figure(tba_s15f2,  2, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s15f2,  9, 3, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s15f2,  9, 4, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s16 = Repo.insert! %Scenario{
+      name: "Something Worth Fighting For",
+      blurb: "Bard must save his family from a Gundabad Ogre.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 11,
+      map_width: 24, map_height: 24, location: :dale
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s16.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 16, page: 48}
+
+    tba_s16f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s16.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s16f1,  1,  1, [ bard ])
+    _declare_role_figure(tba_s16f1,  1,  2, [ bain ])
+    _declare_role_figure(tba_s16f1,  1,  3, [ sigrid ])
+    _declare_role_figure(tba_s16f1,  1,  4, [ tilda ])
+
+    tba_s16f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s16.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s16f2,  1, 1, [ gundabad_ogre ])
+    _declare_role_figure(tba_s16f2,  3, 2, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s16f2,  3, 3, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s17 = Repo.insert! %Scenario{
+      name: "The Ultimate Price",
+      blurb: "Thranduil outpaces his bodyguards and finds himself surrounded by Orcs in the ruins of Dale.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 52,
+      map_width: 48, map_height: 48, location: :dale
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s17.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 17, page: 50}
+
+    tba_s17f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s17.id, faction: :mirkwood, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s17f1,  1,  1, [ thranduil ])
+    _declare_role_figure(tba_s17f1,  1,  2, [ mirkwood_captain ])
+    _declare_role_figure(tba_s17f1,  8,  3, [ mirkwood_elf_shield ])
+    _declare_role_figure(tba_s17f1,  8,  4, [ mirkwood_elf_glaive ])
+    _declare_role_figure(tba_s17f1,  8,  5, [ mirkwood_elf_bow ])
+
+    tba_s17f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s17.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s17f2,  2, 1, [ gundabad_orc_captain ])
+    _declare_role_figure(tba_s17f2, 12, 2, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s17f2, 12, 3, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s18 = Repo.insert! %Scenario{
+      name: "The People Fight Back",
+      blurb: "The people of Lake-town fight back against the forces of Gundabad in the ruins of Dale.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 58,
+      map_width: 48, map_height: 48, location: :dale
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s18.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 18, page: 52}
+
+    tba_s18f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s18.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s18f1,  1,  1, [ bard ])
+    _declare_role_figure(tba_s18f1,  1,  2, [ percy ])
+    _declare_role_figure(tba_s18f1,  1,  3, [ hilda ])
+    _declare_role_figure(tba_s18f1,  1,  4, [ alfrid ])
+    _declare_role_figure(tba_s18f1,  1,  5, [ gandalf_grey ])
+    _declare_role_figure(tba_s18f1,  1,  6, [ young_bilbo ])
+    _declare_role_figure(tba_s18f1,  8,  7, [ laketown_militia_shield ])
+    _declare_role_figure(tba_s18f1,  8,  8, [ laketown_militia_spear ])
+    _declare_role_figure(tba_s18f1,  8,  9, [ laketown_militia_bow ])
+
+    tba_s18f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s18.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s18f2,  2, 1, [ gundabad_orc_captain ])
+    _declare_role_figure(tba_s18f2,  1, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s18f2,  1, 3, [ gundabad_ogre ])
+    _declare_role_figure(tba_s18f2, 12, 4, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s18f2, 12, 5, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s19 = Repo.insert! %Scenario{
+      name: "To The King!",
+      blurb: "Thorin's company enters the fight for Erebor.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 58,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s19.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 19, page: 54}
+
+    tba_s19f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s19.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s19f1,  1,  1, [ thorin_erebor ])
+    _declare_role_figure(tba_s19f1,  1,  2, [ balin_erebor ])
+    _declare_role_figure(tba_s19f1,  1,  3, [ dwalin_erebor ])
+    _declare_role_figure(tba_s19f1,  1,  4, [ kili_erebor ])
+    _declare_role_figure(tba_s19f1,  1,  5, [ fili_erebor ])
+    _declare_role_figure(tba_s19f1,  1,  6, [ bifur_erebor ])
+    _declare_role_figure(tba_s19f1,  1,  7, [ bofur_erebor ])
+    _declare_role_figure(tba_s19f1,  1,  8, [ bombur_erebor ])
+    _declare_role_figure(tba_s19f1,  1,  9, [ ori_erebor ])
+    _declare_role_figure(tba_s19f1,  1, 10, [ nori_erebor ])
+    _declare_role_figure(tba_s19f1,  1, 11, [ dori_erebor ])
+    _declare_role_figure(tba_s19f1,  1, 12, [ oin_erebor ])
+    _declare_role_figure(tba_s19f1,  1, 13, [ gloin_erebor ])
+    _declare_role_figure(tba_s19f1,  1, 14, [ dain_ironfoot ])
+    _declare_role_figure(tba_s19f1, 24, 15, [ iron_hills_dwarf ])
+
+    tba_s19f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s19.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s19f2,  3, 1, [ gundabad_orc_captain ])
+    _declare_role_figure(tba_s19f2,  3, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s19f2,  1, 3, [ catapult_troll ])
+    _declare_role_figure(tba_s19f2,  2, 4, [ troll_brute ])
+    _declare_role_figure(tba_s19f2, 18, 5, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s19f2, 18, 6, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s20 = Repo.insert! %Scenario{
+      name: "Chase Along the Frozen River",
+      blurb: "The Champions of Erebor riding a Chariot plow through legions of Gundabad troops.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 31,
+      map_width: 24, map_height: 24, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s20.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 20, page: 56}
+
+    tba_s20f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s20.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s20f1,  1,  1, [ balin_erebor ])
+    _declare_role_figure(tba_s20f1,  1,  2, [ dwalin_erebor ])
+    _declare_role_figure(tba_s20f1,  1,  3, [ kili_erebor ])
+    _declare_role_figure(tba_s20f1,  1,  4, [ fili_erebor ])
+    _declare_role_figure(tba_s20f1,  1,  5, [ iron_hills_chariot ])
+
+    tba_s20f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s20.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s20f2,  2, 1, [ gundabad_troll ])
+    _declare_role_figure(tba_s20f2, 12, 2, [ hunter_orc_warg ])
+    _declare_role_figure(tba_s20f2, 12, 3, [ fell_warg ])
+
+    #========================================================================
+    tba_s21 = Repo.insert! %Scenario{
+      name: "Ride to Victory",
+      blurb: "Thorin commandeers some goats to raid the Gundabad headquarters on Ravenhill.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 30,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s21.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 21, page: 58}
+
+    tba_s21f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s21.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s21f1,  1,  1, [ thorin_goat ])
+    _declare_role_figure(tba_s21f1,  1,  2, [ kili_goat ])
+    _declare_role_figure(tba_s21f1,  1,  3, [ fili_goat ])
+    _declare_role_figure(tba_s21f1,  1,  4, [ dwalin_goat ])
+
+    tba_s21f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s21.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s21f2,  2, 1, [ gundabad_orc_captain ])
+    _declare_role_figure(tba_s21f2, 12, 2, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s21f2, 12, 3, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s22 = Repo.insert! %Scenario{
+      name: "Ambush at Ravenhill",
+      blurb: "Thorin's commando raid runs into more than it bargained for.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 30,
+      map_width: 24, map_height: 24, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s22.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 22, page: 60}
+
+    tba_s22f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s22.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s22f1,  1,  1, [ thorin_erebor ])
+    _declare_role_figure(tba_s22f1,  1,  2, [ kili_erebor ])
+    _declare_role_figure(tba_s22f1,  1,  3, [ fili_erebor ])
+    _declare_role_figure(tba_s22f1,  1,  4, [ dwalin_erebor ])
+
+    tba_s22f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s22.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s22f2,  2, 1, [ goblin_mercenary_captain ])
+    _declare_role_figure(tba_s22f2, 24, 2, [ goblin_mercenary ])
+
+    #========================================================================
+    tba_s23 = Repo.insert! %Scenario{
+      name: "Last Stand of the Company",
+      blurb: "The Dwarves try to hold out against the continued assaults from the Gundabads.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 82,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s23.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 23, page: 62}
+
+    tba_s23f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s23.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s23f1,  1,  1, [ dain_ironfoot ])
+    _declare_role_figure(tba_s23f1,  1,  2, [ bifur_erebor ])
+    _declare_role_figure(tba_s23f1,  1,  3, [ bofur_erebor ])
+    _declare_role_figure(tba_s23f1,  1,  4, [ bombur_erebor ])
+    _declare_role_figure(tba_s23f1,  1,  5, [ ori_erebor ])
+    _declare_role_figure(tba_s23f1,  1,  6, [ nori_erebor ])
+    _declare_role_figure(tba_s23f1,  1,  7, [ dori_erebor ])
+    _declare_role_figure(tba_s23f1,  1,  8, [ oin_erebor ])
+    _declare_role_figure(tba_s23f1,  1,  9, [ gloin_erebor ])
+    _declare_role_figure(tba_s23f1, 24, 10, [ iron_hills_dwarf_shield_spear ])
+
+    tba_s23f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s23.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s23f2,  3, 1, [ gundabad_orc_captain])
+    _declare_role_figure(tba_s23f2,  3, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s23f2,  1, 3, [ troll_brute ])
+    _declare_role_figure(tba_s23f2,  6, 4, [ war_bat ])
+    _declare_role_figure(tba_s23f2, 18, 5, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s23f2, 18, 6, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s24 = Repo.insert! %Scenario{
+      name: "Beorn's Fury",
+      blurb: "Radagast, Beorn, and the Eagles are coming!",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 52,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s24.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 24, page: 64}
+
+    tba_s24f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s24.id, faction: :free_peoples, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s24f1,  1,  1, [ beorn ])
+    _declare_role_figure(tba_s24f1,  1,  2, [ radagast_eagle ])
+    _declare_role_figure(tba_s24f1,  1,  3, [ gwaihir ])
+    _declare_role_figure(tba_s24f1,  4,  4, [ eagle ])
+
+    tba_s24f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s24.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s24f2,  3, 1, [ gundabad_orc_captain])
+    _declare_role_figure(tba_s24f2,  6, 2, [ war_bat ])
+    _declare_role_figure(tba_s24f2, 18, 3, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s24f2, 18, 4, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s25 = Repo.insert! %Scenario{
+      name: "A Clash of Heroes",
+      blurb: "The culmination of the battle for Erebor.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 26,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s25.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 25, page: 66}
+
+    tba_s25f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s25.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s25f1,  1,  1, [ thorin_erebor ])
+    _declare_role_figure(tba_s25f1,  1,  2, [ dwalin_erebor ])
+    _declare_role_figure(tba_s25f1,  1,  3, [ kili_erebor ])
+    _declare_role_figure(tba_s25f1,  1,  4, [ fili_erebor ])
+    _declare_role_figure(tba_s25f1,  1,  5, [ young_bilbo ])
+    _declare_role_figure(tba_s25f1,  1,  6, [ tauriel ])
+    _declare_role_figure(tba_s25f1,  1,  7, [ legolas ])
+
+    tba_s25f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s25.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s25f2,  1, 1, "Azog with heavy armour and stone flail", [ azog ])
+    _declare_role_figure(tba_s25f2, 12, 2, [ gundabad_berserker ])
+    _declare_role_figure(tba_s25f2,  3, 3, [ gundabad_orc_shield ])
+    _declare_role_figure(tba_s25f2,  3, 4, [ gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s26 = Repo.insert! %Scenario{
+      name: "The Desolation of Smaug Part I: The Ruin of Dale",
+      blurb: "Smaug's first attack on the prosperous city of Dale.",
+      date_age: 3, date_year: 2770, date_month: 0, date_day: 0, size: 34,
+      map_width: 48, map_height: 48, location: :dale
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s26.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 26, page: 134}
+
+    tba_s26f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s26.id, faction: :dale, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s26f1,  1,  1, [ girion ])
+    _declare_role_figure(tba_s26f1,  2,  2, [ dale_captain ])
+    _declare_role_figure(tba_s26f1, 30,  3, [ dale_w ])
+
+    tba_s26f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s26.id, faction: :desolator_north, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s26f2,  1, 1, [ smaug ])
+
+    #========================================================================
+    tba_s27 = Repo.insert! %Scenario{
+      name: "The Desolation of Smaug Part II: The Fall of Erebor",
+      blurb: "Having destroyed Dale, Smaug turns his attention to the Dwarven kingdom of Erebor.",
+      date_age: 3, date_year: 2770, date_month: 0, date_day: 0, size: 54,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s27.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 27, page: 136}
+
+    tba_s27f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s27.id, faction: :army_thror, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s27f1,  1,  1, [ thorin_young ])
+    _declare_role_figure(tba_s27f1,  1,  2, [ balin_young ])
+    _declare_role_figure(tba_s27f1,  1,  3, [ dwalin_young ])
+    _declare_role_figure(tba_s27f1,  1,  4, [ thror ])
+    _declare_role_figure(tba_s27f1,  1,  5, [ thrain ])
+    _declare_role_figure(tba_s27f1, 24,  6, "Erebor Warriors", [ erebor_w_shield, erebor_w_spear ])
+    _declare_role_figure(tba_s27f1, 24,  7, [ grim_hammer_w ])
+
+    tba_s27f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s27.id, faction: :desolator_north, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s27f2,  1, 1, [ smaug ])
+
+    #========================================================================
+    tba_s28 = Repo.insert! %Scenario{
+      name: "The Battle of Dimrill Dale Part I: The Death of the King",
+      blurb: "The Dwarves try to retake Moria while Azog tries to take out Thror.",
+      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 130,
+      map_width: 48, map_height: 48, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s28.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 28, page: 138}
+
+    tba_s28f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s28.id, faction: :army_thror, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s28f1,  1,  1, [ thror ])
+    _declare_role_figure(tba_s28f1,  1,  2, [ thrain ])
+    _declare_role_figure(tba_s28f1,  1,  3, [ thorin_young ])
+    _declare_role_figure(tba_s28f1,  1,  4, [ balin_young ])
+    _declare_role_figure(tba_s28f1,  1,  5, [ dwalin_young ])
+    _declare_role_figure(tba_s28f1, 36,  6, "Warriors of Erebor", [ erebor_w_shield, erebor_w_spear ])
+    _declare_role_figure(tba_s28f1, 36,  7, [ grim_hammer_w ])
+
+    tba_s28f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s28.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s28f2,  1, 1, [ azog ])
+    _declare_role_figure(tba_s28f2,  1, 2, [ dungeon_keeper ])
+    _declare_role_figure(tba_s28f2,  3, 3, [ gundabad_orc_captain ])
+    _declare_role_figure(tba_s28f2, 48, 3, "Gundabad Orcs", [ gundabad_orc_shield, gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s29 = Repo.insert! %Scenario{
+      name: "The Battle of Dimrill Dale Part II: Thrain's Vengeance",
+      blurb: "Having taken out Thror, Azog guns for Thrain.",
+      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 38,
+      map_width: 24, map_height: 24, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s29.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 29, page: 140}
+
+    tba_s29f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s29.id, faction: :army_thror, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s29f1,  1,  1, [ thrain ])
+    _declare_role_figure(tba_s29f1,  1,  2, [ grim_hammer_captain ])
+    _declare_role_figure(tba_s29f1, 15,  3, [ grim_hammer_w ])
+
+    tba_s29f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s29.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s29f2,  1, 1, [ azog ])
+    _declare_role_figure(tba_s29f2,  1, 2, [ dungeon_keeper ])
+    _declare_role_figure(tba_s29f2, 15, 3, "Gundabad Orcs", [ gundabad_orc_shield, gundabad_orc_spear ])
+
+    #========================================================================
+    tba_s30 = Repo.insert! %Scenario{
+      name: "The Battle of Dimrill Dale Part III: The Oakenshield",
+      blurb: "Thorin avenges his kin, though not completely (at least in the movie).",
+      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 38,
+      map_width: 48, map_height: 48, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: tba_s30.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 30, page: 142}
+
+    tba_s30f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s30.id, faction: :army_thror, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(tba_s30f1,  1,  1, [ thorin_young ])
+    _declare_role_figure(tba_s30f1,  1,  2, [ balin_young ])
+    _declare_role_figure(tba_s30f1,  1,  3, [ dwalin_young ])
+    _declare_role_figure(tba_s30f1, 24,  4, "Warriors of Erebor", [ erebor_w_shield, erebor_w_spear ])
+    _declare_role_figure(tba_s30f1, 20,  5, [ grim_hammer_w ])
+
+    tba_s30f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s30.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(tba_s30f2,  1, 1, [ azog ])
+    _declare_role_figure(tba_s30f2,  1, 2, [ dungeon_keeper ])
+    _declare_role_figure(tba_s30f2,  1, 3, [ gundabad_orc_captain ])
+    _declare_role_figure(tba_s30f2, 30, 4, "Gundabad Orcs", [ gundabad_orc_shield, gundabad_orc_spear ])
+
+    #########################################################################
     # THE TWO TOWERS JOURNEYBOOK
     #########################################################################
+
+    #========================================================================
     tttjb_s1 = Repo.insert! %Scenario{
       name: "Let's Hunt Some Orc",
       blurb: "Aragorn, Legolas, and Gimli encounter the rear guard of the Uruk-hai which have captured Merry and Pippin.",
