@@ -3688,7 +3688,7 @@ defmodule SbgInv.Data do
     rotkjb_s2 = Repo.insert! %Scenario{
       name: "Ride of the Rohirrim",
       blurb: "The Druadan help the Rohirrim through their forest to bypass the bulk of the Mordor forces.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, size: 4,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, size: 91,
       map_width: 48, map_height: 24, location: :gondor
     }
 
