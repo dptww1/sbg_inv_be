@@ -3754,11 +3754,11 @@ defmodule SbgInv.Data do
 
     km_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: km_s4.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(km_s4f1,  1,  1, [ eomer_horse ])
-    _declare_role_figure(km_s4f1,  1,  1, "Rohan Captain on horse with shield", [ rohan_captain_horse ])
+    _declare_role_figure(km_s4f1,  1,  2, "Rohan Captain on horse with shield", [ rohan_captain_horse ])
     _declare_role_figure(km_s4f1,  1,  3, [ merry ])
     _declare_role_figure(km_s4f1,  1,  4, [ pippin ])
     _declare_role_figure(km_s4f1,  4,  5, [ rohan_rider_spear ])
-    _declare_role_figure(km_s4f1, 10,  5, [ rohan_rider ])
+    _declare_role_figure(km_s4f1, 10,  6, [ rohan_rider ])
 
     km_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: km_s4.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(km_s4f1,  1,  1, [ ugluk ])
