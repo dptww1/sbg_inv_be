@@ -1683,6 +1683,206 @@ defmodule SbgInv.Data do
     _declare_role_figure(fr_s2f2,  4,  6, [ harad_raider_lance ])
 
     #########################################################################
+    # THE FELLOWSHIP OF THE RING
+    #########################################################################
+
+    #========================================================================
+    fotr_s1 = Repo.insert! %Scenario{
+      name: "Close Encounter",
+      blurb: "The remnants of Sauron's army attack Numenorians returning from the last battle against Sauron.",
+      date_age: 2, date_year: 3442, date_month: 0, date_day: 0, size: 36,
+      map_width: 48, map_height: 48, location: :rhovanion
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotr_s1.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 1, page: 64}
+    _declare_video_replay(fotr_s1.id, "https://www.youtube.com/watch?v=3XttmqOQvt4&list=PLzZ6-_-l-0I52yFFoGzMSuyhscqAy6RmV&index=8", "Spillforeningen the Fellowship", 1)
+
+    fotr_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s1.id, faction: :numenor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotr_s1f1, 4, 1, [ numenor_w_shield_spear ])
+    _declare_role_figure(fotr_s1f1, 8, 2, [ numenor_w_shield ])
+
+    fotr_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s1.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotr_s1f2, 8, 1, [ moria_g_shield ])
+    _declare_role_figure(fotr_s1f2, 8, 2, [ moria_g_spear ])
+    _declare_role_figure(fotr_s1f2, 8, 3, [ moria_g_bow ])
+
+    #========================================================================
+    fotr_s2 = Repo.insert! %Scenario{
+      name: "Weathertop",
+      blurb: "The Witch-King attempts to seize the One Ring from Frodo and friends.",
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 6, size: 10,
+      map_width: 48, map_height: 48, location: :weathertop
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotr_s2.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 2, page: 66}
+
+    fotr_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s2.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotr_s2f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotr_s2f1, 1, 2, [ sam ])
+    _declare_role_figure(fotr_s2f1, 1, 3, [ merry ])
+    _declare_role_figure(fotr_s2f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotr_s2f1, 1, 5, [ aragorn ])
+
+    fotr_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s2.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotr_s2f2, 1, 1, [ witch_king ])
+    _declare_role_figure(fotr_s2f2, 4, 2, [ ringwraith ])
+
+    #========================================================================
+    fotr_s3 = Repo.insert! %Scenario{
+      name: "Balin's Tomb",
+      blurb: "The Fellowship are cornered in Balin's Tomb by goblins, and They Have a Cave Troll.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 14, size: 49,
+      map_width: 48, map_height: 48, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotr_s3.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 3, page: 68}
+
+    fotr_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s3.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotr_s3f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotr_s3f1, 1, 2, [ sam ])
+    _declare_role_figure(fotr_s3f1, 1, 3, [ merry ])
+    _declare_role_figure(fotr_s3f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotr_s3f1, 1, 5, [ aragorn ])
+    _declare_role_figure(fotr_s3f1, 1, 6, [ gandalf_grey ])
+    _declare_role_figure(fotr_s3f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotr_s3f1, 1, 8, [ legolas ])
+    _declare_role_figure(fotr_s3f1, 1, 9, [ gimli ])
+
+    fotr_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s3.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotr_s3f2,  3, 1, [ moria_captain ])
+    _declare_role_figure(fotr_s3f2, 12, 2, [ moria_g_shield ])
+    _declare_role_figure(fotr_s3f2, 12, 3, [ moria_g_spear ])
+    _declare_role_figure(fotr_s3f2, 12, 4, [ moria_g_bow ])
+    _declare_role_figure(fotr_s3f2,  1, 5, "Cave Troll", [ cave_troll_spear, cave_troll_chain ])
+
+    #========================================================================
+    fotr_s4 = Repo.insert! %Scenario{
+      name: "The Bridge of Khazad-dûm",
+      blurb: "Gandalf sacrifices himself against the Balrog. \"Fly, you fools!\"",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 34,
+      map_width: 48, map_height: 48, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotr_s4.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 4, page: 70}
+
+    fotr_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s4.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotr_s4f1, 1, 1, [ frodo ])
+    _declare_role_figure(fotr_s4f1, 1, 2, [ sam ])
+    _declare_role_figure(fotr_s4f1, 1, 3, [ merry ])
+    _declare_role_figure(fotr_s4f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotr_s4f1, 1, 5, [ aragorn ])
+    _declare_role_figure(fotr_s4f1, 1, 6, [ gandalf_grey ])
+    _declare_role_figure(fotr_s4f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotr_s4f1, 1, 8, [ legolas ])
+    _declare_role_figure(fotr_s4f1, 1, 9, [ gimli ])
+
+    fotr_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s4.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotr_s4f2, 1, 1, [ balrog ])
+    _declare_role_figure(fotr_s4f2, 8, 2, [ moria_g_shield ])
+    _declare_role_figure(fotr_s4f2, 8, 3, [ moria_g_spear ])
+    _declare_role_figure(fotr_s4f2, 8, 4, [ moria_g_bow ])
+
+    #========================================================================
+    fotrjb_s5 = Repo.insert! %Scenario{
+      name: "Lothlórien",
+      blurb: "The Fellowship finds refuge from a Goblin search party within the edges of Lothlórien.",
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 59,
+      map_width: 48, map_height: 48, location: :lothlorien
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotrjb_s5.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 5, page: 72}
+
+    fotrjb_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s5.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotrjb_s5f1,  1,  1, [ frodo ])
+    _declare_role_figure(fotrjb_s5f1,  1,  2, [ sam ])
+    _declare_role_figure(fotrjb_s5f1,  1,  3, [ merry ])
+    _declare_role_figure(fotrjb_s5f1,  1,  4, [ pippin ])
+    _declare_role_figure(fotrjb_s5f1,  1,  5, [ aragorn ])
+    _declare_role_figure(fotrjb_s5f1,  1,  6, [ boromir ])
+    _declare_role_figure(fotrjb_s5f1,  1,  7, [ legolas ])
+    _declare_role_figure(fotrjb_s5f1,  1,  8, [ gimli ])
+    _declare_role_figure(fotrjb_s5f1,  1,  9, [ haldir ])
+    _declare_role_figure(fotrjb_s5f1, 10, 10, [ wood_elf_w_bow ])
+
+    fotrjb_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s5.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotrjb_s5f2,  2, 1, [ moria_captain ])
+    _declare_role_figure(fotrjb_s5f2, 16, 3, [ moria_g_shield ])
+    _declare_role_figure(fotrjb_s5f2, 16, 4, [ moria_g_spear ])
+    _declare_role_figure(fotrjb_s5f2, 16, 5, [ moria_g_bow ])
+
+    #========================================================================
+    fotr_s6 = Repo.insert! %Scenario{
+      name: "Amon Hen",
+      blurb: "The Uruk-hai split the Fellowship and run off with some hobbits.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, size: 36,
+      map_width: 72, map_height: 48, location: :amon_hen
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotr_s6.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 6, page: 74}
+
+    fotr_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s6.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotr_s6f1,  1,  1, [ aragorn ])
+    _declare_role_figure(fotr_s6f1,  1,  2, [ boromir ])
+    _declare_role_figure(fotr_s6f1,  1,  3, [ legolas ])
+    _declare_role_figure(fotr_s6f1,  1,  4, [ gimli ])
+    _declare_role_figure(fotr_s6f1,  1,  5, [ frodo ])
+    _declare_role_figure(fotr_s6f1,  1,  6, [ sam ])
+    _declare_role_figure(fotr_s6f1,  1,  7, [ merry ])
+    _declare_role_figure(fotr_s6f1,  1,  8, [ pippin ])
+
+    fotr_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s6.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotr_s6f2,  1,  1, [ lurtz ])
+    _declare_role_figure(fotr_s6f2, 35,  2, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(fotr_s6f2,  5,  3, [ uruk_hai_s_bow ])
+
+    #========================================================================
+    fotr_s7 = Repo.insert! %Scenario{
+      name: "The Last Alliance",
+      blurb: "Elendil and Gil-Galad lead the forces of Men and Elves against hundreds (literally!) of Orcs.",
+      date_age: 2, date_year: 3441, date_month: 0, date_day: 0, size: 348,
+      map_width: 72, map_height: 48, location: :mordor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotr_s7.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 7, page: 76}
+
+    fotr_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s7.id, faction: :rivendell, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotr_s7f1,  1,  1, [ gil_galad ])
+    _declare_role_figure(fotr_s7f1,  1,  2, [ elrond ])
+    _declare_role_figure(fotr_s7f1, 24,  3, [ high_elf_w_blade ])
+    _declare_role_figure(fotr_s7f1, 24,  4, [ high_elf_w_bow ])
+    _declare_role_figure(fotr_s7f1,  1,  5, [ elendil ])
+    _declare_role_figure(fotr_s7f1,  1,  6, [ isildur ])
+    _declare_role_figure(fotr_s7f1, 24,  7, [ numenor_w_shield ])
+    _declare_role_figure(fotr_s7f1, 24,  8, [ numenor_w_shield_spear ])
+
+    fotr_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s7.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotr_s7f2,  8,  1, [ orc_captain ])
+    _declare_role_figure(fotr_s7f2, 90,  6, [ orc_w_shield ])
+    _declare_role_figure(fotr_s7f2, 90,  7, [ orc_w_spear ])
+    _declare_role_figure(fotr_s7f2, 60,  8, [ orc_w_bow ])
+
+    #========================================================================
+    fotr_s8 = Repo.insert! %Scenario{
+      name: "The Gladden Fields",
+      blurb: "Isildur must escape from an Orcish ambush to keep the One Ring.",
+      date_age: 3, date_year: 2, date_month: 0, date_day: 0, size: 91,
+      map_width: 48, map_height: 24, location: :rhovanion
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: fotr_s8.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 8, page: 78}
+
+    fotr_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s8.id, faction: :numenor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(fotr_s8f1,  1, 1, "Isildur with the One Ring", [ isildur ])
+    _declare_role_figure(fotr_s8f1, 24, 3, [ numenor_w_shield ])
+    _declare_role_figure(fotr_s8f1, 24, 4, [ numenor_w_shield_spear ])
+
+    fotr_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s8.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(fotr_s8f2,  2,  1, [ orc_captain ])
+    _declare_role_figure(fotr_s8f2, 20,  3, [ orc_w_shield ])
+    _declare_role_figure(fotr_s8f2, 10,  4, [ orc_w_spear ])
+    _declare_role_figure(fotr_s8f2, 10,  6, [ orc_w_bow ])
+
+    #########################################################################
     # THE FELLOWSHIP OF THE RING JOURNEYBOOK
     #########################################################################
 
