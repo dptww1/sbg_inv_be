@@ -427,6 +427,7 @@ defmodule SbgInv.Data do
     # FIGURES: ISENGARD
     #########################################################################
 
+    grima       = _declare_unique("Grima Wormtongue")
     lurtz       = _declare_unique("Lurtz")
     mauhur      = _declare_unique("Mauhúr")
     sharkey     = _declare_unique("Sharkey")
@@ -461,6 +462,7 @@ defmodule SbgInv.Data do
 
     isengard_troll = _declare_monster("Isengard Troll", "Isengard Trolls")
 
+    battering_ram          = _declare_siege("Battering Ram",                "Battering Rams")
     uruk_hai_demo_team     = _declare_siege("Uruk-hai Demolition Team",     "Uruk-hai Demolition Teams")
     uruk_hai_ballista      = _declare_siege("Uruk-hai Siege Ballista",      "Uruk-hai Siege Ballistas")
     uruk_hai_ballista_crew = _declare_siege("Uruk-hai Siege Ballista crew", "Uruk-hai Siege Ballista crew")
@@ -6139,6 +6141,264 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s30f2,  1, 2, [ dungeon_keeper ])
     _declare_role_figure(tba_s30f2,  1, 3, [ gundabad_orc_captain ])
     _declare_role_figure(tba_s30f2, 30, 4, "Gundabad Orcs", [ gundabad_orc_shield, gundabad_orc_spear ])
+
+    #########################################################################
+    # THE TWO TOWERS
+    #########################################################################
+
+    #========================================================================
+    ttt_s1 = Repo.insert! %Scenario{
+      name: "Scouring of the Westfold",
+      blurb: "The Rohirrim try to save villagers from the depredations of the Uruk-hai.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, size: 32,
+      map_width: 48, map_height: 48, location: :rohan
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ttt_s1.id, resource_type: :source, book: :ttt, title: "The Two Towers", sort_order: 1, page: 94}
+    _declare_web_replay(ttt_s1.id, "http://davetownsend.org/Battles/LotR-20070827/", "DaveT", 1)
+
+    ttt_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s1.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ttt_s1f1, 6, 1, [ rohan_rider ])
+    _declare_role_figure(ttt_s1f1, 6, 2, [ rohan_rider_spear ])
+
+    ttt_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s1.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ttt_s1f2, 10, 1, [ uruk_hai_w_pike ])
+    _declare_role_figure(ttt_s1f2, 10, 2, [ uruk_hai_w_shield ])
+
+    #========================================================================
+    ttt_s2 = Repo.insert! %Scenario{
+      name: "The Wrath of Rohan",
+      blurb: "Éomer's warband unwittingly helps Merry and Pippin escape to Fangorn forest.",
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, size: 40,
+      map_width: 72, map_height: 48, location: :rohan
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ttt_s2.id, resource_type: :source, book: :ttt, title: "The Two Towers", sort_order: 2, page: 96}
+
+    ttt_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s2.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ttt_s2f1,  1,  1, [ eomer_horse ])
+    _declare_role_figure(ttt_s2f1,  1,  2, [ rohan_captain_horse ])
+    _declare_role_figure(ttt_s2f1,  1,  3, [ merry ])
+    _declare_role_figure(ttt_s2f1,  1,  4, [ pippin ])
+    _declare_role_figure(ttt_s2f1,  8,  5, [ rohan_rider_spear ])
+    _declare_role_figure(ttt_s2f1,  8,  6, [ rohan_rider ])
+
+    ttt_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s2.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ttt_s2f2,  1,  1, [ grishnakh ])
+    _declare_role_figure(ttt_s2f2,  1,  2, [ ugluk ])
+    _declare_role_figure(ttt_s2f2,  8,  3, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(ttt_s2f2,  5,  4, [ orc_w_shield ])
+    _declare_role_figure(ttt_s2f2,  5,  5, [ orc_w_bow ])
+
+    #========================================================================
+    ttt_s3 = Repo.insert! %Scenario{
+      name: "When Wargs Attack",
+      blurb: "A force of Wargs ambushes Théoden and the Three Hunters as they escort the Rohirrim to Helm's Deep.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 2, size: 29,
+      map_width: 48, map_height: 48, location: :rohan
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ttt_s3.id, resource_type: :source, book: :ttt, title: "The Two Towers", sort_order: 3, page: 98}
+
+    ttt_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s3.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ttt_s3f1,  1,  1, [ theoden_horse ])
+    _declare_role_figure(ttt_s3f1,  1,  2, [ aragorn_horse ])
+    _declare_role_figure(ttt_s3f1,  1,  3, [ legolas_horse ])
+    _declare_role_figure(ttt_s3f1,  1,  4, [ gimli ])
+    _declare_role_figure(ttt_s3f1,  4,  5, [ rohan_rider ])
+
+    ttt_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s3.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ttt_s3f2,  1,  1, [ sharku_warg ])
+    _declare_role_figure(ttt_s3f2, 10,  2, [ warg_rider_bow ])
+    _declare_role_figure(ttt_s3f2, 10,  3, [ warg_rider_shield_spear ])
+
+    #========================================================================
+    ttt_s4 = Repo.insert! %Scenario{
+      name: "Ambush in Ithilien",
+      blurb: "Faramir's Rangers ambush a large Orcish force.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 7, size: 59,
+      map_width: 72, map_height: 48, location: :ithilien
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ttt_s4.id, resource_type: :source, book: :ttt, title: "The Two Towers", sort_order: 4, page: 100}
+
+    ttt_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s4.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ttt_s4f1,  1, 1, [ faramir ])
+    _declare_role_figure(ttt_s4f1,  1, 2, [ damrod ])
+    _declare_role_figure(ttt_s4f1,  1, 3, [ frodo ])
+    _declare_role_figure(ttt_s4f1,  1, 4, [ sam ])
+    _declare_role_figure(ttt_s4f1, 16, 5, [ gondor_rog ])
+
+    ttt_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ttt_s4f2,  3, 1, "Orc Captains with shield", [ orc_captain ])
+    _declare_role_figure(ttt_s4f2, 10, 2, [ orc_w_shield ])
+    _declare_role_figure(ttt_s4f2,  5, 3, [ orc_w_spear ])
+    _declare_role_figure(ttt_s4f2,  5, 4, [ orc_w_2h ])
+    _declare_role_figure(ttt_s4f2, 10, 5, [ orc_w_bow ])
+    _declare_role_figure(ttt_s4f2,  5, 6, [ warg_rider_shield_spear ])
+    _declare_role_figure(ttt_s4f2,  1, 7, [ gollum ])
+
+    #========================================================================
+    ttt_s5 = Repo.insert! %Scenario{
+      name: "The Deeping Wall",
+      blurb: "The Uruk-hai attempt to breach the outer defenses of Helm's Deep.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 76,
+      map_width: 48, map_height: 48, location: :helms_deep
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ttt_s5.id, resource_type: :source, book: :ttt, title: "The Two Towers", sort_order: 5, page: 102}
+
+    ttt_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s5.id, faction: :rohan,  suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ttt_s5f1, 1,  1, [ aragorn ])
+    _declare_role_figure(ttt_s5f1, 1,  2, [ legolas ])
+    _declare_role_figure(ttt_s5f1, 1,  3, [ gimli ])
+    _declare_role_figure(ttt_s5f1, 1,  4, [ haldir ])
+    _declare_role_figure(ttt_s5f1, 8,  5, "Rohan Warriors with swords and throwing spears", [ rohan_w_spear_shield ])
+    _declare_role_figure(ttt_s5f1, 8,  6, [ wood_elf_w_armor_bow ])
+
+    ttt_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s5.id, faction: :isengard,  suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ttt_s5f2,  3,  1, "Uruk-hai Captains", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
+    _declare_role_figure(ttt_s5f2, 30,  2, [ uruk_hai_w_shield ])
+    _declare_role_figure(ttt_s5f2, 10,  3, [ uruk_hai_w_crossbow ])
+    _declare_role_figure(ttt_s5f2, 10,  4, [ uruk_hai_berserker ])
+    _declare_role_figure(ttt_s5f2,  1,  5, [ uruk_hai_ballista ])
+    _declare_role_figure(ttt_s5f2,  3,  6, [ uruk_hai_ballista_crew ])
+    _declare_role_figure(ttt_s5f2,  2,  7, [ uruk_hai_demo_team ])
+
+    #========================================================================
+    ttt_s6 = Repo.insert! %Scenario{
+      name: "The Gateway",
+      blurb: "The Uruk-hai try to batter down the gates of Helm's Deep.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 69,
+      map_width: 48, map_height: 48, location: :helms_deep
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ttt_s6.id, resource_type: :source, book: :ttt, title: "The Two Towers", sort_order: 6, page: 104}
+
+    ttt_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s6.id, faction: :rohan,  suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ttt_s6f1, 1,  1, [ gamling ])
+    _declare_role_figure(ttt_s6f1, 1,  2, [ aragorn ])
+    _declare_role_figure(ttt_s6f1, 1,  3, [ legolas ])
+    _declare_role_figure(ttt_s6f1, 1,  4, [ gimli ])
+    _declare_role_figure(ttt_s6f1, 8,  5, [ rohan_w_spear_shield ])
+    _declare_role_figure(ttt_s6f1, 2,  6, [ rohan_w_bow ])
+
+    ttt_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s6.id, faction: :isengard,  suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ttt_s6f2,  2,  1, [ uruk_hai_captain_shield ])
+    _declare_role_figure(ttt_s6f2, 30,  5, [ uruk_hai_w_shield ])
+    _declare_role_figure(ttt_s6f2, 10,  4, [ uruk_hai_w_crossbow ])
+    _declare_role_figure(ttt_s6f2, 10,  3, [ uruk_hai_berserker ])
+    _declare_role_figure(ttt_s6f2,  2,  7, [ uruk_hai_ballista ])
+    _declare_role_figure(ttt_s6f2,  1,  7, [ battering_ram ])
+
+    #========================================================================
+    ttt_s7 = Repo.insert! %Scenario{
+      name: "Théoden Rides Out",
+      blurb: "Théoden leads a desperate counterattack against the Uruk-hai at Helm's Deep.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 33,
+      map_width: 48, map_height: 48, location: :helms_deep
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ttt_s7.id, resource_type: :source, book: :ttt, title: "The Two Towers", sort_order: 7, page: 106}
+
+    ttt_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s7.id, faction: :rohan,  suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ttt_s7f1, 1,  1, [ theoden_horse ])
+    _declare_role_figure(ttt_s7f1, 1,  2, [ gamling_horse ])
+    _declare_role_figure(ttt_s7f1, 1,  3, [ aragorn_horse ])
+    _declare_role_figure(ttt_s7f1, 1,  4, [ legolas_horse ])
+    _declare_role_figure(ttt_s7f1, 1,  5, [ gimli ])
+    _declare_role_figure(ttt_s7f1, 4,  6, [ rohan_rider_spear ])
+
+    ttt_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s7.id, faction: :isengard,  suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ttt_s7f2,  2,  1, [ uruk_hai_captain_shield ])
+    _declare_role_figure(ttt_s7f2, 12,  2, [ uruk_hai_w_shield ])
+    _declare_role_figure(ttt_s7f2,  8,  3, [ uruk_hai_w_crossbow ])
+    _declare_role_figure(ttt_s7f2,  2,  4, [ uruk_hai_berserker ])
+
+    #========================================================================
+    ttt_s8 = Repo.insert! %Scenario{
+      name: "The Relief of Helm's Deep",
+      blurb: "Gandalf arrives in the nick to time to save Théoden.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 115,
+      map_width: 48, map_height: 48, location: :helms_deep
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ttt_s8.id, resource_type: :source, book: :ttt, title: "The Two Towers", sort_order: 8, page: 108}
+
+    ttt_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s8.id, faction: :rohan,  suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ttt_s8f1,  1,  1, [ theoden_horse ])
+    _declare_role_figure(ttt_s8f1,  1,  2, [ gamling_horse ])
+    _declare_role_figure(ttt_s8f1,  1,  3, [ aragorn_horse ])
+    _declare_role_figure(ttt_s8f1,  1,  4, [ legolas_horse ])
+    _declare_role_figure(ttt_s8f1,  1,  5, [ gandalf_white_horse ])
+    _declare_role_figure(ttt_s8f1,  1,  6, [ eomer_horse ])
+    _declare_role_figure(ttt_s8f1,  1,  7, [ gimli ])
+    _declare_role_figure(ttt_s8f1, 24,  8, [ rohan_rider ])
+    _declare_role_figure(ttt_s8f1, 10,  9, [ rohan_rider_spear ])
+
+    ttt_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s8.id, faction: :isengard,  suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ttt_s8f2,  4,  1, "Uruk-hai Captains", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
+    _declare_role_figure(ttt_s8f2, 20,  2, [ uruk_hai_w_shield ])
+    _declare_role_figure(ttt_s8f2, 20,  3, [ uruk_hai_w_pike ])
+    _declare_role_figure(ttt_s8f2, 20,  4, [ uruk_hai_w_crossbow ])
+    _declare_role_figure(ttt_s8f2, 10,  5, [ uruk_hai_berserker ])
+
+    #========================================================================
+    ttt_s9 = Repo.insert! %Scenario{
+      name: "Osgiliath",
+      blurb: "Faramir discovers his quality.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 9, size: 92,
+      map_width: 48, map_height: 48, location: :osgiliath
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ttt_s9.id, resource_type: :source, book: :ttt, title: "The Two Towers", sort_order: 9, page: 110}
+
+    ttt_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s9.id, faction: :gondor,  suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ttt_s9f1,  1,  1, [ frodo ])
+    _declare_role_figure(ttt_s9f1,  1,  2, [ sam ])
+    _declare_role_figure(ttt_s9f1,  1,  3, [ faramir ])
+    _declare_role_figure(ttt_s9f1,  1,  4, [ damrod ])
+    _declare_role_figure(ttt_s9f1,  1,  5, [ gondor_captain_mt ])
+    _declare_role_figure(ttt_s9f1,  8,  6, [ gondor_rog ])
+    _declare_role_figure(ttt_s9f1,  8,  7, [ gondor_womt_spear_shield ])
+    _declare_role_figure(ttt_s9f1,  8,  9, [ gondor_womt_bow ])
+
+    ttt_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s9.id, faction: :mordor,  suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ttt_s9f2,  2,  1, "Orc Captains with shield", [ orc_captain ])
+    _declare_role_figure(ttt_s9f2, 20,  2, [ orc_w_shield ])
+    _declare_role_figure(ttt_s9f2, 20,  3, [ orc_w_spear ])
+    _declare_role_figure(ttt_s9f2, 20,  4, [ orc_w_bow ])
+    _declare_role_figure(ttt_s9f2,  1,  5, [ gollum ])
+
+    #========================================================================
+    ttt_s10 = Repo.insert! %Scenario{
+      name: "Isengard",
+      blurb: "Suppose the Good Heroes at Helm's Deep had helped Treebeard attack Isengard?",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 3, size: 58,
+      map_width: 48, map_height: 48, location: :isengard
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ttt_s10.id, resource_type: :source, book: :ttt, title: "The Two Towers", sort_order: 10, page: 112}
+
+    ttt_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s10.id, faction: :rohan,  suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ttt_s10f1,  1,  1, [ aragorn_horse ])
+    _declare_role_figure(ttt_s10f1,  1,  2, [ legolas_horse ])
+    _declare_role_figure(ttt_s10f1,  1,  3, [ gandalf_white_horse ])
+    _declare_role_figure(ttt_s10f1,  1,  4, [ theoden_horse ])
+    _declare_role_figure(ttt_s10f1,  1,  5, [ gamling_horse ])
+    _declare_role_figure(ttt_s10f1,  1,  6, [ gimli ])
+    _declare_role_figure(ttt_s10f1,  1,  7, [ merry ])
+    _declare_role_figure(ttt_s10f1,  1,  8, [ pippin ])
+    _declare_role_figure(ttt_s10f1,  1,  9, [ treebeard ])
+
+    ttt_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s10.id, faction: :isengard,  suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ttt_s10f2,  1,  1, [ saruman ])
+    _declare_role_figure(ttt_s10f2,  1,  2, [ grima ])
+    _declare_role_figure(ttt_s10f2,  2,  3, [ uruk_hai_captain_shield ])
+    _declare_role_figure(ttt_s10f2, 20,  4, [ uruk_hai_w_shield ])
+    _declare_role_figure(ttt_s10f2, 10,  5, [ uruk_hai_w_crossbow ])
+    _declare_role_figure(ttt_s10f2,  5,  6, [ uruk_hai_berserker ])
+    _declare_role_figure(ttt_s10f2, 10,  7, [ uruk_hai_w_pike ])
 
     #########################################################################
     # THE TWO TOWERS JOURNEYBOOK
