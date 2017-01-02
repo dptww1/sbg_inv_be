@@ -1,7 +1,7 @@
 defmodule SbgInv.ScenarioControllerTest do
   use SbgInv.ConnCase
 
-  alias SbgInv.{Scenario, TestHelper, UserScenario}
+  alias SbgInv.{Scenario, ScenarioResource, TestHelper, UserScenario}
 
   @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, name: "some content", size: 42,
                  map_width: 48, map_height: 48, location: :the_shire}
@@ -131,5 +131,23 @@ defmodule SbgInv.ScenarioControllerTest do
 
     conn = get conn, scenario_path(conn, :show, const_data["id"])
     assert json_response(conn, 200)["data"]["rating_breakdown"] == [1, 1, 1, 1, 1]
+  end
+
+  test "scenario source with no issue number is returned correctly", %{conn: conn} do
+    %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
+    Repo.insert! %ScenarioResource{scenario_id: const_data["id"], resource_type: :source, book: :fp, title: "Free Peoples", sort_order: 1}
+
+    conn = get conn, scenario_path(conn, :show, const_data["id"])
+
+    assert hd(json_response(conn, 200)["data"]["scenario_resources"]["source"])["issue"] == nil
+  end
+
+  test "scenario source with issue number is returned correctly", %{conn: conn} do
+    %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
+    Repo.insert! %ScenarioResource{scenario_id: const_data["id"], resource_type: :source, book: :fp, issue: 321, title: "Free Peoples", sort_order: 1}
+
+    conn = get conn, scenario_path(conn, :show, const_data["id"])
+
+    assert hd(json_response(conn, 200)["data"]["scenario_resources"]["source"])["issue"] == 321
   end
 end

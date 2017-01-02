@@ -15,6 +15,7 @@ defmodule SbgInv.ScenarioResourceView do
     %{
       resource_type: resource.resource_type,
       book: resource.book,
+      issue: resource.issue,
       title: resource.title,
       url:  resource.url,
       page: resource.page,

@@ -83,12 +83,13 @@ defenum ScenarioResourceBook,
   rotk:    17,   # Return of the King
   rotk_jb: 18,   # Return of the King Journeybook
   saf:     19,   # Shadow & Flame
-  site:    20,   # A Shadow in the East
-  sog:     21,   # Siege of Gondor
-  sots:    22,   # The Scouring of the Shire
-  tba:     23,   # There and Back Again
-  ttt:     24,   # The Two Towers
-  ttt_jb:  25    # The Two Towers Journeybook
+  sbg:     20,   # SBG Magazine
+  site:    21,   # A Shadow in the East
+  sog:     22,   # Siege of Gondor
+  sots:    23,   # The Scouring of the Shire
+  tba:     24,   # There and Back Again
+  ttt:     25,   # The Two Towers
+  ttt_jb:  26    # The Two Towers Journeybook
 
 defenum ScenarioResourceType,
   source: 0,
