@@ -7,7 +7,8 @@ defmodule SbgInv.ScenarioResourceView do
       video_replay:     render_many(Enum.sort(resources.video_replay,     &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
       web_replay:       render_many(Enum.sort(resources.web_replay,       &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
       terrain_building: render_many(Enum.sort(resources.terrain_building, &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
-      podcast:          render_many(Enum.sort(resources.podcast,          &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json")
+      podcast:          render_many(Enum.sort(resources.podcast,          &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
+      magazine_replay:  render_many(Enum.sort(resources.magazine_replay,  &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json")
     }
   end
 

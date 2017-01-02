@@ -96,4 +96,5 @@ defenum ScenarioResourceType,
   video_replay: 1,
   web_replay: 2,
   terrain_building: 3,
-  podcast: 4
+  podcast: 4,
+  magazine_replay: 5
