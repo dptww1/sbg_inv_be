@@ -410,7 +410,7 @@ defmodule SbgInv.Data do
     # FIGURES: IRON HILLS
     #########################################################################
 
-    dain_ironfoot = _declare_unique("Dain Ironfoot")
+    dain_ironfoot      = _declare_unique("Dain Ironfoot")
     dain_ironfoot_boar = _declare_unique("Dain Ironfoot on war boar")
 
     iron_hills_captain_goat = _declare_hero("Iron Hills Captain on goat", "Iron Hills Captains on goat")
@@ -3871,6 +3871,488 @@ defmodule SbgInv.Data do
 
     ma_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: ma_s4.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(ma_s4f2, 4,  1, [ barrow_wight ])
+
+    #########################################################################
+    # THE RETURN OF THE KING
+    #########################################################################
+
+    #========================================================================
+    rotk_s1 = Repo.insert! %Scenario{
+      name: "Skirmish in Osgiliath",
+      blurb: "Gondor repulses a minor Orc incursion",
+      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, size: 48,
+      map_width: 48, map_height: 48, location: :osgiliath
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s1.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 1, page: 99}
+
+    rotk_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s1.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s1f1, 8, 1, [ gondor_womt_shield ])
+    _declare_role_figure(rotk_s1f1, 8, 2, [ gondor_womt_spear_shield ])
+    _declare_role_figure(rotk_s1f1, 8, 3, [ gondor_womt_bow])
+
+    rotk_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s1.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s1f2, 8, 1, [ orc_w_shield ])
+    _declare_role_figure(rotk_s1f2, 8, 2, [ orc_w_spear ])
+    _declare_role_figure(rotk_s1f2, 4, 3, [ orc_w_bow ])
+    _declare_role_figure(rotk_s1f2, 4, 4, [ orc_w_2h ])
+
+    #========================================================================
+    rotk_s2 = Repo.insert! %Scenario{
+      name: "Rearguard",
+      blurb: "The remnants of Gondor's Osgiliath troops fight to delay Mordor's army as long as possible.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 10, size: 48,
+      map_width: 48, map_height: 48, location: :osgiliath
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s2.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 2, page: 100}
+
+    rotk_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s2.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s2f1, 8, 1, [ gondor_womt_shield ])
+    _declare_role_figure(rotk_s2f1, 8, 2, [ gondor_womt_spear_shield ])
+    _declare_role_figure(rotk_s2f1, 8, 3, [ gondor_womt_bow])
+
+    rotk_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s2.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s2f2, 8, 1, [ orc_w_shield ])
+    _declare_role_figure(rotk_s2f2, 8, 2, [ orc_w_spear ])
+    _declare_role_figure(rotk_s2f2, 4, 3, [ orc_w_bow ])
+    _declare_role_figure(rotk_s2f2, 4, 4, [ orc_w_2h ])
+
+    #========================================================================
+    rotk_s3 = Repo.insert! %Scenario{
+      name: "In the Clutches of Shelob",
+      blurb: "Sam and Frodo try to escape from Shelob's lair.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 12, size: 3,
+      map_width: 48, map_height: 48, location: :minas_morgul
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s3.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 3, page: 101}
+
+    rotk_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s3.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s3f1, 1, 1, [ frodo ])
+    _declare_role_figure(rotk_s3f1, 1, 2, [ sam ])
+
+    rotk_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s3.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s3f2, 1, 1, [ shelob ])
+
+    #========================================================================
+    rotk_s4 = Repo.insert! %Scenario{
+      name: "The Pride of Gondor",
+      blurb: "Faramir makes a doomed attempt to recapture Osgiliath.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, size: 37,
+      map_width: 72, map_height: 48, location: :minas_tirith
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s4.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 4, page: 102}
+
+    rotk_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s4.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s4f1,  1, 1, [ faramir_armor_horse ])
+    _declare_role_figure(rotk_s4f1, 14, 2, [ gondor_knight ])
+    _declare_role_figure(rotk_s4f1,  1, 3, [ gondor_knight_banner ])
+
+    rotk_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s4f2,  1, 1, [ ringwraith_fellbeast ])
+    _declare_role_figure(rotk_s4f2, 19, 2, [ orc_w_bow ])
+    _declare_role_figure(rotk_s4f2,  1, 3, [ orc_w_banner ])
+
+    #========================================================================
+    rotk_s5 = Repo.insert! %Scenario{
+      name: "The White Rider",
+      blurb: "Gandalf leads a charge out to rescue Faramir.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, size: 8,
+      map_width: 72, map_height: 48, location: :minas_tirith
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s5.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 5, page: 103}
+
+    rotk_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s5.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s5f1,  1, 1, [ gandalf_white_horse ])
+    _declare_role_figure(rotk_s5f1,  1, 2, [ faramir_armor_horse ])
+    _declare_role_figure(rotk_s5f1,  4, 3, [ gondor_knight ])
+
+    rotk_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s5.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s5f2,  2, 1, [ ringwraith_fellbeast ])
+
+    #========================================================================
+    rotk_s6 = Repo.insert! %Scenario{
+      name: "Minas Tirith",
+      blurb: "The garrison of Minas Tirith defends their city against the invading army of Mordor.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 14, size: 72,
+      map_width: 72, map_height: 48, location: :minas_tirith
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s6.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 6, page: 104}
+
+    rotk_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s6.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s6f1,  1, 1, [ gandalf_white_horse ])
+    _declare_role_figure(rotk_s6f1,  1, 2, [ pippin_gondor ])
+    _declare_role_figure(rotk_s6f1,  1, 3, [ gondor_captain_mt ])
+    _declare_role_figure(rotk_s6f1,  8, 4, [ fountain_court_gd ])
+    _declare_role_figure(rotk_s6f1,  6, 5, [ gondor_womt_shield ])
+    _declare_role_figure(rotk_s6f1,  8, 6, [ gondor_womt_spear_shield ])
+    _declare_role_figure(rotk_s6f1,  8, 7, [ gondor_womt_bow ])
+    _declare_role_figure(rotk_s6f1,  2, 8, [ gondor_womt_banner ])
+
+    rotk_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s6.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s6f2,  1,  1, [ witch_king_fellbeast ])
+    _declare_role_figure(rotk_s6f2,  1,  2, [ orc_captain ])
+    _declare_role_figure(rotk_s6f2,  1,  3, [ mordor_troll ])
+    _declare_role_figure(rotk_s6f2,  5,  4, [ easterling_w_shield_spear ])
+    _declare_role_figure(rotk_s6f2,  5,  5, [ easterling_w_shield ])
+    _declare_role_figure(rotk_s6f2,  6,  6, [ orc_w_shield ])
+    _declare_role_figure(rotk_s6f2,  8,  7, [ orc_w_spear ])
+    _declare_role_figure(rotk_s6f2,  4,  8, [ orc_w_bow ])
+    _declare_role_figure(rotk_s6f2,  4,  9, [ orc_w_2h ])
+    _declare_role_figure(rotk_s6f2,  2, 10, [ orc_w_banner ])
+
+    #========================================================================
+    rotk_s7 = Repo.insert! %Scenario{
+      name: "The Charge of the Rohirrim",
+      blurb: "Théoden arrives just in time to save Minas Tirith.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 72,
+      map_width: 72, map_height: 48, location: :minas_tirith
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s7.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 7, page: 105}
+
+    rotk_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s7.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s7f1,  1,  1, [ eomer_horse ])
+    _declare_role_figure(rotk_s7f1,  1,  2, [ theoden_horse ])
+    _declare_role_figure(rotk_s7f1,  1,  3, [ gamling_horse ])
+    _declare_role_figure(rotk_s7f1,  1,  4, [ eowyn_horse ])
+    _declare_role_figure(rotk_s7f1,  1,  5, [ merry_rohan ])
+    _declare_role_figure(rotk_s7f1,  1,  6, [ rohan_captain_horse ])
+    _declare_role_figure(rotk_s7f1,  5,  7, [ rohan_gd_horse_spear ])
+    _declare_role_figure(rotk_s7f1,  1,  8, [ rohan_gd_horse_banner ])
+    _declare_role_figure(rotk_s7f1, 11,  9, [ rohan_rider ])
+    _declare_role_figure(rotk_s7f1,  6, 10, [ rohan_rider_spear ])
+    _declare_role_figure(rotk_s7f1,  1, 11, [ rohan_rider_banner ])
+
+    rotk_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s7.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s7f2,  4,  1, [ orc_captain ])
+    _declare_role_figure(rotk_s7f2,  2,  2, [ mordor_troll ])
+    _declare_role_figure(rotk_s7f2, 10,  3, [ orc_w_shield ])
+    _declare_role_figure(rotk_s7f2, 12,  4, [ orc_w_spear ])
+    _declare_role_figure(rotk_s7f2,  6,  5, [ orc_w_bow ])
+    _declare_role_figure(rotk_s7f2,  6,  6, [ orc_w_2h ])
+    _declare_role_figure(rotk_s7f2,  2,  7, [ orc_w_banner ])
+
+    #========================================================================
+    rotk_s8 = Repo.insert! %Scenario{
+      name: "The Fate of Théoden",
+      blurb: "Théoden tries to face down the Witch-King of Angmar.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 4,
+      map_width: 48, map_height: 48, location: :minas_tirith
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s8.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 8, page: 106}
+
+    rotk_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s8.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s8f1,  1,  1, [ theoden_horse ])
+    _declare_role_figure(rotk_s8f1,  1,  2, [ eowyn_horse ])
+    _declare_role_figure(rotk_s8f1,  1,  3, [ merry_rohan ])
+
+    rotk_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s8.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s8f2,  1,  1, [ witch_king_fellbeast ])
+
+    #========================================================================
+    rotk_s9 = Repo.insert! %Scenario{
+      name: "The Army of the Dead",
+      blurb: "The Army of the Dead aids Aragorn on the Pelennor Fields.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 59,
+      map_width: 72, map_height: 48, location: :minas_tirith
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s9.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 9, page: 107}
+
+    rotk_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s9.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s9f1,  1,  1, [ aragorn ])
+    _declare_role_figure(rotk_s9f1,  1,  2, [ legolas ])
+    _declare_role_figure(rotk_s9f1,  1,  3, [ gimli ])
+    _declare_role_figure(rotk_s9f1,  1,  4, [ king_dead ])
+    _declare_role_figure(rotk_s9f1, 15,  5, [ dead_w ])
+
+    rotk_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s9.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s9f2,  2,  1, [ orc_captain ])
+    _declare_role_figure(rotk_s9f2,  2,  2, [ mordor_troll ])
+    _declare_role_figure(rotk_s9f2, 10,  3, [ orc_w_shield ])
+    _declare_role_figure(rotk_s9f2, 12,  4, [ orc_w_spear ])
+    _declare_role_figure(rotk_s9f2,  6,  5, [ orc_w_2h ])
+    _declare_role_figure(rotk_s9f2,  6,  6, [ orc_w_bow ])
+    _declare_role_figure(rotk_s9f2,  2,  7, [ orc_w_banner ])
+
+    #========================================================================
+    rotk_s10 = Repo.insert! %Scenario{
+      name: "The Battle of the Pelennor Fields",
+      blurb: "The climax of the siege of Minas Tirith.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 117,
+      map_width: 72, map_height: 48, location: :minas_tirith
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s10.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 10, page: 108}
+
+    rotk_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s10.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s10f1,  1,  1, [ aragorn ])
+    _declare_role_figure(rotk_s10f1,  1,  2, [ legolas ])
+    _declare_role_figure(rotk_s10f1,  1,  3, [ gimli ])
+    _declare_role_figure(rotk_s10f1,  1,  4, [ king_dead ])
+    _declare_role_figure(rotk_s10f1,  9,  5, [ dead_w ])
+    _declare_role_figure(rotk_s10f1,  1,  6, [ eomer_horse ])
+    _declare_role_figure(rotk_s10f1,  1,  7, [ gamling_horse ])
+    _declare_role_figure(rotk_s10f1,  7,  8, [ rohan_rider ])
+    _declare_role_figure(rotk_s10f1,  4,  9, [ rohan_rider_spear ])
+    _declare_role_figure(rotk_s10f1,  4, 10, [ rohan_gd_horse_spear ])
+    _declare_role_figure(rotk_s10f1,  1, 11, [ rohan_rider_banner ])
+    _declare_role_figure(rotk_s10f1,  1, 12, [ gandalf_white_horse ])
+    _declare_role_figure(rotk_s10f1,  1, 13, [ pippin_gondor ])
+    _declare_role_figure(rotk_s10f1,  7, 14, [ gondor_womt_shield ])
+    _declare_role_figure(rotk_s10f1,  8, 15, [ gondor_womt_spear_shield ])
+    _declare_role_figure(rotk_s10f1,  8, 16, [ gondor_womt_bow ])
+    _declare_role_figure(rotk_s10f1,  1, 17, [ gondor_womt_banner ])
+
+    rotk_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s10.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s10f2,  2,  1, [ ringwraith_fellbeast ])
+    _declare_role_figure(rotk_s10f2,  2,  2, [ orc_captain ])
+    _declare_role_figure(rotk_s10f2,  1,  3, [ easterling_captain ])
+    _declare_role_figure(rotk_s10f2,  2,  4, [ mordor_troll ])
+    _declare_role_figure(rotk_s10f2,  5,  5, [ easterling_w_shield ])
+    _declare_role_figure(rotk_s10f2,  9,  6, [ easterling_w_shield_spear ])
+    _declare_role_figure(rotk_s10f2,  1,  7, [ easterling_w_banner ])
+    _declare_role_figure(rotk_s10f2, 10,  8, [ orc_w_shield ])
+    _declare_role_figure(rotk_s10f2, 12,  9, [ orc_w_spear ])
+    _declare_role_figure(rotk_s10f2,  6, 10, [ orc_w_2h ])
+    _declare_role_figure(rotk_s10f2,  6, 11, [ orc_w_bow ])
+    _declare_role_figure(rotk_s10f2,  2, 12, [ orc_w_banner ])
+
+    #========================================================================
+    rotk_s11 = Repo.insert! %Scenario{
+      name: "The Tower of Cirith Ungol",
+      blurb: "Sam rescues Frodo as the garrison of Cirith Ungol destroys itself.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 14, size: 43,
+      map_width: 48, map_height: 48, location: :minas_morgul
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s11.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 11, page: 110}
+
+    rotk_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s11.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s11f1,  1,  1, [ frodo ])
+    _declare_role_figure(rotk_s11f1,  1,  2, [ sam ])
+    _declare_role_figure(rotk_s11f1,  1,  3, [ shagrat ])
+    _declare_role_figure(rotk_s11f1, 10,  4, [ m_uruk_hai_shield ])
+    _declare_role_figure(rotk_s11f1,  5,  5, [ m_uruk_hai_2h ])
+
+    rotk_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s11.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s11f2,  1,  1, [ gorbag ])
+    _declare_role_figure(rotk_s11f2,  8,  2, [ orc_w_shield ])
+    _declare_role_figure(rotk_s11f2,  8,  3, [ orc_w_spear ])
+    _declare_role_figure(rotk_s11f2,  4,  4, [ orc_w_2h ])
+    _declare_role_figure(rotk_s11f2,  4,  5, [ orc_w_bow ])
+
+    #========================================================================
+    rotk_s12 = Repo.insert! %Scenario{
+      name: "The Black Gate Opens",
+      blurb: "The remnants of the Good forces at Minas Tirith at the the gates of Mordor to distract Sauron from Frodo's mission.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 97,
+      map_width: 48, map_height: 48, location: :mordor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s12.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 12, page: 112}
+
+    rotk_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s12.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s12f1,  1,  1, [ aragorn ])
+    _declare_role_figure(rotk_s12f1,  1,  2, [ gandalf_white ])
+    _declare_role_figure(rotk_s12f1,  1,  3, [ legolas ])
+    _declare_role_figure(rotk_s12f1,  1,  4, [ gimli ])
+    _declare_role_figure(rotk_s12f1,  1,  5, [ eomer ])
+    _declare_role_figure(rotk_s12f1,  1,  6, [ gamling ])
+    _declare_role_figure(rotk_s12f1,  1,  7, [ pippin_gondor ])
+    _declare_role_figure(rotk_s12f1,  1,  8, [ merry_rohan ])
+    _declare_role_figure(rotk_s12f1,  1,  9, [ sam ])
+    _declare_role_figure(rotk_s12f1,  1, 10, [ frodo ])
+    _declare_role_figure(rotk_s12f1,  7, 11, [ rohan_rider ])
+    _declare_role_figure(rotk_s12f1,  4, 12, [ rohan_rider_spear ])
+    _declare_role_figure(rotk_s12f1,  1, 13, [ rohan_rider_banner ])
+    _declare_role_figure(rotk_s12f1,  4, 14, [ rohan_gd_horse_spear ])
+    _declare_role_figure(rotk_s12f1,  4, 15, [ gondor_knight ])
+    _declare_role_figure(rotk_s12f1,  3, 16, [ gondor_womt_shield ])
+    _declare_role_figure(rotk_s12f1,  4, 17, [ gondor_womt_spear_shield ])
+    _declare_role_figure(rotk_s12f1,  4, 18, [ gondor_womt_bow ])
+    _declare_role_figure(rotk_s12f1,  1, 19, [ gondor_womt_banner ])
+
+    rotk_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s12.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s12f2,  1,  1, [ mouth ])
+    _declare_role_figure(rotk_s12f2,  2,  1, [ ringwraith_fellbeast ])
+    _declare_role_figure(rotk_s12f2,  1,  1, [ troll_chieftain ])
+    _declare_role_figure(rotk_s12f2,  1,  1, [ orc_captain ])
+    _declare_role_figure(rotk_s12f2,  1,  1, [ easterling_captain ])
+    _declare_role_figure(rotk_s12f2,  1,  1, [ mordor_troll ])
+    _declare_role_figure(rotk_s12f2, 11,  1, [ easterling_w_shield_spear ])
+    _declare_role_figure(rotk_s12f2,  1,  1, [ easterling_w_banner ])
+    _declare_role_figure(rotk_s12f2, 11,  2, [ orc_w_shield ])
+    _declare_role_figure(rotk_s12f2, 12,  3, [ orc_w_spear ])
+    _declare_role_figure(rotk_s12f2,  6,  4, [ orc_w_2h ])
+    _declare_role_figure(rotk_s12f2,  6,  5, [ orc_w_bow ])
+    _declare_role_figure(rotk_s12f2,  1,  5, [ orc_w_banner ])
+
+    #========================================================================
+    rotk_s13 = Repo.insert! %Scenario{
+      name: "The Long Night",
+      blurb: "A Dwarven trading party aids the locals in defending a northern village.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 11, size: 42,
+      map_width: 48, map_height: 48, location: :rhovanion
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s13.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 13, page: 122}
+
+    rotk_s13f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s13.id, faction: :dwarves, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s13f1,  1,  1, [ dwarf_captain ])
+    _declare_role_figure(rotk_s13f1,  2,  2, [ dwarf_khazad_gd ])
+    _declare_role_figure(rotk_s13f1,  4,  3, [ dwarf_w_shield ])
+    _declare_role_figure(rotk_s13f1,  6,  4, [ dwarf_w_bow ])
+    _declare_role_figure(rotk_s13f1,  1,  5, [ rohan_captain ])
+    _declare_role_figure(rotk_s13f1,  4,  6, [ rohan_w_shield ])
+    _declare_role_figure(rotk_s13f1,  4,  7, [ rohan_w_spear_shield ])
+    _declare_role_figure(rotk_s13f1,  4,  8, [ rohan_w_bow ])
+
+    rotk_s13f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s13.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s13f2,  1,  1, "Uruk-hai Captain", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
+    _declare_role_figure(rotk_s13f2, 10,  2, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(rotk_s13f2,  5,  3, [ uruk_hai_s_bow ])
+
+    #========================================================================
+    rotk_s14 = Repo.insert! %Scenario{
+      name: "A Rock & a Hard Place",
+      blurb: "Elves ambush a Goblin warband as they try to finish off a Dwarven king.",
+      date_age: 3, date_year: 3017, date_month: 0, date_day: 0, size: 69,
+      map_width: 72, map_height: 48, location: :rhovanion
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s14.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 14, page: 124}
+
+    rotk_s14f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s14.id, faction: :dwarves, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s14f1,  1,  1, [ dwarf_king ])
+    _declare_role_figure(rotk_s14f1,  1,  2, [ dwarf_captain ])
+    _declare_role_figure(rotk_s14f1,  4,  3, [ dwarf_khazad_gd ])
+    _declare_role_figure(rotk_s14f1,  6,  4, [ dwarf_w_shield ])
+    _declare_role_figure(rotk_s14f1,  2,  5, [ dwarf_w_2h ])
+    _declare_role_figure(rotk_s14f1,  4,  6, [ dwarf_w_bow ])
+    _declare_role_figure(rotk_s14f1,  2,  7, [ dwarf_w_banner ])
+    _declare_role_figure(rotk_s14f1, 10,  8, [ wood_elf_w_bow ])
+
+    rotk_s14f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s14.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s14f2,  3,  1, [ moria_captain ])
+    _declare_role_figure(rotk_s14f2, 12,  2, [ moria_g_spear ])
+    _declare_role_figure(rotk_s14f2, 12,  3, [ moria_g_shield ])
+    _declare_role_figure(rotk_s14f2, 12,  4, [ moria_g_bow ])
+
+    #========================================================================
+    rotk_s15 = Repo.insert! %Scenario{
+      name: "Baruk Khâzad!",
+      blurb: "Dáin Ironfoot (old version) leads a retaliatory raid against a marauding band of Orcs.",
+      date_age: 3, date_year: 2980, date_month: 0, date_day: 0, size: 72,
+      map_width: 48, map_height: 48, location: :rhovanion
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s15.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 15, page: 126}
+
+    rotk_s15f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s15.id, faction: :dwarves, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s15f1,  1,  1, [ dain ])
+    _declare_role_figure(rotk_s15f1,  1,  2, [ radagast ])
+    _declare_role_figure(rotk_s15f1,  2,  3, [ dwarf_captain ])
+    _declare_role_figure(rotk_s15f1,  6,  4, [ dwarf_khazad_gd ])
+    _declare_role_figure(rotk_s15f1,  6,  5, [ dwarf_w_shield ])
+    _declare_role_figure(rotk_s15f1,  4,  6, [ dwarf_w_2h ])
+    _declare_role_figure(rotk_s15f1,  6,  7, [ dwarf_w_bow ])
+    _declare_role_figure(rotk_s15f1,  2,  8, [ dwarf_w_banner ])
+
+    rotk_s15f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s15.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s15f2,  2,  1, [ orc_captain ])
+    _declare_role_figure(rotk_s15f2,  2,  2, [ orc_captain_warg ])
+    _declare_role_figure(rotk_s15f2, 10,  3, [ orc_w_shield ])
+    _declare_role_figure(rotk_s15f2,  6,  4, [ orc_w_bow ])
+    _declare_role_figure(rotk_s15f2,  6,  5, [ orc_w_spear ])
+    _declare_role_figure(rotk_s15f2,  6,  6, [ orc_w_2h ])
+    _declare_role_figure(rotk_s15f2,  2,  7, [ orc_w_banner ])
+    _declare_role_figure(rotk_s15f2,  5,  8, [ warg_rider_shield_spear ])
+    _declare_role_figure(rotk_s15f2,  5,  9, [ warg_rider_bow ])
+
+    #========================================================================
+    rotk_s16 = Repo.insert! %Scenario{
+      name: "Dáin's Last Stand",
+      blurb: "The climactic battle of the War of the Ring in the north.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 139,
+      map_width: 48, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s16.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 16, page: 128}
+
+    rotk_s16f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s16.id, faction: :dwarves, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s16f1,  1,  1, [ dain ])
+    _declare_role_figure(rotk_s16f1,  2,  2, [ dwarf_captain ])
+    _declare_role_figure(rotk_s16f1,  8,  3, [ dwarf_khazad_gd ])
+    _declare_role_figure(rotk_s16f1,  8,  4, [ dwarf_w_shield ])
+    _declare_role_figure(rotk_s16f1,  5,  5, [ dwarf_w_2h ])
+    _declare_role_figure(rotk_s16f1, 10,  6, [ dwarf_w_bow ])
+    _declare_role_figure(rotk_s16f1,  2,  7, [ dwarf_w_banner ])
+    _declare_role_figure(rotk_s16f1,  1,  8, [ king_of_men ])
+    _declare_role_figure(rotk_s16f1,  8,  9, [ rohan_w_spear_shield ])
+    _declare_role_figure(rotk_s16f1,  6, 10, [ rohan_w_shield ])
+    _declare_role_figure(rotk_s16f1,  8, 11, [ rohan_w_bow ])
+    _declare_role_figure(rotk_s16f1,  2, 12, [ rohan_w_banner ])
+
+    rotk_s16f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s16.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s16f2,  2,  1, [ orc_captain ])
+    _declare_role_figure(rotk_s16f2,  1,  2, "Uruk-hai Captain", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
+    _declare_role_figure(rotk_s16f2,  1,  3, [ easterling_captain ])
+    _declare_role_figure(rotk_s16f2,  6,  4, [ orc_w_shield ])
+    _declare_role_figure(rotk_s16f2,  8,  5, [ orc_w_spear ])
+    _declare_role_figure(rotk_s16f2,  4,  6, [ orc_w_bow ])
+    _declare_role_figure(rotk_s16f2,  4,  7, [ orc_w_2h ])
+    _declare_role_figure(rotk_s16f2,  2,  8, [ orc_w_banner ])
+    _declare_role_figure(rotk_s16f2,  9,  9, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(rotk_s16f2,  5, 10, [ uruk_hai_s_bow ])
+    _declare_role_figure(rotk_s16f2,  1, 11, [ uruk_hai_w_banner ])
+    _declare_role_figure(rotk_s16f2,  4, 12, [ uruk_hai_berserker ])
+    _declare_role_figure(rotk_s16f2, 12, 13, [ warg_rider_shield_spear ])
+    _declare_role_figure(rotk_s16f2,  8, 14, [ warg_rider_bow ])
+    _declare_role_figure(rotk_s16f2, 10, 15, [ easterling_w_shield ])
+    _declare_role_figure(rotk_s16f2,  5, 16, [ easterling_w_shield_spear ])
+    _declare_role_figure(rotk_s16f2,  2, 17, [ mordor_troll ])
+
+    #========================================================================
+    rotk_s17 = Repo.insert! %Scenario{
+      name: "Assault on Lothlorien",
+      blurb: "The War of the Ring comes to Lothlorien.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 117,
+      map_width: 72, map_height: 48, location: :lothlorien
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: rotk_s17.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 17, page: 130}
+
+    rotk_s17f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s17.id, faction: :lothlorien, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(rotk_s17f1,  1,  1, [ galadriel ])
+    _declare_role_figure(rotk_s17f1,  1,  2, [ celeborn ])
+    _declare_role_figure(rotk_s17f1,  2,  3, [ wood_elf_captain ])
+    _declare_role_figure(rotk_s17f1, 10,  4, [ wood_elf_w_armor_bow ])
+    _declare_role_figure(rotk_s17f1, 10,  5, [ wood_elf_w_armor_blade ])
+    _declare_role_figure(rotk_s17f1, 17,  6, [ wood_elf_w_bow ])
+    _declare_role_figure(rotk_s17f1,  3, 12, [ wood_elf_w_banner ])
+
+    rotk_s17f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s17.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(rotk_s17f2,  2,  1, "Uruk-hai Captain", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
+    _declare_role_figure(rotk_s17f2,  2,  2, [ orc_captain ])
+    _declare_role_figure(rotk_s17f2, 10,  3, [ uruk_hai_s_bow ])
+    _declare_role_figure(rotk_s17f2,  8,  4, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(rotk_s17f2,  2,  5, [ uruk_hai_w_banner ])
+    _declare_role_figure(rotk_s17f2,  5,  6, [ uruk_hai_berserker ])
+    _declare_role_figure(rotk_s17f2,  6,  7, [ orc_w_shield ])
+    _declare_role_figure(rotk_s17f2,  8,  8, [ orc_w_spear ])
+    _declare_role_figure(rotk_s17f2,  4,  9, [ orc_w_bow ])
+    _declare_role_figure(rotk_s17f2,  4, 10, [ orc_w_2h ])
+    _declare_role_figure(rotk_s17f2,  2, 11, [ orc_w_banner ])
+    _declare_role_figure(rotk_s17f2,  6, 12, [ warg_rider_shield_spear ])
+    _declare_role_figure(rotk_s17f2,  6, 13, [ warg_rider_bow ])
+    _declare_role_figure(rotk_s17f2,  2, 14, [ mordor_troll ])
 
     #########################################################################
     # THE RETURN OF THE KING JOURNEYBOOK
