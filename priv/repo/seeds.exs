@@ -57,6 +57,11 @@ defmodule SbgInv.Data do
   end
 
   #========================================================================
+  defp _declare_magazine_replay(scenario_id, book, issue, title, page, sort_order) do
+    Repo.insert! %ScenarioResource{scenario_id: scenario_id, resource_type: :magazine_replay, book: book, issue: issue, page: page, title: title, sort_order: sort_order}
+  end
+
+  #========================================================================
   defp _declare_podcast(scenario_id, url, title, sort_order) do
     Repo.insert! %ScenarioResource{scenario_id: scenario_id, resource_type: :podcast, url: url, title: title, sort_order: sort_order}
   end
@@ -7340,6 +7345,128 @@ defmodule SbgInv.Data do
     _declare_role_figure(tttjb_s16f2, 10, 10, [ uruk_hai_w_pike ])
     _declare_role_figure(tttjb_s16f2,  9, 11, [ uruk_hai_berserker ])
     _declare_role_figure(tttjb_s16f2,  1, 12, [ isengard_troll ])
+
+    #########################################################################
+    # SBG MAGAZINE
+    #########################################################################
+
+    #========================================================================
+    sbg_s1 = Repo.insert! %Scenario{
+      name: "Out of the Frying Pan",
+      blurb: "Thorin's Company tries to escape Azog's Hunters on the eastern side of the Misty Mountains.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 35,
+      map_width: 48, map_height: 48, location: :rhovanion
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sbg_s1.id, resource_type: :source, book: :sbg, issue: 1, title: "SBG Magazine", page: 22, sort_order: 1}
+    _declare_magazine_replay(sbg_s1.id, :sbg, 1, "SBG Magazine", 24, 1)
+    _declare_video_replay(sbg_s1.id, "https://www.youtube.com/watch?v=xUnpfZlauf4", "Mid-Sussex Wargamers", 1)
+
+    sbg_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: sbg_s1.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(sbg_s1f1, 1,  1, "Thorin Oakenshield with Orcrist and Oakenshield", [ thorin ])
+    _declare_role_figure(sbg_s1f1, 1,  2, [ dwalin ])
+    _declare_role_figure(sbg_s1f1, 1,  3, [ balin ])
+    _declare_role_figure(sbg_s1f1, 1,  4, [ ori ])
+    _declare_role_figure(sbg_s1f1, 1,  5, [ dori ])
+    _declare_role_figure(sbg_s1f1, 1,  6, [ nori ])
+    _declare_role_figure(sbg_s1f1, 1,  7, [ oin ])
+    _declare_role_figure(sbg_s1f1, 1,  8, [ gloin ])
+    _declare_role_figure(sbg_s1f1, 1,  9, [ bifur ])
+    _declare_role_figure(sbg_s1f1, 1, 10, [ bofur ])
+    _declare_role_figure(sbg_s1f1, 1, 11, [ bombur ])
+    _declare_role_figure(sbg_s1f1, 1, 12, "Bilbo Baggins with Sting and the One Ring", [ young_bilbo ])
+    _declare_role_figure(sbg_s1f1, 1, 13, [ gandalf_grey ])
+
+    sbg_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: sbg_s1.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(sbg_s1f2,  1, 1, [ azog_warg ])
+    _declare_role_figure(sbg_s1f2,  1, 2, [ fimbul_warg ])
+    _declare_role_figure(sbg_s1f2, 12, 3, [ hunter_orc_warg ])
+    _declare_role_figure(sbg_s1f2,  6, 4, [ fell_warg ])
+
+    #========================================================================
+    sbg_s2 = Repo.insert! %Scenario{
+      name: "The Battle of Azanulbizar",
+      blurb: "Azog and Thror face each other down.",
+      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 57,
+      map_width: 48, map_height: 48, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sbg_s2.id, resource_type: :source, book: :sbg, issue: 2, title: "SBG Magazine", page: 14, sort_order: 1}
+    _declare_magazine_replay(sbg_s2.id, :sbg, 2, "SBG Magazine", 22, 1)
+    _declare_video_replay(sbg_s2.id, "https://www.youtube.com/watch?v=AJEwPsxwFG4&list=PLzZ6-_-l-0I52yFFoGzMSuyhscqAy6RmV&index=35", "Spillforeningen the Fellowship", 2)
+
+    sbg_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: sbg_s2.id, faction: :army_thror, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(sbg_s2f1,  1,  1, [ thror ])
+    _declare_role_figure(sbg_s2f1,  1,  2, [ thrain ])
+    _declare_role_figure(sbg_s2f1,  1,  3, "Thorin Oakenshield with Oakenshield", [ thorin ])
+    _declare_role_figure(sbg_s2f1,  1,  4, [ dwalin ])
+    _declare_role_figure(sbg_s2f1,  1,  5, [ balin_young ])
+    _declare_role_figure(sbg_s2f1, 12,  6, [ erebor_w_spear ])
+    _declare_role_figure(sbg_s2f1,  6,  7, [ erebor_w_shield ])
+    _declare_role_figure(sbg_s2f1,  6,  8, [ grim_hammer_w ])
+
+    sbg_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: sbg_s2.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(sbg_s2f2,  1, 1, [ azog ])
+    _declare_role_figure(sbg_s2f2,  1, 2, [ bolg ])
+    _declare_role_figure(sbg_s2f2,  1, 3, "Gundabad Orc General", [ dungeon_keeper ])
+    _declare_role_figure(sbg_s2f2,  1, 4, "Gundabad Orc Captain with shield", [ gundabad_orc_captain ])
+    _declare_role_figure(sbg_s2f2, 12, 5, [ gundabad_orc_shield ])
+    _declare_role_figure(sbg_s2f2, 12, 6, [ gundabad_orc_spear ])
+
+    #========================================================================
+    sbg_s3 = Repo.insert! %Scenario{
+      name: "The Siege of Dol Guldur",
+      blurb: "Azog and Thror face each other down.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 91,
+      map_width: 48, map_height: 48, location: :dol_guldur
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sbg_s3.id, resource_type: :source, book: :sbg, issue: 3, title: "SBG Magazine", page: 10, sort_order: 1}
+    _declare_magazine_replay(sbg_s3.id, :sbg, 3, "SBG Magazine", 22, 1)
+
+    sbg_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: sbg_s3.id, faction: :white_council, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(sbg_s3f1,  1,  1, [ gandalf_grey ])
+    _declare_role_figure(sbg_s3f1,  1,  2, [ thrain_broken ])
+    _declare_role_figure(sbg_s3f1,  1,  3, "Galadriel, Lady of Light", [ galadriel ])
+    _declare_role_figure(sbg_s3f1,  1,  4, "Radagast the Brown with Sebastian", [ radagast ])
+    _declare_role_figure(sbg_s3f1,  1,  5, "Saruman the Wise", [ saruman ])
+    _declare_role_figure(sbg_s3f1,  1,  6, "Elrond, Lord of the West", [ elrond ])
+    _declare_role_figure(sbg_s3f1,  1,  7, "Thranduil, King of the Woodland Realm", [ thranduil ])
+    _declare_role_figure(sbg_s3f1,  1,  8, [ mirkwood_captain ])
+    _declare_role_figure(sbg_s3f1, 24,  9, "Mirkwood Elves", [ mirkwood_elf_bow, mirkwood_elf_glaive, mirkwood_elf_shield ])
+    _declare_role_figure(sbg_s3f1, 10, 10, [ mirkwood_palace_gd ])
+
+    sbg_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: sbg_s3.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(sbg_s3f2,  1,  1, [ necromancer ])
+    _declare_role_figure(sbg_s3f2,  1,  2, [ witch_king ])
+    _declare_role_figure(sbg_s3f2,  1,  3, [ khamul ])
+    _declare_role_figure(sbg_s3f2,  7,  4, [ ringwraith ])
+    _declare_role_figure(sbg_s3f2,  1,  5, "Golb, Gundabad Orc General", [ dungeon_keeper ])
+    _declare_role_figure(sbg_s3f2, 18,  6, [ hunter_orc ])
+    _declare_role_figure(sbg_s3f2,  6,  7, [ hunter_orc_warg ])
+    _declare_role_figure(sbg_s3f2,  8,  8, [ giant_spider ])
+    _declare_role_figure(sbg_s3f2,  4,  9, [ mirkwood_spider ])
+    _declare_role_figure(sbg_s3f2,  2, 10, [ bat_swarm ])
+
+    #========================================================================
+    sbg_s4 = Repo.insert! %Scenario{
+      name: "The Hunt for Thrain",
+      blurb: "Gandalf investigates Dol Guldur and tries to save a crazy dwarf.",
+      date_age: 3, date_year: 2850, date_month: 0, date_day: 0, size: 7,
+      map_width: 24, map_height: 24, location: :dol_guldur
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: sbg_s4.id, resource_type: :source, book: :sbg, issue: 4, title: "SBG Magazine", page: 3, sort_order: 1}
+    _declare_magazine_replay(sbg_s4.id, :sbg, 4, "SBG Magazine", 5, 1)
+    _declare_video_replay(sbg_s4.id, "https://www.youtube.com/watch?v=FOjsEFxZZQg", "GBHL", 1)
+    _declare_video_replay(sbg_s4.id, "https://www.youtube.com/watch?v=fSjgVps9TT8", "GBHL", 2)
+
+    sbg_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: sbg_s4.id, faction: :white_council, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(sbg_s4f1,  1,  1, [ gandalf_grey ])
+
+    sbg_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: sbg_s4.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(sbg_s4f2,  1,  1, [ thrain_broken ])
+    _declare_role_figure(sbg_s4f2,  5,  2, [ hunter_orc ])
 
     #########################################################################
     # MORDOR
