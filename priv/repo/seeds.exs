@@ -1434,7 +1434,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s1.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 1, page: 8}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s1.id, resource_type: 1, url: "https://www.youtube.com/watch?v=0_dCdLngsKs&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+    _declare_video_replay(fotn_s1.id, "https://www.youtube.com/watch?v=0_dCdLngsKs&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", "Mid-Sussex Wargamers", 1)
 
     fotn_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s1.id, faction: :mirkwood, suggested_points: 200, actual_points: 273, sort_order: 1}
     _declare_role_figure(fotn_s1f1, 1, 1, [ thranduil ])
@@ -1456,7 +1456,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s2.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 2, page: 10}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s2.id, resource_type: 1, url: "https://www.youtube.com/watch?v=AMrP8abPj0Q&index=2&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+    _declare_video_replay(fotn_s2.id, "https://www.youtube.com/watch?v=AMrP8abPj0Q&index=2&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", "Mid-Sussex Wargamers", 1)
 
     fotn_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s2.id, faction: :mirkwood, suggested_points: 600, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotn_s2f1, 1, 1, [ thranduil ])
@@ -1494,7 +1494,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s3.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 3, page: 12}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s3.id, resource_type: 1, url: "https://www.youtube.com/watch?v=YN8X_azJfO8&index=3&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+    _declare_video_replay(fotn_s3.id, "https://www.youtube.com/watch?v=YN8X_azJfO8&index=3&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", "Mid-Sussex Wargamers", 1)
 
     fotn_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s3.id, faction: :rivendell, suggested_points: 550, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotn_s3f1, 1, 1, [ cirdan ])
@@ -1520,7 +1520,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fotn_s4.id, resource_type: :source, book: :fotn, title: "Fall of the Necromancer", sort_order: 4, page: 14}
-    Repo.insert! %ScenarioResource{scenario_id: fotn_s4.id, resource_type: 1, url: "https://www.youtube.com/watch?v=UbIM0XE6jT8&index=4&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", title: "Mid-Sussex Wargamers", sort_order: 1}
+    _declare_video_replay(fotn_s4.id, "https://www.youtube.com/watch?v=UbIM0XE6jT8&index=4&list=PLa_Dq2-Vx86ITkcanEGELzdBfezvkYtUq", "Mid-Sussex Wargamers", 1)
 
     fotn_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: fotn_s4.id, faction: :white_council, suggested_points: 500, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotn_s4f1, 1, 1, [ gandalf_grey ])
@@ -3002,7 +3002,8 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s1.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 1, page: 112}
     _declare_video_replay(hobbit_s1.id, "https://www.youtube.com/watch?v=lwc1bqolr7g", "Spillforeningen the Fellowship", 1)
     _declare_video_replay(hobbit_s1.id, "https://www.youtube.com/watch?v=qo23ETd11oI&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=1&t=7s", "DCHL", 2)
-    _declare_web_replay(hobbit_s1.id, "http://davetownsend.org/Battles/LotR-20160528/", "DaveT", 3)
+    _declare_video_replay(hobbit_s1.id, "https://www.youtube.com/watch?v=6v-1Wmu-9k4&list=PLa_Dq2-Vx86Ju52qrkmvTbfsT3x4g1Or8&index=3", "Mid-Sussex Wargamers", 3)
+    _declare_web_replay(hobbit_s1.id, "http://davetownsend.org/Battles/LotR-20160528/", "DaveT", 4)
 
     hobbit_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s1.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(hobbit_s1f1, 1,  1, [ thorin ])
@@ -3034,8 +3035,9 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s2.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 2, page: 114}
-    _declare_video_replay(hobbit_s2.id, "https://www.youtube.com/watch?v=ek6FHqDp2-w", "Spillforeningen the Fellowship", 2)
-    _declare_video_replay(hobbit_s2.id, "https://www.youtube.com/watch?v=DE8qtshNA7I&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=2", "DCHL", 3)
+    _declare_video_replay(hobbit_s2.id, "https://www.youtube.com/watch?v=ek6FHqDp2-w", "Spillforeningen the Fellowship", 1)
+    _declare_video_replay(hobbit_s2.id, "https://www.youtube.com/watch?v=DE8qtshNA7I&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=2", "DCHL", 2)
+    _declare_video_replay(hobbit_s2.id, "https://www.youtube.com/watch?v=80ZREBebyYw&index=2&list=PLa_Dq2-Vx86Ju52qrkmvTbfsT3x4g1Or8", "Mid-Sussex Wargamers", 3)
 
     hobbit_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s2.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(hobbit_s2f1, 1,  1, [ thorin ])
@@ -3070,8 +3072,9 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s3.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 3, page: 116}
-    _declare_video_replay(hobbit_s3.id, "https://www.youtube.com/watch?v=PahHhcXCNPY", "Spillforeningen the Fellowship", 2)
-    _declare_video_replay(hobbit_s3.id, "https://www.youtube.com/watch?v=mn7yH5lXXMg&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=3", "DCHL", 3)
+    _declare_video_replay(hobbit_s3.id, "https://www.youtube.com/watch?v=PahHhcXCNPY", "Spillforeningen the Fellowship", 1)
+    _declare_video_replay(hobbit_s3.id, "https://www.youtube.com/watch?v=mn7yH5lXXMg&list=PLeIywh8H3Kc7fiaGLheYUBXCfAaqzMvvw&index=3", "DCHL", 2)
+    _declare_video_replay(hobbit_s3.id, "https://www.youtube.com/watch?v=UCzV27PopK0&list=PLa_Dq2-Vx86Ju52qrkmvTbfsT3x4g1Or8", "Mid-Sussex Wargamers", 3)
 
     hobbit_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s3.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(hobbit_s3f1, 1,  1, [ thorin ])
@@ -3969,6 +3972,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotk_s5.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 5, page: 103}
+    _declare_video_replay(rotk_s5.id, "https://www.youtube.com/watch?v=DzIvlS3QmaU&list=PLa_Dq2-Vx86KjLv5JCpygwNALLzzh5zG9&index=6", "Mid-Sussex Wargamers", 1)
 
     rotk_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s5.id, faction: :gondor, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(rotk_s5f1,  1, 1, [ gandalf_white_horse ])
@@ -5048,6 +5052,7 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: sots_s7.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 7, page: 50}
     _declare_video_replay(sots_s7.id, "https://www.youtube.com/watch?v=wCPbwSPgm2I&index=11&list=PLzZ6-_-l-0I52yFFoGzMSuyhscqAy6RmV", "Spillforeningen the Fellowship", 1)
+    _declare_video_replay(sots_s7.id, "https://www.youtube.com/watch?v=ILWmWjvhF7Q&list=PLa_Dq2-Vx86KjLv5JCpygwNALLzzh5zG9&index=15", "Mid-Sussex Wargamers", 2)
 
     sots_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s7.id, faction: :shire, suggested_points: 84, actual_points: 84, sort_order: 1}
     _declare_role_figure(sots_s7f1,  4, 1, [ hobbit_shirriff ])
@@ -7139,6 +7144,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s9.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 9, page: 46}
+    _declare_video_replay(tttjb_s9.id, "https://www.youtube.com/watch?v=CBH__WZh5pA&index=5&list=PLa_Dq2-Vx86KjLv5JCpygwNALLzzh5zG9", "Mid-Sussex Wargamers", 1)
 
     tttjb_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s9.id, faction: :fellowship, suggested_points: 150, actual_points: 0, sort_order: 1}
     _declare_role_figure(tttjb_s9f1, 1, 1, "Frodo Baggins with Sting, mithril coat, and Elven cloak", [ frodo ])
@@ -7590,6 +7596,7 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: mordor_s4.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 4, page: 66}
     _declare_podcast(mordor_s4.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-16-vengeance-of-the-nazgul", "The Green Dragon", 1)
+    _declare_video_replay(mordor_s4.id, "https://www.youtube.com/watch?v=sbwVzrvWTa8&list=PLa_Dq2-Vx86KjLv5JCpygwNALLzzh5zG9&index=14", "Mid-Sussex Wargamers", 2)
 
     mordor_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s4.id, faction: :dwarves, suggested_points: 700, actual_points: 0, sort_order: 1}
     _declare_role_figure(mordor_s4f1,  1,  1, [ dain ])
