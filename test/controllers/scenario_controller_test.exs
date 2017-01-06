@@ -35,6 +35,7 @@ defmodule SbgInv.ScenarioControllerTest do
       "num_votes" => 0,
       "rating_breakdown" => [0, 0, 0, 0, 0],
       "scenario_resources" => %{
+        "magazine_replay" => [],
         "source" => [],
         "web_replay" => [],
         "video_replay" => [],

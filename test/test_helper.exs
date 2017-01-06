@@ -97,6 +97,7 @@ defmodule SbgInv.TestHelper do
           }
         ],
         "scenario_resources" => %{
+          "magazine_replay" => [],
           "podcast" => [],
           "source" => [],
           "terrain_building" => [],
