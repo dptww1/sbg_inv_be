@@ -2445,6 +2445,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: fp_s6.id, resource_type: :source, book: :fp, title: "The Free Peoples", sort_order: 6, page: 62}
+    _declare_video_replay(fp_s6.id, "https://www.youtube.com/watch?v=O0k7OAKAGms&index=5&list=PLojk5rjS_dLaLSaURnRx1NDBMXeB9lhc-", "Hot Gates Gaming", 1)
 
     fp_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s6.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fp_s6f1,  1,  1, "Aragorn with bow and Elven cloak", [ aragorn ])
