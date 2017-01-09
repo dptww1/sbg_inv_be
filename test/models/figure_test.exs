@@ -3,7 +3,7 @@ defmodule SbgInv.FigureTest do
 
   alias SbgInv.Figure
 
-  @valid_attrs %{name: "some content"}
+  @valid_attrs %{name: "some content", type: :hero}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

@@ -4,6 +4,8 @@ defmodule SbgInv.Figure do
   schema "figures" do
     field :name, :string
     field :plural_name, :string
+    field :type, FigureType
+    field :unique, :boolean
 
     timestamps
 
@@ -11,8 +13,8 @@ defmodule SbgInv.Figure do
     has_many :user_figure, SbgInv.UserFigure
   end
 
-  @required_fields ~w(name)
-  @optional_fields ~w(plural_name)
+  @required_fields ~w(name type)
+  @optional_fields ~w(plural_name unique)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

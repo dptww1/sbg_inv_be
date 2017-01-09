@@ -31,6 +31,12 @@ defenum Faction,
   trolls:         27,
   white_council:  28
 
+defenum FigureType,
+  hero:    0,
+  warrior: 1,
+  monster: 2,
+  sieger:  3
+
 defenum Location,
   amon_hen:      0,
   arnor:         1,

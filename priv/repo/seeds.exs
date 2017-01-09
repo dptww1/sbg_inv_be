@@ -14,6 +14,7 @@
 
 defmodule SbgInv.Data do
   alias SbgInv.Repo
+  alias SbgInv.FactionFigure
   alias SbgInv.Figure
   alias SbgInv.Role
   alias SbgInv.RoleFigure
@@ -27,33 +28,46 @@ defmodule SbgInv.Data do
   end
 
   #========================================================================
-  defp _declare_unique(name) do
-    Repo.insert! %Figure{name: name}
+  defp _declare_figure(name, plural_name, type, unique, factions) do
+    fig = Repo.insert! %Figure{name: name, plural_name: plural_name, type: type, unique: unique}
+    Enum.each factions, fn(faction) -> Repo.insert %FactionFigure{faction_id: faction, figure: fig} end
+    fig
   end
 
   #========================================================================
-  defp _declare_hero(name, plural_name) do
-    Repo.insert! %Figure{name: name, plural_name: plural_name}
+  defp _declare_unique(name, factions \\ []) do
+    _declare_figure(name, nil, :hero, true, factions)
+    #Repo.insert! %Figure{name: name, type: :hero, unique: true}
   end
 
   #========================================================================
-  defp _declare_warrior(name, plural_name) do
-    Repo.insert! %Figure{name: name, plural_name: plural_name}
+  defp _declare_hero(name, plural_name, factions \\ []) do
+    _declare_figure(name, plural_name, :hero, false, factions)
+    #Repo.insert! %Figure{name: name, plural_name: plural_name, type: :hero}
   end
 
   #========================================================================
-  defp _declare_monster(name, plural_name) do
-    Repo.insert! %Figure{name: name, plural_name: plural_name}
+  defp _declare_warrior(name, plural_name, factions \\ []) do
+    _declare_figure(name, plural_name, :warrior, false, factions)
+    #Repo.insert! %Figure{name: name, plural_name: plural_name, type: :warrior}
   end
 
   #========================================================================
-  defp _declare_unique_monster(name) do
-    Repo.insert! %Figure{name: name}
+  defp _declare_monster(name, plural_name, factions \\ []) do
+    _declare_figure(name, plural_name, :monster, false, factions)
+    #Repo.insert! %Figure{name: name, plural_name: plural_name, type: :monster}
   end
 
   #========================================================================
-  defp _declare_siege(name, plural_name) do
-    Repo.insert! %Figure{name: name, plural_name: plural_name}
+  defp _declare_unique_monster(name, factions \\ []) do
+    _declare_figure(name, nil, :monster, true, factions)
+    #Repo.insert! %Figure{name: name, type: :monster, unique: true}
+  end
+
+  #========================================================================
+  defp _declare_siege(name, plural_name, factions \\ []) do
+    _declare_figure(name, plural_name, :sieger, false, factions)
+    #Repo.insert! %Figure{name: name, plural_name: plural_name, type: :sieger}
   end
 
   #========================================================================
@@ -117,18 +131,18 @@ defmodule SbgInv.Data do
     # FIGURES: ARMY OF THROR
     #########################################################################
 
-    thror         = _declare_unique("Thror")
-    thrain        = _declare_unique("Thrain")
+    thror         = _declare_unique("Thror",             [ :army_thror ])
+    thrain        = _declare_unique("Thrain",            [ :army_thror ])
     thrain_broken = _declare_unique("Thrain the Broken")
 
-    erebor_captain      = _declare_hero("Erebor Captain",      "Erebor Captains")
-    grim_hammer_captain = _declare_hero("Grim Hammer Captain", "Grim Hammer Captains")
+    erebor_captain      = _declare_hero("Erebor Captain",      "Erebor Captains",      [ :army_thror ])
+    grim_hammer_captain = _declare_hero("Grim Hammer Captain", "Grim Hammer Captains", [ :army_thror ])
 
-    erebor_w_banner      = _declare_warrior("Warrior of Erebor with banner",   "Warriors of Erebor with banner")
-    erebor_w_shield      = _declare_warrior("Warrior of Erebor with shield",   "Warriors of Erebor with shield")
-    erebor_w_spear       = _declare_warrior("Warrior of Erebor with spear",    "Warriors of Erebor with spear")
-    grim_hammer_w_banner = _declare_warrior("Grim Hammer Warrior with banner", "Grim Hammer Warriors with banner")
-    grim_hammer_w        = _declare_warrior("Grim Hammer Warrior",             "Grim Hammer Warriors")
+    erebor_w_banner      = _declare_warrior("Warrior of Erebor with banner",   "Warriors of Erebor with banner",   [ :army_thror ])
+    erebor_w_shield      = _declare_warrior("Warrior of Erebor with shield",   "Warriors of Erebor with shield",   [ :army_thror ])
+    erebor_w_spear       = _declare_warrior("Warrior of Erebor with spear",    "Warriors of Erebor with spear",    [ :army_thror ])
+    grim_hammer_w_banner = _declare_warrior("Grim Hammer Warrior with banner", "Grim Hammer Warriors with banner", [ :army_thror ])
+    grim_hammer_w        = _declare_warrior("Grim Hammer Warrior",             "Grim Hammer Warriors",             [ :army_thror ])
 
     #########################################################################
     # FIGURES: ARNOR
@@ -150,49 +164,50 @@ defmodule SbgInv.Data do
     # FIGURES: AZOG'S HUNTERS/AZOG'S LEGION
     #########################################################################
 
-    azog_warg   = _declare_unique("Azog on White warg")
-    azog        = _declare_unique("Azog")
-    bolg        = _declare_unique("Bolg")
-    fimbul      = _declare_unique("Fimbul")
-    fimbul_warg = _declare_unique("Fimbul on warg")
-    narzug_warg = _declare_unique("Narzug on warg")
-    narzug      = _declare_unique("Narzug")
-    yazneg      = _declare_unique("Yazneg")
+    azog_warg   = _declare_unique("Azog on White warg", [ :azogs_legion, :azogs_hunters ])
+    azog        = _declare_unique("Azog",               [ :azogs_legion, :azogs_hunters ])
+    bolg        = _declare_unique("Bolg",               [ :azogs_legion, :azogs_hunters ])
+    bolg_warg   = _declare_unique("Bolg on warg",       [ :azogs_legion, :azogs_hunters ])
+    fimbul      = _declare_unique("Fimbul",             [ :azogs_hunters ])
+    fimbul_warg = _declare_unique("Fimbul on warg",     [ :azogs_hunters ])
+    narzug_warg = _declare_unique("Narzug on warg",     [ :azogs_hunters ])
+    narzug      = _declare_unique("Narzug",             [ :azogs_hunters ])
+    yazneg      = _declare_unique("Yazneg",             [ :azogs_hunters ])
 
-    goblin_mercenary_captain = _declare_hero("Goblin Mercenary Captain",        "Goblin Mercenary Captains")
-    gundabad_orc_captain     = _declare_hero("Gundabad Orc Captain",            "Gundabad Orc Captains")
-    hunter_orc_captain       = _declare_hero("Hunter Orc Captain",              "Hunter Orc Captains")
-    hunter_orc_captain_warg  = _declare_hero("Hunter Orc Captain on Fell Warg", "Hunter Orc Captains on Fell Warg")
+    goblin_mercenary_captain = _declare_hero("Goblin Mercenary Captain",        "Goblin Mercenary Captains",        [ :azogs_legion ])
+    gundabad_orc_captain     = _declare_hero("Gundabad Orc Captain",            "Gundabad Orc Captains",            [ :azogs_legion ])
+    hunter_orc_captain       = _declare_hero("Hunter Orc Captain",              "Hunter Orc Captains",              [ :azogs_hunters ])
+    hunter_orc_captain_warg  = _declare_hero("Hunter Orc Captain on Fell Warg", "Hunter Orc Captains on Fell Warg", [ :azogs_hunters ])
 
-    fell_warg           = _declare_warrior("Fell Warg",                "Fell Wargs")
-    goblin_mercenary    = _declare_warrior("Goblin Mercenary",         "Goblin Mercenaries")
-    gundabad_berserker  = _declare_warrior("Gundabad Berserker",       "Gundabad Berserkers")
-    gundabad_orc_shield = _declare_warrior("Gundabad Orc with shield", "Gundabad Orcs with shield")
-    gundabad_orc_spear  = _declare_warrior("Gundabad Orc with spear",  "Gundabad Orcs with spear")
-    hunter_orc          = _declare_warrior("Hunter Orc",               "Hunter Orcs")
-    hunter_orc_warg     = _declare_warrior("Hunter Orc on warg",       "Hunter Orcs on warg")
-    war_bat             = _declare_warrior("War Bat",                  "War Bats")
+    fell_warg           = _declare_warrior("Fell Warg",                "Fell Wargs",                [ :azogs_hunters ])
+    goblin_mercenary    = _declare_warrior("Goblin Mercenary",         "Goblin Mercenaries",        [ :azogs_legion ])
+    gundabad_berserker  = _declare_warrior("Gundabad Berserker",       "Gundabad Berserkers",       [ :azogs_legion ])
+    gundabad_orc_shield = _declare_warrior("Gundabad Orc with shield", "Gundabad Orcs with shield", [ :azogs_legion ])
+    gundabad_orc_spear  = _declare_warrior("Gundabad Orc with spear",  "Gundabad Orcs with spear",  [ :azogs_legion ])
+    hunter_orc          = _declare_warrior("Hunter Orc",               "Hunter Orcs",               [ :azogs_hunters ])
+    hunter_orc_warg     = _declare_warrior("Hunter Orc on warg",       "Hunter Orcs on warg",       [ :azogs_hunters ])
+    war_bat             = _declare_warrior("War Bat",                  "War Bats",                  [ :azogs_legion ])
 
-    catapult_troll = _declare_monster("Catapult Troll", "Catapult Trolls")
-    gundabad_ogre  = _declare_monster("Gundabad Ogre",  "Gundabad Ogres")
-    gundabad_troll = _declare_monster("Gundabad Troll", "Gundabad Trolls")
-    troll_brute    = _declare_monster("Troll Brute",    "Troll Brutes")
+    catapult_troll = _declare_monster("Catapult Troll", "Catapult Trolls", [ :azogs_legion ])
+    gundabad_ogre  = _declare_monster("Gundabad Ogre",  "Gundabad Ogres",  [ :azogs_legion ])
+    gundabad_troll = _declare_monster("Gundabad Troll", "Gundabad Trolls", [ :azogs_legion ])
+    troll_brute    = _declare_monster("Troll Brute",    "Troll Brutes",    [ :azogs_legion ])
 
     #########################################################################
     # FIGURES: DALE
     #########################################################################
 
-    girion = _declare_unique("Girion, Lord of Dale")
+    girion = _declare_unique("Girion, Lord of Dale", [ :dale ])
 
-    dale_captain = _declare_hero("Captain of Dale", "Captains of Dale")
+    dale_captain = _declare_hero("Captain of Dale", "Captains of Dale", [ :dale ])
 
-    dale_w = _declare_warrior("Man of Dale", "Men of Dale")
+    dale_w = _declare_warrior("Man of Dale", "Men of Dale", [ :dale ])
 
     #########################################################################
     # FIGURES: DESOLATOR OF THE NORTH
     #########################################################################
 
-    smaug = _declare_unique("Smaug")
+    smaug = _declare_unique_monster("Smaug", [ :desolator_north ])
 
     #########################################################################
     # FIGURES: DWARVES
@@ -732,7 +747,7 @@ defmodule SbgInv.Data do
     balin              = _declare_unique("Balin")
     balin_barrel       = _declare_unique("Balin in barrel")
     balin_erebor       = _declare_unique("Balin, Champion of Erebor")
-    balin_young        = _declare_unique("Young Balin")
+    balin_young        = _declare_unique("Young Balin",                                 [ :army_thror ])
     bifur              = _declare_unique("Bifur")
     bifur_barrel       = _declare_unique("Bifur in barrel")
     bifur_erebor       = _declare_unique("Bifur, Champion of Erebor")
@@ -751,7 +766,7 @@ defmodule SbgInv.Data do
     dwalin_barrel      = _declare_unique("Dwalin in barrel")
     dwalin_erebor      = _declare_unique("Dwalin, Champion of Erebor")
     dwalin_goat        = _declare_unique("Dwalin on goat")
-    dwalin_young       = _declare_unique("Young Dwalin")
+    dwalin_young       = _declare_unique("Young Dwalin",                                [ :army_thror ])
     fili               = _declare_unique("Fili")
     fili_barrel        = _declare_unique("Fili in barrel")
     fili_erebor        = _declare_unique("Fili, Champion of Erebor")
@@ -776,7 +791,7 @@ defmodule SbgInv.Data do
     thorin_barrel      = _declare_unique("Thorin Oakenshield in barrel")
     thorin_erebor      = _declare_unique("Thorin Oakenshield, King Under the Mountain")
     thorin_goat        = _declare_unique("Thorin Oakenshield on goat")
-    thorin_young       = _declare_unique("Young Thorin Oakenshield")
+    thorin_young       = _declare_unique("Young Thorin Oakenshield",                    [ :army_thror ])
 
     #########################################################################
     # THE TROLLS
