@@ -1,6 +1,8 @@
 defmodule SbgInv.ScenarioController do
   use SbgInv.Web, :controller
 
+  import Ecto.Query
+
   alias SbgInv.{Authentication, Scenario, UserFigure, UserScenario}
 
   plug :scrub_params, "scenario" when action in [:create, :update]
@@ -14,8 +16,6 @@ defmodule SbgInv.ScenarioController do
     render(conn, "error.json", %{})
   end
   defp _index(conn, _) do
-    import Ecto.Query
-
     user_id = if(Map.has_key?(conn.assigns, :current_user), do: conn.assigns.current_user.id, else: -1)
 
     user_query = from us in UserScenario, where: us.user_id == ^user_id
@@ -58,9 +58,6 @@ defmodule SbgInv.ScenarioController do
     render(conn, "error.json", %{})
   end
   defp _show(conn, id, _) do
-    import Ecto.Query
-
-
     user_id = if(Map.has_key?(conn.assigns, :current_user), do: conn.assigns.current_user.id, else: -1)
 
     user_scenario_query = from us in UserScenario, where: us.user_id == ^user_id
@@ -76,8 +73,14 @@ defmodule SbgInv.ScenarioController do
             |> preload([user_scenarios: ^user_scenario_query])
             |> preload(scenario_factions: [roles: [figures: [user_figure: ^user_figure_query]]])
 
-    scenario = Repo.get!(query, id)
+    scenario = Repo.get(query, id)
+    _show_render(conn, scenario, rating_breakdown)
+  end
 
+  defp _show_render(conn, nil, _) do
+    put_status(conn, :not_found)
+  end
+  defp _show_render(conn, scenario, rating_breakdown) do
     render(conn, "show.json", %{scenario: scenario, rating_breakdown: rating_breakdown})
   end
 

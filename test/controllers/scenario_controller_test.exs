@@ -48,9 +48,8 @@ defmodule SbgInv.ScenarioControllerTest do
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do
-    assert_error_sent 404, fn ->
-      get conn, scenario_path(conn, :show, -1)
-    end
+    conn = get conn, scenario_path(conn, :show, -1)
+    assert conn.status == 404
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do
