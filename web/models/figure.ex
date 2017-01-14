@@ -9,8 +9,9 @@ defmodule SbgInv.Figure do
 
     timestamps
 
-    has_many :role, SbgInv.Role
+    many_to_many :role, SbgInv.Role, join_through: "role_figures"
     has_many :user_figure, SbgInv.UserFigure
+    has_many :faction_figure, SbgInv.FactionFigure
   end
 
   @required_fields ~w(name type)
