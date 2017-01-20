@@ -476,7 +476,7 @@ defmodule SbgInv.Data do
     mauhur      = _declare_unique("Mauhúr",             [ :isengard ])
     sharkey     = _declare_unique("Sharkey",            [ :isengard ])
     sharku      = _declare_unique("Sharku",             [ :isengard ])
-    sharku_warg = _declare_unique("Sharku on Warg")
+    sharku_warg = _declare_unique("Sharku on Warg",     [ :isengard ])
     thrydan     = _declare_unique("Thrydan Wolvesbane", [ :isengard ])
     ugluk       = _declare_unique("Uglúk",              [ :isengard ])
     vrasku      = _declare_unique("Vraskû",             [ :isengard ])
@@ -589,7 +589,7 @@ defmodule SbgInv.Data do
     #########################################################################
 
     dark_marshal         = _declare_unique("The Dark Marshal", [ :nazgul ])
-    gollum               = _declare_unique("Gollum",    [ :fellowship ])
+    gollum               = _declare_unique("Gollum")
     gorbag               = _declare_unique("Gorbag",    [ :cirith_ungol ])
     gothmog              = _declare_unique("Gothmog",   [ :minas_morgul ])
     grishnakh            = _declare_unique("Grishnákh", [ :minas_morgul ])
@@ -600,7 +600,7 @@ defmodule SbgInv.Data do
     shadow_lord          = _declare_unique("The Shadow Lord", [ :nazgul ])
     shagrat              = _declare_unique("Shagrat", [ :cirith_ungol ])
     shelob               = _declare_unique("Shelob",  [ :cirith_ungol ])
-    smeagol              = _declare_unique("Sméagol")
+    smeagol              = _declare_unique("Sméagol", [ :fellowship ])
     tainted              = _declare_unique("The Tainted",                        [ :angmar, :nazgul ])
     undying              = _declare_unique("The Undying",                        [          :nazgul ])
     witch_king           = _declare_unique("Witch-king of Angmar",               [ :angmar, :dol_guldur, :nazgul ])
