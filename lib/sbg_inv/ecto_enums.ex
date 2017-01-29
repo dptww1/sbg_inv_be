@@ -1,45 +1,41 @@
 import EctoEnum
 
 defenum Faction,
-  angmar:          0,
+  angmar:           0,
   army_thror:       1,
   arnor:            2,
   azogs_hunters:    3,
   azogs_legion:     4,
-  barad_dur:        5,
-  black_gate:       6,
-  cirith_ungol:     7,
-  dale:             8,
-  mirkwood:         9,  # dark denizens
-  desolator_north: 10,
-  dol_guldur:      11,
-  durins_folk:     12,
-  easterlings:     13,
-  elrond:          14,
-  erebor:          15,
-  rivendell:       16,  # eregion & rivendell
-  fellowship:      17,
-  fiefdoms:        18,
-  goblintown:      19,
-  harad:           20,
-  iron_hills:      21,
-  isengard:        22,
-  laketown:        23,
-  lothlorien:      24,
-  minas_morgul:    25,
-  minas_tirith:    26,
-  moria:           27,
-  nazgul:          28,
-  numenor:         29,
-  radagast:        30,
-  rohan:           31,
-  shire:           32,
-  survivors:       33,
-  thorins_co:      34,
-  thranduil:       35,
-  trolls:          36,
-  wanderers:       37,
-  white_council:   38
+  dale:             5,
+  mirkwood:         6,  # dark denizens
+  desolator_north:  7,
+  dol_guldur:       8,
+  durins_folk:      9,
+  easterlings:     10,
+  elrond:          11,
+  erebor:          12,
+  rivendell:       13,  # eregion & rivendell
+  fellowship:      14,
+  fiefdoms:        15,
+  goblintown:      16,
+  harad:           17,
+  iron_hills:      18,
+  isengard:        19,
+  laketown:        20,
+  lothlorien:      21,
+  minas_tirith:    22,
+  mordor:          23,
+  moria:           24,
+  numenor:         25,
+  radagast:        26,
+  rohan:           27,
+  shire:           28,
+  survivors:       29,
+  thorins_co:      30,
+  thranduil:       31,
+  trolls:          32,
+  wanderers:       33,
+  white_council:   34
 
 defenum FigureType,
   hero:    0,
@@ -94,18 +90,19 @@ defenum ScenarioResourceBook,
   kd:      12,   # Khazad-dûm
   km:      13,   # Kingdoms of Men
   ma:      14,   # Moria & Angmar
-  mordor:  15,   # Mordor
-  roa:     16,   # The Ruin of Arnor
-  rotk:    17,   # Return of the King
-  rotk_jb: 18,   # Return of the King Journeybook
-  saf:     19,   # Shadow & Flame
-  sbg:     20,   # SBG Magazine
-  site:    21,   # A Shadow in the East
-  sog:     22,   # Siege of Gondor
-  sots:    23,   # The Scouring of the Shire
-  tba:     24,   # There and Back Again
-  ttt:     25,   # The Two Towers
-  ttt_jb:  26    # The Two Towers Journeybook
+  mordor:  15,   # Mordor Faction/Source book
+  omordor: 16,   # Mordor (old)
+  roa:     17,   # The Ruin of Arnor
+  rotk:    18,   # Return of the King
+  rotk_jb: 19,   # Return of the King Journeybook
+  saf:     20,   # Shadow & Flame
+  sbg:     21,   # SBG Magazine
+  site:    22,   # A Shadow in the East
+  sog:     23,   # Siege of Gondor
+  sots:    24,   # The Scouring of the Shire
+  tba:     25,   # There and Back Again
+  ttt:     26,   # The Two Towers
+  ttt_jb:  27    # The Two Towers Journeybook
 
 defenum ScenarioResourceType,
   source: 0,

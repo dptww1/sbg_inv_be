@@ -119,13 +119,13 @@ defmodule SbgInv.Data do
     #########################################################################
 
     buhrdur        = _declare_unique("Bûhrdur",             [ :angmar ])
-    dwimmerlaik    = _declare_unique("Dwimmerlaik",         [ :angmar ])
+    dwimmerlaik    = _declare_unique("Dwimmerlaik",         [ :angmar, :mordor ])
     gulavhar       = _declare_unique("Gûlavhar",            [ :angmar ])
     warg_chieftain = _declare_unique("Wild Warg Chieftain", [ :moria ])
 
     barrow_wight = _declare_warrior("Barrow Wight", "Barrow Wights", [ :angmar ])
     shade        = _declare_warrior("Shade",        "Shades",        [ :angmar ])
-    spectre      = _declare_warrior("Spectre",      "Spectres",      [ :angmar, :minas_morgul ])
+    spectre      = _declare_warrior("Spectre",      "Spectres",      [ :angmar, :mordor ])
     warg         = _declare_warrior("Wild Warg",    "Wild Wargs", [ :moria ])
 
     #########################################################################
@@ -254,15 +254,15 @@ defmodule SbgInv.Data do
     dungeon_keeper   = _declare_unique("The Keeper of the Dungeons", [ :dol_guldur ])
     forsaken         = _declare_unique("The Forsaken",               [ :dol_guldur ])
     lingering_shadow = _declare_unique("The Lingering Shadow",       [ :dol_guldur ])
-    necromancer      = _declare_unique("The Necromancer",            [ :dol_guldur ])
-    spider_queen     = _declare_unique("Spider Queen",               [ :moria ])
+    necromancer      = _declare_unique("The Necromancer",            [ :dol_guldur, :mordor ])
+    spider_queen     = _declare_unique("Spider Queen",               [ :moria, :mordor ])
 
     abyssal_knight   = _declare_hero("The Abyssal Knight", "Abyssal Knights", [ :dol_guldur ])
     slayer_of_men    = _declare_hero("The Slayer of Men",  "Slayers of Men",  [ :dol_guldur ])
 
-    castellan       = _declare_warrior("Castellan of Dol Guldur", "Castellans of Dol Guldur")
+    castellan       = _declare_warrior("Castellan of Dol Guldur", "Castellans of Dol Guldur", [ :mordor ])
     bat_swarm       = _declare_warrior("Bat Swarm",               "Bat Swarms", [ :moria ])
-    giant_spider    = _declare_warrior("Giant Spider",            "Giant Spiders", [ :moria ])
+    giant_spider    = _declare_warrior("Giant Spider",            "Giant Spiders", [ :moria, :mordor ])
     mirkwood_spider = _declare_warrior("Mirkwood Spider",         "Mirkwood Spiders", [ :mirkwood ])
 
     #########################################################################
@@ -270,8 +270,8 @@ defmodule SbgInv.Data do
     #########################################################################
 
     amdur        = _declare_unique("Amdûr, Lord of Blades",              [              :easterlings ])
-    khamul       = _declare_unique("Khamûl the Easterling",              [ :dol_guldur, :easterlings, :nazgul ])
-    khamul_horse = _declare_unique("Khamûl the Easterling on horseback", [              :easterlings, :nazgul ])
+    khamul       = _declare_unique("Khamûl the Easterling",              [ :dol_guldur, :easterlings, :mordor ])
+    khamul_horse = _declare_unique("Khamûl the Easterling on horseback", [              :easterlings, :mordor ])
 
     dragon_knight            = _declare_hero("Easterling Dragon Knight",    "Easterling Dragon Knights",    [ :easterlings ])
     easterling_captain       = _declare_hero("Easterling Captain",          "Easterling Captains",          [ :easterlings ])
@@ -446,10 +446,10 @@ defmodule SbgInv.Data do
     # FIGURES: HARAD
     #########################################################################
 
-    betrayer      = _declare_unique("The Betrayer",                      [ :harad ])
+    betrayer      = _declare_unique("The Betrayer",                      [ :harad, :mordor ])
     dalamyr       = _declare_unique("Dalamyr, Corsair Fleet Master",     [ :harad ])
     golden_king   = _declare_unique("The Golden King of Abrakhân",       [ :harad ])
-    knight_umbar  = _declare_unique("The Knight of Umbar",               [ :harad ])
+    knight_umbar  = _declare_unique("The Knight of Umbar",               [ :harad, :mordor ])
     suladan       = _declare_unique("Suladân",                           [ :harad ])
     suladan_horse = _declare_unique("Suladân the Serpent Lord on horse", [ :harad ])
 
@@ -464,7 +464,7 @@ defmodule SbgInv.Data do
     mahud_tribesmaster    = _declare_hero("Mahûd Tribesmaster",          "Mahûd Tribesmasters",          [ :harad ])
 
     abrakhan_gd        = _declare_warrior("Abrakhân Merchant Guard",           "Abrakhân Merchant Guards",             [ :harad ])
-    black_numenorean   = _declare_warrior("Black Numenórean",                  "Black Numenóreans",                    [ :harad, :minas_morgul ])
+    black_numenorean   = _declare_warrior("Black Numenórean",                  "Black Numenóreans",                    [ :harad, :mordor ])
     corsair_arbalester = _declare_warrior("Corsair Arbalester",                "Corsair Arbalesters",                  [ :harad ])
     corsair_reaver     = _declare_warrior("Corsair Reaver",                    "Corsair Reavers",                      [ :harad ])
     corsair_w_bow      = _declare_warrior("Corsair of Umbar with bow",         "Corsair of Umbar with bow",            [ :harad ])
@@ -628,66 +628,71 @@ defmodule SbgInv.Data do
     # FIGURES: MORDOR
     #########################################################################
 
-    dark_marshal         = _declare_unique("The Dark Marshal", [ :nazgul ])
-    gollum               = _declare_unique("Gollum")
-    gorbag               = _declare_unique("Gorbag",    [ :cirith_ungol ])
-    gothmog              = _declare_unique("Gothmog",   [ :minas_morgul ])
-    grishnakh            = _declare_unique("Grishnákh", [ :minas_morgul ])
+    dark_marshal         = _declare_unique("The Dark Marshal", [ :mordor ])
+    gollum               = _declare_unique("Gollum",    [ :mordor ])
+    gorbag               = _declare_unique("Gorbag",    [ :mordor ])
+    gothmog              = _declare_unique("Gothmog",   [ :mordor ])
+    grishnakh            = _declare_unique("Grishnákh", [ :mordor ])
+    kardush              = _declare_unique("Kardûsh the Firecaller", [ :mordor ])
     #khamul in Easterlings
-    mouth                = _declare_unique("Mouth of Sauron",                    [ :barad_dur, :black_gate ])
-    mouth_horse          = _declare_unique("Mouth of Sauron on armoured horse",  [ :barad_dur, :black_gate ])
-    sauron               = _declare_unique("Sauron",                             [ :barad_dur ])
-    shadow_lord          = _declare_unique("The Shadow Lord", [ :nazgul ])
-    shagrat              = _declare_unique("Shagrat", [ :cirith_ungol ])
-    shelob               = _declare_unique("Shelob",  [ :cirith_ungol ])
+    mouth                = _declare_unique("Mouth of Sauron",                    [ :mordor ])
+    mouth_horse          = _declare_unique("Mouth of Sauron on armoured horse",  [ :mordor ])
+    sauron               = _declare_unique("Sauron",                             [ :mordor ])
+    shadow_lord          = _declare_unique("The Shadow Lord", [ :mordor ])
+    shagrat              = _declare_unique("Shagrat", [ :mordor ])
+    shelob               = _declare_unique("Shelob",  [ :mordor ])
     smeagol              = _declare_unique("Sméagol", [ :fellowship ])
-    tainted              = _declare_unique("The Tainted",                        [ :angmar, :nazgul ])
-    undying              = _declare_unique("The Undying",                        [          :nazgul ])
-    witch_king           = _declare_unique("Witch-king of Angmar",               [ :angmar, :dol_guldur, :nazgul ])
-    witch_king_flail     = _declare_unique("Witch-king of Angmar with flail",    [ :angmar, :nazgul ])
-    witch_king_horse     = _declare_unique("Witch-king of Angmar on horse",      [ :angmar, :nazgul ])
-    witch_king_fellbeast = _declare_unique("Witch-king of Angmar on Fell Beast", [ :angmar, :nazgul ])
+    tainted              = _declare_unique("The Tainted",                        [ :angmar, :mordor ])
+    undying              = _declare_unique("The Undying",                        [          :mordor ])
+    witch_king           = _declare_unique("Witch-king of Angmar",               [ :angmar, :dol_guldur, :mordor ])
+    witch_king_flail     = _declare_unique("Witch-king of Angmar with flail",    [ :angmar, :mordor ])
+    witch_king_horse     = _declare_unique("Witch-king of Angmar on horse",      [ :angmar, :mordor ])
+    witch_king_fellbeast = _declare_unique("Witch-king of Angmar on Fell Beast", [ :angmar, :mordor ])
 
-    black_numenorian_marshal = _declare_hero("Black Numenórean Marshal",                "Black Numenórean Marshals", [ :minas_morgul ])
-    m_orc_captain        = _declare_hero("Morannon Orc Captain",                        "Morannon Orc Captains",                        [ :barad_dur, :black_gate ])
-    m_orc_captain_2h     = _declare_hero("Morannon Orc Captain with two-handed weapon", "Morannon Orc Captains with two-handed weapon", [ :barad_dur, :black_gate ])
-    mordor_uruk_captain  = _declare_hero("Mordor Uruk-hai Captain",                     "Mordor Uruk-hai Captains", [ :black_gate, :cirith_ungol ])
-    orc_captain          = _declare_hero("Orc Captain",                                 "Orc Captains",             [ :angmar, :barad_dur, :cirith_ungol, :isengard, :minas_morgul ])
-    orc_captain_warg     = _declare_hero("Orc Captain on Warg",                         "Orc Captains on Warg",     [ :angmar, :barad_dur, :cirith_ungol, :isengard, :minas_morgul ])
-    orc_drummer          = _declare_hero("Orc Drummer",                                 "Orc Drummers",             [          :barad_dur, :black_gate, :cirith_ungol ])
-    orc_shaman           = _declare_hero("Orc Shaman",                                  "Orc Shamans",              [ :angmar, :barad_dur, :black_gate, :cirith_ungol ])
-    orc_taskmaster       = _declare_hero("Orc Taskmaster",                              "Orc Taskmasters",          [          :barad_dur, :black_gate, :cirith_ungol ])
-    ringwraith           = _declare_hero("Ringwraith",                                  "Ringwraiths",                [ :nazgul ])
-    ringwraith_horse     = _declare_hero("Ringwraith on horse",                         "Ringwraiths on horse",       [ :nazgul ])
-    ringwraith_fellbeast = _declare_hero("Ringwraith on Fell Beast",                    "Ringwraiths on Fell Beasts", [ :nazgul ])
-    troll_chieftain      = _declare_hero("Troll Chieftain",                             "Troll Chieftains", [ :black_gate ])
+    black_guard_captain  = _declare_hero("Captain of the Black Guard",                  "Captains of the Black Guard", [ :mordor ])
+    black_guard_drummer  = _declare_hero("Black Guard Drummer",                         "Black Guard Drummers",        [ :mordor ])
+    black_numenorian_marshal = _declare_hero("Black Numenórean Marshal",                "Black Numenórean Marshals",   [ :mordor ])
+    m_orc_captain        = _declare_hero("Morannon Orc Captain",                        "Morannon Orc Captains",                        [ :mordor ])
+    m_orc_captain_2h     = _declare_hero("Morannon Orc Captain with two-handed weapon", "Morannon Orc Captains with two-handed weapon", [ :mordor ])
+    mordor_uruk_captain  = _declare_hero("Mordor Uruk-hai Captain",                     "Mordor Uruk-hai Captains", [                     :mordor ])
+    orc_captain          = _declare_hero("Orc Captain",                                 "Orc Captains",             [ :angmar, :isengard, :mordor ])
+    orc_captain_warg     = _declare_hero("Orc Captain on Warg",                         "Orc Captains on Warg",     [ :angmar, :isengard, :mordor ])
+    orc_drummer          = _declare_hero("Orc Drummer",                                 "Orc Drummers",             [                     :mordor ])
+    orc_shaman           = _declare_hero("Orc Shaman",                                  "Orc Shamans",              [ :angmar, :mordor ])
+    orc_taskmaster       = _declare_hero("Orc Taskmaster",                              "Orc Taskmasters",          [          :mordor ])
+    ringwraith           = _declare_hero("Ringwraith",                                  "Ringwraiths",                [ :mordor ])
+    ringwraith_horse     = _declare_hero("Ringwraith on horse",                         "Ringwraiths on horse",       [ :mordor ])
+    ringwraith_fellbeast = _declare_hero("Ringwraith on Fell Beast",                    "Ringwraiths on Fell Beasts", [ :mordor ])
+    troll_chieftain      = _declare_hero("Mordor Troll Chieftain",                      "Mordor Troll Chieftains",    [ :mordor ])
 
-    m_uruk_hai              = _declare_warrior("Mordor Uruk-hai",                           "Mordor Uruk-hai",                        [ :black_gate, :cirith_ungol ])
-    m_uruk_hai_shield       = _declare_warrior("Mordor Uruk-hai with shield",               "Mordor Uruk-hai with shield",            [ :black_gate, :cirith_ungol ])
-    m_uruk_hai_2h           = _declare_warrior("Mordor Uruk-hai with two-handed weapon",    "Mordor Uruk-hai with two-handed weapon", [ :black_gate, :cirith_ungol ])
-    morgul_knight           = _declare_warrior("Morgul Knight",                             "Morgul Knights",  [ :minas_morgul ])
-    morgul_stalker          = _declare_warrior("Morgul Stalker",                            "Morgul Stalkers", [ :minas_morgul ])
-    orc_m_shield            = _declare_warrior("Morannon Orc with shield",                  "Morannon Orcs with shield",            [ :barad_dur, :black_gate ])
-    orc_m_shield_spear      = _declare_warrior("Morannon Orc with shield and spear",        "Morannon Orcs with shield and spear",  [ :barad_dur, :black_gate ])
-    orc_m_spear             = _declare_warrior("Morannon Orc with spear",                   "Morannon Orcs with spear",             [ :barad_dur, :black_gate ])
-    orc_tracker             = _declare_warrior("Orc Tracker",                               "Orc Trackers",                [ :angmar, :barad_dur, :black_gate, :cirith_ungol, :minas_morgul ])
-    orc_w_banner            = _declare_warrior("Orc with banner",                           "Orcs with banner",            [ :angmar, :barad_dur, :cirith_ungol, :isengard, :minas_morgul ])
-    orc_w_bow               = _declare_warrior("Orc with Orc bow",                          "Orcs with Orc bow",           [ :angmar, :barad_dur, :cirith_ungol, :isengard, :minas_morgul ])
-    orc_w_shield            = _declare_warrior("Orc with shield",                           "Orcs with shield",            [ :angmar, :barad_dur, :cirith_ungol, :isengard, :minas_morgul ])
-    orc_w_spear             = _declare_warrior("Orc with spear",                            "Orcs with spear",             [ :angmar, :barad_dur, :cirith_ungol, :isengard, :minas_morgul])
-    orc_w_2h                = _declare_warrior("Orc with two-handed weapon",                "Orcs with two-handed weapon", [ :angmar, :barad_dur, :cirith_ungol, :isengard, :minas_morgul ])
-    warg_rider_bow          = _declare_warrior("Warg Rider with bow",                       "Warg Riders with bow",        [ :angmar, :barad_dur, :cirith_ungol, :isengard ])
-    warg_rider_shield       = _declare_warrior("Warg Rider with shield",                    "Warg Riders with shield",     [ :angmar, :barad_dur, :cirith_ungol, :isengard ])
-    warg_rider_shield_spear = _declare_warrior("Warg Rider with shield and throwing spear", "Warg Riders with shield and throwing spear", [ :angmar, :barad_dur, :cirith_ungol, :isengard ])
-    warg_rider_spear        = _declare_warrior("Warg Rider with spear",                     "Warg Riders with spear",      [ :angmar, :barad_dur, :cirith_ungol, :isengard ])
+    black_guard             = _declare_warrior("Black Guard of Barad-dûr",                  "Black Guard of Barad-dûr",               [ :mordor ])
+    m_uruk_hai              = _declare_warrior("Mordor Uruk-hai",                           "Mordor Uruk-hai",                        [ :mordor ])
+    m_uruk_hai_shield       = _declare_warrior("Mordor Uruk-hai with shield",               "Mordor Uruk-hai with shield",            [ :mordor ])
+    m_uruk_hai_2h           = _declare_warrior("Mordor Uruk-hai with two-handed weapon",    "Mordor Uruk-hai with two-handed weapon", [ :mordor ])
+    morgul_knight           = _declare_warrior("Morgul Knight",                             "Morgul Knights",  [ :mordor ])
+    morgul_stalker          = _declare_warrior("Morgul Stalker",                            "Morgul Stalkers", [ :mordor ])
+    orc_m_shield            = _declare_warrior("Morannon Orc with shield",                  "Morannon Orcs with shield",            [ :mordor ])
+    orc_m_shield_spear      = _declare_warrior("Morannon Orc with shield and spear",        "Morannon Orcs with shield and spear",  [ :mordor ])
+    orc_m_spear             = _declare_warrior("Morannon Orc with spear",                   "Morannon Orcs with spear",             [ :mordor ])
+    orc_tracker             = _declare_warrior("Orc Tracker",                               "Orc Trackers",                [ :angmar,            :mordor ])
+    orc_w_banner            = _declare_warrior("Orc with banner",                           "Orcs with banner",            [ :angmar, :isengard, :mordor ])
+    orc_w_bow               = _declare_warrior("Orc with Orc bow",                          "Orcs with Orc bow",           [ :angmar, :isengard, :mordor ])
+    orc_w_shield            = _declare_warrior("Orc with shield",                           "Orcs with shield",            [ :angmar, :isengard, :mordor ])
+    orc_w_spear             = _declare_warrior("Orc with spear",                            "Orcs with spear",             [ :angmar, :isengard, :mordor ])
+    orc_w_2h                = _declare_warrior("Orc with two-handed weapon",                "Orcs with two-handed weapon", [ :angmar, :isengard, :mordor ])
+    warg_rider_bow          = _declare_warrior("Warg Rider with bow",                       "Warg Riders with bow",        [ :angmar, :isengard, :mordor ])
+    warg_rider_shield       = _declare_warrior("Warg Rider with shield",                    "Warg Riders with shield",     [ :angmar, :isengard, :mordor ])
+    warg_rider_shield_spear = _declare_warrior("Warg Rider with shield and throwing spear", "Warg Riders with shield and throwing spear", [ :angmar, :isengard, :mordor ])
+    warg_rider_spear        = _declare_warrior("Warg Rider with spear",                     "Warg Riders with spear",      [ :angmar, :isengard, :mordor ])
 
-    mordor_troll = _declare_monster("Mordor Troll", "Mordor Trolls", [ :barad_dur, :black_gate, :cirith_ungol ])
+    great_beast  = _declare_monster("Great Beast of Gorgoroth", "Great Beasts of Gorgoroth", [ :mordor ])
+    mordor_troll = _declare_monster("Mordor Troll",             "Mordor Trolls",             [ :mordor ])
 
-    mordor_siege_bow     = _declare_siege("Mordor Siege Bow",          "Mordor Siege Bows",         [ :barad_dur, :cirith_ungol ])
-    mordor_siege_bow_orc = _declare_siege("Mordor Siege Bow Orc crew", "Mordor Siege Bow Orc crew", [ :barad_dur, :cirith_ungol ])
-    war_catapult         = _declare_siege("War Catapult",              "War Catapults",             [ :barad_dur, :black_gate, :cirith_ungol, :minas_morgul ])
-    war_catapult_orc     = _declare_siege("War Catapult Orc crew",     "War Catapult Orc crew",     [ :barad_dur, :black_gate, :cirith_ungol, :minas_morgul ] )
-    war_catapult_troll   = _declare_siege("War Catapult Troll",        "War Catapult Trolls",       [ :black_gate, :cirith_ungol ])
+    mordor_siege_bow     = _declare_siege("Mordor Siege Bow",          "Mordor Siege Bows",         [ :mordor ])
+    mordor_siege_bow_orc = _declare_siege("Mordor Siege Bow Orc crew", "Mordor Siege Bow Orc crew", [ :mordor ])
+    war_catapult         = _declare_siege("War Catapult",              "War Catapults",             [ :mordor ])
+    war_catapult_orc     = _declare_siege("War Catapult Orc crew",     "War Catapult Orc crew",     [ :mordor ])
+    war_catapult_troll   = _declare_siege("War Catapult Troll",        "War Catapult Trolls",       [ :mordor ])
 
     #########################################################################
     # FIGURES: MORIA
@@ -725,8 +730,8 @@ defmodule SbgInv.Data do
     balrog         = _declare_monster("Balrog",     "Balrogs",     [ :moria ])
     balrog_plastic = _declare_monster("Balrog (Plastic)", "Balrogs (Plastic)", [ :moria ])
     balrog_whip    = _declare_monster("Balrog with whip", "Balrogs with whip", [ :moria ])
-    cave_drake = _declare_monster("Cave Drake", "Cave Drakes", [ :moria ])
-    dragon     = _declare_monster("Dragon",     "Dragons",     [ :moria ])
+    cave_drake = _declare_monster("Cave Drake", "Cave Drakes", [ :moria, :mordor ])
+    dragon     = _declare_monster("Dragon",     "Dragons",     [ :moria, :mordor ])
     dweller    = _declare_monster("Dweller in the Dark", "Dwellers in the Dark", [ :moria ])
     tentacle   = _declare_monster("Tentacle",   "Tentacles")
     watcher    = _declare_unique_monster("The Watcher in the Water", [ :moria ])
@@ -1215,7 +1220,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(bpf_s9f1, 10,  9, [ gondor_knight ])
     _declare_role_figure(bpf_s9f1,  8, 10, [ gondor_knight_da_horse ])
 
-    bpf_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s9.id, faction: :barad_dur, suggested_points: 1000, actual_points: 0, sort_order: 2}
+    bpf_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s9.id, faction: :mordor, suggested_points: 1000, actual_points: 0, sort_order: 2}
     _declare_role_figure(bpf_s9f2,  2,  1, [ ringwraith_fellbeast ])
     _declare_role_figure(bpf_s9f2,  2,  2, [ harad_chieftain_horse ])
     _declare_role_figure(bpf_s9f2,  1,  3, [ orc_captain ])
@@ -1288,7 +1293,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(bpf_s11f1,  5, 16, [ rohan_w_shield ])
     _declare_role_figure(bpf_s11f1,  1, 17, [ rohan_w_banner ])
 
-    bpf_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s11.id, faction: :minas_morgul, suggested_points: 1000, actual_points: 0, sort_order: 2}
+    bpf_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s11.id, faction: :mordor, suggested_points: 1000, actual_points: 0, sort_order: 2}
     _declare_role_figure(bpf_s11f2,  1,  1, "Gothmog, Lieutenant of Morgul", [ gothmog ])
     _declare_role_figure(bpf_s11f2,  1,  2, [ orc_shaman ])
     _declare_role_figure(bpf_s11f2,  1,  3, [ easterling_captain ])
@@ -1842,7 +1847,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotr_s2f1, 1, 4, [ pippin ])
     _declare_role_figure(fotr_s2f1, 1, 5, [ aragorn ])
 
-    fotr_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s2.id, faction: :nazgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    fotr_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s2.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotr_s2f2, 1, 1, [ witch_king ])
     _declare_role_figure(fotr_s2f2, 4, 2, [ ringwraith ])
 
@@ -1974,7 +1979,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotr_s7f1, 24,  7, [ numenor_w_shield ])
     _declare_role_figure(fotr_s7f1, 24,  8, [ numenor_w_shield_spear ])
 
-    fotr_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s7.id, faction: :barad_dur, suggested_points: 0, actual_points: 0, sort_order: 2}
+    fotr_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s7.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotr_s7f2,  8,  1, [ orc_captain ])
     _declare_role_figure(fotr_s7f2, 90,  6, [ orc_w_shield ])
     _declare_role_figure(fotr_s7f2, 90,  7, [ orc_w_spear ])
@@ -1995,7 +2000,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotr_s8f1, 24, 3, [ numenor_w_shield ])
     _declare_role_figure(fotr_s8f1, 24, 4, [ numenor_w_shield_spear ])
 
-    fotr_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s8.id, faction: :cirith_ungol, suggested_points: 0, actual_points: 0, sort_order: 2}
+    fotr_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s8.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotr_s8f2,  2,  1, [ orc_captain ])
     _declare_role_figure(fotr_s8f2, 20,  3, [ orc_w_shield ])
     _declare_role_figure(fotr_s8f2, 10,  4, [ orc_w_spear ])
@@ -2018,7 +2023,7 @@ defmodule SbgInv.Data do
     fotrjb_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s1.id, faction: :arnor, suggested_points: 216, actual_points: 216, sort_order: 1}
     _declare_role_figure(fotrjb_s1f1, 9, 1, [ dunedain ])
 
-    fotrjb_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s1.id, faction: :nazgul, suggested_points: 180, actual_points: 180, sort_order: 2}
+    fotrjb_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s1.id, faction: :mordor, suggested_points: 180, actual_points: 180, sort_order: 2}
     _declare_role_figure(fotrjb_s1f2, 1, 1, [ witch_king ])
     _declare_role_figure(fotrjb_s1f2, 2, 2, [ ringwraith ])
 
@@ -2035,7 +2040,7 @@ defmodule SbgInv.Data do
     fotrjb_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s2.id, faction: :arnor, suggested_points: 216, actual_points: 216, sort_order: 1}
     _declare_role_figure(fotrjb_s2f1, 9, 1, [ dunedain ])
 
-    fotrjb_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s2.id, faction: :nazgul, suggested_points: 550, actual_points: 550, sort_order: 2}
+    fotrjb_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s2.id, faction: :mordor, suggested_points: 550, actual_points: 550, sort_order: 2}
     _declare_role_figure(fotrjb_s2f2, 1, 1, [ witch_king ])
     _declare_role_figure(fotrjb_s2f2, 8, 2, [ ringwraith ])
 
@@ -2057,7 +2062,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s3f1, 1, 4, [ merry ])
     _declare_role_figure(fotrjb_s3f1, 1, 5, [ gildor ])
 
-    fotrjb_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s3.id, faction: :nazgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    fotrjb_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s3.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotrjb_s3f2, 3, 1, [ ringwraith ])
 
     #========================================================================
@@ -2076,7 +2081,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s4f1, 1, 3, [ pippin ])
     _declare_role_figure(fotrjb_s4f1, 1, 4, [ merry ])
 
-    fotrjb_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s4.id, faction: :nazgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    fotrjb_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotrjb_s4f2, 3, 1, [ ringwraith ])
 
     #========================================================================
@@ -2112,7 +2117,7 @@ defmodule SbgInv.Data do
     fotrjb_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s6.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotrjb_s6f1, 1, 1, "Gandalf the Grey", gandalf_grey_foot_all)
 
-    fotrjb_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s6.id, faction: :nazgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    fotrjb_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s6.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotrjb_s6f2, 1, 1, [ witch_king ])
     _declare_role_figure(fotrjb_s6f2, 8, 2, [ ringwraith ])
 
@@ -2130,7 +2135,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s7f1, 1, 1, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(fotrjb_s7f1, 6, 2, [ dunedain ])
 
-    fotrjb_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s7.id, faction: :nazgul, suggested_points: 220, actual_points: 220, sort_order: 2}
+    fotrjb_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s7.id, faction: :mordor, suggested_points: 220, actual_points: 220, sort_order: 2}
     _declare_role_figure(fotrjb_s7f2, 4, 1, [ ringwraith ])
 
     #========================================================================
@@ -2151,7 +2156,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s8f1, 1, 4, [ pippin ])
     _declare_role_figure(fotrjb_s8f1, 1, 5, [ aragorn ])
 
-    fotrjb_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s8.id, faction: :nazgul, suggested_points: 330, actual_points: 330, sort_order: 2}
+    fotrjb_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s8.id, faction: :mordor, suggested_points: 330, actual_points: 330, sort_order: 2}
     _declare_role_figure(fotrjb_s8f2, 1, 1, [ witch_king ])
     _declare_role_figure(fotrjb_s8f2, 4, 2, [ ringwraith ])
 
@@ -2175,7 +2180,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s9f1, 1, 7, [ legolas ])
     _declare_role_figure(fotrjb_s9f1, 1, 8, "Gimli", gimli_all_foot)
 
-    fotrjb_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s9.id, faction: :nazgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    fotrjb_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s9.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotrjb_s9f2, 1, 1, [ witch_king_horse ])
     _declare_role_figure(fotrjb_s9f2, 8, 2, [ ringwraith_horse ])
 
@@ -2465,7 +2470,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fp_s2f1,  6, 12, [ numenor_w_shield_spear ])
     _declare_role_figure(fp_s2f1,  1, 13, [ numenor_w_banner ])
 
-    fp_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s2.id, faction: :barad_dur, suggested_points: 1575, actual_points: 1575, sort_order: 2}
+    fp_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s2.id, faction: :mordor, suggested_points: 1575, actual_points: 1575, sort_order: 2}
     _declare_role_figure(fp_s2f2,  1,  1, [ sauron ])
     _declare_role_figure(fp_s2f2,  1,  2, "Witch-King of Angmar on horse (full M/W/F)", [ witch_king_horse ])
     _declare_role_figure(fp_s2f2,  2,  3, "Ringwraiths on horse (full M/W/F)", [ ringwraith_horse ])
@@ -2520,7 +2525,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fp_s4f1,  1,  4, [ pippin ])
     _declare_role_figure(fp_s4f1,  1,  5, [ aragorn ])
 
-    fp_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s4.id, faction: :nazgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    fp_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fp_s4f2,  1,  1, [ witch_king ])
     _declare_role_figure(fp_s4f2,  4,  2, [ ringwraith ])
 
@@ -2543,7 +2548,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fp_s5f1,  1,  6, [ aragorn ])
     _declare_role_figure(fp_s5f1,  1,  7, [ glorfindel_horse ])
 
-    fp_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s5.id, faction: :nazgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    fp_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s5.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fp_s5f2,  1,  1, [ witch_king_horse ])
     _declare_role_figure(fp_s5f2,  8,  2, [ ringwraith_horse ])
 
@@ -2750,7 +2755,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(gif_s1f1,  8, 6, [ ranger_north ])
     _declare_role_figure(gif_s1f1,  4, 7, [ ranger_north_spear ])
 
-    gif_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: gif_s1.id, faction: :cirith_ungol, suggested_points: 900, actual_points: 0, sort_order: 2}
+    gif_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: gif_s1.id, faction: :mordor, suggested_points: 900, actual_points: 0, sort_order: 2}
     _declare_role_figure(gif_s1f2,  2,  1, [ orc_captain ])
     _declare_role_figure(gif_s1f2,  2,  2, [ orc_shaman ])
     _declare_role_figure(gif_s1f2, 16,  3, [ orc_w_shield ])
@@ -2789,7 +2794,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(gif_s2f1, 1, 10, [ trebuchet ])
     _declare_role_figure(gif_s2f1, 3, 11, [ trebuchet_crew ])
 
-    gif_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: gif_s2.id, faction: :nazgul, suggested_points: 1050, actual_points: 0, sort_order: 2}
+    gif_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: gif_s2.id, faction: :mordor, suggested_points: 1050, actual_points: 0, sort_order: 2}
     _declare_role_figure(gif_s2f2, 1,  1, [ witch_king_flail ])
     _declare_role_figure(gif_s2f2, 1,  2, [ khamul ])
     _declare_role_figure(gif_s2f2, 7,  3, [ ringwraith ])
@@ -2819,7 +2824,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(gif_s3f1,  4, 12, [ osgiliath_v_bow ])
     _declare_role_figure(gif_s3f1, 10, 13, "Knights of Minas Tirith with shield", [ gondor_knight ])
 
-    gif_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: gif_s3.id, faction: :minas_morgul, suggested_points: 1000, actual_points: 0, sort_order: 2}
+    gif_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: gif_s3.id, faction: :mordor, suggested_points: 1000, actual_points: 0, sort_order: 2}
     _declare_role_figure(gif_s3f2,  1,  1, [ gothmog ])
     _declare_role_figure(gif_s3f2,  2,  2, [ orc_captain ])
     _declare_role_figure(gif_s3f2,  6,  3, [ orc_tracker ])
@@ -3351,7 +3356,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s8f1,  6, 12, [ numenor_w_shield_spear ])
     _declare_role_figure(hobbit_s8f1,  1, 13, [ numenor_w_banner ])
 
-    hobbit_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s8.id, faction: :barad_dur, suggested_points: 0, actual_points: 0, sort_order: 2}
+    hobbit_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s8.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(hobbit_s8f2,  1,  1, [ sauron ])
     _declare_role_figure(hobbit_s8f2,  1,  2, "Witch-King of Angmar on horse (full M/W/F)", [ witch_king_horse ])
     _declare_role_figure(hobbit_s8f2,  2,  3, "Ringwraiths on horse (full M/W/F)", [ ringwraith_horse ])
@@ -3383,7 +3388,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s9f1, 1, 4, [ pippin ])
     _declare_role_figure(hobbit_s9f1, 1, 5, [ aragorn ])
 
-    hobbit_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s9.id, faction: :nazgul, suggested_points: 330, actual_points: 330, sort_order: 2}
+    hobbit_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s9.id, faction: :mordor, suggested_points: 330, actual_points: 330, sort_order: 2}
     _declare_role_figure(hobbit_s9f2, 1, 1, [ witch_king ])
     _declare_role_figure(hobbit_s9f2, 4, 2, [ ringwraith ])
 
@@ -3600,7 +3605,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s15f1,  1, 23, [ gwaihir ])
     _declare_role_figure(hobbit_s15f1,  4, 24, [ eagle ])
 
-    hobbit_s15f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s15.id, faction: :black_gate, suggested_points: 0, actual_points: 0, sort_order: 2}
+    hobbit_s15f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s15.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(hobbit_s15f2,  3,  1, [ ringwraith_fellbeast ])
     _declare_role_figure(hobbit_s15f2,  1,  2, [ troll_chieftain ])
     _declare_role_figure(hobbit_s15f2,  3,  3, [ orc_captain ])
@@ -3809,7 +3814,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(km_s1f1, 8,  3, [ numenor_w_shield_spear ])
     _declare_role_figure(km_s1f1, 8,  4, [ numenor_w_bow ])
 
-    km_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: km_s1.id, faction: :cirith_ungol, suggested_points: 300, actual_points: 399, sort_order: 2}
+    km_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: km_s1.id, faction: :mordor, suggested_points: 300, actual_points: 399, sort_order: 2}
     _declare_role_figure(km_s1f2,  2,  1, "Mordor Orc Captains with shield", [ orc_captain ])
     _declare_role_figure(km_s1f2, 12,  2, [ orc_w_shield ])
     _declare_role_figure(km_s1f2, 12,  3, [ orc_w_spear ])
@@ -4017,7 +4022,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s1f1, 8, 2, [ gondor_womt_spear_shield ])
     _declare_role_figure(rotk_s1f1, 8, 3, [ gondor_womt_bow])
 
-    rotk_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s1.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s1.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s1f2, 8, 1, [ orc_w_shield ])
     _declare_role_figure(rotk_s1f2, 8, 2, [ orc_w_spear ])
     _declare_role_figure(rotk_s1f2, 4, 3, [ orc_w_bow ])
@@ -4038,7 +4043,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s2f1, 8, 2, [ gondor_womt_spear_shield ])
     _declare_role_figure(rotk_s2f1, 8, 3, [ gondor_womt_bow])
 
-    rotk_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s2.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s2.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s2f2, 8, 1, [ orc_w_shield ])
     _declare_role_figure(rotk_s2f2, 8, 2, [ orc_w_spear ])
     _declare_role_figure(rotk_s2f2, 4, 3, [ orc_w_bow ])
@@ -4058,7 +4063,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s3f1, 1, 1, [ frodo ])
     _declare_role_figure(rotk_s3f1, 1, 2, [ sam ])
 
-    rotk_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s3.id, faction: :cirith_ungol, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s3.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s3f2, 1, 1, [ shelob ])
 
     #========================================================================
@@ -4076,7 +4081,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s4f1, 14, 2, [ gondor_knight ])
     _declare_role_figure(rotk_s4f1,  1, 3, [ gondor_knight_banner ])
 
-    rotk_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s4.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s4f2,  1, 1, [ ringwraith_fellbeast ])
     _declare_role_figure(rotk_s4f2, 19, 2, [ orc_w_bow ])
     _declare_role_figure(rotk_s4f2,  1, 3, [ orc_w_banner ])
@@ -4097,7 +4102,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s5f1,  1, 2, [ faramir_armor_horse ])
     _declare_role_figure(rotk_s5f1,  4, 3, [ gondor_knight ])
 
-    rotk_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s5.id, faction: :nazgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s5.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s5f2,  2, 1, [ ringwraith_fellbeast ])
 
     #========================================================================
@@ -4120,7 +4125,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s6f1,  8, 7, [ gondor_womt_bow ])
     _declare_role_figure(rotk_s6f1,  2, 8, [ gondor_womt_banner ])
 
-    rotk_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s6.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s6.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s6f2,  1,  1, [ witch_king_fellbeast ])
     _declare_role_figure(rotk_s6f2,  1,  2, [ orc_captain ])
     _declare_role_figure(rotk_s6f2,  1,  3, [ mordor_troll ])
@@ -4155,7 +4160,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s7f1,  6, 10, [ rohan_rider_spear ])
     _declare_role_figure(rotk_s7f1,  1, 11, [ rohan_rider_banner ])
 
-    rotk_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s7.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s7.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s7f2,  4,  1, [ orc_captain ])
     _declare_role_figure(rotk_s7f2,  2,  2, [ mordor_troll ])
     _declare_role_figure(rotk_s7f2, 10,  3, [ orc_w_shield ])
@@ -4179,7 +4184,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s8f1,  1,  2, [ eowyn_horse ])
     _declare_role_figure(rotk_s8f1,  1,  3, [ merry_rohan ])
 
-    rotk_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s8.id, faction: :nazgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s8.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s8f2,  1,  1, [ witch_king_fellbeast ])
 
     #========================================================================
@@ -4199,7 +4204,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s9f1,  1,  4, [ king_dead ])
     _declare_role_figure(rotk_s9f1, 15,  5, [ dead_w ])
 
-    rotk_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s9.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s9.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s9f2,  2,  1, [ orc_captain ])
     _declare_role_figure(rotk_s9f2,  2,  2, [ mordor_troll ])
     _declare_role_figure(rotk_s9f2, 10,  3, [ orc_w_shield ])
@@ -4237,7 +4242,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s10f1,  8, 16, [ gondor_womt_bow ])
     _declare_role_figure(rotk_s10f1,  1, 17, [ gondor_womt_banner ])
 
-    rotk_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s10.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s10.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s10f2,  2,  1, [ ringwraith_fellbeast ])
     _declare_role_figure(rotk_s10f2,  2,  2, [ orc_captain ])
     _declare_role_figure(rotk_s10f2,  1,  3, [ easterling_captain ])
@@ -4268,7 +4273,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s11f1, 10,  4, [ m_uruk_hai_shield ])
     _declare_role_figure(rotk_s11f1,  5,  5, [ m_uruk_hai_2h ])
 
-    rotk_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s11.id, faction: :cirith_ungol, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s11.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s11f2,  1,  1, [ gorbag ])
     _declare_role_figure(rotk_s11f2,  8,  2, [ orc_w_shield ])
     _declare_role_figure(rotk_s11f2,  8,  3, [ orc_w_spear ])
@@ -4306,7 +4311,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s12f1,  4, 18, [ gondor_womt_bow ])
     _declare_role_figure(rotk_s12f1,  1, 19, [ gondor_womt_banner ])
 
-    rotk_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s12.id, faction: :black_gate, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s12.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s12f2,  1,  1, [ mouth ])
     _declare_role_figure(rotk_s12f2,  2,  1, [ ringwraith_fellbeast ])
     _declare_role_figure(rotk_s12f2,  1,  1, [ troll_chieftain ])
@@ -4392,7 +4397,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s15f1,  6,  7, [ dwarf_w_bow ])
     _declare_role_figure(rotk_s15f1,  2,  8, [ dwarf_w_banner ])
 
-    rotk_s15f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s15.id, faction: :cirith_ungol, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s15f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s15.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s15f2,  2,  1, [ orc_captain ])
     _declare_role_figure(rotk_s15f2,  2,  2, [ orc_captain_warg ])
     _declare_role_figure(rotk_s15f2, 10,  3, [ orc_w_shield ])
@@ -4427,7 +4432,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s16f1,  8, 11, [ rohan_w_bow ])
     _declare_role_figure(rotk_s16f1,  2, 12, [ rohan_w_banner ])
 
-    rotk_s16f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s16.id, faction: :cirith_ungol, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotk_s16f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s16.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s16f2,  2,  1, [ orc_captain ])
     _declare_role_figure(rotk_s16f2,  1,  2, "Uruk-hai Captain", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
     _declare_role_figure(rotk_s16f2,  1,  3, [ easterling_captain ])
@@ -4499,7 +4504,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotkjb_s1f1, 1, 1, [ frodo ])
     _declare_role_figure(rotkjb_s1f1, 1, 2, [ sam ])
 
-    rotkjb_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s1.id, faction: :cirith_ungol, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotkjb_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s1.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s1f2, 1, 1, [ shelob ])
     _declare_role_figure(rotkjb_s1f2, 1, 2, [ gollum ])
 
@@ -4521,7 +4526,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotkjb_s2f1, 13, 5, [ rohan_rider ])
     _declare_role_figure(rotkjb_s2f1,  3, 6, [ rohan_rider_spear ])
 
-    rotkjb_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s2.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotkjb_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s2.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s2f2,  3,  1, "Orc Captains with shield", [ orc_captain ])
     _declare_role_figure(rotkjb_s2f2, 12,  2, [ orc_w_shield ])
     _declare_role_figure(rotkjb_s2f2, 12,  3, [ orc_w_spear ])
@@ -4556,7 +4561,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotkjb_s3f1,  1, 10, [ gondor_knight_banner ])
     _declare_role_figure(rotkjb_s3f1,  6, 11, "Knight of Dol Amroth on horse with lance", [ gondor_knight_da_horse ])
 
-    rotkjb_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s3.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotkjb_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s3.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s3f2,  1,  1, [ ringwraith_fellbeast ])
     _declare_role_figure(rotkjb_s3f2,  2,  2, "Orc Captains with shield", [ orc_captain ])
     _declare_role_figure(rotkjb_s3f2,  8,  3, [ orc_w_shield ])
@@ -4595,7 +4600,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotkjb_s4f1,  3,  8, [ axemen_lossarnach ])
     _declare_role_figure(rotkjb_s4f1,  6,  9, [ clansmen_lamedon ])
 
-    rotkjb_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s4.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotkjb_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s4f2,  1,  1, "Orc Captain with shield", [ orc_captain ])
     _declare_role_figure(rotkjb_s4f2,  4,  2, [ orc_w_spear ])
     _declare_role_figure(rotkjb_s4f2,  4,  3, [ orc_w_shield ])
@@ -4631,7 +4636,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotkjb_s5f1,  1,  7, [ gondor_womt_banner ])
     _declare_role_figure(rotkjb_s5f1,  9,  8, [ gondor_knight_da_foot ])
 
-    rotkjb_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s5.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotkjb_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s5.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s5f2,  1,  1, [ witch_king_horse ])
     _declare_role_figure(rotkjb_s5f2,  2,  1, "Orc Captains with shield", [ orc_captain ])
     _declare_role_figure(rotkjb_s5f2,  8,  2, [ orc_w_spear ])
@@ -4686,7 +4691,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotkjb_s7f1,  1,  2, [ eowyn_horse ])
     _declare_role_figure(rotkjb_s7f1,  1,  3, [ merry_rohan ])
 
-    rotkjb_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s7.id, faction: :nazgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotkjb_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s7.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s7f2,  1,  1, [ witch_king_fellbeast ])
 
     #========================================================================
@@ -4768,7 +4773,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotkjb_s10f1, 12,  7, [ axemen_lossarnach ])
     _declare_role_figure(rotkjb_s10f1, 11,  8, [ clansmen_lamedon ])
 
-    rotkjb_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s10.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotkjb_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s10.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s10f2,  1,  1, [ gothmog ])
     _declare_role_figure(rotkjb_s10f2,  1,  2, [ troll_chieftain ])
     _declare_role_figure(rotkjb_s10f2,  1,  3, [ m_orc_captain ])
@@ -4809,14 +4814,14 @@ defmodule SbgInv.Data do
 
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s12.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 12, page: 74}
 
-    rotkjb_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s12.id, faction: :cirith_ungol, suggested_points: 0, actual_points: 0, sort_order: 1}
+    rotkjb_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s12.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(rotkjb_s12f1,  1,  1, [ frodo ])
     _declare_role_figure(rotkjb_s12f1,  1,  2, "Samwise the Brave with Elven cloak", [ sam ])
     _declare_role_figure(rotkjb_s12f1,  1,  3, [ shagrat ])
     _declare_role_figure(rotkjb_s12f1,  8,  4, [ m_uruk_hai ])
     _declare_role_figure(rotkjb_s12f1,  4,  5, [ m_uruk_hai_2h ])
 
-    rotkjb_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s12.id, faction: :cirith_ungol, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotkjb_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s12.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s12f2,  1,  1, [ gorbag ])
     _declare_role_figure(rotkjb_s12f2,  8,  2, [ orc_w_shield ])
     _declare_role_figure(rotkjb_s12f2,  8,  3, [ orc_w_spear ])
@@ -4849,7 +4854,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotkjb_s13f1,  1, 13, [ elrohir ])
     _declare_role_figure(rotkjb_s13f1,  1, 14, "Halbarad with Banner of Arwen Evenstar", [ halbarad ])
 
-    rotkjb_s13f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s13.id, faction: :black_gate, suggested_points: 0, actual_points: 0, sort_order: 2}
+    rotkjb_s13f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s13.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s13f2,  1,  1, [ troll_chieftain ])
     _declare_role_figure(rotkjb_s13f2,  3,  2, [ ringwraith_fellbeast ])
     _declare_role_figure(rotkjb_s13f2,  1,  3, [ mouth ])
@@ -5649,7 +5654,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(site_s6f1, 16, 6, [ khandish_w_axe ])
     _declare_role_figure(site_s6f1, 12, 7, [ khandish_horseman ])
 
-    site_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: site_s6.id, faction: :cirith_ungol, suggested_points: 750, actual_points: 796, sort_order: 2}
+    site_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: site_s6.id, faction: :mordor, suggested_points: 750, actual_points: 796, sort_order: 2}
     _declare_role_figure(site_s6f2,  3, 1, [ orc_captain ])
     _declare_role_figure(site_s6f2,  1, 2, [ orc_captain_warg ])
     _declare_role_figure(site_s6f2, 10, 3, [ orc_w_shield ])
@@ -5744,7 +5749,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(sog_s1f1, 8, 9, [ gondor_womt_banner ])
     _declare_role_figure(sog_s1f1, 8, 10, [ gondor_knight ])
 
-    sog_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s1.id, faction: :minas_morgul, suggested_points: 400, actual_points: 0, sort_order: 2}
+    sog_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s1.id, faction: :mordor, suggested_points: 400, actual_points: 0, sort_order: 2}
     _declare_role_figure(sog_s1f2, 1, 1, [ gothmog ])
     _declare_role_figure(sog_s1f2, 2, 2, [ orc_shaman ])
     _declare_role_figure(sog_s1f2, 1, 3, [ orc_captain ])
@@ -5778,7 +5783,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(sog_s2f1, 4, 6, [ gondor_womt_shield ])
     _declare_role_figure(sog_s2f1, 2, 7, [ gondor_womt_banner ])
 
-    sog_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s2.id, faction: :minas_morgul, suggested_points: 750, actual_points: 0, sort_order: 2}
+    sog_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s2.id, faction: :mordor, suggested_points: 750, actual_points: 0, sort_order: 2}
     _declare_role_figure(sog_s2f2,  2, 1, [ orc_shaman ])
     _declare_role_figure(sog_s2f2,  2, 2, [ orc_captain ])
     _declare_role_figure(sog_s2f2, 24, 3, [ orc_m_shield_spear ])
@@ -5806,7 +5811,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(sog_s3f1, 3, 5, [ gondor_womt_shield ])
     _declare_role_figure(sog_s3f1, 1, 6, [ gondor_womt_banner ])
 
-    sog_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s3.id, faction: :minas_morgul, suggested_points: 600, actual_points: 0, sort_order: 2}
+    sog_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s3.id, faction: :mordor, suggested_points: 600, actual_points: 0, sort_order: 2}
     _declare_role_figure(sog_s3f2,  1,  1, [ gothmog ])
     _declare_role_figure(sog_s3f2, 11,  2, [ orc_w_shield ])
     _declare_role_figure(sog_s3f2,  9,  3, [ orc_w_spear ])
@@ -5844,7 +5849,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(sog_s4f1,  1, 12, [ trebuchet ])
     _declare_role_figure(sog_s4f1,  3, 13, [ trebuchet_crew])
 
-    sog_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s4.id, faction: :minas_morgul, suggested_points: 500, actual_points: 0, sort_order: 2}
+    sog_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s4.id, faction: :mordor, suggested_points: 500, actual_points: 0, sort_order: 2}
     _declare_role_figure(sog_s4f2,  1,  1, [ gothmog ])
     _declare_role_figure(sog_s4f2,  2,  2, [ orc_captain ])
     _declare_role_figure(sog_s4f2,  2,  3, [ orc_shaman ])
@@ -5884,7 +5889,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(sog_s5f1, 2, 12, [ avenger ])
     _declare_role_figure(sog_s5f1, 4, 13, [ avenger_crew ])
 
-    sog_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s5.id, faction: :minas_morgul, suggested_points: 1000, actual_points: 0, sort_order: 2}
+    sog_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s5.id, faction: :mordor, suggested_points: 1000, actual_points: 0, sort_order: 2}
     _declare_role_figure(sog_s5f2,  1,  1, [ witch_king_horse ])
     _declare_role_figure(sog_s5f2,  1,  2, [ gothmog ])
     _declare_role_figure(sog_s5f2,  1,  3, [ orc_shaman ])
@@ -5923,7 +5928,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(sog_s6f1, 6, 8, [ gondor_womt_shield ])
     _declare_role_figure(sog_s6f1, 2, 9, [ gondor_womt_banner ])
 
-    sog_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s6.id, faction: :minas_morgul, suggested_points: 1000, actual_points: 0, sort_order: 2}
+    sog_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: sog_s6.id, faction: :mordor, suggested_points: 1000, actual_points: 0, sort_order: 2}
     _declare_role_figure(sog_s6f2,  1,  1, [ denethor ])
     _declare_role_figure(sog_s6f2,  1,  2, [ orc_captain ])
     _declare_role_figure(sog_s6f2,  1,  3, [ orc_shaman ])
@@ -6842,7 +6847,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(ttt_s4f1,  1, 4, [ sam ])
     _declare_role_figure(ttt_s4f1, 16, 5, [ gondor_rog ])
 
-    ttt_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s4.id, faction: :minas_morgul, suggested_points: 0, actual_points: 0, sort_order: 2}
+    ttt_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(ttt_s4f2,  3, 1, "Orc Captains with shield", [ orc_captain ])
     _declare_role_figure(ttt_s4f2, 10, 2, [ orc_w_shield ])
     _declare_role_figure(ttt_s4f2,  5, 3, [ orc_w_spear ])
@@ -6978,7 +6983,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(ttt_s9f1,  8,  7, [ gondor_womt_spear_shield ])
     _declare_role_figure(ttt_s9f1,  8,  9, [ gondor_womt_bow ])
 
-    ttt_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s9.id, faction: :minas_morgul,  suggested_points: 0, actual_points: 0, sort_order: 2}
+    ttt_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s9.id, faction: :mordor,  suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(ttt_s9f2,  2,  1, "Orc Captains with shield", [ orc_captain ])
     _declare_role_figure(ttt_s9f2, 20,  2, [ orc_w_shield ])
     _declare_role_figure(ttt_s9f2, 20,  3, [ orc_w_spear ])
@@ -7273,7 +7278,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tttjb_s9f1, 1, 1, "Frodo Baggins with Sting, mithril coat, and Elven cloak", [ frodo ])
     _declare_role_figure(tttjb_s9f1, 1, 2, "Sam Gamgee with Elven cloak", [ sam ])
 
-    tttjb_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s9.id, faction: :cirith_ungol, suggested_points: 150, actual_points: 0, sort_order: 2}
+    tttjb_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s9.id, faction: :mordor, suggested_points: 150, actual_points: 0, sort_order: 2}
     _declare_role_figure(tttjb_s9f2, 1, 1, [ smeagol ])
 
     #========================================================================
@@ -7291,7 +7296,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tttjb_s10f1, 1, 2, "Sam Gamgee with Elven cloak", [ sam ])
     _declare_role_figure(tttjb_s10f1, 1, 3, [ smeagol ])
 
-    tttjb_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s10.id, faction: :minas_morgul, suggested_points: 275, actual_points: 0, sort_order: 2}
+    tttjb_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s10.id, faction: :mordor, suggested_points: 275, actual_points: 0, sort_order: 2}
     _declare_role_figure(tttjb_s10f2, 1, 1, [ ringwraith_fellbeast ])
     _declare_role_figure(tttjb_s10f2, 3, 2, [ spectre ])
     _declare_role_figure(tttjb_s10f2, 6, 3, [ morgul_stalker ])
@@ -7343,7 +7348,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tttjb_s12f1, 3, 8, [ osgiliath_v_bow ])
     _declare_role_figure(tttjb_s12f1, 1, 9, [ gondor_womt_banner ])
 
-    tttjb_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s12.id, faction: :minas_morgul, suggested_points: 375, actual_points: 0, sort_order: 2}
+    tttjb_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s12.id, faction: :mordor, suggested_points: 375, actual_points: 0, sort_order: 2}
     _declare_role_figure(tttjb_s12f2, 2, 1, [ orc_captain ])
     _declare_role_figure(tttjb_s12f2, 6, 2, [ morgul_stalker ])
     _declare_role_figure(tttjb_s12f2, 8, 3, [ orc_w_shield ])
@@ -7611,7 +7616,7 @@ defmodule SbgInv.Data do
       map_width: 48, map_height: 48, location: :mordor
     }
 
-    Repo.insert! %ScenarioResource{scenario_id: mordor_s1.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 1, page: 60}
+    Repo.insert! %ScenarioResource{scenario_id: mordor_s1.id, resource_type: :source, book: :omordor, title: "Mordor (old)", sort_order: 1, page: 60}
 
     mordor_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s1.id, faction: :rivendell, suggested_points: 800, actual_points: 0, sort_order: 1}
     _declare_role_figure(mordor_s1f1, 1,  1, [ elendil ])
@@ -7626,7 +7631,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(mordor_s1f1, 9, 10, [ numenor_w_bow ])
     _declare_role_figure(mordor_s1f1, 1, 11, [ numenor_w_banner ])
 
-    mordor_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s1.id, faction: :barad_dur, suggested_points: 1075, actual_points: 0, sort_order: 2}
+    mordor_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s1.id, faction: :mordor, suggested_points: 1075, actual_points: 0, sort_order: 2}
     _declare_role_figure(mordor_s1f2,  1,  1, [ sauron ])
     _declare_role_figure(mordor_s1f2,  2,  2, [ orc_shaman ])
     _declare_role_figure(mordor_s1f2, 16,  3, [ orc_w_spear ])
@@ -7646,7 +7651,7 @@ defmodule SbgInv.Data do
       map_width: 48, map_height: 48, location: :osgiliath
     }
 
-    Repo.insert! %ScenarioResource{scenario_id: mordor_s2.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 2, page: 62}
+    Repo.insert! %ScenarioResource{scenario_id: mordor_s2.id, resource_type: :source, book: :omordor, title: "Mordor (old)", sort_order: 2, page: 62}
 
     mordor_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s2.id, faction: :minas_tirith, suggested_points: 750, actual_points: 0, sort_order: 1}
     _declare_role_figure(mordor_s2f1, 1,  1, "Faramir, Captain of Gondor", [ faramir ])
@@ -7663,7 +7668,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(mordor_s2f1, 8, 12, [ gondor_womt_spear_shield ])
     _declare_role_figure(mordor_s2f1, 1, 13, [ gondor_womt_banner ])
 
-    mordor_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s2.id, faction: :cirith_ungol, suggested_points: 900, actual_points: 0, sort_order: 2}
+    mordor_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s2.id, faction: :mordor, suggested_points: 900, actual_points: 0, sort_order: 2}
     _declare_role_figure(mordor_s2f2,  1,  1, [ gothmog ])
     _declare_role_figure(mordor_s2f2,  1,  2, [ m_orc_captain ])
     _declare_role_figure(mordor_s2f2,  1,  3, [ m_orc_captain_2h ])
@@ -7681,7 +7686,7 @@ defmodule SbgInv.Data do
       map_width: 48, map_height: 48, location: :minas_morgul
     }
 
-    Repo.insert! %ScenarioResource{scenario_id: mordor_s3.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 3, page: 64}
+    Repo.insert! %ScenarioResource{scenario_id: mordor_s3.id, resource_type: :source, book: :omordor, title: "Mordor (old)", sort_order: 3, page: 64}
 
     mordor_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s3.id, faction: :rivendell, suggested_points: 500, actual_points: 0, sort_order: 1}
     _declare_role_figure(mordor_s3f1,  1,  1, "Elladan with heavy armour", [ elladan ])
@@ -7693,7 +7698,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(mordor_s3f1,  9,  7, [ high_elf_w_spear_shield ])
     _declare_role_figure(mordor_s3f1,  1,  8, [ high_elf_w_banner ])
 
-    mordor_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s3.id, faction: :cirith_ungol, suggested_points: 650, actual_points: 0, sort_order: 2}
+    mordor_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s3.id, faction: :mordor, suggested_points: 650, actual_points: 0, sort_order: 2}
     _declare_role_figure(mordor_s3f2,  1,  1, "Shagrat, War Leader of Cirith Ungol", [ shagrat ])
     _declare_role_figure(mordor_s3f2,  1,  2, [ gorbag ])
     _declare_role_figure(mordor_s3f2,  1,  3, [ orc_drummer ])
@@ -7719,7 +7724,7 @@ defmodule SbgInv.Data do
       map_width: 48, map_height: 48, location: :rhovanion
     }
 
-    Repo.insert! %ScenarioResource{scenario_id: mordor_s4.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 4, page: 66}
+    Repo.insert! %ScenarioResource{scenario_id: mordor_s4.id, resource_type: :source, book: :omordor, title: "Mordor (Old)", sort_order: 4, page: 66}
     _declare_podcast(mordor_s4.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-16-vengeance-of-the-nazgul", "The Green Dragon", 1)
     _declare_video_replay(mordor_s4.id, "https://www.youtube.com/watch?v=sbwVzrvWTa8&list=PLa_Dq2-Vx86KjLv5JCpygwNALLzzh5zG9&index=14", "Mid-Sussex Wargamers", 2)
 
@@ -7736,7 +7741,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(mordor_s4f1, 12, 10, [ dwarf_khazad_gd ])
     _declare_role_figure(mordor_s4f1,  6, 11, [ dwarf_iron_gd ])
 
-    mordor_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s4.id, faction: :nazgul, suggested_points: 780, actual_points: 0, sort_order: 2}
+    mordor_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s4.id, faction: :mordor, suggested_points: 780, actual_points: 0, sort_order: 2}
     _declare_role_figure(mordor_s4f2,  1,  1, "Witch-king of Angmar with Crown of Morgul", [ witch_king ])
     _declare_role_figure(mordor_s4f2,  1,  1, [ khamul ])
     _declare_role_figure(mordor_s4f2,  1,  1, [ dark_marshal ])
@@ -7752,7 +7757,7 @@ defmodule SbgInv.Data do
       map_width: 48, map_height: 48, location: :morannon
     }
 
-    Repo.insert! %ScenarioResource{scenario_id: mordor_s5.id, resource_type: :source, book: :mordor, title: "Mordor", sort_order: 4, page: 68}
+    Repo.insert! %ScenarioResource{scenario_id: mordor_s5.id, resource_type: :source, book: :omordor, title: "Mordor (old)", sort_order: 4, page: 68}
 
     mordor_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s5.id, faction: :minas_tirith, suggested_points: 475, actual_points: 0, sort_order: 1}
     _declare_role_figure(mordor_s5f1,  1, 1, [ boromir_wt_banner ])
@@ -7763,7 +7768,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(mordor_s5f1, 16, 6, [ gondor_womt_bow ])
     _declare_role_figure(mordor_s5f1,  2, 7, [ gondor_womt_banner ])
 
-    mordor_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s5.id, faction: :black_gate, suggested_points: 815, actual_points: 0, sort_order: 2}
+    mordor_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s5.id, faction: :mordor, suggested_points: 815, actual_points: 0, sort_order: 2}
     _declare_role_figure(mordor_s5f2,  1, 1, [ mouth_horse ])
     _declare_role_figure(mordor_s5f2,  1, 2, [ troll_chieftain ])
     _declare_role_figure(mordor_s5f2,  1, 3, [ m_orc_captain ])
