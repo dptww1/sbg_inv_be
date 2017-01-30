@@ -3574,7 +3574,7 @@ defmodule SbgInv.Data do
       name: "The Black Gate Opens",
       blurb: "Can the forces of Good distract Sauron from detecting Frodo's mission?",
       date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 234,
-      map_width: 48, map_height: 48, location: :mordor
+      map_width: 48, map_height: 48, location: :morannon
     }
 
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s15.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 15, page: 156}
@@ -3898,6 +3898,145 @@ defmodule SbgInv.Data do
     _declare_role_figure(km_s4f1,  1,  2, [ mauhur ])
     _declare_role_figure(km_s4f1, 17,  3, [ uruk_hai_s_sword_shield ])
     _declare_role_figure(km_s4f1, 16,  4, [ uruk_hai_s_bow ])
+
+    #########################################################################
+    # MORDOR (NEW)
+    #########################################################################
+
+    #========================================================================
+    mnew_s1 = Repo.insert! %Scenario{
+      name: "The Slopes of Mount Doom",
+      blurb: "Sauron faces down the Elves and Men at the end of the Second Age.",
+      date_age: 2, date_year: 3441, date_month: 0, date_day: 0, size: 101,
+      map_width: 48, map_height: 48, location: :mordor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: mnew_s1.id, resource_type: :source, book: :mordor, title: "Mordor (new)", sort_order: 1, page: 42}
+
+    mnew_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s1.id, faction: :numenor, suggested_points: 1000, actual_points: 990, sort_order: 1}
+    _declare_role_figure(mnew_s1f1,  1,  1, [ elendil ])
+    _declare_role_figure(mnew_s1f1,  1,  2, [ isildur ])
+    _declare_role_figure(mnew_s1f1, 10,  3, [ numenor_w_bow ])
+    _declare_role_figure(mnew_s1f1, 10,  4, [ numenor_w_shield ])
+    _declare_role_figure(mnew_s1f1,  8,  5, [ numenor_w_shield_spear ])
+    _declare_role_figure(mnew_s1f1,  1,  6, [ gil_galad ])
+    _declare_role_figure(mnew_s1f1,  1,  7, [ elrond ])
+    _declare_role_figure(mnew_s1f1,  8,  8, [ high_elf_w_bow ])
+    _declare_role_figure(mnew_s1f1,  5,  9, [ high_elf_w_blade ])
+    _declare_role_figure(mnew_s1f1,  4, 10, [ high_elf_w_spear_shield ])
+
+    mnew_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s1.id, faction: :mordor, suggested_points: 1250, actual_points: 1247, sort_order: 2}
+    _declare_role_figure(mnew_s1f2,  1,  1, [ sauron ])
+    _declare_role_figure(mnew_s1f2,  1,  2, [ troll_chieftain ])
+    _declare_role_figure(mnew_s1f2,  2,  3, "Orc Captain with shield", [ orc_captain ])
+    _declare_role_figure(mnew_s1f2,  1,  4, "Morannon Orc Captain with shield", [ m_orc_captain ])
+    _declare_role_figure(mnew_s1f2, 12,  5, [ orc_w_shield ])
+    _declare_role_figure(mnew_s1f2, 12,  6, [ orc_w_spear ])
+    _declare_role_figure(mnew_s1f2,  6,  7, [ orc_w_bow ])
+    _declare_role_figure(mnew_s1f2,  6,  8, [ orc_w_2h ])
+    _declare_role_figure(mnew_s1f2,  6,  9, [ orc_m_shield ])
+    _declare_role_figure(mnew_s1f2,  6, 10, [ orc_m_spear ])
+    _declare_role_figure(mnew_s1f2,  2, 11, [ warg_rider_spear ])
+    _declare_role_figure(mnew_s1f2,  2, 12, [ warg_rider_shield ])
+    _declare_role_figure(mnew_s1f2,  2, 13, [ warg_rider_bow ])
+    _declare_role_figure(mnew_s1f2,  2, 14, [ mordor_troll ])
+
+    #========================================================================
+    mnew_s2 = Repo.insert! %Scenario{
+      name: "The Sacking of Osgiliath",
+      blurb: "Faramir tries to hold Osgiliath against Gothmog's army.",
+      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, size: 83,
+      map_width: 48, map_height: 48, location: :osgiliath
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: mnew_s2.id, resource_type: :source, book: :mordor, title: "Mordor (new)", sort_order: 2, page: 44}
+
+    mnew_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s2.id, faction: :minas_tirith, suggested_points: 500, actual_points: 498, sort_order: 1}
+    _declare_role_figure(mnew_s2f1,  1,  1, "Faramir, Captain of Gondor", [ faramir ])
+    _declare_role_figure(mnew_s2f1, 36,  2, [ gondor_rog ])
+    _declare_role_figure(mnew_s2f1,  5,  3, [ osgiliath_v_bow ])
+    _declare_role_figure(mnew_s2f1,  5,  4, [ osgiliath_v_spear])
+    _declare_role_figure(mnew_s2f1,  5,  5, [ osgiliath_v_shield ])
+
+    mnew_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s2.id, faction: :mordor, suggested_points: 500, actual_points: 487, sort_order: 2}
+    _declare_role_figure(mnew_s2f2,  1,  1, [ gothmog ])
+    _declare_role_figure(mnew_s2f2,  1,  2, "Morannon Orc Captain with shield", [ m_orc_captain ])
+    _declare_role_figure(mnew_s2f2,  1,  3, [ m_orc_captain_2h ])
+    _declare_role_figure(mnew_s2f2, 12,  4, [ orc_m_shield ])
+    _declare_role_figure(mnew_s2f2, 12,  5, [ orc_m_spear ])
+    _declare_role_figure(mnew_s2f2,  4,  6, [ morgul_stalker ])
+
+    #========================================================================
+    mnew_s3 = Repo.insert! %Scenario{
+      name: "Shelob's Lair",
+      blurb: "Gollum has lead Sam and Frodo into a trap.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 12, size: 3,
+      map_width: 48, map_height: 48, location: :minas_morgul
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: mnew_s3.id, resource_type: :source, book: :mordor, title: "Mordor (new)", sort_order: 3, page: 45}
+
+    mnew_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s3.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(mnew_s3f1, 1, 1, [ frodo ])
+    _declare_role_figure(mnew_s3f1, 1, 2, [ sam ])
+
+    mnew_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s3.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(mnew_s3f2, 1, 1, [ shelob ])
+
+    #========================================================================
+    mnew_s4 = Repo.insert! %Scenario{
+      name: "The Death of Kings",
+      blurb: "Théoden faces off against the Witch-King of Angmar.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 4,
+      map_width: 48, map_height: 48, location: :minas_tirith
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: mnew_s4.id, resource_type: :source, book: :mordor, title: "Mordor (new)", sort_order: 4, page: 46}
+
+    mnew_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s4.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(mnew_s4f1,  1,  1, [ theoden_armor_horse ])
+    _declare_role_figure(mnew_s4f1,  1,  2, [ eowyn_horse ])
+    _declare_role_figure(mnew_s4f1,  1,  3, [ merry_rohan ])
+
+    mnew_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(mnew_s4f2,  1,  1, "Witch-King of Angmar with Fell Beast and flail", [ witch_king_fellbeast ])
+
+    #========================================================================
+    mnew_s5 = Repo.insert! %Scenario{
+      name: "The Black Gate Opens",
+      blurb: "Aragorn leads the final battle again the forces of Mordor.",
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 105,
+      map_width: 48, map_height: 48, location: :morannon
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: mnew_s5.id, resource_type: :source, book: :mordor, title: "Mordor (new)", sort_order: 5, page: 47}
+
+    mnew_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s5.id, faction: :minas_tirith, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(mnew_s5f1,  1,  1, [ gwaihir ])
+    _declare_role_figure(mnew_s5f1,  1,  2, [ gandalf_white ])
+    _declare_role_figure(mnew_s5f1,  1,  3, [ legolas ])
+    _declare_role_figure(mnew_s5f1,  1,  4, [ gimli ])
+    _declare_role_figure(mnew_s5f1,  1,  5, "Aragorn, King Elessar", [ aragorn ])
+    _declare_role_figure(mnew_s5f1,  1,  6, [ pippin_gondor ])
+    _declare_role_figure(mnew_s5f1,  1,  7, "Captain of Minas Tirith with shield", [ gondor_captain_mt ])
+    _declare_role_figure(mnew_s5f1, 12,  8, [ gondor_womt_shield ])
+    _declare_role_figure(mnew_s5f1, 12,  9, [ gondor_womt_spear_shield ])
+    _declare_role_figure(mnew_s5f1, 12, 10, [ gondor_womt_bow ])
+
+    mnew_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s5.id, faction: :mordor, suggested_points: 1750, actual_points: 1749, sort_order: 2}
+    _declare_role_figure(mnew_s5f2,  3,  1, [ ringwraith_fellbeast ])
+    _declare_role_figure(mnew_s5f2,  1,  2, [ mouth ])
+    _declare_role_figure(mnew_s5f2,  1,  3, [ troll_chieftain ])
+    _declare_role_figure(mnew_s5f2,  3,  4, "Orc Captains with shield", [ orc_captain ])
+    _declare_role_figure(mnew_s5f2,  1,  5, "Morannon Orc Captain with shield", [ m_orc_captain ])
+    _declare_role_figure(mnew_s5f2,  1,  6, [ m_orc_captain_2h ])
+    _declare_role_figure(mnew_s5f2, 12,  7, [ orc_w_shield ])
+    _declare_role_figure(mnew_s5f2, 12,  8, [ orc_w_spear ])
+    _declare_role_figure(mnew_s5f2,  6,  9, [ orc_w_bow ])
+    _declare_role_figure(mnew_s5f2,  6, 10, [ orc_w_2h ])
+    _declare_role_figure(mnew_s5f2,  8, 11, [ orc_m_shield ])
+    _declare_role_figure(mnew_s5f2,  8, 12, [ orc_m_spear ])
+    _declare_role_figure(mnew_s5f2,  3, 13, [ mordor_troll ])
 
     #########################################################################
     # MORIA AND ANGMAR
@@ -4285,7 +4424,7 @@ defmodule SbgInv.Data do
       name: "The Black Gate Opens",
       blurb: "The remnants of the Good forces at Minas Tirith at the the gates of Mordor to distract Sauron from Frodo's mission.",
       date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 97,
-      map_width: 48, map_height: 48, location: :mordor
+      map_width: 48, map_height: 48, location: :morannon
     }
 
     Repo.insert! %ScenarioResource{scenario_id: rotk_s12.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 12, page: 112}
