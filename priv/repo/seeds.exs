@@ -5718,6 +5718,7 @@ defmodule SbgInv.Data do
     }
 
     Repo.insert! %ScenarioResource{scenario_id: site_s4.id, resource_type: :source, book: :site, title: "A Shadow in the East", sort_order: 4, page: 30}
+    _declare_web_replay(site_s4.id, "http://davetownsend.org/Battles/LotR-20170123/", "DaveT", 1)
 
     site_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: site_s4.id, faction: :minas_tirith, suggested_points: 900, actual_points: 849, sort_order: 1}
     _declare_role_figure(site_s4f1,  1, 1, [ cirion ])
