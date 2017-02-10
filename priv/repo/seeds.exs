@@ -2407,7 +2407,7 @@ defmodule SbgInv.Data do
     #========================================================================
     fotrjb_s17 = Repo.insert! %Scenario{
       name: "Boromir's Redemption",
-      blurb: "Boromir protects Merry and Pipping from marauding Uruk-hai.",
+      blurb: "Boromir protects Merry and Pippin from marauding Uruk-hai.",
       date_age: 3, date_year: 3019, date_month: 2, date_day: 26, size: 22,
       map_width: 48, map_height: 48, location: :amon_hen
     }
