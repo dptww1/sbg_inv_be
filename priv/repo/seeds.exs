@@ -292,7 +292,21 @@ defmodule SbgInv.Data do
 
     aragorn       = _declare_unique("Aragorn",          [ :arnor,       :fellowship, :minas_tirith ])
     aragorn_horse = _declare_unique("Aragorn on horse", [               :fellowship, :minas_tirith ])
-    frodo         = _declare_unique("Frodo",            [               :fellowship, :shire ])
+    frodo            = _declare_unique("Frodo (Fellowship)",       [ :fellowship, :shire ])
+    frodo_breaking   = _declare_unique("Frodo (Breaking)",         [ :fellowship, :shire ])
+    frodo_emyn_muil  = _declare_unique("Frodo (Gollum/Sam/Frodo)", [ :fellowship, :shire ])
+    frodo_osgiliath  = _declare_unique("Frodo (Osgiliath)",        [ :fellowship, :shire ])
+    frodo_weathertop = _declare_unique("Frodo (Weathertop)",       [ :fellowship, :shire ])
+
+    frodo_foot = [ frodo, frodo_breaking, frodo_emyn_muil, frodo_osgiliath, frodo_weathertop ]
+
+    frodo_fog        = _declare_unique("Frodo (Barrow Downs)")
+    frodo_invisible  = _declare_unique("Invisible Frodo")
+    frodo_ithilien   = _declare_unique("Frodo (Captured)")
+    frodo_mt_doom    = _declare_unique("Frodo (Mt. Doom)")
+    frodo_orc        = _declare_unique("Frodo in Orc Armour")
+    frodo_ring       = _declare_unique("Frodo wearing the One Ring")
+    frodo_shelob     = _declare_unique("Frodo (Shelob)")
     frodo_pony    = _declare_unique("Frodo on pony",    [                            :shire ])
     gimli           = _declare_unique("Gimli (Fellowship)",            [ :durins_folk, :fellowship ])
     gimli_amonhen   = _declare_unique("Gimli (Amon Hen)",            [ :durins_folk, :fellowship ])
@@ -321,11 +335,41 @@ defmodule SbgInv.Data do
     legolas_gimli_horse  = _declare_unique("Legolas and Gimli on horse")
     legolas_prince_horse = _declare_unique("Legolas, Prince of Mirkwood on horse", [ :lothlorien,  :fellowship, :white_council, :thranduil ])
 
-    merry         = _declare_unique("Merry",            [               :fellowship, :shire ])
-    merry_pony    = _declare_unique("Merry on pony",    [                            :shire ])
-    pippin        = _declare_unique("Pippin",           [               :fellowship, :shire ])
-    pippin_pony   = _declare_unique("Pippin on pony",   [                            :shire ])
-    sam           = _declare_unique("Sam",              [               :fellowship, :shire ])
+    merry            = _declare_unique("Merry (Fellowship)",                  [               :fellowship, :shire ])
+    merry_breaking   = _declare_unique("Merry (Breaking of the Fellowship)",  [               :fellowship, :shire ])
+    merry_weathertop = _declare_unique("Merry (Weathertop)",                  [               :fellowship, :shire ])
+
+    merry_foot_all = [ merry, merry_breaking, merry_weathertop ]
+
+    merry_fog        = _declare_unique("Merry (Barrow Downs)")
+    merry_grishnakh  = _declare_unique("Merry (Grishnakh)")
+    merry_treebeard  = _declare_unique("Merry (Treebeard)")
+    merry_pony    = _declare_unique("Merry on pony",       [ :shire ])
+
+    pippin            = _declare_unique("Pippin (Fellowship)",                 [ :fellowship, :shire ])
+    pippin_breaking   = _declare_unique("Pippin (Breaking of the Fellowship)", [ :fellowship, :shire ])
+    pippin_weathertop = _declare_unique("Pippin (Weathertop)",                 [ :fellowship, :shire ])
+
+    pippin_foot_all = [ pippin, pippin_breaking, pippin_weathertop ]
+
+    pippin_fog       = _declare_unique("Pippin (Barrow Downs)")
+    pippin_grishnakh = _declare_unique("Pippin (Grishnakh)")
+    pippin_treebeard = _declare_unique("Pippin (Treebeard)")
+    pippin_pony      = _declare_unique("Pippin on pony",   [ :shire ])
+
+    sam            = _declare_unique("Sam (Fellowship)",                 [ :fellowship, :shire ])
+    sam_breaking   = _declare_unique("Sam (Breaking of the Fellowship)", [ :fellowship, :shire ])
+    sam_emyn_muil  = _declare_unique("Sam (Gollum/Sam/Frodo)",           [ :fellowship, :shire ])
+    sam_shelob     = _declare_unique("Sam (Shelob)",                     [ :fellowship, :shire ])
+    sam_weathertop = _declare_unique("Sam (Weathertop)",                 [ :fellowship, :shire ])
+
+    sam_foot_all = [ sam, sam_breaking, sam_emyn_muil, sam_shelob, sam_weathertop ]
+
+    sam_bill      = _declare_unique("Sam (Bill the Pony)")
+    sam_fog       = _declare_unique("Sam (Barrow Downs)")
+    sam_ithilien  = _declare_unique("Sam (Captured)")
+    sam_mt_doom   = _declare_unique("Sam (Mt Doom)")
+    sam_orc       = _declare_unique("Sam in Orc Armour")
     sam_pony      = _declare_unique("Sam on pony",      [                            :shire ])
 
     #########################################################################
@@ -553,7 +597,9 @@ defmodule SbgInv.Data do
     uruk_hai_s_bow          = _declare_warrior("Uruk-hai Scout with bow",              "Uruk-hai Scouts with bow",              [ :isengard ])
     uruk_hai_w_banner       = _declare_warrior("Uruk-hai Warrior with banner",         "Uruk-hai Warriors with banner",         [ :isengard ])
     uruk_hai_w_crossbow     = _declare_warrior("Uruk-hai Warrior with crossbow",       "Uruk-hai Warriors with crossbow",       [ :isengard ])
+    uruk_hai_w_merry        = _declare_warrior("Uruk-hai Warrior carrying Merry",      "Uruk-hai Warriors carrying Merry")
     uruk_hai_w_pike         = _declare_warrior("Uruk-hai Warrior with pike",           "Uruk-hai Warriors with pike",           [ :isengard ])
+    uruk_hai_w_pippin       = _declare_warrior("Uruk-hai Warrior carrying Pippin",     "Uruk-hai Warriors carrying Pippin")
     uruk_hai_w_shield       = _declare_warrior("Uruk-hai Warrior with shield",         "Uruk-hai Warriors with shield",         [ :isengard ])
     wild_man_dunland        = _declare_warrior("Wild Man of Dunland",                  "Wild Men of Dunland",                   [ :isengard ])
 
@@ -836,6 +882,7 @@ defmodule SbgInv.Data do
     grimbold            = _declare_unique("Grimbold of Grimslade",                [ :rohan ])
     hama                = _declare_unique("Hama",                                 [ :rohan ])
     merry_rohan         = _declare_unique("Meriadoc, Knight of the Mark",         [ :rohan ])
+    merry_pelennor      = _declare_unique("Meriadoc, Knight of the Mark (Witch King)", [ :rohan ])
     theoden             = _declare_unique("Théoden",                              [ :rohan ])
     theoden_horse       = _declare_unique("Théoden on horse",                     [ :rohan ])
     theoden_armor_horse = _declare_unique("Théoden with armour on armored horse", [ :rohan ])
@@ -865,7 +912,7 @@ defmodule SbgInv.Data do
 
     bandobras      = _declare_unique("Bandobras Took",         [ :wanderers ])
     bandobras_pony = _declare_unique("Bandobras Took on pony", [ :wanderers ])
-    bilbo          = _declare_unique("Bilbo Baggins",          [ :wanderers ])
+    bilbo_lotr     = _declare_unique("Bilbo Baggins (LotR)",   [ :wanderers ])
     fang           = _declare_unique("Fang",                      [ :shire ])
     fatty          = _declare_unique("Fredegar Bolger",           [ :shire ])
     grip           = _declare_unique("Grip",                      [ :shire ])
@@ -890,8 +937,16 @@ defmodule SbgInv.Data do
     bifur              = _declare_unique("Bifur",                                       [ :thorins_co ])
     bifur_barrel       = _declare_unique("Bifur in barrel")
     bifur_erebor       = _declare_unique("Bifur, Champion of Erebor",                   [ :erebor ])
-    young_bilbo        = _declare_unique("Bilbo Baggins",                               [ :survivors, :thorins_co ])
-    young_bilbo_barrel = _declare_unique("Bilbo Baggins on barrel")
+    bilbo_burglar      = _declare_unique("Bilbo Baggins, Master Burglar",               [ :survivors, :thorins_co ])
+    bilbo_gandalf      = _declare_unique("Bilbo Baggins (Gandalf)",                     [ :survivors, :thorins_co ])
+    bilbo_goblintown   = _declare_unique("Bilbo Baggins (Goblintown)",                  [ :survivors, :thorins_co ])
+    bilbo_riddles      = _declare_unique("Bilbo Baggins (Riddles)",                     [ :survivors, :thorins_co ])
+    bilbo_smaug        = _declare_unique("Bilbo Baggins (Smaug)",                       [ :survivors, :thorins_co ])
+    bilbo_sting        = _declare_unique("Bilbo Baggins with Sting",                    [ :survivors, :thorins_co ])
+
+    bilbo_all = [ bilbo_burglar, bilbo_gandalf, bilbo_goblintown, bilbo_riddles, bilbo_smaug, bilbo_sting ]
+
+    bilbo_barrel       = _declare_unique("Bilbo Baggins on barrel")
     bofur              = _declare_unique("Bofur",                                       [ :thorins_co ])
     bofur_barrel       = _declare_unique("Bofur in barrel")
     bofur_erebor       = _declare_unique("Bofur, Champion of Erebor",                   [ :erebor ])
@@ -1008,7 +1063,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(bo5a_s2f1,  1,  2, [ fili ])
     _declare_role_figure(bo5a_s2f1,  1,  3, [ kili ])
     _declare_role_figure(bo5a_s2f1,  1,  4, [ dwalin ])
-    _declare_role_figure(bo5a_s2f1,  1,  5, [ young_bilbo ])
+    _declare_role_figure(bo5a_s2f1,  1,  5, "Bilbo Baggins", bilbo_all)
     _declare_role_figure(bo5a_s2f1,  1,  6, [ radagast_eagle ])
     _declare_role_figure(bo5a_s2f1,  1,  7, "Tauriel", [ tauriel, tauriel_exile ])
     _declare_role_figure(bo5a_s2f1,  1,  8, "Legolas", legolas_foot_all)
@@ -1219,8 +1274,8 @@ defmodule SbgInv.Data do
     _declare_role_figure(bpf_s8f1,  1, 1, [ faramir ])
     _declare_role_figure(bpf_s8f1,  1, 2, [ madril ])
     _declare_role_figure(bpf_s8f1,  1, 3, [ damrod ])
-    _declare_role_figure(bpf_s8f1,  1, 4, [ frodo ])
-    _declare_role_figure(bpf_s8f1,  1, 5, [ sam ])
+    _declare_role_figure(bpf_s8f1,  1, 4, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(bpf_s8f1,  1, 5, "Samwise Gamgee", sam_foot_all)
     _declare_role_figure(bpf_s8f1, 20, 6, [ gondor_rog ])
 
     bpf_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: bpf_s8.id, faction: :harad, suggested_points: 800, actual_points: 0, sort_order: 2}
@@ -1284,7 +1339,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(bpf_s10f1,  1,  1, [ theoden_armor_horse ])
     _declare_role_figure(bpf_s10f1,  1,  2, [ gamling_horse ])
     _declare_role_figure(bpf_s10f1,  1,  3, [ eowyn_horse ])
-    _declare_role_figure(bpf_s10f1,  1,  4, [ merry_rohan ])
+    _declare_role_figure(bpf_s10f1,  1,  4, "Meriadoc, Knight of the Mark", [ merry_rohan, merry_pelennor ])
     _declare_role_figure(bpf_s10f1,  1,  5, [ rohan_captain_horse ])
     _declare_role_figure(bpf_s10f1,  6,  6, [ rohan_gd_horse_spear ])
     _declare_role_figure(bpf_s10f1, 12,  7, [ rohan_rider ])
@@ -1385,7 +1440,7 @@ defmodule SbgInv.Data do
     _declare_podcast(dos_s2.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-11-flies-and-spiders", "The Green Dragon", 1)
 
     dos_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s2.id, faction: :wanderers, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(dos_s2f1, 1, 1, [ young_bilbo ])
+    _declare_role_figure(dos_s2f1, 1, 1, "Bilbo Baggins", bilbo_all)
 
     dos_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: dos_s2.id, faction: :dol_guldur, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(dos_s2f2,  6, 1, [ mirkwood_spider ])
@@ -1414,7 +1469,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(dos_s3f1,  1, 1, [ bifur ])
     _declare_role_figure(dos_s3f1,  1, 1, [ bofur ])
     _declare_role_figure(dos_s3f1,  1, 1, [ bombur ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ young_bilbo ])
+    _declare_role_figure(dos_s3f1,  1, 1, "Bilbo Baggins", bilbo_all)
     _declare_role_figure(dos_s3f1,  1, 1, "Legolas", legolas_foot_all)
     _declare_role_figure(dos_s3f1,  1, 1, "Tauriel", [ tauriel, tauriel_exile ])
     _declare_role_figure(dos_s3f1, 24, 1, [ mirkwood_ranger ])
@@ -1448,7 +1503,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(dos_s4f1,  1, 11, [ bifur_barrel ])
     _declare_role_figure(dos_s4f1,  1, 12, [ bofur_barrel ])
     _declare_role_figure(dos_s4f1,  1, 13, [ bombur_barrel ])
-    _declare_role_figure(dos_s4f1,  1, 14, [ young_bilbo_barrel ])
+    _declare_role_figure(dos_s4f1,  1, 14, [ bilbo_barrel ])
     _declare_role_figure(dos_s4f1,  1, 15, "Legolas", legolas_foot_all)
     _declare_role_figure(dos_s4f1,  1, 16, "Tauriel", [ tauriel, tauriel_exile ])
     _declare_role_figure(dos_s4f1, 20, 17, [ mirkwood_ranger ])
@@ -1876,10 +1931,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotr_s2.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 2, page: 66}
 
     fotr_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s2.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotr_s2f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotr_s2f1, 1, 2, [ sam ])
-    _declare_role_figure(fotr_s2f1, 1, 3, [ merry ])
-    _declare_role_figure(fotr_s2f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotr_s2f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotr_s2f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotr_s2f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotr_s2f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotr_s2f1, 1, 5, [ aragorn ])
 
     fotr_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s2.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
@@ -1897,10 +1952,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotr_s3.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 3, page: 68}
 
     fotr_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s3.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotr_s3f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotr_s3f1, 1, 2, [ sam ])
-    _declare_role_figure(fotr_s3f1, 1, 3, [ merry ])
-    _declare_role_figure(fotr_s3f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotr_s3f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotr_s3f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotr_s3f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotr_s3f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotr_s3f1, 1, 5, [ aragorn ])
     _declare_role_figure(fotr_s3f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(fotr_s3f1, 1, 7, [ boromir ])
@@ -1925,10 +1980,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotr_s4.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 4, page: 70}
 
     fotr_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s4.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotr_s4f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotr_s4f1, 1, 2, [ sam ])
-    _declare_role_figure(fotr_s4f1, 1, 3, [ merry ])
-    _declare_role_figure(fotr_s4f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotr_s4f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotr_s4f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotr_s4f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotr_s4f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotr_s4f1, 1, 5, [ aragorn ])
     _declare_role_figure(fotr_s4f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(fotr_s4f1, 1, 7, [ boromir ])
@@ -1952,10 +2007,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s5.id, resource_type: :source, book: :fotr, title: "The Fellowship of the Ring", sort_order: 5, page: 72}
 
     fotrjb_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s5.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s5f1,  1,  1, [ frodo ])
-    _declare_role_figure(fotrjb_s5f1,  1,  2, [ sam ])
-    _declare_role_figure(fotrjb_s5f1,  1,  3, [ merry ])
-    _declare_role_figure(fotrjb_s5f1,  1,  4, [ pippin ])
+    _declare_role_figure(fotrjb_s5f1,  1,  1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s5f1,  1,  2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s5f1,  1,  3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotrjb_s5f1,  1,  4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s5f1,  1,  5, [ aragorn ])
     _declare_role_figure(fotrjb_s5f1,  1,  6, [ boromir ])
     _declare_role_figure(fotrjb_s5f1,  1,  7, "Legolas", legolas_foot_all)
@@ -1984,10 +2039,10 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotr_s6f1,  1,  2, [ boromir ])
     _declare_role_figure(fotr_s6f1,  1,  3, "Legolas", legolas_foot_all)
     _declare_role_figure(fotr_s6f1,  1,  4, "Gimli", gimli_all_foot)
-    _declare_role_figure(fotr_s6f1,  1,  5, [ frodo ])
-    _declare_role_figure(fotr_s6f1,  1,  6, [ sam ])
-    _declare_role_figure(fotr_s6f1,  1,  7, [ merry ])
-    _declare_role_figure(fotr_s6f1,  1,  8, [ pippin ])
+    _declare_role_figure(fotr_s6f1,  1,  5, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotr_s6f1,  1,  6, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotr_s6f1,  1,  7, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotr_s6f1,  1,  8, "Peregrin Took", pippin_foot_all)
 
     fotr_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s6.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotr_s6f2,  1,  1, [ lurtz ])
@@ -2091,10 +2146,10 @@ defmodule SbgInv.Data do
     _declare_web_replay(fotrjb_s3.id, "http://davetownsend.org/Battles/LotR-20050929/", "DaveT", 1)
 
     fotrjb_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s3.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s3f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotrjb_s3f1, 1, 2, [ sam ])
-    _declare_role_figure(fotrjb_s3f1, 1, 3, [ pippin ])
-    _declare_role_figure(fotrjb_s3f1, 1, 4, [ merry ])
+    _declare_role_figure(fotrjb_s3f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s3f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s3f1, 1, 3, "Peregrin Took", pippin_foot_all)
+    _declare_role_figure(fotrjb_s3f1, 1, 4, "Meriadoc Brandybuck", merry_foot_all)
     _declare_role_figure(fotrjb_s3f1, 1, 5, [ gildor ])
 
     fotrjb_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s3.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
@@ -2111,10 +2166,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s4.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 4, page: 26}
 
     fotrjb_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s4.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s4f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotrjb_s4f1, 1, 2, [ sam ])
-    _declare_role_figure(fotrjb_s4f1, 1, 3, [ pippin ])
-    _declare_role_figure(fotrjb_s4f1, 1, 4, [ merry ])
+    _declare_role_figure(fotrjb_s4f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s4f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s4f1, 1, 3, "Peregrin Took", pippin_foot_all)
+    _declare_role_figure(fotrjb_s4f1, 1, 4, "Meriadoc Brandybuck", merry_foot_all)
 
     fotrjb_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotrjb_s4f2, 3, 1, [ ringwraith ])
@@ -2130,10 +2185,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s5.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 5, page: 30}
 
     fotrjb_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s5.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s5f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotrjb_s5f1, 1, 2, [ sam ])
-    _declare_role_figure(fotrjb_s5f1, 1, 3, [ pippin ])
-    _declare_role_figure(fotrjb_s5f1, 1, 4, [ merry ])
+    _declare_role_figure(fotrjb_s5f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s5f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s5f1, 1, 3, "Peregrin Took", pippin_foot_all)
+    _declare_role_figure(fotrjb_s5f1, 1, 4, "Meriadoc Brandybuck", merry_foot_all)
     _declare_role_figure(fotrjb_s5f1, 1, 5, [ tom_bombadil ])
 
     fotrjb_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s5.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
@@ -2185,10 +2240,10 @@ defmodule SbgInv.Data do
     _declare_podcast(fotrjb_s8.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-1-amon-sul", "The Green Dragon", 1)
 
     fotrjb_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s8.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s8f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotrjb_s8f1, 1, 2, [ sam ])
-    _declare_role_figure(fotrjb_s8f1, 1, 3, [ merry ])
-    _declare_role_figure(fotrjb_s8f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s8f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s8f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s8f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotrjb_s8f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s8f1, 1, 5, [ aragorn ])
 
     fotrjb_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s8.id, faction: :mordor, suggested_points: 330, actual_points: 330, sort_order: 2}
@@ -2206,10 +2261,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s9.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 9, page: 50}
 
     fotrjb_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s9.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s9f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotrjb_s9f1, 1, 2, [ sam ])
-    _declare_role_figure(fotrjb_s9f1, 1, 3, [ merry ])
-    _declare_role_figure(fotrjb_s9f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s9f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s9f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s9f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotrjb_s9f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s9f1, 1, 5, [ aragorn ])
     _declare_role_figure(fotrjb_s9f1, 1, 6, "Arwen or Glorfindel on Asfaloth", [ arwen_horse_frodo, glorfindel_horse ])
 
@@ -2228,10 +2283,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s10.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 10, page: 54}
 
     fotrjb_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s10.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s10f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotrjb_s10f1, 1, 2, [ sam ])
-    _declare_role_figure(fotrjb_s10f1, 1, 3, [ merry ])
-    _declare_role_figure(fotrjb_s10f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s10f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s10f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s10f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotrjb_s10f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s10f1, 1, 5, [ aragorn ])
     _declare_role_figure(fotrjb_s10f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(fotrjb_s10f1, 1, 7, [ boromir ])
@@ -2253,10 +2308,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s11.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 11, page: 58}
 
     fotrjb_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s11.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s11f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotrjb_s11f1, 1, 2, [ sam ])
-    _declare_role_figure(fotrjb_s11f1, 1, 3, [ merry ])
-    _declare_role_figure(fotrjb_s11f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s11f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s11f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s11f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotrjb_s11f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s11f1, 1, 5, [ aragorn ])
     _declare_role_figure(fotrjb_s11f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(fotrjb_s11f1, 1, 7, [ boromir ])
@@ -2278,10 +2333,10 @@ defmodule SbgInv.Data do
     _declare_podcast(fotrjb_s12.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-13-balins-tomb", "The Green Dragon", 1)
 
     fotrjb_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s12.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s12f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotrjb_s12f1, 1, 2, [ sam ])
-    _declare_role_figure(fotrjb_s12f1, 1, 3, [ merry ])
-    _declare_role_figure(fotrjb_s12f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s12f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s12f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s12f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotrjb_s12f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s12f1, 1, 5, [ aragorn ])
     _declare_role_figure(fotrjb_s12f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(fotrjb_s12f1, 1, 7, [ boromir ])
@@ -2306,10 +2361,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s13.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 13, page: 70}
 
     fotrjb_s13f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s13.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s13f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotrjb_s13f1, 1, 2, [ sam ])
-    _declare_role_figure(fotrjb_s13f1, 1, 3, [ merry ])
-    _declare_role_figure(fotrjb_s13f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s13f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s13f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s13f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotrjb_s13f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s13f1, 1, 5, [ aragorn ])
     _declare_role_figure(fotrjb_s13f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(fotrjb_s13f1, 1, 7, [ boromir ])
@@ -2334,10 +2389,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s14.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 14, page: 76}
 
     fotrjb_s14f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s14.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s14f1, 1, 1, [ frodo ])
-    _declare_role_figure(fotrjb_s14f1, 1, 2, [ sam ])
-    _declare_role_figure(fotrjb_s14f1, 1, 3, [ merry ])
-    _declare_role_figure(fotrjb_s14f1, 1, 4, [ pippin ])
+    _declare_role_figure(fotrjb_s14f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s14f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s14f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotrjb_s14f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s14f1, 1, 5, [ aragorn ])
     _declare_role_figure(fotrjb_s14f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(fotrjb_s14f1, 1, 7, [ boromir ])
@@ -2362,10 +2417,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fotrjb_s15.id, resource_type: :source, book: :fotr_jb, title: "The Fellowship of the Ring Journeybook", sort_order: 15, page: 78}
 
     fotrjb_s15f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s15.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s15f1, 1,  1, [ frodo ])
-    _declare_role_figure(fotrjb_s15f1, 1,  2, [ sam ])
-    _declare_role_figure(fotrjb_s15f1, 1,  3, [ merry ])
-    _declare_role_figure(fotrjb_s15f1, 1,  4, [ pippin ])
+    _declare_role_figure(fotrjb_s15f1, 1,  1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fotrjb_s15f1, 1,  2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fotrjb_s15f1, 1,  3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotrjb_s15f1, 1,  4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s15f1, 1,  5, [ aragorn ])
     _declare_role_figure(fotrjb_s15f1, 1,  6, [ boromir ])
     _declare_role_figure(fotrjb_s15f1, 1,  7, "Legolas", legolas_foot_all)
@@ -2396,7 +2451,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s16f1, 1,  1, [ aragorn ])
     _declare_role_figure(fotrjb_s16f1, 1,  2, "Legolas", legolas_foot_all)
     _declare_role_figure(fotrjb_s16f1, 1,  3, "Gimli", gimli_all_foot)
-    _declare_role_figure(fotrjb_s16f1, 1,  4, [ frodo ])
+    _declare_role_figure(fotrjb_s16f1, 1,  4, "Frodo Baggins", frodo_foot)
 
     fotrjb_s16f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s16.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotrjb_s16f2,  1, 1, [ lurtz ])
@@ -2417,8 +2472,8 @@ defmodule SbgInv.Data do
 
     fotrjb_s17f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s17.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotrjb_s17f1, 1,  1, [ boromir ])
-    _declare_role_figure(fotrjb_s17f1, 1,  2, [ merry ])
-    _declare_role_figure(fotrjb_s17f1, 1,  3, [ pippin ])
+    _declare_role_figure(fotrjb_s17f1, 1,  2, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fotrjb_s17f1, 1,  3, "Peregrin Took", pippin_foot_all)
 
     fotrjb_s17f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s17.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotrjb_s17f2,  1, 1, "Uruk-hai Captain", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
@@ -2552,10 +2607,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fp_s4.id, resource_type: :source, book: :fp, title: "The Free Peoples", sort_order: 4, page: 60}
 
     fp_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s4.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fp_s4f1,  1,  1, [ frodo ])
-    _declare_role_figure(fp_s4f1,  1,  2, [ sam ])
-    _declare_role_figure(fp_s4f1,  1,  3, [ merry ])
-    _declare_role_figure(fp_s4f1,  1,  4, [ pippin ])
+    _declare_role_figure(fp_s4f1,  1,  1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fp_s4f1,  1,  2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fp_s4f1,  1,  3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fp_s4f1,  1,  4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fp_s4f1,  1,  5, [ aragorn ])
 
     fp_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
@@ -2573,10 +2628,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fp_s5.id, resource_type: :source, book: :fp, title: "The Free Peoples", sort_order: 5, page: 61}
 
     fp_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s5.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fp_s5f1,  1,  1, [ frodo ])
-    _declare_role_figure(fp_s5f1,  1,  2, [ sam ])
-    _declare_role_figure(fp_s5f1,  1,  3, [ merry ])
-    _declare_role_figure(fp_s5f1,  1,  4, [ pippin ])
+    _declare_role_figure(fp_s5f1,  1,  1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(fp_s5f1,  1,  2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(fp_s5f1,  1,  3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(fp_s5f1,  1,  4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fp_s5f1,  1,  5, [ aragorn ])
     _declare_role_figure(fp_s5f1,  1,  6, [ aragorn ])
     _declare_role_figure(fp_s5f1,  1,  7, "Arwen or Glorfindel on Asfaloth", [ arwen_horse, glorfindel_horse ])
@@ -2601,10 +2656,10 @@ defmodule SbgInv.Data do
     _declare_role_figure(fp_s6f1,  1,  2, "Boromir with Elven cloak", [ boromir ])
     _declare_role_figure(fp_s6f1,  1,  3, "Legolas with Elven cloak", legolas_foot_all)
     _declare_role_figure(fp_s6f1,  1,  4, "Gimli with Elven cloak", gimli_all_foot)
-    _declare_role_figure(fp_s6f1,  1,  5, "Frodo with Elven cloak, mithril coat, and Sting", [ frodo ])
-    _declare_role_figure(fp_s6f1,  1,  6, "Sam with Elven cloak", [ sam ])
-    _declare_role_figure(fp_s6f1,  1,  7, "Merry with Elven cloak", [ merry ])
-    _declare_role_figure(fp_s6f1,  1,  8, "Pippin with Elven cloak", [ pippin ])
+    _declare_role_figure(fp_s6f1,  1,  5, "Frodo with Elven cloak, mithril coat, and Sting", frodo_foot)
+    _declare_role_figure(fp_s6f1,  1,  6, "Sam with Elven cloak", sam_foot_all)
+    _declare_role_figure(fp_s6f1,  1,  7, "Merry with Elven cloak", merry_foot_all)
+    _declare_role_figure(fp_s6f1,  1,  8, "Pippin with Elven cloak", pippin_foot_all)
 
     fp_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: fp_s6.id, faction: :isengard, suggested_points: 360, actual_points: 358, sort_order: 2}
     _declare_role_figure(fp_s6f2,  1,  1, [ lurtz ])
@@ -2758,7 +2813,7 @@ defmodule SbgInv.Data do
 
     gt_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: gt_s6.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(gt_s6f1,  1,  1, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(gt_s6f1,  1,  2, [ young_bilbo ])
+    _declare_role_figure(gt_s6f1,  1,  2, "Bilbo Baggins", bilbo_all)
 
     gt_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: gt_s6.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(gt_s6f2,  1,  1, [ goblin_king ])
@@ -3169,7 +3224,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s1f1, 1, 11, [ bifur ])
     _declare_role_figure(hobbit_s1f1, 1, 12, [ bofur ])
     _declare_role_figure(hobbit_s1f1, 1, 13, [ bombur ])
-    _declare_role_figure(hobbit_s1f1, 1, 14, [ young_bilbo ])
+    _declare_role_figure(hobbit_s1f1, 1, 14, "Bilbo Baggins", bilbo_all)
 
     hobbit_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s1.id, faction: :trolls, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(hobbit_s1f2, 1,  1, [ william ])
@@ -3203,7 +3258,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s2f1, 1, 11, [ bifur ])
     _declare_role_figure(hobbit_s2f1, 1, 12, [ bofur ])
     _declare_role_figure(hobbit_s2f1, 1, 13, [ bombur ])
-    _declare_role_figure(hobbit_s2f1, 1, 14, [ young_bilbo ])
+    _declare_role_figure(hobbit_s2f1, 1, 14, "Bilbo Baggins", bilbo_all)
     _declare_role_figure(hobbit_s2f1, 1, 15, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(hobbit_s2f1, 1, 16, [ radagast_sleigh ])
 
@@ -3240,7 +3295,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s3f1, 1, 11, [ bifur ])
     _declare_role_figure(hobbit_s3f1, 1, 12, [ bofur ])
     _declare_role_figure(hobbit_s3f1, 1, 13, [ bombur ])
-    _declare_role_figure(hobbit_s3f1, 1, 14, [ young_bilbo ])
+    _declare_role_figure(hobbit_s3f1, 1, 14, "Bilbo Baggins", bilbo_all)
     _declare_role_figure(hobbit_s3f1, 1, 15, "Gandalf the Grey", gandalf_grey_foot_all)
 
     hobbit_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s3.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
@@ -3334,7 +3389,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s6f1, 1, 11, [ bifur ])
     _declare_role_figure(hobbit_s6f1, 1, 12, [ bofur ])
     _declare_role_figure(hobbit_s6f1, 1, 13, [ bombur ])
-    _declare_role_figure(hobbit_s6f1, 1, 14, [ young_bilbo ])
+    _declare_role_figure(hobbit_s6f1, 1, 14, "Bilbo Baggins", bilbo_all)
     _declare_role_figure(hobbit_s6f1, 1, 15, "Gandalf the Grey", gandalf_grey_foot_all)
 
     hobbit_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s6.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
@@ -3356,7 +3411,7 @@ defmodule SbgInv.Data do
 
     hobbit_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s7.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(hobbit_s7f1, 1,  1, [ thorin ])
-    _declare_role_figure(hobbit_s7f1, 1,  2, [ young_bilbo ])
+    _declare_role_figure(hobbit_s7f1, 1,  2, "Bilbo Baggins", bilbo_all)
     _declare_role_figure(hobbit_s7f1, 1,  3, [ gwaihir ])
     _declare_role_figure(hobbit_s7f1, 4,  4, [ eagle ])
 
@@ -3415,10 +3470,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s9.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 9, page: 140}
 
     hobbit_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s9.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(hobbit_s9f1, 1, 1, [ frodo ])
-    _declare_role_figure(hobbit_s9f1, 1, 2, [ sam ])
-    _declare_role_figure(hobbit_s9f1, 1, 3, [ merry ])
-    _declare_role_figure(hobbit_s9f1, 1, 4, [ pippin ])
+    _declare_role_figure(hobbit_s9f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(hobbit_s9f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(hobbit_s9f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(hobbit_s9f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(hobbit_s9f1, 1, 5, [ aragorn ])
 
     hobbit_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s9.id, faction: :mordor, suggested_points: 330, actual_points: 330, sort_order: 2}
@@ -3436,10 +3491,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s10.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 10, page: 142}
 
     hobbit_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s10.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(hobbit_s10f1, 1, 1, [ frodo ])
-    _declare_role_figure(hobbit_s10f1, 1, 2, [ sam ])
-    _declare_role_figure(hobbit_s10f1, 1, 3, [ merry ])
-    _declare_role_figure(hobbit_s10f1, 1, 4, [ pippin ])
+    _declare_role_figure(hobbit_s10f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(hobbit_s10f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(hobbit_s10f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(hobbit_s10f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(hobbit_s10f1, 1, 5, [ aragorn ])
     _declare_role_figure(hobbit_s10f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(hobbit_s10f1, 1, 7, [ boromir ])
@@ -3464,10 +3519,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s11.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 11, page: 144}
 
     hobbit_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s11.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(hobbit_s11f1, 1, 1, [ frodo ])
-    _declare_role_figure(hobbit_s11f1, 1, 2, [ sam ])
-    _declare_role_figure(hobbit_s11f1, 1, 3, [ merry ])
-    _declare_role_figure(hobbit_s11f1, 1, 4, [ pippin ])
+    _declare_role_figure(hobbit_s11f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(hobbit_s11f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(hobbit_s11f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(hobbit_s11f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(hobbit_s11f1, 1, 5, [ aragorn ])
     _declare_role_figure(hobbit_s11f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(hobbit_s11f1, 1, 7, [ boromir ])
@@ -3492,10 +3547,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: hobbit_s12.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 12, page: 146}
 
     hobbit_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s12.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(hobbit_s12f1, 1, 1, [ frodo ])
-    _declare_role_figure(hobbit_s12f1, 1, 2, [ sam ])
-    _declare_role_figure(hobbit_s12f1, 1, 3, [ merry ])
-    _declare_role_figure(hobbit_s12f1, 1, 4, [ pippin ])
+    _declare_role_figure(hobbit_s12f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(hobbit_s12f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(hobbit_s12f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(hobbit_s12f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(hobbit_s12f1, 1, 5, [ aragorn ])
     _declare_role_figure(hobbit_s12f1, 1, 6, [ boromir ])
     _declare_role_figure(hobbit_s12f1, 1, 7, "Legolas", legolas_foot_all)
@@ -3574,7 +3629,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s14f1,  1, 20, "Éomer, Knight of the Pelennor on horse", [ eomer_horse ])
     _declare_role_figure(hobbit_s14f1,  1, 21, [ gamling_horse ])
     _declare_role_figure(hobbit_s14f1,  1, 22, [ eowyn_horse ])
-    _declare_role_figure(hobbit_s14f1,  1, 23, [ merry_rohan ])
+    _declare_role_figure(hobbit_s14f1,  1, 23, "Meriadoc, Knight of the Mark", [ merry_rohan, merry_pelennor ])
     _declare_role_figure(hobbit_s14f1,  3, 24, "Rohan Royal Guard on horse with throwing spears", [ rohan_gd_horse_spear ])
     _declare_role_figure(hobbit_s14f1, 16, 25, [ rohan_rider ])
     _declare_role_figure(hobbit_s14f1,  8, 26, [ rohan_rider_spear ])
@@ -3921,8 +3976,8 @@ defmodule SbgInv.Data do
     km_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: km_s4.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(km_s4f1,  1,  1, [ eomer_horse ])
     _declare_role_figure(km_s4f1,  1,  2, "Rohan Captain on horse with shield", [ rohan_captain_horse ])
-    _declare_role_figure(km_s4f1,  1,  3, [ merry ])
-    _declare_role_figure(km_s4f1,  1,  4, [ pippin ])
+    _declare_role_figure(km_s4f1,  1,  3, "Meriadoc Brandybuck", merry_foot_all ++ [ merry_grishnakh ])
+    _declare_role_figure(km_s4f1,  1,  4, "Peregrin Took", pippin_foot_all ++ [ pippin_grishnakh ])
     _declare_role_figure(km_s4f1,  4,  5, [ rohan_rider_spear ])
     _declare_role_figure(km_s4f1, 10,  6, [ rohan_rider ])
 
@@ -4010,8 +4065,8 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: mnew_s3.id, resource_type: :source, book: :mordor, title: "Mordor (new)", sort_order: 3, page: 45}
 
     mnew_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s3.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(mnew_s3f1, 1, 1, [ frodo ])
-    _declare_role_figure(mnew_s3f1, 1, 2, [ sam ])
+    _declare_role_figure(mnew_s3f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(mnew_s3f1, 1, 2, "Samwise Gamgee", sam_foot_all)
 
     mnew_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s3.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(mnew_s3f2, 1, 1, [ shelob ])
@@ -4029,7 +4084,7 @@ defmodule SbgInv.Data do
     mnew_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s4.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(mnew_s4f1,  1,  1, [ theoden_armor_horse ])
     _declare_role_figure(mnew_s4f1,  1,  2, [ eowyn_horse ])
-    _declare_role_figure(mnew_s4f1,  1,  3, [ merry_rohan ])
+    _declare_role_figure(mnew_s4f1,  1,  3, "Meriadoc, Knight of the Mark", [ merry_rohan, merry_pelennor ])
 
     mnew_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(mnew_s4f2,  1,  1, "Witch-King of Angmar with Fell Beast and flail", [ witch_king_fellbeast ])
@@ -4115,10 +4170,10 @@ defmodule SbgInv.Data do
     _declare_role_figure(ma_s2f1, 1,  3, [ boromir ])
     _declare_role_figure(ma_s2f1, 1,  4, "Legolas", legolas_foot_all)
     _declare_role_figure(ma_s2f1, 1,  5, "Gimli", gimli_all_foot)
-    _declare_role_figure(ma_s2f1, 1,  6, "Frodo with Sting and mithril coat", [ frodo ])
-    _declare_role_figure(ma_s2f1, 1,  7, [ sam ])
-    _declare_role_figure(ma_s2f1, 1,  8, [ merry ])
-    _declare_role_figure(ma_s2f1, 1,  9, [ pippin ])
+    _declare_role_figure(ma_s2f1, 1,  6, "Frodo with Sting and mithril coat", frodo_foot)
+    _declare_role_figure(ma_s2f1, 1,  7, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(ma_s2f1, 1,  8, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(ma_s2f1, 1,  9, "Peregrin Took", pippin_foot_all)
 
     ma_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: ma_s2.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(ma_s2f2, 1,  1, "Balrog", [ balrog, balrog_plastic, balrog_whip ])
@@ -4166,10 +4221,10 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: ma_s4.id, resource_type: :source, book: :ma, title: "Moria & Angmar", sort_order: 4, page: 47}
 
     ma_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: ma_s4.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(ma_s4f1, 1,  1, [ frodo ])
-    _declare_role_figure(ma_s4f1, 1,  1, [ sam ])
-    _declare_role_figure(ma_s4f1, 1,  1, [ merry ])
-    _declare_role_figure(ma_s4f1, 1,  1, [ pippin ])
+    _declare_role_figure(ma_s4f1, 1,  1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(ma_s4f1, 1,  1, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(ma_s4f1, 1,  1, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(ma_s4f1, 1,  1, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(ma_s4f1, 1,  1, [ tom_bombadil ])
 
     ma_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: ma_s4.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
@@ -4232,8 +4287,8 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: rotk_s3.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 3, page: 101}
 
     rotk_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s3.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(rotk_s3f1, 1, 1, [ frodo ])
-    _declare_role_figure(rotk_s3f1, 1, 2, [ sam ])
+    _declare_role_figure(rotk_s3f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(rotk_s3f1, 1, 2, "Samwise Gamgee", sam_foot_all)
 
     rotk_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s3.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s3f2, 1, 1, [ shelob ])
@@ -4324,7 +4379,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s7f1,  1,  2, [ theoden_horse ])
     _declare_role_figure(rotk_s7f1,  1,  3, [ gamling_horse ])
     _declare_role_figure(rotk_s7f1,  1,  4, [ eowyn_horse ])
-    _declare_role_figure(rotk_s7f1,  1,  5, [ merry_rohan ])
+    _declare_role_figure(rotk_s7f1,  1,  5, "Meriadoc, Knight of the Mark", [ merry_rohan, merry_pelennor ])
     _declare_role_figure(rotk_s7f1,  1,  6, [ rohan_captain_horse ])
     _declare_role_figure(rotk_s7f1,  5,  7, [ rohan_gd_horse_spear ])
     _declare_role_figure(rotk_s7f1,  1,  8, [ rohan_gd_horse_banner ])
@@ -4354,7 +4409,7 @@ defmodule SbgInv.Data do
     rotk_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s8.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(rotk_s8f1,  1,  1, [ theoden_horse ])
     _declare_role_figure(rotk_s8f1,  1,  2, [ eowyn_horse ])
-    _declare_role_figure(rotk_s8f1,  1,  3, [ merry_rohan ])
+    _declare_role_figure(rotk_s8f1,  1,  3, "Meriadoc, Knight of the Mark", [ merry_rohan, merry_pelennor ])
 
     rotk_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s8.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s8f2,  1,  1, [ witch_king_fellbeast ])
@@ -4439,8 +4494,8 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: rotk_s11.id, resource_type: :source, book: :rotk, title: "Return of the King", sort_order: 11, page: 110}
 
     rotk_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s11.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(rotk_s11f1,  1,  1, [ frodo ])
-    _declare_role_figure(rotk_s11f1,  1,  2, [ sam ])
+    _declare_role_figure(rotk_s11f1,  1,  1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(rotk_s11f1,  1,  2, "Samwise Gamgee", sam_foot_all)
     _declare_role_figure(rotk_s11f1,  1,  3, [ shagrat ])
     _declare_role_figure(rotk_s11f1, 10,  4, [ m_uruk_hai_shield ])
     _declare_role_figure(rotk_s11f1,  5,  5, [ m_uruk_hai_2h ])
@@ -4470,9 +4525,9 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s12f1,  1,  5, [ eomer ])
     _declare_role_figure(rotk_s12f1,  1,  6, [ gamling ])
     _declare_role_figure(rotk_s12f1,  1,  7, [ pippin_gondor ])
-    _declare_role_figure(rotk_s12f1,  1,  8, [ merry_rohan ])
-    _declare_role_figure(rotk_s12f1,  1,  9, [ sam ])
-    _declare_role_figure(rotk_s12f1,  1, 10, [ frodo ])
+    _declare_role_figure(rotk_s12f1,  1,  8, "Meriadoc, Knight of the Mark", [ merry_rohan, merry_pelennor ])
+    _declare_role_figure(rotk_s12f1,  1,  9, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(rotk_s12f1,  1, 10, "Frodo Baggins", frodo_foot)
     _declare_role_figure(rotk_s12f1,  7, 11, [ rohan_rider ])
     _declare_role_figure(rotk_s12f1,  4, 12, [ rohan_rider_spear ])
     _declare_role_figure(rotk_s12f1,  1, 13, [ rohan_rider_banner ])
@@ -4673,8 +4728,8 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s1.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 1, page: 12}
 
     rotkjb_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s1.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(rotkjb_s1f1, 1, 1, [ frodo ])
-    _declare_role_figure(rotkjb_s1f1, 1, 2, [ sam ])
+    _declare_role_figure(rotkjb_s1f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(rotkjb_s1f1, 1, 2, "Samwise Gamgee", sam_foot_all)
 
     rotkjb_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s1.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s1f2, 1, 1, [ shelob ])
@@ -4836,7 +4891,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotkjb_s6f1,  1,  1, [ theoden_armor_horse ])
     _declare_role_figure(rotkjb_s6f1,  1,  2, [ gamling_horse ])
     _declare_role_figure(rotkjb_s6f1,  1,  3, [ eowyn_horse ])
-    _declare_role_figure(rotkjb_s6f1,  1,  4, [ merry_rohan ])
+    _declare_role_figure(rotkjb_s6f1,  1,  4, "Meriadoc, Knight of the Mark", [ merry_rohan, merry_pelennor ])
     _declare_role_figure(rotkjb_s6f1,  1,  5, [ eomer_horse ])
     _declare_role_figure(rotkjb_s6f1, 13,  6, [ rohan_rider ])
     _declare_role_figure(rotkjb_s6f1,  3,  7, [ rohan_rider_spear ])
@@ -4861,7 +4916,7 @@ defmodule SbgInv.Data do
     rotkjb_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s7.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(rotkjb_s7f1,  1,  1, [ theoden_armor_horse ])
     _declare_role_figure(rotkjb_s7f1,  1,  2, [ eowyn_horse ])
-    _declare_role_figure(rotkjb_s7f1,  1,  3, [ merry_rohan ])
+    _declare_role_figure(rotkjb_s7f1,  1,  3, "Meriadoc, Knight of the Mark", [ merry_rohan, merry_pelennor ])
 
     rotkjb_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s7.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s7f2,  1,  1, [ witch_king_fellbeast ])
@@ -4987,8 +5042,8 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: rotkjb_s12.id, resource_type: :source, book: :rotk_jb, title: "Return of the King Journeybook", sort_order: 12, page: 74}
 
     rotkjb_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s12.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(rotkjb_s12f1,  1,  1, [ frodo ])
-    _declare_role_figure(rotkjb_s12f1,  1,  2, "Samwise the Brave with Elven cloak", [ sam ])
+    _declare_role_figure(rotkjb_s12f1,  1,  1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(rotkjb_s12f1,  1,  2, "Samwise the Brave with Elven cloak", sam_foot_all)
     _declare_role_figure(rotkjb_s12f1,  1,  3, [ shagrat ])
     _declare_role_figure(rotkjb_s12f1,  8,  4, [ m_uruk_hai ])
     _declare_role_figure(rotkjb_s12f1,  4,  5, [ m_uruk_hai_2h ])
@@ -5016,7 +5071,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotkjb_s13f1,  1,  3, "Gandalf the White", [ gandalf_white, gandalf_white_bgime, gandalf_white_pelennor ])
     _declare_role_figure(rotkjb_s13f1,  1,  4, "Éomer, Knight of the Pelennor", [ eomer ])
     _declare_role_figure(rotkjb_s13f1,  1,  5, [ eowyn_armor ])
-    _declare_role_figure(rotkjb_s13f1,  1,  6, "Meriadoc, Knight of the Mark with Elven cloak and shield", [ merry_rohan ])
+    _declare_role_figure(rotkjb_s13f1,  1,  6, "Meriadoc, Knight of the Mark with Elven cloak and shield", [ merry_rohan, merry_pelennor ])
     _declare_role_figure(rotkjb_s13f1,  1,  7, [ erkenbrand ])
     _declare_role_figure(rotkjb_s13f1,  1,  8, "Peregrin, Guard of the Citade with Elven cloak", [ pippin_gondor ])
     _declare_role_figure(rotkjb_s13f1,  1,  9, [ imrahil ])
@@ -5455,7 +5510,7 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: sots_s12.id, resource_type: :source, book: :sots, title: "The Scouring of the Shire", sort_order: 12, page: 62}
 
     sots_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: sots_s12.id, faction: :wanderers, suggested_points: 400, actual_points: 397, sort_order: 1}
-    _declare_role_figure(sots_s12f1, 1, 1, [ bilbo ])
+    _declare_role_figure(sots_s12f1, 1, 1, [ bilbo_lotr ])
     _declare_role_figure(sots_s12f1, 1, 2, [ aragorn ])
     _declare_role_figure(sots_s12f1, 3, 3, [ galadhrim_w_blade ])
     _declare_role_figure(sots_s12f1, 3, 4, [ galadhrim_w_bow ])
@@ -5588,10 +5643,10 @@ defmodule SbgInv.Data do
     _declare_web_replay(saf_s5.id, "http://davetownsend.org/Battles/LotR-20070809/", "DaveT", 1)
 
     saf_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s5.id, faction: :fellowship, suggested_points: 200, actual_points: 0, sort_order: 1}
-    _declare_role_figure(saf_s5f1, 1, 1, [ frodo ])
-    _declare_role_figure(saf_s5f1, 1, 2, [ sam ])
-    _declare_role_figure(saf_s5f1, 1, 3, [ merry ])
-    _declare_role_figure(saf_s5f1, 1, 4, [ pippin ])
+    _declare_role_figure(saf_s5f1, 1, 1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(saf_s5f1, 1, 2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(saf_s5f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(saf_s5f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(saf_s5f1, 1, 5, [ tom_bombadil ])
 
     saf_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: saf_s5.id, faction: :angmar,     suggested_points: 200, actual_points: 0, sort_order: 2}
@@ -6202,7 +6257,7 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: tba_s1.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 1, page: 10}
 
     tba_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s1.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(tba_s1f1,  1,  1, [ young_bilbo ])
+    _declare_role_figure(tba_s1f1,  1,  1, "Bilbo Baggins", bilbo_all)
 
     tba_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s1.id, faction: :dol_guldur, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(tba_s1f2,  6,  1, [ mirkwood_spider ])
@@ -6231,7 +6286,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s2f1,  1, 1, [ bifur ])
     _declare_role_figure(tba_s2f1,  1, 1, [ bofur ])
     _declare_role_figure(tba_s2f1,  1, 1, [ bombur ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ young_bilbo ])
+    _declare_role_figure(tba_s2f1,  1, 1, "Bilbo Baggins", bilbo_all)
     _declare_role_figure(tba_s2f1,  1, 1, "Legolas", legolas_foot_all)
     _declare_role_figure(tba_s2f1,  1, 1, "Tauriel", [ tauriel, tauriel_exile ])
     _declare_role_figure(tba_s2f1, 20, 1, [ mirkwood_ranger ])
@@ -6263,7 +6318,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s3f1,  1, 11, [ bifur_barrel ])
     _declare_role_figure(tba_s3f1,  1, 12, [ bofur_barrel ])
     _declare_role_figure(tba_s3f1,  1, 13, [ bombur_barrel ])
-    _declare_role_figure(tba_s3f1,  1, 14, [ young_bilbo_barrel ])
+    _declare_role_figure(tba_s3f1,  1, 14, [ bilbo_barrel ])
     _declare_role_figure(tba_s3f1,  1, 15, "Legolas", legolas_foot_all)
     _declare_role_figure(tba_s3f1,  1, 16, "Tauriel", [ tauriel, tauriel_exile ])
     _declare_role_figure(tba_s3f1,  1, 17, [ palace_gd_captain ])
@@ -6301,7 +6356,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s4f1,  1, 11, [ bifur_barrel ])
     _declare_role_figure(tba_s4f1,  1, 12, [ bofur_barrel ])
     _declare_role_figure(tba_s4f1,  1, 13, [ bombur_barrel ])
-    _declare_role_figure(tba_s4f1,  1, 14, [ young_bilbo_barrel ])
+    _declare_role_figure(tba_s4f1,  1, 14, [ bilbo_barrel ])
     _declare_role_figure(tba_s4f1,  1, 15, "Legolas", legolas_foot_all)
     _declare_role_figure(tba_s4f1,  1, 16, "Tauriel", [ tauriel, tauriel_exile ])
     _declare_role_figure(tba_s4f1,  1, 17, [ palace_gd_captain ])
@@ -6542,7 +6597,7 @@ defmodule SbgInv.Data do
     tba_s14f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s14.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(tba_s14f1,  1,  1, [ bard ])
     _declare_role_figure(tba_s14f1,  1,  2, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(tba_s14f1,  1,  3, [ young_bilbo ])
+    _declare_role_figure(tba_s14f1,  1,  3, "Bilbo Baggins", bilbo_all)
     _declare_role_figure(tba_s14f1,  4,  4, [ laketown_militia_shield ])
     _declare_role_figure(tba_s14f1,  4,  5, [ laketown_militia_spear])
     _declare_role_figure(tba_s14f1,  4,  6, [ laketown_militia_bow ])
@@ -6567,7 +6622,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s15f1,  1,  1, [ bard ])
     _declare_role_figure(tba_s15f1,  1,  2, [ percy ])
     _declare_role_figure(tba_s15f1,  1,  3, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(tba_s15f1,  1,  4, [ young_bilbo ])
+    _declare_role_figure(tba_s15f1,  1,  4, "Bilbo Baggins", bilbo_all)
     _declare_role_figure(tba_s15f1,  1,  5, [ alfrid ])
     _declare_role_figure(tba_s15f1,  8,  6, [ laketown_militia_shield ])
     _declare_role_figure(tba_s15f1,  8,  7, [ laketown_militia_spear])
@@ -6638,7 +6693,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s18f1,  1,  3, [ hilda ])
     _declare_role_figure(tba_s18f1,  1,  4, [ alfrid ])
     _declare_role_figure(tba_s18f1,  1,  5, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(tba_s18f1,  1,  6, [ young_bilbo ])
+    _declare_role_figure(tba_s18f1,  1,  6, "Bilbo Baggins", bilbo_all)
     _declare_role_figure(tba_s18f1,  8,  7, [ laketown_militia_shield ])
     _declare_role_figure(tba_s18f1,  8,  8, [ laketown_militia_spear ])
     _declare_role_figure(tba_s18f1,  8,  9, [ laketown_militia_bow ])
@@ -6815,7 +6870,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s25f1,  1,  2, [ dwalin_erebor ])
     _declare_role_figure(tba_s25f1,  1,  3, [ kili_erebor ])
     _declare_role_figure(tba_s25f1,  1,  4, [ fili_erebor ])
-    _declare_role_figure(tba_s25f1,  1,  5, [ young_bilbo ])
+    _declare_role_figure(tba_s25f1,  1,  5, "Bilbo Baggins", bilbo_all)
     _declare_role_figure(tba_s25f1,  1,  6, "Tauriel", [ tauriel, tauriel_exile ])
     _declare_role_figure(tba_s25f1,  1,  7, "Legolas", legolas_foot_all)
 
@@ -6969,8 +7024,8 @@ defmodule SbgInv.Data do
     ttt_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s2.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(ttt_s2f1,  1,  1, [ eomer_horse ])
     _declare_role_figure(ttt_s2f1,  1,  2, [ rohan_captain_horse ])
-    _declare_role_figure(ttt_s2f1,  1,  3, [ merry ])
-    _declare_role_figure(ttt_s2f1,  1,  4, [ pippin ])
+    _declare_role_figure(ttt_s2f1,  1,  3, "Meriadoc Brandybuck", merry_foot_all ++ [ merry_grishnakh ])
+    _declare_role_figure(ttt_s2f1,  1,  4, "Peregrin Took", pippin_foot_all ++ [ pippin_grishnakh ])
     _declare_role_figure(ttt_s2f1,  8,  5, [ rohan_rider_spear ])
     _declare_role_figure(ttt_s2f1,  8,  6, [ rohan_rider ])
 
@@ -7016,8 +7071,8 @@ defmodule SbgInv.Data do
     ttt_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s4.id, faction: :minas_tirith, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(ttt_s4f1,  1, 1, [ faramir ])
     _declare_role_figure(ttt_s4f1,  1, 2, [ damrod ])
-    _declare_role_figure(ttt_s4f1,  1, 3, [ frodo ])
-    _declare_role_figure(ttt_s4f1,  1, 4, [ sam ])
+    _declare_role_figure(ttt_s4f1,  1, 3, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(ttt_s4f1,  1, 4, "Samwise Gamgee", sam_foot_all)
     _declare_role_figure(ttt_s4f1, 16, 5, [ gondor_rog ])
 
     ttt_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s4.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
@@ -7147,8 +7202,8 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: ttt_s9.id, resource_type: :source, book: :ttt, title: "The Two Towers", sort_order: 9, page: 110}
 
     ttt_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s9.id, faction: :minas_tirith,  suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(ttt_s9f1,  1,  1, [ frodo ])
-    _declare_role_figure(ttt_s9f1,  1,  2, [ sam ])
+    _declare_role_figure(ttt_s9f1,  1,  1, "Frodo Baggins", frodo_foot)
+    _declare_role_figure(ttt_s9f1,  1,  2, "Samwise Gamgee", sam_foot_all)
     _declare_role_figure(ttt_s9f1,  1,  3, [ faramir ])
     _declare_role_figure(ttt_s9f1,  1,  4, [ damrod ])
     _declare_role_figure(ttt_s9f1,  1,  5, [ gondor_captain_mt ])
@@ -7180,8 +7235,8 @@ defmodule SbgInv.Data do
     _declare_role_figure(ttt_s10f1,  1,  4, [ theoden_horse ])
     _declare_role_figure(ttt_s10f1,  1,  5, [ gamling_horse ])
     _declare_role_figure(ttt_s10f1,  1,  6, "Gimli", gimli_all_foot)
-    _declare_role_figure(ttt_s10f1,  1,  7, [ merry ])
-    _declare_role_figure(ttt_s10f1,  1,  8, [ pippin ])
+    _declare_role_figure(ttt_s10f1,  1,  7, "Meriadoc Brandybuck", merry_foot_all ++ [ merry_treebeard ])
+    _declare_role_figure(ttt_s10f1,  1,  8, "Peregrin Took", pippin_foot_all ++ [ pippin_treebeard ])
     _declare_role_figure(ttt_s10f1,  1,  9, [ treebeard ])
 
     ttt_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s10.id, faction: :isengard,  suggested_points: 0, actual_points: 0, sort_order: 2}
@@ -7295,8 +7350,8 @@ defmodule SbgInv.Data do
     _declare_web_replay(tttjb_s4.id, "http://davetownsend.org/Battles/LotR-20061029/", "DaveT", 1)
 
     tttjb_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s4.id, faction: :rohan, suggested_points: 500, actual_points: 0, sort_order: 1}
-    _declare_role_figure(tttjb_s4f1,  1, 1, "Meriadoc Brandybuck with Elven cloak", [ merry ])
-    _declare_role_figure(tttjb_s4f1,  1, 2, "Peregrin Took with Elven cloak", [ pippin ])
+    _declare_role_figure(tttjb_s4f1,  1, 1, "Meriadoc Brandybuck with Elven cloak", merry_foot_all)
+    _declare_role_figure(tttjb_s4f1,  1, 2, "Peregrin Took with Elven cloak", pippin_foot_all)
     _declare_role_figure(tttjb_s4f1,  1, 3, [ eomer_horse ])
     _declare_role_figure(tttjb_s4f1,  1, 4, [ rohan_captain_horse ])
     _declare_role_figure(tttjb_s4f1,  3, 5, [ rohan_outrider ])
@@ -7326,8 +7381,8 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s5.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 5, page: 28}
 
     tttjb_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s5.id, faction: :fellowship, suggested_points: 225, actual_points: 0, sort_order: 1}
-    _declare_role_figure(tttjb_s5f1, 1, 1, "Meriadoc Brandybuck with Elven cloak", [ merry ])
-    _declare_role_figure(tttjb_s5f1, 1, 2, "Peregrin Took with Elven cloak", [ pippin ])
+    _declare_role_figure(tttjb_s5f1, 1, 1, "Meriadoc Brandybuck with Elven cloak", merry_foot_all)
+    _declare_role_figure(tttjb_s5f1, 1, 2, "Peregrin Took with Elven cloak", pippin_foot_all)
     _declare_role_figure(tttjb_s5f1, 1, 3, [ treebeard ])
 
     tttjb_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s5.id, faction: :isengard, suggested_points: 50, actual_points: 0, sort_order: 2}
@@ -7447,8 +7502,8 @@ defmodule SbgInv.Data do
     _declare_video_replay(tttjb_s9.id, "https://www.youtube.com/watch?v=CBH__WZh5pA&index=5&list=PLa_Dq2-Vx86KjLv5JCpygwNALLzzh5zG9", "Mid-Sussex Wargamers", 1)
 
     tttjb_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s9.id, faction: :fellowship, suggested_points: 150, actual_points: 0, sort_order: 1}
-    _declare_role_figure(tttjb_s9f1, 1, 1, "Frodo Baggins with Sting, mithril coat, and Elven cloak", [ frodo ])
-    _declare_role_figure(tttjb_s9f1, 1, 2, "Sam Gamgee with Elven cloak", [ sam ])
+    _declare_role_figure(tttjb_s9f1, 1, 1, "Frodo Baggins with Sting, mithril coat, and Elven cloak", frodo_foot)
+    _declare_role_figure(tttjb_s9f1, 1, 2, "Sam Gamgee with Elven cloak", sam_foot_all)
 
     tttjb_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s9.id, faction: :mordor, suggested_points: 150, actual_points: 0, sort_order: 2}
     _declare_role_figure(tttjb_s9f2, 1, 1, [ smeagol ])
@@ -7464,8 +7519,8 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: tttjb_s10.id, resource_type: :source, book: :ttt_jb, title: "The Two Towers Journeybook", sort_order: 10, page: 52}
 
     tttjb_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s10.id, faction: :fellowship, suggested_points: 150, actual_points: 0, sort_order: 1}
-    _declare_role_figure(tttjb_s10f1, 1, 1, "Frodo Baggins with Sting, mithril coat, and Elven cloak", [ frodo ])
-    _declare_role_figure(tttjb_s10f1, 1, 2, "Sam Gamgee with Elven cloak", [ sam ])
+    _declare_role_figure(tttjb_s10f1, 1, 1, "Frodo Baggins with Sting, mithril coat, and Elven cloak", frodo_foot)
+    _declare_role_figure(tttjb_s10f1, 1, 2, "Sam Gamgee with Elven cloak", sam_foot_all)
     _declare_role_figure(tttjb_s10f1, 1, 3, [ smeagol ])
 
     tttjb_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s10.id, faction: :mordor, suggested_points: 275, actual_points: 0, sort_order: 2}
@@ -7487,8 +7542,8 @@ defmodule SbgInv.Data do
     _declare_role_figure(tttjb_s11f1,  1, 1, "Faramir with bow", [ faramir ])
     _declare_role_figure(tttjb_s11f1,  1, 2, [ madril ])
     _declare_role_figure(tttjb_s11f1,  1, 3, [ damrod ])
-    _declare_role_figure(tttjb_s11f1,  1, 4, "Frodo Baggins with Sting, mithril coat, and Elven cloak", [ frodo ])
-    _declare_role_figure(tttjb_s11f1,  1, 5, "Sam Gamgee with Elven cloak", [ sam ])
+    _declare_role_figure(tttjb_s11f1,  1, 4, "Frodo Baggins with Sting, mithril coat, and Elven cloak", frodo_foot)
+    _declare_role_figure(tttjb_s11f1,  1, 5, "Sam Gamgee with Elven cloak", sam_foot_all)
     _declare_role_figure(tttjb_s11f1, 10, 6, [ gondor_rog ])
 
     tttjb_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s11.id, faction: :harad, suggested_points: 625, actual_points: 0, sort_order: 2}
@@ -7682,7 +7737,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(sbg_s1f1, 1,  9, [ bifur ])
     _declare_role_figure(sbg_s1f1, 1, 10, [ bofur ])
     _declare_role_figure(sbg_s1f1, 1, 11, [ bombur ])
-    _declare_role_figure(sbg_s1f1, 1, 12, "Bilbo Baggins with Sting and the One Ring", [ young_bilbo ])
+    _declare_role_figure(sbg_s1f1, 1, 12, "Bilbo Baggins with Sting and the One Ring", bilbo_all)
     _declare_role_figure(sbg_s1f1, 1, 13, "Gandalf the Grey", gandalf_grey_foot_all)
 
     sbg_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: sbg_s1.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 1}
