@@ -473,14 +473,20 @@ defmodule SbgInv.Data do
 
     angbor              = _declare_unique("Angbor the Fearless", [ :fiefdoms ])
     beregond            = _declare_unique("Beregond", [ :minas_tirith ])
-    boromir             = _declare_unique("Boromir", [ :fellowship, :minas_tirith ])
+    boromir             = _declare_unique("Boromir",                              [ :fellowship, :minas_tirith ])
+    boromir_breaking    = _declare_unique("Boromir (Breaking of the Fellowship)", [ :fellowship, :minas_tirith ])
+    boromir_horse       = _declare_unique("Boromir on horse", [ :minas_tirith ])
     boromir_wt_banner   = _declare_unique("Boromir of the White Tower with Banner", [ :minas_tirith ])
     boromir_wt_horse    = _declare_unique("Boromir of the White Tower on horse", [ :minas_tirith ])
+    boromir_dying       = _declare_unique("Dying Boromir")
     damrod              = _declare_unique("Damrod",   [ :minas_tirith ])
     denethor            = _declare_unique("Denethor", [ :minas_tirith ])
     duinhir             = _declare_unique("Duinhir",  [ :fiefdoms ])
     cirion              = _declare_unique("Cirion",   [ :minas_tirith ])
     faramir             = _declare_unique("Faramir",  [ :minas_tirith ])
+    faramir_armor       = _declare_unique("Faramir with armour", [ :minas_tirith ])
+    faramir_heroes      = _declare_unique("Faramir (Heroes of the West)", [ :minas_tirith ])
+    faramir_ithlien     = _declare_unique("Faramir, Captain of Ithilien", [ :minas_tirith ])
     faramir_armor_horse = _declare_unique("Faramir, Captain of Gondor with heavy armour and horse", [ :minas_tirith ])
     forlong             = _declare_unique("Forlong the Fat",              [ :fiefdoms ])
     forlong_horse       = _declare_unique("Forlong the Fat on horse",     [ :fiefdoms ])
@@ -495,9 +501,12 @@ defmodule SbgInv.Data do
     gondor_captain_mt       = _declare_hero("Captain of Minas Tirith",          "Captains of Minas Tirith",          [ :minas_tirith ])
     gondor_captain_mt_horse = _declare_hero("Captain of Minas Tirith on horse", "Captains of Minas Tirith on horse", [ :minas_tirith ])
     gondor_captain_da       = _declare_hero("Captain of Dol Amroth",            "Captains of Dol Amroth",            [ :fiefdoms ])
+    gondor_captain_da_horse = _declare_hero("Captain of Dol Amroth on horse",   "Captains of Dol Amroth on horse",   [ :fiefdoms ])
 
     axemen_lossarnach            = _declare_warrior("Axeman of Lossarnach",                          "Axemen of Lossarnach",   [ :fiefdoms ])
     blackroot_vale_archer        = _declare_warrior("Blackroot Vale Archer",                         "Blackroot Vale Archers", [ :fiefdoms ])
+    blackroot_vale_archer_banner = _declare_warrior("Blackroot Vale Archer with banner",             "Blackroot Vale Archers with banner", [ :fiefdoms ])
+    blackroot_vale_archer_horn   = _declare_warrior("Blackroot Vale Archer with horn",               "Blackroot Vale Archers with horn", [ :fiefdoms ])
     clansmen_lamedon             = _declare_warrior("Clansman of Lamedon",                           "Clansmen of Lamedon",    [ :fiefdoms ])
     fountain_court_gd            = _declare_warrior("Guard of the Fountain Court",                   "Guards of the Fountain Court", [ :minas_tirith ])
     dead_rider                   = _declare_warrior("Rider of the Dead",                             "Riders of the Dead",     [ :fiefdoms ])
@@ -510,10 +519,12 @@ defmodule SbgInv.Data do
     gondor_knight_da_foot        = _declare_warrior("Foot Knight of Dol Amroth",                     "Foot Knights of Dol Amroth",             [ :fiefdoms ])
     gondor_knight_da_foot_banner = _declare_warrior("Foot Knight of Dol Amroth with banner",         "Foot Knights of Dol Amroth with banner", [ :fiefdoms ])
     gondor_knight_da_horse       = _declare_warrior("Knight of Dol Amroth",                          "Knights of Dol Amroth",                  [ :fiefdoms ])
+    gondor_knight_da_horse_banner = _declare_warrior("Knight of Dol Amroth with banner",             "Knights of Dol Amroth with banner",      [ :fiefdoms ])
     gondor_rog                   = _declare_warrior("Ranger of Gondor",                              "Rangers of Gondor",                              [ :minas_tirith ])
     gondor_rog_spear             = _declare_warrior("Ranger of Gondor with spear",                   "Rangers of Gondor with spear",                   [ :minas_tirith ])
     gondor_womt_banner           = _declare_warrior("Warrior of Minas Tirith with banner",           "Warriors of Minas Tirith with banner",           [ :minas_tirith ])
     gondor_womt_bow              = _declare_warrior("Warrior of Minas Tirith with bow",              "Warriors of Minas Tirith with bow",              [ :minas_tirith ])
+    gondor_womt_horn             = _declare_warrior("Warrior of Minas Tirith with horn",             "Warriors of Minas Tirith with horn",             [ :minas_tirith ])
     gondor_womt_shield           = _declare_warrior("Warrior of Minas Tirith with shield",           "Warriors of Minas Tirith with shield",           [ :minas_tirith ])
     gondor_womt_spear_shield     = _declare_warrior("Warrior of Minas Tirith with spear and shield", "Warriors of Minas Tirith with spear and shield", [ :minas_tirith ])
     maa_da                       = _declare_warrior("Man at Arms of Dol Amroth",                     "Men at Arms of Dol Amroth",      [ :fiefdoms ])
@@ -595,16 +606,17 @@ defmodule SbgInv.Data do
     # FIGURES: ISENGARD
     #########################################################################
 
-    grima       = _declare_unique("Grima Wormtongue",   [ :isengard ])
-    lurtz       = _declare_unique("Lurtz",              [ :isengard ])
-    mauhur      = _declare_unique("Mauhúr",             [ :isengard ])
-    sharkey     = _declare_unique("Sharkey",            [ :isengard ])
-    sharku      = _declare_unique("Sharku",             [ :isengard ])
-    sharku_warg = _declare_unique("Sharku on Warg",     [ :isengard ])
-    thrydan     = _declare_unique("Thrydan Wolvesbane", [ :isengard ])
-    ugluk       = _declare_unique("Uglúk",              [ :isengard ])
-    vrasku      = _declare_unique("Vraskû",             [ :isengard ])
-    worm        = _declare_unique("Worm",               [ :isengard ])
+    grima         = _declare_unique("Grima Wormtongue",   [ :isengard ])
+    lurtz         = _declare_unique("Lurtz",              [ :isengard ])
+    mauhur        = _declare_unique("Mauhúr",             [ :isengard ])
+    sharkey       = _declare_unique("Sharkey",            [ :isengard ])
+    sharku        = _declare_unique("Sharku",             [ :isengard ])
+    sharku_warg   = _declare_unique("Sharku on Warg",     [ :isengard ])
+    thrydan       = _declare_unique("Thrydan Wolvesbane", [ :isengard ])
+    thrydan_horse = _declare_unique("Thrydan Wolvesbane", [ :isengard ])
+    ugluk         = _declare_unique("Uglúk",              [ :isengard ])
+    vrasku        = _declare_unique("Vraskû",             [ :isengard ])
+    worm          = _declare_unique("Worm",               [ :isengard ])
 
     dunlending_chieftain    = _declare_hero("Dunlending Chieftain",                 "Dunlending Chieftains",                 [ :isengard ])
     uruk_hai_captain_shield = _declare_hero("Uruk-hai Captain with shield",         "Uruk-hai Captains with shield",         [ :isengard ])
@@ -631,6 +643,7 @@ defmodule SbgInv.Data do
     uruk_hai_w_pippin       = _declare_warrior("Uruk-hai Warrior carrying Pippin",     "Uruk-hai Warriors carrying Pippin")
     uruk_hai_w_shield       = _declare_warrior("Uruk-hai Warrior with shield",         "Uruk-hai Warriors with shield",         [ :isengard ])
     wild_man_dunland        = _declare_warrior("Wild Man of Dunland",                  "Wild Men of Dunland",                   [ :isengard ])
+    wild_man_dunland_2h     = _declare_warrior("Wild Man of Dunland with two-handed weapon", "Wild Men of Dunland with two-handed weapon", [ :isengard ])
 
     isengard_troll = _declare_monster("Isengard Troll", "Isengard Trolls", [ :isengard ])
 
@@ -849,6 +862,8 @@ defmodule SbgInv.Data do
     elendil       = _declare_unique("Elendil",          [ :numenor ] )
     isildur       = _declare_unique("Isildur",          [ :numenor ])
     isildur_horse = _declare_unique("Isildur on horse", [ :numenor ])
+
+    elendil_isildur = _declare_unique("Isildur and Elendil");
 
     numenor_captain = _declare_hero("Captain of Numenor", "Captains of Numenor", [ :numenor ])
 
@@ -1993,7 +2008,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotr_s3f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotr_s3f1, 1, 5, "Aragorn", aragorn_foot_all)
     _declare_role_figure(fotr_s3f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(fotr_s3f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotr_s3f1, 1, 7, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(fotr_s3f1, 1, 8, "Legolas", legolas_foot_all)
     _declare_role_figure(fotr_s3f1, 1, 9, "Gimli", gimli_all_foot)
 
@@ -2021,7 +2036,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotr_s4f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotr_s4f1, 1, 5, "Aragorn", aragorn_foot_all)
     _declare_role_figure(fotr_s4f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(fotr_s4f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotr_s4f1, 1, 7, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(fotr_s4f1, 1, 8, "Legolas", legolas_foot_all)
     _declare_role_figure(fotr_s4f1, 1, 9, "Gimli", gimli_all_foot)
 
@@ -2047,7 +2062,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s5f1,  1,  3, "Meriadoc Brandybuck", merry_foot_all)
     _declare_role_figure(fotrjb_s5f1,  1,  4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s5f1,  1,  5, "Aragorn", aragorn_foot_all)
-    _declare_role_figure(fotrjb_s5f1,  1,  6, [ boromir ])
+    _declare_role_figure(fotrjb_s5f1,  1,  6, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(fotrjb_s5f1,  1,  7, "Legolas", legolas_foot_all)
     _declare_role_figure(fotrjb_s5f1,  1,  8, "Gimli", gimli_all_foot)
     _declare_role_figure(fotrjb_s5f1,  1,  9, "Haldir", [ haldir, haldir_bow, haldir_armor, haldir_bow_armor ])
@@ -2071,7 +2086,7 @@ defmodule SbgInv.Data do
 
     fotr_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s6.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotr_s6f1,  1,  1, "Aragorn", aragorn_foot_all)
-    _declare_role_figure(fotr_s6f1,  1,  2, [ boromir ])
+    _declare_role_figure(fotr_s6f1,  1,  2, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(fotr_s6f1,  1,  3, "Legolas", legolas_foot_all)
     _declare_role_figure(fotr_s6f1,  1,  4, "Gimli", gimli_all_foot)
     _declare_role_figure(fotr_s6f1,  1,  5, "Frodo Baggins", frodo_foot)
@@ -2327,7 +2342,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s10f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s10f1, 1, 5, "Aragorn", aragorn_foot_all)
     _declare_role_figure(fotrjb_s10f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(fotrjb_s10f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotrjb_s10f1, 1, 7, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(fotrjb_s10f1, 1, 8, "Legolas", legolas_foot_all)
     _declare_role_figure(fotrjb_s10f1, 1, 9, "Gimli", gimli_all_foot)
 
@@ -2352,7 +2367,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s11f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s11f1, 1, 5, "Aragorn", aragorn_foot_all)
     _declare_role_figure(fotrjb_s11f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(fotrjb_s11f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotrjb_s11f1, 1, 7, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(fotrjb_s11f1, 1, 8, "Legolas", legolas_foot_all)
     _declare_role_figure(fotrjb_s11f1, 1, 9, "Gimli", gimli_all_foot)
 
@@ -2377,7 +2392,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s12f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s12f1, 1, 5, "Aragorn", aragorn_foot_all)
     _declare_role_figure(fotrjb_s12f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(fotrjb_s12f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotrjb_s12f1, 1, 7, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(fotrjb_s12f1, 1, 8, "Legolas", legolas_foot_all)
     _declare_role_figure(fotrjb_s12f1, 1, 9, "Gimli", gimli_all_foot)
 
@@ -2405,7 +2420,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s13f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s13f1, 1, 5, "Aragorn", aragorn_foot_all)
     _declare_role_figure(fotrjb_s13f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(fotrjb_s13f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotrjb_s13f1, 1, 7, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(fotrjb_s13f1, 1, 8, "Legolas", legolas_foot_all)
     _declare_role_figure(fotrjb_s13f1, 1, 9, "Gimli", gimli_all_foot)
 
@@ -2433,7 +2448,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s14f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s14f1, 1, 5, "Aragorn", aragorn_foot_all)
     _declare_role_figure(fotrjb_s14f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(fotrjb_s14f1, 1, 7, [ boromir ])
+    _declare_role_figure(fotrjb_s14f1, 1, 7, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(fotrjb_s14f1, 1, 8, "Legolas", legolas_foot_all)
     _declare_role_figure(fotrjb_s14f1, 1, 9, "Gimli", gimli_all_foot)
 
@@ -2460,7 +2475,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s15f1, 1,  3, "Meriadoc Brandybuck", merry_foot_all)
     _declare_role_figure(fotrjb_s15f1, 1,  4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(fotrjb_s15f1, 1,  5, "Aragorn", aragorn_foot_all)
-    _declare_role_figure(fotrjb_s15f1, 1,  6, [ boromir ])
+    _declare_role_figure(fotrjb_s15f1, 1,  6, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(fotrjb_s15f1, 1,  7, "Legolas", legolas_foot_all)
     _declare_role_figure(fotrjb_s15f1, 1,  8, "Gimli", gimli_all_foot)
     _declare_role_figure(fotrjb_s15f1, 1,  9, "Haldir", [ haldir, haldir_armor, haldir_bow, haldir_bow_armor ])
@@ -2509,7 +2524,7 @@ defmodule SbgInv.Data do
     _declare_podcast(fotrjb_s17.id, "https://soundcloud.com/the-green-dragon-podcasts/scenario-spotlight-ep-9-amon-hen", "The Green Dragon", 1)
 
     fotrjb_s17f1 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s17.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fotrjb_s17f1, 1,  1, [ boromir ])
+    _declare_role_figure(fotrjb_s17f1, 1,  1, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(fotrjb_s17f1, 1,  2, "Meriadoc Brandybuck", merry_foot_all)
     _declare_role_figure(fotrjb_s17f1, 1,  3, "Peregrin Took", pippin_foot_all)
 
@@ -2533,7 +2548,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotrjb_s18f1, 1,  1, "Aragorn", aragorn_foot_all)
     _declare_role_figure(fotrjb_s18f1, 1,  2, "Legolas", legolas_foot_all)
     _declare_role_figure(fotrjb_s18f1, 1,  3, "Gimli", gimli_all_foot)
-    _declare_role_figure(fotrjb_s18f1, 1,  4, [ boromir ])
+    _declare_role_figure(fotrjb_s18f1, 1,  4, "Boromir", [ boromir, boromir_breaking, boromir_dying ])
 
     fotrjb_s18f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s18.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotrjb_s18f2,  1, 1, [ lurtz ])
@@ -2690,7 +2705,7 @@ defmodule SbgInv.Data do
 
     fp_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s6.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fp_s6f1,  1,  1, "Aragorn with bow and Elven cloak", aragorn_foot_all)
-    _declare_role_figure(fp_s6f1,  1,  2, "Boromir with Elven cloak", [ boromir ])
+    _declare_role_figure(fp_s6f1,  1,  2, "Boromir with Elven cloak", [ boromir, boromir_breaking ])
     _declare_role_figure(fp_s6f1,  1,  3, "Legolas with Elven cloak", legolas_foot_all)
     _declare_role_figure(fp_s6f1,  1,  4, "Gimli with Elven cloak", gimli_all_foot)
     _declare_role_figure(fp_s6f1,  1,  5, "Frodo with Elven cloak, mithril coat, and Sting", frodo_foot)
@@ -3534,7 +3549,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s10f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(hobbit_s10f1, 1, 5, "Aragorn", aragorn_foot_all)
     _declare_role_figure(hobbit_s10f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(hobbit_s10f1, 1, 7, [ boromir ])
+    _declare_role_figure(hobbit_s10f1, 1, 7, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(hobbit_s10f1, 1, 8, "Legolas", legolas_foot_all)
     _declare_role_figure(hobbit_s10f1, 1, 9, "Gimli", gimli_all_foot)
 
@@ -3562,7 +3577,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s11f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(hobbit_s11f1, 1, 5, "Aragorn", aragorn_foot_all)
     _declare_role_figure(hobbit_s11f1, 1, 6, "Gandalf the Grey", gandalf_grey_foot_all)
-    _declare_role_figure(hobbit_s11f1, 1, 7, [ boromir ])
+    _declare_role_figure(hobbit_s11f1, 1, 7, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(hobbit_s11f1, 1, 8, "Legolas", legolas_foot_all)
     _declare_role_figure(hobbit_s11f1, 1, 9, "Gimli", gimli_all_foot)
 
@@ -3589,7 +3604,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s12f1, 1, 3, "Meriadoc Brandybuck", merry_foot_all)
     _declare_role_figure(hobbit_s12f1, 1, 4, "Peregrin Took", pippin_foot_all)
     _declare_role_figure(hobbit_s12f1, 1, 5, "Aragorn", aragorn_foot_all)
-    _declare_role_figure(hobbit_s12f1, 1, 6, [ boromir ])
+    _declare_role_figure(hobbit_s12f1, 1, 6, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(hobbit_s12f1, 1, 7, "Legolas", legolas_foot_all)
     _declare_role_figure(hobbit_s12f1, 1, 8, "Gimli", gimli_all_foot)
 
@@ -4204,7 +4219,7 @@ defmodule SbgInv.Data do
     ma_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: ma_s2.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(ma_s2f1, 1,  1, "Gandalf the Grey", gandalf_grey_foot_all)
     _declare_role_figure(ma_s2f1, 1,  2, "Aragorn with bow", aragorn_foot_all)
-    _declare_role_figure(ma_s2f1, 1,  3, [ boromir ])
+    _declare_role_figure(ma_s2f1, 1,  3, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(ma_s2f1, 1,  4, "Legolas", legolas_foot_all)
     _declare_role_figure(ma_s2f1, 1,  5, "Gimli", gimli_all_foot)
     _declare_role_figure(ma_s2f1, 1,  6, "Frodo with Sting and mithril coat", frodo_foot)
@@ -6003,7 +6018,7 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: sog_s1.id, resource_type: :source, book: :sog, title: "Siege of Gondor", sort_order: 1, page: 18}
 
     sog_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: sog_s1.id, faction: :minas_tirith, suggested_points: 400, actual_points: 0, sort_order: 1}
-    _declare_role_figure(sog_s1f1, 1, 1, [ boromir ])
+    _declare_role_figure(sog_s1f1, 1, 1, "Boromir", [ boromir, boromir_breaking ])
     _declare_role_figure(sog_s1f1, 1, 2, [ faramir ])
     _declare_role_figure(sog_s1f1, 1, 3, [ beregond ])
     _declare_role_figure(sog_s1f1, 4, 4, [ gondor_citadel_gd_spear ])
