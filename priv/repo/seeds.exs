@@ -4126,7 +4126,7 @@ defmodule SbgInv.Data do
     mnew_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: mnew_s1.id, faction: :mordor, suggested_points: 1250, actual_points: 1247, sort_order: 2}
     _declare_role_figure(mnew_s1f2,  1,  1, [ sauron ])
     _declare_role_figure(mnew_s1f2,  1,  2, [ troll_chieftain ])
-    _declare_role_figure(mnew_s1f2,  2,  3, "Orc Captain with shield", [ orc_captain ])
+    _declare_role_figure(mnew_s1f2,  2,  3, "Orc Captains with shield", [ orc_captain ])
     _declare_role_figure(mnew_s1f2,  1,  4, "Morannon Orc Captain with shield", [ m_orc_captain ])
     _declare_role_figure(mnew_s1f2, 12,  5, [ orc_w_shield ])
     _declare_role_figure(mnew_s1f2, 12,  6, [ orc_w_spear ])
