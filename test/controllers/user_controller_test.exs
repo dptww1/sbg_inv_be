@@ -1,7 +1,9 @@
-defmodule SbgInv.UserControllerTest do
-  use SbgInv.ConnCase
+defmodule SbgInv.Web.UserControllerTest do
 
-  alias SbgInv.{TestHelper, User}
+  use SbgInv.Web.ConnCase
+
+  alias SbgInv.TestHelper
+  alias SbgInv.Web.User
 
   @valid_attrs %{name: "nobody", email: "foo@bar.com", password: "s3cr3t"}
   @invalid_attrs %{}

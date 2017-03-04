@@ -1,7 +1,8 @@
 defmodule SbgInv.SessionTest do
+
   use SbgInv.ModelCase
 
-  alias SbgInv.Session
+  alias SbgInv.Web.Session
 
   @valid_attrs %{user_id: "12345"}
   @invalid_attrs %{}

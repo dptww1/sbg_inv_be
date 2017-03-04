@@ -1,7 +1,8 @@
-defmodule SbgInv.FactionControllerTest do
-  use SbgInv.ConnCase
+defmodule SbgInv.Web.FactionControllerTest do
 
-  alias SbgInv.{FactionFigure,Figure}
+  use SbgInv.Web.ConnCase
+
+  alias SbgInv.Web.{FactionFigure,Figure}
 
   defp insert_figure(faction_id, name, plural_name, type, unique \\ false) do
     fig = Repo.insert! %Figure{name: name, plural_name: plural_name, type: type, unique: unique}

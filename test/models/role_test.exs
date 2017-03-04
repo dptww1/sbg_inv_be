@@ -1,7 +1,8 @@
 defmodule SbgInv.RoleTest do
+
   use SbgInv.ModelCase
 
-  alias SbgInv.Role
+  alias SbgInv.Web.{Role, RoleUserFigure, RoleUserFigures}
 
   @valid_attrs %{amount: 42, name: "role1", scenario_faction_id: 42, sort_order: 42}
   @invalid_attrs %{}
@@ -27,11 +28,11 @@ defmodule SbgInv.RoleTest do
                   ]}
 
     assert Role.role_user_figures(role) ==
-      %SbgInv.RoleUserFigures{
+      %RoleUserFigures{
         total_owned: 10,
         total_painted: 7,
         figures: [
-          %SbgInv.RoleUserFigure{
+          %RoleUserFigure{
             figure: %{
               id: 11,
               name: "foo",
@@ -43,7 +44,7 @@ defmodule SbgInv.RoleTest do
             owned: 8,
             painted: 4
           },
-          %SbgInv.RoleUserFigure{
+          %RoleUserFigure{
             figure: %{
               id: 2,
               name: "bah",

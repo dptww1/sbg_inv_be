@@ -1,4 +1,4 @@
-defmodule SbgInv.ChannelCase do
+defmodule SbgInv.Web.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -27,7 +27,7 @@ defmodule SbgInv.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint SbgInv.Endpoint
+      @endpoint SbgInv.Web.Endpoint
     end
   end
 

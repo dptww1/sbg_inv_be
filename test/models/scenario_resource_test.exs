@@ -1,7 +1,8 @@
 defmodule SbgInv.ScenarioResourceTest do
+
   use SbgInv.ModelCase
 
-  alias SbgInv.ScenarioResource
+  alias SbgInv.Web.ScenarioResource
 
   @valid_attrs %{name: "some content", notes: "some content", page: 42, resource_type: 3, scenario_id: 42, sort_order: 42, url: "some content"}
   @invalid_attrs %{}

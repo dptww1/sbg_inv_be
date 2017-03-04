@@ -1,4 +1,4 @@
-defmodule SbgInv.ConnCase do
+defmodule SbgInv.Web.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,10 +25,10 @@ defmodule SbgInv.ConnCase do
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
 
-      import SbgInv.Router.Helpers
+      import SbgInv.Web.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint SbgInv.Endpoint
+      @endpoint SbgInv.Web.Endpoint
     end
   end
 

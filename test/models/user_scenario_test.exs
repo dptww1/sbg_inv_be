@@ -1,7 +1,8 @@
 defmodule SbgInv.UserScenarioTest do
+
   use SbgInv.ModelCase
 
-  alias SbgInv.UserScenario
+  alias SbgInv.Web.UserScenario
 
   @valid_attrs %{owned: 42, painted: 42, rating: 42, user_id: 42, scenario_id: 43}
   @invalid_attrs %{}

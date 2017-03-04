@@ -1,7 +1,9 @@
-defmodule SbgInv.FigureControllerTest do
-  use SbgInv.ConnCase
+defmodule SbgInv.Web.FigureControllerTest do
 
-  alias SbgInv.{FactionFigure, Figure, TestHelper}
+  use SbgInv.Web.ConnCase
+
+  alias SbgInv.TestHelper
+  alias SbgInv.Web.{FactionFigure, Figure}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -33,7 +35,7 @@ defmodule SbgInv.FigureControllerTest do
     assert json_response(conn, 200)["data"] == %{
       "id" => fid,
       "name" => "ABC",
-      "factions" => [ "azogs_legion", "dol_guldur" ],
+      "factions" => [ "azogs_legion", "desolator_north" ],
       "scenarios" => [
         %{
           "scenario_id" => const_data["id"],

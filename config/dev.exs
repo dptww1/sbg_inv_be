@@ -6,21 +6,21 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :sbg_inv, SbgInv.Endpoint,
+config :sbg_inv, SbgInv.Web.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin", cd: Path.expand("../", __DIR__)]]
+  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin", cd: Path.expand("../assets", __DIR__)]]
 
 # Watch static and templates for browser reloading.
-config :sbg_inv, SbgInv.Endpoint,
+config :sbg_inv, SbgInv.Web.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{web/views/.*(ex)$},
-      ~r{web/templates/.*(eex)$}
+      ~r{lib/sbg_inv/web/views/.*(ex)$},
+      ~r{lib/sbg_inv/web/templates/.*(eex)$}
     ]
   ]
 
@@ -41,7 +41,7 @@ config :sbg_inv, SbgInv.Repo,
   hostname: "localhost",
   pool_size: 10
 
-config :sbg_inv, SbgInv.Mailer,
+config :sbg_inv, SbgInv.Web.Mailer,
   adapter: Bamboo.SMTPAdapter,
   server: "smtp.davetownsend.org",
   port: 587,

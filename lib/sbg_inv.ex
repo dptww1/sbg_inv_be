@@ -8,7 +8,7 @@ defmodule SbgInv do
 
     children = [
       # Start the endpoint when the application starts
-      supervisor(SbgInv.Endpoint, []),
+      supervisor(SbgInv.Web.Endpoint, []),
       # Start the Ecto repository
       supervisor(SbgInv.Repo, []),
       # Here you could define other workers and supervisors as children
@@ -19,12 +19,5 @@ defmodule SbgInv do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: SbgInv.Supervisor]
     Supervisor.start_link(children, opts)
-  end
-
-  # Tell Phoenix to update the endpoint configuration
-  # whenever the application is updated.
-  def config_change(changed, _new, removed) do
-    SbgInv.Endpoint.config_change(changed, removed)
-    :ok
   end
 end

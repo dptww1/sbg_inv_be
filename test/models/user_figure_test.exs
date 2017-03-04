@@ -1,7 +1,8 @@
 defmodule SbgInv.UserFigureTest do
+
   use SbgInv.ModelCase
 
-  alias SbgInv.UserFigure
+  alias SbgInv.Web.UserFigure
 
   @valid_attrs %{owned: 42, painted: 42, user_id: 42}
   @invalid_attrs %{}

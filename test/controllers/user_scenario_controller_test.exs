@@ -1,8 +1,9 @@
 # test/controllers/user_scenario_controller_test.exs
-defmodule SbgInv.UserScenarioControllerTest do
-  use SbgInv.ConnCase
+defmodule SbgInv.Web.UserScenarioControllerTest do
+  use SbgInv.Web.ConnCase
 
-  alias SbgInv.{Scenario, TestHelper, UserScenario}
+  alias SbgInv.TestHelper
+  alias SbgInv.Web.{Scenario, UserScenario}
 
   @valid_attrs %{rating: 3, owned: 2, painted: 1}
   @valid_scenario_attrs %{blurb: "A", date_age: 1, date_year: 2, date_month: 3, date_day: 4, name: "B", size: 2,

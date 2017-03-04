@@ -1,8 +1,10 @@
 # test/controllers/reset_password_controller_test.exs
-defmodule SbgInv.ResetPasswordControllerTest do
-  use SbgInv.ConnCase
+defmodule SbgInv.Web.ResetPasswordControllerTest do
 
-  alias SbgInv.{TestHelper, User}
+  use SbgInv.Web.ConnCase
+
+  alias SbgInv.TestHelper
+  alias SbgInv.Web.User
 
   test "resets password for user", %{conn: conn} do
     user = TestHelper.create_user

@@ -1,7 +1,8 @@
 defmodule SbgInv.FigureTest do
+
   use SbgInv.ModelCase
 
-  alias SbgInv.Figure
+  alias SbgInv.Web.Figure
 
   @valid_attrs %{name: "some content", type: :hero}
   @invalid_attrs %{}

@@ -1,7 +1,9 @@
 defmodule SbgInv.AuthenticationTest do
-  use SbgInv.ConnCase
 
-  alias SbgInv.{Authentication, Repo, User, Session}
+  use SbgInv.Web.ConnCase
+
+  alias SbgInv.Repo
+  alias SbgInv.Web.{Authentication, User, Session}
 
   @opts Authentication.init([])
 

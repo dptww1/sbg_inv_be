@@ -1,7 +1,9 @@
 defmodule SbgInv.ScenarioControllerTest do
-  use SbgInv.ConnCase
 
-  alias SbgInv.{Scenario, ScenarioResource, TestHelper, UserScenario}
+  use SbgInv.Web.ConnCase
+
+  alias SbgInv.TestHelper
+  alias SbgInv.Web.{Scenario, ScenarioResource, UserScenario}
 
   @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, name: "some content", size: 42,
                  map_width: 48, map_height: 48, location: :the_shire}

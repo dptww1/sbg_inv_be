@@ -1,5 +1,6 @@
-defmodule SbgInv.RecalcControllerTest do
-  use SbgInv.ConnCase
+defmodule SbgInv.Web.RecalcControllerTest do
+
+  use SbgInv.Web.ConnCase
 
   # alias SbgInv.Recalc
   # @valid_attrs %{}

@@ -3,9 +3,10 @@ ExUnit.start
 Ecto.Adapters.SQL.Sandbox.mode(SbgInv.Repo, :manual)
 
 defmodule SbgInv.TestHelper do
-  use SbgInv.ConnCase
 
-  alias SbgInv.{Figure, RoleFigure, Scenario, ScenarioFaction, Role, Session, User, UserScenario, UserFigure}
+  use SbgInv.Web.ConnCase
+
+  alias SbgInv.Web.{Figure, Role, RoleFigure, Scenario, ScenarioFaction, Session, User, UserScenario, UserFigure}
 
   def pinspect(conn, obj) do
     IO.puts "---"

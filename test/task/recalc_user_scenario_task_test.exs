@@ -1,7 +1,9 @@
 defmodule SbgInv.RecalcUserScenarioTaskTest do
-  use SbgInv.ConnCase
 
-  alias SbgInv.{RecalcUserScenarioTask, TestHelper, User, UserScenario}
+  use SbgInv.Web.ConnCase
+
+  alias SbgInv.TestHelper
+  alias SbgInv.Web.{RecalcUserScenarioTask, User, UserScenario}
 
   test "UserScenario rollup uses only data from correct user", %{conn: conn} do
     %{conn: _conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user1)

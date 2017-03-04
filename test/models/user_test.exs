@@ -1,7 +1,8 @@
 defmodule SbgInv.UserTest do
+
   use SbgInv.ModelCase
 
-  alias SbgInv.User
+  alias SbgInv.Web.User
 
   @valid_attrs %{name: "Anonymous", email: "foo@bar.com", password: "secret"}
   @invalid_attrs %{}

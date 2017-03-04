@@ -1,9 +1,9 @@
 # test/controllers/session_controller_test.exs
-defmodule SbgInv.SessionControllerTest do
-  use SbgInv.ConnCase
+defmodule SbgInv.Web.SessionControllerTest do
 
-  alias SbgInv.Session
-  alias SbgInv.User
+  use SbgInv.Web.ConnCase
+
+  alias SbgInv.Web.{Session, User}
 
   @valid_attrs %{name: "no one", email: "foo@bar.com", password: "s3cr3t"}
 
