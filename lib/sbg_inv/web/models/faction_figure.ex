@@ -22,6 +22,6 @@ defmodule SbgInv.Web.FactionFigure do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> cast_assoc(:figures, params)
+    |> cast_assoc(:figure, params)
   end
 end
