@@ -2315,7 +2315,7 @@ defmodule SbgInv.Data do
 
     #========================================================================
     fotrjb_s6 = Repo.insert! %Scenario{
-      name: "The Grey Pilgrim and the Black Riders",
+      name: "The Grey Pilgrim & the Black Riders",
       blurb: "Gandalf is attacked by the Ringwraiths at Weathertop.",
       date_age: 3, date_year: 3018, date_month: 10, date_day: 3, size: 10,
       map_width: 24, map_height: 24, location: :weathertop
@@ -6440,7 +6440,7 @@ defmodule SbgInv.Data do
 
     #========================================================================
     tba_s3 = Repo.insert! %Scenario{
-      name: "Barrels Out of Bond, Part I: Open the Gate",
+      name: "Barrels I: Open the Gate",
       blurb: "Azog's troops catch up to the dwarves, who are escaping in barrels from the elves.",
       date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 74,
       map_width: 72, map_height: 48, location: :mirkwood
@@ -6478,7 +6478,7 @@ defmodule SbgInv.Data do
 
     #========================================================================
     tba_s4 = Repo.insert! %Scenario{
-      name: "Barrels Out of Bond, Part II: Down the Forest River",
+      name: "Barrels II: Down the Forest River",
       blurb: "Thorin's company continues its escape while the Elves try to capture an Orc hero for interrogation.",
       date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 76,
       map_width: 72, map_height: 48, location: :mirkwood
@@ -7026,7 +7026,7 @@ defmodule SbgInv.Data do
 
     #========================================================================
     tba_s26 = Repo.insert! %Scenario{
-      name: "The Desolation of Smaug Part I: The Ruin of Dale",
+      name: "Desolation of Smaug I: Ruin of Dale",
       blurb: "Smaug's first attack on the prosperous city of Dale.",
       date_age: 3, date_year: 2770, date_month: 0, date_day: 0, size: 34,
       map_width: 48, map_height: 48, location: :dale
@@ -7044,7 +7044,7 @@ defmodule SbgInv.Data do
 
     #========================================================================
     tba_s27 = Repo.insert! %Scenario{
-      name: "The Desolation of Smaug Part II: The Fall of Erebor",
+      name: "Desolation of Smaug II: Fall of Erebor",
       blurb: "Having destroyed Dale, Smaug turns his attention to the Dwarven kingdom of Erebor.",
       date_age: 3, date_year: 2770, date_month: 0, date_day: 0, size: 54,
       map_width: 48, map_height: 48, location: :erebor
@@ -7066,7 +7066,7 @@ defmodule SbgInv.Data do
 
     #========================================================================
     tba_s28 = Repo.insert! %Scenario{
-      name: "The Battle of Dimrill Dale Part I: The Death of the King",
+      name: "Dimrill Dale I: The Death of the King",
       blurb: "The Dwarves try to retake Moria while Azog tries to take out Thror.",
       date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 130,
       map_width: 48, map_height: 48, location: :moria
@@ -7091,7 +7091,7 @@ defmodule SbgInv.Data do
 
     #========================================================================
     tba_s29 = Repo.insert! %Scenario{
-      name: "The Battle of Dimrill Dale Part II: Thrain's Vengeance",
+      name: "Dimrill Dale II: Thrain's Vengeance",
       blurb: "Having taken out Thror, Azog guns for Thrain.",
       date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 38,
       map_width: 24, map_height: 24, location: :moria
@@ -7111,7 +7111,7 @@ defmodule SbgInv.Data do
 
     #========================================================================
     tba_s30 = Repo.insert! %Scenario{
-      name: "The Battle of Dimrill Dale Part III: The Oakenshield",
+      name: "Dimrill Dale III: The Oakenshield",
       blurb: "Thorin avenges his kin, though not completely (at least in the movie).",
       date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 38,
       map_width: 48, map_height: 48, location: :moria
