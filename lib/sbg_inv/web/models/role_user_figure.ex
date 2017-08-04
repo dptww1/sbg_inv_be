@@ -5,7 +5,7 @@ defmodule SbgInv.Web.RoleUserFigure do
 
   alias SbgInv.Web.{Figure, RoleUserFigure}
 
-  defstruct owned: 0, painted: 1, figure: %Figure{}, name: ""
+  defstruct owned: 0, painted: 0, figure: %Figure{}, name: ""
 
   @doc """
   Creates a RoleUserFigure based on the given Figure and the sole UserFigure. If the user has no UserFigure
