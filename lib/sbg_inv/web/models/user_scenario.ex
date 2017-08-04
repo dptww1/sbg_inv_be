@@ -12,11 +12,11 @@ defmodule SbgInv.Web.UserScenario do
 
     belongs_to :scenario, Scenario
 
-    timestamps
+    timestamps()
   end
 
-  @required_fields ~w(user_id scenario_id)
-  @optional_fields ~w(rating owned painted)
+  @required_fields [:user_id, :scenario_id]
+  @optional_fields [:rating, :owned, :painted]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -26,6 +26,7 @@ defmodule SbgInv.Web.UserScenario do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end

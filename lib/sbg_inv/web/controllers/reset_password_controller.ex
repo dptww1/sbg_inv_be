@@ -7,9 +7,11 @@ defmodule SbgInv.Web.ResetPasswordController do
 
   def create(conn, %{"user" => user_params}) do
     user = Repo.get_by(User, email: Map.get(user_params, "email"))
+
     new_password = random_string(12)
     if user do
       changeset = User.registration_changeset(user, %{"password" => new_password})
+
       case Repo.update(changeset) do
         {:ok, _} ->
           Email.forgot_password_email(Map.get(user_params, "email"), new_password) |> Mailer.deliver_later

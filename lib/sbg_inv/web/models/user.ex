@@ -16,7 +16,7 @@ defmodule SbgInv.Web.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, ~w(name), [])
+    |> cast(params, [:name])
     |> validate_length(:name, min: 1, max: 255)
     |> update_email_changeset(params)
   end
@@ -29,15 +29,16 @@ defmodule SbgInv.Web.User do
 
   def update_password_changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, ~w(password), [])
+    |> cast(params, [:password])
     |> validate_length(:password, min: 6)
     |> put_password_hash
   end
 
   def update_email_changeset(struct, params \\ %{}) do
-    struct
-    |> cast(params, ~w(email), [])
-    |> validate_length(:email, min: 1, max: 255)
+   struct
+    |> cast(params, [:email])
+    |> validate_required([:email])
+    |> validate_length(:email, min: 3, max: 255)
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
   end

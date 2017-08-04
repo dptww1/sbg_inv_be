@@ -2,9 +2,7 @@ defmodule SbgInv.Web.FigureController do
 
   use SbgInv.Web, :controller
 
-  import Ecto.Query
-
-  alias SbgInv.Web.{FactionFigure, Figure, Role}
+  alias SbgInv.Web.{Figure}
 
   def show(conn, %{"id" => id}) do
     figure = Repo.get(Figure, id)

@@ -10,14 +10,13 @@ defmodule SbgInv.Web.ScenarioFaction do
     field :actual_points, :integer
     field :sort_order, :integer
 
-    timestamps
+    timestamps()
 
     belongs_to :scenario, Scenario
     has_many :roles, Role
   end
 
-  @required_fields ~w(scenario_id faction suggested_points actual_points sort_order)
-  @optional_fields ~w()
+  @required_fields [:scenario_id, :faction, :suggested_points, :actual_points, :sort_order]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -27,6 +26,7 @@ defmodule SbgInv.Web.ScenarioFaction do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
   end
 end

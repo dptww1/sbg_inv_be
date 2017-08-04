@@ -10,15 +10,15 @@ defmodule SbgInv.Web.Figure do
     field :type, FigureType
     field :unique, :boolean
 
-    timestamps
+    timestamps()
 
     many_to_many :role, Role, join_through: "role_figures"
     has_many :user_figure, UserFigure
     has_many :faction_figure, FactionFigure
   end
 
-  @required_fields ~w(name type)
-  @optional_fields ~w(plural_name unique)
+  @required_fields [:name, :type]
+  @optional_fields [:plural_name, :unique]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -28,6 +28,7 @@ defmodule SbgInv.Web.Figure do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end

@@ -3,7 +3,7 @@ defmodule SbgInv.Web.FactionController do
 
   import Ecto.Query
 
-  alias SbgInv.Web.{Figure, FactionFigure, RoleFigure}
+  alias SbgInv.Web.{Figure, FactionFigure}
 
   def show(conn, %{"id" => id}) do
     if id === "-1" do

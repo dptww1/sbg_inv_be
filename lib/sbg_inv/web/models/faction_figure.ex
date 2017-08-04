@@ -10,8 +10,7 @@ defmodule SbgInv.Web.FactionFigure do
     belongs_to :figure, Figure
   end
 
-  @required_fields ~w(faction_id figure_id)
-  @optional_fields ~w()
+  @required_fields [:faction_id, :figure_id]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -21,7 +20,8 @@ defmodule SbgInv.Web.FactionFigure do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
-    |> cast_assoc(:figure, params)
+    |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
+    |> cast_assoc(:figure)
   end
 end

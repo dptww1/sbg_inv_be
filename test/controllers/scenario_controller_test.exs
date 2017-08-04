@@ -45,7 +45,7 @@ defmodule SbgInv.ScenarioControllerTest do
         "podcast" => []
        },
       "scenario_factions" => [],
-      "user_scenario" => %{ "rating" => 0, "owned" => 0, "painted" => 0, "rating" => 0, "avg_rating" => 0, "num_votes" => 0 }
+      "user_scenario" => %{ "rating" => 0, "owned" => 0, "painted" => 0, "avg_rating" => 0, "num_votes" => 0 }
   }
   end
 

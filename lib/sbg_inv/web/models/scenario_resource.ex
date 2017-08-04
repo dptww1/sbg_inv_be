@@ -14,13 +14,13 @@ defmodule SbgInv.Web.ScenarioResource do
     field :notes, :string
     field :sort_order, :integer
 
-    timestamps
+    timestamps()
 
     belongs_to :scenario, Scenario
   end
 
-  @required_fields ~w(scenario_id resource_type sort_order)
-  @optional_fields ~w(book issue page title url notes)
+  @required_fields [:scenario_id, :resource_type, :sort_order]
+  @optional_fields [:book, :issue, :page, :title, :url, :notes]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -30,6 +30,7 @@ defmodule SbgInv.Web.ScenarioResource do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end

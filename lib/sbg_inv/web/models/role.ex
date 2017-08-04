@@ -9,15 +9,14 @@ defmodule SbgInv.Web.Role do
     field :sort_order, :integer
     field :name, :string
 
-    timestamps
+    timestamps()
 
     belongs_to :scenario_faction, ScenarioFaction
 
     many_to_many :figures, Figure, join_through: "role_figures"
   end
 
-  @required_fields ~w(amount sort_order scenario_faction_id name)
-  @optional_fields ~w()
+  @required_fields [:amount, :sort_order, :scenario_faction_id, :name]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -27,7 +26,8 @@ defmodule SbgInv.Web.Role do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
   end
 
   @doc """
