@@ -63,7 +63,11 @@ defmodule SbgInv.Web.ScenarioController do
 
     user_scenario_query = from us in UserScenario, where: us.user_id == ^user_id
     user_figure_query = from uf in UserFigure, where: uf.user_id == ^user_id
-    rating_breakdown_query = from us in UserScenario, group_by: us.rating, where: us.scenario_id == ^id, select: [us.rating, count(us.rating)]
+    rating_breakdown_query = from us in UserScenario,
+                             group_by: us.rating,
+                             where: us.scenario_id == ^id,
+                             having: us.rating != 0,
+                             select: [us.rating, count(us.rating)]
 
     rating_breakdown = Repo.all(rating_breakdown_query)
                        |> Enum.filter(fn(x) -> hd(x) != nil end)
