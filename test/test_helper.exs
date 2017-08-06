@@ -15,6 +15,11 @@ defmodule SbgInv.TestHelper do
     conn
   end
 
+  def clear_sessions(conn) do
+    Repo.delete_all(Session)
+    conn |> delete_req_header("authorization")
+  end
+
   def create_user(name \\ "anonymous", email \\ "anonymous@example.com") do
     Repo.insert! %User{name: name, email: email}
   end
@@ -70,6 +75,7 @@ defmodule SbgInv.TestHelper do
 
     %{
       conn: conn,
+      user: if(user == :user1, do: user1, else: user2),
       const_data: %{
         "id" => scenario.id,
         "name" => "A",
