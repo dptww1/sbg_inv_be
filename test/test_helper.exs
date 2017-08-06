@@ -28,6 +28,18 @@ defmodule SbgInv.TestHelper do
     put_req_header conn, "authorization", "Token token=\"#{session.token}\""
   end
 
+  # const_data: from set_up_std_scenario()'s return value
+  # idx: 0,1
+  def std_scenario_figure_id(const_data, idx) do
+    const_data["scenario_factions"]
+    |> Enum.fetch!(0)
+    |> Map.get("roles")
+    |> Enum.fetch!(0)
+    |> Map.get("figures")
+    |> Enum.fetch!(idx)
+    |> Map.get("figure_id")
+  end
+
   # user: :user1 or :user2
   # depth: :full or :summary
   def set_up_std_scenario(conn, user \\ :user1) do

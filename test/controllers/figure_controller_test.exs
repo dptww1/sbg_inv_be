@@ -17,15 +17,7 @@ defmodule SbgInv.Web.FigureControllerTest do
   test "shows figure info when user is not logged in", %{conn: conn} do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
 
-    fid = const_data["scenario_factions"]
-          |> Enum.fetch!(0)
-          |> Map.get("roles")
-          |> Enum.fetch!(0)
-          |> Map.get("figures")
-          |> Enum.fetch!(0)
-          |> Map.get("figure_id")
-
-    #fid = hd(hd(hd(const_data["scenario_factions"])["roles"])["figures"])["figure_id"]
+    fid = TestHelper.std_scenario_figure_id(const_data, 0)
     figure = Repo.get!(Figure, fid)
 
     Repo.insert! %FactionFigure{figure: figure, faction_id: 7}
