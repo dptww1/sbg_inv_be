@@ -6,6 +6,7 @@ defmodule SbgInv.Web.FigureView do
     %{data: %{
          "id" => figure.id,
          "name" => figure.name,
+         "plural_name" => figure.plural_name,
          "factions" => Enum.map(figure.faction_figure, &(&1.faction_id)) |> Enum.sort(&(&1 <= &2)),
          "scenarios" => sorted_scenarios(figure.role),
          "owned" => if(length(figure.user_figure) > 0, do: hd(figure.user_figure).owned, else: 0),

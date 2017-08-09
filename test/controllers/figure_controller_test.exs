@@ -29,6 +29,7 @@ defmodule SbgInv.Web.FigureControllerTest do
     assert json_response(conn, 200)["data"] == %{
       "id" => fid,
       "name" => "ABC",
+      "plural_name" => "ABCs",
       "factions" => [ "azogs_legion", "desolator_north" ],
       "scenarios" => [
         %{
@@ -56,6 +57,7 @@ defmodule SbgInv.Web.FigureControllerTest do
     assert json_response(conn, 200)["data"] == %{
       "id" => fid,
       "name" => "ABC",
+      "plural_name" => "ABCs",
       "factions" => [ "azogs_legion", "desolator_north" ],
       "scenarios" => [
         %{
