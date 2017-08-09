@@ -43,7 +43,7 @@ defmodule SbgInv.Web.FigureControllerTest do
   end
 
   test "shows owned figure info for logged in user", %{conn: conn} do
-    %{conn: conn, const_data: const_data, user: user} = TestHelper.set_up_std_scenario(conn)
+    %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
 
     fid = TestHelper.std_scenario_figure_id(const_data, 0)
 
