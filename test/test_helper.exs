@@ -46,7 +46,6 @@ defmodule SbgInv.TestHelper do
   end
 
   # user: :user1 or :user2
-  # depth: :full or :summary
   def set_up_std_scenario(conn, user \\ :user1) do
     user1 = create_user("no one", "abc@def.com")
     user2 = create_user("nobody", "def@ghi.com")

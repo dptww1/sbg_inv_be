@@ -9,6 +9,11 @@ defmodule SbgInv.Web.UserScenarioControllerTest do
   @valid_scenario_attrs %{blurb: "A", date_age: 1, date_year: 2, date_month: 3, date_day: 4, name: "B", size: 2,
                           map_width: 7, map_height: 8, location: :the_shire}
 
+  test "fails when no user", %{conn: conn} do
+    conn = post conn, user_scenario_path(conn, :create), user_scenario: Map.merge(@valid_attrs, %{scenario_id: -1, user_id: -2})
+    assert conn.status == 401
+  end
+
   test "creates and renders resource when data is valid", %{conn: conn} do
     scenario = Repo.insert! struct(Scenario, @valid_scenario_attrs)
     user = TestHelper.create_user

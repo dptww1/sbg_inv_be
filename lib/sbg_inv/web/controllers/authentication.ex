@@ -55,5 +55,6 @@ defmodule SbgInv.Web.Authentication do
   defp auth_error!(conn) do
     conn
     |> put_status(:unauthorized)
+    |> halt
   end
 end
