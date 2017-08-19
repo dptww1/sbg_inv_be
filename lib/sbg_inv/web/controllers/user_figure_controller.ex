@@ -1,7 +1,7 @@
 defmodule SbgInv.Web.UserFigureController do
   use SbgInv.Web, :controller
 
-  alias SbgInv.Web.{Authentication, UserFigure}
+  alias SbgInv.Web.{Authentication, RecalcUserScenarioTask, UserFigure}
 
   def create(conn, %{"user_figure" => user_figure_params}) do
     conn = Authentication.required(conn)
@@ -23,6 +23,7 @@ defmodule SbgInv.Web.UserFigureController do
 
       case Repo.insert_or_update(changeset) do
         {:ok, _} ->
+          RecalcUserScenarioTask.do_task(user_id)
           send_resp(conn, :no_content, "")
 
         {:error, _} ->
