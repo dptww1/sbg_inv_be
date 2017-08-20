@@ -12,7 +12,7 @@ defmodule SbgInv.Repo.Migrations.CreateScenario do
       add :map_height, :integer
       add :location, :integer
 
-      timestamps
+      timestamps()
     end
 
   end

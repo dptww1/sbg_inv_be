@@ -8,7 +8,7 @@ defmodule SbgInv.Repo.Migrations.CreateScenarioFactionFigure do
       add :sort_order, :integer
       add :figure_id, references(:figures, on_delete: :nothing)
 
-      timestamps
+      timestamps()
     end
     create index(:scenario_faction_figures, [:scenario_faction_id])
     create index(:scenario_faction_figures, [:figure_id])

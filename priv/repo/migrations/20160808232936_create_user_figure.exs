@@ -8,7 +8,7 @@ defmodule SbgInv.Repo.Migrations.CreateUserFigure do
       add :painted, :integer
       add :figure_id, references(:figures, on_delete: :nothing)
 
-      timestamps
+      timestamps()
     end
 
     create index(:user_figures, [:figure_id])

@@ -9,7 +9,7 @@ defmodule SbgInv.Repo.Migrations.CreateUserScenario do
       add :painted, :integer
       add :scenario_id, references(:scenarios, on_delete: :nothing)
 
-      timestamps
+      timestamps()
     end
     create index(:user_scenarios, [:scenario_id])
 

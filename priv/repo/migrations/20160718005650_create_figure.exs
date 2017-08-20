@@ -6,7 +6,7 @@ defmodule SbgInv.Repo.Migrations.CreateFigure do
       add :name, :string
       add :type, :integer
       add :unique, :boolean, default: false
-      timestamps
+      timestamps()
     end
 
   end

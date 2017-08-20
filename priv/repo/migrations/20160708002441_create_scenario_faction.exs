@@ -9,7 +9,7 @@ defmodule SbgInv.Repo.Migrations.CreateScenarioFaction do
       add :sort_order, :integer
       add :scenario_id, references(:scenarios)
 
-      timestamps
+      timestamps()
     end
     create index(:scenario_factions, [:scenario_id])
 

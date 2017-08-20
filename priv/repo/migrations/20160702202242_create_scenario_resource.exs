@@ -11,7 +11,7 @@ defmodule SbgInv.Repo.Migrations.CreateScenarioResource do
       add :notes, :text
       add :sort_order, :integer
 
-      timestamps
+      timestamps()
     end
 
     create index(:scenario_resources, [:scenario_id])
