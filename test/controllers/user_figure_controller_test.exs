@@ -3,7 +3,7 @@ defmodule SbgInv.Web.UserFigureControllerTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.UserFigure
+  alias SbgInv.Web.{UserFigure, UserFigureHistory}
 
   test "invalid users cannot post", %{conn: conn} do
     conn = post conn, user_figure_path(conn, :create), %{"user_figure" => %{}}
@@ -15,11 +15,22 @@ defmodule SbgInv.Web.UserFigureControllerTest do
 
     figure_id = TestHelper.std_scenario_figure_id(const_data, 0)
 
-    conn = post conn, user_figure_path(conn, :create), %{"user_figure" => %{user_id: user.id, id: figure_id, owned: 12}}
+    conn = post conn, user_figure_path(conn, :create), %{"user_figure" =>
+                                                          %{
+                                                            user_id: user.id, id: figure_id, amount: 10,
+                                                            op_date: ~D[2017-08-10], new_painted: 2, new_owned: 12
+                                                           }
+                                                        }
     assert conn.status == 204
 
     check = Repo.get_by!(UserFigure, user_id: user.id, figure_id: figure_id)
-    assert check.owned == 12
+    assert check.owned   == 12
     assert check.painted == 2
+
+    history_check = Repo.get_by!(UserFigureHistory, user_id: user.id, figure_id: figure_id)
+    assert history_check.op          == :buy_unpainted
+    assert history_check.amount      == 10
+    assert history_check.new_owned   == 12
+    assert history_check.new_painted == 2
   end
 end

@@ -111,3 +111,10 @@ defenum ScenarioResourceType,
   terrain_building: 3,
   podcast: 4,
   magazine_replay: 5
+
+defenum UserFigureOp,
+  buy_unpainted:  0,
+  sell_unpainted: 1,
+  buy_painted:    2,
+  sell_unpainted: 3,
+  paint:          4

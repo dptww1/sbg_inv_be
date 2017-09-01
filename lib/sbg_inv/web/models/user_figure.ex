@@ -14,7 +14,8 @@ defmodule SbgInv.Web.UserFigure do
     timestamps()
   end
 
-  @required_fields [:user_id, :owned, :painted]
+  @required_fields [:user_id, :figure_id, :owned, :painted]
+  @optional_fields [:painted]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -24,7 +25,7 @@ defmodule SbgInv.Web.UserFigure do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
   end
 end

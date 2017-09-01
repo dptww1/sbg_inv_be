@@ -10,7 +10,8 @@ defmodule SbgInv.Web.FigureView do
          "factions" => Enum.map(figure.faction_figure, &(&1.faction_id)) |> Enum.sort(&(&1 <= &2)),
          "scenarios" => sorted_scenarios(figure.role),
          "owned" => if(length(figure.user_figure) > 0, do: hd(figure.user_figure).owned, else: 0),
-         "painted" => if(length(figure.user_figure) > 0, do: hd(figure.user_figure).painted, else: 0)
+         "painted" => if(length(figure.user_figure) > 0, do: hd(figure.user_figure).painted, else: 0),
+         "history" => sorted_history(figure.user_figure_history)
          }
     }
   end
@@ -24,5 +25,19 @@ defmodule SbgInv.Web.FigureView do
                     "amount" => role.amount
                   }
                 end)
+  end
+
+  defp sorted_history(history_list) do
+    Enum.sort_by(history_list, fn(h) -> h.op_date end)
+    |> Enum.reverse
+    |> Enum.map(fn(h) -> %{
+        "op" => h.op,
+        "amount" => h.amount,
+        "new_owned" => h.new_owned,
+        "new_painted" => h.new_painted,
+        "date" => h.op_date,
+        "notes" => if(h.notes, do: h.notes, else: "")
+    }
+    end)
   end
 end
