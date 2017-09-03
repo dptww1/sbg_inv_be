@@ -1,81 +1,110 @@
 defmodule SbgInv.Web.RecalcUserScenarioTask do
+  @moduledoc """
+  Recalculates all the UserScenario "painted" and "owned" roll-up fields for a given user.
+  """
 
   alias SbgInv.Repo
-  alias SbgInv.Web.{Role, ScenarioFaction, UserFigure, UserScenario}
+  alias SbgInv.Web.{Role, Scenario, UserFigure, UserScenario}
 
   import Ecto.Query
 
   require Logger
 
+  #========================================================================
   def do_task(user_id) do
     Logger.info("#### START ####")
 
-    user_scenario_query = from us in UserScenario, where: us.user_id == ^user_id, order_by: :id
-    user_figure_query = from uf in UserFigure, where: uf.user_id == ^user_id
+    # Get a map of all UserScenario records for the user, keyed by scenario_id
+    existing_map = create_existing_map(user_id)
 
-    existing_map = Map.new(Repo.all(user_scenario_query), fn x -> { x.scenario_id, x } end)
+    # Get all Scenarios, their Factions, their Figures, and their UserFigures for the user
+    scenarios = get_all_scenarios_with_user_figures(user_id)
 
-    query = ScenarioFaction
-            |> preload([roles: [figures: [user_figure: ^user_figure_query]]])
+    Enum.each(scenarios, fn(scenario) ->
+      existing_user_scenario = Map.get(existing_map, scenario.id)
 
-    factions = Repo.all(query)
-
-    new_map = Enum.reduce factions, %{}, fn(sf, stats) ->
-      Map.put stats, sf.scenario_id, recalc_faction(
-        Map.get(stats, sf.scenario_id) || default_user_scenario(user_id, sf.scenario_id), sf
-      )
-    end
-
-    for new_user_scenario <- Map.values(new_map) do
-      existing_user_scenario = Map.get existing_map, new_user_scenario.scenario_id
-      new_is_non_empty = new_user_scenario.owned > 0 || new_user_scenario.painted > 0
-
-      case {existing_user_scenario, new_is_non_empty} do
-        {nil, true} ->
-          Logger.info("#{new_user_scenario.scenario_id}: NEW")  # TODO die
-          changeset = UserScenario.changeset(%UserScenario{}, Map.from_struct new_user_scenario)  # TODO Map.from_struct is goofy
-          #IO.inspect changeset
-          case Repo.insert changeset do
-            {:ok, _}            -> Logger.info "Added scenario #{new_user_scenario.scenario_id} for user #{user_id}"
-            {:error, changeset} -> Logger.error "Couldn't add scenario #{new_user_scenario.scenario_id} for user #{user_id}: #{Enum.join changeset.errors, "\n"}"
-          end
-#          Repo.insert(new_user_scenario)
-
-        {nil, false} ->
-          true   # nothing to do here
-
-        _ ->
-          if existing_user_scenario.owned == new_user_scenario.owned && existing_user_scenario.painted == new_user_scenario.painted do
-            true  # nothing to do here  # IO.puts("#{new_user_scenario.scenario_id}: IGNORABLE (no change)")
-          else
-            changeset = UserScenario.changeset(existing_user_scenario,
-                                               %{owned: new_user_scenario.owned, painted: new_user_scenario.painted})
-            case Repo.update changeset do
-              {:ok, _}            -> Logger.info "Updated scenario #{existing_user_scenario.scenario_id} for user #{user_id}"
-              {:error, changeset} -> Logger.error "!!! ERROR !!! #{Enum.join changeset.errors, "\n"}"
-            end
-          end
-      end
-    end
+      do_scenario(user_id, existing_user_scenario, scenario)
+    end)
 
     Logger.info("####  END  ####")
   end
 
-  defp recalc_faction(user_scenario, scenario_faction) do
-    Enum.reduce scenario_faction.roles, user_scenario, fn(role, stats) ->
-      ruf = Role.role_user_figures(role)
-      %{stats | owned:   stats.owned   + ruf.total_owned,
-                painted: stats.painted + ruf.total_painted}
+  #========================================================================
+  defp do_scenario(user_id, existing_user_scenario, scenario) do
+    calculated_user_scenario = Enum.reduce(scenario.scenario_factions,
+                                           default_user_scenario(user_id, scenario.id),
+                                           fn(faction, user_scenario_acc) -> do_faction(faction, user_scenario_acc) end)
+
+    save_scenario(existing_user_scenario, calculated_user_scenario)
+  end
+
+  #========================================================================
+  defp save_scenario(nil, scenario) do
+    changeset = UserScenario.changeset(%UserScenario{}, scenario)
+    save_scenario(changeset)
+  end
+
+  #========================================================================
+  defp save_scenario(existing_user_scenario, calculated_user_scenario) do
+    if user_scenario_changed(existing_user_scenario, calculated_user_scenario) do
+      changeset = UserScenario.changeset(existing_user_scenario, calculated_user_scenario)
+      save_scenario(changeset)
     end
   end
 
+  #========================================================================
+  defp save_scenario(changeset) do
+    case Repo.insert_or_update(changeset) do
+      {:ok, _}            -> Logger.info "Saved scenario #{changeset.data.scenario_id} for user #{changeset.data.user_id}"
+      {:error, changeset} -> Logger.error "!!! ERROR user #{changeset.data.user_id} scenario #{changeset.data.scenario_id} !!! #{Enum.join changeset.errors, "\n"}"
+    end
+  end
+
+  #========================================================================
+  defp do_faction(faction, user_scenario_acc) do
+    Enum.reduce(faction.roles, user_scenario_acc, fn(role, user_scenario_acc) -> do_role(role, user_scenario_acc) end)
+  end
+
+  #========================================================================
+  defp do_role(role, user_scenario_acc) do
+    capped_user_figures = Role.role_user_figures(role)
+    %{user_scenario_acc | owned:   user_scenario_acc.owned   + capped_user_figures.total_owned,
+                          painted: user_scenario_acc.painted + capped_user_figures.total_painted}
+  end
+
+  #========================================================================
   defp default_user_scenario(user_id, scenario_id) do
-    %UserScenario{
+    %{
       user_id: user_id,
       scenario_id: scenario_id,
       rating: 0,
       owned: 0,
       painted: 0
     }
+  end
+
+  #========================================================================
+  defp user_scenario_changed(nil, _) do
+    true
+  end
+
+  #========================================================================
+  defp user_scenario_changed(existing, calculated) do
+    existing.owned != calculated.owned || existing.painted != calculated.painted
+  end
+
+  #========================================================================
+  defp get_all_scenarios_with_user_figures(user_id) do
+    uf_query = from uf in UserFigure, where: uf.user_id == ^user_id
+
+    query = Scenario |> preload([scenario_factions: [roles: [figures: [user_figure: ^uf_query]]]])
+
+    Repo.all(query)
+  end
+
+  #========================================================================
+  defp create_existing_map(user_id) do
+    us_query = from us in UserScenario, where: us.user_id == ^user_id, order_by: :id
+    Map.new(Repo.all(us_query), fn x -> { x.scenario_id, x } end)
   end
 end
