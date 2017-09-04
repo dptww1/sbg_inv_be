@@ -38,9 +38,7 @@ defmodule SbgInv.Web.Role do
   """
   def role_user_figures(role) do
     Enum.map(role.figures, fn(f) -> RoleUserFigure.create(f) end)
-    |> Enum.filter(fn(f) -> f.owned > 0 end)
-    |> Enum.sort(&RoleUserFigure.sorter/2)
-    |> Enum.reduce_while(%RoleUserFigures{}, fn(ruf, acc) ->
+    |> Enum.reduce(%RoleUserFigures{}, fn(ruf, acc) ->
          painted_remainder = role.amount - acc.total_painted
          painted_amt = min(painted_remainder, ruf.painted)
 
@@ -49,13 +47,11 @@ defmodule SbgInv.Web.Role do
 
          name = if(owned_amt > 1, do: ruf.figure.plural_name, else: ruf.figure.name)
 
-         new_acc = %RoleUserFigures{
+         %RoleUserFigures{
            total_painted: acc.total_painted + painted_amt,
            total_owned: acc.total_owned + owned_amt,
            figures: acc.figures ++ [%{ruf | owned: owned_amt, painted: painted_amt, name: name}]
          }
-
-         if(new_acc.total_owned == role.amount, do: {:halt, new_acc}, else: {:cont, new_acc})
        end)
   end
 end

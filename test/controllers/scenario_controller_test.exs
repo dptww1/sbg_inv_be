@@ -103,6 +103,28 @@ defmodule SbgInv.ScenarioControllerTest do
     assert json_response(conn, 200)["data"] == const_data
   end
 
+  test "scenario detail includes figure possibilities", %{conn: conn} do
+    %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
+
+    second_figure = TestHelper.add_figure("new", "news")
+    role_id = TestHelper.std_scenario_role_id(const_data, 0, 0)
+    TestHelper.add_role_figure(second_figure.id, role_id)
+
+    conn = get conn, scenario_path(conn, :show, Map.get(const_data, "id"))
+
+    assert hd(hd(json_response(conn, 200)["data"]["scenario_factions"])["roles"]) == %{
+      "id" => role_id,
+      "amount" => 9,
+      "name" => "ABC",
+      "num_owned" => 2,
+      "num_painted" => 2,
+      "figures" => [
+        %{"figure_id" => TestHelper.std_scenario_figure_id(const_data), "name" => "ABCs", "owned" => 2, "painted" => 2},
+        %{"figure_id" => second_figure.id, "name" => "new", "owned" => 0, "painted" => 0}
+      ]
+    }
+  end
+
   test "index with bad cookie fails", %{conn: conn} do
     conn = conn
            |> put_req_header("authorization", "Token token=\"123bcd\"")

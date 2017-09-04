@@ -34,8 +34,19 @@ defmodule SbgInv.TestHelper do
   end
 
   # const_data: from set_up_std_scenario()'s return value
+  # faction_idx: 0,1
+  # role_idx: 0..n
+  def std_scenario_role_id(const_data, faction_idx, role_idx) do
+    const_data["scenario_factions"]
+    |> Enum.fetch!(faction_idx)
+    |> Map.get("roles")
+    |> Enum.fetch!(role_idx)
+    |> Map.get("id")
+  end
+
+  # const_data: from set_up_std_scenario()'s return value
   # idx: 0,1
-  def std_scenario_figure_id(const_data, idx) do
+  def std_scenario_figure_id(const_data, idx \\ 0) do
     const_data["scenario_factions"]
     |> Enum.fetch!(0)
     |> Map.get("roles")
@@ -43,6 +54,14 @@ defmodule SbgInv.TestHelper do
     |> Map.get("figures")
     |> Enum.fetch!(idx)
     |> Map.get("figure_id")
+  end
+
+  def add_figure(name, plural_name, type \\ :warrior, unique \\ false) do
+    Repo.insert! %Figure{name: name, plural_name: plural_name, type: type, unique: unique}
+  end
+
+  def add_role_figure(figure_id, role_id) do
+    Repo.insert! %RoleFigure{figure_id: figure_id, role_id: role_id}
   end
 
   # user: :user1 or :user2

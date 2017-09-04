@@ -6,6 +6,7 @@ defmodule SbgInv.Web.RoleView do
 
   def render("role.json", %{role: role}) do
     user_figures = Role.role_user_figures role
+
     %{
       id: role.id,
       amount: role.amount,
@@ -13,12 +14,14 @@ defmodule SbgInv.Web.RoleView do
       num_painted: user_figures.total_painted,
       num_owned: user_figures.total_owned,
       figures: Enum.reduce(user_figures.figures, [], fn(uf, list) ->
+        user_figure = if(length(uf.figure.user_figure) > 0, do: hd(uf.figure.user_figure), else: %{owned: 0, painted: 0})
+
         list ++ [
           %{
             figure_id: uf.figure.id,
-            name: if(hd(uf.figure.user_figure).owned > 1, do: uf.figure.plural_name, else: uf.figure.name),
-            owned: hd(uf.figure.user_figure).owned,
-            painted: hd(uf.figure.user_figure).painted
+            name: if(user_figure.owned > 1, do: uf.figure.plural_name, else: uf.figure.name),
+            owned: user_figure.owned,
+            painted: user_figure.painted
           }
         ]
       end)
