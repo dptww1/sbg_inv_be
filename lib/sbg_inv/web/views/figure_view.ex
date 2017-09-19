@@ -17,7 +17,7 @@ defmodule SbgInv.Web.FigureView do
   end
 
   defp sorted_scenarios(role_list) do
-    Enum.sort_by(role_list, fn(role) -> role.scenario_faction.scenario.name end)
+    Enum.sort_by(role_list, fn(role) -> normalized_name(role.scenario_faction.scenario.name) end)
     |> Enum.map(fn(role) ->
                   %{
                     "scenario_id" => role.scenario_faction.scenario.id,
@@ -39,5 +39,9 @@ defmodule SbgInv.Web.FigureView do
         "notes" => if(h.notes, do: h.notes, else: "")
     }
     end)
+  end
+
+  defp normalized_name(str) do
+    Regex.replace(~r/É/, Regex.replace(~r/^(The|A) /, str, ""), "E")
   end
 end
