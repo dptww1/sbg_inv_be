@@ -24,7 +24,7 @@ defmodule SbgInv.Data do
   alias SbgInv.Web.UserFigure
 
   def generate do
-    _generate
+    _generate()
   end
 
   #========================================================================
