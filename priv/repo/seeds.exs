@@ -222,7 +222,7 @@ defmodule SbgInv.Data do
     # FIGURES: DWARVES
     #########################################################################
 
-    balin  = _declare_unique("Dwarf Lord Balin",     [ :durins_folk ])
+    balin_lord = _declare_unique("Dwarf Lord Balin",     [ :durins_folk ])
     dain   = _declare_unique("Dwarf Lord Dáin",      [ :durins_folk ])
     drar   = _declare_unique("Drar",                 [ :durins_folk ])
     durin  = _declare_unique("Durin",                [ :durins_folk ])
@@ -638,7 +638,7 @@ defmodule SbgInv.Data do
     sharku         = _declare_unique("Sharku",             [ :isengard ])
     sharku_warg    = _declare_unique("Sharku on Warg",     [ :isengard ])
     thrydan        = _declare_unique("Thrydan Wolvesbane", [ :isengard ])
-    thrydan_horse  = _declare_unique("Thrydan Wolvesbane", [ :isengard ])
+    thrydan_horse  = _declare_unique("Thrydan Wolvesbane on horse", [ :isengard ])
     ugluk          = _declare_unique("Uglúk",              [ :isengard ])
     vrasku         = _declare_unique("Vraskû",             [ :isengard ])
     worm           = _declare_unique("Worm",               [ :isengard ])
@@ -2704,7 +2704,7 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: fp_s3.id, resource_type: :source, book: :fp, title: "The Free Peoples", sort_order: 3, page: 59}
 
     fp_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: fp_s3.id, faction: :durins_folk, suggested_points: 200, actual_points: 0, sort_order: 1}
-    _declare_role_figure(fp_s3f1,  1,  1, [ balin ])
+    _declare_role_figure(fp_s3f1,  1,  1, [ balin_lord ])
     _declare_role_figure(fp_s3f1,  4,  2, [ dwarf_w_shield ])
     _declare_role_figure(fp_s3f1,  3,  3, [ dwarf_w_bow ])
     _declare_role_figure(fp_s3f1,  3,  4, [ dwarf_w_2h ])
@@ -3942,7 +3942,7 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: kd_s4.id, resource_type: :source, book: :kd, title: "Khazad-dûm", sort_order: 4, page: 60}
 
     kd_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: kd_s4.id, faction: :durins_folk, suggested_points: 595, actual_points: 0, sort_order: 1}
-    _declare_role_figure(kd_s4f1, 1,  1, "Balin with Durin's Axe", [ balin ])
+    _declare_role_figure(kd_s4f1, 1,  1, "Balin with Durin's Axe", [ balin_lord ])
     _declare_role_figure(kd_s4f1, 1,  2, [ dwarf_captain_shield ])
     _declare_role_figure(kd_s4f1, 4,  3, [ dwarf_w_shield ])
     _declare_role_figure(kd_s4f1, 4,  4, [ dwarf_w_bow ])
@@ -5682,7 +5682,7 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: saf_s1.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 1, page: 14}
 
     saf_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s1.id, faction: :durins_folk, suggested_points: 200, actual_points: 0, sort_order: 1}
-    _declare_role_figure(saf_s1f1, 1, 1, [ balin ])
+    _declare_role_figure(saf_s1f1, 1, 1, [ balin_lord ])
     _declare_role_figure(saf_s1f1, 4, 2, [ dwarf_khazad_gd ])
     _declare_role_figure(saf_s1f1, 4, 3, [ dwarf_w_shield ])
     _declare_role_figure(saf_s1f1, 6, 4, [ dwarf_w_bow ])
@@ -5705,7 +5705,7 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: saf_s2.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 2, page: 20}
 
     saf_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s2.id, faction: :durins_folk, suggested_points: 600, actual_points: 0, sort_order: 1}
-    _declare_role_figure(saf_s2f1,  1, 1, "Balin with Durin's Axe", [ balin ])
+    _declare_role_figure(saf_s2f1,  1, 1, "Balin with Durin's Axe", [ balin_lord ])
     _declare_role_figure(saf_s2f1,  2, 2, [ dwarf_captain ])
     _declare_role_figure(saf_s2f1,  8, 3, [ dwarf_khazad_gd ])
     _declare_role_figure(saf_s2f1, 10, 4, [ dwarf_w_shield ])
@@ -5734,7 +5734,7 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: saf_s3.id, resource_type: :source, book: :saf, title: "Shadow & Flame", sort_order: 3, page: 24}
 
     saf_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: saf_s3.id, faction: :durins_folk, suggested_points: 300, actual_points: 0, sort_order: 1}
-    _declare_role_figure(saf_s3f1,  1, 1, "Balin with Durin's Axe", [ balin ])
+    _declare_role_figure(saf_s3f1,  1, 1, "Balin with Durin's Axe", [ balin_lord ])
     _declare_role_figure(saf_s3f1,  1, 2, [ dwarf_captain ])
     _declare_role_figure(saf_s3f1,  8, 3, [ dwarf_khazad_gd ])
     _declare_role_figure(saf_s3f1,  2, 4, [ dwarf_w_shield ])
