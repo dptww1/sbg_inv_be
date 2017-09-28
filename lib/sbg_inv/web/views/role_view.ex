@@ -19,7 +19,7 @@ defmodule SbgInv.Web.RoleView do
         list ++ [
           %{
             figure_id: uf.figure.id,
-            name: if(user_figure.owned > 1, do: uf.figure.plural_name, else: uf.figure.name),
+            name: if(user_figure.owned > 1 && uf.figure.plural_name, do: uf.figure.plural_name, else: uf.figure.name),
             owned: user_figure.owned,
             painted: user_figure.painted
           }
