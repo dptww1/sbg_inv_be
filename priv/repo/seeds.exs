@@ -7093,7 +7093,7 @@ defmodule SbgInv.Data do
     tba_s29 = Repo.insert! %Scenario{
       name: "Dimrill Dale II: Thrain's Vengeance",
       blurb: "Having taken out Thror, Azog guns for Thrain.",
-      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 38,
+      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 39,
       map_width: 24, map_height: 24, location: :moria
     }
 
@@ -7102,7 +7102,7 @@ defmodule SbgInv.Data do
     tba_s29f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s29.id, faction: :army_thror, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(tba_s29f1,  1,  1, [ thrain ])
     _declare_role_figure(tba_s29f1,  1,  2, [ grim_hammer_captain ])
-    _declare_role_figure(tba_s29f1, 15,  3, [ grim_hammer_w ])
+    _declare_role_figure(tba_s29f1, 20,  3, [ grim_hammer_w ])
 
     tba_s29f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s29.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(tba_s29f2,  1, 1, "Azog", [ azog, azog_lt ])
