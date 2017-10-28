@@ -9,6 +9,7 @@ defmodule SbgInv.Web.Figure do
     field :plural_name, :string
     field :type, FigureType
     field :unique, :boolean
+    field :max_needed, :integer, virtual: true
 
     timestamps()
 

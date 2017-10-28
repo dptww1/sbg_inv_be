@@ -3,8 +3,8 @@ defmodule SbgInv.Web.FactionView do
   use SbgInv.Web, :view
 
   def filtered_sorted_fig_list(list, type) do
-    Enum.filter(list, fn(ff) -> ff.figure.type == type end)
-    |> Enum.sort(&(&1.figure.name <= &2.figure.name))
+    Enum.filter(list, fn(f) -> f.type == type end)
+    |> Enum.sort(&(&1.name <= &2.name))
   end
 
   def render("show.json", %{figures: figures}) do
@@ -17,13 +17,16 @@ defmodule SbgInv.Web.FactionView do
      }
   end
 
-  def render("figure.json", %{faction: faction_figure}) do
+  def render("figure.json", %{faction: figure}) do
     %{
-      id:          faction_figure.figure.id,
-      name:        faction_figure.figure.name,
-      plural_name: faction_figure.figure.plural_name,
-      type:        faction_figure.figure.type,
-      unique:      faction_figure.figure.unique
+      id:          figure.id,
+      name:        figure.name,
+      plural_name: figure.plural_name,
+      type:        figure.type,
+      unique:      figure.unique,
+      needed:      if(figure.max_needed, do: figure.max_needed, else: 0),
+      owned:       0,
+      painted:     0
     }
   end
 end
