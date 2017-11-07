@@ -2,6 +2,7 @@ defmodule SbgInv.Web.FactionControllerTest do
 
   use SbgInv.Web.ConnCase
 
+  alias SbgInv.TestHelper
   alias SbgInv.Web.{FactionFigure,Figure,Role,RoleFigure,Scenario,ScenarioFaction}
 
   defp insert_figure(faction_id, name, plural_name, type, unique \\ false) do
@@ -19,6 +20,24 @@ defmodule SbgInv.Web.FactionControllerTest do
   test "unknown faction id returns error", %{conn: conn} do
     conn = get conn, faction_path(conn, :show, -2)
     assert conn.status == 404
+  end
+
+  test "shows faction list with user's collection info when user is logged in", %{conn: conn} do
+    %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
+
+    fid = TestHelper.std_scenario_figure_id(const_data, 0)
+
+    Repo.insert! %FactionFigure{faction_id: :rohan, figure_id: fid}
+
+    conn = get conn, faction_path(conn, :show, TestHelper.faction_as_int(:rohan))
+    assert json_response(conn, 200)["data"] == %{
+        "heroes" => [
+            %{"id" => fid, "name" => "ABC", "plural_name" => "ABCs", "type" => "hero", "unique" => true, "needed" => 9, "owned" => 4, "painted" => 2}
+        ],
+        "monsters" => [],
+        "siegers" => [],
+        "warriors" => []
+    }
   end
 
   test "shows faction list when user is not logged in", %{conn: conn} do
@@ -43,7 +62,7 @@ defmodule SbgInv.Web.FactionControllerTest do
     Repo.insert! %RoleFigure{role_id: role1.id, figure_id: f2.id}
     Repo.insert! %RoleFigure{role_id: role2.id, figure_id: f4.id}
 
-    conn = get conn, faction_path(conn, :show, 6)  # 6 == :mirkwood
+    conn = get conn, faction_path(conn, :show, TestHelper.faction_as_int(:mirkwood))
     assert json_response(conn, 200)["data"] == %{
       "heroes" => [
           %{"name" => "h1", "plural_name" => "h1s", "type" => "hero", "unique" => true,  "id" => f3.id, "needed" => 0, "owned" => 0, "painted" => 0},

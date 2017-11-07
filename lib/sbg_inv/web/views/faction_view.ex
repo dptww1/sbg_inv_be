@@ -25,8 +25,8 @@ defmodule SbgInv.Web.FactionView do
       type:        figure.type,
       unique:      figure.unique,
       needed:      if(figure.max_needed, do: figure.max_needed, else: 0),
-      owned:       0,
-      painted:     0
+      owned:       if(figure.owned,      do: figure.owned,      else: 0),
+      painted:     if(figure.painted,    do: figure.painted,    else: 0)
     }
   end
 end

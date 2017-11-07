@@ -15,6 +15,13 @@ defmodule SbgInv.TestHelper do
     conn
   end
 
+  def faction_as_int(faction) do
+    case Faction.dump(faction) do
+      {:ok, int} -> int
+      {:error, _} -> raise "No such faction #{faction}"
+    end
+  end
+
   def clear_sessions(conn) do
     Repo.delete_all(Session)
     conn |> delete_req_header("authorization")
@@ -80,8 +87,8 @@ defmodule SbgInv.TestHelper do
     role1 = Repo.insert! %Role{scenario_faction_id: faction.id, amount: 9, sort_order: 1, name: "ABC"}
     role2 = Repo.insert! %Role{scenario_faction_id: faction.id, amount: 7, sort_order: 2, name: "DEF"}
 
-    figure1 = Repo.insert! %Figure{name: "ABC", plural_name: "ABCs"}
-    figure2 = Repo.insert! %Figure{name: "DEF", plural_name: "DEFs"}
+    figure1 = Repo.insert! %Figure{name: "ABC", plural_name: "ABCs", type: :hero, unique: true}
+    figure2 = Repo.insert! %Figure{name: "DEF", plural_name: "DEFs", type: :warrior, unique: false}
 
     Repo.insert! %RoleFigure{role_id: role1.id, figure_id: figure1.id}
     Repo.insert! %RoleFigure{role_id: role2.id, figure_id: figure2.id}
