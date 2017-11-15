@@ -28,7 +28,7 @@ defmodule SbgInv.Web.FigureView do
   end
 
   defp sorted_history(history_list) do
-    Enum.sort_by(history_list, fn(h) -> h.op_date end)
+    history_list  # history is sorted by db
     |> Enum.reverse
     |> Enum.map(fn(h) -> %{
         "op" => h.op,
