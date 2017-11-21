@@ -4929,7 +4929,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotkjb_s3f1,  4,  8, [ gondor_rog ])
     _declare_role_figure(rotkjb_s3f1,  5,  9, [ gondor_knight_shield ])
     _declare_role_figure(rotkjb_s3f1,  1, 10, [ gondor_knight_banner ])
-    _declare_role_figure(rotkjb_s3f1,  6, 11, "Knight of Dol Amroth on horse with lance", [ gondor_knight_da_horse ])
+    _declare_role_figure(rotkjb_s3f1,  6, 11, "Knights of Dol Amroth on horse with lance", [ gondor_knight_da_horse ])
 
     rotkjb_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s3.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s3f2,  1,  1, [ ringwraith_fellbeast ])
