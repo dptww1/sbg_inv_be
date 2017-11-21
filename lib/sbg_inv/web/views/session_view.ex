@@ -10,7 +10,8 @@ defmodule SbgInv.Web.SessionView do
     %{
       token: session.token,
       name: session.user.name,
-      user_id: session.user.id
+      user_id: session.user.id,
+      is_admin: session.user.is_admin
     }
   end
 
