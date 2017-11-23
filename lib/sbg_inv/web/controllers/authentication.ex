@@ -19,6 +19,13 @@ defmodule SbgInv.Web.Authentication do
     call(conn, %{})
   end
 
+  def admin_required(conn) do
+    case find_user(conn) do
+      {:ok, user} -> if(user.is_admin, do: conn, else: auth_error!(conn))
+      _otherwise  -> auth_error!(conn)
+    end
+  end
+
   def call(conn, _opts) do
     case find_user(conn) do
       {:ok, user} -> assign(conn, :current_user, user)
