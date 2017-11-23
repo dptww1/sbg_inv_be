@@ -105,12 +105,12 @@ defenum ScenarioResourceBook,
   ttt_jb:  27    # The Two Towers Journeybook
 
 defenum ScenarioResourceType,
-  source: 0,
-  video_replay: 1,
-  web_replay: 2,
+  source:           0,
+  video_replay:     1,
+  web_replay:       2,
   terrain_building: 3,
-  podcast: 4,
-  magazine_replay: 5
+  podcast:          4,
+  magazine_replay:  5
 
 defenum UserFigureOp,
   buy_unpainted:  0,
