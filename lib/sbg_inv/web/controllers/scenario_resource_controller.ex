@@ -21,7 +21,6 @@ defmodule SbgInv.Web.ScenarioResourceController do
           send_resp(conn, :no_content, "")
 
         {:error, _changeset} ->
-          IO.inspect changeset
           send_resp(conn, :unprocessable_entity, "")
       end
     end
