@@ -15,6 +15,7 @@ defmodule SbgInv.Web.ScenarioResourceView do
 
   def render("resource.json", %{scenario_resource: resource}) do
     %{
+      id: resource.id,
       resource_type: resource.resource_type,
       book: resource.book,
       issue: resource.issue,

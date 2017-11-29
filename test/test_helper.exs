@@ -71,14 +71,18 @@ defmodule SbgInv.TestHelper do
     Repo.insert! %RoleFigure{figure_id: figure_id, role_id: role_id}
   end
 
+  def create_scenario() do
+    Repo.insert! %Scenario{name: "A", blurb: "B", date_age: 3, date_year: 1, date_month: 1, date_day: 1, size: 0,
+      map_width: 7, map_height: 15, location: :the_shire}
+  end
+
   # user: :user1 or :user2
   def set_up_std_scenario(conn, user \\ :user1) do
     user1 = create_user("no one", "abc@def.com")
     user2 = create_user("nobody", "def@ghi.com")
     conn = create_session(conn, if(user == :user1, do: user1, else: user2))
 
-    scenario = Repo.insert! %Scenario{name: "A", blurb: "B", date_age: 3, date_year: 1, date_month: 1, date_day: 1, size: 0,
-                                      map_width: 7, map_height: 15, location: :the_shire}
+    scenario = create_scenario()
     Repo.insert!(%UserScenario{user_id: user1.id, scenario_id: scenario.id, painted: 6, owned: 8})
     Repo.insert!(%UserScenario{user_id: user2.id, scenario_id: scenario.id, painted: 5, owned: 7})
 

@@ -13,16 +13,32 @@ defmodule SbgInv.Web.ScenarioResourceController do
       send_resp(conn, :unauthorized, "")
 
     else
-      params = add_sort_order_if_missing(params)
-      changeset = ScenarioResource.changeset(%ScenarioResource{}, Map.put(params, "scenario_id", scenario_id))
+      update_or_create(conn, %ScenarioResource{}, params, scenario_id)
+    end
+  end
 
-      case Repo.insert(changeset) do
-        {:ok, _resource} ->
-          send_resp(conn, :no_content, "")
+  def update(conn, %{"resource" => params, "scenario_id" => scenario_id}) do
+    conn = Authentication.admin_required(conn)
 
-        {:error, _changeset} ->
-          send_resp(conn, :unprocessable_entity, "")
-      end
+    if conn.halted do
+      send_resp(conn, :unauthorized, "")
+
+    else
+      resource = Repo.get!(ScenarioResource, Map.get(params, "id"))
+      update_or_create(conn, resource, params, scenario_id)
+    end
+  end
+
+  defp update_or_create(conn, resource, params, scenario_id) do
+    params = add_sort_order_if_missing(params)
+    changeset = ScenarioResource.changeset(resource, Map.put(params, "scenario_id", scenario_id))
+
+    case Repo.insert_or_update(changeset) do
+      {:ok, _resource} ->
+        send_resp(conn, :no_content, "")
+
+      {:error, _changeset} ->
+        send_resp(conn, :unprocessable_entity, "")
     end
   end
 
