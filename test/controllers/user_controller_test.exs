@@ -32,7 +32,7 @@ defmodule SbgInv.Web.UserControllerTest do
     conn = put conn, user_path(conn, :update, user), user: %{email: "abc@example.com", password: "123456" }
 
     assert json_response(conn, 200)["data"]["id"] == user.id
-    user_chk = Repo.get_by(User, %{email: "abc@example.com"})
+    user_chk = Repo.get_by(User, email: "abc@example.com")
     assert user_chk
     assert user_chk.password_hash != user.password_hash
   end
@@ -58,5 +58,22 @@ defmodule SbgInv.Web.UserControllerTest do
     assert user_chk
     assert user_chk.password_hash != user.password_hash
     assert user_chk.email == user.email
+  end
+
+  test "created user cannot be admin", %{conn: conn} do
+    conn = post conn, user_path(conn, :create), user: Map.put(@valid_attrs, :is_admin, true)
+    json_response(conn, 201)
+    check = Repo.get_by(User, email: "foo@bar.com")
+    refute check.is_admin
+  end
+
+  test "updated user cannot be admin", %{conn: conn} do
+    user = TestHelper.create_user
+    conn = TestHelper.create_session(conn, user)
+    put conn, user_path(conn, :update, user), user: %{email: "abc@example.com", password: "123456", is_admin: true}
+
+    user_chk = Repo.get_by(User, email: "abc@example.com")
+    assert user_chk
+    refute user_chk.is_admin
   end
 end
