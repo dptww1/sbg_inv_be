@@ -5,9 +5,9 @@ defmodule SbgInv.ScenarioControllerTest do
   alias SbgInv.TestHelper
   alias SbgInv.Web.{Scenario, ScenarioResource, UserScenario}
 
-  @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, name: "some content", size: 42,
-                 map_width: 48, map_height: 48, location: :the_shire}
-  @invalid_attrs %{}
+  #@valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, name: "some content", size: 42,
+  #               map_width: 48, map_height: 48, location: :the_shire}
+  #@invalid_attrs %{}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -54,36 +54,36 @@ defmodule SbgInv.ScenarioControllerTest do
     assert conn.status == 404
   end
 
-  test "creates and renders resource when data is valid", %{conn: conn} do
-    conn = post conn, scenario_path(conn, :create), scenario: @valid_attrs
-    assert json_response(conn, 201)["data"]["id"]
-    assert Repo.get_by(Scenario, @valid_attrs)
-  end
+#  test "creates and renders resource when data is valid", %{conn: conn} do
+#    conn = post conn, scenario_path(conn, :create), scenario: @valid_attrs
+#    assert json_response(conn, 201)["data"]["id"]
+#    assert Repo.get_by(Scenario, @valid_attrs)
+#  end
 
-  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, scenario_path(conn, :create), scenario: @invalid_attrs
-    assert json_response(conn, 422)["errors"] != %{}
-  end
+#  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+#    conn = post conn, scenario_path(conn, :create), scenario: @invalid_attrs
+#    assert json_response(conn, 422)["errors"] != %{}
+#  end
 
-  test "updates and renders chosen resource when data is valid", %{conn: conn} do
-    scenario = Repo.insert! %Scenario{}
-    conn = put conn, scenario_path(conn, :update, scenario), scenario: @valid_attrs
-    assert json_response(conn, 200)["data"]["id"]
-    assert Repo.get_by(Scenario, @valid_attrs)
-  end
+#  test "updates and renders chosen resource when data is valid", %{conn: conn} do
+#    scenario = Repo.insert! %Scenario{}
+#    conn = put conn, scenario_path(conn, :update, scenario), scenario: @valid_attrs
+#    assert json_response(conn, 200)["data"]["id"]
+#    assert Repo.get_by(Scenario, @valid_attrs)
+#  end
 
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    scenario = Repo.insert! %Scenario{}
-    conn = put conn, scenario_path(conn, :update, scenario), scenario: @invalid_attrs
-    assert json_response(conn, 422)["errors"] != %{}
-  end
+#  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
+#    scenario = Repo.insert! %Scenario{}
+#    conn = put conn, scenario_path(conn, :update, scenario), scenario: @invalid_attrs
+#    assert json_response(conn, 422)["errors"] != %{}
+#  end
 
-  test "deletes chosen resource", %{conn: conn} do
-    scenario = Repo.insert! %Scenario{}
-    conn = delete conn, scenario_path(conn, :delete, scenario)
-    assert response(conn, 204)
-    refute Repo.get(Scenario, scenario.id)
-  end
+#  test "deletes chosen resource", %{conn: conn} do
+#    scenario = Repo.insert! %Scenario{}
+#    conn = delete conn, scenario_path(conn, :delete, scenario)
+#    assert response(conn, 204)
+#    refute Repo.get(Scenario, scenario.id)
+#  end
 
   test "scenario list query correctly limits itself to the current user's scenario data", %{conn: conn} do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
