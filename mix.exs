@@ -19,7 +19,9 @@ defmodule SbgInv.Mixfile do
   def application do
     [mod: {SbgInv, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :calendar, :comeonin, :bamboo]]
+                    :phoenix_ecto, :postgrex, :calendar, :comeonin, :bamboo,
+                    :bamboo_smtp, :corsica, :ecto_enum, :secure_random
+                    ]]
   end
 
   # Specifies which paths to compile per environment.
@@ -46,7 +48,8 @@ defmodule SbgInv.Mixfile do
      {:comeonin, "~> 2.0"},
      {:secure_random, "~> 0.2"},
      {:bamboo, "~> 0.7"},
-     {:bamboo_smtp, "~> 1.2.1"}
+     {:bamboo_smtp, "~> 1.2.1"},
+     {:distillery, "~> 1.0.0"}
     ]
   end
 
