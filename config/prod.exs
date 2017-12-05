@@ -13,8 +13,8 @@ use Mix.Config
 # which you typically run after static files are built.
 config :sbg_inv, SbgInv.Web.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/manifest.json"
+  server: true,
+  secret_key_base: "${SECRET_KEY_BASE}"
 
 config :sbg_inv, SbgInv.Mailer,
   adapter: Bamboo.SMTPAdapter,
@@ -70,6 +70,9 @@ config :logger, level: :info
 #
 #     config :sbg_inv, SbgInv.Endpoint, root: "."
 
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
+config :sbg_inv, SbgInv.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: "${DATABASE_URL}",
+  database: "",
+  ssl: true,
+  pool_size: 10
