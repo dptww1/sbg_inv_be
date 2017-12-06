@@ -75,4 +75,4 @@ config :sbg_inv, SbgInv.Repo,
   url: "${DATABASE_URL}",
   database: "",
   ssl: true,
-  pool_size: 10
+  pool_size: 1
