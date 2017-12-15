@@ -20,7 +20,7 @@ defmodule SbgInv.Mixfile do
     [mod: {SbgInv, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :calendar, :comeonin, :bamboo,
-                    :bamboo_smtp, :corsica, :ecto_enum, :secure_random
+                    :bamboo_smtp, :corsica, :ecto_enum, :secure_random, :tzdata
                     ]]
   end
 
@@ -49,7 +49,8 @@ defmodule SbgInv.Mixfile do
      {:secure_random, "~> 0.2"},
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},
-     {:distillery, "~> 1.0.0"}
+     {:distillery, "~> 1.0.0"},
+      {:tzdata, "~> 0.5.12"}
     ]
   end
 
