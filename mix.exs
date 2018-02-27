@@ -50,7 +50,7 @@ defmodule SbgInv.Mixfile do
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},
      {:distillery, "~> 1.0.0"},
-      {:tzdata, "~> 0.5.12"}
+     {:tzdata, "~> 0.5.12"}
     ]
   end
 
