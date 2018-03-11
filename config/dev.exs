@@ -44,9 +44,10 @@ config :sbg_inv, SbgInv.Repo,
 config :sbg_inv, SbgInv.Mailer,
   adapter: Bamboo.SMTPAdapter,
   server: "smtp.davetownsend.org",
+  #server: "smtp.sendgrid.net",
   port: 587,
   username: System.get_env("SMTP_USERNAME"),
   password: System.get_env("SMTP_PASSWORD"),
-  tls: :if_available,
-  ssl: true,
-  retries: 1
+  tls: true,
+  ssl: false,
+  retries: 3

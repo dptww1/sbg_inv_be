@@ -22,7 +22,7 @@ config :sbg_inv, SbgInv.Mailer,
   port: 587,
   username: "$(SMTP_USERNAME)",
   password: "$(SMTP_PASSWORD)",
-  tls: :if_available,
+  tls: true,
   ssl: false,
   retries: 1
 
