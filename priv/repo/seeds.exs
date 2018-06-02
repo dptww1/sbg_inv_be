@@ -488,6 +488,7 @@ defmodule SbgInv.Data do
     boromir             = _declare_unique("Boromir",                              [ :fellowship, :minas_tirith ])
     boromir_breaking    = _declare_unique("Boromir (Breaking of the Fellowship)", [ :fellowship, :minas_tirith ])
     boromir_horse       = _declare_unique("Boromir on horse", [ :minas_tirith ])
+    boromir_wt          = _declare_unique("Boromir of the White Tower", [ :minas_tirith ])
     boromir_wt_banner   = _declare_unique("Boromir of the White Tower with Banner", [ :minas_tirith ])
     boromir_wt_horse    = _declare_unique("Boromir of the White Tower on horse", [ :minas_tirith ])
     boromir_dying       = _declare_unique("Dying Boromir")
@@ -1443,7 +1444,7 @@ defmodule SbgInv.Data do
     bpf_s10 = Repo.insert! %Scenario{
       name: "The Horse and the Serpent",
       blurb: "Théoden and Suladân face off in the Pelennor Fields.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 47,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 58,
       map_width: 48, map_height: 48, location: :minas_tirith
     }
 
@@ -1465,15 +1466,15 @@ defmodule SbgInv.Data do
     _declare_role_figure(bpf_s10f2,  1,  2, "The Witch-king of Angmar on Fell Beast", [ witch_king_fellbeast, witch_king_fellbeast_p ])
     _declare_role_figure(bpf_s10f2,  2,  3, [ harad_chieftain_horse ])
     _declare_role_figure(bpf_s10f2,  8,  4, [ harad_raider ])
-    _declare_role_figure(bpf_s10f2,  8,  6, [ harad_raider_lance ])
-    _declare_role_figure(bpf_s10f2,  4,  7, [ warg_rider_spear ])
-    _declare_role_figure(bpf_s10f2,  4,  8, [ warg_rider_bow ])
+    _declare_role_figure(bpf_s10f2,  8,  5, [ harad_raider_lance ])
+    _declare_role_figure(bpf_s10f2,  4,  6, [ warg_rider_spear ])
+    _declare_role_figure(bpf_s10f2,  4,  7, [ warg_rider_bow ])
 
     #========================================================================
     bpf_s11 = Repo.insert! %Scenario{
       name: "Éomer's Rage",
       blurb: "Aragorn and Imrahil rush to save Éomer as he is surrounded by forces of Mordor and Harad.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 136,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 135,
       map_width: 48, map_height: 48, location: :minas_tirith
     }
 
@@ -1571,23 +1572,23 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: dos_s3.id, resource_type: :source, book: :dos, title: "The Desolation of Smaug", sort_order: 3, page: 10}
 
     dos_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: dos_s3.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(dos_s3f1,  1, 1, [ thorin ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ balin ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ dwalin ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ fili ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ kili ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ oin ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ gloin ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ ori ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ nori ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ dori ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ bifur ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ bofur ])
-    _declare_role_figure(dos_s3f1,  1, 1, [ bombur ])
-    _declare_role_figure(dos_s3f1,  1, 1, "Bilbo Baggins", bilbo_all)
-    _declare_role_figure(dos_s3f1,  1, 1, "Legolas", legolas_foot_all)
-    _declare_role_figure(dos_s3f1,  1, 1, "Tauriel", [ tauriel, tauriel_exile ])
-    _declare_role_figure(dos_s3f1, 24, 1, [ mirkwood_ranger ])
+    _declare_role_figure(dos_s3f1,  1,  1, [ thorin ])
+    _declare_role_figure(dos_s3f1,  1,  2, [ balin ])
+    _declare_role_figure(dos_s3f1,  1,  3, [ dwalin ])
+    _declare_role_figure(dos_s3f1,  1,  4, [ fili ])
+    _declare_role_figure(dos_s3f1,  1,  5, [ kili ])
+    _declare_role_figure(dos_s3f1,  1,  6, [ oin ])
+    _declare_role_figure(dos_s3f1,  1,  7, [ gloin ])
+    _declare_role_figure(dos_s3f1,  1,  8, [ ori ])
+    _declare_role_figure(dos_s3f1,  1,  9, [ nori ])
+    _declare_role_figure(dos_s3f1,  1, 10, [ dori ])
+    _declare_role_figure(dos_s3f1,  1, 11, [ bifur ])
+    _declare_role_figure(dos_s3f1,  1, 12, [ bofur ])
+    _declare_role_figure(dos_s3f1,  1, 13, [ bombur ])
+    _declare_role_figure(dos_s3f1,  1, 14, "Bilbo Baggins", bilbo_all)
+    _declare_role_figure(dos_s3f1,  1, 15, "Legolas", legolas_foot_all)
+    _declare_role_figure(dos_s3f1,  1, 16, "Tauriel", [ tauriel, tauriel_exile ])
+    _declare_role_figure(dos_s3f1, 24, 17, [ mirkwood_ranger ])
 
     dos_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: dos_s3.id, faction: :dol_guldur, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(dos_s3f2, 18, 1, [ mirkwood_spider ])
@@ -1596,7 +1597,7 @@ defmodule SbgInv.Data do
     dos_s4 = Repo.insert! %Scenario{
       name: "Barrels Out of Bond, Part I",
       blurb: "Azog's troops catch up to the dwarves, who are escaping in barrels from the elves.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 74,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 75,
       map_width: 72, map_height: 48, location: :mirkwood
     }
 
@@ -1658,7 +1659,7 @@ defmodule SbgInv.Data do
     dos_s6 = Repo.insert! %Scenario{
       name: "The Battle of Dimrill Dale, Part I",
       blurb: "Azog goes after Thror.",
-      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 123,
+      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 114,
       map_width: 48, map_height: 48, location: :moria
     }
 
@@ -1716,9 +1717,9 @@ defmodule SbgInv.Data do
     _declare_role_figure(dos_s7f2,  1,  3, [ narzug ])
     _declare_role_figure(dos_s7f2,  1,  4, [ yazneg ])
     _declare_role_figure(dos_s7f2,  3,  5, [ hunter_orc_captain_warg ])
-    _declare_role_figure(dos_s7f2, 12,  7, [ hunter_orc_warg ])
-    _declare_role_figure(dos_s7f2, 12,  8, [ hunter_orc ])
-    _declare_role_figure(dos_s7f2, 12,  9, [ fell_warg ])
+    _declare_role_figure(dos_s7f2, 12,  6, [ hunter_orc_warg ])
+    _declare_role_figure(dos_s7f2, 12,  7, [ hunter_orc ])
+    _declare_role_figure(dos_s7f2, 12,  8, [ fell_warg ])
 
     #========================================================================
     dos_s8 = Repo.insert! %Scenario{
@@ -1952,7 +1953,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(fotn_s7f2, 4, 4, [ castellan ])
     _declare_role_figure(fotn_s7f2, 1, 5, [ troll_chieftain ])
     _declare_role_figure(fotn_s7f2, 1, 6, [ mordor_troll ])
-    _declare_role_figure(fotn_s7f2, 4, 6, [ giant_spider ])
+    _declare_role_figure(fotn_s7f2, 4, 7, [ giant_spider ])
 
     #########################################################################
     # FALLEN REALMS
@@ -2121,7 +2122,7 @@ defmodule SbgInv.Data do
     fotrjb_s5 = Repo.insert! %Scenario{
       name: "Flight to Lothlórien",
       blurb: "The Fellowship finds refuge from a Goblin search party within the edges of Lothlórien.",
-      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 59,
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 69,
       map_width: 48, map_height: 48, location: :lothlorien
     }
 
@@ -2141,15 +2142,15 @@ defmodule SbgInv.Data do
 
     fotrjb_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: fotrjb_s5.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotrjb_s5f2,  2, 1, [ moria_captain ])
-    _declare_role_figure(fotrjb_s5f2, 16, 3, [ moria_g_shield ])
-    _declare_role_figure(fotrjb_s5f2, 16, 4, [ moria_g_spear ])
-    _declare_role_figure(fotrjb_s5f2, 16, 5, [ moria_g_bow ])
+    _declare_role_figure(fotrjb_s5f2, 16, 2, [ moria_g_shield ])
+    _declare_role_figure(fotrjb_s5f2, 16, 3, [ moria_g_spear ])
+    _declare_role_figure(fotrjb_s5f2, 16, 4, [ moria_g_bow ])
 
     #========================================================================
     fotr_s6 = Repo.insert! %Scenario{
       name: "Amon Hen",
       blurb: "The Uruk-hai split the Fellowship and run off with some hobbits.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, size: 36,
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 26, size: 49,
       map_width: 72, map_height: 48, location: :amon_hen
     }
 
@@ -2192,9 +2193,9 @@ defmodule SbgInv.Data do
 
     fotr_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s7.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotr_s7f2,  8,  1, [ orc_captain ])
-    _declare_role_figure(fotr_s7f2, 90,  6, [ orc_w_shield ])
-    _declare_role_figure(fotr_s7f2, 90,  7, [ orc_w_spear ])
-    _declare_role_figure(fotr_s7f2, 60,  8, [ orc_w_bow ])
+    _declare_role_figure(fotr_s7f2, 90,  2, [ orc_w_shield ])
+    _declare_role_figure(fotr_s7f2, 90,  3, [ orc_w_spear ])
+    _declare_role_figure(fotr_s7f2, 60,  4, [ orc_w_bow ])
 
     #========================================================================
     fotr_s8 = Repo.insert! %Scenario{
@@ -2208,14 +2209,14 @@ defmodule SbgInv.Data do
 
     fotr_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s8.id, faction: :numenor, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(fotr_s8f1,  1, 1, "Isildur with the One Ring", [ isildur ])
-    _declare_role_figure(fotr_s8f1, 12, 3, [ numenor_w_shield ])
-    _declare_role_figure(fotr_s8f1, 12, 4, [ numenor_w_shield_spear ])
+    _declare_role_figure(fotr_s8f1, 12, 2, [ numenor_w_shield ])
+    _declare_role_figure(fotr_s8f1, 12, 3, [ numenor_w_shield_spear ])
 
     fotr_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: fotr_s8.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(fotr_s8f2,  2,  1, [ orc_captain ])
-    _declare_role_figure(fotr_s8f2, 20,  3, [ orc_w_shield ])
-    _declare_role_figure(fotr_s8f2, 10,  4, [ orc_w_spear ])
-    _declare_role_figure(fotr_s8f2, 10,  6, [ orc_w_bow ])
+    _declare_role_figure(fotr_s8f2, 20,  2, [ orc_w_shield ])
+    _declare_role_figure(fotr_s8f2, 10,  3, [ orc_w_spear ])
+    _declare_role_figure(fotr_s8f2, 10,  4, [ orc_w_bow ])
 
     #########################################################################
     # THE FELLOWSHIP OF THE RING JOURNEYBOOK
@@ -2263,7 +2264,7 @@ defmodule SbgInv.Data do
     fotrjb_s3 = Repo.insert! %Scenario{
       name: "Short Cuts Make Long Delays",
       blurb: "Frodo and friends escape from searching Ringwraiths thanks to the timely appearance of Gildor Inglorion.",
-      date_age: 3, date_year: 3018, date_month: 9, date_day: 23, size: 8,
+      date_age: 3, date_year: 3018, date_month: 9, date_day: 23, size: 7,
       map_width: 48, map_height: 48, location: :the_shire
     }
 
@@ -2548,7 +2549,7 @@ defmodule SbgInv.Data do
     fotrjb_s15 = Repo.insert! %Scenario{
       name: "Lothlórien",
       blurb: "The Fellowship finds refuge from a Goblin search party within the edges of Lothlórien.",
-      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 50,
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 60,
       map_width: 48, map_height: 48, location: :lothlorien
     }
 
@@ -2763,7 +2764,7 @@ defmodule SbgInv.Data do
     fp_s5 = Repo.insert! %Scenario{
       name: "Flight to the Ford",
       blurb: "Can Frodo reach Rivendell before succumbing to the effects of the Morgul Blade?",
-      date_age: 3, date_year: 3018, date_month: 10, date_day: 20, size: 16,
+      date_age: 3, date_year: 3018, date_month: 10, date_day: 20, size: 15,
       map_width: 48, map_height: 48, location: :eriador
     }
 
@@ -2975,7 +2976,7 @@ defmodule SbgInv.Data do
     gif_s1 = Repo.insert! %Scenario{
       name: "The Gladden Fields",
       blurb: "Isildur must escape from an Orcish ambush to keep the One Ring.",
-      date_age: 3, date_year: 2, date_month: 0, date_day: 0, size: 121,
+      date_age: 3, date_year: 2, date_month: 0, date_day: 0, size: 151,
       map_width: 48, map_height: 24, location: :rhovanion
     }
 
@@ -3040,7 +3041,7 @@ defmodule SbgInv.Data do
     gif_s3 = Repo.insert! %Scenario{
       name: "Osgiliath",
       blurb: "Sauron probes Osgiliath, defended by the cream of Gondorian leadership.",
-      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, size: 117,
+      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, size: 127,
       map_width: 48, map_height: 48, location: :osgiliath
     }
 
@@ -3073,16 +3074,16 @@ defmodule SbgInv.Data do
     _declare_role_figure(gif_s3f2,  4,  9, [ orc_w_bow ])
     _declare_role_figure(gif_s3f2,  4, 10, [ orc_w_2h ])
     _declare_role_figure(gif_s3f2,  2, 11, [ orc_w_banner ])
-    _declare_role_figure(gif_s3f2,  2, 11, [ mordor_troll ])
-    _declare_role_figure(gif_s3f2,  3, 12, [ morgul_stalker ])
-    _declare_role_figure(gif_s3f2,  6, 13, [ m_uruk_hai_shield ])
-    _declare_role_figure(gif_s3f2,  3, 14, [ m_uruk_hai_2h ])
+    _declare_role_figure(gif_s3f2,  2, 12, [ mordor_troll ])
+    _declare_role_figure(gif_s3f2,  3, 13, [ morgul_stalker ])
+    _declare_role_figure(gif_s3f2,  6, 14, [ m_uruk_hai_shield ])
+    _declare_role_figure(gif_s3f2,  3, 15, [ m_uruk_hai_2h ])
 
     #========================================================================
     gif_s4 = Repo.insert! %Scenario{
       name: "Against the Southron Horde",
       blurb: "Boromir leads a charge of knights on a ride through a Haradrim camp.",
-      date_age: 3, date_year: 3001, date_month: 0, date_day: 0, size: 97,
+      date_age: 3, date_year: 3001, date_month: 0, date_day: 0, size: 94,
       map_width: 72, map_height: 24, location: :harad
     }
 
@@ -3284,7 +3285,7 @@ defmodule SbgInv.Data do
     harad_s6 = Repo.insert! %Scenario{
       name: "The Great Army of Harad",
       blurb: "What if Boromir had lead the army of Gondor against Suladân's hordes?",
-      date_age: 3, date_year: 3018, date_month: 0, date_day: 0, size: 237,
+      date_age: 3, date_year: 3018, date_month: 0, date_day: 0, size: 247,
       map_width: 72, map_height: 48, location: :harad
     }
 
@@ -3488,7 +3489,7 @@ defmodule SbgInv.Data do
     hobbit_s5 = Repo.insert! %Scenario{
       name: "Breakout",
       blurb: "Thorin's company continues their escape from Goblintown.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 45,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 52,
       map_width: 48, map_height: 48, location: :goblintown
     }
 
@@ -3513,7 +3514,7 @@ defmodule SbgInv.Data do
     hobbit_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s5.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(hobbit_s5f2,  1, 1, "Goblin King", [ goblin_king, goblin_king_throw ])
     _declare_role_figure(hobbit_s5f2,  1, 2, [ grinnah ])
-    _declare_role_figure(hobbit_s5f2, 36, 4, [ goblintown_g ])
+    _declare_role_figure(hobbit_s5f2, 36, 3, [ goblintown_g ])
 
     #========================================================================
     hobbit_s6 = Repo.insert! %Scenario{
@@ -3523,7 +3524,7 @@ defmodule SbgInv.Data do
       map_width: 48, map_height: 48, location: :rhovanion
     }
 
-    Repo.insert! %ScenarioResource{scenario_id: hobbit_s6.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 7, page: 126}
+    Repo.insert! %ScenarioResource{scenario_id: hobbit_s6.id, resource_type: :source, book: :hobbit, title: "The Hobbit", sort_order: 7, page: 124}
 
     hobbit_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s6.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(hobbit_s6f1, 1,  1, [ thorin ])
@@ -3543,17 +3544,16 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s6f1, 1, 15, "Gandalf the Grey", gandalf_grey_foot_all)
 
     hobbit_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s6.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
-    _declare_role_figure(hobbit_s6f2,  1, 1, [ azog_warg ])
-    _declare_role_figure(hobbit_s6f2,  1, 2, [ narzug_warg ])
-    _declare_role_figure(hobbit_s6f2,  1, 3, [ fimbul_warg ])
-    _declare_role_figure(hobbit_s6f2,  6, 4, [ hunter_orc_warg ])
-    _declare_role_figure(hobbit_s6f2,  6, 5, [ fell_warg ])
+    _declare_role_figure(hobbit_s6f2,   1, 1, [ fimbul_warg ])
+    _declare_role_figure(hobbit_s6f2,   1, 2, [ narzug_warg ])
+    _declare_role_figure(hobbit_s6f2,  12, 3, [ hunter_orc_warg ])
+    _declare_role_figure(hobbit_s6f2,  12, 4, [ fell_warg ])
 
     #========================================================================
     hobbit_s7 = Repo.insert! %Scenario{
       name: "Into the Fire",
       blurb: "Thorin defends his company against Azog himself.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 45,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 22,
       map_width: 48, map_height: 48, location: :rhovanion
     }
 
@@ -3566,7 +3566,11 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s7f1, 4,  4, [ eagle ])
 
     hobbit_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: hobbit_s7.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
-    _declare_role_figure(hobbit_s7f2,  1, 1, [ fimbul_warg ])
+    _declare_role_figure(hobbit_s7f2,  1, 1, [ azog_warg ])
+    _declare_role_figure(hobbit_s7f2,  1, 2, [ narzug_warg ])
+    _declare_role_figure(hobbit_s7f2,  1, 3, [ fimbul_warg ])
+    _declare_role_figure(hobbit_s7f2,  6, 4, [ hunter_orc_warg ])
+    _declare_role_figure(hobbit_s7f2,  6, 5, [ fell_warg ])
 
     #========================================================================
     hobbit_s8 = Repo.insert! %Scenario{
@@ -3710,8 +3714,8 @@ defmodule SbgInv.Data do
     _declare_role_figure(hobbit_s12f2,  1, 1, [ lurtz ])
     _declare_role_figure(hobbit_s12f2,  1, 2, [ ugluk ])
     _declare_role_figure(hobbit_s12f2,  1, 3, [ uruk_hai_captain_shield ])
-    _declare_role_figure(hobbit_s12f2, 14, 3, [ uruk_hai_s_sword_shield ])
-    _declare_role_figure(hobbit_s12f2, 13, 3, [ uruk_hai_s_bow ])
+    _declare_role_figure(hobbit_s12f2, 14, 4, [ uruk_hai_s_sword_shield ])
+    _declare_role_figure(hobbit_s12f2, 13, 5, [ uruk_hai_s_bow ])
 
     #========================================================================
     hobbit_s13 = Repo.insert! %Scenario{
@@ -3750,7 +3754,7 @@ defmodule SbgInv.Data do
     hobbit_s14 = Repo.insert! %Scenario{
       name: "The Battle of Pelennor Fields",
       blurb: "The forces of Good counterattack the Evil forces besieging Minas Tirith.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 257,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 306,
       map_width: 120, map_height: 72, location: :minas_tirith
     }
 
@@ -3963,7 +3967,7 @@ defmodule SbgInv.Data do
     kd_s4 = Repo.insert! %Scenario{
       name: "Ambush at the Crossroads",
       blurb: "Durburz sets a trap for Balin and his expedition to reclaim the kingdom of Khazad-dûm.",
-      date_age: 3, date_year: 2989, date_month: 0, date_day: 0, size: 79,
+      date_age: 3, date_year: 2989, date_month: 0, date_day: 0, size: 77,
       map_width: 48, map_height: 48, location: :moria
     }
 
@@ -4140,7 +4144,7 @@ defmodule SbgInv.Data do
     mnew_s1 = Repo.insert! %Scenario{
       name: "The Slopes of Mount Doom",
       blurb: "Sauron faces down the Elves and Men at the end of the Second Age.",
-      date_age: 2, date_year: 3441, date_month: 0, date_day: 0, size: 101,
+      date_age: 2, date_year: 3441, date_month: 0, date_day: 0, size: 110,
       map_width: 48, map_height: 48, location: :mordor
     }
 
@@ -4240,7 +4244,7 @@ defmodule SbgInv.Data do
     mnew_s5 = Repo.insert! %Scenario{
       name: "The Black Gate Opens",
       blurb: "Aragorn leads the final battle again the forces of Mordor.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 105,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 108,
       map_width: 48, map_height: 48, location: :morannon
     }
 
@@ -4281,7 +4285,7 @@ defmodule SbgInv.Data do
     ma_s0 = Repo.insert! %Scenario{
       name: "Blood at Westgate",
       blurb: "Endeavoring to escape the destruction of the kingdom of Khazad-dûm, the Dwarves run into the Watcher.",
-      date_age: 3, date_year: 2994, date_month: 0, date_day: 0, size: 78,
+      date_age: 3, date_year: 2994, date_month: 0, date_day: 0, size: 80,
       map_width: 72, map_height: 48, location: :moria
     }
 
@@ -4350,16 +4354,16 @@ defmodule SbgInv.Data do
     ma_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: ma_s2.id, faction: :moria, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(ma_s2f2, 1,  1, "Balrog", [ balrog, balrog_plastic, balrog_whip ])
     _declare_role_figure(ma_s2f2, 2,  2, "Moria Goblin Captains with shield", [ moria_captain ])
-    _declare_role_figure(ma_s2f2, 1,  1, [ moria_shaman ])
-    _declare_role_figure(ma_s2f2, 8,  5, [ moria_g_spear ])
-    _declare_role_figure(ma_s2f2, 8,  6, [ moria_g_bow ])
-    _declare_role_figure(ma_s2f2, 9,  7, [ moria_g_shield ])
+    _declare_role_figure(ma_s2f2, 1,  3, [ moria_shaman ])
+    _declare_role_figure(ma_s2f2, 8,  4, [ moria_g_spear ])
+    _declare_role_figure(ma_s2f2, 8,  5, [ moria_g_bow ])
+    _declare_role_figure(ma_s2f2, 9,  6, [ moria_g_shield ])
 
     #========================================================================
     ma_s3 = Repo.insert! %Scenario{
       name: "Flight to Lothlórien",
       blurb: "The Moria force hunting for the Fellowship become the hunted.",
-      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 93,
+      date_age: 3, date_year: 3019, date_month: 1, date_day: 15, size: 91,
       map_width: 48, map_height: 48, location: :lothlorien
     }
 
@@ -4394,10 +4398,10 @@ defmodule SbgInv.Data do
 
     ma_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: ma_s4.id, faction: :fellowship, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(ma_s4f1, 1,  1, "Frodo Baggins", frodo_foot)
-    _declare_role_figure(ma_s4f1, 1,  1, "Samwise Gamgee", sam_foot_all)
-    _declare_role_figure(ma_s4f1, 1,  1, "Meriadoc Brandybuck", merry_foot_all)
-    _declare_role_figure(ma_s4f1, 1,  1, "Peregrin Took", pippin_foot_all)
-    _declare_role_figure(ma_s4f1, 1,  1, [ tom_bombadil ])
+    _declare_role_figure(ma_s4f1, 1,  2, "Samwise Gamgee", sam_foot_all)
+    _declare_role_figure(ma_s4f1, 1,  3, "Meriadoc Brandybuck", merry_foot_all)
+    _declare_role_figure(ma_s4f1, 1,  4, "Peregrin Took", pippin_foot_all)
+    _declare_role_figure(ma_s4f1, 1,  5, [ tom_bombadil ])
 
     ma_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: ma_s4.id, faction: :angmar, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(ma_s4f2, 4,  1, [ barrow_wight ])
@@ -4616,7 +4620,7 @@ defmodule SbgInv.Data do
     rotk_s10 = Repo.insert! %Scenario{
       name: "The Battle of the Pelennor Fields",
       blurb: "The climax of the siege of Minas Tirith.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 117,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 115,
       map_width: 72, map_height: 48, location: :minas_tirith
     }
 
@@ -4812,7 +4816,7 @@ defmodule SbgInv.Data do
     rotk_s16 = Repo.insert! %Scenario{
       name: "Dáin's Last Stand",
       blurb: "The climactic battle of the War of the Ring in the north.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 139,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 145,
       map_width: 48, map_height: 48, location: :erebor
     }
 
@@ -4855,7 +4859,7 @@ defmodule SbgInv.Data do
     rotk_s17 = Repo.insert! %Scenario{
       name: "Assault on Lothlorien",
       blurb: "The War of the Ring comes to Lothlorien.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 117,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 25, size: 111,
       map_width: 72, map_height: 48, location: :lothlorien
     }
 
@@ -4868,7 +4872,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(rotk_s17f1, 10,  4, [ galadhrim_w_bow ])
     _declare_role_figure(rotk_s17f1, 10,  5, [ galadhrim_w_blade ])
     _declare_role_figure(rotk_s17f1, 17,  6, [ wood_elf_w_bow ])
-    _declare_role_figure(rotk_s17f1,  3, 12, [ wood_elf_w_banner ])
+    _declare_role_figure(rotk_s17f1,  3,  7, [ wood_elf_w_banner ])
 
     rotk_s17f2 = Repo.insert! %ScenarioFaction{scenario_id: rotk_s17.id, faction: :isengard, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotk_s17f2,  2,  1, "Uruk-hai Captain", [ uruk_hai_captain_shield, uruk_hai_captain_2h ])
@@ -4983,7 +4987,7 @@ defmodule SbgInv.Data do
     rotkjb_s4 = Repo.insert! %Scenario{
       name: "The Walls of Minas Tirith",
       blurb: "The forces of Mordor lay siege to Minas Tirith.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 14, size: 67,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 14, size: 72,
       map_width: 48, map_height: 24, location: :minas_tirith
     }
 
@@ -5020,7 +5024,7 @@ defmodule SbgInv.Data do
     rotkjb_s5 = Repo.insert! %Scenario{
       name: "The White Rider and the Black",
       blurb: "The Witch-King of Angmar confronts Gandalf at the Gate of Minas Tirith.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 83,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 15, size: 82,
       map_width: 48, map_height: 48, location: :minas_tirith
     }
 
@@ -5038,17 +5042,17 @@ defmodule SbgInv.Data do
 
     rotkjb_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s5.id, faction: :mordor, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s5f2,  1,  1, "The Witch-king of Angmar on horse", [ witch_king_horse, witch_king_horse_mt ])
-    _declare_role_figure(rotkjb_s5f2,  2,  1, "Orc Captains with shield", [ orc_captain ])
-    _declare_role_figure(rotkjb_s5f2,  8,  2, [ orc_w_spear ])
-    _declare_role_figure(rotkjb_s5f2,  8,  3, [ orc_w_shield ])
-    _declare_role_figure(rotkjb_s5f2,  4,  4, [ orc_w_bow ])
-    _declare_role_figure(rotkjb_s5f2,  4,  5, [ orc_w_2h ])
-    _declare_role_figure(rotkjb_s5f2,  4,  6, [ orc_m_shield ])
-    _declare_role_figure(rotkjb_s5f2,  4,  7, [ orc_m_spear ])
-    _declare_role_figure(rotkjb_s5f2,  1,  8, [ easterling_captain ])
-    _declare_role_figure(rotkjb_s5f2,  4,  9, [ easterling_w_shield ])
-    _declare_role_figure(rotkjb_s5f2,  4, 10, [ easterling_w_bow ])
-    _declare_role_figure(rotkjb_s5f2,  2, 11, [ easterling_w_shield_spear ])
+    _declare_role_figure(rotkjb_s5f2,  2,  2, "Orc Captains with shield", [ orc_captain ])
+    _declare_role_figure(rotkjb_s5f2,  8,  3, [ orc_w_spear ])
+    _declare_role_figure(rotkjb_s5f2,  8,  4, [ orc_w_shield ])
+    _declare_role_figure(rotkjb_s5f2,  4,  5, [ orc_w_bow ])
+    _declare_role_figure(rotkjb_s5f2,  4,  6, [ orc_w_2h ])
+    _declare_role_figure(rotkjb_s5f2,  4,  7, [ orc_m_shield ])
+    _declare_role_figure(rotkjb_s5f2,  4,  8, [ orc_m_spear ])
+    _declare_role_figure(rotkjb_s5f2,  1,  9, [ easterling_captain ])
+    _declare_role_figure(rotkjb_s5f2,  4, 10, [ easterling_w_shield ])
+    _declare_role_figure(rotkjb_s5f2,  4, 11, [ easterling_w_bow ])
+    _declare_role_figure(rotkjb_s5f2,  2, 12, [ easterling_w_shield_spear ])
 
     #========================================================================
     rotkjb_s6 = Repo.insert! %Scenario{
@@ -5359,7 +5363,7 @@ defmodule SbgInv.Data do
     roa_s4 = Repo.insert! %Scenario{
       name: "Ambush in Rhudaur",
       blurb: "Aragorn's father Arathorn is ambushed by villains in the wild.",
-      date_age: 3, date_year: 2933, date_month: 0, date_day: 0, size: 40,
+      date_age: 3, date_year: 2933, date_month: 0, date_day: 0, size: 38,
       map_width: 48, map_height: 48, location: :arnor
     }
 
@@ -5548,7 +5552,7 @@ defmodule SbgInv.Data do
     sots_s6 = Repo.insert! %Scenario{
       name: "The Battle of Bywater",
       blurb: "The last battle of the War of the Ring.",
-      date_age: 3, date_year: 3019, date_month: 11, date_day: 1, size: 44,
+      date_age: 3, date_year: 3019, date_month: 11, date_day: 1, size: 45,
       map_width: 36, map_height: 24, location: :the_shire
     }
 
@@ -5659,7 +5663,7 @@ defmodule SbgInv.Data do
 
     sots_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: sots_s10.id, faction: :angmar, suggested_points: 200, actual_points: 139, sort_order: 2}
     _declare_role_figure(sots_s10f2, 1, 1, [ warg_chieftain ])
-    _declare_role_figure(sots_s10f2, 8, 1, [ warg ])
+    _declare_role_figure(sots_s10f2, 8, 2, [ warg ])
 
     #========================================================================
     sots_s11 = Repo.insert! %Scenario{
@@ -5837,7 +5841,7 @@ defmodule SbgInv.Data do
     saf_s6 = Repo.insert! %Scenario{
       name: "Surrounded!",
       blurb: "Elves under Glorfindel are surrounded by Orcs on one side and Goblins on the other.",
-      date_age: 3, date_year: 2925, date_month: 0, date_day: 0, size: 101,
+      date_age: 3, date_year: 2925, date_month: 0, date_day: 0, size: 96,
       map_width: 48, map_height: 48, location: :eriador
     }
 
@@ -6141,7 +6145,7 @@ defmodule SbgInv.Data do
     sog_s1 = Repo.insert! %Scenario{
       name: "Prologue: Osgiliath",
       blurb: "Sauron launches his army, led by Gothmog, against a Gondorian force led by Boromir and Faramir",
-      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, size: 110,
+      date_age: 3, date_year: 3018, date_month: 6, date_day: 20, size: 105,
       map_width: 48, map_height: 48, location: :osgiliath
     }
 
@@ -6278,7 +6282,7 @@ defmodule SbgInv.Data do
     sog_s5 = Repo.insert! %Scenario{
       name: "The Siege of Minas Tirith",
       blurb: "Gandalf the White defends the walls of Minas Tirith from the forces of Mordor under Gothmog.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 14, size: 95,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 14, size: 97,
       map_width: 48, map_height: 48, location: :minas_tirith
     }
 
@@ -6456,23 +6460,23 @@ defmodule SbgInv.Data do
     Repo.insert! %ScenarioResource{scenario_id: tba_s2.id, resource_type: :source, book: :tba, title: "There and Back Again", sort_order: 2, page: 12}
 
     tba_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s2.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _declare_role_figure(tba_s2f1,  1, 1, [ thorin ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ balin ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ dwalin ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ fili ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ kili ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ oin ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ gloin ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ ori ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ nori ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ dori ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ bifur ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ bofur ])
-    _declare_role_figure(tba_s2f1,  1, 1, [ bombur ])
-    _declare_role_figure(tba_s2f1,  1, 1, "Bilbo Baggins", bilbo_all)
-    _declare_role_figure(tba_s2f1,  1, 1, "Legolas", legolas_foot_all)
-    _declare_role_figure(tba_s2f1,  1, 1, "Tauriel", [ tauriel, tauriel_exile ])
-    _declare_role_figure(tba_s2f1, 20, 1, [ mirkwood_ranger ])
+    _declare_role_figure(tba_s2f1,  1,  1, [ thorin ])
+    _declare_role_figure(tba_s2f1,  1,  2, [ balin ])
+    _declare_role_figure(tba_s2f1,  1,  3, [ dwalin ])
+    _declare_role_figure(tba_s2f1,  1,  4, [ fili ])
+    _declare_role_figure(tba_s2f1,  1,  5, [ kili ])
+    _declare_role_figure(tba_s2f1,  1,  6, [ oin ])
+    _declare_role_figure(tba_s2f1,  1,  7, [ gloin ])
+    _declare_role_figure(tba_s2f1,  1,  8, [ ori ])
+    _declare_role_figure(tba_s2f1,  1,  9, [ nori ])
+    _declare_role_figure(tba_s2f1,  1, 10, [ dori ])
+    _declare_role_figure(tba_s2f1,  1, 11, [ bifur ])
+    _declare_role_figure(tba_s2f1,  1, 12, [ bofur ])
+    _declare_role_figure(tba_s2f1,  1, 13, [ bombur ])
+    _declare_role_figure(tba_s2f1,  1, 14, "Bilbo Baggins", bilbo_all)
+    _declare_role_figure(tba_s2f1,  1, 15, "Legolas", legolas_foot_all)
+    _declare_role_figure(tba_s2f1,  1, 16, "Tauriel", [ tauriel, tauriel_exile ])
+    _declare_role_figure(tba_s2f1, 20, 17, [ mirkwood_ranger ])
 
     tba_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s2.id, faction: :dol_guldur, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(tba_s2f2, 18, 1, [ mirkwood_spider ])
@@ -6481,7 +6485,7 @@ defmodule SbgInv.Data do
     tba_s3 = Repo.insert! %Scenario{
       name: "Barrels I: Open the Gate",
       blurb: "Azog's troops catch up to the dwarves, who are escaping in barrels from the elves.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 74,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 76,
       map_width: 72, map_height: 48, location: :mirkwood
     }
 
@@ -6624,7 +6628,7 @@ defmodule SbgInv.Data do
     tba_s8 = Repo.insert! %Scenario{
       name: "Fire and Water",
       blurb: "Smaug attacks Lake-town.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 38,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 37,
       map_width: 48, map_height: 48, location: :laketown
     }
 
@@ -6654,7 +6658,7 @@ defmodule SbgInv.Data do
     tba_s9 = Repo.insert! %Scenario{
       name: "The Fall of the Necromancer",
       blurb: "The White Council attacks the forces of Evil in Dol Guldur.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 16,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 15,
       map_width: 24, map_height: 24, location: :dol_guldur
     }
 
@@ -6681,7 +6685,7 @@ defmodule SbgInv.Data do
     tba_s10 = Repo.insert! %Scenario{
       name: "The Iron Hills Arrive",
       blurb: "Fighting breaks out between the Elves at Erebor and the newly-arrived Iron Hills dwarves led by Dain Ironfoot.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 76,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 75,
       map_width: 48, map_height: 48, location: :erebor
     }
 
@@ -6699,13 +6703,13 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s10f2,  1, 2, [ iron_hills_captain_goat ])
     _declare_role_figure(tba_s10f2, 24, 3, [ iron_hills_goat_rider ])
     _declare_role_figure(tba_s10f2,  2, 4, [ iron_hills_ballista ])
-    _declare_role_figure(tba_s10f2,  8, 4, [ iron_hills_ballista_crew ])
+    _declare_role_figure(tba_s10f2,  8, 5, [ iron_hills_ballista_crew ])
 
     #========================================================================
     tba_s11 = Repo.insert! %Scenario{
       name: "The Clouds Burst",
       blurb: "The Orcs arrive at Erebor to break up the fighting between the Elves and the Dwarves.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 85,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 92,
       map_width: 48, map_height: 48, location: :erebor
     }
 
@@ -6795,7 +6799,7 @@ defmodule SbgInv.Data do
     tba_s15 = Repo.insert! %Scenario{
       name: "Battle in the Streets",
       blurb: "Bard and friends defend Dale from the depredations of the Gundabads.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 70,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 52,
       map_width: 48, map_height: 48, location: :dale
     }
 
@@ -6892,7 +6896,7 @@ defmodule SbgInv.Data do
     tba_s19 = Repo.insert! %Scenario{
       name: "To The King!",
       blurb: "Thorin's company enters the fight for Erebor.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 58,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 83,
       map_width: 48, map_height: 48, location: :erebor
     }
 
@@ -7126,7 +7130,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s28f2,  1, 1, "Azog", [ azog, azog_lt ])
     _declare_role_figure(tba_s28f2,  1, 2, [ dungeon_keeper ])
     _declare_role_figure(tba_s28f2,  3, 3, [ gundabad_orc_captain ])
-    _declare_role_figure(tba_s28f2, 48, 3, "Gundabad Orcs", [ gundabad_orc_shield, gundabad_orc_spear ])
+    _declare_role_figure(tba_s28f2, 48, 4, "Gundabad Orcs", [ gundabad_orc_shield, gundabad_orc_spear ])
 
     #========================================================================
     tba_s29 = Repo.insert! %Scenario{
@@ -7152,7 +7156,7 @@ defmodule SbgInv.Data do
     tba_s30 = Repo.insert! %Scenario{
       name: "Dimrill Dale III: The Oakenshield",
       blurb: "Thorin avenges his kin, though not completely (at least in the movie).",
-      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 38,
+      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 80,
       map_width: 48, map_height: 48, location: :moria
     }
 
@@ -7394,7 +7398,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(ttt_s9f1,  1,  5, [ gondor_captain_mt ])
     _declare_role_figure(ttt_s9f1,  8,  6, [ gondor_rog ])
     _declare_role_figure(ttt_s9f1,  8,  7, [ gondor_womt_spear_shield ])
-    _declare_role_figure(ttt_s9f1,  8,  9, [ gondor_womt_bow ])
+    _declare_role_figure(ttt_s9f1,  8,  8, [ gondor_womt_bow ])
 
     ttt_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: ttt_s9.id, faction: :mordor,  suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(ttt_s9f2,  2,  1, "Orc Captains with shield", [ orc_captain ])
@@ -7531,7 +7535,7 @@ defmodule SbgInv.Data do
     tttjb_s4 = Repo.insert! %Scenario{
       name: "The Wrath of Rohan",
       blurb: "Eomer's riders ambush the Orcs and Uruk-hai as they bring Merry and Pippin to Isengard.",
-      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, size: 86,
+      date_age: 3, date_year: 3019, date_month: 2, date_day: 29, size: 76,
       map_width: 48, map_height: 48, location: :rohan
     }
 
@@ -7617,7 +7621,7 @@ defmodule SbgInv.Data do
     tttjb_s7 = Repo.insert! %Scenario{
       name: "The Second Battle of the Fords of Isen",
       blurb: "Erkenbrand delays an Isengard force trying to whittle down the Rohirrim.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 2, size: 104,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 2, size: 102,
       map_width: 48, map_height: 48, location: :rohan
     }
 
@@ -7706,7 +7710,7 @@ defmodule SbgInv.Data do
     tttjb_s10 = Repo.insert! %Scenario{
       name: "The Passage of the Marshes",
       blurb: "Sméagol leads Frodo and Sam through the Dead Marshes while a Ringwraith on a Fell Beast searches overhead.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, size: 14,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 1, size: 13,
       map_width: 36, map_height: 36, location: :rhovanion
     }
 
@@ -7742,11 +7746,11 @@ defmodule SbgInv.Data do
 
     tttjb_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: tttjb_s11.id, faction: :harad, suggested_points: 625, actual_points: 0, sort_order: 2}
     _declare_role_figure(tttjb_s11f2,  1, 1, [ harad_chieftain ])
-    _declare_role_figure(tttjb_s11f2,  1, 1, [ harad_chieftain_horse ])
-    _declare_role_figure(tttjb_s11f2,  1, 1, [ mumak ])
-    _declare_role_figure(tttjb_s11f2, 18, 1, [ harad_w_spear ])
-    _declare_role_figure(tttjb_s11f2, 18, 1, [ harad_w_bow ])
-    _declare_role_figure(tttjb_s11f2,  1, 1, [ harad_w_banner ])
+    _declare_role_figure(tttjb_s11f2,  1, 2, [ harad_chieftain_horse ])
+    _declare_role_figure(tttjb_s11f2,  1, 3, [ mumak ])
+    _declare_role_figure(tttjb_s11f2, 18, 4, [ harad_w_spear ])
+    _declare_role_figure(tttjb_s11f2, 18, 5, [ harad_w_bow ])
+    _declare_role_figure(tttjb_s11f2,  1, 6, [ harad_w_banner ])
 
     #========================================================================
     tttjb_s12 = Repo.insert! %Scenario{
@@ -7911,7 +7915,7 @@ defmodule SbgInv.Data do
     sbg_s1 = Repo.insert! %Scenario{
       name: "Out of the Frying Pan",
       blurb: "Thorin's Company tries to escape Azog's Hunters on the eastern side of the Misty Mountains.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 35,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 33,
       map_width: 48, map_height: 48, location: :rhovanion
     }
 
@@ -8105,7 +8109,7 @@ defmodule SbgInv.Data do
     mordor_s3 = Repo.insert! %Scenario{
       name: "The Pass of Cirith Ungol",
       blurb: "Elladan and Elrohir pass through Cirith Ungol to bring news of Sauron back the White Council.",
-      date_age: 3, date_year: 2951, date_month: 0, date_day: 0, size: 95,
+      date_age: 3, date_year: 2951, date_month: 0, date_day: 0, size: 92,
       map_width: 48, map_height: 48, location: :minas_morgul
     }
 
@@ -8143,7 +8147,7 @@ defmodule SbgInv.Data do
     mordor_s4 = Repo.insert! %Scenario{
       name: "Vengeance of the Nazgul",
       blurb: "Most of the ringwraiths ambush Dáin Ironfoot and his escort.",
-      date_age: 3, date_year: 3017, date_month: 0, date_day: 0, size: 61,
+      date_age: 3, date_year: 3017, date_month: 0, date_day: 0, size: 51,
       map_width: 48, map_height: 48, location: :rhovanion
     }
 
@@ -8166,11 +8170,11 @@ defmodule SbgInv.Data do
 
     mordor_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: mordor_s4.id, faction: :mordor, suggested_points: 780, actual_points: 0, sort_order: 2}
     _declare_role_figure(mordor_s4f2,  1,  1, "Witch-king of Angmar with Crown of Morgul", [ witch_king, witch_king_flail ])
-    _declare_role_figure(mordor_s4f2,  1,  1, [ khamul ])
-    _declare_role_figure(mordor_s4f2,  1,  1, [ dark_marshal ])
-    _declare_role_figure(mordor_s4f2,  1,  1, [ shadow_lord ])
-    _declare_role_figure(mordor_s4f2,  1,  1, [ tainted ])
-    _declare_role_figure(mordor_s4f2,  1,  1, [ undying ])
+    _declare_role_figure(mordor_s4f2,  1,  2, [ khamul ])
+    _declare_role_figure(mordor_s4f2,  1,  3, [ dark_marshal ])
+    _declare_role_figure(mordor_s4f2,  1,  4, [ shadow_lord ])
+    _declare_role_figure(mordor_s4f2,  1,  5, [ tainted ])
+    _declare_role_figure(mordor_s4f2,  1,  6, [ undying ])
 
     #========================================================================
     mordor_s5 = Repo.insert! %Scenario{
