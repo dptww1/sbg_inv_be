@@ -5075,7 +5075,7 @@ defmodule SbgInv.Data do
 
     rotkjb_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: rotkjb_s6.id, faction: :harad, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(rotkjb_s6f2,  1,  1, "Suladân the Serpent Lord on horse with lance", [ suladan_horse, suladan_lord_horse ])
-    _declare_role_figure(rotkjb_s6f2,  2,  2, "Haradrim Chieftain on horse with lance", [ harad_chieftain_horse ])
+    _declare_role_figure(rotkjb_s6f2,  2,  2, "Haradrim Chieftains on horse with lance", [ harad_chieftain_horse ])
     _declare_role_figure(rotkjb_s6f2,  6,  3, [ harad_raider ])
     _declare_role_figure(rotkjb_s6f2,  6,  4, [ harad_raider_lance ])
     _declare_role_figure(rotkjb_s6f2, 10,  5, [ serpent_rider ])
