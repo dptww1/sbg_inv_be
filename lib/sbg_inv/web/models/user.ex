@@ -31,7 +31,7 @@ defmodule SbgInv.Web.User do
   def update_password_changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:password])
-    |> validate_length(:password, min: 6)
+    |> validate_length(:password, min: 3)
     |> put_password_hash
   end
 
