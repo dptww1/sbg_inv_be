@@ -39,7 +39,7 @@ defmodule SbgInv.UserTest do
 
   test "registration_changeset, password too short" do
     changeset = User.registration_changeset(
-      %User{}, Map.put(@valid_attrs, :password, "12345")
+      %User{}, Map.put(@valid_attrs, :password, "12")
     )
     refute changeset.valid?
   end
