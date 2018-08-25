@@ -24,6 +24,7 @@ defmodule SbgInv.Web.Router do
 
     resources "/faction",        FactionController,       only: [:show]
     resources "/figure",         FigureController,        only: [:show]
+    resources "/newsitem",       NewsItemController,      only: [:index]
     resources "/recalc",         RecalcController,        only: [:index]
     resources "/reset-password", ResetPasswordController, only: [:create]
     resources "/search",         SearchController,        only: [:index]
