@@ -9,7 +9,7 @@ use Mix.Config
 config :sbg_inv, SbgInv.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "ygLXFi4UG89ZvH/nn1SWdMNw2z4HmJrwj5suStMwI3rqvqD/l1WzaJTHM7ifx+1r",
-  render_errors: [accepts: ~w(html json)],
+  render_errors: [accepts: ~w(json)],
   pubsub: [name: SbgInv.Web.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
