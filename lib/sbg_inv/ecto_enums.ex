@@ -6,36 +6,45 @@ defenum Faction,
   arnor:            2,
   azogs_hunters:    3,
   azogs_legion:     4,
-  dale:             5,
-  mirkwood:         6,  # dark denizens
+  barad_dur:        5,
+  dale:             6,
   desolator_north:  7,
   dol_guldur:       8,
-  durins_folk:      9,
+  dunharrow:        9,
   easterlings:     10,
-  elrond:          11,
-  erebor:          12,
-  rivendell:       13,  # eregion & rivendell
+  erebor:          11,
+  fangorn:         12,
+  far_harad:       13,
   fellowship:      14,
   fiefdoms:        15,
   goblintown:      16,
   harad:           17,
   iron_hills:      18,
   isengard:        19,
-  laketown:        20,
-  lothlorien:      21,
-  minas_tirith:    22,
-  mordor:          23,
-  moria:           24,
-  numenor:         25,
-  radagast:        26,
-  rohan:           27,
-  shire:           28,
-  survivors:       29,
-  thorins_co:      30,
-  thranduil:       31,
-  trolls:          32,
-  wanderers:       33,
-  white_council:   34
+  khand:           20,
+  khazad_dum:      21,
+  laketown:        22,
+  lothlorien:      23,
+  minas_tirith:    24,
+  mirkwood:        25,
+  misty_mountains: 26,
+  mordor:          27,
+  moria:           28,
+  numenor:         29,
+  radagast:        30,
+  rangers:         31,
+  rivendell:       32,
+  rogues:          33,
+  rohan:           34,
+  shire:           35,
+  survivors:       36,
+  thorins_co:      37,
+  thranduil:       38,
+  trolls:          39,
+  umbar:           40,
+  wanderers:       41,
+  white_council:   42,
+  wildmen:         43
 
 defenum FigureType,
   hero:    0,
@@ -76,7 +85,7 @@ defenum Location,
 
 defenum ScenarioResourceBook,
   bot5a:    0,   # Battle of the Five Armies
-  bpf:      1,   # Battle of the Pelennor Fields
+  bpf:      1,   # Battle of the Pelennor Fields (Expansion)
   dos:      2,   # The Desolation of Smaug
   fotn:     3,   # The Fall of the Necromancer
   fotr:     4,   # Fellowship of the Ring
@@ -102,7 +111,9 @@ defenum ScenarioResourceBook,
   sots:    24,   # The Scouring of the Shire
   tba:     25,   # There and Back Again
   ttt:     26,   # The Two Towers
-  ttt_jb:  27    # The Two Towers Journeybook
+  ttt_jb:  27,   # The Two Towers Journeybook
+  bpf_ss:  28,   # Battle of the Pelennor Fields Starter Set
+  alotr:   29    # Armies of the Lord of the Rings
 
 defenum ScenarioResourceType,
   source:           0,
