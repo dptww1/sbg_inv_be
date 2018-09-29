@@ -1,20 +1,18 @@
-# SbgInv
+# SBG_INV_BE
 
-To start your Phoenix app:
+This is the `[S]`trategy `[B]`attle `[G]`ame `[Inv]`entory tracker - `[B]`ack `[E]`nd.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `npm install`
-  * Start Phoenix endpoint with `mix phoenix.server`
+The game referred to is Games Workshop's Middle Earth Strategy Battle Game, which is a miniatures game
+where in you refight the battles from the _Lord of the Rings_ books and movies.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+This application provides services for users to see the available scenarios and the figures needed to play them.
+Registered users can track their acquisition and painting progress to see what scenarios they can play based on
+their current collection.
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+I expect most users would want to use these services through a front end providing a friendlier interface.  That's
+what the [sbg_inv_fe](https://github.com/dptww1/sbg_inv_fe) project is for.
 
-## Learn more
+I hope eventually to provide API documentation, but you know how that goes.
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: http://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+This project was written in Elixir so that I could experiment with functional programming and see what all the
+Elixir buzz was about.
