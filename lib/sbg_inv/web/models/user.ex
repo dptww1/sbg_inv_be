@@ -12,25 +12,19 @@ defmodule SbgInv.Web.User do
     timestamps()
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
-  def changeset(struct, params \\ %{}) do
-    struct
-    |> cast(params, [:name])
-    |> validate_length(:name, min: 1, max: 255)
-    |> update_email_changeset(params)
-  end
-
   def registration_changeset(struct, params \\ %{}) do
     struct
-    |> changeset(params)
+    |> cast(params, [:name])
+    |> validate_required([:name])
+    |> validate_length(:name, min: 1, max: 255)
+    |> update_email_changeset(params)
     |> update_password_changeset(params)
   end
 
   def update_password_changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:password])
+    |> validate_required([:password])
     |> validate_length(:password, min: 3)
     |> put_password_hash
   end
