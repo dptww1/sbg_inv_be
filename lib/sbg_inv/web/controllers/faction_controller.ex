@@ -20,10 +20,9 @@ defmodule SbgInv.Web.FactionController do
   defp _show(conn, -1) do
     query = from f in Figure,
             left_join: role in assoc(f, :role),
-            left_join: user_figure in assoc(f, :user_figure),
+            left_join: user_figure in assoc(f, :user_figure), on: (user_figure.user_id == ^user_id(conn)),
             group_by: [f.id, user_figure.owned, user_figure.painted, user_figure.figure_id, user_figure.user_id],
             where: fragment("f0.id not in (SELECT figure_id FROM faction_figures)"),
-            where: user_figure.user_id == ^user_id(conn) or is_nil(user_figure.user_id),
             select: %{
               id: f.id,
               name: f.name,
@@ -44,12 +43,10 @@ defmodule SbgInv.Web.FactionController do
     conn = Authentication.optionally(conn)
 
     ff_query = from f in Figure,
-               join: ff in assoc(f, :faction_figure),
+               join: ff in assoc(f, :faction_figure), on: (ff.faction_id == ^faction_id),
                left_join: r in assoc(f, :role),
-               left_join: uf in assoc(f, :user_figure),
+               left_join: uf in assoc(f, :user_figure), on: (uf.user_id == ^user_id(conn)),
                group_by: [f.id, uf.owned, uf.painted, uf.user_id],
-               where: ff.faction_id == ^faction_id and (uf.user_id == ^user_id(conn) or is_nil(uf.user_id)),
-               #preload: [user_figure: ^user_query],
                select: %{
                   id: f.id,
                   name: f.name,
