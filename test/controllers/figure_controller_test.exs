@@ -28,6 +28,8 @@ defmodule SbgInv.Web.FigureControllerTest do
     conn = get conn, figure_path(conn, :show, fid)
     assert json_response(conn, 200)["data"] == %{
       "id" => fid,
+      "type" => "hero",
+      "unique" => true,
       "name" => "ABC",
       "plural_name" => "ABCs",
       "factions" => [ "azogs_legion", "desolator_north" ],
@@ -62,6 +64,8 @@ defmodule SbgInv.Web.FigureControllerTest do
     conn = get conn, figure_path(conn, :show, fid)
     assert json_response(conn, 200)["data"] == %{
       "id" => fid,
+      "type" => "hero",
+      "unique" => true,
       "name" => "ABC",
       "plural_name" => "ABCs",
       "factions" => [ "azogs_legion", "desolator_north" ],
