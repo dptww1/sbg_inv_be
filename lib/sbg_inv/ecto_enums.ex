@@ -127,5 +127,5 @@ defenum UserFigureOp,
   buy_unpainted:  0,
   sell_unpainted: 1,
   buy_painted:    2,
-  sell_unpainted: 3,
+  sell_painted:   3,
   paint:          4

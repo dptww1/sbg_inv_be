@@ -49,6 +49,6 @@ defmodule SbgInv.Web.UserFigureController do
   defp calc_history_op(owned_diff, painted_diff) when owned_diff > 0 and painted_diff === 0, do: :buy_unpainted
   defp calc_history_op(owned_diff, painted_diff) when owned_diff < 0 and painted_diff === 0, do: :sell_unpainted
   defp calc_history_op(owned_diff, painted_diff) when owned_diff > 0 and painted_diff > 0,   do: :buy_painted
-  defp calc_history_op(owned_diff, painted_diff) when owned_diff < 0 and painted_diff < 0,   do: :sell_unpainted
+  defp calc_history_op(owned_diff, painted_diff) when owned_diff < 0 and painted_diff < 0,   do: :sell_painted
   defp calc_history_op(owned_diff, _)            when owned_diff == 0,                       do: :paint
 end
