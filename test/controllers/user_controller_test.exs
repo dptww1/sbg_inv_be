@@ -76,4 +76,11 @@ defmodule SbgInv.Web.UserControllerTest do
     assert user_chk
     refute user_chk.is_admin
   end
+
+  test "user must be authorized to update account", %{conn: conn} do
+    user = TestHelper.create_user
+    conn = put conn, user_path(conn, :update, user), user: %{email: "abc@example.com" }
+
+    assert conn.status == 401
+  end
 end
