@@ -55,8 +55,12 @@ defmodule SbgInv.Web.RecalcUserScenarioTask do
   #========================================================================
   defp save_scenario(changeset) do
     case Repo.insert_or_update(changeset) do
-      {:ok, _}            -> Logger.info "Saved scenario #{changeset.data.scenario_id} for user #{changeset.data.user_id}"
-      {:error, changeset} -> Logger.error "!!! ERROR user #{changeset.data.user_id} scenario #{changeset.data.scenario_id} !!! #{Enum.join changeset.errors, "\n"}"
+      {:ok, _} ->
+        Logger.info "Saved scenario #{changeset.data.scenario_id} for user #{changeset.data.user_id}"
+
+      {:error, changeset} ->
+        errors = for {key, {message, _}} <- changeset.errors do "#{key} #{message}" end
+        Logger.error "!!! ERROR user #{changeset.data.user_id} scenario #{changeset.data.scenario_id} !!! #{Enum.join errors}"
     end
   end
 
