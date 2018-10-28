@@ -28,5 +28,6 @@ defmodule SbgInv.Web.UserScenario do
     model
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
+    |> validate_number(:rating, greater_than_or_equal_to: 0, less_than_or_equal_to: 5)
   end
 end

@@ -30,11 +30,21 @@ defmodule SbgInv.Web.UserScenarioControllerTest do
     user2 = TestHelper.create_user "guy2", "guy2@example.com"
     user3 = TestHelper.create_user "guy3", "guy3@example.com"
     scenario = Repo.insert! %Scenario{rating: 1.0, num_votes: 2, name: "a", blurb: "a", date_age: 1, date_year: 0, date_month: 0, date_day: 0, size: 0,
-                                      map_width: 7, map_height: 12, location: :the_shire}
+      map_width: 7, map_height: 12, location: :the_shire}
     Repo.insert! %UserScenario{user_id: user1.id, scenario_id: scenario.id, rating: 1}
     Repo.insert! %UserScenario{user_id: user2.id, scenario_id: scenario.id, rating: 1}
     conn = TestHelper.create_session(conn, user3)
     conn = post conn, user_scenario_path(conn, :create), user_scenario: %{scenario_id: scenario.id, user_id: user3.id, rating: 4}
     assert json_response(conn, 200) == %{"rating" => 4, "avg_rating" => 2.0, "num_votes" => 3, "owned" => 0, "painted" => 0}
+  end
+
+  test "posting a ridiculous rating fails", %{conn: conn} do
+    user = TestHelper.create_user
+    scenario = Repo.insert! %Scenario{rating: 1.0, num_votes: 2, name: "a", blurb: "a", date_age: 1, date_year: 0, date_month: 0, date_day: 0, size: 0,
+      map_width: 7, map_height: 12, location: :the_shire}
+    Repo.insert! %UserScenario{user_id: user.id, scenario_id: scenario.id, rating: 0}
+    conn = TestHelper.create_session(conn, user)
+    conn = post conn, user_scenario_path(conn, :create), user_scenario: %{scenario_id: scenario.id, user_id: user.id, rating: 11}
+    assert conn.status == 422
   end
 end
