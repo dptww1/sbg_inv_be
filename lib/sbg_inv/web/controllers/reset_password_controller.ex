@@ -21,7 +21,7 @@ defmodule SbgInv.Web.ResetPasswordController do
           send_resp(conn, :internal_server_error, "")
       end
     else
-      send_resp(conn, :not_found, "")
+      send_resp(conn, :not_found, "{ \"errors\": \"Unknown email address\" }")
     end
   end
 
