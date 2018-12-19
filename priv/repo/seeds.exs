@@ -168,36 +168,40 @@ defmodule SbgInv.Data do
     # FIGURES: AZOG'S HUNTERS/AZOG'S LEGION
     #########################################################################
 
-    azog_warg   = _declare_unique("Azog on White warg", [ :azogs_legion, :azogs_hunters ])
-    azog        = _declare_unique("Azog",               [ :azogs_legion, :azogs_hunters ])
+    azog_warg   = _declare_unique("Azog on White Warg",         [ :azogs_legion, :azogs_hunters ])
+    azog        = _declare_unique("Azog",                       [ :azogs_legion, :azogs_hunters ])
     azog_lt     = _declare_unique("Azog, Lieutenant of Sauron", [ :azogs_legion, :azogs_hunters ])
-    bolg        = _declare_unique("Bolg",               [ :azogs_legion, :azogs_hunters ])
-    bolg_warg   = _declare_unique("Bolg on warg",       [ :azogs_legion, :azogs_hunters ])
-    fimbul      = _declare_unique("Fimbul",             [ :azogs_hunters ])
-    fimbul_warg = _declare_unique("Fimbul on warg",     [ :azogs_hunters ])
-    narzug_warg = _declare_unique("Narzug on warg",     [ :azogs_hunters ])
-    narzug      = _declare_unique("Narzug",             [ :azogs_hunters ])
-    yazneg      = _declare_unique("Yazneg",             [ :azogs_hunters ])
-    yazneg      = _declare_unique("Yazneg on warg",     [ :azogs_hunters ])
+    bolg        = _declare_unique("Bolg",                       [ :azogs_legion, :azogs_hunters ])
+    bolg_warg   = _declare_unique("Bolg on Fell Warg",          [ :azogs_legion, :azogs_hunters ])
+    fimbul      = _declare_unique("Fimbul",                     [ :azogs_hunters ])
+    fimbul_warg = _declare_unique("Fimbul on Fell Warg",        [ :azogs_hunters ])
+    narzug_warg = _declare_unique("Narzug on Fell Warg",        [ :azogs_hunters ])
+    narzug      = _declare_unique("Narzug",                     [ :azogs_hunters ])
+    yazneg      = _declare_unique("Yazneg",                     [ :azogs_hunters ])
+    yazneg_warg = _declare_unique("Yazneg on Fell Warg",        [ :azogs_hunters ])
 
-    goblin_mercenary_captain = _declare_hero("Goblin Mercenary Captain",        "Goblin Mercenary Captains",        [ :azogs_legion ])
+    goblin_mercenary_captain = _declare_hero("Goblin Mercenary Captain",        "Goblin Mercenary Captains",        [ :azogs_legion, :goblintown ])
     gundabad_orc_captain     = _declare_hero("Gundabad Orc Captain",            "Gundabad Orc Captains",            [ :azogs_legion, :dol_guldur ])
     hunter_orc_captain       = _declare_hero("Hunter Orc Captain",              "Hunter Orc Captains",              [ :azogs_hunters, :dol_guldur ])
     hunter_orc_captain_warg  = _declare_hero("Hunter Orc Captain on Fell Warg", "Hunter Orc Captains on Fell Warg", [ :azogs_hunters, :dol_guldur ])
 
     fell_warg           = _declare_warrior("Fell Warg",                "Fell Wargs",                [ :azogs_hunters, :dol_guldur, :mirkwood ])
-    goblin_mercenary    = _declare_warrior("Goblin Mercenary",         "Goblin Mercenaries",        [ :azogs_legion ])
+    goblin_mercenary    = _declare_warrior("Goblin Mercenary",         "Goblin Mercenaries",        [ :azogs_legion, :goblintown ])
     gundabad_berserker  = _declare_warrior("Gundabad Berserker",       "Gundabad Berserkers",       [ :azogs_legion ])
     gundabad_orc_shield = _declare_warrior("Gundabad Orc with shield", "Gundabad Orcs with shield", [ :azogs_legion, :dol_guldur ])
     gundabad_orc_spear  = _declare_warrior("Gundabad Orc with spear",  "Gundabad Orcs with spear",  [ :azogs_legion, :dol_guldur ])
     hunter_orc          = _declare_warrior("Hunter Orc",               "Hunter Orcs",               [ :azogs_hunters, :dol_guldur ])
-    hunter_orc_warg     = _declare_warrior("Hunter Orc on warg",       "Hunter Orcs on warg",       [ :azogs_hunters, :dol_guldur ])
+    hunter_orc_warg     = _declare_warrior("Hunter Orc on Fell Warg",  "Hunter Orcs on Fell Warg",  [ :azogs_hunters, :dol_guldur ])
     war_bat             = _declare_warrior("War Bat",                  "War Bats",                  [ :azogs_legion ])
 
-    catapult_troll = _declare_monster("Catapult Troll", "Catapult Trolls", [ :azogs_legion ])
-    gundabad_ogre  = _declare_monster("Gundabad Ogre",  "Gundabad Ogres",  [ :azogs_legion ])
-    gundabad_troll = _declare_monster("Gundabad Troll", "Gundabad Trolls", [ :azogs_legion ])
-    troll_brute    = _declare_monster("Troll Brute",    "Troll Brutes",    [ :azogs_legion ])
+    catapult_troll        = _declare_monster("Catapult Troll", "Catapult Trolls", [ :azogs_legion ])
+    gundabad_ogre         = _declare_monster("Gundabad Ogre",  "Gundabad Ogres",  [ :azogs_legion ])
+    gundabad_troll_club   = _declare_monster("Gundabad Troll with club", "Gundabad Trolls with club", [ :azogs_legion ])
+    gundabad_troll_scythe = _declare_monster("Gundabad Troll with scythe gauntlets", "Gundabad Trolls with scythe gauntlets", [ :azogs_legion ])
+    troll_brute           = _declare_monster("Troll Brute",    "Troll Brutes",    [ :azogs_legion ])
+
+    signal_tower    = _declare_siege("Signal Tower",            "Signal Towers",            [ :azogs_legion ])
+    signal_tower_lt = _declare_siege("Signal Tower Lieutenant", "Signal Tower Lieutenants", [ :azogs_legion ])
 
     #########################################################################
     # FIGURES: DALE
@@ -265,15 +269,15 @@ defmodule SbgInv.Data do
     forsaken         = _declare_unique("The Forsaken",               [ :dol_guldur ])
     lingering_shadow = _declare_unique("The Lingering Shadow",       [ :dol_guldur ])
     necromancer      = _declare_unique("The Necromancer",            [ :dol_guldur ])
-    spider_queen     = _declare_unique("Spider Queen")
+    spider_queen     = _declare_unique("Spider Queen",               [ :mirkwood ])
 
     abyssal_knight   = _declare_hero("The Abyssal Knight", "Abyssal Knights", [ :dol_guldur ])
     slayer_of_men    = _declare_hero("The Slayer of Men",  "Slayers of Men",  [ :dol_guldur ])
 
-    castellan       = _declare_warrior("Castellan of Dol Guldur", "Castellans of Dol Guldur")
-    bat_swarm       = _declare_warrior("Bat Swarm",               "Bat Swarms",               [ :moria ])
-    giant_spider    = _declare_warrior("Giant Spider",            "Giant Spiders")
-    mirkwood_spider = _declare_warrior("Mirkwood Spider",         "Mirkwood Spiders",         [ :mirkwood ])
+    castellan       = _declare_warrior("Castellan of Dol Guldur", "Castellans of Dol Guldur", [ :dol_guldur ])
+    bat_swarm       = _declare_warrior("Bat Swarm",               "Bat Swarms",               [ :moria, :dol_guldur ])
+    giant_spider    = _declare_warrior("Giant Spider",            "Giant Spiders",            [ :mirkwood ])
+    mirkwood_spider = _declare_warrior("Mirkwood Spider",         "Mirkwood Spiders",         [ :mirkwood, :dol_guldur ])
     spider_swarm    = _declare_warrior("Spider Swarm",            "Spider Swarms")
 
     #########################################################################
@@ -615,13 +619,16 @@ defmodule SbgInv.Data do
     dain_ironfoot      = _declare_unique("Dain Ironfoot",             [ :erebor, :iron_hills ])
     dain_ironfoot_boar = _declare_unique("Dain Ironfoot on war boar", [ :erebor, :iron_hills ])
 
-    iron_hills_captain_goat = _declare_hero("Iron Hills Captain on goat", "Iron Hills Captains on goat", [ :erebor, :iron_hills ])
-    iron_hills_captain      = _declare_hero("Iron Hills Captain",         "Iron Hills Captains",         [ :erebor, :iron_hills ])
+    iron_hills_captain_goat    = _declare_hero("Iron Hills Captain on goat",      "Iron Hills Captains on goat",      [ :erebor, :iron_hills ])
+    iron_hills_captain         = _declare_hero("Iron Hills Captain",              "Iron Hills Captains",              [ :erebor, :iron_hills ])
+    iron_hills_captain_mattock = _declare_hero("Iron Hills Captain with mattock", "Iron Hills Captains with mattock", [ :erebor, :iron_hills ])
 
-    iron_hills_chariot            = _declare_warrior("Iron Hills Chariot",                     "Iron Hills Chariots",    [ :iron_hills ])
-    iron_hills_goat_rider         = _declare_warrior("Iron Hills Goat Rider",                  "Iron Hills Goat Riders", [ :erebor, :iron_hills ])
-    iron_hills_dwarf              = _declare_warrior("Iron Hills Dwarf",                       "Iron Hills Dwarves",     [ :erebor, :iron_hills ])
-    iron_hills_dwarf_shield_spear = _declare_warrior("Iron Hills Dwarf with spear and shield", "Iron Hills Dwarves with spear and shield", [ :erebor, :iron_hills ])
+    iron_hills_chariot        = _declare_warrior("Iron Hills Chariot",                     "Iron Hills Chariots",      [ :iron_hills ])
+    iron_hills_chariot_crew   = _declare_warrior("Iron Hills Chariot Crew",                "Iron Hills Chariots Crew", [ :iron_hills ])
+    iron_hills_goat_rider     = _declare_warrior("Iron Hills Goat Rider",                  "Iron Hills Goat Riders",   [ :erebor, :iron_hills ])
+    iron_hills_dwarf_spear    = _declare_warrior("Iron Hills Dwarf with spear and shielf", "Iron Hills Dwarves with spear and shield", [ :erebor, :iron_hills ])
+    iron_hills_dwarf_mattock  = _declare_warrior("Iron Hills Dwarf with mattock",          "Iron Hills Dwarves with mattock",  [ :erebor, :iron_hills ])
+    iron_hills_dwarf_crossbow = _declare_warrior("Iron Hills Dwarf with crossbow",         "Iron Hills Dwarves with crossbow", [ :erebor, :iron_hills ])
 
     iron_hills_ballista      = _declare_siege("Iron Hills Ballista",         "Iron Hills Ballistae",      [ :iron_hills ])
     iron_hills_ballista_crew = _declare_siege("Iron Hills Ballista Crewman", "Iron Hills Ballistae Crew", [ :iron_hills ])
@@ -714,8 +721,8 @@ defmodule SbgInv.Data do
     # FIGURES: LOTHLORIEN
     #########################################################################
 
-    celeborn             = _declare_unique("Celeborn",                          [ :lothlorien ])
-    celeborn_armor       = _declare_unique("Celeborn with armour",              [ :lothlorien ])
+    celeborn             = _declare_unique("Celeborn",                          [ :lothlorien, :white_council ])
+    celeborn_armor       = _declare_unique("Celeborn with armour",              [ :lothlorien, :white_council ])
     galadriel            = _declare_unique("Galadriel",                         [ :lothlorien, :white_council ])
     galadriel_council    = _declare_unique("Galadriel (White Council)",         [ :lothlorien, :white_council ])
     galadriel_lotg       = _declare_unique("Galadriel (Lady of the Galadhrim)", [ :lothlorien, :white_council ])
@@ -751,6 +758,7 @@ defmodule SbgInv.Data do
     thranduil_foot_all = [ thranduil, thranduil_elvenking, thranduil_old, thranduil_woodland ]
 
     thranduil_horse     = _declare_unique("Thranduil on horse",                   [ :thranduil ])
+    thranduil_elk       = _declare_unique("Thranduil on elk",                     [ :thranduil ])
 
     palace_gd_captain       = _declare_hero("Palace Guard Captain",    "Palace Guard Captains",    [ :thranduil ])
     mirkwood_captain        = _declare_hero("Mirkwood Captain",        "Mirkwood Captains",        [ :thranduil ])
@@ -763,7 +771,7 @@ defmodule SbgInv.Data do
     mirkwood_elf_shield    = _declare_warrior("Mirkwood Elf with shield",                              "Mirkwood Elves with shield", [ :thranduil ])
     mirkwood_palace_gd     = _declare_warrior("Palace Guard",                                          "Palace Guards",              [ :thranduil ])
     mirkwood_ranger        = _declare_warrior("Mirkwood Ranger",                                       "Mirkwood Rangers",           [ :thranduil ])
-    wood_elf_sentinel      = _declare_warrior("Wood Elf Sentinel",                                     "Wood Elf Sentinels", [ :lothlorien ])
+    wood_elf_sentinel      = _declare_warrior("Wood Elf Sentinel",                                     "Wood Elf Sentinels", [ :lothlorien, :rivendell ])
     wood_elf_w_banner      = _declare_warrior("Wood Elf Warrior with banner",                          "Wood Elf Warriors with banner",                 [ :lothlorien ])
     wood_elf_w_blade       = _declare_warrior("Wood Elf Warrior with Elven blade and throwing dagger", "Wood Elf Warriors with Elven blade and throwing dagger", [ :lothlorien ])
     wood_elf_w_bow         = _declare_warrior("Wood Elf Warrior with bow",                             "Wood Elf Warriors with bow",                    [ :lothlorien ])
@@ -775,11 +783,11 @@ defmodule SbgInv.Data do
 
     dark_marshal         = _declare_unique("The Dark Marshal",                [ :mordor ])
     dark_marshal_horse   = _declare_unique("The Dark Marshal on horse",       [ :mordor ])
-    gollum_captured      = _declare_unique("Gollum (Captured by Gondor)",     [ :fellowship ])
-    gollum_emyn_muil     = _declare_unique("Gollum (Frodo/Sam/Gollum)",       [ :fellowship ])
-    gollum_fish          = _declare_unique("Gollum (Fish)",                   [ :fellowship ])
-    gollum_riddles       = _declare_unique("Gollum (Riddles in the Dark)",    [ :fellowship ])
-    gollum_mt_doom       = _declare_unique("Gollum (Mount Doom)",             [ :fellowship ])
+    gollum_captured      = _declare_unique("Gollum (Captured by Gondor)",     [ :fellowship, :goblintown ])
+    gollum_emyn_muil     = _declare_unique("Gollum (Frodo/Sam/Gollum)",       [ :fellowship, :goblintown ])
+    gollum_fish          = _declare_unique("Gollum (Fish)",                   [ :fellowship, :goblintown ])
+    gollum_riddles       = _declare_unique("Gollum (Riddles in the Dark)",    [ :fellowship, :goblintown ])
+    gollum_mt_doom       = _declare_unique("Gollum (Mount Doom)",             [ :fellowship, :goblintown ])
 
     gollum_all = [ gollum_captured, gollum_emyn_muil, gollum_fish, gollum_riddles, gollum_mt_doom ]
 
@@ -951,9 +959,9 @@ defmodule SbgInv.Data do
     erestor           = _declare_unique("Erestor",                      [ :rivendell ])
     gil_galad         = _declare_unique("Gil-galad",                    [ :rivendell ])
     gildor            = _declare_unique("Gildor",                       [ :rivendell ])
-    glorfindel        = _declare_unique("Glorfindel",                   [ :rivendell ])
-    glorfindel_horse  = _declare_unique("Glorfindel on horse",          [ :rivendell ])
-    glorfindel_lotw   = _declare_unique("Glorfindel, Lord of the West", [ :rivendell ])
+    glorfindel        = _declare_unique("Glorfindel",                   [ :rivendell, :white_council ])
+    glorfindel_horse  = _declare_unique("Glorfindel on horse",          [ :rivendell, :white_council ])
+    glorfindel_lotw   = _declare_unique("Glorfindel, Lord of the West", [ :rivendell, :white_council ])
     lindir            = _declare_unique("Lindir",                       [ :rivendell ])
 
     high_elf_captain         = _declare_hero("High Elf Captain",         "High Elf Captains",     [ :rivendell ])
@@ -6704,11 +6712,11 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s11f1,  8,  3, [ mirkwood_elf_glaive ])
     _declare_role_figure(tba_s11f1,  8,  4, [ mirkwood_elf_bow ])
     _declare_role_figure(tba_s11f1,  1,  5, [ dain_ironfoot_boar ])
-    _declare_role_figure(tba_s11f1, 24,  6, [ iron_hills_dwarf ])
+    _declare_role_figure(tba_s11f1, 24,  6, "Iron Hills Dwarves", [ iron_hills_dwarf_spear, iron_hills_dwarf_mattock, iron_hills_dwarf_crossbow ])
 
     tba_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s11.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(tba_s11f2,  3, 1, [ gundabad_orc_captain ])
-    _declare_role_figure(tba_s11f2,  3, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s11f2,  3, 2, "Gundabad Trolls", [ gundabad_troll_club, gundabad_troll_scythe ])
     _declare_role_figure(tba_s11f2, 18, 3, [ gundabad_orc_shield ])
     _declare_role_figure(tba_s11f2, 18, 4, [ gundabad_orc_spear ])
 
@@ -6716,7 +6724,7 @@ defmodule SbgInv.Data do
     tba_s12 = Repo.insert! %Scenario{
       name: "The Chariots Charge",
       blurb: "The Dwarven war machines counterttack the Orcs at Erebor.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 55,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 63,
       map_width: 48, map_height: 48, location: :erebor
     }
 
@@ -6724,12 +6732,13 @@ defmodule SbgInv.Data do
 
     tba_s12f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s12.id, faction: :iron_hills, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(tba_s12f1,  1,  1, [ iron_hills_captain ])
-    _declare_role_figure(tba_s12f1, 12,  2, [ iron_hills_dwarf_shield_spear ])
+    _declare_role_figure(tba_s12f1, 12,  2, [ iron_hills_dwarf_spear ])
     _declare_role_figure(tba_s12f1,  2,  3, [ iron_hills_chariot ])
+    _declare_role_figure(tba_s12f1,  8,  4, [ iron_hills_chariot_crew ])
 
     tba_s12f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s12.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(tba_s12f2,  3, 1, [ gundabad_orc_captain ])
-    _declare_role_figure(tba_s12f2,  1, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s12f2,  1, 2, "Gundabad Troll", [ gundabad_troll_club, gundabad_troll_scythe ])
     _declare_role_figure(tba_s12f2, 18, 3, [ gundabad_orc_shield ])
     _declare_role_figure(tba_s12f2, 18, 4, [ gundabad_orc_spear ])
 
@@ -6737,7 +6746,7 @@ defmodule SbgInv.Data do
     tba_s13 = Repo.insert! %Scenario{
       name: "Unleash the War Beasts",
       blurb: "The Gundabad Ogres are called in to handle the Iron Hills Chariots.",
-      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 71,
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 79,
       map_width: 48, map_height: 48, location: :erebor
     }
 
@@ -6745,8 +6754,9 @@ defmodule SbgInv.Data do
 
     tba_s13f1 = Repo.insert! %ScenarioFaction{scenario_id: tba_s13.id, faction: :iron_hills, suggested_points: 0, actual_points: 0, sort_order: 1}
     _declare_role_figure(tba_s13f1,  2,  1, [ iron_hills_captain ])
-    _declare_role_figure(tba_s13f1, 24,  2, [ iron_hills_dwarf_shield_spear ])
+    _declare_role_figure(tba_s13f1, 24,  2, [ iron_hills_dwarf_spear ])
     _declare_role_figure(tba_s13f1,  2,  3, [ iron_hills_chariot ])
+    _declare_role_figure(tba_s13f1,  8,  4, [ iron_hills_chariot_crew ])
 
     tba_s13f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s13.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(tba_s13f2,  3, 1, [ gundabad_orc_captain ])
@@ -6800,7 +6810,7 @@ defmodule SbgInv.Data do
 
     tba_s15f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s15.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(tba_s15f2,  3, 1, [ gundabad_orc_captain ])
-    _declare_role_figure(tba_s15f2,  2, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s15f2,  2, 2, "Gundabad Trolls", [ gundabad_troll_club, gundabad_troll_scythe ])
     _declare_role_figure(tba_s15f2,  9, 3, [ gundabad_orc_shield ])
     _declare_role_figure(tba_s15f2,  9, 4, [ gundabad_orc_spear ])
 
@@ -6870,7 +6880,7 @@ defmodule SbgInv.Data do
 
     tba_s18f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s18.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(tba_s18f2,  2, 1, [ gundabad_orc_captain ])
-    _declare_role_figure(tba_s18f2,  1, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s18f2,  1, 2, "Gundabad Troll", [ gundabad_troll_club, gundabad_troll_scythe ])
     _declare_role_figure(tba_s18f2,  1, 3, [ gundabad_ogre ])
     _declare_role_figure(tba_s18f2, 12, 4, [ gundabad_orc_shield ])
     _declare_role_figure(tba_s18f2, 12, 5, [ gundabad_orc_spear ])
@@ -6900,11 +6910,11 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s19f1,  1, 12, [ oin_erebor ])
     _declare_role_figure(tba_s19f1,  1, 13, [ gloin_erebor ])
     _declare_role_figure(tba_s19f1,  1, 14, [ dain_ironfoot ])
-    _declare_role_figure(tba_s19f1, 24, 15, [ iron_hills_dwarf ])
+    _declare_role_figure(tba_s19f1, 24, 15, "Iron Hills Dwarves", [ iron_hills_dwarf_spear, iron_hills_dwarf_mattock, iron_hills_dwarf_crossbow  ])
 
     tba_s19f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s19.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(tba_s19f2,  3, 1, [ gundabad_orc_captain ])
-    _declare_role_figure(tba_s19f2,  3, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s19f2,  3, 2, "Gundabad Trolls", [ gundabad_troll_club, gundabad_troll_scythe ])
     _declare_role_figure(tba_s19f2,  1, 3, [ catapult_troll ])
     _declare_role_figure(tba_s19f2,  2, 4, [ troll_brute ])
     _declare_role_figure(tba_s19f2, 18, 5, [ gundabad_orc_shield ])
@@ -6928,7 +6938,7 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s20f1,  1,  5, [ iron_hills_chariot ])
 
     tba_s20f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s20.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
-    _declare_role_figure(tba_s20f2,  2, 1, [ gundabad_troll ])
+    _declare_role_figure(tba_s20f2,  2, 1, "Gundabad Trolls", [ gundabad_troll_club, gundabad_troll_scythe ])
     _declare_role_figure(tba_s20f2, 12, 2, [ hunter_orc_warg ])
     _declare_role_figure(tba_s20f2, 12, 3, [ fell_warg ])
 
@@ -6993,11 +7003,11 @@ defmodule SbgInv.Data do
     _declare_role_figure(tba_s23f1,  1,  7, [ dori_erebor ])
     _declare_role_figure(tba_s23f1,  1,  8, [ oin_erebor ])
     _declare_role_figure(tba_s23f1,  1,  9, [ gloin_erebor ])
-    _declare_role_figure(tba_s23f1, 24, 10, [ iron_hills_dwarf_shield_spear ])
+    _declare_role_figure(tba_s23f1, 24, 10, [ iron_hills_dwarf_spear ])
 
     tba_s23f2 = Repo.insert! %ScenarioFaction{scenario_id: tba_s23.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
     _declare_role_figure(tba_s23f2,  3, 1, [ gundabad_orc_captain])
-    _declare_role_figure(tba_s23f2,  3, 2, [ gundabad_troll ])
+    _declare_role_figure(tba_s23f2,  3, 2, "Gundabad Trolls", [ gundabad_troll_club, gundabad_troll_scythe ])
     _declare_role_figure(tba_s23f2,  1, 3, [ troll_brute ])
     _declare_role_figure(tba_s23f2,  6, 4, [ war_bat ])
     _declare_role_figure(tba_s23f2, 18, 5, [ gundabad_orc_shield ])
@@ -8589,7 +8599,7 @@ defmodule SbgInv.Data do
     bpfss_s4 = Repo.insert! %Scenario{
       name: "The Battle of the Pelennor Fields",
       blurb: "Learning scenario using all the models in the box set.",
-      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, size: 70,
+      date_age: 3, date_year: 3019, date_month: 3, date_day: 13, size: 71,
       map_width: 48, map_height: 48, location: :minas_tirith
     }
 
@@ -8609,6 +8619,355 @@ defmodule SbgInv.Data do
     _declare_role_figure(bpfss_s4f2, 9, 4, [ orc_m_shield_spear ])
     _declare_role_figure(bpfss_s4f2, 9, 5, [ orc_m_spear ])
     _declare_role_figure(bpfss_s4f2, 1, 6, [ mordor_troll ])
+
+    #########################################################################
+    # ARMIES OF THE HOBBIT
+    #########################################################################
+
+    #========================================================================
+    ah_s1 = Repo.insert! %Scenario{
+      name: "Destruction of Dale",
+      blurb: "Smaug comes to town.",
+      date_age: 3, date_year: 2770, date_month: 0, date_day: 0, size: 34,
+      map_width: 48, map_height: 48, location: :dale
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ah_s1.id, resource_type: :source, book: :ah, title: "Armies of the Hobbit", sort_order: 1, page: 134}
+
+    ah_s1f1 = Repo.insert! %ScenarioFaction{scenario_id: ah_s1.id, faction: :dale, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ah_s1f1,  1,  1, [ girion ])
+    _declare_role_figure(ah_s1f1,  2,  2, [ dale_captain ])
+    _declare_role_figure(ah_s1f1, 30,  3, "Warriors of Dale", [ dale_w_bow, dale_w_spear, dale_w_shield ])
+
+    ah_s1f2 = Repo.insert! %ScenarioFaction{scenario_id: ah_s1.id, faction: :desolator_north, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ah_s1f2, 1, 1, [ smaug ])
+
+    #========================================================================
+    ah_s2 = Repo.insert! %Scenario{
+      name: "Battle of Azanulbizar",
+      blurb: "The dwarves of Erebor try to reclaim Moria from Azog.",
+      date_age: 3, date_year: 2799, date_month: 0, date_day: 0, size: 118,
+      map_width: 48, map_height: 48, location: :moria
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ah_s2.id, resource_type: :source, book: :ah, title: "Armies of the Hobbit", sort_order: 2, page: 136}
+
+    ah_s2f1 = Repo.insert! %ScenarioFaction{scenario_id: ah_s2.id, faction: :army_thror, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ah_s2f1,  1,  1, [ thror ])
+    _declare_role_figure(ah_s2f1,  1,  2, [ thrain ])
+    _declare_role_figure(ah_s2f1,  1,  3, [ thorin_young ])
+    _declare_role_figure(ah_s2f1,  1,  4, [ balin_young ])
+    _declare_role_figure(ah_s2f1,  1,  5, [ dwalin_young ])
+    _declare_role_figure(ah_s2f1, 36,  6, "Warriors of Erebor", [ erebor_w_shield, erebor_w_spear ])
+    _declare_role_figure(ah_s2f1, 24,  7, [ grim_hammer_w ])
+
+    ah_s2f2 = Repo.insert! %ScenarioFaction{scenario_id: ah_s2.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ah_s2f2,  1, 1, "Azog", [ azog, azog_lt ])
+    _declare_role_figure(ah_s2f2,  1, 2, [ dungeon_keeper ])
+    _declare_role_figure(ah_s2f2,  3, 3, [ gundabad_orc_captain ])
+    _declare_role_figure(ah_s2f2, 48, 4, "Gundabad Orcs", [ gundabad_orc_shield, gundabad_orc_spear ])
+
+    #========================================================================
+    ah_s3 = Repo.insert! %Scenario{
+      name: "Roast Mutton",
+      blurb: "Thorin's Company looks for their ponies but discovers some trolls in the process.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 17,
+      map_width: 24, map_height: 24, location: :eriador
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ah_s3.id, resource_type: :source, book: :ah, title: "Armies of the Hobbit", sort_order: 3, page: 138}
+
+    ah_s3f1 = Repo.insert! %ScenarioFaction{scenario_id: ah_s3.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ah_s3f1, 1,  1, [ thorin ])
+    _declare_role_figure(ah_s3f1, 1,  2, [ balin ])
+    _declare_role_figure(ah_s3f1, 1,  3, [ dwalin ])
+    _declare_role_figure(ah_s3f1, 1,  4, [ fili ])
+    _declare_role_figure(ah_s3f1, 1,  5, [ kili ])
+    _declare_role_figure(ah_s3f1, 1,  6, [ oin ])
+    _declare_role_figure(ah_s3f1, 1,  7, [ gloin ])
+    _declare_role_figure(ah_s3f1, 1,  8, [ ori ])
+    _declare_role_figure(ah_s3f1, 1,  9, [ nori ])
+    _declare_role_figure(ah_s3f1, 1, 10, [ dori ])
+    _declare_role_figure(ah_s3f1, 1, 11, [ bifur ])
+    _declare_role_figure(ah_s3f1, 1, 12, [ bofur ])
+    _declare_role_figure(ah_s3f1, 1, 13, [ bombur ])
+    _declare_role_figure(ah_s3f1, 1, 14, "Bilbo Baggins", bilbo_all)
+
+    ah_s3f2 = Repo.insert! %ScenarioFaction{scenario_id: ah_s3.id, faction: :trolls, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ah_s3f2, 1,  1, [ william ])
+    _declare_role_figure(ah_s3f2, 1,  2, [ tom ])
+    _declare_role_figure(ah_s3f2, 1,  3, [ bert ])
+
+    #========================================================================
+    ah_s4 = Repo.insert! %Scenario{
+      name: "Hunting Party",
+      blurb: "Elrond leads a sweep against Yazneg's raiding party.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 38,
+      map_width: 48, map_height: 48, location: :eriador
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ah_s4.id, resource_type: :source, book: :ah, title: "Armies of the Hobbit", sort_order: 4, page: 140}
+
+    ah_s4f1 = Repo.insert! %ScenarioFaction{scenario_id: ah_s4.id, faction: :rivendell, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ah_s4f1,  1, 1, "Elrond with heavy armour and horse", [ elrond_horse ])
+    _declare_role_figure(ah_s4f1, 12, 2, "Rivendell Knights with shield", [ rivendell_knight ])
+
+    ah_s4f2 = Repo.insert! %ScenarioFaction{scenario_id: ah_s4.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ah_s4f2,  1, 1, [ yazneg_warg ])
+    _declare_role_figure(ah_s4f2, 12, 2, [ hunter_orc_warg ])
+    _declare_role_figure(ah_s4f2, 12, 3, [ fell_warg ])
+
+    #========================================================================
+    ah_s5 = Repo.insert! %Scenario{
+      name: "Escape from Goblintown",
+      blurb: "Can Thorin's company escape the minions of the Goblin King?",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 53,
+      map_width: 48, map_height: 48, location: :goblintown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ah_s5.id, resource_type: :source, book: :ah, title: "Armies of the Hobbit", sort_order: 5, page: 142}
+
+    ah_s5f1 = Repo.insert! %ScenarioFaction{scenario_id: ah_s5.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ah_s5f1, 1,  1, "Thorin with Orcrist and Oakenshield", [ thorin ])
+    _declare_role_figure(ah_s5f1, 1,  2, [ balin ])
+    _declare_role_figure(ah_s5f1, 1,  3, [ dwalin ])
+    _declare_role_figure(ah_s5f1, 1,  4, [ fili ])
+    _declare_role_figure(ah_s5f1, 1,  5, [ kili ])
+    _declare_role_figure(ah_s5f1, 1,  6, [ oin ])
+    _declare_role_figure(ah_s5f1, 1,  7, [ gloin ])
+    _declare_role_figure(ah_s5f1, 1,  8, [ ori ])
+    _declare_role_figure(ah_s5f1, 1,  9, [ nori ])
+    _declare_role_figure(ah_s5f1, 1, 10, [ dori ])
+    _declare_role_figure(ah_s5f1, 1, 11, [ bifur ])
+    _declare_role_figure(ah_s5f1, 1, 12, [ bofur ])
+    _declare_role_figure(ah_s5f1, 1, 13, [ bombur ])
+    _declare_role_figure(ah_s5f1, 1, 14, "Gandalf the Grey", gandalf_grey_foot_all)
+
+    ah_s5f2 = Repo.insert! %ScenarioFaction{scenario_id: ah_s5.id, faction: :goblintown, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ah_s5f2,  1, 1, "Goblin King", [ goblin_king, goblin_king_throw ])
+    _declare_role_figure(ah_s5f2,  1, 2, [ grinnah ])
+    _declare_role_figure(ah_s5f2,  1, 3, [ goblin_scribe ])
+    _declare_role_figure(ah_s5f2,  1, 4, [ goblintown_captain ])
+    _declare_role_figure(ah_s5f2, 36, 5, [ goblintown_g ])
+
+    #========================================================================
+    ah_s6 = Repo.insert! %Scenario{
+      name: "Out of the Frying Pan And Into The Fire",
+      blurb: "Can the Eagles save Thorin and company from Azog and his hunters?",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 46,
+      map_width: 48, map_height: 48, location: :rhovanion
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ah_s6.id, resource_type: :source, book: :ah, title: "Armies of the Hobbit", sort_order: 6, page: 144}
+
+    ah_s6f1 = Repo.insert! %ScenarioFaction{scenario_id: ah_s6.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ah_s6f1, 1,  1, "Thorin Oakenshield with Orcrist and Oakenshield", [ thorin ])
+    _declare_role_figure(ah_s6f1, 1,  2, [ balin ])
+    _declare_role_figure(ah_s6f1, 1,  3, [ dwalin ])
+    _declare_role_figure(ah_s6f1, 1,  4, [ fili ])
+    _declare_role_figure(ah_s6f1, 1,  5, [ kili ])
+    _declare_role_figure(ah_s6f1, 1,  6, [ oin ])
+    _declare_role_figure(ah_s6f1, 1,  7, [ gloin ])
+    _declare_role_figure(ah_s6f1, 1,  8, [ ori ])
+    _declare_role_figure(ah_s6f1, 1,  9, [ nori ])
+    _declare_role_figure(ah_s6f1, 1, 10, [ dori ])
+    _declare_role_figure(ah_s6f1, 1, 11, [ bifur ])
+    _declare_role_figure(ah_s6f1, 1, 12, [ bofur ])
+    _declare_role_figure(ah_s6f1, 1, 13, [ bombur ])
+    _declare_role_figure(ah_s6f1, 1, 14, "Bilbo Baggins with Sting", bilbo_all)
+    _declare_role_figure(ah_s6f1, 1, 15, "Gandalf the Grey", gandalf_grey_foot_all)
+    _declare_role_figure(ah_s6f1, 1, 16, "Gwaihir", [ gwaihir, gwaihir_orthanc ])
+    _declare_role_figure(ah_s6f1, 4, 17, [ eagle ])
+
+    ah_s6f2 = Repo.insert! %ScenarioFaction{scenario_id: ah_s6.id, faction: :azogs_hunters, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ah_s6f2,   1, 1, [ azog_warg ])
+    _declare_role_figure(ah_s6f2,   1, 2, [ fimbul_warg ])
+    _declare_role_figure(ah_s6f2,  12, 3, [ hunter_orc_warg ])
+    _declare_role_figure(ah_s6f2,  12, 4, [ fell_warg ])
+
+    #========================================================================
+    ah_s7 = Repo.insert! %Scenario{
+      name: "Flies and Spiders",
+      blurb: "Elves inadvertently rescue Thorin's company from the spiders of Mirkwood.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 36,
+      map_width: 48, map_height: 48, location: :mirkwood
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ah_s7.id, resource_type: :source, book: :ah, title: "Armies of the Hobbit", sort_order: 7, page: 146}
+
+    ah_s7f1 = Repo.insert! %ScenarioFaction{scenario_id: ah_s7.id, faction: :thorins_co, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ah_s7f1,  1,  1, "Thorin Oakenshield with Orcrist and Oakenshield", [ thorin ])
+    _declare_role_figure(ah_s7f1,  1,  2, [ balin ])
+    _declare_role_figure(ah_s7f1,  1,  3, [ dwalin ])
+    _declare_role_figure(ah_s7f1,  1,  4, [ fili ])
+    _declare_role_figure(ah_s7f1,  1,  5, [ kili ])
+    _declare_role_figure(ah_s7f1,  1,  6, [ oin ])
+    _declare_role_figure(ah_s7f1,  1,  7, [ gloin ])
+    _declare_role_figure(ah_s7f1,  1,  8, [ ori ])
+    _declare_role_figure(ah_s7f1,  1,  9, [ nori ])
+    _declare_role_figure(ah_s7f1,  1, 10, [ dori ])
+    _declare_role_figure(ah_s7f1,  1, 11, [ bifur ])
+    _declare_role_figure(ah_s7f1,  1, 12, [ bofur ])
+    _declare_role_figure(ah_s7f1,  1, 13, [ bombur ])
+    _declare_role_figure(ah_s7f1,  1, 14, "Bilbo Baggins", bilbo_all)
+    _declare_role_figure(ah_s7f1,  1, 15, "Legolas", legolas_foot_all)
+    _declare_role_figure(ah_s7f1,  1, 16, "Tauriel", [ tauriel, tauriel_exile ])
+    _declare_role_figure(ah_s7f1, 10, 17, [ mirkwood_ranger ])
+
+    ah_s7f2 = Repo.insert! %ScenarioFaction{scenario_id: ah_s7.id, faction: :dol_guldur, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ah_s7f2, 10, 1, [ mirkwood_spider ])
+
+    #========================================================================
+    ah_s8 = Repo.insert! %Scenario{
+      name: "Fire and Water",
+      blurb: "Smaug revenges himself on Lake-town for helping Thorin's company.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 37,
+      map_width: 48, map_height: 48, location: :laketown
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ah_s8.id, resource_type: :source, book: :ah, title: "Armies of the Hobbit", sort_order: 8, page: 148}
+
+    ah_s8f1 = Repo.insert! %ScenarioFaction{scenario_id: ah_s8.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ah_s8f1, 1,  1, "Bard the Bowman", [ bard, bard_heir ])
+    _declare_role_figure(ah_s8f1, 1,  2, [ bain ])
+    _declare_role_figure(ah_s8f1, 1,  3, [ sigrid ])
+    _declare_role_figure(ah_s8f1, 1,  4, [ tilda ])
+    _declare_role_figure(ah_s8f1, 1,  5, "Tauriel", [ tauriel, tauriel_exile ])
+    _declare_role_figure(ah_s8f1, 1,  6, [ kili ])
+    _declare_role_figure(ah_s8f1, 1,  7, [ fili ])
+    _declare_role_figure(ah_s8f1, 1,  8, [ bofur ])
+    _declare_role_figure(ah_s8f1, 1,  9, [ oin ])
+    _declare_role_figure(ah_s8f1, 1, 10, [ master_laketown ])
+    _declare_role_figure(ah_s8f1, 1, 11, [ alfrid ])
+    _declare_role_figure(ah_s8f1, 1, 12, [ braga ])
+    _declare_role_figure(ah_s8f1, 8, 13, [ laketown_gd_w_spear ])
+    _declare_role_figure(ah_s8f1, 8, 14, [ laketown_gd_w_sword ])
+    _declare_role_figure(ah_s8f1, 8, 15, [ laketown_gd_w_bow ])
+
+    ah_s8f2 = Repo.insert! %ScenarioFaction{scenario_id: ah_s8.id, faction: :desolator_north, suggested_points: 700, actual_points: 700, sort_order: 2}
+    _declare_role_figure(ah_s8f2, 1, 1, [ smaug ])
+
+    #========================================================================
+    ah_s9 = Repo.insert! %Scenario{
+      name: "The Fall of the Necromancer",
+      blurb: "The Necromancer and his Nazgûl are attacked by the White Council.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 16,
+      map_width: 24, map_height: 24, location: :dol_guldur
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ah_s9.id, resource_type: :source, book: :ah, title: "Armies of the Hobbit", sort_order: 9, page: 150}
+
+    ah_s9f1 = Repo.insert! %ScenarioFaction{scenario_id: ah_s9.id, faction: :rivendell,  suggested_points: 1500, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ah_s9f1, 1, 1, "Gandalf the Grey", gandalf_grey_foot_all)
+    _declare_role_figure(ah_s9f1, 1, 2, "Saruman the White", saruman_foot_all)
+    _declare_role_figure(ah_s9f1, 1, 3, [ radagast_sleigh ])
+    _declare_role_figure(ah_s9f1, 1, 4, "Galadriel, Lady of Light", [ galadriel, galadriel_council, galadriel_lotg, galadriel_vanquisher ])
+    _declare_role_figure(ah_s9f1, 1, 5, "Elrond", elrond_foot_all)
+
+    ah_s9f2 = Repo.insert! %ScenarioFaction{scenario_id: ah_s9.id, faction: :dol_guldur, suggested_points: 1400, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ah_s9f2, 1, 1, [ necromancer ])
+    _declare_role_figure(ah_s9f2, 1, 2, [ witch_king ])
+    _declare_role_figure(ah_s9f2, 1, 3, [ khamul ])
+    _declare_role_figure(ah_s9f2, 1, 4, [ dark_headsman ])
+    _declare_role_figure(ah_s9f2, 1, 5, [ forsaken ])
+    _declare_role_figure(ah_s9f2, 1, 6, [ lingering_shadow ])
+    _declare_role_figure(ah_s9f2, 2, 7, [ abyssal_knight ])
+    _declare_role_figure(ah_s9f2, 2, 8, [ slayer_of_men ])
+    _declare_role_figure(ah_s9f2, 1, 9, [ dungeon_keeper ])
+
+    #========================================================================
+    ah_s10 = Repo.insert! %Scenario{
+      name: "Battle of the Five Armies",
+      blurb: "The Goblins and Wargs attack the Elves, Men, and Dwarves outside Erebor.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 245,
+      map_width: 72, map_height: 48, location: :erebor
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ah_s10.id, resource_type: :source, book: :ah, title: "Armies of the Hobbit", sort_order: 10, page: 152}
+
+    ah_s10f1 = Repo.insert! %ScenarioFaction{scenario_id: ah_s10.id, faction: :erebor, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ah_s10f1,  1,  1, [ thorin_erebor ])
+    _declare_role_figure(ah_s10f1,  1,  2, [ kili_erebor ])
+    _declare_role_figure(ah_s10f1,  1,  3, [ fili_erebor ])
+    _declare_role_figure(ah_s10f1,  1,  4, [ balin_erebor ])
+    _declare_role_figure(ah_s10f1,  1,  5, [ dwalin_erebor ])
+    _declare_role_figure(ah_s10f1,  1,  6, [ bifur_erebor ])
+    _declare_role_figure(ah_s10f1,  1,  7, [ bofur_erebor ])
+    _declare_role_figure(ah_s10f1,  1,  8, [ bombur_erebor ])
+    _declare_role_figure(ah_s10f1,  1,  9, [ ori_erebor ])
+    _declare_role_figure(ah_s10f1,  1, 10, [ nori_erebor ])
+    _declare_role_figure(ah_s10f1,  1, 11, [ dori_erebor ])
+    _declare_role_figure(ah_s10f1,  1, 12, [ oin_erebor ])
+    _declare_role_figure(ah_s10f1,  1, 13, [ gloin_erebor ])
+    _declare_role_figure(ah_s10f1,  1, 14, [ dain_ironfoot_boar ])
+    _declare_role_figure(ah_s10f1,  1, 15, [ iron_hills_captain ])
+    _declare_role_figure(ah_s10f1,  1, 16, [ iron_hills_captain_mattock ])
+    _declare_role_figure(ah_s10f1, 12, 17, [ iron_hills_dwarf_mattock ])
+    _declare_role_figure(ah_s10f1, 12, 18, [ iron_hills_dwarf_spear ])
+    _declare_role_figure(ah_s10f1, 12, 19, [ iron_hills_dwarf_crossbow ])
+    _declare_role_figure(ah_s10f1,  1, 20, [ iron_hills_chariot ])
+    _declare_role_figure(ah_s10f1,  4, 21, [ iron_hills_chariot_crew ])
+    _declare_role_figure(ah_s10f1,  1, 22, [ thranduil_elk ])
+    _declare_role_figure(ah_s10f1,  2, 23, [ mirkwood_captain ])
+    _declare_role_figure(ah_s10f1, 12, 24, [ mirkwood_elf_shield ])
+    _declare_role_figure(ah_s10f1, 12, 25, [ mirkwood_elf_glaive ])
+    _declare_role_figure(ah_s10f1, 12, 26, [ mirkwood_elf_bow ])
+    _declare_role_figure(ah_s10f1,  1, 27, "Beorn", [ beorn, beorn_and_bear ])
+    _declare_role_figure(ah_s10f1,  1, 28, [ radagast_eagle ])
+    _declare_role_figure(ah_s10f1,  1, 29, "Gwaihir", [ gwaihir, gwaihir_orthanc ])
+    _declare_role_figure(ah_s10f1,  4, 30, [ eagle ])
+
+    ah_s10f2 = Repo.insert! %ScenarioFaction{scenario_id: ah_s10.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ah_s10f2,  1,  1, "Azog with heavy armour and stone flail", [ azog, azog_lt ])
+    _declare_role_figure(ah_s10f2,  5,  2, [ gundabad_orc_captain ])
+    _declare_role_figure(ah_s10f2,  2,  3, [ goblin_mercenary_captain ])
+    _declare_role_figure(ah_s10f2, 30,  4, [ gundabad_orc_shield ])
+    _declare_role_figure(ah_s10f2, 30,  5, [ gundabad_orc_spear ])
+    _declare_role_figure(ah_s10f2,  2,  6, [ gundabad_troll_club ])
+    _declare_role_figure(ah_s10f2,  2,  7, [ gundabad_troll_scythe ])
+    _declare_role_figure(ah_s10f2,  1,  8, [ troll_brute ])
+    _declare_role_figure(ah_s10f2,  6,  9, [ gundabad_ogre ])
+    _declare_role_figure(ah_s10f2, 24, 10, [ gundabad_berserker ])
+    _declare_role_figure(ah_s10f2, 24, 11, [ goblin_mercenary ])
+    _declare_role_figure(ah_s10f2,  6, 12, [ war_bat ])
+    _declare_role_figure(ah_s10f2,  1, 13, [ catapult_troll ])
+    _declare_role_figure(ah_s10f2,  1, 14, [ signal_tower ])
+    _declare_role_figure(ah_s10f2,  7, 15, [ signal_tower_lt ])
+
+    #========================================================================
+    ah_s11 = Repo.insert! %Scenario{
+      name: "Battle for Dale",
+      blurb: "Bard rallies the remnants of Lake-town to battle Azog's legion.",
+      date_age: 3, date_year: 2941, date_month: 0, date_day: 0, size: 117,
+      map_width: 48, map_height: 48, location: :dale
+    }
+
+    Repo.insert! %ScenarioResource{scenario_id: ah_s11.id, resource_type: :source, book: :ah, title: "There and Back Again", sort_order: 11, page: 154}
+
+    ah_s11f1 = Repo.insert! %ScenarioFaction{scenario_id: ah_s11.id, faction: :laketown, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _declare_role_figure(ah_s11f1,  1,  1, "Bard the Bowman with armour", [ bard, bard_heir ])
+    _declare_role_figure(ah_s11f1,  1,  2, [ bain ])
+    _declare_role_figure(ah_s11f1,  1,  3, [ sigrid ])
+    _declare_role_figure(ah_s11f1,  1,  4, [ tilda ])
+    _declare_role_figure(ah_s11f1,  1,  5, [ percy ])
+    _declare_role_figure(ah_s11f1,  1,  6, [ hilda ])
+    _declare_role_figure(ah_s11f1,  1,  7, [ alfrid ])
+    _declare_role_figure(ah_s11f1,  1,  8, "Gandalf the Grey", gandalf_grey_foot_all)
+    _declare_role_figure(ah_s11f1,  1,  9, "Bilbo Baggins", bilbo_all)
+    _declare_role_figure(ah_s11f1,  1, 10, "Thranduil", thranduil_foot_all)
+    _declare_role_figure(ah_s11f1,  1, 11, [ mirkwood_captain ])
+    _declare_role_figure(ah_s11f1, 12, 12, [ laketown_militia_shield ])
+    _declare_role_figure(ah_s11f1, 12, 13, [ laketown_militia_spear])
+    _declare_role_figure(ah_s11f1, 12, 14, [ laketown_militia_bow ])
+    _declare_role_figure(ah_s11f1,  8, 15, [ mirkwood_elf_shield ])
+    _declare_role_figure(ah_s11f1,  8, 16, [ mirkwood_elf_glaive ])
+    _declare_role_figure(ah_s11f1,  8, 17, [ mirkwood_elf_bow ])
+
+    ah_s11f2 = Repo.insert! %ScenarioFaction{scenario_id: ah_s11.id, faction: :azogs_legion, suggested_points: 0, actual_points: 0, sort_order: 2}
+    _declare_role_figure(ah_s11f2,  4, 1, "Gundabad Orc Captains with shield", [ gundabad_orc_captain ])
+    _declare_role_figure(ah_s11f2, 24, 2, [ gundabad_orc_shield ])
+    _declare_role_figure(ah_s11f2, 24, 3, [ gundabad_orc_spear ])
+    _declare_role_figure(ah_s11f2,  4, 4, [ gundabad_ogre ])
   end
 end
 

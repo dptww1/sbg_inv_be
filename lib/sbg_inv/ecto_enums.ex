@@ -113,7 +113,8 @@ defenum ScenarioResourceBook,
   ttt:     26,   # The Two Towers
   ttt_jb:  27,   # The Two Towers Journeybook
   bpf_ss:  28,   # Battle of the Pelennor Fields Starter Set
-  alotr:   29    # Armies of the Lord of the Rings
+  alotr:   29,   # Armies of the Lord of the Rings
+  ah:      30    # Armies of the Hobbit
 
 defenum ScenarioResourceType,
   source:           0,
