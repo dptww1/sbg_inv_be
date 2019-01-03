@@ -2,10 +2,6 @@ defmodule SbgInv.Web.SearchController do
 
   use SbgInv.Web, :controller
 
-  import Ecto.Query
-
-  alias SbgInv.Web.{Figure, Scenario}
-
   def index(conn, %{"q" => q}) do
     results = Repo.query("""
       SELECT * FROM (
