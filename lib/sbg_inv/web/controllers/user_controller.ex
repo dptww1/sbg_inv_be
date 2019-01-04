@@ -18,7 +18,8 @@ defmodule SbgInv.Web.UserController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(SbgInv.Web.ChangesetView, "error.json", changeset: changeset)
+        |> put_view(SbgInv.Web.ChangesetView)
+        |> render("error.json", changeset: changeset)
     end
   end
 
@@ -46,7 +47,8 @@ defmodule SbgInv.Web.UserController do
         {:error, changeset} ->
           conn
           |> put_status(:unprocessable_entity)
-          |> render(SbgInv.Web.ChangesetView, "error.json", changeset: changeset)
+          |> put_view(SbgInv.Web.ChangesetView)
+          |> render("error.json", changeset: changeset)
       end
     end
   end

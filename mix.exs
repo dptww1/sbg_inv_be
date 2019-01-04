@@ -19,7 +19,7 @@ defmodule SbgInv.Mixfile do
   def application do
     [mod: {SbgInv, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :calendar, :comeonin, :bamboo,
+                    :phoenix_ecto, :ecto_sql, :postgrex, :calendar, :comeonin, :bamboo,
                     :bamboo_smtp, :corsica, :ecto_enum, :secure_random, :tzdata
                     ]]
   end
@@ -32,18 +32,18 @@ defmodule SbgInv.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.3.0-rc"},
+    [{:phoenix, "~> 1.4.0"},
      {:phoenix_pubsub, "~> 1.0" },
      {:postgrex, ">= 0.0.0"},
-     {:phoenix_ecto, "~> 3.0-rc"},
+     {:ecto_sql, "~> 3.0"},
+     {:phoenix_ecto, "~> 4.0"},
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"},
-     {:plug, "~> 1.0"},
+     {:plug_cowboy, "~> 2.0"},
+     {:plug, "~> 1.7"},
      {:corsica, "~> 0.4"},
-     {:ecto, "~> 2.1"},
-     {:ecto_enum, "~> 1.0.2" },
+     {:ecto_enum, "~> 1.1.0" },
      {:calendar, "~> 0.14.2"},
      {:comeonin, "~> 2.0"},
      {:secure_random, "~> 0.2"},
