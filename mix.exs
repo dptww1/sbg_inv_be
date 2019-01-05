@@ -37,7 +37,7 @@ defmodule SbgInv.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:ecto_sql, "~> 3.0"},
      {:phoenix_ecto, "~> 4.0"},
-     {:phoenix_html, "~> 2.4"},
+     {:phoenix_html, "~> 2.13.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:plug_cowboy, "~> 2.0"},
@@ -64,7 +64,7 @@ defmodule SbgInv.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end

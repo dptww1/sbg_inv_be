@@ -71,7 +71,6 @@ config :logger, level: :info
 #     config :sbg_inv, SbgInv.Endpoint, root: "."
 
 config :sbg_inv, SbgInv.Repo,
-  adapter: Ecto.Adapters.Postgres,
   url: "${DATABASE_URL}",
   database: "",
   ssl: true,

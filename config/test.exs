@@ -11,7 +11,6 @@ config :logger, level: :warn
 
 # Configure your database
 config :sbg_inv, SbgInv.Repo,
-  adapter: Ecto.Adapters.Postgres,
 #  username: "postgres",
 #  password: "postgres",
   database: "sbg_inv_test",
