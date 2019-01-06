@@ -2,7 +2,9 @@ defmodule SbgInv.Web.Endpoint do
 
   use Phoenix.Endpoint, otp_app: :sbg_inv
 
-  socket "/socket", SbgInv.Web.UserSocket
+  socket "/socket", SbgInv.Web.UserSocket,
+      websocket: true,
+      longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -26,7 +28,7 @@ defmodule SbgInv.Web.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Poison
+    json_decoder: Jason
 
   plug Plug.MethodOverride
   plug Plug.Head

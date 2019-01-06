@@ -25,6 +25,7 @@ import_config "#{Mix.env}.exs"
 # Configure phoenix generators
 config :phoenix, :generators,
   migration: true,
-  binary_id: false
+  binary_id: false,
+  json_library: Jason
 
 config :sbg_inv, ecto_repos: [SbgInv.Repo]
