@@ -15,7 +15,7 @@ defmodule SbgInv.Web.NewsControllerTest do
   end
 
   test "index returns sorted list with default of three items", %{conn: conn} do
-    conn = get conn, news_item_path(conn, :index)
+    conn = get conn, Routes.news_item_path(conn, :index)
     assert json_response(conn, 200)["data"] == [
              %{"item_text" => "a <b>c%20</b> d",      "item_date" => "2018-08-01"},
              %{"item_text" => "Most Recent in July",  "item_date" => "2018-07-21"},
@@ -24,7 +24,7 @@ defmodule SbgInv.Web.NewsControllerTest do
   end
 
   test "index returns sorted list with default of user-supplied number of item", %{conn: conn} do
-    conn = get conn, news_item_path(conn, :index, %{"n" => 2})
+    conn = get conn, Routes.news_item_path(conn, :index, %{"n" => 2})
     assert json_response(conn, 200)["data"] == [
              %{"item_text" => "a <b>c%20</b> d",      "item_date" => "2018-08-01"},
              %{"item_text" => "Most Recent in July",  "item_date" => "2018-07-21"}
@@ -32,7 +32,7 @@ defmodule SbgInv.Web.NewsControllerTest do
   end
 
   test "index returns sorted list respecting 'from' date", %{conn: conn} do
-    conn = get conn, news_item_path(conn, :index, %{"from" => "2017-04-03", "n" => 10})
+    conn = get conn, Routes.news_item_path(conn, :index, %{"from" => "2017-04-03", "n" => 10})
     assert json_response(conn, 200)["data"] == [
              %{"item_text" => "a <b>c%20</b> d",       "item_date" => "2018-08-01"},
              %{"item_text" => "Most Recent in July",   "item_date" => "2018-07-21"},
@@ -42,7 +42,7 @@ defmodule SbgInv.Web.NewsControllerTest do
   end
 
   test "index returns sorted list respecting 'to' date", %{conn: conn} do
-    conn = get conn, news_item_path(conn, :index, %{"to" => "2018-01-01", "n" => 10})
+    conn = get conn, Routes.news_item_path(conn, :index, %{"to" => "2018-01-01", "n" => 10})
     assert json_response(conn, 200)["data"] == [
              %{"item_text" => "Most Recent in April",  "item_date" => "2017-04-20"},
              %{"item_text" => "Least Recent in April", "item_date" => "2017-04-02"}

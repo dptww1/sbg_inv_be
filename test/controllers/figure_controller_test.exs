@@ -10,7 +10,7 @@ defmodule SbgInv.Web.FigureControllerTest do
   end
 
   test "unknown figure id returns error", %{conn: conn} do
-    conn = get conn, figure_path(conn, :show, -1)
+    conn = get conn, Routes.figure_path(conn, :show, -1)
     assert conn.status == 404
   end
 
@@ -25,7 +25,7 @@ defmodule SbgInv.Web.FigureControllerTest do
     Repo.insert! %FactionFigure{figure: figure, faction_id: 7}
     Repo.insert! %FactionFigure{figure: figure, faction_id: 4}
 
-    conn = get conn, figure_path(conn, :show, fid)
+    conn = get conn, Routes.figure_path(conn, :show, fid)
     assert json_response(conn, 200)["data"] == %{
       "id" => fid,
       "type" => "hero",
@@ -61,7 +61,7 @@ defmodule SbgInv.Web.FigureControllerTest do
     Repo.insert! %UserFigureHistory{user_id: user.id, figure_id: figure.id, amount: 3, op: 1, new_owned: 4, new_painted: 4,
                                     op_date: ~D[2017-08-02], notes: "ABCD"}
 
-    conn = get conn, figure_path(conn, :show, fid)
+    conn = get conn, Routes.figure_path(conn, :show, fid)
     assert json_response(conn, 200)["data"] == %{
       "id" => fid,
       "type" => "hero",

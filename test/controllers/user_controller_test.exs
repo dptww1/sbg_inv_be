@@ -13,7 +13,7 @@ defmodule SbgInv.Web.UserControllerTest do
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), user: @valid_attrs
+    conn = post conn, Routes.user_path(conn, :create), user: @valid_attrs
     body = json_response(conn, 201)
     assert body["data"]["id"]
     assert body["data"]["email"]
@@ -22,14 +22,14 @@ defmodule SbgInv.Web.UserControllerTest do
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), user: @invalid_attrs
+    conn = post conn, Routes.user_path(conn, :create), user: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "updates user's email and password with proper credentials", %{conn: conn} do
     user = TestHelper.create_user
     conn = TestHelper.create_session(conn, user)
-    conn = put conn, user_path(conn, :update, user), user: %{email: "abc@example.com", password: "123456" }
+    conn = put conn, Routes.user_path(conn, :update, user), user: %{email: "abc@example.com", password: "123456" }
 
     assert json_response(conn, 200)["data"]["id"] == user.id
     user_chk = Repo.get_by(User, email: "abc@example.com")
@@ -40,7 +40,7 @@ defmodule SbgInv.Web.UserControllerTest do
   test "updates email only when no password supplied", %{conn: conn} do
     user = TestHelper.create_user
     conn = TestHelper.create_session(conn, user)
-    conn = put conn, user_path(conn, :update, user), user: %{email: "abc@example.com" }
+    conn = put conn, Routes.user_path(conn, :update, user), user: %{email: "abc@example.com" }
 
     assert json_response(conn, 200)["data"]["id"] == user.id
     user_chk = Repo.get_by(User, %{email: "abc@example.com"})
@@ -51,7 +51,7 @@ defmodule SbgInv.Web.UserControllerTest do
   test "updates password only when no email supplied", %{conn: conn} do
     user = TestHelper.create_user
     conn = TestHelper.create_session(conn, user)
-    conn = put conn, user_path(conn, :update, user), user: %{password: "random string" }
+    conn = put conn, Routes.user_path(conn, :update, user), user: %{password: "random string" }
 
     assert json_response(conn, 200)["data"]["id"] == user.id
     user_chk = Repo.get_by(User, %{id: user.id})
@@ -61,7 +61,7 @@ defmodule SbgInv.Web.UserControllerTest do
   end
 
   test "created user cannot be admin", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), user: Map.put(@valid_attrs, :is_admin, true)
+    conn = post conn, Routes.user_path(conn, :create), user: Map.put(@valid_attrs, :is_admin, true)
     json_response(conn, 201)
     check = Repo.get_by(User, email: "foo@bar.com")
     refute check.is_admin
@@ -70,7 +70,7 @@ defmodule SbgInv.Web.UserControllerTest do
   test "updated user cannot be admin", %{conn: conn} do
     user = TestHelper.create_user
     conn = TestHelper.create_session(conn, user)
-    put conn, user_path(conn, :update, user), user: %{email: "abc@example.com", password: "123456", is_admin: true}
+    put conn, Routes.user_path(conn, :update, user), user: %{email: "abc@example.com", password: "123456", is_admin: true}
 
     user_chk = Repo.get_by(User, email: "abc@example.com")
     assert user_chk
@@ -79,7 +79,7 @@ defmodule SbgInv.Web.UserControllerTest do
 
   test "user must be authorized to update account", %{conn: conn} do
     user = TestHelper.create_user
-    conn = put conn, user_path(conn, :update, user), user: %{email: "abc@example.com" }
+    conn = put conn, Routes.user_path(conn, :update, user), user: %{email: "abc@example.com" }
 
     assert conn.status == 401
   end

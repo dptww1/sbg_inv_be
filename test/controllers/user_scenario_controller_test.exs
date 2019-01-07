@@ -10,7 +10,7 @@ defmodule SbgInv.Web.UserScenarioControllerTest do
                           map_width: 7, map_height: 8, location: :the_shire}
 
   test "fails when no user", %{conn: conn} do
-    conn = post conn, user_scenario_path(conn, :create), user_scenario: Map.merge(@valid_attrs, %{scenario_id: -1, user_id: -2})
+    conn = post conn, Routes.user_scenario_path(conn, :create), user_scenario: Map.merge(@valid_attrs, %{scenario_id: -1, user_id: -2})
     assert conn.status == 401
   end
 
@@ -18,7 +18,7 @@ defmodule SbgInv.Web.UserScenarioControllerTest do
     scenario = Repo.insert! struct(Scenario, @valid_scenario_attrs)
     user = TestHelper.create_user
     conn = TestHelper.create_session(conn, user)
-    conn = post conn, user_scenario_path(conn, :create), user_scenario: Map.merge(@valid_attrs, %{scenario_id: scenario.id, user_id: user.id})
+    conn = post conn, Routes.user_scenario_path(conn, :create), user_scenario: Map.merge(@valid_attrs, %{scenario_id: scenario.id, user_id: user.id})
     assert !conn.halted  # halt would indicate authorization failure
     resp = json_response(conn, 200)
     assert resp == %{"rating" => 3, "owned" => 2, "painted" => 1, "avg_rating" => 3.0, "num_votes" => 1}
@@ -34,7 +34,7 @@ defmodule SbgInv.Web.UserScenarioControllerTest do
     Repo.insert! %UserScenario{user_id: user1.id, scenario_id: scenario.id, rating: 1}
     Repo.insert! %UserScenario{user_id: user2.id, scenario_id: scenario.id, rating: 1}
     conn = TestHelper.create_session(conn, user3)
-    conn = post conn, user_scenario_path(conn, :create), user_scenario: %{scenario_id: scenario.id, user_id: user3.id, rating: 4}
+    conn = post conn, Routes.user_scenario_path(conn, :create), user_scenario: %{scenario_id: scenario.id, user_id: user3.id, rating: 4}
     assert json_response(conn, 200) == %{"rating" => 4, "avg_rating" => 2.0, "num_votes" => 3, "owned" => 0, "painted" => 0}
   end
 
@@ -44,7 +44,7 @@ defmodule SbgInv.Web.UserScenarioControllerTest do
       map_width: 7, map_height: 12, location: :the_shire}
     Repo.insert! %UserScenario{user_id: user.id, scenario_id: scenario.id, rating: 0}
     conn = TestHelper.create_session(conn, user)
-    conn = post conn, user_scenario_path(conn, :create), user_scenario: %{scenario_id: scenario.id, user_id: user.id, rating: 11}
+    conn = post conn, Routes.user_scenario_path(conn, :create), user_scenario: %{scenario_id: scenario.id, user_id: user.id, rating: 11}
     assert conn.status == 422
   end
 end

@@ -14,13 +14,13 @@ defmodule SbgInv.ScenarioControllerTest do
   end
 
   test "lists all entries on index (no authorization)", %{conn: conn} do
-    conn = get conn, scenario_path(conn, :index)
+    conn = get conn, Routes.scenario_path(conn, :index)
     assert json_response(conn, 200)["data"] == []
   end
 
   test "shows chosen resource", %{conn: conn} do
     scenario = Repo.insert! %Scenario{}
-    conn = get conn, scenario_path(conn, :show, scenario)
+    conn = get conn, Routes.scenario_path(conn, :show, scenario)
     assert json_response(conn, 200)["data"] == %{
       "id" => scenario.id,
       "name" => scenario.name,
@@ -50,7 +50,7 @@ defmodule SbgInv.ScenarioControllerTest do
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do
-    conn = get conn, scenario_path(conn, :show, -1)
+    conn = get conn, Routes.scenario_path(conn, :show, -1)
     assert conn.status == 404
   end
 
@@ -87,7 +87,7 @@ defmodule SbgInv.ScenarioControllerTest do
 
   test "scenario list query correctly limits itself to the current user's scenario data", %{conn: conn} do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
-    conn = get conn, scenario_path(conn, :index)
+    conn = get conn, Routes.scenario_path(conn, :index)
 
     required_values = %{ const_data | "scenario_factions" => [
                          Map.take(hd(Map.get(const_data, "scenario_factions")),
@@ -99,7 +99,7 @@ defmodule SbgInv.ScenarioControllerTest do
 
   test "scenario detail query correctly limits itself to the current user's scenario data", %{conn: conn} do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
-    conn = get conn, scenario_path(conn, :show, Map.get(const_data, "id"))
+    conn = get conn, Routes.scenario_path(conn, :show, Map.get(const_data, "id"))
     assert json_response(conn, 200)["data"] == const_data
   end
 
@@ -110,7 +110,7 @@ defmodule SbgInv.ScenarioControllerTest do
     role_id = TestHelper.std_scenario_role_id(const_data, 0, 0)
     TestHelper.add_role_figure(second_figure.id, role_id)
 
-    conn = get conn, scenario_path(conn, :show, Map.get(const_data, "id"))
+    conn = get conn, Routes.scenario_path(conn, :show, Map.get(const_data, "id"))
 
     assert hd(hd(json_response(conn, 200)["data"]["scenario_factions"])["roles"]) == %{
       "id" => role_id,
@@ -128,7 +128,7 @@ defmodule SbgInv.ScenarioControllerTest do
   test "index with bad cookie fails", %{conn: conn} do
     conn = conn
            |> put_req_header("authorization", "Token token=\"123bcd\"")
-           |> get(scenario_path(conn, :index))
+           |> get(Routes.scenario_path(conn, :index))
     assert json_response(conn, 401)["errors"] != %{}
   end
 
@@ -136,7 +136,7 @@ defmodule SbgInv.ScenarioControllerTest do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
     resp = conn
            |> put_req_header("authorization", "Token token=\"123bcd\"")
-           |> get(scenario_path(conn, :show, Map.get(const_data, "id")))
+           |> get(Routes.scenario_path(conn, :show, Map.get(const_data, "id")))
     assert json_response(resp, 401)["errors"] != %{}
   end
 
@@ -153,7 +153,7 @@ defmodule SbgInv.ScenarioControllerTest do
     Repo.insert! %UserScenario{user_id: user4.id, scenario_id: const_data["id"], rating: 2}
     Repo.insert! %UserScenario{user_id: user5.id, scenario_id: const_data["id"], rating: 1}
 
-    conn = get conn, scenario_path(conn, :show, const_data["id"])
+    conn = get conn, Routes.scenario_path(conn, :show, const_data["id"])
     assert json_response(conn, 200)["data"]["rating_breakdown"] == [1, 1, 1, 1, 1]
   end
 
@@ -161,7 +161,7 @@ defmodule SbgInv.ScenarioControllerTest do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
     Repo.insert! %ScenarioResource{scenario_id: const_data["id"], resource_type: :source, book: :fp, title: "Free Peoples", sort_order: 1}
 
-    conn = get conn, scenario_path(conn, :show, const_data["id"])
+    conn = get conn, Routes.scenario_path(conn, :show, const_data["id"])
 
     assert hd(json_response(conn, 200)["data"]["scenario_resources"]["source"])["issue"] == nil
   end
@@ -170,7 +170,7 @@ defmodule SbgInv.ScenarioControllerTest do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
     Repo.insert! %ScenarioResource{scenario_id: const_data["id"], resource_type: :source, book: :fp, issue: 321, title: "Free Peoples", sort_order: 1}
 
-    conn = get conn, scenario_path(conn, :show, const_data["id"])
+    conn = get conn, Routes.scenario_path(conn, :show, const_data["id"])
 
     assert hd(json_response(conn, 200)["data"]["scenario_resources"]["source"])["issue"] == 321
   end

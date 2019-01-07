@@ -25,7 +25,7 @@ defmodule SbgInv.Web.ConnCase do
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
 
-      import SbgInv.Web.Router.Helpers
+      alias SbgInv.Web.Router.Helpers, as: Routes
 
       # The default endpoint for testing
       @endpoint SbgInv.Web.Endpoint

@@ -28,7 +28,7 @@ defmodule SbgInv.Web.SearchControllerTest do
   end
 
   test "search for figures works", %{conn: conn} = context do
-    conn = get conn, search_path(conn, :index, q: "Gimli")
+    conn = get conn, Routes.search_path(conn, :index, q: "Gimli")
     assert json_response(conn, 200)["data"] == [
              %{"id" => context[:ids][:gimli_ah_id], "name" => "Gimli (Amon Hen)",   "type" => "f", "start" => 0},
              %{"id" => context[:ids][:gimli_f_id],  "name" => "Gimli (Fellowship)", "type" => "f", "start" => 0}

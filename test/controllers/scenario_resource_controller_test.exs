@@ -13,13 +13,13 @@ defmodule SbgInv.ScenarioResourceControllerTest do
   end
 
   test "can't create scenario resource anonymously", %{conn: conn} do
-    conn = post conn, scenario_scenario_resource_path(conn, :create, 1), resource: @valid_attrs
+    conn = post conn, Routes.scenario_scenario_resource_path(conn, :create, 1), resource: @valid_attrs
     assert conn.status == 401
   end
 
   test "can't create scenario resource if non-admin", %{conn: conn} do
     conn = TestHelper.create_logged_in_user(conn)
-    conn = post conn, scenario_scenario_resource_path(conn, :create, 1), resource: @valid_attrs
+    conn = post conn, Routes.scenario_scenario_resource_path(conn, :create, 1), resource: @valid_attrs
     assert conn.status == 401
   end
 
@@ -27,25 +27,25 @@ defmodule SbgInv.ScenarioResourceControllerTest do
     scenario = TestHelper.create_scenario()
     user = Repo.insert! %User{name: "abc", email: "def@example.com", is_admin: true}
     conn = TestHelper.create_session(conn, user)
-    conn = post conn, scenario_scenario_resource_path(conn, :create, scenario.id), resource: @valid_attrs
+    conn = post conn, Routes.scenario_scenario_resource_path(conn, :create, scenario.id), resource: @valid_attrs
     assert conn.status == 204
   end
 
   test "can't create scenario resource if admin and invalid data", %{conn: conn} do
     user = Repo.insert! %User{name: "abc", email: "def@example.com", is_admin: true}
     conn = TestHelper.create_session(conn, user)
-    conn = post conn, scenario_scenario_resource_path(conn, :create, 1), resource: @invalid_attrs
+    conn = post conn, Routes.scenario_scenario_resource_path(conn, :create, 1), resource: @invalid_attrs
     assert conn.status == 422
   end
 
   test "can't update scenario resource anonymously", %{conn: conn} do
-    conn = put conn, scenario_scenario_resource_path(conn, :update, 1, 3), resource: @valid_attrs
+    conn = put conn, Routes.scenario_scenario_resource_path(conn, :update, 1, 3), resource: @valid_attrs
     assert conn.status == 401
   end
 
   test "can't update scenario resource if non-admin", %{conn: conn} do
     conn = TestHelper.create_logged_in_user(conn)
-    conn = put conn, scenario_scenario_resource_path(conn, :update, 1, 3), resource: @valid_attrs
+    conn = put conn, Routes.scenario_scenario_resource_path(conn, :update, 1, 3), resource: @valid_attrs
     assert conn.status == 401
   end
 
@@ -54,7 +54,7 @@ defmodule SbgInv.ScenarioResourceControllerTest do
     scenario = TestHelper.create_scenario()
     resource = Repo.insert! %ScenarioResource{scenario_id: scenario.id, sort_order: 1, resource_type: 1}
     conn = TestHelper.create_session(conn, user)
-    conn = put conn, scenario_scenario_resource_path(conn, :update, scenario.id, resource.id),
+    conn = put conn, Routes.scenario_scenario_resource_path(conn, :update, scenario.id, resource.id),
                resource: %{scenario_id: scenario.id, id: resource.id, resource_type: 2, url: "http://www.foo.com"}
     assert conn.status == 204
     updated_resource = Repo.get! ScenarioResource, resource.id
@@ -67,7 +67,7 @@ defmodule SbgInv.ScenarioResourceControllerTest do
     scenario = TestHelper.create_scenario()
     resource = Repo.insert! %ScenarioResource{scenario_id: scenario.id, sort_order: 1, resource_type: 1}
     conn = TestHelper.create_session(conn, user)
-    conn = put conn, scenario_scenario_resource_path(conn, :update, scenario.id, resource.id),
+    conn = put conn, Routes.scenario_scenario_resource_path(conn, :update, scenario.id, resource.id),
                resource: %{scenario_id: scenario.id, id: resource.id, resource_type: nil}
     assert conn.status == 422
   end

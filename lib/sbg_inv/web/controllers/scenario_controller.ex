@@ -41,7 +41,7 @@ defmodule SbgInv.Web.ScenarioController do
         scenario = Repo.preload(scenario, [:scenario_resources, :scenario_factions, :user_scenarios])
         conn
         |> put_status(:created)
-        |> put_resp_header("location", scenario_path(conn, :show, scenario))
+        |> put_resp_header("location", Routes.scenario_path(conn, :show, scenario))
         |> render("show.json", scenario: scenario, user_id: 1, rating_breakdown: [])
       {:error, changeset} ->
         conn

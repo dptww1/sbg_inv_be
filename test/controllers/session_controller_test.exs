@@ -14,7 +14,7 @@ defmodule SbgInv.Web.SessionControllerTest do
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do
-    conn = post conn, session_path(conn, :create), user: @valid_attrs
+    conn = post conn, Routes.session_path(conn, :create), user: @valid_attrs
     resp = json_response(conn, 201)
     assert resp["data"]["token"]
     assert resp["data"]["name"]
@@ -23,12 +23,12 @@ defmodule SbgInv.Web.SessionControllerTest do
   end
 
   test "does not create resource and renders errors when password is invalid", %{conn: conn} do
-    conn = post conn, session_path(conn, :create), user: Map.put(@valid_attrs, :password, "notright")
+    conn = post conn, Routes.session_path(conn, :create), user: Map.put(@valid_attrs, :password, "notright")
     assert json_response(conn, 401)["errors"] != %{}
   end
 
   test "does not create resource and renders errors when email is invalid", %{conn: conn} do
-    conn = post conn, session_path(conn, :create), user: Map.put(@valid_attrs, :email, "not@found.com")
+    conn = post conn, Routes.session_path(conn, :create), user: Map.put(@valid_attrs, :email, "not@found.com")
     assert json_response(conn, 401)["errors"] != %{}
   end
 end

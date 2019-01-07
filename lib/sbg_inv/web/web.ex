@@ -34,7 +34,7 @@ defmodule SbgInv.Web do
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
 
-      import SbgInv.Web.Router.Helpers
+      alias SbgInv.Web.Router.Helpers, as: Routes
       import SbgInv.Web.Gettext
     end
   end
@@ -49,7 +49,7 @@ defmodule SbgInv.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import SbgInv.Web.Router.Helpers
+      alias SbgInv.Web.Router.Helpers, as: Routes
       import SbgInv.Web.ErrorHelpers
       import SbgInv.Web.Gettext
     end

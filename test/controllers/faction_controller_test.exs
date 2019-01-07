@@ -18,7 +18,7 @@ defmodule SbgInv.Web.FactionControllerTest do
   end
 
   test "unknown faction id returns error", %{conn: conn} do
-    conn = get conn, faction_path(conn, :show, -2)
+    conn = get conn, Routes.faction_path(conn, :show, -2)
     assert conn.status == 404
   end
 
@@ -29,7 +29,7 @@ defmodule SbgInv.Web.FactionControllerTest do
 
     Repo.insert! %FactionFigure{faction_id: :rohan, figure_id: fid}
 
-    conn = get conn, faction_path(conn, :show, TestHelper.faction_as_int(:rohan))
+    conn = get conn, Routes.faction_path(conn, :show, TestHelper.faction_as_int(:rohan))
     assert json_response(conn, 200)["data"] == %{
         "heroes" => [
             %{"id" => fid, "name" => "ABC", "plural_name" => "ABCs", "type" => "hero", "unique" => true, "needed" => 9, "owned" => 4, "painted" => 2}
@@ -62,7 +62,7 @@ defmodule SbgInv.Web.FactionControllerTest do
     Repo.insert! %RoleFigure{role_id: role1.id, figure_id: f2.id}
     Repo.insert! %RoleFigure{role_id: role2.id, figure_id: f4.id}
 
-    conn = get conn, faction_path(conn, :show, TestHelper.faction_as_int(:mirkwood))
+    conn = get conn, Routes.faction_path(conn, :show, TestHelper.faction_as_int(:mirkwood))
     assert json_response(conn, 200)["data"] == %{
       "heroes" => [
           %{"name" => "h1", "plural_name" => "h1s", "type" => "hero", "unique" => true,  "id" => f3.id, "needed" => 0, "owned" => 0, "painted" => 0},
@@ -92,7 +92,7 @@ defmodule SbgInv.Web.FactionControllerTest do
     f7 = insert_figure(0, "m1", "m1s", :monster, true)
     _8 = insert_figure(4, "s3", "s3s", :sieger)
 
-    conn = get conn, faction_path(conn, :show, -1)
+    conn = get conn, Routes.faction_path(conn, :show, -1)
     assert json_response(conn, 200)["data"] == %{
       "heroes"   => [ %{"name" => "??", "plural_name" => "??s", "type" => "hero",    "unique" => false, "id" => f1.id, "needed" => 0, "owned" => 0, "painted" => 0},
                       %{"name" => "h1", "plural_name" => "h1s", "type" => "hero",    "unique" => true,  "id" => f3.id, "needed" => 0, "owned" => 0, "painted" => 0} ],

@@ -13,6 +13,9 @@ config :sbg_inv, SbgInv.Web.Endpoint,
   pubsub: [name: SbgInv.Web.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :sbg_inv,
+       namespace: SbgInv.Web
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
@@ -28,4 +31,8 @@ config :phoenix, :generators,
   binary_id: false,
   json_library: Jason
 
-config :sbg_inv, ecto_repos: [SbgInv.Repo]
+config :sbg_inv,
+       ecto_repos: [SbgInv.Repo]
+
+config :sbg_inv,
+       namespace: SbgInv.Web
