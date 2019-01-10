@@ -10,18 +10,20 @@ defmodule SbgInv.Web.FactionFigure do
     belongs_to :figure, Figure
   end
 
-  @required_fields [:faction_id, :figure_id]
+  @required_fields_insert [:faction_id, :figure_id]
+  @required_fields_for_figure [:faction_id]
 
-  @doc """
-  Creates a changeset based on the `model` and `params`.
-
-  If no params are provided, an invalid changeset is returned
-  with no validation performed.
-  """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields)
-    |> validate_required(@required_fields)
+    |> cast(params, @required_fields_insert)
+    |> validate_required(@required_fields_insert)
+    |> cast_assoc(:figure)
+  end
+
+  def changeset_for_figure(model, params \\ %{}) do
+    model
+    |> cast(params, @required_fields_for_figure)
+    |> validate_required(@required_fields_for_figure)
     |> cast_assoc(:figure)
   end
 end

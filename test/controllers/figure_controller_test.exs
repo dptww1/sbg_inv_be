@@ -3,7 +3,15 @@ defmodule SbgInv.Web.FigureControllerTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{FactionFigure, Figure, UserFigureHistory}
+  alias SbgInv.Web.{FactionFigure, Figure, User, UserFigureHistory}
+
+  @valid_attrs %{
+    name: "The Name",
+    plural_name: "The Plural Name",
+    type: 1,
+    unique: false,
+    factions: ["rohan", "shire"]
+  }
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -84,4 +92,82 @@ defmodule SbgInv.Web.FigureControllerTest do
       ]
     }
   end
+
+  test "can create figure if logged in as admin user and provides valid data", %{conn: conn} do
+    user = Repo.insert! %User{name: "abc", email: "xyz@example.com", is_admin: true}
+    conn = TestHelper.create_session(conn, user)
+    conn = post conn, Routes.figure_path(conn, :create), figure: @valid_attrs
+
+    check = Repo.one!(Figure) |> Repo.preload([:faction_figure])
+
+    assert json_response(conn, 200)["data"] == %{
+             "id" => check.id,
+             "name" => "The Name",
+             "plural_name" => "The Plural Name",
+             "type" => "warrior",
+             "unique" => false,
+             "history" => [],
+             "owned" => 0,
+             "painted" => 0,
+             "scenarios" => [],
+             "factions" => ["rohan", "shire"]
+           }
+  end
+
+  test "can't create figure if anonymous", %{conn: conn} do
+    conn = post conn, Routes.figure_path(conn, :create), figure: @valid_attrs
+    assert conn.status == 401
+  end
+
+  test "can't create figure if not admin", %{conn: conn} do
+    conn = TestHelper.create_logged_in_user(conn)
+    conn = post conn, Routes.figure_path(conn, :create), figure: @valid_attrs
+    assert conn.status == 401
+  end
+
+  test "can update figure if logged in as admin user and provides valid data", %{conn: conn} do
+    figure = Repo.insert! %Figure{
+      name: "Old Name",
+      plural_name: "Old Names",
+      type: :warrior,
+      unique: false
+    }
+
+    Repo.insert! %FactionFigure{figure_id: figure.id, faction_id: :minas_tirith}
+    Repo.insert! %FactionFigure{figure_id: figure.id, faction_id: :fiefdoms}
+    Repo.insert! %FactionFigure{figure_id: figure.id, faction_id: :shire}
+
+    user = Repo.insert! %User{name: "abc", email: "xyz@example.com", is_admin: true}
+    conn = TestHelper.create_session(conn, user)
+    conn = put conn, Routes.figure_path(conn, :update, figure.id), figure: @valid_attrs
+
+    check = Repo.one!(Figure) |> Repo.preload([:faction_figure])
+
+    assert json_response(conn, 200)["data"] == %{
+             "id" => check.id,
+             "name" => "The Name",
+             "plural_name" => "The Plural Name",
+             "type" => "warrior",
+             "unique" => false,
+             "history" => [],
+             "owned" => 0,
+             "painted" => 0,
+             "scenarios" => [],
+             "factions" => ["rohan", "shire"]
+           }
+  end
+
+  test "can't update figure if anonymous", %{conn: conn} do
+    figure = Repo.insert! %Figure{name: "n",  plural_name: "p", type: :warrior, unique: false}
+    conn = put conn, Routes.figure_path(conn, :update, figure.id), figure: @valid_attrs
+    assert conn.status == 401
+  end
+
+  test "can't update figure if not admin", %{conn: conn} do
+    figure = Repo.insert! %Figure{name: "n",  plural_name: "p", type: :warrior, unique: false}
+    conn = TestHelper.create_logged_in_user(conn)
+    conn = put conn, Routes.figure_path(conn, :update, figure.id), figure: @valid_attrs
+    assert conn.status == 401
+  end
+
 end

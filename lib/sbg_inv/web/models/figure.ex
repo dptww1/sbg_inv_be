@@ -15,7 +15,7 @@ defmodule SbgInv.Web.Figure do
 
     many_to_many :role, Role, join_through: "role_figures"
     has_many :user_figure, UserFigure
-    has_many :faction_figure, FactionFigure
+    has_many :faction_figure, FactionFigure, on_replace: :delete
     has_many :user_figure_history, UserFigureHistory
   end
 
@@ -31,6 +31,7 @@ defmodule SbgInv.Web.Figure do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields ++ @optional_fields)
+    |> put_assoc(:faction_figure, Map.get(params, "faction_figure", []))
     |> validate_required(@required_fields)
   end
 end

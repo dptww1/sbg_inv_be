@@ -6,6 +6,44 @@ defmodule SbgInv.Web.FigureController do
 
   alias SbgInv.Web.{Authentication, Figure, UserFigure, UserFigureHistory}
 
+  def create(conn, %{"figure" => params}) do
+    conn = Authentication.admin_required(conn)
+
+    if (conn.halted) do
+      send_resp(conn, :unauthorized, "")
+
+    else
+      update_or_create(conn, Repo.preload(%Figure{}, :faction_figure), params)
+    end
+  end
+
+  def update(conn, %{"id" => id, "figure" => params}) do
+    conn = Authentication.admin_required(conn)
+
+    if (conn.halted) do
+      send_resp(conn, :unauthorized, "")
+
+    else
+      figure = Repo.get!(Figure, id)
+               |> Repo.preload([:faction_figure])
+
+      update_or_create(conn, figure, params)
+    end
+  end
+
+  defp update_or_create(conn, figure, params) do
+    ffs = Enum.map(Map.get(params, "factions", []), fn f -> %{:faction_id => f} end)
+    changeset = Figure.changeset(figure, Map.put(params, "faction_figure", ffs))
+
+    case Repo.insert_or_update(changeset) do
+      {:ok, figure} ->
+        render(conn, "figure.json", figure: Repo.preload(figure, [:faction_figure, :role, :user_figure, :user_figure_history]))
+
+      {:error, _changeset} ->
+        send_resp(conn, :unprocessable_entity, "")
+    end
+  end
+
   def show(conn, %{"id" => id}) do
     conn = Authentication.optionally(conn)
     figure = Repo.get(Figure, id)
