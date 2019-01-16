@@ -17,11 +17,10 @@ defmodule SbgInv.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {SbgInv, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :ecto_sql, :postgrex, :comeonin, :bamboo,
-                    :bamboo_smtp, :corsica, :ecto_enum, :secure_random
-                    ]]
+    [
+      mod: {SbgInv, []},
+      extra_applications: [:logger]
+    ]
   end
 
   # Specifies which paths to compile per environment.
