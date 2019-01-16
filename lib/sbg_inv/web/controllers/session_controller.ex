@@ -2,7 +2,7 @@ defmodule SbgInv.Web.SessionController do
 
   use SbgInv.Web, :controller
 
-  import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
+  import Comeonin.Pbkdf2, only: [checkpw: 2, dummy_checkpw: 0]
 
   alias SbgInv.Web.{Session, User}
 

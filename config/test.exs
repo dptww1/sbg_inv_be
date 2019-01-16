@@ -19,3 +19,5 @@ config :sbg_inv, SbgInv.Repo,
 
 config :sbg_inv, SbgInv.Mailer,
   adapter: Bamboo.TestAdapter
+
+config :pbkdf2_elixir, rounds: 1
