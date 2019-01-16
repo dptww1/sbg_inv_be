@@ -5,7 +5,6 @@ defmodule SbgInv.Web.RecalcController do
   def index(conn, _params) do
     Task.start_link(fn -> SbgInv.Web.RecalcUserScenarioTask.do_task(1) end)   # TODO get user id from conn
 
-    text conn, "Starting recalc task at " <>
-      Calendar.NaiveDateTime.Format.asctime(Calendar.NaiveDateTime.from_erl!(:calendar.local_time()))
+    text conn, "Starting recalc task at " <> NaiveDateTime.to_string(NaiveDateTime.utc_now())
   end
 end
