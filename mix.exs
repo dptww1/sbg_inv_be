@@ -47,8 +47,8 @@ defmodule SbgInv.Mixfile do
      {:ecto_enum, "~> 1.1.0"},
      {:comeonin, "~> 2.0"},
      {:secure_random, "~> 0.2"},
-     {:bamboo, "~> 0.7"},
-     {:bamboo_smtp, "~> 1.2.1"},
+     {:bamboo, "~> 1.1.0"},
+     {:bamboo_smtp, "~> 1.6.0"},
      {:distillery, "~> 1.0.0"}
     ]
   end

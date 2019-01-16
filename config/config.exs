@@ -36,3 +36,6 @@ config :sbg_inv,
 
 config :sbg_inv,
        namespace: SbgInv.Web
+
+config :bamboo,
+       :json_library, Jason
