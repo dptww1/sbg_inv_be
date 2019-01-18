@@ -37,8 +37,7 @@ defmodule SbgInv.Web.Scenario do
   def changeset(model, params \\ %{}) do
     model
     |> base_changeset(params)
-    |> cast_assoc(:scenario_resources)
-    |> cast_assoc(:scenario_factions)
+    |> put_assoc(:scenario_factions, Map.get(params, "scenario_factions", []))
   end
 
   def base_changeset(model, params \\ %{}) do
