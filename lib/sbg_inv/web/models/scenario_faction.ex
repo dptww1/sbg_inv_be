@@ -16,7 +16,7 @@ defmodule SbgInv.Web.ScenarioFaction do
     has_many :roles, Role
   end
 
-  @required_fields [:scenario_id, :faction, :suggested_points, :actual_points, :sort_order]
+  @required_fields [:faction, :suggested_points, :actual_points, :sort_order]
 
   @doc """
   Creates a changeset based on the `model` and `params`.

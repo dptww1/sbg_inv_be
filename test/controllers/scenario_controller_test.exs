@@ -5,7 +5,7 @@ defmodule SbgInv.ScenarioControllerTest do
   alias SbgInv.TestHelper
   alias SbgInv.Web.{Scenario, ScenarioResource, User, UserScenario}
 
-  @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, name: "some content", size: 42,
+  @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, name: "some name", size: 42,
                  map_width: 48, map_height: 48, location: :the_shire,
                  scenario_factions: [
                    %{faction: :shire, suggested_points: 100, actual_points: 0, sort_order: 1},
@@ -62,7 +62,44 @@ defmodule SbgInv.ScenarioControllerTest do
     user = Repo.insert! %User{name: "abc", email: "xyz@example.com", is_admin: true}
     conn = TestHelper.create_session(conn, user)
     conn = post conn, Routes.scenario_path(conn, :create), scenario: @valid_attrs
-    assert json_response(conn, 201)["data"]["id"]
+
+    check = Repo.one!(Scenario) |> Repo.preload(:scenario_factions)
+
+    assert json_response(conn, 201)["data"] == %{
+      "id" => check.id,
+      "blurb" => "some content",
+      "date_age" => 42,
+      "date_day" => 15,
+      "date_month" => 7,
+      "date_year" => 42,
+      "location" => "the_shire",
+      "map_height" => 48,
+      "map_width" => 48,
+      "name" => "some name",
+      "num_votes" => 0,
+      "rating" => 0,
+      "rating_breakdown" => [],
+      "scenario_factions" => [
+        %{"sort_order" => 1, "faction" => "shire", "suggested_points" => 100, "actual_points" => 0, "roles" => []},
+        %{"sort_order" => 2, "faction" => "moria", "suggested_points" => 70, "actual_points" => 0, "roles" => []}
+      ],
+      "scenario_resources" => %{
+        "magazine_replay" => [],
+        "podcast" => [],
+        "source" => [],
+        "terrain_building" => [],
+        "video_replay" => [],
+        "web_replay" => []
+      },
+      "size" => 42,
+      "user_scenario" => %{
+        "avg_rating" => 0,
+        "num_votes" => 0,
+        "owned" => 0,
+        "painted" => 0,
+        "rating" => 0
+      }
+    }
   end
 
   test "does not create resource when data is valid if user is anonymous", %{conn: conn} do

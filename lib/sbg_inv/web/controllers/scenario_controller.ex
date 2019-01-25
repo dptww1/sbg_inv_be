@@ -49,6 +49,7 @@ defmodule SbgInv.Web.ScenarioController do
           |> put_status(:created)
           |> put_resp_header("location", Routes.scenario_path(conn, :show, scenario))
           |> render("show.json", scenario: scenario, user_id: 1, rating_breakdown: [])
+
         {:error, changeset} ->
           conn
           |> put_status(:unprocessable_entity)
