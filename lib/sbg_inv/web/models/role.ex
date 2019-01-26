@@ -11,7 +11,7 @@ defmodule SbgInv.Web.Role do
 
     timestamps()
 
-    belongs_to :scenario_faction, ScenarioFaction
+    belongs_to :scenario_faction, ScenarioFaction, on_replace: :update
 
     many_to_many :figures, Figure, join_through: "role_figures"
   end

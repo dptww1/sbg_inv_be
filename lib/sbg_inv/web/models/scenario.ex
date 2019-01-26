@@ -21,7 +21,7 @@ defmodule SbgInv.Web.Scenario do
     timestamps()
 
     has_many :scenario_resources, ScenarioResource
-    has_many :scenario_factions, ScenarioFaction
+    has_many :scenario_factions, ScenarioFaction, on_replace: :delete
     has_many :user_scenarios, UserScenario
   end
 
@@ -37,9 +37,9 @@ defmodule SbgInv.Web.Scenario do
   def changeset(model, params \\ %{}) do
     model
     |> base_changeset(params)
-    |> put_assoc(:scenario_factions,
-                 Map.get(params, "scenario_factions", [])
-                 |> Enum.map(fn (sf_params) -> ScenarioFaction.changeset(%ScenarioFaction{}, sf_params) end))
+    |> cast_assoc(:scenario_factions,
+                  Map.get(params, "scenario_factions", [])
+                  |> Enum.map(fn (sf_params) -> ScenarioFaction.changeset(%ScenarioFaction{}, sf_params) end))
   end
 
   def base_changeset(model, params \\ %{}) do

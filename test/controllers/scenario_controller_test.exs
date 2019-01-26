@@ -124,10 +124,18 @@ defmodule SbgInv.ScenarioControllerTest do
   end
 
   test "updates and renders chosen resource when data is valid and user is admin", %{conn: conn} do
-    user = Repo.insert! %User{name: "abc", email: "xyz@example.com", is_admin: true}
-    conn = TestHelper.create_session(conn, user)
-    scenario = Repo.insert! %Scenario{}
-    conn = put conn, Routes.scenario_path(conn, :update, scenario), scenario: @valid_attrs
+    %{conn: conn, user: user, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
+
+    user
+    |> Ecto.Changeset.change(%{:is_admin => true})
+    |> Repo.update!
+
+    conn = put conn,
+               Routes.scenario_path(conn, :update, const_data["id"]),
+               scenario: put_in(@valid_attrs, [ :scenario_factions ], [
+                                  %{faction: :fangorn, suggested_points: 2, actual_points: 1, sort_order: 1, id: hd(const_data["scenario_factions"])["id"]} #,
+                                  #%{faction: :mordor, suggested_points: 3, actual_points: 4, sort_order: 2}
+                                ])
     assert json_response(conn, 200)["data"]["id"]
   end
 
