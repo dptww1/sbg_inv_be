@@ -14,6 +14,7 @@ defmodule SbgInv.Web.ScenarioFactionView do
 
   defp base_faction(faction) do
     %{
+      id: faction.id,
       faction: faction.faction,
       suggested_points: faction.suggested_points,
       actual_points: faction.actual_points,

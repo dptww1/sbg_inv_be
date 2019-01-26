@@ -80,8 +80,10 @@ defmodule SbgInv.ScenarioControllerTest do
       "rating" => 0,
       "rating_breakdown" => [],
       "scenario_factions" => [
-        %{"sort_order" => 1, "faction" => "shire", "suggested_points" => 100, "actual_points" => 0, "roles" => []},
-        %{"sort_order" => 2, "faction" => "moria", "suggested_points" => 70, "actual_points" => 0, "roles" => []}
+        %{"sort_order" => 1, "faction" => "shire", "suggested_points" => 100, "actual_points" => 0,
+          "roles" => [], "id" => hd(check.scenario_factions).id},
+        %{"sort_order" => 2, "faction" => "moria", "suggested_points" => 70, "actual_points" => 0,
+          "roles" => [], "id" => hd(tl(check.scenario_factions)).id}
       ],
       "scenario_resources" => %{
         "magazine_replay" => [],
@@ -179,8 +181,7 @@ defmodule SbgInv.ScenarioControllerTest do
     conn = get conn, Routes.scenario_path(conn, :index)
 
     required_values = %{ const_data | "scenario_factions" => [
-                         Map.take(hd(Map.get(const_data, "scenario_factions")),
-                                  ~w[sort_order actual_points suggested_points faction])
+                         Map.drop(hd(Map.get(const_data, "scenario_factions")), ["roles"])
                        ]}
 
     assert json_response(conn, 200)["data"] == [ Map.drop(required_values, ["rating_breakdown"]) ]

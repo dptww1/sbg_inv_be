@@ -122,6 +122,7 @@ defmodule SbgInv.TestHelper do
         "rating_breakdown" => [0, 0, 0, 0, 0],
         "scenario_factions" => [
           %{
+            "id" => faction.id,
             "actual_points" => 0,
             "suggested_points" => 0,
             "faction" => "rohan",
