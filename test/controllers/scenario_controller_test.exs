@@ -216,6 +216,7 @@ defmodule SbgInv.ScenarioControllerTest do
       "name" => "ABC",
       "num_owned" => 2,
       "num_painted" => 2,
+      "sort_order" => 1,
       "figures" => [
         %{"figure_id" => TestHelper.std_scenario_figure_id(const_data), "name" => "ABCs", "owned" => 2, "painted" => 2},
         %{"figure_id" => second_figure.id, "name" => "new", "owned" => 0, "painted" => 0}

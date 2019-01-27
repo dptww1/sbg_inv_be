@@ -13,6 +13,7 @@ defmodule SbgInv.Web.RoleView do
       name: role.name,
       num_painted: user_figures.total_painted,
       num_owned: user_figures.total_owned,
+      sort_order: role.sort_order,
       figures: Enum.reduce(user_figures.figures, [], fn(uf, list) ->
         user_figure = if(length(uf.figure.user_figure) > 0, do: hd(uf.figure.user_figure), else: %{owned: 0, painted: 0})
 
