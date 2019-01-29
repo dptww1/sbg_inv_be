@@ -16,18 +16,19 @@ defmodule SbgInv.Web.Router do
   scope "/api", SbgInv.Web do
     pipe_through :api
 
-    resources "/faction",        FactionController,       only: [:show]
-    resources "/figure",         FigureController,        only: [:create, :show, :update]
-    resources "/newsitem",       NewsItemController,      only: [:index]
-    resources "/recalc",         RecalcController,        only: [:index]
-    resources "/reset-password", ResetPasswordController, only: [:create]
-    resources "/search",         SearchController,        only: [:index]
-    resources "/scenarios",      ScenarioController do
-      resources "/resource",     ScenarioResourceController, only: [:create, :update]
+    resources "/faction",          FactionController,       only: [:show]
+    resources "/figure",           FigureController,        only: [:create, :show, :update]
+    resources "/newsitem",         NewsItemController,      only: [:index]
+    resources "/recalc",           RecalcController,        only: [:index]
+    resources "/reset-password",   ResetPasswordController, only: [:create]
+    resources "/search",           SearchController,        only: [:index]
+    resources "/scenario-faction", ScenarioFactionController,          only: [:update]
+    resources "/scenarios",        ScenarioController do
+      resources "/resource",       ScenarioResourceController, only: [:create, :update]
     end
-    resources "/sessions",       SessionController,       only: [:create]
-    resources "/userfigure",     UserFigureController,    only: [:create]
-    resources "/userscenarios",  UserScenarioController,  only: [:create]
-    resources "/users",          UserController,          only: [:create, :update]
+    resources "/sessions",         SessionController,       only: [:create]
+    resources "/userfigure",       UserFigureController,    only: [:create]
+    resources "/userscenarios",    UserScenarioController,  only: [:create]
+    resources "/users",            UserController,          only: [:create, :update]
   end
 end

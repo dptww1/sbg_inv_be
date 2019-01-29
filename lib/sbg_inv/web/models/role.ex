@@ -2,6 +2,7 @@ defmodule SbgInv.Web.Role do
 
   use SbgInv.Web, :model
 
+  alias SbgInv.Repo
   alias SbgInv.Web.{Figure, RoleUserFigure, RoleUserFigures, ScenarioFaction}
 
   schema "roles" do
@@ -13,7 +14,7 @@ defmodule SbgInv.Web.Role do
 
     belongs_to :scenario_faction, ScenarioFaction, on_replace: :update
 
-    many_to_many :figures, Figure, join_through: "role_figures"
+    many_to_many :figures, Figure, join_through: "role_figures", on_replace: :delete
   end
 
   @required_fields [:amount, :sort_order, :scenario_faction_id, :name]
@@ -27,7 +28,14 @@ defmodule SbgInv.Web.Role do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields)
+    |> put_assoc(:figures, load_figures(params))
     |> validate_required(@required_fields)
+  end
+
+  defp load_figures(params) do
+    ids = Map.get(params, "figures", [])
+          |> Enum.map(&(&1["figure_id"]))
+    Repo.all(from f in Figure, where: f.id in ^ids)
   end
 
   @doc """
@@ -37,8 +45,11 @@ defmodule SbgInv.Web.Role do
   the corresponding UserFigure data.  The sort order is per `RoleUserFigure.sorter/2`
   """
   def role_user_figures(role) do
-    Enum.map(role.figures, fn(f) -> RoleUserFigure.create(f) end)
-    |> Enum.reduce(%RoleUserFigures{}, fn(ruf, acc) ->
+    acc = %RoleUserFigures{total_painted: 0, total_owned: 0, figures: []}
+
+    role.figures
+    |> Enum.map(&(RoleUserFigure.create(&1)))
+    |> Enum.reduce(acc, fn(ruf, acc) ->
          painted_remainder = role.amount - acc.total_painted
          painted_amt = min(painted_remainder, ruf.painted)
 
@@ -47,7 +58,7 @@ defmodule SbgInv.Web.Role do
 
          name = if(owned_amt > 1, do: ruf.figure.plural_name, else: ruf.figure.name)
 
-         %RoleUserFigures{
+         %{acc |
            total_painted: acc.total_painted + painted_amt,
            total_owned: acc.total_owned + owned_amt,
            figures: acc.figures ++ [%{ruf | owned: owned_amt, painted: painted_amt, name: name}]

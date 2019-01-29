@@ -27,6 +27,7 @@ defmodule SbgInv.Web.ScenarioFaction do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields)
+    |> cast_assoc(:roles, Map.get(params, "roles", []))
     |> validate_required(@required_fields)
   end
 end
