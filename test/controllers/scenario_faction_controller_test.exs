@@ -3,7 +3,7 @@ defmodule SbgInv.RoleControllerTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{Figure, User}
+  alias SbgInv.Web.{Figure, Scenario, User}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -21,7 +21,7 @@ defmodule SbgInv.RoleControllerTest do
     assert conn.status == 401
   end
 
-  test "can update resource as admin user", %{conn: conn} do
+  test "can update resource as admin user and scenario figure count is updated", %{conn: conn} do
     %{conn: conn, user: user, const_data: data} = TestHelper.set_up_std_scenario(conn, :user2)
 
     user
@@ -74,5 +74,8 @@ defmodule SbgInv.RoleControllerTest do
            ] }
       ]
     }
+
+    scenario = Repo.get!(Scenario, data["id"])
+    assert scenario.size == 4
   end
 end
