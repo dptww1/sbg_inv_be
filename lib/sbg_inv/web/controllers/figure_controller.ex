@@ -37,16 +37,19 @@ defmodule SbgInv.Web.FigureController do
 
     case Repo.insert_or_update(changeset) do
       {:ok, figure} ->
-        render(conn, "figure.json", figure: Repo.preload(figure, [:faction_figure, :role, :user_figure, :user_figure_history]))
+        figure = load_figure(conn, figure.id)
+        render(conn, "figure.json", figure: figure)
 
-      {:error, _changeset} ->
+      {:error, changeset} ->
         send_resp(conn, :unprocessable_entity, "")
+        |> put_view(SbgInv.Web.ChangesetView)
+        |> render("error.json", changeset: changeset)
     end
   end
 
   def show(conn, %{"id" => id}) do
     conn = Authentication.optionally(conn)
-    figure = Repo.get(Figure, id)
+    figure = load_figure(conn, id)
     _show(conn, figure)
   end
 
@@ -54,22 +57,24 @@ defmodule SbgInv.Web.FigureController do
     put_status(conn, :not_found)
   end
   defp _show(conn, figure) do
+    render(conn, "figure.json", %{figure: figure})
+  end
+
+  defp load_figure(conn, id) do
     user_id = if(Map.has_key?(conn.assigns, :current_user), do: conn.assigns.current_user.id, else: -1)
 
     user_figure_query = from uf in UserFigure,
                         where: uf.user_id == ^user_id
-                        # and uf.figure_id == ^figure.id # TODO NEEDED?
+                        # and uf.figure_id == ^id # TODO NEEDED?
 
     user_figure_history_query = from ufh in UserFigureHistory,
-                                where: ufh.user_id == ^user_id and ufh.figure_id == ^figure.id,
+                                where: ufh.user_id == ^user_id and ufh.figure_id == ^id,
                                 order_by: [asc: ufh.op_date, desc: ufh.updated_at]
 
-    figure = figure
-             |> Repo.preload(:faction_figure)
-             |> Repo.preload([role: [scenario_faction: :scenario]])
-             |> Repo.preload([user_figure: user_figure_query])
-             |> Repo.preload([user_figure_history: user_figure_history_query])
-
-    render(conn, "figure.json", %{figure: figure})
+    Repo.get(Figure, id)
+    |> Repo.preload(:faction_figure)
+    |> Repo.preload([role: [scenario_faction: :scenario]])
+    |> Repo.preload([user_figure: user_figure_query])
+    |> Repo.preload([user_figure_history: user_figure_history_query])
   end
 end
