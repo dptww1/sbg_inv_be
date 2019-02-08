@@ -35,6 +35,20 @@ defmodule SbgInv.Web.SearchControllerTest do
            ]
   end
 
+  test "search can filter by figure", %{conn: conn} = context do
+    conn = get conn, Routes.search_path(conn, :index, q: "Amon", type: "f")
+    assert json_response(conn, 200)["data"] == [
+             %{"id" => context[:ids][:gimli_ah_id], "name" => "Gimli (Amon Hen)", "type" => "f", "start" => 7}
+           ]
+  end
+
+  test "search can filter by scenario", %{conn: conn} = context do
+    conn = get conn, Routes.search_path(conn, :index, q: "Thrain", type: "s")
+    assert json_response(conn, 200)["data"] == [
+             %{"id" => context.ids.hunt_thrain_id, "name" => "The Hunt for Thrain", "type" => "s", "start" => 13}
+           ]
+  end
+
   def declare_scenario(name) do
     struct = Repo.insert! %Scenario{
       name: name,
