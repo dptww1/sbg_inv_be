@@ -42,8 +42,6 @@ defmodule SbgInv.Web.FigureController do
 
       {:error, changeset} ->
         send_resp(conn, :unprocessable_entity, "")
-        |> put_view(SbgInv.Web.ChangesetView)
-        |> render("error.json", changeset: changeset)
     end
   end
 
