@@ -8,6 +8,7 @@ defmodule SbgInv.Web.ResetPasswordControllerTest do
 
   test "resets password for user", %{conn: conn} do
     user = TestHelper.create_user
+    System.put_env("SMTP_SENDER", "anything")
     assert user.password_hash == nil   # Test users have no passwords, so no password hashes either
     conn = post conn, Routes.reset_password_path(conn, :create), user: %{email: user.email}
     assert !conn.halted
