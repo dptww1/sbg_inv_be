@@ -40,7 +40,7 @@ defmodule SbgInv.Web.FigureController do
         figure = load_figure(conn, figure.id)
         render(conn, "figure.json", figure: figure)
 
-      {:error, changeset} ->
+      {:error, _changeset} ->
         send_resp(conn, :unprocessable_entity, "")
     end
   end
