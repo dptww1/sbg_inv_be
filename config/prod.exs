@@ -17,7 +17,9 @@ config :sbg_inv, SbgInv.Web.Endpoint,
   secret_key_base: "${SECRET_KEY_BASE}"
 
 config :sbg_inv, SbgInv.Mailer,
-  adapter: Bamboo.SMTPAdapter,
+  adapter: Bamboo.SendGridAdapter,
+  api_key: "$(SMTP_PASSWORD)",
+  # Are the below still needed?
   server: "smtp.sendgrid.net",
   port: 587,
   username: "$(SMTP_USERNAME)",
