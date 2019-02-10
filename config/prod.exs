@@ -18,7 +18,7 @@ config :sbg_inv, SbgInv.Web.Endpoint,
 
 config :sbg_inv, SbgInv.Mailer,
   adapter: Bamboo.SMTPAdapter,
-  server: "smtp.davetownsend.org",
+  server: "smtp.sendgrid.net",
   port: 587,
   username: "$(SMTP_USERNAME)",
   password: "$(SMTP_PASSWORD)",
