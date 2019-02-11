@@ -114,7 +114,8 @@ defenum ScenarioResourceBook,
   ttt_jb:  27,   # The Two Towers Journeybook
   bpf_ss:  28,   # Battle of the Pelennor Fields Starter Set
   alotr:   29,   # Armies of the Lord of the Rings
-  ah:      30    # Armies of the Hobbit
+  ah:      30,   # Armies of the Hobbit
+  gaw:     31    # Gondor at War
 
 defenum ScenarioResourceType,
   source:           0,
