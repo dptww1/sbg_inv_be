@@ -7,11 +7,12 @@ defmodule SbgInv.Web.SearchView do
   end
 
   def render("row.json", %{search: row}) do
-    [id, name, type, pos] = row
+    [id, name, plural_name, type, pos] = row
     %{
       id: id,
       type: type,
       name: name,
+      plural_name: plural_name,
       start: pos
     }
   end

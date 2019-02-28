@@ -10,10 +10,10 @@ defmodule SbgInv.Web.SearchControllerTest do
     hunt_thrain_id  = declare_scenario("The Hunt for Thrain")
     monster_mash_id = declare_scenario("Monster Mash")
 
-    thrain_id   = declare_figure("Thrain")
-    gimli_f_id  = declare_figure("Gimli (Fellowship)")
-    gimli_ah_id = declare_figure("Gimli (Amon Hen)")
-    aragorn_id  = declare_figure("Aragorn")
+    thrain_id   = declare_figure("Thrain", "Thrains")
+    gimli_f_id  = declare_figure("Gimli (Fellowship)", "Gimlis (F)")
+    gimli_ah_id = declare_figure("Gimli (Amon Hen)", "Gimlis (A)")
+    aragorn_id  = declare_figure("Aragorn", "Aragorns")
 
     {:ok, %{ ids: %{
       amon_hen_id: amon_hen_id,
@@ -30,22 +30,46 @@ defmodule SbgInv.Web.SearchControllerTest do
   test "search for figures works", %{conn: conn} = context do
     conn = get conn, Routes.search_path(conn, :index, q: "Gimli")
     assert json_response(conn, 200)["data"] == [
-             %{"id" => context[:ids][:gimli_ah_id], "name" => "Gimli (Amon Hen)",   "type" => "f", "start" => 0},
-             %{"id" => context[:ids][:gimli_f_id],  "name" => "Gimli (Fellowship)", "type" => "f", "start" => 0}
+             %{
+               "id" => context[:ids][:gimli_ah_id],
+               "name" => "Gimli (Amon Hen)",
+               "plural_name" => "Gimlis (A)",
+               "type" => "f",
+               "start" => 0
+             },
+             %{
+               "id" => context[:ids][:gimli_f_id],
+               "name" => "Gimli (Fellowship)",
+               "plural_name" => "Gimlis (F)",
+               "type" => "f",
+               "start" => 0
+             }
            ]
   end
 
   test "search can filter by figure", %{conn: conn} = context do
     conn = get conn, Routes.search_path(conn, :index, q: "amon", type: "f")
     assert json_response(conn, 200)["data"] == [
-             %{"id" => context[:ids][:gimli_ah_id], "name" => "Gimli (Amon Hen)", "type" => "f", "start" => 7}
+             %{
+               "id" => context[:ids][:gimli_ah_id],
+               "name" => "Gimli (Amon Hen)",
+               "plural_name" => "Gimlis (A)",
+               "type" => "f",
+               "start" => 7
+             }
            ]
   end
 
   test "search can filter by scenario", %{conn: conn} = context do
     conn = get conn, Routes.search_path(conn, :index, q: "thrain", type: "s")
     assert json_response(conn, 200)["data"] == [
-             %{"id" => context.ids.hunt_thrain_id, "name" => "The Hunt for Thrain", "type" => "s", "start" => 13}
+             %{
+               "id" => context.ids.hunt_thrain_id,
+               "name" => "The Hunt for Thrain",
+               "plural_name" => "",
+               "type" => "s",
+               "start" => 13
+             }
            ]
   end
 
@@ -66,9 +90,10 @@ defmodule SbgInv.Web.SearchControllerTest do
     struct.id
   end
 
-  def declare_figure(name) do
+  def declare_figure(name, plural_name) do
     struct = Repo.insert! %Figure{
       name: name,
+      plural_name: plural_name,
       type: :hero
     }
 
