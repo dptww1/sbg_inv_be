@@ -28,6 +28,7 @@ defmodule SbgInv.Web.Router do
     end
     resources "/sessions",         SessionController,       only: [:create]
     resources "/userfigure",       UserFigureController,    only: [:create]
+    resources "/userhistory",      UserHistoryController,   only: [:delete, :index, :update]
     resources "/userscenarios",    UserScenarioController,  only: [:create]
     resources "/users",            UserController,          only: [:create, :update]
   end

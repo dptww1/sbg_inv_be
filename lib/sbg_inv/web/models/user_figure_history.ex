@@ -18,8 +18,8 @@ defmodule SbgInv.Web.UserFigureHistory do
     timestamps()
   end
 
-  @required_fields [:user_id, :amount, :figure_id, :op, :new_owned, :new_painted, :op_date]
-  @optional_fields [:notes]
+  @required_fields [:user_id, :amount, :figure_id, :op, :op_date]
+  @optional_fields [:notes, :new_owned, :new_painted]
 
   def changeset(model, params \\ %{}) do
     model
