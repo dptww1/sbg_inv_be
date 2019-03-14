@@ -7,6 +7,8 @@ defmodule SbgInv.Web.FactionController do
   alias SbgInv.Web.{Authentication,Figure}
 
   def show(conn, %{"id" => id}) do
+    conn = Authentication.optionally(conn)
+
     if id === "-1" do
       _show(conn, -1)
     else
@@ -20,8 +22,8 @@ defmodule SbgInv.Web.FactionController do
   defp _show(conn, -1) do
     query = from f in Figure,
             left_join: role in assoc(f, :role),
-            left_join: user_figure in assoc(f, :user_figure), on: (user_figure.user_id == ^user_id(conn)),
-            group_by: [f.id, user_figure.owned, user_figure.painted, user_figure.figure_id, user_figure.user_id],
+            left_join: uf in assoc(f, :user_figure), on: (uf.user_id == ^user_id(conn)),
+            group_by: [f.id, uf.owned, uf.painted, uf.figure_id, uf.user_id],
             where: fragment("f0.id not in (SELECT figure_id FROM faction_figures)"),
             select: %{
               id: f.id,
@@ -30,9 +32,9 @@ defmodule SbgInv.Web.FactionController do
               type: f.type,
               unique: f.unique,
               max_needed: max(role.amount),
-              owned: user_figure.owned,
-              painted: user_figure.painted,
-              user_id: user_figure.user_id
+              owned: uf.owned,
+              painted: uf.painted,
+              user_id: uf.user_id
             }
 
     list = Repo.all(query)
@@ -40,8 +42,6 @@ defmodule SbgInv.Web.FactionController do
     render(conn, "show.json", figures: list)
   end
   defp _show(conn, faction_id) do
-    conn = Authentication.optionally(conn)
-
     ff_query = from f in Figure,
                join: ff in assoc(f, :faction_figure), on: (ff.faction_id == ^faction_id),
                left_join: r in assoc(f, :role),

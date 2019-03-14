@@ -3,7 +3,7 @@ defmodule SbgInv.Web.FactionControllerTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{FactionFigure,Figure,Role,RoleFigure,Scenario,ScenarioFaction}
+  alias SbgInv.Web.{FactionFigure, Figure, Role, RoleFigure, Scenario, ScenarioFaction, UserFigure}
 
   defp insert_figure(faction_id, name, plural_name, type, unique \\ false) do
     fig = Repo.insert! %Figure{name: name, plural_name: plural_name, type: type, unique: unique}
@@ -82,7 +82,7 @@ defmodule SbgInv.Web.FactionControllerTest do
     }
   end
 
-  test "shows unaffiliated figures for special value -1", %{conn: conn} do
+  test "shows unaffiliated figures with user info for special value -1", %{conn: conn} do
     f1 = insert_figure(0, "??", "??s", :hero)  # verify only non faction figures show up
     _2 = insert_figure(3, "h2", "h2s", :hero)
     f3 = insert_figure(0, "h1", "h1s", :hero, true)
@@ -92,9 +92,17 @@ defmodule SbgInv.Web.FactionControllerTest do
     f7 = insert_figure(0, "m1", "m1s", :monster, true)
     _8 = insert_figure(4, "s3", "s3s", :sieger)
 
+    user1 = TestHelper.create_user("user1", "user1@example.com")
+    user2 = TestHelper.create_user("user2", "user2@example.com")
+
+    conn = TestHelper.create_session(conn, user1)
+
+    Repo.insert! %UserFigure{figure_id: f1.id, user_id: user1.id, owned: 8, painted: 4}
+    Repo.insert! %UserFigure{figure_id: f7.id, user_id: user2.id, owned: 3, painted: 1}
+
     conn = get conn, Routes.faction_path(conn, :show, -1)
     assert json_response(conn, 200)["data"] == %{
-      "heroes"   => [ %{"name" => "??", "plural_name" => "??s", "type" => "hero",    "unique" => false, "id" => f1.id, "needed" => 0, "owned" => 0, "painted" => 0},
+      "heroes"   => [ %{"name" => "??", "plural_name" => "??s", "type" => "hero",    "unique" => false, "id" => f1.id, "needed" => 0, "owned" => 8, "painted" => 4},
                       %{"name" => "h1", "plural_name" => "h1s", "type" => "hero",    "unique" => true,  "id" => f3.id, "needed" => 0, "owned" => 0, "painted" => 0} ],
       "warriors" => [ %{"name" => "w1", "plural_name" => "w1s", "type" => "warrior", "unique" => false, "id" => f5.id, "needed" => 0, "owned" => 0, "painted" => 0} ],
       "monsters" => [ %{"name" => "m1", "plural_name" => "m1s", "type" => "monster", "unique" => true,  "id" => f7.id, "needed" => 0, "owned" => 0, "painted" => 0} ],
