@@ -20,48 +20,34 @@ defmodule SbgInv.Web.FactionController do
     put_status(conn, :not_found)
   end
   defp _show(conn, -1) do
-    query = from f in Figure,
-            left_join: role in assoc(f, :role),
-            left_join: uf in assoc(f, :user_figure), on: (uf.user_id == ^user_id(conn)),
-            group_by: [f.id, uf.owned, uf.painted, uf.figure_id, uf.user_id],
-            where: fragment("f0.id not in (SELECT figure_id FROM faction_figures)"),
-            select: %{
-              id: f.id,
-              name: f.name,
-              plural_name: f.plural_name,
-              type: f.type,
-              unique: f.unique,
-              max_needed: max(role.amount),
-              owned: uf.owned,
-              painted: uf.painted,
-              user_id: uf.user_id
-            }
-
-    list = Repo.all(query)
+    list = Repo.all(from figure in faction_query(user_id(conn)),
+                    where: fragment("f0.id not in (SELECT figure_id FROM faction_figures)"))
 
     render(conn, "show.json", figures: list)
   end
   defp _show(conn, faction_id) do
-    ff_query = from f in Figure,
-               join: ff in assoc(f, :faction_figure), on: (ff.faction_id == ^faction_id),
-               left_join: r in assoc(f, :role),
-               left_join: uf in assoc(f, :user_figure), on: (uf.user_id == ^user_id(conn)),
-               group_by: [f.id, uf.owned, uf.painted, uf.user_id],
-               select: %{
-                  id: f.id,
-                  name: f.name,
-                  plural_name: f.plural_name,
-                  type: f.type,
-                  unique: f.unique,
-                  max_needed: max(r.amount),
-                  owned: uf.owned,
-                  painted: uf.painted,
-                  user_id: uf.user_id
-               }
-
-    list = Repo.all(ff_query)
+    list = Repo.all(from figure in faction_query(user_id(conn)),
+                    join: ff in assoc(figure, :faction_figure), on: (ff.faction_id == ^faction_id))
 
     render(conn, "show.json", figures: list)
+  end
+
+  defp faction_query(user_id) do
+    from f in Figure,
+    left_join: role in assoc(f, :role),
+    left_join: uf in assoc(f, :user_figure), on: (uf.user_id == ^user_id),
+    group_by: [f.id, uf.owned, uf.painted, uf.user_id],
+    select: %{
+      id: f.id,
+      name: f.name,
+      plural_name: f.plural_name,
+      type: f.type,
+      unique: f.unique,
+      max_needed: max(role.amount),
+      owned: uf.owned,
+      painted: uf.painted,
+      user_id: uf.user_id
+    }
   end
 
   defp user_id(conn) do
