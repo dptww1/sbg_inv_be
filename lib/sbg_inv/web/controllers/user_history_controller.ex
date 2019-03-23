@@ -4,7 +4,7 @@ defmodule SbgInv.Web.UserHistoryController do
 
   import Ecto.Query
 
-  alias SbgInv.Web.{Authentication, FigureView, UserFigureHistory, UserFigureHistoryView}
+  alias SbgInv.Web.{Authentication, UserFigureHistory, UserFigureHistoryView}
 
   def index(conn, params) do
     conn = Authentication.required(conn)
