@@ -38,6 +38,7 @@ defmodule SbgInv.Web.UserScenarioController do
     [num_votes, rating] = Repo.one(
       from p in UserScenario,
       where: p.scenario_id == ^scenario.id,
+      where: p.rating > 0,
       select: [count("*"), fragment("?::float", avg(p.rating))])
     changeset = Scenario.base_changeset(scenario, %{rating: rating, num_votes: num_votes})
     case Repo.update(changeset) do
