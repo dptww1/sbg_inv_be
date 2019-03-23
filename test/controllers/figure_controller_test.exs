@@ -64,10 +64,12 @@ defmodule SbgInv.Web.FigureControllerTest do
     Repo.insert! %FactionFigure{figure: figure, faction_id: 7}
     Repo.insert! %FactionFigure{figure: figure, faction_id: 4}
 
-    Repo.insert! %UserFigureHistory{user_id: user.id, figure_id: figure.id, amount: 2, op: 1, new_owned: 3, new_painted: 3,
-                                    op_date: ~D[2017-08-10]}
-    Repo.insert! %UserFigureHistory{user_id: user.id, figure_id: figure.id, amount: 3, op: 1, new_owned: 4, new_painted: 4,
-                                    op_date: ~D[2017-08-02], notes: "ABCD"}
+    h1 = Repo.insert! %UserFigureHistory{user_id: user.id, figure_id: figure.id, amount: 2, op: 1,
+                                         new_owned: 3, new_painted: 3,
+                                         op_date: ~D[2017-08-10]}
+    h2 = Repo.insert! %UserFigureHistory{user_id: user.id, figure_id: figure.id, amount: 3, op: 1,
+                                         new_owned: 4, new_painted: 4,
+                                         op_date: ~D[2017-08-02], notes: "ABCD"}
 
     conn = get conn, Routes.figure_path(conn, :show, fid)
     assert json_response(conn, 200)["data"] == %{
@@ -87,8 +89,8 @@ defmodule SbgInv.Web.FigureControllerTest do
       "owned" => 4,
       "painted" => 2,
       "history" => [
-        %{ "op" => "sell_unpainted", "amount" => 2, "new_owned" => 3, "new_painted" => 3, "date" => "2017-08-10", "notes" => "" },
-        %{ "op" => "sell_unpainted", "amount" => 3, "new_owned" => 4, "new_painted" => 4, "date" => "2017-08-02", "notes" => "ABCD" }
+        %{"op" => "sell_unpainted", "amount" => 2, "new_owned" => 3, "new_painted" => 3, "op_date" => "2017-08-10", "notes" => "", "id" => h1.id},
+        %{"op" => "sell_unpainted", "amount" => 3, "new_owned" => 4, "new_painted" => 4, "op_date" => "2017-08-02", "notes" => "ABCD", "id" => h2.id}
       ]
     }
   end

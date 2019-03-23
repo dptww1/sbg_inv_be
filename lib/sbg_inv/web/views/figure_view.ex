@@ -33,11 +33,12 @@ defmodule SbgInv.Web.FigureView do
     history_list  # history is sorted by db
     |> Enum.reverse
     |> Enum.map(fn(h) -> %{
+        "id" => h.id,
         "op" => h.op,
         "amount" => h.amount,
         "new_owned" => h.new_owned,
         "new_painted" => h.new_painted,
-        "date" => h.op_date,
+        "op_date" => h.op_date,
         "notes" => if(h.notes, do: h.notes, else: "")
     }
     end)
