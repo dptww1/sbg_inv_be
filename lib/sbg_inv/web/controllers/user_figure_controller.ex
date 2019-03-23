@@ -15,7 +15,7 @@ defmodule SbgInv.Web.UserFigureController do
 
       user_figure_rec =
         case Repo.get_by(UserFigure, user_id: user_id, figure_id: figure_id) do
-          nil -> %UserFigure{user_id: user_id, figure_id: figure_id}
+          nil -> %UserFigure{user_id: user_id, figure_id: figure_id, owned: 0, painted: 0}
           user_figure -> user_figure
         end
 
