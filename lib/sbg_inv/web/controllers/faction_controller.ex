@@ -4,7 +4,37 @@ defmodule SbgInv.Web.FactionController do
 
   import Ecto.Query
 
-  alias SbgInv.Web.{Authentication,Figure}
+  alias SbgInv.Web.{Authentication, FactionFigure, Figure, UserFigure}
+
+  def index(conn, _params) do
+    conn = Authentication.required(conn)
+    if (conn.halted) do
+      put_status(conn, :unauthorized)
+
+    else
+      #SELECT ff.faction_id, uf.user_id, SUM(uf.owned) AS owned, SUM(uf.painted) AS painted
+      #FROM faction_figures ff
+      #LEFT OUTER JOIN user_figures uf ON uf.figure_id = ff.figure_id
+      #GROUP BY ff.faction_id, uf.user_id
+      #HAVING user_id = 1
+      #ORDER BY ff.faction_id;
+
+      query = from ff in FactionFigure,
+              left_join: uf in UserFigure, on: uf.figure_id == ff.figure_id,
+              group_by: [ff.faction_id, uf.user_id],
+              having: uf.user_id == ^conn.assigns.current_user.id,
+              order_by: ff.faction_id,
+              select: %{
+                id: ff.faction_id,
+                owned: sum(uf.owned),
+                painted: sum(uf.painted)
+              }
+
+      list = Repo.all(query)
+
+      render(conn, "index.json", factions: list)
+    end
+  end
 
   def show(conn, %{"id" => id}) do
     conn = Authentication.optionally(conn)

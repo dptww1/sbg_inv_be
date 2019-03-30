@@ -17,6 +17,36 @@ defmodule SbgInv.Web.FactionControllerTest do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
 
+  test "errors out on summary when user is not logged in", %{conn: conn} do
+    conn = get conn, Routes.faction_path(conn, :index)
+    assert conn.status == 401
+  end
+
+  test "factions summary returned for logged in user", %{conn: conn} do
+    user = TestHelper.create_user()
+    user2 = TestHelper.create_user("og", "other_guy@example.com")
+    conn = TestHelper.create_session(conn, user)
+
+    fig1 = insert_figure(:rohan, "fig1", nil, :warrior)
+    fig2 = insert_figure(:rohan, "fig2", nil, :hero)
+    fig3 = insert_figure(:rivendell, "fig3", nil, :warrior)
+    fig4 = insert_figure(:mordor, "fig4", nil, :monster)
+
+    Repo.insert! %UserFigure{user_id: user.id, figure_id: fig1.id, owned: 4, painted: 2}
+    Repo.insert! %UserFigure{user_id: user.id, figure_id: fig2.id, owned: 3, painted: 3}
+    Repo.insert! %UserFigure{user_id: user.id, figure_id: fig3.id, owned: 2, painted: 1}
+    Repo.insert! %UserFigure{user_id: user.id, figure_id: fig4.id, owned: 1, painted: 0}
+    Repo.insert! %UserFigure{user_id: user2.id, figure_id: fig4.id, owned: 4, painted: 2}
+
+    conn = get conn, Routes.faction_path(conn, :index)
+
+    assert json_response(conn, 200)["data"] == %{
+      "rohan" => %{"owned" => 7, "painted" => 5},
+      "rivendell" => %{"owned" => 2, "painted" => 1},
+      "mordor" => %{"owned" => 1, "painted" => 0}
+    }
+  end
+
   test "unknown faction id returns error", %{conn: conn} do
     conn = get conn, Routes.faction_path(conn, :show, -2)
     assert conn.status == 404

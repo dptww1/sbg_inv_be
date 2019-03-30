@@ -2,9 +2,23 @@ defmodule SbgInv.Web.FactionView do
 
   use SbgInv.Web, :view
 
-  def filtered_sorted_fig_list(list, type) do
+  defp filtered_sorted_fig_list(list, type) do
     Enum.filter(list, fn(f) -> f.type == type end)
     |> Enum.sort(&(&1.name <= &2.name))
+  end
+
+  def render("index.json", %{factions: list}) do
+    %{data: Enum.reduce(list,
+                        %{},
+                        fn(f, acc) ->
+                          Map.put(acc,
+                                  Atom.to_string(f.id),
+                                  %{
+                                    "owned" => f.owned,
+                                    "painted" => f.painted
+                                   })
+                        end)
+    }
   end
 
   def render("show.json", %{figures: figures}) do
