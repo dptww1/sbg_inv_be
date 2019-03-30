@@ -89,8 +89,8 @@ defmodule SbgInv.Web.FigureControllerTest do
       "owned" => 4,
       "painted" => 2,
       "history" => [
-        %{"op" => "sell_unpainted", "amount" => 2, "new_owned" => 3, "new_painted" => 3, "op_date" => "2017-08-10", "notes" => "", "id" => h1.id},
-        %{"op" => "sell_unpainted", "amount" => 3, "new_owned" => 4, "new_painted" => 4, "op_date" => "2017-08-02", "notes" => "ABCD", "id" => h2.id}
+        %{"op" => "sell_unpainted", "amount" => 2, "new_owned" => 3, "new_painted" => 3, "op_date" => "2017-08-10", "notes" => "", "id" => h1.id, "figure_id" => figure.id},
+        %{"op" => "sell_unpainted", "amount" => 3, "new_owned" => 4, "new_painted" => 4, "op_date" => "2017-08-02", "notes" => "ABCD", "id" => h2.id, "figure_id" => figure.id}
       ]
     }
   end

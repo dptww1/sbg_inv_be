@@ -34,6 +34,7 @@ defmodule SbgInv.Web.FigureView do
     |> Enum.reverse
     |> Enum.map(fn(h) -> %{
         "id" => h.id,
+        "figure_id" => h.figure_id,
         "op" => h.op,
         "amount" => h.amount,
         "new_owned" => h.new_owned,
