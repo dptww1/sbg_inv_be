@@ -12,13 +12,6 @@ defmodule SbgInv.Web.FactionController do
       put_status(conn, :unauthorized)
 
     else
-      #SELECT ff.faction_id, uf.user_id, SUM(uf.owned) AS owned, SUM(uf.painted) AS painted
-      #FROM faction_figures ff
-      #LEFT OUTER JOIN user_figures uf ON uf.figure_id = ff.figure_id
-      #GROUP BY ff.faction_id, uf.user_id
-      #HAVING user_id = 1
-      #ORDER BY ff.faction_id;
-
       query = from ff in FactionFigure,
               left_join: uf in UserFigure, on: uf.figure_id == ff.figure_id,
               group_by: [ff.faction_id, uf.user_id],
