@@ -115,7 +115,8 @@ defenum ScenarioResourceBook,
   bpf_ss:  28,   # Battle of the Pelennor Fields Starter Set
   alotr:   29,   # Armies of the Lord of the Rings
   ah:      30,   # Armies of the Hobbit
-  gaw:     31    # Gondor at War
+  gaw:     31,   # Gondor at War,
+  bgime:   32    # Battle Games in Middle Earth
 
 defenum ScenarioResourceType,
   source:           0,
