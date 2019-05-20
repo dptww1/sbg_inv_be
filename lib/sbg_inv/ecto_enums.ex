@@ -81,7 +81,8 @@ defenum Location,
   rhun:         25,
   rohan:        26,
   the_shire:    27,
-  weathertop:   28
+  weathertop:   28,
+  orthanc:      29
 
 defenum ScenarioResourceBook,
   bot5a:    0,   # Battle of the Five Armies
