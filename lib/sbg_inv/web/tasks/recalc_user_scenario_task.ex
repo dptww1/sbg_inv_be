@@ -32,7 +32,7 @@ defmodule SbgInv.Web.RecalcUserScenarioTask do
   #========================================================================
   defp do_scenario(user_id, existing_user_scenario, scenario) do
     calculated_user_scenario = Enum.reduce(scenario.scenario_factions,
-                                           default_user_scenario(user_id, scenario.id),
+                                           default_user_scenario(existing_user_scenario, user_id, scenario.id),
                                            fn(faction, user_scenario_acc) -> do_faction(faction, user_scenario_acc) end)
 
     save_scenario(existing_user_scenario, calculated_user_scenario)
@@ -47,7 +47,7 @@ defmodule SbgInv.Web.RecalcUserScenarioTask do
   #========================================================================
   defp save_scenario(existing_user_scenario, calculated_user_scenario) do
     if user_scenario_changed(existing_user_scenario, calculated_user_scenario) do
-      changeset = UserScenario.changeset(existing_user_scenario, calculated_user_scenario)
+      changeset = UserScenario.changeset(existing_user_scenario, Map.from_struct(calculated_user_scenario))
       save_scenario(changeset)
     end
   end
@@ -77,7 +77,7 @@ defmodule SbgInv.Web.RecalcUserScenarioTask do
   end
 
   #========================================================================
-  defp default_user_scenario(user_id, scenario_id) do
+  defp default_user_scenario(nil, user_id, scenario_id) do
     %{
       user_id: user_id,
       scenario_id: scenario_id,
@@ -85,6 +85,11 @@ defmodule SbgInv.Web.RecalcUserScenarioTask do
       owned: 0,
       painted: 0
     }
+  end
+
+  #========================================================================
+  defp default_user_scenario(existing_user_scenario, _, _) do
+    %{existing_user_scenario | owned: 0, painted: 0}
   end
 
   #========================================================================
