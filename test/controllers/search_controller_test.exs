@@ -2,6 +2,7 @@ defmodule SbgInv.Web.SearchControllerTest do
 
   use SbgInv.Web.ConnCase
 
+  alias SbgInv.TestHelper
   alias SbgInv.Web.{Figure, Scenario}
 
   setup _context do
@@ -35,14 +36,16 @@ defmodule SbgInv.Web.SearchControllerTest do
                "name" => "Gimli (Amon Hen)",
                "plural_name" => "Gimlis (A)",
                "type" => "f",
-               "start" => 0
+               "start" => 0,
+               "book" => ""
              },
              %{
                "id" => context[:ids][:gimli_f_id],
                "name" => "Gimli (Fellowship)",
                "plural_name" => "Gimlis (F)",
                "type" => "f",
-               "start" => 0
+               "start" => 0,
+               "book" => ""
              }
            ]
   end
@@ -55,7 +58,8 @@ defmodule SbgInv.Web.SearchControllerTest do
                "name" => "Gimli (Amon Hen)",
                "plural_name" => "Gimlis (A)",
                "type" => "f",
-               "start" => 7
+               "start" => 7,
+               "book" => ""
              }
            ]
   end
@@ -68,7 +72,8 @@ defmodule SbgInv.Web.SearchControllerTest do
                "name" => "The Hunt for Thrain",
                "plural_name" => "",
                "type" => "s",
-               "start" => 13
+               "start" => 13,
+               "book" => "gaw"
              }
            ]
   end
@@ -86,6 +91,8 @@ defmodule SbgInv.Web.SearchControllerTest do
       map_height: 48,
       location: :ithilien
     }
+
+    TestHelper.create_scenario_source(struct.id)
 
     struct.id
   end

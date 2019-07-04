@@ -6,7 +6,7 @@ defmodule SbgInv.TestHelper do
 
   use SbgInv.Web.ConnCase
 
-  alias SbgInv.Web.{Figure, Role, RoleFigure, Scenario, ScenarioFaction, Session, User, UserScenario, UserFigure}
+  alias SbgInv.Web.{Figure, Role, RoleFigure, Scenario, ScenarioFaction, ScenarioResource, Session, User, UserScenario, UserFigure}
 
   def pinspect(conn, obj) do
     IO.puts "---"
@@ -74,6 +74,10 @@ defmodule SbgInv.TestHelper do
   def create_scenario() do
     Repo.insert! %Scenario{name: "A", blurb: "B", date_age: 3, date_year: 1, date_month: 1, date_day: 1, size: 0,
       map_width: 7, map_height: 15, location: :the_shire}
+  end
+
+  def create_scenario_source(scenario_id) do
+    Repo.insert! %ScenarioResource{scenario_id: scenario_id, resource_type: :source, book: :gaw, page: 12, sort_order: 1}
   end
 
   # user: :user1 or :user2

@@ -9,7 +9,7 @@ defmodule SbgInv.Web.SearchController do
     queries =
       if type == nil || type == "f" do
         List.insert_at(queries, -1,
-                       "SELECT id, name, plural_name, 'f' AS type, POSITION(lower($1) IN lower(name)) - 1 AS pos " <>
+                       "SELECT id, name, plural_name, NULL AS book, 'f' AS type, POSITION(lower($1) IN lower(name)) - 1 AS pos " <>
                        "FROM Figures " <>
                        "WHERE name ILIKE '%' || $1 || '%'")
       else
@@ -19,9 +19,11 @@ defmodule SbgInv.Web.SearchController do
     queries =
       if type == nil || type == "s" do
         List.insert_at(queries, -1,
-                       "SELECT id, name, '' AS plural_name, 's' AS type, POSITION(lower($1) IN lower(name)) - 1 AS pos " <>
-                       "FROM Scenarios " <>
-                       "WHERE name ILIKE '%' || $1 || '%'")
+                       "SELECT s.id, s.name, '' AS plural_name, r.book AS book, 's' AS type, POSITION(lower($1) IN lower(name)) - 1 AS pos " <>
+                       "FROM Scenarios s " <>
+                       "INNER JOIN Scenario_Resources r ON r.scenario_id = s.id " <>
+                       "WHERE r.resource_type = 0 " <>
+                       "  AND s.name ILIKE '%' || $1 || '%'")
       else
         queries
       end
