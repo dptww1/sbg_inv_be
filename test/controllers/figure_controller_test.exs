@@ -24,7 +24,7 @@ defmodule SbgInv.Web.FigureControllerTest do
 
   test "shows figure info when user is not logged in", %{conn: conn} do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
-    TestHelper.create_scenario_source(const_data["id"])
+    src = TestHelper.create_scenario_source(const_data["id"])
 
     conn = TestHelper.clear_sessions(conn)
 
@@ -47,7 +47,17 @@ defmodule SbgInv.Web.FigureControllerTest do
           "scenario_id" => const_data["id"],
           "name" => "A",
           "amount" => 9,
-          "source" => "gaw"
+          "source" => %{
+            "book" => "gaw",
+            "id" => src.id,
+            "issue" => nil,
+            "notes" => nil,
+            "page" => 12,
+            "resource_type" => "source",
+            "sort_order" => 1,
+            "title" => nil,
+            "url" => nil
+          }
         }
       ],
       "owned" => 0,
@@ -58,7 +68,7 @@ defmodule SbgInv.Web.FigureControllerTest do
 
   test "shows owned figure info for logged in user", %{conn: conn} do
     %{conn: conn, const_data: const_data, user: user} = TestHelper.set_up_std_scenario(conn)
-    TestHelper.create_scenario_source(const_data["id"])
+    src = TestHelper.create_scenario_source(const_data["id"])
 
     fid = TestHelper.std_scenario_figure_id(const_data, 0)
 
@@ -87,7 +97,17 @@ defmodule SbgInv.Web.FigureControllerTest do
           "scenario_id" => const_data["id"],
           "name" => "A",
           "amount" => 9,
-          "source" => "gaw"
+          "source" => %{
+            "book" => "gaw",
+            "id" => src.id,
+            "issue" => nil,
+            "notes" => nil,
+            "page" => 12,
+            "resource_type" => "source",
+            "sort_order" => 1,
+            "title" => nil,
+            "url" => nil
+          }
         }
       ],
       "owned" => 4,

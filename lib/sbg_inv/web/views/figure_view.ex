@@ -2,6 +2,8 @@ defmodule SbgInv.Web.FigureView do
 
   use SbgInv.Web, :view
 
+  alias SbgInv.Web.ScenarioResourceView
+
   def render("figure.json", %{figure: figure}) do
     %{data: %{
          "id" => figure.id,
@@ -26,7 +28,9 @@ defmodule SbgInv.Web.FigureView do
                     "scenario_id" => role.scenario_faction.scenario.id,
                     "name" => role.scenario_faction.scenario.name,
                     "amount" => role.amount,
-                    "source" => hd(role.scenario_faction.scenario.scenario_resources).book
+                    "source" => render_one(Enum.find(role.scenario_faction.scenario.scenario_resources, &(&1.resource_type == :source)),
+                                           ScenarioResourceView,
+                                           "resource.json")
                   }
                 end)
   end
