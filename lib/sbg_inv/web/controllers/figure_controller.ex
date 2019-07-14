@@ -71,7 +71,7 @@ defmodule SbgInv.Web.FigureController do
 
     Repo.get(Figure, id)
     |> Repo.preload(:faction_figure)
-    |> Repo.preload([role: [scenario_faction: :scenario]])
+    |> Repo.preload([role: [scenario_faction: [scenario: :scenario_resources]]])
     |> Repo.preload([user_figure: user_figure_query])
     |> Repo.preload([user_figure_history: user_figure_history_query])
   end

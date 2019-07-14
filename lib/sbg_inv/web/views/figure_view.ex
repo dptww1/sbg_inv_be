@@ -19,12 +19,14 @@ defmodule SbgInv.Web.FigureView do
   end
 
   defp sorted_scenarios(role_list) do
-    Enum.sort_by(role_list, fn(role) -> normalized_name(role.scenario_faction.scenario.name) end)
+    role_list
+    |> Enum.sort_by(fn(role) -> normalized_name(role.scenario_faction.scenario.name) end)
     |> Enum.map(fn(role) ->
                   %{
                     "scenario_id" => role.scenario_faction.scenario.id,
                     "name" => role.scenario_faction.scenario.name,
-                    "amount" => role.amount
+                    "amount" => role.amount,
+                    "source" => hd(role.scenario_faction.scenario.scenario_resources).book
                   }
                 end)
   end
