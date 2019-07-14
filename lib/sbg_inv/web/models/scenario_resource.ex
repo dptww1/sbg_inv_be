@@ -7,7 +7,7 @@ defmodule SbgInv.Web.ScenarioResource do
   schema "scenario_resources" do
     field :resource_type, ScenarioResourceType
     field :book, ScenarioResourceBook
-    field :issue, :integer
+    field :issue, :string
     field :page, :integer
     field :title, :string
     field :url, :string

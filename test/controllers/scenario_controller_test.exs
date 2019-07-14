@@ -267,10 +267,10 @@ defmodule SbgInv.ScenarioControllerTest do
 
   test "scenario source with issue number is returned correctly", %{conn: conn} do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
-    Repo.insert! %ScenarioResource{scenario_id: const_data["id"], resource_type: :source, book: :fp, issue: 321, title: "Free Peoples", sort_order: 1}
+    Repo.insert! %ScenarioResource{scenario_id: const_data["id"], resource_type: :source, book: :fp, issue: "321", title: "Free Peoples", sort_order: 1}
 
     conn = get conn, Routes.scenario_path(conn, :show, const_data["id"])
 
-    assert hd(json_response(conn, 200)["data"]["scenario_resources"]["source"])["issue"] == 321
+    assert hd(json_response(conn, 200)["data"]["scenario_resources"]["source"])["issue"] == "321"
   end
 end
