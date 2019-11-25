@@ -2,7 +2,7 @@ defmodule SbgInv.Web.RecalcController do
 
   use SbgInv.Web, :controller
 
-  def index(conn, params) do
+  def index(conn, _params) do
     put_status(conn, :unauthorized)
 #    IO.puts "----params"
 #    IO.inspect params
