@@ -9,6 +9,7 @@ defmodule SbgInv.Web.Figure do
     field :plural_name, :string
     field :type, FigureType
     field :unique, :boolean
+    field :slug, :string
     field :max_needed, :integer, virtual: true
 
     timestamps()
@@ -20,7 +21,7 @@ defmodule SbgInv.Web.Figure do
   end
 
   @required_fields [:name, :type]
-  @optional_fields [:plural_name, :unique]
+  @optional_fields [:plural_name, :unique, :slug]
 
   @doc """
   Creates a changeset based on the `model` and `params`.

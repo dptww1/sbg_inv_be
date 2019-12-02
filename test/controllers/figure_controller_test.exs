@@ -10,6 +10,7 @@ defmodule SbgInv.Web.FigureControllerTest do
     plural_name: "The Plural Name",
     type: 1,
     unique: false,
+    slug: "/rohan/the-name",
     factions: ["rohan", "shire"]
   }
 
@@ -42,6 +43,7 @@ defmodule SbgInv.Web.FigureControllerTest do
       "name" => "ABC",
       "plural_name" => "ABCs",
       "factions" => [ "azogs_legion", "desolator_north" ],
+      "slug" => "/azogs-legion/abc",
       "scenarios" => [
         %{
           "scenario_id" => const_data["id"],
@@ -89,6 +91,7 @@ defmodule SbgInv.Web.FigureControllerTest do
       "id" => fid,
       "type" => "hero",
       "unique" => true,
+      "slug" => "/azogs-legion/abc",
       "name" => "ABC",
       "plural_name" => "ABCs",
       "factions" => [ "azogs_legion", "desolator_north" ],
@@ -132,6 +135,7 @@ defmodule SbgInv.Web.FigureControllerTest do
              "plural_name" => "The Plural Name",
              "type" => "warrior",
              "unique" => false,
+             "slug" => "/rohan/the-name",
              "history" => [],
              "owned" => 0,
              "painted" => 0,
@@ -175,6 +179,7 @@ defmodule SbgInv.Web.FigureControllerTest do
              "plural_name" => "The Plural Name",
              "type" => "warrior",
              "unique" => false,
+             "slug" => "/rohan/the-name",
              "history" => [],
              "owned" => 0,
              "painted" => 0,

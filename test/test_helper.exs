@@ -95,8 +95,8 @@ defmodule SbgInv.TestHelper do
     role1 = Repo.insert! %Role{scenario_faction_id: faction.id, amount: 9, sort_order: 1, name: "ABC"}
     role2 = Repo.insert! %Role{scenario_faction_id: faction.id, amount: 7, sort_order: 2, name: "DEF"}
 
-    figure1 = Repo.insert! %Figure{name: "ABC", plural_name: "ABCs", type: :hero, unique: true}
-    figure2 = Repo.insert! %Figure{name: "DEF", plural_name: "DEFs", type: :warrior, unique: false}
+    figure1 = Repo.insert! %Figure{name: "ABC", plural_name: "ABCs", type: :hero, unique: true, slug: "/azogs-legion/abc"}
+    figure2 = Repo.insert! %Figure{name: "DEF", plural_name: "DEFs", type: :warrior, unique: false, slug: "/azogs-legion/def"}
 
     Repo.insert! %RoleFigure{role_id: role1.id, figure_id: figure1.id}
     Repo.insert! %RoleFigure{role_id: role2.id, figure_id: figure2.id}
