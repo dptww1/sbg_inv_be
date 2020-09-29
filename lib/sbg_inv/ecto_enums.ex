@@ -119,7 +119,8 @@ defenum ScenarioResourceBook,
   gaw:     31,   # Gondor at War,
   bgime:   32,   # Battle Games in Middle Earth
   sos2:    33,   # Scouring of the Shire (v2),
-  wfr:     34    # War for Rohan
+  wfr:     34,   # War for Rohan
+  qrb:     35
 
 defenum ScenarioResourceType,
   source:           0,
