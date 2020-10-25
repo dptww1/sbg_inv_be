@@ -77,7 +77,7 @@ defmodule SbgInv.TestHelper do
   end
 
   def create_scenario_source(scenario_id) do
-    Repo.insert! %ScenarioResource{scenario_id: scenario_id, resource_type: :source, book: :gaw, page: 12, sort_order: 1}
+    Repo.insert! %ScenarioResource{scenario_id: scenario_id, resource_type: :source, book: :gaw, page: 12, sort_order: 1, updated_at: ~N[2019-10-12 00:00:00]}
   end
 
   # user: :user1 or :user2

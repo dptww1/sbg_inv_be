@@ -5,9 +5,6 @@ defmodule SbgInv.Web.FigureView do
   alias SbgInv.Web.ScenarioResourceView
 
   def render("figure.json", %{figure: figure}) do
-    IO.puts "---"
-    IO.inspect(figure)
-    IO.puts "---"
     %{data: %{
          "id" => figure.id,
          "name" => figure.name,

@@ -52,13 +52,15 @@ defmodule SbgInv.Web.FigureControllerTest do
           "source" => %{
             "book" => "gaw",
             "id" => src.id,
+            "scenario_id" => const_data["id"],
             "issue" => nil,
             "notes" => nil,
             "page" => 12,
             "resource_type" => "source",
             "sort_order" => 1,
             "title" => nil,
-            "url" => nil
+            "url" => nil,
+            "date" => "2019-10-12"
           }
         }
       ],
@@ -103,13 +105,15 @@ defmodule SbgInv.Web.FigureControllerTest do
           "source" => %{
             "book" => "gaw",
             "id" => src.id,
+            "scenario_id" => const_data["id"],
             "issue" => nil,
             "notes" => nil,
             "page" => 12,
             "resource_type" => "source",
             "sort_order" => 1,
             "title" => nil,
-            "url" => nil
+            "url" => nil,
+            "date" => "2019-10-12"
           }
         }
       ],

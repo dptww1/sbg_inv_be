@@ -24,7 +24,7 @@ defmodule SbgInv.Web.Router do
     resources "/search",           SearchController,        only: [:index]
     resources "/scenario-faction", ScenarioFactionController,          only: [:update]
     resources "/scenarios",        ScenarioController do
-      resources "/resource",       ScenarioResourceController, only: [:create, :update]
+      resources "/resource",       ScenarioResourceController, only: [:index, :create, :update]
     end
     resources "/sessions",         SessionController,       only: [:create]
     resources "/userfigure",       UserFigureController,    only: [:create]
