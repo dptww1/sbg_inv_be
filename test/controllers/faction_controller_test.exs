@@ -43,7 +43,8 @@ defmodule SbgInv.Web.FactionControllerTest do
     assert json_response(conn, 200)["data"] == %{
       "rohan" => %{"owned" => 7, "painted" => 5},
       "rivendell" => %{"owned" => 2, "painted" => 1},
-      "mordor" => %{"owned" => 1, "painted" => 0}
+      "mordor" => %{"owned" => 1, "painted" => 0},
+      "Totals" => %{"owned" => 10, "painted" => 6}
     }
   end
 

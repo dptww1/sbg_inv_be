@@ -23,7 +23,27 @@ defmodule SbgInv.Web.FactionController do
                 painted: sum(uf.painted)
               }
 
+      totals_query = from uf in UserFigure,
+               group_by: uf.user_id,
+               having: uf.user_id == ^conn.assigns.current_user.id,
+               select: %{
+                 owned: sum(uf.owned),
+                 painted: sum(uf.painted)
+               }
+
+      totals = Repo.one(totals_query)
+
       list = Repo.all(query)
+             ++ [%{
+                    id: -1,
+                    name: "Totals",
+                    plural_name: "Totals",
+                    type: 0,
+                    unique: true,
+                    needed: 0,
+                    owned: totals.owned,
+                    painted: totals.painted
+                  }]
 
       render(conn, "index.json", factions: list)
     end

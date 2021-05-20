@@ -7,12 +7,15 @@ defmodule SbgInv.Web.FactionView do
     |> Enum.sort(&(&1.name <= &2.name))
   end
 
+  defp stringify_id(-1), do: "Totals"
+  defp stringify_id(id), do: Atom.to_string(id)
+
   def render("index.json", %{factions: list}) do
     %{data: Enum.reduce(list,
                         %{},
                         fn(f, acc) ->
                           Map.put(acc,
-                                  Atom.to_string(f.id),
+                                  stringify_id(f.id),
                                   %{
                                     "owned" => f.owned,
                                     "painted" => f.painted
