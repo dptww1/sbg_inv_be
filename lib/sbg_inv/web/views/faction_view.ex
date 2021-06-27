@@ -39,6 +39,7 @@ defmodule SbgInv.Web.FactionView do
       id:          figure.id,
       name:        figure.name,
       plural_name: figure.plural_name,
+      slug:        figure.slug,
       type:        figure.type,
       unique:      figure.unique,
       needed:      if(figure.max_needed, do: figure.max_needed, else: 0),

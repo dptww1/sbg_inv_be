@@ -84,6 +84,7 @@ defmodule SbgInv.Web.FactionController do
       id: f.id,
       name: f.name,
       plural_name: f.plural_name,
+      slug: f.slug,
       type: f.type,
       unique: f.unique,
       max_needed: max(role.amount),
