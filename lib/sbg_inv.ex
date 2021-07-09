@@ -7,10 +7,12 @@ defmodule SbgInv do
     import Supervisor.Spec, warn: false
 
     children = [
+      # Start the PubSub system
+      {Phoenix.PubSub, name: SbgInv.Web.PubSub},
       # Start the endpoint when the application starts
-      supervisor(SbgInv.Web.Endpoint, []),
+      SbgInv.Web.Endpoint,
       # Start the Ecto repository
-      supervisor(SbgInv.Repo, []),
+      SbgInv.Repo,
       # Here you could define other workers and supervisors as children
       # worker(SbgInv.Worker, [arg1, arg2, arg3]),
     ]

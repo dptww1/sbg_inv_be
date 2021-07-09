@@ -10,8 +10,7 @@ config :sbg_inv, SbgInv.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "ygLXFi4UG89ZvH/nn1SWdMNw2z4HmJrwj5suStMwI3rqvqD/l1WzaJTHM7ifx+1r",
   render_errors: [view: SbgInv.Web.ErrorView, accepts: ~w(json)],
-  pubsub: [name: SbgInv.Web.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub_server: SbgInv.Web.PubSub
 
 config :sbg_inv,
        namespace: SbgInv.Web
@@ -30,6 +29,11 @@ config :phoenix, :generators,
   migration: true,
   binary_id: false,
   json_library: Jason
+
+config :phoenix, :json_library, Jason
+
+config :phoenix, :format_encoders,
+  "json-api": Jason
 
 config :sbg_inv,
        ecto_repos: [SbgInv.Repo]
