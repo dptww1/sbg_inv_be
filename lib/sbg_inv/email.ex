@@ -1,5 +1,5 @@
 defmodule SbgInv.Email do
-  use Bamboo.Phoenix, view: SbgInv.EmailView
+  import Bamboo.Email
 
   def forgot_password_email(email_address, new_password) do
     new_email()

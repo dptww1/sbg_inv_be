@@ -71,7 +71,7 @@ config :sbg_inv, SbgInv.Web.Endpoint,
        http: [port: {:system, "PORT"}],
        server: true,
        secret_key_base: "${SECRET_KEY_BASE}",
-       url: [host: "example.com", port: 80],
+       url: [host: "${APP_NAME}.gigalixirapp.com", port: 443],
        version: Mix.Project.config[:version]
 
 

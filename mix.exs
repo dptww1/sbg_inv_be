@@ -19,7 +19,7 @@ defmodule SbgInv.Mixfile do
   def application do
     [
       mod: {SbgInv, []},
-      extra_applications: [:logger]
+      extra_applications: [:crypto, :eex, :logger]
     ]
   end
 
@@ -46,9 +46,9 @@ defmodule SbgInv.Mixfile do
      {:ecto_enum, "~> 1.4"},
      {:pbkdf2_elixir, "~> 1.4"},
      {:secure_random, "~> 0.2"},
-     {:bamboo, "~> 1.1.0"},
-     {:bamboo_smtp, "~> 1.6.0"},
-     {:distillery, "~> 1.5.5"}
+     {:bamboo, "~> 2.1.0"},
+     {:bamboo_smtp, "~> 4.0.1"},
+     {:distillery, "~> 2.1.1"}
     ]
   end
 
