@@ -52,7 +52,7 @@ defmodule SbgInv.TestHelper do
   end
 
   # const_data: from set_up_std_scenario()'s return value
-  # idx: 0,1
+  # idx: 0
   def std_scenario_figure_id(const_data, idx \\ 0) do
     const_data["scenario_factions"]
     |> Enum.fetch!(0)
@@ -69,6 +69,10 @@ defmodule SbgInv.TestHelper do
 
   def add_role_figure(figure_id, role_id) do
     Repo.insert! %RoleFigure{figure_id: figure_id, role_id: role_id}
+  end
+
+  def add_user_figure(user_id, figure_id, num_owned, num_painted) do
+    Repo.insert! %UserFigure{user_id: user_id, figure_id: figure_id, owned: num_owned, painted: num_painted}
   end
 
   def create_scenario() do
