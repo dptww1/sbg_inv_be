@@ -4,7 +4,7 @@ defmodule SbgInv.Web.NewsItemController do
 
   import Ecto.Query
 
-  alias SbgInv.Web.NewsItem
+  alias SbgInv.Web.{Authentication, NewsItem}
 
   action_fallback SbgInv.Web.FallbackController
 
@@ -21,5 +21,28 @@ defmodule SbgInv.Web.NewsItemController do
     news_items = Repo.all(query)
 
     render(conn, "index.json", news_items: news_items)
+  end
+
+  def create(conn, %{"news_item" => params}) do
+    conn = Authentication.admin_required(conn)
+
+    if (conn.halted) do
+      send_resp(conn, :unauthorized, "")
+
+    else
+      update_or_create(conn, %NewsItem{}, params)
+    end
+  end
+
+  def update_or_create(conn, news_item, params) do
+    changeset = NewsItem.changeset(news_item, params)
+
+    case Repo.insert_or_update(changeset) do
+    {:ok, _news_item} ->
+        send_resp(conn, :accepted, "")
+
+    {:error, _changeset} ->
+        send_resp(conn, :unprocessable_entity, "")
+    end
   end
 end

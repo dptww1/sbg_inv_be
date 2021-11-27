@@ -18,11 +18,11 @@ defmodule SbgInv.Web.Router do
 
     resources "/faction",          FactionController,       only: [:index, :show]
     resources "/figure",           FigureController,        only: [:create, :show, :update]
-    resources "/newsitem",         NewsItemController,      only: [:index]
+    resources "/newsitem",         NewsItemController,      only: [:create, :index]
     resources "/recalc",           RecalcController,        only: [:index]
     resources "/reset-password",   ResetPasswordController, only: [:create]
     resources "/search",           SearchController,        only: [:index]
-    resources "/scenario-faction", ScenarioFactionController,          only: [:update]
+    resources "/scenario-faction", ScenarioFactionController, only: [:update]
     resources "/scenarios",        ScenarioController do
       resources "/resource",       ScenarioResourceController, only: [:index, :create, :update]
     end

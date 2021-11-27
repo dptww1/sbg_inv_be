@@ -2,7 +2,10 @@ defmodule SbgInv.Web.NewsControllerTest do
 
   use SbgInv.Web.ConnCase
 
-  alias SbgInv.Web.NewsItem
+  alias SbgInv.TestHelper
+  alias SbgInv.Web.{NewsItem, User}
+
+  @valid_attrs %{item_text: "foo", item_date: ~D[2020-10-20]}
 
   setup _context do
     _declare_news_item("a <b>c%20</b> d",       ~D[2018-08-01])
@@ -47,6 +50,24 @@ defmodule SbgInv.Web.NewsControllerTest do
              %{"item_text" => "Most Recent in April",  "item_date" => "2017-04-20"},
              %{"item_text" => "Least Recent in April", "item_date" => "2017-04-02"}
            ]
+  end
+
+  test "unauthenticated user cannot create a news item", %{conn: conn} do
+    conn = post conn, Routes.news_item_path(conn, :create), news_item: @valid_attrs
+    assert conn.status == 401
+  end
+
+  test "non-admin user cannot create a news item", %{conn: conn} do
+    conn = TestHelper.create_logged_in_user(conn)
+    conn = post conn, Routes.news_item_path(conn, :create), news_item: @valid_attrs
+    assert conn.status == 401
+  end
+
+  test "admin user can create a valid news item", %{conn: conn} do
+    user = Repo.insert! %User{name: "abc", email: "def@example.com", is_admin: true}
+    conn = TestHelper.create_session(conn, user)
+    conn = post conn, Routes.news_item_path(conn, :create), news_item: @valid_attrs
+    assert conn.status == 202
   end
 
   defp _declare_news_item(text, date) do
