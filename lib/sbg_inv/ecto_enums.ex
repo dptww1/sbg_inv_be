@@ -120,7 +120,8 @@ defenum ScenarioResourceBook,
   bgime:   32,   # Battle Games in Middle Earth
   sos2:    33,   # Scouring of the Shire (v2),
   wfr:     34,   # War for Rohan
-  qrb:     35
+  qrb:     35,   # Quest of the Ringbearer
+  fotn2:   36    # Fall of the Necromancer (v2)
 
 defenum ScenarioResourceType,
   source:           0,
