@@ -160,22 +160,21 @@ defmodule SbgInv.Web.FigureControllerTest do
   end
 
   test "can update figure if logged in as admin user and provides valid data", %{conn: conn} do
-    figure = Repo.insert! %Figure{
-      name: "Old Name",
-      plural_name: "Old Names",
-      type: :warrior,
-      unique: false
-    }
+    %{conn: conn, user: user, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
 
-    Repo.insert! %FactionFigure{figure_id: figure.id, faction_id: :minas_tirith}
-    Repo.insert! %FactionFigure{figure_id: figure.id, faction_id: :fiefdoms}
-    Repo.insert! %FactionFigure{figure_id: figure.id, faction_id: :shire}
+    user
+    |> Ecto.Changeset.change(%{:is_admin => true})
+    |> Repo.update!
 
-    user = Repo.insert! %User{name: "abc", email: "xyz@example.com", is_admin: true}
-    conn = TestHelper.create_session(conn, user)
-    conn = put conn, Routes.figure_path(conn, :update, figure.id), figure: @valid_attrs
+    figure_id = TestHelper.std_scenario_figure_id(const_data, 0)
 
-    check = Repo.one!(Figure) |> Repo.preload([:faction_figure])
+    Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: :minas_tirith}
+    Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: :fiefdoms}
+    Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: :shire}
+
+    conn = put conn, Routes.figure_path(conn, :update, figure_id), figure: @valid_attrs
+
+    check = Repo.get!(Figure, figure_id) |> Repo.preload([:faction_figure])
 
     assert json_response(conn, 200)["data"] == %{
              "id" => check.id,
@@ -187,7 +186,7 @@ defmodule SbgInv.Web.FigureControllerTest do
              "history" => [],
              "owned" => 0,
              "painted" => 0,
-             "scenarios" => [],
+             "scenarios" => [%{"amount" => 9, "name" => "A", "scenario_id" => const_data["id"], "source" => nil}],
              "factions" => ["rohan", "shire"]
            }
   end
