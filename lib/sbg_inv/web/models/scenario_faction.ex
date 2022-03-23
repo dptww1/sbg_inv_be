@@ -13,7 +13,7 @@ defmodule SbgInv.Web.ScenarioFaction do
     timestamps()
 
     belongs_to :scenario, Scenario
-    has_many :roles, Role
+    has_many :roles, Role, on_replace: :delete
   end
 
   @required_fields [:faction, :suggested_points, :actual_points, :sort_order]

@@ -14,7 +14,7 @@ defmodule SbgInv.Web.Role do
 
     belongs_to :scenario_faction, ScenarioFaction, on_replace: :update
 
-    many_to_many :figures, Figure, join_through: "role_figures", on_replace: :delete
+    many_to_many :figures, Figure, join_through: "role_figures", on_replace: :delete, on_delete: :delete_all
   end
 
   @required_fields [:amount, :sort_order, :scenario_faction_id, :name]
