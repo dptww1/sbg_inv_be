@@ -44,7 +44,8 @@ defenum Faction,
   umbar:           40,
   wanderers:       41,
   white_council:   42,
-  wildmen:         43
+  wildmen:         43,
+  beornings:       44
 
 defenum FigureType,
   hero:    0,
