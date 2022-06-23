@@ -120,7 +120,7 @@ defenum ScenarioResourceBook,
   gaw:     31,   # Gondor at War,
   bgime:   32,   # Battle Games in Middle Earth
   sos2:    33,   # Scouring of the Shire (v2),
-  wfr:     34,   # War for Rohan
+  wfr:     34,   # War for Rohan [Typo! Title is "War In Rohan"!]
   qrb:     35,   # Quest of the Ringbearer
   fotn2:   36,   # Fall of the Necromancer (v2)
   dotn:    37    # Defence of the North
