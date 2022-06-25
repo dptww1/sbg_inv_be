@@ -10,15 +10,15 @@ defmodule SbgInv.Repo.Migrations.AddCharactersTable do
       timestamps()
     end
 
-    create table(:characters_figures) do
+    create table(:character_figures) do
       add :character_id, references(:characters, on_delete: :delete_all)
       add :figure_id, references(:figures, on_delete: :delete_all)
     end
 
-    create index(:characters_figures, [:character_id])
-    create index(:characters_figures, [:figure_id])
+    create index(:character_figures, [:character_id])
+    create index(:character_figures, [:figure_id])
 
-    create table(:characters_resources) do
+    create table(:character_resources) do
       add :character_id, references(:characters, on_delete: :delete_all)
       add :display_name, :text
       add :url, :text
@@ -27,6 +27,6 @@ defmodule SbgInv.Repo.Migrations.AddCharactersTable do
       add :type, :integer
     end
 
-    create index(:characters_resources, [:character_id])
+    create index(:character_resources, [:character_id])
   end
 end
