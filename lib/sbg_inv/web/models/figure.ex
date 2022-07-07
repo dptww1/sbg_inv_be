@@ -2,7 +2,7 @@ defmodule SbgInv.Web.Figure do
 
   use SbgInv.Web, :model
 
-  alias SbgInv.Web.{FactionFigure, Role, UserFigure, UserFigureHistory}
+  alias SbgInv.Web.{Character, FactionFigure, Role, UserFigure, UserFigureHistory}
 
   schema "figures" do
     field :name, :string
@@ -18,6 +18,9 @@ defmodule SbgInv.Web.Figure do
     has_many :user_figure, UserFigure
     has_many :faction_figure, FactionFigure, on_replace: :delete
     has_many :user_figure_history, UserFigureHistory
+    many_to_many :characters, Character,
+                 join_through: "character_figures",
+                 on_replace: :delete
   end
 
   @required_fields [:name, :type]

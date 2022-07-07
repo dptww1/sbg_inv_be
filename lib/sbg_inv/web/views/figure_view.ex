@@ -16,9 +16,15 @@ defmodule SbgInv.Web.FigureView do
          "scenarios" => sorted_scenarios(figure.role),
          "owned" => if(length(figure.user_figure) > 0, do: hd(figure.user_figure).owned, else: 0),
          "painted" => if(length(figure.user_figure) > 0, do: hd(figure.user_figure).painted, else: 0),
-         "history" => sorted_history(figure.user_figure_history)
+         "history" => sorted_history(figure.user_figure_history),
+         "rules" => rules(figure.characters)
          }
     }
+  end
+
+  defp rules(nil), do: []
+  defp rules(ary) do
+    Enum.map(ary, fn char -> %{"name" => char.name, "book" => char.book, "page" => char.page} end)
   end
 
   defp sorted_scenarios(role_list) do

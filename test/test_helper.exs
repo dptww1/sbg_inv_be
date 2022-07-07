@@ -6,7 +6,8 @@ defmodule SbgInv.TestHelper do
 
   use SbgInv.Web.ConnCase
 
-  alias SbgInv.Web.{Figure, Role, RoleFigure, Scenario, ScenarioFaction, ScenarioResource, Session, User, UserScenario, UserFigure}
+  alias SbgInv.Web.{Character, Figure, Role, RoleFigure, Scenario, ScenarioFaction}
+  alias SbgInv.Web.{ScenarioResource, Session, User, UserScenario, UserFigure}
 
   def pinspect(conn, obj) do
     IO.puts "---"
@@ -27,17 +28,23 @@ defmodule SbgInv.TestHelper do
     conn |> delete_req_header("authorization")
   end
 
-  def create_user(name \\ "anonymous", email \\ "anonymous@example.com") do
-    Repo.insert! %User{name: name, email: email}
+  def create_user(name \\ "anonymous", email \\ "anonymous@example.com", is_admin \\ false) do
+    Repo.insert! %User{name: name, email: email, is_admin: is_admin}
   end
 
-  def create_logged_in_user(conn, name \\ "anonymous", email \\ "anonymous@example.com") do
-    create_session(conn, create_user(name, email))
+  def create_logged_in_user(conn, name \\ "anonymous", email \\ "anonymous@example.com", is_admin \\ false) do
+    create_session(conn, create_user(name, email, is_admin))
   end
 
   def create_session(conn, user) do
     session = Repo.insert! %Session{token: "123", user_id: user.id}
     put_req_header conn, "authorization", "Token token=\"#{session.token}\""
+  end
+
+  def promote_user_to_admin(user) do
+    user
+    |> Ecto.Changeset.change(%{is_admin: true})
+    |> Repo.update!
   end
 
   # const_data: from set_up_std_scenario()'s return value
@@ -63,7 +70,7 @@ defmodule SbgInv.TestHelper do
     |> Map.get("figure_id")
   end
 
-  def add_figure(name, plural_name, type \\ :warrior, unique \\ false) do
+  def add_figure(name, plural_name \\ nil, type \\ :warrior, unique \\ false) do
     Repo.insert! %Figure{name: name, plural_name: plural_name, type: type, unique: unique}
   end
 
@@ -109,6 +116,10 @@ defmodule SbgInv.TestHelper do
     Repo.insert! %UserFigure{user_id: user1.id, figure_id: figure2.id, owned: 3, painted: 1}
     Repo.insert! %UserFigure{user_id: user2.id, figure_id: figure1.id, owned: 2, painted: 2}
     Repo.insert! %UserFigure{user_id: user2.id, figure_id: figure2.id, owned: 1, painted: 0}
+
+    ch1 = Repo.insert! %Character{name: "N1", book: :dos, page: 123, figures: [figure1]}
+    ch2 = Repo.insert! %Character{name: "N2", book: :gaw, page: 456}
+    ch3 = Repo.insert! %Character{name: "N2b", book: :wfr, page: 789}
 
     %{
       conn: conn,
@@ -166,7 +177,8 @@ defmodule SbgInv.TestHelper do
             %{"owned" => 8, "painted" => 6, "rating" => 0, "avg_rating" => 0, "num_votes" => 0}
           else
             %{"owned" => 7, "painted" => 5, "rating" => 0, "avg_rating" => 0, "num_votes" => 0}
-          end
+          end,
+        "character_ids" => [ch1.id, ch2.id, ch3.id]
       }
     }
   end

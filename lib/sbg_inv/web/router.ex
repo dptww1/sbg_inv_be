@@ -16,6 +16,7 @@ defmodule SbgInv.Web.Router do
   scope "/api", SbgInv.Web do
     pipe_through :api
 
+    resources "/character",        CharacterController,     only: [:create, :show, :update]
     resources "/faction",          FactionController,       only: [:index, :show]
     resources "/figure",           FigureController,        only: [:create, :show, :update]
     resources "/newsitem",         NewsItemController,      only: [:create, :index]

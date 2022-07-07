@@ -192,13 +192,13 @@ defmodule SbgInv.ScenarioControllerTest do
                          Map.drop(hd(Map.get(const_data, "scenario_factions")), ["roles"])
                        ]}
 
-    assert json_response(conn, 200)["data"] == [ Map.drop(required_values, ["rating_breakdown"]) ]
+    assert json_response(conn, 200)["data"] == [ Map.drop(required_values, ["rating_breakdown", "character_ids"]) ]
   end
 
   test "scenario detail query correctly limits itself to the current user's scenario data", %{conn: conn} do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
     conn = get conn, Routes.scenario_path(conn, :show, Map.get(const_data, "id"))
-    assert json_response(conn, 200)["data"] == const_data
+    assert json_response(conn, 200)["data"] == Map.delete(const_data, "character_ids")
   end
 
   test "scenario detail includes figure possibilities", %{conn: conn} do
