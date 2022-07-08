@@ -7,15 +7,18 @@ defmodule SbgInv.Web.SearchView do
   end
 
   def render("row.json", %{search: row}) do
-
-    [id, name, plural_name, book, type, pos] = row
     %{
-      id: id,
-      type: type,
-      name: name,
-      book: if(book, do: elem(ScenarioResourceBook.load(book), 1), else: ""),
-      plural_name: plural_name,
-      start: pos
+      id: row.id,
+      type: row.type,
+      name: row.name,
+      book: book_str(row.book),
+      plural_name: row.plural_name,
+      start: row.pos
     }
+  end
+
+  defp book_str(nil), do: ""
+  defp book_str(s) do
+    s |> Atom.to_string
   end
 end

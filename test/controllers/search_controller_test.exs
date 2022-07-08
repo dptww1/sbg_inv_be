@@ -3,7 +3,7 @@ defmodule SbgInv.Web.SearchControllerTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{Figure, Scenario}
+  alias SbgInv.Web.{Character, Figure, Scenario}
 
   setup _context do
     amon_hen_id     = declare_scenario("Amon Hen")
@@ -16,6 +16,8 @@ defmodule SbgInv.Web.SearchControllerTest do
     gimli_ah_id = declare_figure("Gimli (Amon Hen)", "Gimlis (A)")
     aragorn_id  = declare_figure("Aragorn", "Aragorns")
 
+    gimli_ch_id = declare_character("Gimli (Character)", [gimli_f_id, gimli_ah_id])
+
     {:ok, %{ ids: %{
       amon_hen_id: amon_hen_id,
       amon_lhaw_id: amon_lhaw_id,
@@ -24,15 +26,16 @@ defmodule SbgInv.Web.SearchControllerTest do
       thrain_id: thrain_id,
       gimli_f_id: gimli_f_id,
       gimli_ah_id: gimli_ah_id,
-      aragorn_id: aragorn_id
+      aragorn_id: aragorn_id,
+      gimli_ch_id: gimli_ch_id
     }}}
   end
 
-  test "search for figures works", %{conn: conn} = context do
+  test "search for figures works (characters are excluded by default) ", %{conn: conn} = context do
     conn = get conn, Routes.search_path(conn, :index, q: "Gimli")
     assert json_response(conn, 200)["data"] == [
              %{
-               "id" => context[:ids][:gimli_ah_id],
+               "id" => context.ids.gimli_ah_id,
                "name" => "Gimli (Amon Hen)",
                "plural_name" => "Gimlis (A)",
                "type" => "f",
@@ -40,7 +43,7 @@ defmodule SbgInv.Web.SearchControllerTest do
                "book" => ""
              },
              %{
-               "id" => context[:ids][:gimli_f_id],
+               "id" => context.ids.gimli_f_id,
                "name" => "Gimli (Fellowship)",
                "plural_name" => "Gimlis (F)",
                "type" => "f",
@@ -54,7 +57,7 @@ defmodule SbgInv.Web.SearchControllerTest do
     conn = get conn, Routes.search_path(conn, :index, q: "amon", type: "f")
     assert json_response(conn, 200)["data"] == [
              %{
-               "id" => context[:ids][:gimli_ah_id],
+               "id" => context.ids.gimli_ah_id,
                "name" => "Gimli (Amon Hen)",
                "plural_name" => "Gimlis (A)",
                "type" => "f",
@@ -78,7 +81,21 @@ defmodule SbgInv.Web.SearchControllerTest do
            ]
   end
 
-  def declare_scenario(name) do
+  test "search can filter by character", %{conn: conn} = context do
+    conn = get conn, Routes.search_path(conn, :index, q: "Gimli", type: "c")
+    assert json_response(conn, 200)["data"] == [
+             %{
+               "id" => context.ids.gimli_ch_id,
+               "name" => "Gimli (Character)",
+               "plural_name" => "",
+               "type" => "c",
+               "start" => 0,
+               "book" => ""
+             }
+           ]
+  end
+
+  defp declare_scenario(name) do
     struct = Repo.insert! %Scenario{
       name: name,
       blurb: "blurb goes here",
@@ -97,11 +114,22 @@ defmodule SbgInv.Web.SearchControllerTest do
     struct.id
   end
 
-  def declare_figure(name, plural_name) do
+  defp declare_figure(name, plural_name) do
     struct = Repo.insert! %Figure{
       name: name,
       plural_name: plural_name,
       type: :hero
+    }
+
+    struct.id
+  end
+
+  defp declare_character(name, figure_id_list) do
+    struct = Repo.insert! %Character{
+      name: name,
+      book: 12,
+      page: 14,
+      figures: Enum.map(figure_id_list, fn fid -> Repo.get!(Figure, fid) end)
     }
 
     struct.id

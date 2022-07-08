@@ -3,7 +3,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{Character}
+  alias SbgInv.Web.{Character, Figure}
 
   @valid_attrs %{
     name: "char name",
@@ -31,7 +31,10 @@ defmodule SbgInv.Web.CharacterControllerTest do
     conn = post conn, Routes.character_path(conn, :create),
                 character: Map.put(@valid_attrs, :figure_ids, [f1.id, f2.id])
 
-    check = Repo.one!(Character) |> Repo.preload(:figures)
+    check_query =
+      from c in Character,
+      preload: [figures: ^from(f in Figure, order_by: f.name)]
+    check = Repo.one!(check_query)
 
     assert json_response(conn, 201)["data"] == %{
              "id" => check.id,
@@ -86,7 +89,11 @@ defmodule SbgInv.Web.CharacterControllerTest do
     conn = put conn, Routes.character_path(conn, :update, ch_id),
                 character: Map.put(@valid_attrs, :figure_ids, [f1.id, f2.id])
 
-    check = Repo.one!(from c in Character, where: c.id == ^ch_id) |> Repo.preload(:figures)
+    check_query =
+      from c in Character,
+      where: c.id == ^ch_id,
+      preload: [figures: ^from(f in Figure, order_by: f.name)]
+    check = Repo.one!(check_query)
 
     assert json_response(conn, 200)["data"] == %{
              "id" => check.id,
