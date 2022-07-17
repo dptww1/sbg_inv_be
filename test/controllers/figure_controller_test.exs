@@ -70,6 +70,7 @@ defmodule SbgInv.Web.FigureControllerTest do
       "rules" => [
         %{
           "name" => "N1",
+          "faction" => "harad",
           "book" => "dos",
           "page" => 123
         }
@@ -128,9 +129,10 @@ defmodule SbgInv.Web.FigureControllerTest do
       "painted" => 2,
       "rules" => [
         %{
-           "name" => "N1",
-           "book" => "dos",
-           "page" => 123
+          "name" => "N1",
+          "faction" => "harad",
+          "book" => "dos",
+          "page" => 123
          }
       ],
       "history" => [
@@ -206,6 +208,7 @@ defmodule SbgInv.Web.FigureControllerTest do
              "rules" => [
                %{
                  "name" => "N1",
+                 "faction" => "harad",
                  "book" => "dos",
                  "page" => 123
                }

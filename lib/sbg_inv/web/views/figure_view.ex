@@ -24,7 +24,14 @@ defmodule SbgInv.Web.FigureView do
 
   defp rules(nil), do: []
   defp rules(ary) do
-    Enum.map(ary, fn char -> %{"name" => char.name, "book" => char.book, "page" => char.page} end)
+    Enum.map(ary, fn char ->
+      %{
+        "name" => char.name,
+        "faction" => char.faction,
+        "book" => char.book,
+        "page" => char.page
+      }
+    end)
   end
 
   defp sorted_scenarios(role_list) do
