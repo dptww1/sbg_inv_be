@@ -117,9 +117,9 @@ defmodule SbgInv.TestHelper do
     Repo.insert! %UserFigure{user_id: user2.id, figure_id: figure1.id, owned: 2, painted: 2}
     Repo.insert! %UserFigure{user_id: user2.id, figure_id: figure2.id, owned: 1, painted: 0}
 
-    ch1 = Repo.insert! %Character{name: "N1", book: :dos, page: 123, figures: [figure1]}
-    ch2 = Repo.insert! %Character{name: "N2", book: :gaw, page: 456}
-    ch3 = Repo.insert! %Character{name: "N2b", book: :wfr, page: 789}
+    ch1 = Repo.insert! %Character{name: "N1", faction: :harad, book: :dos, page: 123, figures: [figure1]}
+    ch2 = Repo.insert! %Character{name: "N2", faction: :minas_tirith, book: :gaw, page: 456}
+    ch3 = Repo.insert! %Character{name: "N2b", faction: :rohan, book: :wfr, page: 789}
 
     %{
       conn: conn,

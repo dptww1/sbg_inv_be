@@ -6,6 +6,7 @@ defmodule SbgInv.Web.Character do
 
   schema "characters" do
     field :name, :string
+    field :faction, Faction
     field :book, ScenarioResourceBook
     field :page, :integer
 
@@ -25,7 +26,7 @@ defmodule SbgInv.Web.Character do
       |> load_figures
 
     character
-    |> cast(params, [:name, :book, :page])
+    |> cast(params, [:name, :faction, :book, :page])
     |> put_assoc(:figures, figures)
     |> validate_required([:name])
   end

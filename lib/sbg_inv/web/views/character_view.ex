@@ -6,6 +6,7 @@ defmodule SbgInv.Web.CharacterView do
     %{data: %{
       "id" => char.id,
       "name" => char.name,
+      "faction" => char.faction,
       "book" => char.book,
       "page" => char.page,
       "figures" => figure_list(char.figures)
