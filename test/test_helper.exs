@@ -5,6 +5,7 @@ Ecto.Adapters.SQL.Sandbox.mode(SbgInv.Repo, :manual)
 defmodule SbgInv.TestHelper do
 
   use SbgInv.Web.ConnCase
+  use Pathex
 
   alias SbgInv.Web.{Character, Figure, Role, RoleFigure, Scenario, ScenarioFaction}
   alias SbgInv.Web.{ScenarioResource, Session, User, UserScenario, UserFigure}
@@ -51,23 +52,13 @@ defmodule SbgInv.TestHelper do
   # faction_idx: 0,1
   # role_idx: 0..n
   def std_scenario_role_id(const_data, faction_idx, role_idx) do
-    const_data["scenario_factions"]
-    |> Enum.fetch!(faction_idx)
-    |> Map.get("roles")
-    |> Enum.fetch!(role_idx)
-    |> Map.get("id")
+    Pathex.get(const_data, path("scenario_factions" / faction_idx / "roles" / role_idx / "id"))
   end
 
   # const_data: from set_up_std_scenario()'s return value
   # idx: 0
   def std_scenario_figure_id(const_data, idx \\ 0) do
-    const_data["scenario_factions"]
-    |> Enum.fetch!(0)
-    |> Map.get("roles")
-    |> Enum.fetch!(0)
-    |> Map.get("figures")
-    |> Enum.fetch!(idx)
-    |> Map.get("figure_id")
+    Pathex.get(const_data, path("scenario_factions" / 0 / "roles" / 0 / "figures" / idx / "figure_id"))
   end
 
   def add_figure(name, plural_name \\ nil, type \\ :warrior, unique \\ false) do

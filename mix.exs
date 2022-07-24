@@ -39,6 +39,7 @@ defmodule SbgInv.Mixfile do
      {:phoenix_html, "~> 2.14.3"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
+     {:pathex, "~> 2.0"},
      {:plug_cowboy, "~> 2.1"},
      {:plug, "~> 1.7"},
      {:corsica, "~> 0.4"},
