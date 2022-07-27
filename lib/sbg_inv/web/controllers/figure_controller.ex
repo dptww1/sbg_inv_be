@@ -21,7 +21,7 @@ defmodule SbgInv.Web.FigureController do
     conn = Authentication.admin_required(conn)
 
     if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
+      conn
 
     else
       figure = Repo.get!(Figure, id)
@@ -46,7 +46,6 @@ defmodule SbgInv.Web.FigureController do
   end
 
   def show(conn, %{"id" => id}) do
-    conn = Authentication.optionally(conn)
     figure = load_figure(conn, id)
     _show(conn, figure)
   end
@@ -59,11 +58,10 @@ defmodule SbgInv.Web.FigureController do
   end
 
   defp load_figure(conn, id) do
-    user_id = if(Map.has_key?(conn.assigns, :current_user), do: conn.assigns.current_user.id, else: -1)
+    user_id = Authentication.user_id(conn)
 
     user_figure_query = from uf in UserFigure,
                         where: uf.user_id == ^user_id
-                        # and uf.figure_id == ^id # TODO NEEDED?
 
     user_figure_history_query = from ufh in UserFigureHistory,
                                 where: ufh.user_id == ^user_id and ufh.figure_id == ^id,

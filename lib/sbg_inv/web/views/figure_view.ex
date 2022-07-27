@@ -14,13 +14,16 @@ defmodule SbgInv.Web.FigureView do
          "slug" => figure.slug,
          "factions" => Enum.map(figure.faction_figure, &(&1.faction_id)) |> Enum.sort(&(&1 <= &2)),
          "scenarios" => sorted_scenarios(figure.role),
-         "owned" => if(length(figure.user_figure) > 0, do: hd(figure.user_figure).owned, else: 0),
-         "painted" => if(length(figure.user_figure) > 0, do: hd(figure.user_figure).painted, else: 0),
+         "owned" => user_figure_attr(figure.user_figure, :owned),
+         "painted" => user_figure_attr(figure.user_figure, :painted),
          "history" => sorted_history(figure.user_figure_history),
          "rules" => rules(figure.characters)
          }
     }
   end
+
+  defp user_figure_attr([], _), do: 0
+  defp user_figure_attr([ first_elt | _rest ], attr_name), do: Map.get(first_elt, attr_name)
 
   defp rules(nil), do: []
   defp rules(ary) do

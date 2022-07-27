@@ -11,6 +11,7 @@ defmodule SbgInv.Web.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug SbgInv.Web.Authentication
   end
 
   scope "/api", SbgInv.Web do

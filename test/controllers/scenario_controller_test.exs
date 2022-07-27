@@ -24,7 +24,7 @@ defmodule SbgInv.ScenarioControllerTest do
 
   test "shows chosen resource", %{conn: conn} do
     scenario = Repo.insert! %Scenario{}
-    conn = get conn, Routes.scenario_path(conn, :show, scenario)
+    conn = get conn, Routes.scenario_path(conn, :show, scenario.id)
     assert json_response(conn, 200)["data"] == %{
       "id" => scenario.id,
       "name" => scenario.name,
@@ -53,7 +53,13 @@ defmodule SbgInv.ScenarioControllerTest do
   }
   end
 
-  test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do
+  test "does not show resource and instead errors when authorization token is invalid", %{conn: conn} do
+    conn = put_req_header(conn, "authorization", "Token token=\"xyz\"")
+    conn = get conn, Routes.scenario_path(conn, :show, -1)
+    assert conn.status == 401
+  end
+
+  test "does not show resource and instead errors when id is nonexistent", %{conn: conn} do
     conn = get conn, Routes.scenario_path(conn, :show, -1)
     assert conn.status == 404
   end
@@ -228,15 +234,15 @@ defmodule SbgInv.ScenarioControllerTest do
     conn = conn
            |> put_req_header("authorization", "Token token=\"123bcd\"")
            |> get(Routes.scenario_path(conn, :index))
-    assert json_response(conn, 401)["errors"] != %{}
+    assert conn.status == 401
   end
 
   test "show with bad cookie fails", %{conn: conn} do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
-    resp = conn
+    conn = conn
            |> put_req_header("authorization", "Token token=\"123bcd\"")
-           |> get(Routes.scenario_path(conn, :show, Map.get(const_data, "id")))
-    assert json_response(resp, 401)["errors"] != %{}
+           |> get(Routes.scenario_path(conn, :show, const_data["id"]))
+    assert conn.status == 401
   end
 
   test "rating breakdowns are correctly returned", %{conn: conn} do

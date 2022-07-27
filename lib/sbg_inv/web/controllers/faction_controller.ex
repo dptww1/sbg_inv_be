@@ -9,7 +9,7 @@ defmodule SbgInv.Web.FactionController do
   def index(conn, _params) do
     conn = Authentication.required(conn)
     if (conn.halted) do
-      put_status(conn, :unauthorized)
+      conn
 
     else
       query = from ff in FactionFigure,
@@ -50,8 +50,6 @@ defmodule SbgInv.Web.FactionController do
   end
 
   def show(conn, %{"id" => id}) do
-    conn = Authentication.optionally(conn)
-
     if id === "-1" do
       _show(conn, -1)
     else
@@ -63,13 +61,13 @@ defmodule SbgInv.Web.FactionController do
     put_status(conn, :not_found)
   end
   defp _show(conn, -1) do
-    list = Repo.all(from figure in faction_query(user_id(conn)),
+    list = Repo.all(from figure in faction_query(Authentication.user_id(conn)),
                     where: fragment("f0.id not in (SELECT figure_id FROM faction_figures)"))
 
     render(conn, "show.json", figures: list)
   end
   defp _show(conn, faction_id) do
-    list = Repo.all(from figure in faction_query(user_id(conn)),
+    list = Repo.all(from figure in faction_query(Authentication.user_id(conn)),
                     join: ff in assoc(figure, :faction_figure), on: (ff.faction_id == ^faction_id))
 
     render(conn, "show.json", figures: list)
@@ -92,9 +90,5 @@ defmodule SbgInv.Web.FactionController do
       painted: uf.painted,
       user_id: uf.user_id
     }
-  end
-
-  defp user_id(conn) do
-    if(Map.has_key?(conn.assigns, :current_user), do: conn.assigns.current_user.id, else: -1)
   end
 end

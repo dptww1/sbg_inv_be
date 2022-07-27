@@ -33,6 +33,6 @@ defmodule SbgInv.AuthenticationTest do
 
   test "no token", %{conn: conn} do
     conn = Authentication.call(conn, @opts)
-    assert conn.status == 401
+    assert conn.assigns == %{}
   end
 end

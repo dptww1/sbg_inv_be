@@ -9,21 +9,12 @@ defmodule SbgInv.Web.ScenarioController do
   plug :scrub_params, "scenario" when action in [:create, :update]
 
   def index(conn, _params) do
-    conn = Authentication.optionally(conn)
-    _index(conn, conn.status)  # TODO: simplify
-  end
-
-  defp _index(conn, 401) do
-    render(conn, "error.json", %{})
-  end
-  defp _index(conn, _) do
-    user_id = if(Map.has_key?(conn.assigns, :current_user), do: conn.assigns.current_user.id, else: -1)
+    user_id = Authentication.user_id(conn)
 
     user_query = from us in UserScenario, where: us.user_id == ^user_id
 
     query = Scenario
-            |> preload(:scenario_resources)
-            |> preload(:scenario_factions)
+            |> preload([:scenario_resources, :scenario_factions])
             |> preload([user_scenarios: ^user_query])
             |> order_by([asc: :date_age, asc: :date_year, asc: :date_month, asc: :date_day])
 
@@ -37,7 +28,7 @@ defmodule SbgInv.Web.ScenarioController do
     conn = Authentication.admin_required(conn)
 
     if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
+      conn
 
     else
       changeset = Scenario.changeset(%Scenario{}, scenario_params)
@@ -60,27 +51,24 @@ defmodule SbgInv.Web.ScenarioController do
   end
 
   def show(conn, %{"id" => id}) do
-    conn = Authentication.optionally(conn)
-    _show(conn, id, conn.status)
-  end
+    if conn.halted do
+      conn
 
-  defp _show(conn, _id, 401) do
-    render(conn, "error.json", %{})
-  end
-  defp _show(conn, id, _) do
-    scenario = load_scenario(conn, id)
+    else
+      scenario = load_scenario(conn, id)
 
-    rating_breakdown_query = from us in UserScenario,
-                                  group_by: us.rating,
-                                  where: us.scenario_id == ^id,
-                                  having: us.rating != 0,
-                                  select: [us.rating, count(us.rating)]
+      rating_breakdown_query = from us in UserScenario,
+                                    group_by: us.rating,
+                                    where: us.scenario_id == ^id,
+                                    having: us.rating != 0,
+                                    select: [us.rating, count(us.rating)]
 
-    rating_breakdown = Repo.all(rating_breakdown_query)
-                       |> Enum.filter(fn(x) -> hd(x) != nil end)
-                       |> Enum.reduce([0, 0, 0, 0, 0], fn(x, acc) -> List.replace_at(acc, hd(x) - 1, hd(tl(x))) end)
+      rating_breakdown = Repo.all(rating_breakdown_query)
+                         |> Enum.filter(fn(x) -> hd(x) != nil end)
+                         |> Enum.reduce([0, 0, 0, 0, 0], fn(x, acc) -> List.replace_at(acc, hd(x) - 1, hd(tl(x))) end)
 
-    _show_render(conn, scenario, rating_breakdown)
+      _show_render(conn, scenario, rating_breakdown)
+    end
   end
 
   defp _show_render(conn, nil, _) do
@@ -94,7 +82,7 @@ defmodule SbgInv.Web.ScenarioController do
     conn = Authentication.admin_required(conn)
 
     if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
+      conn
 
     else
       scenario = Repo.get!(Scenario, id)
@@ -118,7 +106,8 @@ defmodule SbgInv.Web.ScenarioController do
     conn = Authentication.admin_required(conn)
 
     if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
+      conn
+
     else
       scenario = Repo.get!(Scenario, id)
 
@@ -131,7 +120,7 @@ defmodule SbgInv.Web.ScenarioController do
   end
 
   defp load_scenario(conn, id) do
-    user_id = if(Map.has_key?(conn.assigns, :current_user), do: conn.assigns.current_user.id, else: -1)
+    user_id = Authentication.user_id(conn)
 
     user_scenario_query = from us in UserScenario, where: us.user_id == ^user_id
     user_figure_query = from uf in UserFigure, where: uf.user_id == ^user_id

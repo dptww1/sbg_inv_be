@@ -1,43 +1,65 @@
 defmodule SbgInv.Web.Authentication do
+  use Plug.Builder
+
   import Plug.Conn
   import Ecto.Query, only: [from: 2]
 
   alias SbgInv.Repo
   alias SbgInv.Web.{Session, User}
 
-  def init(options), do: options
-
-  def optionally(conn) do
-    case find_user(conn) do
-      {:ok, user} -> assign(conn, :current_user, user)
-      :error -> auth_error!(conn)
-      _ -> conn
-    end
+  @doc """
+  Returns the id of the currently authenticated user, or -1
+  if the user is not authenticated.
+  """
+  def user_id(conn) do
+    extract_user_id(conn.assigns[:current_user])
   end
 
+  defp extract_user_id(%User{id: id}), do: id
+  defp extract_user_id(nil), do: -1
+
+  @doc """
+  Verifies that the conn has an authenticated user.
+
+  If there is no such user, the connection is halted with status code `:unauthorized`.
+  """
   def required(conn) do
-    call(conn, %{})
+    if (conn.assigns[:current_user]), do: conn, else: auth_error!(conn)
   end
 
+  @doc """
+  Verifies that the user has a valid authentication token, and that the
+  user is an administrator.
+
+  Otherwise, the connection is halted with status code `:unauthorized`.
+  """
   def admin_required(conn) do
-    case find_user(conn) do
-      {:ok, user} -> if(user.is_admin, do: conn, else: auth_error!(conn))
-      _otherwise  -> auth_error!(conn)
+    if conn.assigns[:current_user] && conn.assigns[:current_user].is_admin do
+      conn
+    else
+      auth_error!(conn)
     end
   end
 
-  def call(conn, _opts) do
-    case find_user(conn) do
-      {:ok, user} -> assign(conn, :current_user, user)
-      _otherwise  -> auth_error!(conn)
-    end
+  # Required Plug module method
+  def call(conn, opts) do
+    # Needed since Plug.Builder has an implementation of this to do plug chaining
+    conn = super(conn, opts)
+
+    validate_auth_header(conn, get_req_header(conn, "authorization"))
   end
 
-  defp find_user(conn) do
-    with auth_header = get_req_header(conn, "authorization"),
-         {:ok, token}   <- parse_token(auth_header),
+  defp validate_auth_header(conn, []), do: conn
+  defp validate_auth_header(conn, val) do
+    with val,
+         {:ok, token}   <- parse_token(val),
          {:ok, session} <- find_session_by_token(token),
-    do:  find_user_by_session(session)
+         {:ok, user}    <- find_user_by_session(session)
+    do
+      assign(conn, :current_user, user)
+    else
+      _ -> auth_error!(conn)
+    end
   end
 
   defp parse_token(["Token token=" <> token]) do

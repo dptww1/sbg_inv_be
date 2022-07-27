@@ -179,9 +179,7 @@ defmodule SbgInv.Web.FigureControllerTest do
   test "can update figure if logged in as admin user and provides valid data", %{conn: conn} do
     %{conn: conn, user: user, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
 
-    user
-    |> Ecto.Changeset.change(%{:is_admin => true})
-    |> Repo.update!
+    TestHelper.promote_user_to_admin(user)
 
     figure_id = TestHelper.std_scenario_figure_id(const_data, 0)
 
@@ -201,8 +199,8 @@ defmodule SbgInv.Web.FigureControllerTest do
              "unique" => false,
              "slug" => "/rohan/the-name",
              "history" => [],
-             "owned" => 0,
-             "painted" => 0,
+             "owned" => 2,
+             "painted" => 2,
              "scenarios" => [%{"amount" => 9, "name" => "A", "scenario_id" => const_data["id"], "source" => nil}],
              "factions" => ["rohan", "shire"],
              "rules" => [
