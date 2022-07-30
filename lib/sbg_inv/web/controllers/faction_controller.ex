@@ -8,6 +8,10 @@ defmodule SbgInv.Web.FactionController do
   alias SbgInv.Web.{Authentication, FactionFigure, Figure, UserFigure}
 
   def index(conn, _params) do
+    # Ordinarily `index` operations wouldn't require an authenticated user.
+    # But without a user, the only thing that can be shown is the list of
+    # faction names, so the FE saves a network call and uses its own
+    # data structures to show that.
     with_auth_user conn do
       query = from ff in FactionFigure,
               left_join: uf in UserFigure, on: uf.figure_id == ff.figure_id,
