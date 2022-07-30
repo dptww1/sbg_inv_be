@@ -3,8 +3,9 @@ defmodule SbgInv.Web.NewsItemController do
   use SbgInv.Web, :controller
 
   import Ecto.Query
+  import SbgInv.Web.ControllerMacros
 
-  alias SbgInv.Web.{Authentication, NewsItem}
+  alias SbgInv.Web.{NewsItem}
 
   action_fallback SbgInv.Web.FallbackController
 
@@ -24,12 +25,7 @@ defmodule SbgInv.Web.NewsItemController do
   end
 
   def create(conn, %{"news_item" => params}) do
-    conn = Authentication.admin_required(conn)
-
-    if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_admin_user conn do
       update_or_create(conn, %NewsItem{}, params)
     end
   end

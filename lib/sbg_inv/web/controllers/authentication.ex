@@ -18,32 +18,9 @@ defmodule SbgInv.Web.Authentication do
   defp extract_user_id(%User{id: id}), do: id
   defp extract_user_id(nil), do: -1
 
-  @doc """
-  Verifies that the conn has an authenticated user.
-
-  If there is no such user, the connection is halted with status code `:unauthorized`.
-  """
-  def required(conn) do
-    if (conn.assigns[:current_user]), do: conn, else: auth_error!(conn)
-  end
-
-  @doc """
-  Verifies that the user has a valid authentication token, and that the
-  user is an administrator.
-
-  Otherwise, the connection is halted with status code `:unauthorized`.
-  """
-  def admin_required(conn) do
-    if conn.assigns[:current_user] && conn.assigns[:current_user].is_admin do
-      conn
-    else
-      auth_error!(conn)
-    end
-  end
-
   # Required Plug module method
   def call(conn, opts) do
-    # Needed since Plug.Builder has an implementation of this to do plug chaining
+    # Need to call Plug.Builder's implementation so plug chaining works
     conn = super(conn, opts)
 
     validate_auth_header(conn, get_req_header(conn, "authorization"))

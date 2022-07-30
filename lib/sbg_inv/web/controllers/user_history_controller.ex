@@ -3,16 +3,12 @@ defmodule SbgInv.Web.UserHistoryController do
   use SbgInv.Web, :controller
 
   import Ecto.Query
+  import SbgInv.Web.ControllerMacros
 
-  alias SbgInv.Web.{Authentication, UserFigureHistory, UserFigureHistoryView}
+  alias SbgInv.Web.{UserFigureHistory, UserFigureHistoryView}
 
   def index(conn, params) do
-    conn = Authentication.required(conn)
-
-    if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_auth_user conn do
       from = Map.get(params, "from", "2000-01-01")
       to   = Map.get(params, "to",   "3000-01-01")
 
@@ -30,12 +26,7 @@ defmodule SbgInv.Web.UserHistoryController do
   end
 
   def update(conn, params) do
-    conn = Authentication.required(conn)
-
-    if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_auth_user conn do
       hist = Repo.get! UserFigureHistory, params["id"]
 
       if (conn.assigns.current_user.is_admin || conn.assigns.current_user.id == hist.user_id) do
@@ -53,12 +44,7 @@ defmodule SbgInv.Web.UserHistoryController do
   end
 
   def delete(conn, params) do
-    conn = Authentication.required(conn)
-
-    if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_auth_user conn do
       hist = Repo.get! UserFigureHistory, params["id"]
 
       if (conn.assigns.current_user.is_admin || conn.assigns.current_user.id == hist.user_id) do

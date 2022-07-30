@@ -2,41 +2,29 @@ defmodule SbgInv.Web.CharacterController do
 
   use SbgInv.Web, :controller
 
-  alias SbgInv.Web.{Authentication, Character}
+  import SbgInv.Web.ControllerMacros
+
+  alias SbgInv.Web.{Character}
 
   def show(conn, %{"id" => id}) do
-    conn = Authentication.admin_required(conn)
-
-    if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
-    end
-
-    with {:ok, char} <- load_character(id)
-    do
-      render(conn, "character.json", character: char)
-    else
-      _ -> send_resp(conn, :unprocessable_entity, "")
+    with_admin_user conn do
+      with {:ok, char} <- load_character(id)
+      do
+        render(conn, "character.json", character: char)
+      else
+        _ -> send_resp(conn, :unprocessable_entity, "")
+      end
     end
   end
 
   def create(conn, %{"character" => params}) do
-    conn = Authentication.admin_required(conn)
-
-    if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_admin_user conn do
       update_or_create(conn, %Character{}, params)
     end
   end
 
   def update(conn, %{"id" => id, "character" => params}) do
-    conn = Authentication.admin_required(conn)
-
-    if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_admin_user conn do
       {:ok, char} = load_character(id)
       update_or_create(conn, char, params)
     end

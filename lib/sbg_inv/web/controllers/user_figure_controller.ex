@@ -1,15 +1,12 @@
 defmodule SbgInv.Web.UserFigureController do
   use SbgInv.Web, :controller
 
-  alias SbgInv.Web.{Authentication, RecalcUserScenarioTask, UserFigure, UserFigureHistory}
+  import SbgInv.Web.ControllerMacros
+
+  alias SbgInv.Web.{RecalcUserScenarioTask, UserFigure, UserFigureHistory}
 
   def create(conn, %{"user_figure" => user_figure_params}) do
-    conn = Authentication.required(conn)
-
-    if conn.halted do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_auth_user conn do
       user_id = conn.assigns.current_user.id
       figure_id = Map.get(user_figure_params, "id")
 

@@ -3,15 +3,12 @@ defmodule SbgInv.Web.FactionController do
   use SbgInv.Web, :controller
 
   import Ecto.Query
+  import SbgInv.Web.ControllerMacros
 
   alias SbgInv.Web.{Authentication, FactionFigure, Figure, UserFigure}
 
   def index(conn, _params) do
-    conn = Authentication.required(conn)
-    if (conn.halted) do
-      conn
-
-    else
+    with_auth_user conn do
       query = from ff in FactionFigure,
               left_join: uf in UserFigure, on: uf.figure_id == ff.figure_id,
               group_by: [ff.faction_id, uf.user_id],

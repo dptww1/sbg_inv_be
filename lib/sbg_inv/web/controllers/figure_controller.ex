@@ -3,27 +3,18 @@ defmodule SbgInv.Web.FigureController do
   use SbgInv.Web, :controller
 
   import Ecto.Query
+  import SbgInv.Web.ControllerMacros
 
   alias SbgInv.Web.{Authentication, Figure, UserFigure, UserFigureHistory}
 
   def create(conn, %{"figure" => params}) do
-    conn = Authentication.admin_required(conn)
-
-    if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_admin_user conn do
       update_or_create(conn, Repo.preload(%Figure{}, :faction_figure), params)
     end
   end
 
   def update(conn, %{"id" => id, "figure" => params}) do
-    conn = Authentication.admin_required(conn)
-
-    if (conn.halted) do
-      conn
-
-    else
+    with_admin_user conn do
       figure = Repo.get!(Figure, id)
                |> Repo.preload([:faction_figure])
 

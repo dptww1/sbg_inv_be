@@ -2,15 +2,12 @@ defmodule SbgInv.Web.ScenarioFactionController do
 
   use SbgInv.Web, :controller
 
-  alias SbgInv.Web.{Authentication, Scenario, ScenarioFaction}
+  import SbgInv.Web.ControllerMacros
+
+  alias SbgInv.Web.{Scenario, ScenarioFaction}
 
   def update(conn, %{"id" => id, "scenario_faction" => params}) do
-    conn = Authentication.admin_required(conn)
-
-    if (conn.halted) do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_admin_user conn do
       scenario_faction = Repo.get!(ScenarioFaction, id)
                          |> Repo.preload([roles: :figures])
       changeset = ScenarioFaction.changeset(scenario_faction, params)

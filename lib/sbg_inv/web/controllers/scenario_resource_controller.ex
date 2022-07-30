@@ -2,9 +2,10 @@ defmodule SbgInv.Web.ScenarioResourceController do
 
   use SbgInv.Web, :controller
 
-  alias SbgInv.Web.{Authentication, ScenarioResource}
+  alias SbgInv.Web.{ScenarioResource}
 
   import Ecto.Query
+  import SbgInv.Web.ControllerMacros
 
   def index(conn, params) do
     limit = Map.get(params, "n", 5)
@@ -25,23 +26,13 @@ defmodule SbgInv.Web.ScenarioResourceController do
   end
 
   def create(conn, %{"resource" => params, "scenario_id" => scenario_id}) do
-    conn = Authentication.admin_required(conn)
-
-    if conn.halted do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_admin_user conn do
       update_or_create(conn, %ScenarioResource{}, params, scenario_id)
     end
   end
 
   def update(conn, %{"resource" => params, "scenario_id" => scenario_id}) do
-    conn = Authentication.admin_required(conn)
-
-    if conn.halted do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_admin_user conn do
       resource = Repo.get!(ScenarioResource, Map.get(params, "id"))
       update_or_create(conn, resource, params, scenario_id)
     end

@@ -2,7 +2,9 @@ defmodule SbgInv.Web.UserController do
 
   use SbgInv.Web, :controller
 
-  alias SbgInv.Web.{Authentication, User}
+  import SbgInv.Web.ControllerMacros
+
+  alias SbgInv.Web.{User}
 
   plug :scrub_params, "user" when action in [:create]
 
@@ -24,12 +26,7 @@ defmodule SbgInv.Web.UserController do
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
-    conn = Authentication.required(conn)
-
-    if conn.halted do
-      send_resp(conn, :unauthorized, "")
-
-    else
+    with_auth_user conn do
       user = Repo.get!(User, id)
       changeset = cond do
         is_nil(Map.get user_params, "email")

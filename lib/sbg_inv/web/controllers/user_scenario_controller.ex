@@ -2,18 +2,15 @@ defmodule SbgInv.Web.UserScenarioController do
 
   use SbgInv.Web, :controller
 
+  import SbgInv.Web.ControllerMacros
+
   alias SbgInv.Web.{Authentication, Scenario, UserScenario}
 
   def create(conn, %{"user_scenario" => user_scenario_params}) do
-    conn = Authentication.required(conn)
-
-    if conn.halted do
-      conn
-
-    else
+    with_auth_user conn do
       result =
-        case Repo.get_by(UserScenario, user_id: conn.assigns.current_user.id, scenario_id: Map.get(user_scenario_params, "scenario_id")) do
-          nil -> %UserScenario{user_id: conn.assigns.current_user.id, scenario_id: Map.get(user_scenario_params, "scenario_id")}
+        case Repo.get_by(UserScenario, user_id: Authentication.user_id(conn), scenario_id: Map.get(user_scenario_params, "scenario_id")) do
+          nil -> %UserScenario{user_id: Authentication.user_id(conn), scenario_id: Map.get(user_scenario_params, "scenario_id")}
           user_scenario -> user_scenario
         end
       |> UserScenario.changeset(user_scenario_params)
@@ -25,6 +22,7 @@ defmodule SbgInv.Web.UserScenarioController do
           scenario = update_scenario_rating(conn, user_scenario.scenario)
           conn
           |> render("user_scenario.json", user_scenario: %{user_scenario | scenario: scenario})
+
         {:error, changeset} ->
           conn
           |> put_status(:unprocessable_entity)

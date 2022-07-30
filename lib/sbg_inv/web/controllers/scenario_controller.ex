@@ -3,6 +3,7 @@ defmodule SbgInv.Web.ScenarioController do
   use SbgInv.Web, :controller
 
   import Ecto.Query
+  import SbgInv.Web.ControllerMacros
 
   alias SbgInv.Web.{Authentication, Scenario, UserFigure, UserScenario}
 
@@ -25,12 +26,7 @@ defmodule SbgInv.Web.ScenarioController do
 
 
   def create(conn, %{"scenario" => scenario_params}) do
-    conn = Authentication.admin_required(conn)
-
-    if (conn.halted) do
-      conn
-
-    else
+    with_admin_user conn do
       changeset = Scenario.changeset(%Scenario{}, scenario_params)
 
       case Repo.insert(changeset) do
@@ -79,12 +75,7 @@ defmodule SbgInv.Web.ScenarioController do
   end
 
   def update(conn, %{"id" => id, "scenario" => scenario_params}) do
-    conn = Authentication.admin_required(conn)
-
-    if (conn.halted) do
-      conn
-
-    else
+    with_admin_user conn do
       scenario = Repo.get!(Scenario, id)
                  |> Repo.preload([:scenario_resources, :scenario_factions, :user_scenarios])
       changeset = Scenario.changeset(scenario, scenario_params)
@@ -103,12 +94,7 @@ defmodule SbgInv.Web.ScenarioController do
   end
 
   def delete(conn, %{"id" => id}) do
-    conn = Authentication.admin_required(conn)
-
-    if (conn.halted) do
-      conn
-
-    else
+    with_admin_user conn do
       scenario = Repo.get!(Scenario, id)
 
       # Here we use delete! (with a bang) because we expect
