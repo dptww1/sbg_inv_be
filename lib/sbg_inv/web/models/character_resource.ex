@@ -13,7 +13,7 @@ defmodule SbgInv.Web.CharacterResource do
 
     timestamps()
 
-    belongs_to :characters, Character
+    belongs_to :character, Character
   end
 
   @doc false
