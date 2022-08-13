@@ -1,4 +1,3 @@
-# test/controllers/user_figure_controller_test.exs
 defmodule SbgInv.Web.UserFigureControllerTest do
   use SbgInv.Web.ConnCase
 
