@@ -2,24 +2,21 @@ defmodule SbgInv.Web.ScenarioController do
 
   use SbgInv.Web, :controller
 
-  import Ecto.Query
   import SbgInv.Web.ControllerMacros
 
-  alias SbgInv.Web.{Authentication, Scenario, UserFigure, UserScenario}
+  alias SbgInv.Web.{Authentication, Scenario}
 
   plug :scrub_params, "scenario" when action in [:create, :update]
 
   def index(conn, _params) do
     user_id = Authentication.user_id(conn)
 
-    user_query = from us in UserScenario, where: us.user_id == ^user_id
-
-    query = Scenario
-            |> preload([:scenario_resources, :scenario_factions])
-            |> preload([user_scenarios: ^user_query])
-            |> order_by([asc: :date_age, asc: :date_year, asc: :date_month, asc: :date_day])
-
-    scenarios = Repo.all(query)
+    scenarios =
+      Scenario.query_all
+      |> Scenario.with_resources
+      |> Scenario.with_factions
+      |> Scenario.with_user(user_id)
+      |> Repo.all
 
     render(conn, "index.json", scenarios: scenarios)
   end
@@ -53,15 +50,11 @@ defmodule SbgInv.Web.ScenarioController do
     else
       scenario = load_scenario(conn, id)
 
-      rating_breakdown_query = from us in UserScenario,
-                                    group_by: us.rating,
-                                    where: us.scenario_id == ^id,
-                                    having: us.rating != 0,
-                                    select: [us.rating, count(us.rating)]
-
-      rating_breakdown = Repo.all(rating_breakdown_query)
-                         |> Enum.filter(fn(x) -> hd(x) != nil end)
-                         |> Enum.reduce([0, 0, 0, 0, 0], fn(x, acc) -> List.replace_at(acc, hd(x) - 1, hd(tl(x))) end)
+      rating_breakdown =
+        Repo.all(Scenario.ratings_breakdown_query(id))
+        |> Enum.reduce([0, 0, 0, 0, 0], fn(x, acc) ->
+             List.replace_at(acc, hd(x) - 1, Enum.at(x, 1))
+           end)
 
       _show_render(conn, scenario, rating_breakdown)
     end
@@ -76,14 +69,20 @@ defmodule SbgInv.Web.ScenarioController do
 
   def update(conn, %{"id" => id, "scenario" => scenario_params}) do
     with_admin_user conn do
-      scenario = Repo.get!(Scenario, id)
-                 |> Repo.preload([:scenario_resources, :scenario_factions, :user_scenarios])
+      scenario =
+        Scenario.query_by_id(id)
+        |> Scenario.with_resources
+        |> Scenario.with_user(Authentication.user_id(conn))
+        |> Scenario.with_figures(Authentication.user_id(conn))
+        |> Repo.one
+
       changeset = Scenario.changeset(scenario, scenario_params)
 
       case Repo.update(changeset) do
         {:ok, scenario} ->
           scenario = load_scenario(conn, scenario.id)
           render(conn, "show.json", scenario: scenario, rating_breakdown: [])
+
         {:error, changeset} ->
           conn
           |> put_status(:unprocessable_entity)
@@ -95,11 +94,11 @@ defmodule SbgInv.Web.ScenarioController do
 
   def delete(conn, %{"id" => id}) do
     with_admin_user conn do
-      scenario = Repo.get!(Scenario, id)
-
       # Here we use delete! (with a bang) because we expect
       # it to always work (and if it does not, it will raise).
-      Repo.delete!(scenario)
+      Scenario.query_by_id(id)
+      |> Repo.one
+      |> Repo.delete!
 
       send_resp(conn, :no_content, "")
     end
@@ -108,14 +107,10 @@ defmodule SbgInv.Web.ScenarioController do
   defp load_scenario(conn, id) do
     user_id = Authentication.user_id(conn)
 
-    user_scenario_query = from us in UserScenario, where: us.user_id == ^user_id
-    user_figure_query = from uf in UserFigure, where: uf.user_id == ^user_id
-
-    query = Scenario
-            |> preload(:scenario_resources)
-            |> preload([user_scenarios: ^user_scenario_query])
-            |> preload(scenario_factions: [roles: [figures: [user_figure: ^user_figure_query]]])
-
-    Repo.get(query, id)
+    Scenario.query_by_id(id)
+    |> Scenario.with_resources
+    |> Scenario.with_user(user_id)
+    |> Scenario.with_figures(user_id)
+    |> Repo.one
   end
 end

@@ -2,7 +2,6 @@ defmodule SbgInv.Web.NewsItemController do
 
   use SbgInv.Web, :controller
 
-  import Ecto.Query
   import SbgInv.Web.ControllerMacros
 
   alias SbgInv.Web.{NewsItem}
@@ -14,12 +13,7 @@ defmodule SbgInv.Web.NewsItemController do
     from  = Map.get(params, "from", "2000-01-01")
     to    = Map.get(params, "to", "3000-01-01")
 
-    query = NewsItem
-            |> limit(^limit)
-            |> where([n], n.item_date >= ^from)
-            |> where([n], n.item_date <= ^to)
-            |> order_by([desc: :item_date])
-    news_items = Repo.all(query)
+    news_items = Repo.all(NewsItem.query_by_date_range(from, to, limit))
 
     render(conn, "index.json", news_items: news_items)
   end

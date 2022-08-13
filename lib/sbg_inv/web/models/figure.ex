@@ -2,7 +2,9 @@ defmodule SbgInv.Web.Figure do
 
   use SbgInv.Web, :model
 
-  alias SbgInv.Web.{Character, FactionFigure, Role, UserFigure, UserFigureHistory}
+  import Ecto.Query
+
+  alias SbgInv.Web.{Character, FactionFigure, Figure, Role, UserFigure, UserFigureHistory}
 
   schema "figures" do
     field :name, :string
@@ -19,8 +21,7 @@ defmodule SbgInv.Web.Figure do
     has_many :faction_figure, FactionFigure, on_replace: :delete
     has_many :user_figure_history, UserFigureHistory
     many_to_many :characters, Character,
-                 join_through: "character_figures",
-                 on_replace: :delete
+                 join_through: "character_figures"
   end
 
   @required_fields [:name, :type]
@@ -37,5 +38,70 @@ defmodule SbgInv.Web.Figure do
     |> cast(params, @required_fields ++ @optional_fields)
     |> put_assoc(:faction_figure, Map.get(params, "faction_figure", []))
     |> validate_required(@required_fields)
+  end
+
+  @doc """
+  Create specialized changeset for testing purposes.  Since the public API
+  only supports editing the Character<->Figure relationship from the Character
+  side, client code should ordinarily use `Figure.changeset/2`.
+  """
+  def changeset_with_characters(model, params \\ %{}) do
+    characters =
+      (Map.get(params, "character_ids", []) # controllers use strings
+       |> load_characters)
+      ++
+      (Map.get(params, :character_ids, []) # models & tests use symbols
+       |> load_characters)
+
+    put_assoc(changeset(model, params), :characters, characters)
+  end
+
+  def query_by_id(figure_id) do
+    from f in Figure,
+    where: f.id == ^figure_id
+  end
+
+  def with_characters(query) do
+    ch_query = from ch in Character, order_by: :name
+
+    from q in query,
+    preload: [characters: ^ch_query]
+  end
+
+  def with_factions(query) do
+    ff_query = from ff in FactionFigure, order_by: :faction_id
+
+    from q in query,
+    preload: [faction_figure: ^ff_query]
+  end
+
+  def with_scenarios(query) do
+    from q in query,
+    preload: [role: [scenario_faction: [scenario: :scenario_resources]]]
+  end
+
+  def with_user(query, user_id) do
+    uf_query = from uf in UserFigure, where: uf.user_id == ^user_id
+
+    from q in query,
+    preload: [user_figure: ^uf_query]
+  end
+
+  def with_user_history(query, user_id) do
+    ufh_query =
+      from ufh in UserFigureHistory,
+      where: ufh.user_id == ^user_id,
+      order_by: [asc: ufh.op_date, desc: ufh.updated_at]
+
+    from q in query,
+    preload: [user_figure_history: ^ufh_query]
+  end
+
+  defp load_characters([]), do: []
+  defp load_characters(character_ids) do
+    SbgInv.Repo.all(
+      from ch in Character,
+      where: ch.id in ^character_ids,
+      order_by: ch.name)
   end
 end

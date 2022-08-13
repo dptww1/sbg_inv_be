@@ -1,34 +1,55 @@
 defmodule SbgInv.Web.UserScenarioController do
 
+
   use SbgInv.Web, :controller
 
   import SbgInv.Web.ControllerMacros
 
   alias SbgInv.Web.{Authentication, Scenario, UserScenario}
 
-  def create(conn, %{"user_scenario" => user_scenario_params}) do
+  def create(conn, %{"user_scenario" => params}) do
     with_auth_user conn do
-      result =
-        case Repo.get_by(UserScenario, user_id: Authentication.user_id(conn), scenario_id: Map.get(user_scenario_params, "scenario_id")) do
-          nil -> %UserScenario{user_id: Authentication.user_id(conn), scenario_id: Map.get(user_scenario_params, "scenario_id")}
-          user_scenario -> user_scenario
+      scenario_id = Map.get(params, "scenario_id")
+      user_id = Authentication.user_id(conn)
+
+      scenario =
+        Scenario.query_by_id(scenario_id)
+        |> Scenario.with_user(user_id)
+        |> Repo.one
+
+      if scenario == nil do
+        put_status conn, :unprocessable_entity
+        halt conn
+
+      else
+        result =
+          get_or_create_user_scenario(scenario, user_id)
+          |> UserScenario.changeset(params)
+          |> Repo.insert_or_update
+
+        case result do
+          {:ok, user_scenario} ->
+            scenario = update_scenario_rating(conn, scenario)
+            conn
+            |> render("user_scenario.json", user_scenario: %{user_scenario | scenario: scenario})
+
+          {:error, changeset} ->
+            conn
+            |> put_status(:unprocessable_entity)
+            |> put_view(SbgInv.Web.ChangesetView)
+            |> render("error.json", changeset: changeset)
         end
-      |> UserScenario.changeset(user_scenario_params)
-      |> Repo.insert_or_update
 
-      case result do
-        {:ok, user_scenario} ->
-          user_scenario = Repo.preload(user_scenario, [:scenario])
-          scenario = update_scenario_rating(conn, user_scenario.scenario)
-          conn
-          |> render("user_scenario.json", user_scenario: %{user_scenario | scenario: scenario})
-
-        {:error, changeset} ->
-          conn
-          |> put_status(:unprocessable_entity)
-          |> put_view(SbgInv.Web.ChangesetView)
-          |> render("error.json", changeset: changeset)
       end
+    end
+  end
+
+  defp get_or_create_user_scenario(nil, _), do: nil
+  defp get_or_create_user_scenario(scenario, user_id) do
+    if length(scenario.user_scenarios) > 0 do
+      hd(scenario.user_scenarios)
+    else
+      %UserScenario{user_id: user_id, scenario_id: scenario.id}
     end
   end
 

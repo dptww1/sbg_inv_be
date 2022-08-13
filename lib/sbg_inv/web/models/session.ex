@@ -2,7 +2,7 @@ defmodule SbgInv.Web.Session do
 
   use SbgInv.Web, :model
 
-  alias SbgInv.Web.User
+  alias SbgInv.Web.{Session, User}
 
   schema "sessions" do
     field :token, :string
@@ -27,5 +27,10 @@ defmodule SbgInv.Web.Session do
     struct
     |> changeset(params)
     |> put_change(:token, SecureRandom.urlsafe_base64())
+  end
+
+  def query_by_token(token) do
+    from s in Session,
+    where: s.token == ^token
   end
 end

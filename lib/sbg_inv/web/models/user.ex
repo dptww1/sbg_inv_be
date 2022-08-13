@@ -2,6 +2,10 @@ defmodule SbgInv.Web.User do
 
   use SbgInv.Web, :model
 
+  import Ecto.Query
+
+  alias SbgInv.Web.User
+
   schema "users" do
     field :name, :string
     field :email, :string
@@ -42,6 +46,13 @@ defmodule SbgInv.Web.User do
     struct
     |> update_email_changeset(params)
     |> update_password_changeset(params)
+  end
+
+  def query_by_id(id), do: where(User, id: ^id)
+
+  def query_by_email(email) do
+    from u in User,
+    where: u.email == ^email
   end
 
   defp put_password_hash(changeset) do

@@ -2,7 +2,7 @@ defmodule SbgInv.Web.ScenarioFaction do
 
   use SbgInv.Web, :model
 
-  alias SbgInv.Web.{Role, Scenario}
+  alias SbgInv.Web.{Role, Scenario, ScenarioFaction}
 
   schema "scenario_factions" do
     field :faction, Faction
@@ -29,5 +29,20 @@ defmodule SbgInv.Web.ScenarioFaction do
     |> cast(params, @required_fields)
     |> cast_assoc(:roles, Map.get(params, "roles", []))
     |> validate_required(@required_fields)
+  end
+
+  def query_by_id(id) do
+    from sf in ScenarioFaction,
+    where: sf.id == ^id
+  end
+
+  def with_figures(query) do
+    from q in query,
+    preload: [roles: :figures]
+  end
+
+  def with_roles(query) do
+    from q in query,
+    preload: [scenario_factions: :roles]
   end
 end

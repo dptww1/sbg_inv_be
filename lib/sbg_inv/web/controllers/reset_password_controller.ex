@@ -6,7 +6,8 @@ defmodule SbgInv.Web.ResetPasswordController do
   alias SbgInv.Web.User
 
   def create(conn, %{"user" => user_params}) do
-    user = Repo.get_by(User, email: Map.get(user_params, "email"))
+    user = User.query_by_email(Map.get(user_params, "email"))
+           |> Repo.one
 
     new_password = random_string(12)
     if user do

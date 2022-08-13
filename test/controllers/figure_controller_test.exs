@@ -187,9 +187,14 @@ defmodule SbgInv.Web.FigureControllerTest do
     Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: :fiefdoms}
     Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: :shire}
 
+    # We only edit the Figure<->Character relation from the Character side,
+    # so updating the figure should preserve any Character relation
     conn = put conn, Routes.figure_path(conn, :update, figure_id), figure: @valid_attrs
 
-    check = Repo.get!(Figure, figure_id) |> Repo.preload([:faction_figure])
+    check = Figure.query_by_id(figure_id)
+            |> Figure.with_characters
+            |> Figure.with_factions
+            |> Repo.one!
 
     assert json_response(conn, 200)["data"] == %{
              "id" => check.id,

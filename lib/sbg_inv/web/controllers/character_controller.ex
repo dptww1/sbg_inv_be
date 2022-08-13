@@ -46,7 +46,11 @@ defmodule SbgInv.Web.CharacterController do
   end
 
   defp load_character(id) do
-    char = Repo.get(Character, id) |> Repo.preload(:figures)
+    char =
+      Character.query_by_id(id)
+      |> Character.with_figures
+      |> Repo.one
+
     if char do
       {:ok, char}
     else

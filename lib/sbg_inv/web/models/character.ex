@@ -2,7 +2,7 @@ defmodule SbgInv.Web.Character do
 
   use SbgInv.Web, :model
 
-  alias SbgInv.Web.{Figure, CharacterResource}
+  alias SbgInv.Web.{Character, CharacterResource, Figure}
 
   schema "characters" do
     field :name, :string
@@ -20,7 +20,6 @@ defmodule SbgInv.Web.Character do
 
   @doc false
   def changeset(character, params \\ %{}) do
-
     figures =
       Map.get(params, "figure_ids", [])
       |> load_figures
@@ -29,6 +28,18 @@ defmodule SbgInv.Web.Character do
     |> cast(params, [:name, :faction, :book, :page])
     |> put_assoc(:figures, figures)
     |> validate_required([:name])
+  end
+
+  def query_by_id(id) do
+    from c in Character,
+    where: c.id == ^id
+  end
+
+  def with_figures(query) do
+    fq = from f in Figure, order_by: f.name
+
+    from q in query,
+    preload: [figures: ^fq]
   end
 
   defp load_figures([]), do: []

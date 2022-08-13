@@ -2,32 +2,29 @@ defmodule SbgInv.Web.UserHistoryController do
 
   use SbgInv.Web, :controller
 
-  import Ecto.Query
   import SbgInv.Web.ControllerMacros
 
-  alias SbgInv.Web.{UserFigureHistory, UserFigureHistoryView}
+  alias SbgInv.Web.{Authentication, UserFigureHistory, UserFigureHistoryView}
 
   def index(conn, params) do
     with_auth_user conn do
       from = Map.get(params, "from", "2000-01-01")
       to   = Map.get(params, "to",   "3000-01-01")
 
-      query = UserFigureHistory
-              |> preload([:figure])
-              |> where([n], n.op_date >= ^from)
-              |> where([n], n.op_date <= ^to)
-              |> where([n], n.user_id == ^conn.assigns.current_user.id)
-              |> order_by([asc: :op_date])
+      items = UserFigureHistory.query_by_date_range(from, to, Authentication.user_id(conn))
+              |> Repo.all
 
       conn
       |> put_view(UserFigureHistoryView)
-      |> render("history_list.json", history_items: Repo.all(query))
+      |> render("history_list.json", history_items: items)
     end
   end
 
   def update(conn, params) do
     with_auth_user conn do
-      hist = Repo.get! UserFigureHistory, params["id"]
+      hist =
+        UserFigureHistory.query_by_id(params["id"])
+        |> Repo.one
 
       if (conn.assigns.current_user.is_admin || conn.assigns.current_user.id == hist.user_id) do
 
@@ -45,7 +42,9 @@ defmodule SbgInv.Web.UserHistoryController do
 
   def delete(conn, params) do
     with_auth_user conn do
-      hist = Repo.get! UserFigureHistory, params["id"]
+      hist =
+        UserFigureHistory.query_by_id(params["id"])
+        |> Repo.one
 
       if (conn.assigns.current_user.is_admin || conn.assigns.current_user.id == hist.user_id) do
         Repo.delete! hist

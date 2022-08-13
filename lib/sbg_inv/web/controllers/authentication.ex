@@ -2,7 +2,6 @@ defmodule SbgInv.Web.Authentication do
   use Plug.Builder
 
   import Plug.Conn
-  import Ecto.Query, only: [from: 2]
 
   alias SbgInv.Repo
   alias SbgInv.Web.{Session, User}
@@ -30,7 +29,7 @@ defmodule SbgInv.Web.Authentication do
   defp validate_auth_header(conn, val) do
     with val,
          {:ok, token}   <- parse_token(val),
-         {:ok, session} <- find_session_by_token(token),
+         {:ok, session} <- find_session(token),
          {:ok, user}    <- find_user_by_session(session)
     do
       assign(conn, :current_user, user)
@@ -44,15 +43,15 @@ defmodule SbgInv.Web.Authentication do
   end
   defp parse_token(_non_token_header), do: :no_token
 
-  defp find_session_by_token(token) do
-    case Repo.one(from s in Session, where: s.token == ^token) do
+  defp find_session(token) do
+    case Repo.one(Session.query_by_token(token)) do
       nil     -> :error
       session -> {:ok, session}
     end
   end
 
   defp find_user_by_session(session) do
-    case Repo.get(User, session.user_id) do
+    case Repo.one(User.query_by_id(session.user_id)) do
       nil  -> :error
       user -> {:ok, user}
     end

@@ -27,7 +27,10 @@ defmodule SbgInv.Web.UserController do
 
   def update(conn, %{"id" => id, "user" => user_params}) do
     with_auth_user conn do
-      user = Repo.get!(User, id)
+      user =
+        User.query_by_id(id)
+        |> Repo.one
+
       changeset = cond do
         is_nil(Map.get user_params, "email")
           -> User.update_password_changeset(user, user_params)

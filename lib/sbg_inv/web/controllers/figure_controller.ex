@@ -2,21 +2,21 @@ defmodule SbgInv.Web.FigureController do
 
   use SbgInv.Web, :controller
 
-  import Ecto.Query
   import SbgInv.Web.ControllerMacros
 
-  alias SbgInv.Web.{Authentication, Figure, UserFigure, UserFigureHistory}
+  alias SbgInv.Web.{Authentication, Figure}
 
   def create(conn, %{"figure" => params}) do
     with_admin_user conn do
-      update_or_create(conn, Repo.preload(%Figure{}, :faction_figure), params)
+      update_or_create(conn, %Figure{}, params)
     end
   end
 
   def update(conn, %{"id" => id, "figure" => params}) do
     with_admin_user conn do
-      figure = Repo.get!(Figure, id)
-               |> Repo.preload([:faction_figure])
+      figure = Figure.query_by_id(id)
+               |> Figure.with_factions
+               |> Repo.one!
 
       update_or_create(conn, figure, params)
     end
@@ -51,18 +51,12 @@ defmodule SbgInv.Web.FigureController do
   defp load_figure(conn, id) do
     user_id = Authentication.user_id(conn)
 
-    user_figure_query = from uf in UserFigure,
-                        where: uf.user_id == ^user_id
-
-    user_figure_history_query = from ufh in UserFigureHistory,
-                                where: ufh.user_id == ^user_id and ufh.figure_id == ^id,
-                                order_by: [asc: ufh.op_date, desc: ufh.updated_at]
-
-    Repo.get(Figure, id)
-    |> Repo.preload(:faction_figure)
-    |> Repo.preload([role: [scenario_faction: [scenario: :scenario_resources]]])
-    |> Repo.preload([user_figure: user_figure_query])
-    |> Repo.preload([user_figure_history: user_figure_history_query])
-    |> Repo.preload(:characters)
+    Figure.query_by_id(id)
+    |> Figure.with_factions
+    |> Figure.with_scenarios
+    |> Figure.with_user(user_id)
+    |> Figure.with_user_history(user_id)
+    |> Figure.with_characters
+    |> Repo.one
   end
 end

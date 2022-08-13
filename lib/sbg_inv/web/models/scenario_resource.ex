@@ -2,7 +2,9 @@ defmodule SbgInv.Web.ScenarioResource do
 
   use SbgInv.Web, :model
 
-  alias SbgInv.Web.Scenario
+  import Ecto.Query
+
+  alias SbgInv.Web.{Scenario, ScenarioResource}
 
   schema "scenario_resources" do
     field :resource_type, ScenarioResourceType
@@ -32,5 +34,20 @@ defmodule SbgInv.Web.ScenarioResource do
     model
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
+  end
+
+  def query_by_id(id) do
+    from sr in ScenarioResource,
+    where: sr.id == ^id
+  end
+
+  def query_by_date_range(from_date, to_date, limit) do
+    from sr in ScenarioResource,
+    where: sr.updated_at >= ^from_date
+       and sr.updated_at <= ^to_date
+       and sr.resource_type != :source,
+    order_by: [desc: sr.updated_at],
+    limit: ^limit,
+    preload: :scenario
   end
 end

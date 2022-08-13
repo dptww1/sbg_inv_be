@@ -2,7 +2,7 @@ defmodule SbgInv.Web.Scenario do
 
   use SbgInv.Web, :model
 
-  alias SbgInv.Web.{ScenarioFaction, ScenarioResource, UserScenario}
+  alias SbgInv.Web.{Scenario, ScenarioFaction, ScenarioResource, UserFigure, UserScenario}
 
   schema "scenarios" do
     field :name,         :string
@@ -46,5 +46,57 @@ defmodule SbgInv.Web.Scenario do
     model
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
+  end
+
+  def ratings_breakdown_query(id) do
+    from us in UserScenario,
+    group_by: us.rating,
+    where: us.scenario_id == ^id,
+    having: us.rating > 0,
+    select: [
+      us.rating,
+      count(us.rating)
+    ]
+  end
+
+  def query_all() do
+    from s in Scenario,
+    order_by: [asc: :date_age, asc: :date_year, asc: :date_month, asc: :date_day]
+  end
+
+  def query_by_id(id) do
+    from s in Scenario,
+    where: s.id == ^id
+  end
+
+  def with_factions(query) do
+    from q in query,
+    preload: [:scenario_factions]
+  end
+
+  def with_figures(query, user_id) do
+    ufq = from uf in UserFigure, where: uf.user_id == ^user_id
+
+    from q in query,
+    preload: [scenario_factions: [roles: [figures: [user_figure: ^ufq]]]]
+  end
+
+  def with_roles(query) do
+    from q in query,
+    preload: [scenario_factions: :roles]
+  end
+
+  def with_resources(query) do
+    sr = from sr in ScenarioResource, order_by: :sort_order
+
+    from q in query,
+    preload: [scenario_resources: ^sr]
+  end
+
+  def with_user(query, user_id) do
+    uq = from us in UserScenario, where: us.user_id == ^user_id
+
+    from q in query,
+    preload: [user_scenarios: ^uq]
   end
 end

@@ -4,7 +4,6 @@ defmodule SbgInv.Web.ScenarioResourceController do
 
   alias SbgInv.Web.{ScenarioResource}
 
-  import Ecto.Query
   import SbgInv.Web.ControllerMacros
 
   def index(conn, params) do
@@ -12,15 +11,9 @@ defmodule SbgInv.Web.ScenarioResourceController do
     from  = string_to_naive_date_time(Map.get(params, "from"), ~N[2000-01-01 00:00:00])
     to    = string_to_naive_date_time(Map.get(params, "to"  ), ~N[3001-01-01 00:00:00])
 
-    query = ScenarioResource
-            |> preload(:scenario)
-            |> limit(^limit)
-            |> where([r], r.updated_at >= ^from)
-            |> where([r], r.updated_at <= ^to)
-            |> where([r], r.resource_type != 0)
-            |> order_by([desc: :updated_at])
-
-    resources = Repo.all(query)
+    resources =
+      ScenarioResource.query_by_date_range(from, to, limit)
+      |> Repo.all
 
     render(conn, "index.json", resources: resources)
   end
@@ -33,13 +26,14 @@ defmodule SbgInv.Web.ScenarioResourceController do
 
   def update(conn, %{"resource" => params, "scenario_id" => scenario_id}) do
     with_admin_user conn do
-      resource = Repo.get!(ScenarioResource, Map.get(params, "id"))
+      resource =
+        ScenarioResource.query_by_id(Map.get(params, "id"))
+        |> Repo.one
       update_or_create(conn, resource, params, scenario_id)
     end
   end
 
   defp string_to_naive_date_time(nil, default_date_time), do: default_date_time
-
   defp string_to_naive_date_time(str, default_date_time) do
     {res, dt} = NaiveDateTime.from_iso8601(str <> " 00:00:00")
     if res == :ok, do: dt, else: default_date_time
