@@ -74,6 +74,10 @@ defmodule SbgInv.Web.FigureControllerTest do
           "book" => "dos",
           "page" => 123
         }
+      ],
+      "resources" => [
+        %{"title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
+        %{"title" => "YouTube", "type" => "analysis", "book" => nil, "issue" => nil, "page" => nil, "url" => "http://www.example.com"}
       ]
     }
   end
@@ -138,6 +142,10 @@ defmodule SbgInv.Web.FigureControllerTest do
       "history" => [
         %{"op" => "sell_unpainted", "amount" => 2, "new_owned" => 3, "new_painted" => 3, "op_date" => "2017-08-10", "notes" => "", "id" => h1.id, "figure_id" => figure.id},
         %{"op" => "sell_unpainted", "amount" => 3, "new_owned" => 4, "new_painted" => 4, "op_date" => "2017-08-02", "notes" => "ABCD", "id" => h2.id, "figure_id" => figure.id}
+      ],
+      "resources" => [
+        %{"title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
+        %{"title" => "YouTube", "type" => "analysis", "book" => nil, "issue" => nil, "page" => nil, "url" => "http://www.example.com"}
       ]
     }
   end
@@ -161,7 +169,8 @@ defmodule SbgInv.Web.FigureControllerTest do
              "painted" => 0,
              "scenarios" => [],
              "factions" => ["rohan", "shire"],
-             "rules" => []
+             "rules" => [],
+             "resources" => []
            }
   end
 
@@ -192,7 +201,7 @@ defmodule SbgInv.Web.FigureControllerTest do
     conn = put conn, Routes.figure_path(conn, :update, figure_id), figure: @valid_attrs
 
     check = Figure.query_by_id(figure_id)
-            |> Figure.with_characters
+            |> Figure.with_characters_and_resources
             |> Figure.with_factions
             |> Repo.one!
 
@@ -215,6 +224,10 @@ defmodule SbgInv.Web.FigureControllerTest do
                  "book" => "dos",
                  "page" => 123
                }
+             ],
+             "resources" => [
+               %{"title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
+               %{"title" => "YouTube", "type" => "analysis", "book" => nil, "issue" => nil, "page" => nil, "url" => "http://www.example.com"}
              ]
            }
   end

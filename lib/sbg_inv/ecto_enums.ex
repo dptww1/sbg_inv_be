@@ -139,3 +139,8 @@ defenum UserFigureOp,
   buy_painted:    2,
   sell_painted:   3,
   paint:          4
+
+
+defenum CharacterResourceType,
+  painting_guide: 0,
+  analysis:       1

@@ -30,7 +30,17 @@ defmodule SbgInv.Web.CharacterControllerTest do
     f2 = TestHelper.add_figure("warriorA")
 
     conn = post conn, Routes.character_path(conn, :create),
-                character: Map.put(@valid_attrs, :figure_ids, [f1.id, f2.id])
+                character: Map.merge(@valid_attrs,
+                %{
+                    figure_ids: [f1.id, f2.id],
+                    resources: [
+                      %{
+                         type: :painting_guide,
+                         title: "ABC",
+                         url: "http://www.example.com"
+                      }
+                    ]
+                })
 
     check_query =
       from c in Character,
@@ -46,11 +56,20 @@ defmodule SbgInv.Web.CharacterControllerTest do
              "figures" => [
                %{ "id" => f2.id, "name" => f2.name },
                %{ "id" => f1.id, "name" => f1.name }
+             ],
+             "num_painting_guides" => 1,
+             "num_analyses" => 0,
+             "resources" => [
+               %{
+                 "type" => "painting_guide",
+                 "title" => "ABC",
+                 "url" => "http://www.example.com"
+               }
              ]
            }
   end
 
-  test "can create character without figures", %{conn: conn} do
+  test "can create character without figures or resources", %{conn: conn} do
     conn = TestHelper.create_logged_in_user(conn, "abc", "xyz@example.com", true)
 
     conn = post conn, Routes.character_path(conn, :create), character: @valid_attrs
@@ -63,7 +82,10 @@ defmodule SbgInv.Web.CharacterControllerTest do
              "faction" => "harad",
              "page" => 12,
              "name" => @valid_attrs.name,
-             "figures" => []
+             "figures" => [],
+             "resources" => [],
+             "num_analyses" => 0,
+             "num_painting_guides" => 0
            }
   end
 
@@ -90,12 +112,24 @@ defmodule SbgInv.Web.CharacterControllerTest do
     f2 = TestHelper.add_figure("warriorA")
 
     conn = put conn, Routes.character_path(conn, :update, ch_id),
-                character: Map.put(@valid_attrs, :figure_ids, [f1.id, f2.id])
+                character: Map.merge(@valid_attrs,
+                  %{
+                    figure_ids: [f1.id, f2.id],
+                    resources: [
+                      %{
+                        type: :painting_guide,
+                        title: "ABC",
+                        url: "http://www.example.com",
+                        issue: "42",
+                        book: :sbg,
+                        page: 12
+                      }
+                    ]
+                  })
 
     check_query =
       from c in Character,
-      where: c.id == ^ch_id,
-      preload: [figures: ^from(f in Figure, order_by: f.name)]
+      where: c.id == ^ch_id
     check = Repo.one!(check_query)
 
     assert json_response(conn, 200)["data"] == %{
@@ -107,7 +141,19 @@ defmodule SbgInv.Web.CharacterControllerTest do
              "figures" => [
                %{ "id" => f2.id, "name" => f2.name },
                %{ "id" => f1.id, "name" => f1.name }
-             ]
+             ],
+             "resources" => [
+               %{
+                 "type" => "painting_guide",
+                 "title" => "ABC",
+                 "url" => "http://www.example.com",
+                 "issue" => "42",
+                 "book" => "sbg",
+                 "page" => 12
+               }
+             ],
+             "num_painting_guides" => 1,
+             "num_analyses" => 0
            }
   end
 
@@ -137,7 +183,23 @@ defmodule SbgInv.Web.CharacterControllerTest do
              "page" => 123,
              "figures" => [
                %{"id" => TestHelper.std_scenario_figure_id(const_data, 0), "name" => "ABC"}
-             ]
+             ],
+             "resources" => [
+               %{
+                 "type" => "painting_guide",
+                 "title" => "SBG #3",
+                 "book" => "sbg",
+                 "issue" => "3",
+                 "page" => 37
+               },
+               %{
+                 "type" => "analysis",
+                 "title" => "YouTube",
+                 "url" => "http://www.example.com"
+               }
+             ],
+             "num_painting_guides" => 1,
+             "num_analyses" => 1
            }
   end
 end

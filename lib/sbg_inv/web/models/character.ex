@@ -9,10 +9,12 @@ defmodule SbgInv.Web.Character do
     field :faction, Faction
     field :book, ScenarioResourceBook
     field :page, :integer
+    field :num_painting_guides, :integer
+    field :num_analyses, :integer
 
     timestamps()
 
-    has_many :character_resources, CharacterResource
+    has_many :resources, CharacterResource, on_replace: :delete
     many_to_many :figures, Figure,
              join_through: "character_figures",
              on_replace: :delete
@@ -24,10 +26,18 @@ defmodule SbgInv.Web.Character do
       Map.get(params, "figure_ids", [])
       |> load_figures
 
-    character
-    |> cast(params, [:name, :faction, :book, :page])
-    |> put_assoc(:figures, figures)
-    |> validate_required([:name])
+    changeset =
+      character
+      |> cast(params, [:name, :faction, :book, :page])
+      |> cast_assoc(:resources)
+      |> put_assoc(:figures, figures)
+      |> validate_required([:name])
+
+    if changeset.valid? do
+      changeset
+      |> put_change(:num_painting_guides, resource_count(params["resources"], :painting_guide))
+      |> put_change(:num_analyses, resource_count(params["resources"], :analysis))
+    end
   end
 
   def query_by_id(id) do
@@ -42,6 +52,13 @@ defmodule SbgInv.Web.Character do
     preload: [figures: ^fq]
   end
 
+  def with_resources(query) do
+    rq = from cr in CharacterResource, order_by: cr.title
+
+    from q in query,
+    preload: [resources: ^rq]
+  end
+
   defp load_figures([]), do: []
   defp load_figures(figure_ids) do
     SbgInv.Repo.all(
@@ -49,4 +66,9 @@ defmodule SbgInv.Web.Character do
       where: f.id in ^figure_ids,
       order_by: f.name)
   end
+
+  defp resource_count(array, type) when is_list(array) do
+    Enum.count(array, fn r -> r["type"] == type end)
+  end
+  defp resource_count(_, _), do: 0
 end

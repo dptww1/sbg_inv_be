@@ -17,8 +17,9 @@ defmodule SbgInv.Web.FigureView do
          "owned" => user_figure_attr(figure.user_figure, :owned),
          "painted" => user_figure_attr(figure.user_figure, :painted),
          "history" => sorted_history(figure.user_figure_history),
-         "rules" => rules(figure.characters)
-         }
+         "rules" => rules(figure.characters),
+         "resources" => resources(figure.characters)
+      }
     }
   end
 
@@ -35,6 +36,22 @@ defmodule SbgInv.Web.FigureView do
         "page" => char.page
       }
     end)
+  end
+
+  defp resources(nil), do: []
+  defp resources(ary) do
+    Enum.flat_map(ary, fn char -> char.resources end)
+    |> Enum.map(fn rsrc ->
+         %{
+           "title" => rsrc.title,
+           "book" => rsrc.book,
+           "issue" => rsrc.issue,
+           "page" => rsrc.page,
+           "type" => rsrc.type,
+           "url" => rsrc.url
+         }
+       end)
+    |> Enum.uniq
   end
 
   defp sorted_scenarios(role_list) do

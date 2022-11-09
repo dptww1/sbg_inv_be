@@ -49,6 +49,7 @@ defmodule SbgInv.Web.CharacterController do
     char =
       Character.query_by_id(id)
       |> Character.with_figures
+      |> Character.with_resources
       |> Repo.one
 
     if char do

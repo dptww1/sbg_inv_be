@@ -7,7 +7,7 @@ defmodule SbgInv.TestHelper do
   use SbgInv.Web.ConnCase
   use Pathex
 
-  alias SbgInv.Web.{Character, Figure, Role, RoleFigure, Scenario, ScenarioFaction}
+  alias SbgInv.Web.{Character, CharacterResource, Figure, Role, RoleFigure, Scenario, ScenarioFaction}
   alias SbgInv.Web.{ScenarioResource, Session, User, UserScenario, UserFigure}
 
   def pinspect(conn, obj) do
@@ -108,7 +108,29 @@ defmodule SbgInv.TestHelper do
     Repo.insert! %UserFigure{user_id: user2.id, figure_id: figure1.id, owned: 2, painted: 2}
     Repo.insert! %UserFigure{user_id: user2.id, figure_id: figure2.id, owned: 1, painted: 0}
 
-    ch1 = Repo.insert! %Character{name: "N1", faction: :harad, book: :dos, page: 123, figures: [figure1]}
+    ch1 = Repo.insert! %Character{
+      name: "N1",
+      faction: :harad,
+      book: :dos,
+      page: 123,
+      figures: [figure1],
+      resources: [
+        %CharacterResource{
+          type: :painting_guide,
+          title: "SBG #3",
+          book: :sbg,
+          issue: "3",
+          page: 37
+        },
+        %CharacterResource{
+          type: :analysis,
+          title: "YouTube",
+          url: "http://www.example.com"
+        }
+      ],
+      num_painting_guides: 1,
+      num_analyses: 1
+    }
     ch2 = Repo.insert! %Character{name: "N2", faction: :minas_tirith, book: :gaw, page: 456}
     ch3 = Repo.insert! %Character{name: "N2b", faction: :rohan, book: :wfr, page: 789}
 

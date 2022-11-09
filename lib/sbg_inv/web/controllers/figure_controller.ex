@@ -56,7 +56,7 @@ defmodule SbgInv.Web.FigureController do
     |> Figure.with_scenarios
     |> Figure.with_user(user_id)
     |> Figure.with_user_history(user_id)
-    |> Figure.with_characters
+    |> Figure.with_characters_and_resources
     |> Repo.one
   end
 end

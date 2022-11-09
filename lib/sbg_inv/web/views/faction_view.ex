@@ -36,15 +36,20 @@ defmodule SbgInv.Web.FactionView do
 
   def render("figure.json", %{faction: figure}) do
     %{
-      id:          figure.id,
-      name:        figure.name,
-      plural_name: figure.plural_name,
-      slug:        figure.slug,
-      type:        figure.type,
-      unique:      figure.unique,
-      needed:      if(figure.max_needed, do: figure.max_needed, else: 0),
-      owned:       if(figure.owned,      do: figure.owned,      else: 0),
-      painted:     if(figure.painted,    do: figure.painted,    else: 0)
+      id:                  figure.id,
+      name:                figure.name,
+      plural_name:         figure.plural_name,
+      slug:                figure.slug,
+      type:                figure.type,
+      unique:              figure.unique,
+      needed:              normalize_int(figure.max_needed),
+      owned:               normalize_int(figure.owned),
+      painted:             normalize_int(figure.painted),
+      num_painting_guides: normalize_int(figure.num_painting_guides),
+      num_analyses:        normalize_int(figure.num_analyses)
     }
   end
+
+  defp normalize_int(nil), do: 0
+  defp normalize_int(x), do: x
 end

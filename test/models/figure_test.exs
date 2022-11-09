@@ -4,7 +4,8 @@ defmodule SbgInv.FigureTest do
   use Pathex
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{Character, FactionFigure, Figure, Role, ScenarioFaction, Scenario, ScenarioResource}
+  alias SbgInv.Web.{Character, CharacterResource, FactionFigure, Figure, Role}
+  alias SbgInv.Web.{ScenarioFaction, Scenario, ScenarioResource}
   alias SbgInv.Web.{UserFigure, UserFigureHistory}
 
   @valid_attrs %{name: "some content", type: :hero}
@@ -15,7 +16,12 @@ defmodule SbgInv.FigureTest do
     decoy_char = Repo.insert!(%Character{name: "stu", faction: :minas_tirith, book: :sots, page: 42})
     decoy_figure = Repo.insert!(Figure.changeset_with_characters(%Figure{}, Map.put(@valid_attrs, :character_ids, [decoy_char.id])))
 
-    check_char = Repo.insert!(%Character{name: "xyz", faction: :rohan, book: :gaw, page: 123})
+    resources = [
+      %CharacterResource{title: "CR1", type: :painting_guide, book: :fotr, page: 43},
+      %CharacterResource{title: "CR2", type: :analysis, url: "http://example.com"}
+    ]
+
+    check_char = Repo.insert!(%Character{name: "xyz", faction: :rohan, book: :gaw, page: 123, resources: resources})
     check_figure = Repo.insert!(Figure.changeset_with_characters(%Figure{}, Map.put(@valid_attrs, :character_ids, [check_char.id])))
 
     user = TestHelper.create_user()
@@ -75,14 +81,15 @@ defmodule SbgInv.FigureTest do
     assert fig.name == @valid_attrs.name
   end
 
-  test "with_characters() works with valid id", context do
+  test "with_characters_and_resources() works with valid id", context do
     fig = Figure.query_by_id(context.figure.id)
-          |> Figure.with_characters
+          |> Figure.with_characters_and_resources
           |> Repo.one!
 
     assert fig.name == @valid_attrs.name
     assert length(fig.characters) == 1
     assert Enum.at(fig.characters, 0).name == "xyz"
+    assert length(Enum.at(fig.characters, 0).resources) == 2
   end
 
   test "with_user() works with no user", context do

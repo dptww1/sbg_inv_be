@@ -61,11 +61,12 @@ defmodule SbgInv.Web.Figure do
     where: f.id == ^figure_id
   end
 
-  def with_characters(query) do
+  def with_characters_and_resources(query) do
     ch_query = from ch in Character, order_by: :name
 
     from q in query,
-    preload: [characters: ^ch_query]
+    preload: [characters: ^ch_query],
+    preload: [characters: :resources]
   end
 
   def with_factions(query) do

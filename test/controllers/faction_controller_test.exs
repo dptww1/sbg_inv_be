@@ -63,7 +63,19 @@ defmodule SbgInv.Web.FactionControllerTest do
     conn = get conn, Routes.faction_path(conn, :show, TestHelper.faction_as_int(:rohan))
     assert json_response(conn, 200)["data"] == %{
         "heroes" => [
-            %{"id" => fid, "name" => "ABC", "plural_name" => "ABCs", "type" => "hero", "unique" => true, "needed" => 9, "owned" => 4, "painted" => 2, "slug" => "/azogs-legion/abc"}
+            %{
+              "id" => fid,
+              "name" => "ABC",
+              "plural_name" => "ABCs",
+              "type" => "hero",
+              "unique" => true,
+              "needed" => 9,
+              "owned" => 4,
+              "painted" => 2,
+              "slug" => "/azogs-legion/abc",
+              "num_painting_guides" => 1,
+              "num_analyses" => 1
+            }
         ],
         "monsters" => [],
         "siegers" => [],
@@ -96,19 +108,19 @@ defmodule SbgInv.Web.FactionControllerTest do
     conn = get conn, Routes.faction_path(conn, :show, TestHelper.faction_as_int(:mirkwood))
     assert json_response(conn, 200)["data"] == %{
       "heroes" => [
-          %{"name" => "h1", "plural_name" => "h1s", "type" => "hero", "unique" => true,  "id" => f3.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => "h1s_slug"},
-          %{"name" => "h2", "plural_name" => "h2s", "type" => "hero", "unique" => false, "id" => f2.id, "needed" => 1, "owned" => 0, "painted" => 0, "slug" => nil},
+          %{"name" => "h1", "plural_name" => "h1s", "type" => "hero", "unique" => true,  "id" => f3.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => "h1s_slug", "num_painting_guides" => 0, "num_analyses" => 0},
+          %{"name" => "h2", "plural_name" => "h2s", "type" => "hero", "unique" => false, "id" => f2.id, "needed" => 1, "owned" => 0, "painted" => 0, "slug" => nil, "num_painting_guides" => 0, "num_analyses" => 0},
       ],
       "warriors" => [
-          %{"name" => "w1", "plural_name" => "w1s", "type" => "warrior", "unique" => false, "id" => f5.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil},
-          %{"name" => "w3", "plural_name" => "w3s", "type" => "warrior", "unique" => false, "id" => f4.id, "needed" => 4, "owned" => 0, "painted" => 0, "slug" => nil},
+          %{"name" => "w1", "plural_name" => "w1s", "type" => "warrior", "unique" => false, "id" => f5.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil, "num_painting_guides" => 0, "num_analyses" => 0},
+          %{"name" => "w3", "plural_name" => "w3s", "type" => "warrior", "unique" => false, "id" => f4.id, "needed" => 4, "owned" => 0, "painted" => 0, "slug" => nil, "num_painting_guides" => 0, "num_analyses" => 0},
       ],
       "monsters" => [
-          %{"name" => "m1", "plural_name" => "m1s", "type" => "monster", "unique" => true,  "id" => f7.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil},
-          %{"name" => "m3", "plural_name" => "m3s", "type" => "monster", "unique" => false, "id" => f6.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil},
+          %{"name" => "m1", "plural_name" => "m1s", "type" => "monster", "unique" => true,  "id" => f7.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil, "num_painting_guides" => 0, "num_analyses" => 0},
+          %{"name" => "m3", "plural_name" => "m3s", "type" => "monster", "unique" => false, "id" => f6.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil, "num_painting_guides" => 0, "num_analyses" => 0},
       ],
       "siegers" => [
-          %{"name" => "s3", "plural_name" => "s3s", "type" => "sieger", "unique" => false, "id" => f8.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil},
+          %{"name" => "s3", "plural_name" => "s3s", "type" => "sieger", "unique" => false, "id" => f8.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil, "num_painting_guides" => 0, "num_analyses" => 0},
       ]
     }
   end
@@ -133,10 +145,16 @@ defmodule SbgInv.Web.FactionControllerTest do
 
     conn = get conn, Routes.faction_path(conn, :show, -1)
     assert json_response(conn, 200)["data"] == %{
-      "heroes"   => [ %{"name" => "??", "plural_name" => "??s", "type" => "hero",    "unique" => false, "id" => f1.id, "needed" => 0, "owned" => 8, "painted" => 4, "slug" => nil },
-                      %{"name" => "h1", "plural_name" => "h1s", "type" => "hero",    "unique" => true,  "id" => f3.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => "h1slug"} ],
-      "warriors" => [ %{"name" => "w1", "plural_name" => "w1s", "type" => "warrior", "unique" => false, "id" => f5.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil} ],
-      "monsters" => [ %{"name" => "m1", "plural_name" => "m1s", "type" => "monster", "unique" => true,  "id" => f7.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil} ],
+      "heroes"   => [
+        %{"name" => "??", "plural_name" => "??s", "type" => "hero",    "unique" => false, "id" => f1.id, "needed" => 0, "owned" => 8, "painted" => 4, "slug" => nil, "num_painting_guides" => 0, "num_analyses" => 0 },
+        %{"name" => "h1", "plural_name" => "h1s", "type" => "hero",    "unique" => true,  "id" => f3.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => "h1slug", "num_painting_guides" => 0, "num_analyses" => 0}
+      ],
+      "warriors" => [
+        %{"name" => "w1", "plural_name" => "w1s", "type" => "warrior", "unique" => false, "id" => f5.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil, "num_painting_guides" => 0, "num_analyses" => 0}
+      ],
+      "monsters" => [
+        %{"name" => "m1", "plural_name" => "m1s", "type" => "monster", "unique" => true,  "id" => f7.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => nil, "num_painting_guides" => 0, "num_analyses" => 0}
+      ],
       "siegers"  => [ ]
     }
   end

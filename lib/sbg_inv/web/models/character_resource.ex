@@ -5,10 +5,11 @@ defmodule SbgInv.Web.CharacterResource do
   alias SbgInv.Web.Character
 
   schema "character_resources" do
+    field :title, :string
     field :book, ScenarioResourceBook
-    field :display_name, :string
+    field :issue, :string
     field :page, :integer
-    field :type, :integer
+    field :type, CharacterResourceType
     field :url, :string
 
     timestamps()
@@ -17,9 +18,9 @@ defmodule SbgInv.Web.CharacterResource do
   end
 
   @doc false
-  def changeset(character_resources, attrs) do
+  def changeset(character_resources, params \\ %{}) do
     character_resources
-    |> cast(attrs, [:type, :display_name, :url, :book, :page])
-    |> validate_required([:type, :display_name])
+    |> cast(params, [:type, :title, :issue, :url, :book, :page])
+    |> validate_required([:type, :title])
   end
 end

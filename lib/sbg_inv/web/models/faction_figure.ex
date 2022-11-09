@@ -62,20 +62,28 @@ defmodule SbgInv.Web.FactionFigure do
 
   defp faction_query(user_id) do
     from f in Figure,
-         left_join: role in assoc(f, :role),
-         left_join: uf in assoc(f, :user_figure), on: (uf.user_id == ^user_id),
-         group_by: [f.id, uf.owned, uf.painted, uf.user_id],
-         select: %{
-           id: f.id,
-           name: f.name,
-           plural_name: f.plural_name,
-           slug: f.slug,
-           type: f.type,
-           unique: f.unique,
-           max_needed: max(role.amount),
-           owned: uf.owned,
-           painted: uf.painted,
-           user_id: uf.user_id
-         }
+    left_join: role in assoc(f, :role),
+    left_join: uf in assoc(f, :user_figure), on: (uf.user_id == ^user_id),
+    left_join: ch in assoc(f, :characters),
+    group_by: [f.id, uf.owned, uf.painted, uf.user_id],
+    select: %{
+      id: f.id,
+      name: f.name,
+      plural_name: f.plural_name,
+      slug: f.slug,
+      type: f.type,
+      unique: f.unique,
+      max_needed: max(role.amount),
+      owned: uf.owned,
+      painted: uf.painted,
+      user_id: uf.user_id,
+      # TODO `max` is not accurate because multiple characters can
+      # have non-overlapping resources, so no single character's count
+      # is necessarily accurate.  Conversely, `sum` doesn't work because
+      # the join with `role` results in duplicate character data.
+      # But at least zero/non-zero is useful to the FE
+      num_painting_guides: max(ch.num_painting_guides),
+      num_analyses: max(ch.num_analyses)
+    }
   end
 end
