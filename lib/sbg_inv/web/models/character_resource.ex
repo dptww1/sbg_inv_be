@@ -21,6 +21,6 @@ defmodule SbgInv.Web.CharacterResource do
   def changeset(character_resources, params \\ %{}) do
     character_resources
     |> cast(params, [:type, :title, :issue, :url, :book, :page])
-    |> validate_required([:type, :title])
+    |> validate_required([:type])
   end
 end
