@@ -6,10 +6,10 @@ defmodule SbgInv.Web.CharacterControllerTest do
   alias SbgInv.Web.{Character, Figure}
 
   @valid_attrs %{
-    name: "char name",
-    faction: "harad",
-    book: "fotr_jb",
-    page: 12
+    "name" => "char name",
+    "faction" => "harad",
+    "book" => "fotr_jb",
+    "page" => 12
   }
 
   test "anonymous user can't create character", %{conn: conn} do
@@ -32,10 +32,10 @@ defmodule SbgInv.Web.CharacterControllerTest do
     conn = post conn, Routes.character_path(conn, :create),
                 character: Map.merge(@valid_attrs,
                 %{
-                    figure_ids: [f1.id, f2.id],
-                    resources: [
+                    "figure_ids" => [f1.id, f2.id],
+                    "resources" => [
                       %{
-                         type: :painting_guide,
+                         type: "painting_guide",
                          title: "ABC",
                          url: "http://www.example.com"
                       }
@@ -49,7 +49,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
 
     assert json_response(conn, 201)["data"] == %{
              "id" => check.id,
-             "name" => @valid_attrs.name,
+             "name" => @valid_attrs["name"],
              "faction" => "harad",
              "book" => "fotr_jb",
              "page" => 12,
@@ -81,7 +81,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
              "book" => "fotr_jb",
              "faction" => "harad",
              "page" => 12,
-             "name" => @valid_attrs.name,
+             "name" => @valid_attrs["name"],
              "figures" => [],
              "resources" => [],
              "num_analyses" => 0,
@@ -117,7 +117,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
                     figure_ids: [f1.id, f2.id],
                     resources: [
                       %{
-                        type: :painting_guide,
+                        type: "painting_guide",
                         title: "ABC",
                         url: "http://www.example.com",
                         issue: "42",
@@ -134,7 +134,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
 
     assert json_response(conn, 200)["data"] == %{
              "id" => check.id,
-             "name" => @valid_attrs.name,
+             "name" => @valid_attrs["name"],
              "book" => "fotr_jb",
              "faction" => "harad",
              "page" => 12,

@@ -35,8 +35,8 @@ defmodule SbgInv.Web.Character do
 
     if changeset.valid? do
       changeset
-      |> put_change(:num_painting_guides, resource_count(params["resources"], :painting_guide))
-      |> put_change(:num_analyses, resource_count(params["resources"], :analysis))
+      |> put_change(:num_painting_guides, resource_count(params["resources"], "painting_guide"))
+      |> put_change(:num_analyses, resource_count(params["resources"], "analysis"))
     end
   end
 
