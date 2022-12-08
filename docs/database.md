@@ -51,21 +51,25 @@ which I omit in the tables below to save space.
 
 ## Tables
 
-### character_figures
-### character_resources
-### characters
-### faction_figures
-### figures
-### news_item
-### role_figures
-### roles
-### scenario_factions
-### scenario_resources
+### character_figures (TODO)
+### character_resources (TODO)
+### characters (TODO)
+### faction_figures (TODO)
+### figures (TODO)
+### news_item (TODO)
+### role_figures (TODO)
+### roles (TODO)
+### scenario_factions (TODO)
+### scenario_resources (TODO)
+
+Records represent a resource for a scenario.
+
 ### scenarios
 
-Records represent a single scenario
+Records represent a single scenario.
 
 | Field | Type | Notes |
+|-------|------|-------|
 | name | varchar2(255) | |
 | blurb | text | short explanation what the scenario represents |
 | date_age | int4 | 1..4 for First Age ... Fourth Age |
@@ -83,21 +87,42 @@ Records represent a single scenario
 
 Many fields (e.g. `name`, `blurb`) here are nullable but probably shouldn't be.
 
-`rating` and `num_votes` are rolled up from the [user_scenarios] table.
+`rating` and `num_votes` are rolled up from the [user_scenarios] table and
+are calculated by the application when a rating is made.
 
 `num_votes` is the number of `user_scenario` records for the given scenario
 which have a rating > 0. `rating` is then the average of those ratings.
 
-### schema_migrations
-### sessions
-### user_figure_history
-### user_figures
+### schema_migrations  (TODO)
+### sessions (TODO)
+### user_figure_history (TODO)
+### user_figures (TODO)
 ### user_scenarios
+
+Records represent the user-specific part of a scenario. There's a many-to-many
+relationship between this table and the `scenarios` and `users` tables. But
+there should be only one record per (user, scenario) combination.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| user_id | int4 | FK to `users.id` |
+| rating | int4 | 1-5, or 0 if unrated |
+| owned | int4 | how many of the needed models for the scenario the user owns |
+| painted | int4 | how many of the needed models for the scenario the user has painted |
+| scenario_id | int8 | FK to `scenarios.id` |
+| inserted_at | timestamp
+| updated_at | timestamp
+
+`painted` should always be <= `owned`, which should in turn be <= `scenarios.size` for
+the given scenario.  These rollup values are computed by the application whenever
+the user buys, sells, or paints a figure.
+
 ### users
 
 Records represent users.
 
 | Field | Type | Notes |
+|-------|------|-------|
 | name | varchar(255) | NOT NULL |
 | email | varchar(255) | NOT NULL |
 | password_hash | varchar(255) | |
@@ -105,7 +130,7 @@ Records represent users.
 | updated_at | timestamp | |
 | is_admin | bool | |
 
-`name` is never actually used in the system, but there so at least theoretically
+`name` is never actually used in the system, but is there so at least theoretically
 I have a name if I need to contact folks in case of emergency.  Plus I find it
 slightly amusing to see the variety of full names, first names, and aliases
 which users are signing up with.
