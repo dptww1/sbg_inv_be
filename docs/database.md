@@ -14,40 +14,95 @@ which I omit in the tables below to save space.
 
 ## Enumerated Values
 
+### Books
+
+| Value | Book |
+|-------|------|
+|  0 | Battle of the Five Armies (2014)
+|  1 | Battle of the Pelennor Fields (2004)
+|  2 | The Desolation of Smaug (2013)
+|  3 | The Fall of the Necromancer (2006)
+|  4 | Fellowship of the Ring (2001)
+|  5 | Fellowship of the Ring Journeybook (2005)
+|  6 | Free Peoples (2011)
+|  7 | Fallen Realms (2011)
+|  8 | Gondor in Flames (2007)
+|  9 | Escape from Goblintown (2012)
+| 10 | Harad (2007)
+| 11 | The Hobbit: An Unexpected Journey (2012)
+| 12 | Khazad-dûm (2007)
+| 13 | Kingdoms of Men (2011)
+| 14 | Moria & Angmar (2011)
+| 15 | Mordor (2011)
+| 16 | Mordor (2007)
+| 17 | The Ruin of Arnor (2006)
+| 18 | Return of the King (2003)
+| 19 | Return of the King Journeybook (2007)
+| 20 | Shadow & Flame (2003)
+| 21 | SBG Magazine
+| 22 | A Shadow in the East (2005)
+| 23 | Siege of Gondor (2004)
+| 24 | The Scouring of the Shire (2004)
+| 25 | There and Back Again (2016)
+| 26 | The Two Towers (2002)
+| 27 | The Two Towers Journeybook (2006)
+| 28 | Battle of the Pelennor Fields (2018)
+| 29 | Armies of the Lord of the Rings (2018)
+| 30 | Armies of the Hobbit (2018)
+| 31 | Gondor at War (2019)
+| 32 | Battle Games in Middle Earth
+| 33 | Scouring of the Shire (2019)
+| 34 | War in Rohan (2019)
+| 35 | Quest of the Ringbearer (2020)
+| 36 | Fall of the Necromancer (2021)
+| 37 | Defence of the North (2022)
+| 38 | Battle of Osgiliath (2022)
+
 ### Locations
 
 | Value | Location |
 |-------|----------|
-|  Amon Hen |      0 |
-|  Arnor |         1 |
-|  Dale |          2 |
-|  Dol Guldur |    3 |
-|  Erebor |        4 |
-|  Eriador |       5 |
-|  Fangorn |       6 |
-|  Fornost |       7 |
-|  Goblintown |    8 |
-|  Gondor |        9 |
-|  Harad |        10 |
-|  Harondor |     11 |
-|  Helms Deep |   12 |
-|  Isengard |     13 |
-|  Ithilien |     14 |
-|  Laketown |     15 |
-|  Lothlorien |   16 |
-|  Minas Morgul | 17 |
-|  Minas Tirith | 18 |
-|  Mirkwood |     19 |
-|  Mordor |       20 |
-|  Moria |        21 |
-|  Morannon |     22 |
-|  Osgiliath |    23 |
-|  Rhovanion |    24 |
-|  Rhun |         25 |
-|  Rohan |        26 |
-|  The Shire |    27 |
-|  Weathertop |   28 |
-|  Orthanc |      29 |
+| 0 | Amon Hen |
+| 1 | Arnor |
+| 2 | Dale |
+| 3 | Dol Guldur |
+| 4 | Erebor |
+| 5 | Eriador |
+| 6 | Fangorn |
+| 7 | Fornost |
+| 8 | Goblintown |
+| 9 | Gondor |
+| 10 | Harad |
+| 11 | Harondor |
+| 12 | Helms Deep |
+| 13 | Isengard |
+| 14 | Ithilien |
+| 15 | Laketown |
+| 16 | Lothlorien |
+| 17 | Minas Morgul |
+| 18 | Minas Tirith |
+| 19 | Mirkwood |
+| 20 | Mordor |
+| 21 | Moria |
+| 22 | Morannon |
+| 23 | Osgiliath |
+| 24 | Rhovanion |
+| 25 | Rhun |
+| 26 | Rohan |
+| 27 | The Shire |
+| 28 | Weathertop |
+| 29 | Orthanc |
+
+### Scenario Resource Type
+
+| Value | Type | Notes |
+|-------|------|-------|
+| 0 |  source | where the scenario can be found
+| 1 |  video_replay |
+| 2 |  web_replay |
+| 3 |  terrain_building | not currently used
+| 4 |   podcast |
+| 5 |  magazine_replay |
 
 ## Tables
 
@@ -64,6 +119,36 @@ which I omit in the tables below to save space.
 
 Records represent a resource for a scenario.
 
+| Field | Type | Notes|
+|-------|------|-------|
+| scenario_id | int8 | FK to `scenarios.is` |
+| resource_type | | a [Scenario Resource Type] value
+| book | int4 | a [Books] value
+| page | int4 |
+| url | text |
+| notes | text | unused |
+| sort_order | int4 | 1..n
+| inserted_at | timestamp
+| updated_at | timestamp
+| title | varchar(255) | display name for this resource
+| issue | text |
+
+The fields here are all nullable and at minimum the
+`scenario_id` and `resource_type` should not be.
+
+This table is effectively a union of print and online types.
+`title` is meant to be used for either, although arguably it
+shouldn't have been used for print materials, since the `book`
+attribute describes the title.
+
+`issue` might at first seem like it should be numeric, but
+making it textual means it can handle things like "Summer 2018".
+It could be `varchar(255)` instead of `text`, though.
+
+It would probably have been better to bake the scenario
+source directly into the [scenarios] table, which would
+simplify searching by book.
+
 ### scenarios
 
 Records represent a single scenario.
@@ -77,7 +162,7 @@ Records represent a single scenario.
 | size | int4 | # of models used in the scenario |
 | map_width | int4 | in inches |
 | map_height | int4 | in inches |
-| location | int4 | a [Location] value |
+| location | int4 | a [Locations] value |
 | inserted_at | timestamp |
 | updated_at | timestamp |
 | date_month | 1-12 or <=0 if unknown |
