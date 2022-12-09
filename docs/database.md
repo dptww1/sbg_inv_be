@@ -93,16 +93,16 @@ which I omit in the tables below to save space.
 | 28 | Weathertop |
 | 29 | Orthanc |
 
-### Scenario Resource Type
+### Scenario Resource Types
 
 | Value | Type | Notes |
 |-------|------|-------|
-| 0 |  source | where the scenario can be found
-| 1 |  video_replay |
-| 2 |  web_replay |
-| 3 |  terrain_building | not currently used
-| 4 |   podcast |
-| 5 |  magazine_replay |
+| 0 |  Source | where the scenario can be found
+| 1 |  Video Replay |
+| 2 |  Web Replay |
+| 3 |  Terrain Building | not currently used
+| 4 |   Podcast |
+| 5 |  Magazine Replay |
 
 ## Tables
 
@@ -122,8 +122,8 @@ Records represent a resource for a scenario.
 | Field | Type | Notes|
 |-------|------|-------|
 | scenario_id | int8 | FK to `scenarios.is` |
-| resource_type | | a [Scenario Resource Type] value
-| book | int4 | a [Books] value
+| resource_type | | a [Scenario Resource Types](#scenario-resource-types) value
+| book | int4 | a [Books](#books) value
 | page | int4 |
 | url | text |
 | notes | text | unused |
