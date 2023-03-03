@@ -83,4 +83,11 @@ defmodule SbgInv.Web.UserControllerTest do
 
     assert conn.status == 401
   end
+
+  test "cannot create two accounts with the same email", %{conn: conn} do
+    TestHelper.create_user("anonymous", @valid_attrs.email)
+
+    conn = post conn, Routes.user_path(conn, :create), user: @valid_attrs
+    assert json_response(conn, 422)["errors"] == %{"email" => [ "has already been taken" ]}
+  end
 end
