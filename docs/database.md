@@ -138,8 +138,8 @@ WHERE figure_id = <old_figure_id>
 
 ### Figure Type
 
-| Value | Location |
-|-------|----------|
+| Value | Location | Notes |
+|-------|----------|-------|
 | 0 | Hero |
 | 1 | Warrior |
 | 2 | Monster |
@@ -192,13 +192,14 @@ WHERE figure_id = <old_figure_id>
 | 5 |  Magazine Replay |
 
 ### User Figure Op
+
 | Value | Location | Notes |
-|-------|----------|
-| 0 | Add Unpainted
-| 1 | Remove Unpainted
+|-------|----------|-------|
+| 0 | Add Unpainted |
+| 1 | Remove Unpainted |
 | 2 | Add Painted |
-| 3 | Remove Unpainted
-| 4 | Paint | converting unpainted to painted
+| 3 | Remove Unpainted |
+| 4 | Paint | converting unpainted to painted |
 
 ## Tables
 
@@ -383,8 +384,43 @@ and the service returns that token to as a cookie.
 The token then can be submitted as an authorization token on subsequent
 requests so the service calls can determine who the user is.
 
-### user_figure_history (TODO)
-### user_figures (TODO)
+### user_figure_history
+
+Records track user activity over time.  The [user_figures](#user_figures) table
+records the user's current inventory; this table tells us how he or she got there.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| user_id | int8 | FK to [users](#users).id |
+| figure_id | int8 | FK to [figures](#figures).id |
+| op | int4 | a [User Figure Op](#user-figure-op) value determining exactly what the user did
+| amount | int4 | how many of the given figures the user bought/sold/painted at one point in time
+| new_owned | int4 | the user's inventory of the given figure after the operation
+| new_painted| int4 | the user's painted inventory of the given figure after the operation
+| op_date | date(0) | when the operation occurred
+| notes | text | optional notes about the operation the user cares to add
+| inserted_at | timestamp
+| updated_at | timestamp
+
+When a `user_figure_history` record is edited or deleted, only the given record is affected.
+In other words, no recalculation of the `new_owned` and `new_painted` fields in the other
+`user_figure_history` records for the (user, figure) combination is performed, and so it's
+possible for those fields to become inaccurate.
+
+### user_figures
+
+Records associate [users](#users) with [figures](#figures) in a many-to-many
+relationship.  There should be only one record per (user, figure) combination.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| user_id | int8 | FK to [users](#users).id |
+| owned | int4 | # of models of the given figure owned by the user
+| painted | int4 | # of models of the given figure painted by the user
+| figure_id | int8 | FK to [figures](#figures).id |
+| inserted_at | timestamp
+| updated_at | timestamp
+
 ### user_scenarios
 
 Records represent the user-specific part of a scenario. There's a many-to-many
@@ -393,7 +429,7 @@ there should be only one record per (user, scenario) combination.
 
 | Field | Type | Notes |
 |-------|------|-------|
-| user_id | int4 | FK to `users.id` |
+| user_id | int4 | FK to [users](#users).id |
 | rating | int4 | 1-5, or 0 if unrated |
 | owned | int4 | how many of the needed models for the scenario the user owns |
 | painted | int4 | how many of the needed models for the scenario the user has painted |
