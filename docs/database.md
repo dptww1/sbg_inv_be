@@ -14,7 +14,7 @@ which I omit in the tables below to save space.
 
 ## Useful Queries
 
-### Add a new figure pose to the relevent scenarios
+### Add a new figure pose to the relevant scenarios
 
 As of this writing, the services provide no way to link a new figure being
 added to the scenarios in which it should appear other than editing each
@@ -31,6 +31,26 @@ INSERT INTO role_figures (role_id, figure_id)
 SELECT role_id, <new_figure_id>
 FROM role_figures
 WHERE figure_id = <old_figure_id>
+```
+
+### Detect scenarios with incorrect size rollups
+
+For the pie charts on the main scenario list to be accurate, the `size` field
+in the [Scenarios](#scenarios) table must exactly match the sum of the amounts
+in the [Role](#roles)s for the that scenario.
+
+The services are supposed to ensure that this is true, but they sometimes seem
+to get out of sync. So if the pie charts are wonky, run this query to see if
+there are mismatches in the `size` field:
+
+```sql
+SELECT s.id, s.name, s.size, SUM(r.amount)
+FROM scenarios s
+INNER JOIN scenario_factions sf ON s.id = sf.scenario_id
+INNER JOIN roles r ON sf.id = r.scenario_faction_id
+GROUP BY s.id
+HAVING s.size <> SUM(r.amount)
+ORDER BY s.name;
 ```
 
 ## Enumerated Values
@@ -204,10 +224,96 @@ WHERE figure_id = <old_figure_id>
 ## Tables
 
 ### character_figures (TODO)
-### character_resources (TODO)
-### characters (TODO)
-### faction_figures (TODO)
-### figures (TODO)
+
+Associates [characters](#characters) to [figures](#figures).
+
+| Field | Type | Notes |
+|-------|------|--------
+| character_id | int8 | FK to [characters](#characters) |
+| figure_id | int8 | FK to [figures](#figures) |
+
+### character_resources
+
+Associates [characters](#characters) to their resources.
+
+| Field | Type | Notes |
+|-------|------|--------
+| character_id | int4 | FK to [characters](#characters) |
+| url | text | URL of resource |
+| book | int4 | one of the [Books](#books) |
+| page | int4 | page in the book |
+| type | int4 | a [Character Resource Type](#character-resource-type) |
+| issue | text | magazine issue ("2", "Summer", etc.) |
+| inserted_at | timestamp |
+| updated_at | timestamp |
+| title | text | display name for this resource |
+
+For online resources, only `url` and `title` are needed.
+
+For printed resources, `title`, `book`, and `page` are required.
+
+### characters
+
+Characters are pose- and equipment-independent individuals or types.
+So: Aragorn, Orc, Warrior of Minas Tirith.
+
+This is useful because the painting guides and other [character_resources](#character_resources)
+are generally applicable to a figure regardless of pose or equipment, or whether they
+are used in any scenarios (and so compare with [roles](#roles)).
+
+The services label the unique [Figures](#figures) as "Characters" but that is for
+labeling purposes and has nothing to do with this table.
+
+| Field | Type | Notes |
+|-------|------|--------
+| name | text |
+| book | int4 | the [Books](#books) with the character's stats |
+| page | int4 | the page within the book |
+| inserted_at | timestamp |
+| updated_at | timestamp |
+| faction | int4 | a [Faction](#faction) |
+| num_analyses | int4 | rollup of the analysis [character_resources](#character_resources) for this character |
+| num_painting_guides | int4 | rollup of the guides [character_resources](#character_resources) for this character |
+
+### faction_figures
+
+Links [Figures](#figures) to their factions.
+
+| Field | Type | Notes |
+|-------|------|--------
+| faction_id | int4 | a [Faction](#faction)
+| figure_id | int4 | FK to [Figures](#figures)
+
+### figures
+
+Figures are the actual models made by Games Workshop.
+
+Unique characters get a row for each of their poses: Aragorn (Fellowship), Aragorn (Helm's Deep), etc.
+
+Other figure types get a row for each equipment configuration: Orc with shield, Orc with bow, etc.
+
+| Field | Type | Notes |
+|-------|------|--------
+| name | varchar(255) |
+| type | int4 | a [Figure Type](#figure-type) value
+| unique | bool | `true` for unique characters (Aragorn, Smaug, etc)
+| inserted_at | timestamp |
+| updated_at | timestamp |
+| plural_name | varchar(255) | pluralized `name` field; can be `null` for unique figures
+| slug | varchar(255) | unique URL path part for this figure
+
+The `plural_name` field is needed because it seems easier to have this field than to
+do pluralization mechanically.
+
+The `slug` is currently used as a path for the silhouettes shown in the front end when the
+user mouses over a figure name on the figure list screen. The slugs don't include the image
+extension so that they can also be used in the future for other purposes.  Since only
+characters currently have silhouettes, only characters currently have slugs.
+
+The silhouettes themselves are served by the front end despite the image paths being controlled
+by the back end.  This is awkward, but does have the advantage that adding a silhouette requires
+no updates to the back end, only the front end and the database.
+
 ### news_item
 
 News Items are the mechanism for relaying updates to the site.
