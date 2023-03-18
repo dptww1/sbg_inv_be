@@ -223,7 +223,7 @@ ORDER BY s.name;
 
 ## Tables
 
-### character_figures (TODO)
+### character_figures
 
 Associates [characters](#characters) to [figures](#figures).
 
