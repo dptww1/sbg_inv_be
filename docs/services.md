@@ -46,8 +46,8 @@ match the actual data on the server.
 
 ## GET `/stats`
 
-|Authentication | None |
-|Normal HTTP Response Code | 200 |
+**Authentication** None
+**Normal HTTP Response Code** 200
 
 Returns some overall statistics for the site.
 
@@ -214,9 +214,9 @@ Example return payload:
 ## [TODO] POST    /userscenarios
 ## POST /users
 
-| Authentication | None |
-| Normal HTTP Response Code | 200 |
-| Error HTTP Response Code | 422 |
+**Authentication** None
+**Normal HTTP Response Code** 200
+**Error HTTP Response Code** 422
 
 Creates a new user account with the given email and password.
 
@@ -226,7 +226,7 @@ Example input payload:
 "user": {
   "name": "Frodo Baggins",
   "email": "frodo@shire.com",
-  "password: "my friend Sam"
+  "password": "my friend Sam"
 }
 ```
 
