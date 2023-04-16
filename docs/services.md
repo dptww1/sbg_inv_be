@@ -1,5 +1,7 @@
 # Service Calls
 
+## Overview
+
 The document describes the SBG Inventory HTTP service calls.  The
 [front end](https://github.com/dptww1/sbg_inv_fe) is responsible for
 the user interface but all the real work happens in the back end using
@@ -18,33 +20,69 @@ The JSON return payloads documented here should be accurate as to structure but 
 data (figure names, counts, etc.) should be treated as examples and may not
 match the actual data on the server.
 
-## [TODO] GET     /character/:id
-## [TODO] POST    /character
-## [TODO] PUT     /character/:id
-## [TODO] GET     /faction
-## [TODO] GET     /faction/:id
-## [TODO] GET     /figure/:id
-## [TODO] POST    /figure
-## [TODO] PUT     /figure/:id
-## [TODO] GET     /newsitem
-## [TODO] POST    /newsitem
-## [TODO] GET     /recalc
-## [TODO] POST    /reset-password
-## [TODO] GET     /search
-## [TODO] PUT     /scenario-faction/:id
-## [TODO] GET     /scenarios
-## [TODO] GET     /scenarios/:id/edit
-## [TODO] GET     /scenarios/new
-## [TODO] GET     /scenarios/:id
-## [TODO] POST    /scenarios
-## [TODO] PUT     /scenarios/:id
-## [TODO] DELETE  /scenarios/:id
-## [TODO] GET     /scenarios/:scenario_id/resource
-## [TODO] POST    /scenarios/:scenario_id/resource
-## [TODO] PUT     /scenarios/:scenario_id/resource/:id
-## [TODO] POST    /sessions
+Many of the app-specific terms and concepts used here are more fully explained in
+the [Database Documentation](database.md)
 
-## GET `/stats`
+## Table of Contents
+
+### [GET /character/:id](#get-character-id)
+### [POST /character](#post-character)
+### [PUT /character/:id](#put-character)
+### [GET /faction](#get-faction)
+### [GET /faction/:id](#get-faction-id)
+### [GET /figure/:id](#get-figure-id)
+### [POST /figure](#post-figure)
+### [PUT /figure/:id](#put-figure-id)
+### [GET /newsitem](#get-newsitem)
+### [POST /newsitem](#post-newsitem)
+### [POST /reset-password](#post-reset-password)
+### [GET /search](#get-search)
+### [PUT /scenario-faction/:id](#put-scenario-faction-id)
+### [GET /scenarios](#get-scenarios)
+### [GET /scenarios/:id](#get-scenarios-id)
+### [GET /scenarios/:id/edit](#get-scenarios-id-edit)
+### [GET /scenarios/new](#get-scenerios-new)
+### [POST /scenarios](#post-scenarios)
+### [PUT /scenarios/:id](#put-scenarios-id)
+### [GET /scenarios/:scenario_id/resource](#get-scenarios-scenario-id-resource)
+### [POST /scenarios/:scenario_id/resource](#post-scenarios-scenario-id-resource)
+### [PUT /scenarios/:scenario_id/resource/:id](#put-scenarios-scenario-id-resource-id)
+### [POST /sessions](#post-sessions)
+### [GET `/stats`](#get-stats)
+### [POST /userfigure](#post-userfigure)
+### [GET /userhistory](#get-userhistory)
+### [PUT /userhistory/:id](#put-userhistory-id)
+### [DELETE /userhistory/:id](#delete-userhistory-id)
+### [POST /userscenarios](#post-userscenarios)
+### [POST `/users`](#post-users)
+### [PUT /users/:id](#put-users-id)
+
+## Service Call Details
+### [TODO] GET /character/:id
+### [TODO] POST /character
+### [TODO] PUT /character/:id
+### [TODO] GET /faction
+### [TODO] GET /faction/:id
+### [TODO] GET /figure/:id
+### [TODO] POST /figure
+### [TODO] PUT /figure/:id
+### [TODO] GET /newsitem
+### [TODO] POST /newsitem
+### [TODO] POST /reset-password
+### [TODO] GET /search
+### [TODO] PUT /scenario-faction/:id
+### [TODO] GET /scenarios
+### [TODO] GET /scenarios/:id/edit
+### [TODO] GET /scenarios/new
+### [TODO] GET /scenarios/:id
+### [TODO] POST /scenarios
+### [TODO] PUT /scenarios/:id
+### [TODO] GET /scenarios/:scenario_id/resource
+### [TODO] POST /scenarios/:scenario_id/resource
+### [TODO] PUT /scenarios/:scenario_id/resource/:id
+### [TODO] POST /sessions
+
+### GET `/stats`
 
 - **Authentication** None
 - **Normal HTTP Response Code** 200
@@ -207,12 +245,12 @@ Example return payload:
 }
 ```
 
-## [TODO] POST    /userfigure
-## [TODO] GET     /userhistory
-## [TODO] PUT     /userhistory/:id
-## [TODO] DELETE  /userhistory/:id
-## [TODO] POST    /userscenarios
-## POST /users
+### [TODO] POST /userfigure
+### [TODO] GET /userhistory
+### [TODO] PUT /userhistory/:id
+### [TODO] DELETE /userhistory/:id
+### [TODO] POST /userscenarios
+### POST `/users`
 
 - **Authentication** None
 - **Normal HTTP Response Code** 200
@@ -253,4 +291,4 @@ Example error return payload:
 }
 ```
 
-## [TODO] PUT     /users/:id
+### [TODO] PUT /users/:id
