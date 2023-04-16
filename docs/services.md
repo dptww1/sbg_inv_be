@@ -7,14 +7,25 @@ The document describes the SBG Inventory HTTP service calls.  The
 the user interface but all the real work happens in the back end using
 these service calls.
 
+The services are written in [Elixir](https://elixir-lang.org/), using the
+[Phoenix framework](https://www.phoenixframework.org/).  URLs follow
+standard Phoenix conventions, so path parts starting with a colon, such as
+`:id`, indicate parameters rather than literal strings.
+
+Request and response payloads are in standard JSON format. Clients should be
+sure to send the `Accept: application/json` HTTP header as part of their requests.
+
 The services are hosted at `https://homely-uncomfortable-wreckfish.gigalixirapp.com/api`.
 For brevity, I document a service call without that prefix, so the call listed as
 `/scenarios/-1/resource` is actually located at
 `https://homely-uncomfortable-wreckfish.gigalixirapp.com/api/scenarios/-1/resource`.
 
+The service URLs follow standard Phoenix
 The services are primarily designed for user inventory tracking, and so usually require
 authenticated credentials.  However some services work whether the caller is authenticated
-or not, returning just the user-independent data in the latter case.
+or not, returning just the user-independent data in the latter case.  When a service
+call fails a required authentication check, the HTTP response's status code will be 401
+and there will be no return payload.
 
 The JSON return payloads documented here should be accurate as to structure but the
 data (figure names, counts, etc.) should be treated as examples and may not
@@ -80,7 +91,46 @@ the [Database Documentation](database.md)
 ### [TODO] GET /scenarios/:scenario_id/resource
 ### [TODO] POST /scenarios/:scenario_id/resource
 ### [TODO] PUT /scenarios/:scenario_id/resource/:id
-### [TODO] POST /sessions
+### POST `/sessions`
+
+- **Authentication** None
+- **Normal HTTP Response Code** 201 (not 200!)
+- **Error HTTP Response Code** 401
+
+Logs a created user into the system and creates a bearer token which can
+be used to authenticate subsequent service calls.
+
+Example input payload:
+
+```json
+"user": {
+  "email": "frodo@shire.com",
+  "password": "my friend Sam"
+}
+```
+
+All of the fields are required.
+
+Example success return payload:
+
+```json
+{
+  "data": {
+    "user_id": 1234,
+    "name": "Frodo Baggins",
+    "token": "abcdefghijklmnop"
+  }
+}
+```
+
+The `user_id` and `token` should be used in subsequent service calls:
+
+* The `user_id` value is passed as part of the service call URL when needed.
+
+* The `token` value should be passed as part of an HTTP `Authorization` header, like so:
+`Authorization: Token token=<token value>` (without the angle brackets, of course).
+
+Tokens do not expire.
 
 ### GET `/stats`
 
@@ -261,10 +311,12 @@ Creates a new user account with the given email and password.
 Example input payload:
 
 ```json
-"user": {
-  "name": "Frodo Baggins",
-  "email": "frodo@shire.com",
-  "password": "my friend Sam"
+{
+  "user": {
+    "name": "Frodo Baggins",
+    "email": "frodo@shire.com",
+    "password": "my friend Sam"
+  }
 }
 ```
 
@@ -273,9 +325,11 @@ All of the fields are required.
 Example success return payload:
 
 ```json
-"data": {
-  "id": 1234
-  "email": "frodo@shire.com"
+{
+  "data": {
+    "id": 1234
+    "email": "frodo@shire.com"
+  }
 }
 ```
 
@@ -291,4 +345,48 @@ Example error return payload:
 }
 ```
 
-### [TODO] PUT /users/:id
+### PUT `/users/:id`
+
+- **Authentication** Required
+- **Normal HTTP Response Code** 200
+- **Error HTTP Response Codes**
+  . 401 Authentication failed
+  . 422 Can't update email to another user's email address
+
+Updates an existing user's account, either the password, or the email address, or both.
+
+Example input payload:
+
+```json
+{
+  "user": {
+    "id": 1234
+    "email": "frodo@rivendell.org",
+    "password": "Elrond"
+  }
+}
+```
+
+`id` and either or both of `email` and `password` are required.
+
+Example success return payload:
+
+```json
+{
+  "data": {
+    "id": 1234
+    "email": "frodo@rivendell.org"
+  }
+}
+```
+
+Example error return payload:
+```json
+{
+  "errors": {
+    "email": [
+      "has already been taken"
+    ]
+  }
+}
+```
