@@ -12,6 +12,38 @@ aren't rare.
 Ecto, the database layer that the project uses, enforces an `id` field
 which I omit in the tables below to save space.
 
+## Table of Contents
+
+* [Useful Queries](#useful-queries)
+** [Add a new figure pose to the relevant scenarios](#add-a-new-figure-pose-to-the-relevant-scenarios)
+** [Detect scenarios with incorrect sizes](#detect-scenarios-with-incorrect-size-rollups)
+* [Enumerated Values](#enumerated-values)
+** [Books](#books)
+** [Character Resource Type](#character-resource-type)
+** [Faction](#faction)
+** [Figure Type](#figure-type)
+** [Location](#location)
+** [Scenario Resource Type](#scenario-resource-type)
+** [User Figure Op](#user-figure-op)
+* [Tables](#tables)
+** [character_figures](#character_figures)
+** [character_resources](#character_resources)
+** [characters](#characters)
+** [faction_figures](#faction_figures)
+** [figures](#figures)
+** [news_item](#news_item)
+** [role_figures](#role_figures)
+** [roles](#roles)
+** [schema_migrations](#schema-migrations)
+** [scenario_factions](#scenario_factions)
+** [scenario_resources](#scenario_resources)
+** [scenarios](#scenarios)
+** [sessions](#sessions)
+** [user_figure_history](#user_figure_history)
+** [user_figures](#user_figures)
+** [user_scenarios](#user_scenarios)
+** [users](#users)
+
 ## Useful Queries
 
 ### Add a new figure pose to the relevant scenarios
@@ -365,6 +397,15 @@ scenario, so that model would never be tied to a Role.
 | updated_at | timestamp |
 | name | varchar(255) |
 
+### schema_migrations
+
+Standard ecto migrations table.
+
+| Value | Type |
+|-------|------|
+| version | int8 |
+| inserted_at | timestamp |
+
 ### scenario_factions
 
 Enumerates the basic information for the sides for each of
@@ -464,15 +505,6 @@ are calculated by the application when a rating is made.
 
 `num_votes` is the number of `user_scenario` records for the given scenario
 which have a rating > 0. `rating` is then the average of those ratings.
-
-### schema_migrations
-
-Standard ecto migrations table.
-
-| Value | Type |
-|-------|------|
-| version | int8 |
-| inserted_at | timestamp |
 
 ### sessions
 
