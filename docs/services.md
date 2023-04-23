@@ -44,10 +44,10 @@ the [Database Documentation](database.md)
 * [GET /figure/:id](#get-figure-id)
 * [POST /figure](#post-figure)
 * [PUT /figure/:id](#put-figure-id)
-* [GET /newsitem](#get-newsitem)
+* [GET `/newsitem`](#get-newsitem)
 * [POST /newsitem](#post-newsitem)
 * [POST /reset-password](#post-reset-password)
-* [GET /search](#get-search)
+* [GET `/search`](#get-search)
 * [PUT /scenario-faction/:id](#put-scenario-faction-id)
 * [GET /scenarios](#get-scenarios)
 * [GET /scenarios/:id](#get-scenarios-id)
@@ -58,7 +58,7 @@ the [Database Documentation](database.md)
 * [GET /scenarios/:scenario_id/resource](#get-scenarios-scenario-id-resource)
 * [POST /scenarios/:scenario_id/resource](#post-scenarios-scenario-id-resource)
 * [PUT /scenarios/:scenario_id/resource/:id](#put-scenarios-scenario-id-resource-id)
-* [POST /sessions](#post-sessions)
+* [POST `/sessions`](#post-sessions)
 * [GET `/stats`](#get-stats)
 * [POST /userfigure](#post-userfigure)
 * [GET /userhistory](#get-userhistory)
@@ -77,10 +77,124 @@ the [Database Documentation](database.md)
 ### [TODO] GET /figure/:id
 ### [TODO] POST /figure
 ### [TODO] PUT /figure/:id
-### [TODO] GET /newsitem
-### [TODO] POST /newsitem
+### GET /newsitem
+
+- **Authentication** None
+- **Normal HTTP Response Code** 200
+- **Query Parameters**
+
+|Parameter Name|Notes|
+|--------------|-----|
+| n | # of items to retrieve (default: 3)
+| from | start date in "yyyy-mm-dd" format (default: 2000-01-01)
+| to | end date in "yyyy-mm-dd" format (default: 3000-01-01)
+
+Retrieves news items, always with the most recent news item first.
+
+Example return payload:
+
+```json
+{
+  "data": [
+    {
+      "item_date": "2023-04-03",
+      "item_text": "Corrected the figures needed in the Road to Rivendell (2019), etc."
+    },
+    {
+      "item_date": "2023-03-25",
+      "item_text": "On the scenario list screen, clicking the \"%\" now toggles etc."
+    },
+    {
+      "item_date": "2023-03-25",
+      "item_text": "Fixed the number of Warriors of the Dead in the Gondor at War Pelargir scenario."
+    }
+  ]
+}
+```
+
+### POST `/newsitem`
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 202 (not 200)
+- **Error HTTP Response Code** 401 (unauthenticated)
+
+Example input payload:
+
+```json
+{
+  "item_text": "News headline",
+  "item_date": "2023-04-20"
+}
+```
+
+There is no return payload, only the 202 HTTP response code.
+
 ### [TODO] POST /reset-password
-### [TODO] GET /search
+### GET /search
+
+- **Authentication** None
+- **Normal HTTP Response Code** 200
+- **Query Parameters**
+
+|Parameter Name|Notes|
+|--------------|-----|
+| q | the search string |
+
+Searches the scenarios and figures for the given search parameter.
+
+Example (truncated) return payload when `q=oromi`:
+
+```json
+{
+  "data": [
+    {
+      "book": "",
+      "id": 260,
+      "name": "Boromir",
+      "plural_name": null,
+      "start": 1,
+      "type": "f"
+    },
+    {
+      "book": "",
+      "id": 261,
+      "name": "Boromir (Breaking)",
+      "plural_name": null,
+      "start": 1,
+      "type": "f"
+    },
+    {
+      "book": "qrb",
+      "id": 449,
+      "name": "Boromir's Redemption",
+      "plural_name": "",
+      "start": 1,
+      "type": "s"
+    },
+    {
+      "book": "fotr_jb",
+      "id": 55,
+      "name": "Boromir's Redemption",
+      "plural_name": "",
+      "start": 1,
+      "type": "s"
+    }
+  ]
+}
+```
+
+The `type` field determines whether the object in the list is a scenario (`"s"`) or a figure (`"f"`).
+
+The `id` and `name` fields are for the relevant scenario or figure, according on the `type`.
+
+The `start` field is the 0-based index within the object's `name` of the search string.
+
+The `plural_name` field is non-`null` only for figures which have that field in the database.
+
+The `book` field is filled in only for scenarios and is the
+[book abbreviation](/blob/master/lib/sbg_inv/ecto_enums.ex#L88)
+wherein the scenario is found.
+
 ### [TODO] PUT /scenario-faction/:id
 ### [TODO] GET /scenarios
 ### [TODO] GET /scenarios/:id/edit
