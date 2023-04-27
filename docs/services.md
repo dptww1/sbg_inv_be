@@ -20,7 +20,6 @@ For brevity, I document a service call without that prefix, so the call listed a
 `/scenarios/-1/resource` is actually located at
 `https://homely-uncomfortable-wreckfish.gigalixirapp.com/api/scenarios/-1/resource`.
 
-The service URLs follow standard Phoenix
 The services are primarily designed for user inventory tracking, and so usually require
 authenticated credentials.  However some services work whether the caller is authenticated
 or not, returning just the user-independent data in the latter case.  When a service
@@ -61,12 +60,12 @@ the [Database Documentation](database.md)
 * [POST `/sessions`](#post-sessions)
 * [GET `/stats`](#get-stats)
 * [POST /userfigure](#post-userfigure)
-* [GET /userhistory](#get-userhistory)
+* [GET `/userhistory`](#get-userhistory)
 * [PUT /userhistory/:id](#put-userhistory-id)
 * [DELETE /userhistory/:id](#delete-userhistory-id)
-* [POST /userscenarios](#post-userscenarios)
+* [POST `/userscenarios`](#post-userscenarios)
 * [POST `/users`](#post-users)
-* [PUT /users/:id](#put-users-id)
+* [PUT `/users/:id`](#put-users-id)
 
 ## Service Call Details
 ### [TODO] GET /character/:id
@@ -130,7 +129,7 @@ Example input payload:
 There is no return payload, only the 202 HTTP response code.
 
 ### [TODO] POST /reset-password
-### GET /search
+### GET `/search`
 
 - **Authentication** None
 - **Normal HTTP Response Code** 200
@@ -185,14 +184,14 @@ Example (truncated) return payload when `q=oromi`:
 
 The `type` field determines whether the object in the list is a scenario (`"s"`) or a figure (`"f"`).
 
-The `id` and `name` fields are for the relevant scenario or figure, according on the `type`.
+The `id` and `name` fields are for the relevant scenario or figure, depending on `type`.
 
 The `start` field is the 0-based index within the object's `name` of the search string.
 
 The `plural_name` field is non-`null` only for figures which have that field in the database.
 
 The `book` field is filled in only for scenarios and is the
-[book abbreviation](/blob/master/lib/sbg_inv/ecto_enums.ex#L88)
+[book abbreviation](https://github.com/dptww1/sbg_inv_be/blob/master/lib/sbg_inv/ecto_enums.ex#L88)
 wherein the scenario is found.
 
 ### [TODO] PUT /scenario-faction/:id
@@ -209,7 +208,7 @@ wherein the scenario is found.
 
 - **Authentication** None
 - **Normal HTTP Response Code** 201 (not 200!)
-- **Error HTTP Response Code** 401
+- **Error HTTP Response Code** 401 (unauthenticated)
 
 Logs a created user into the system and creates a bearer token which can
 be used to authenticate subsequent service calls.
@@ -237,11 +236,11 @@ Example success return payload:
 }
 ```
 
-The `user_id` and `token` should be used in subsequent service calls:
+`user_id` is the logged-in user's ID (of course).
 
-* The `user_id` value is passed as part of the service call URL when needed.
+`name` is the logged-in user's name, for display purposes.
 
-* The `token` value should be passed as part of an HTTP `Authorization` header, like so:
+The `token` value should be passed as part of an HTTP `Authorization` header, like so:
 `Authorization: Token token=<token value>` (without the angle brackets, of course).
 
 Tokens do not expire.
@@ -410,10 +409,121 @@ Example return payload:
 ```
 
 ### [TODO] POST /userfigure
-### [TODO] GET /userhistory
+### [TODO] GET `/userhistory`
+
+- **Authentication** User
+- **Normal HTTP Response Code** 200
+- **Error HTTP Response Code** 401 (unauthenticated)
+- **Query Parameters**
+
+|Parameter Name|Notes|
+|--------------|-----|
+|from| starting date, in YYYY-MM-dd form
+| to | ending date, in YYYY-MM-dd form
+
+Retrieves all of the user's activity between the start and end dates (inclusive),
+sorted in increasing date order.
+
+Example (truncated) return payload:
+
+```json
+{
+  "data": [
+    {
+      "amount": 1,
+      "figure_id": 876,
+      "id": 39518,
+      "name": "Rutabi",
+      "notes": null,
+      "op": "buy_unpainted",
+      "op_date": "2022-03-01",
+      "plural_name": null,
+      "user_id": 1
+    },
+    {
+      "amount": 1,
+      "figure_id": 155,
+      "id": 39521,
+      "name": "Frodo (Barrow Downs)",
+      "notes": null,
+      "op": "paint",
+      "op_date": "2022-08-21",
+      "plural_name": null,
+      "user_id": 1
+    },
+    {
+      "amount": 5,
+      "figure_id": 27,
+      "id": 39528,
+      "name": "Warrior of Arnor",
+      "notes": null,
+      "op": "buy_unpainted",
+      "op_date": "2022-10-01",
+      "plural_name": "Warriors of Arnor",
+      "user_id": 1
+    }
+  ]
+}
+```
+
+`id` is the ID of the history record itself.
+
+`user_id` is always the ID of the authenticated user.
+
+The other fields are the same as the input payload of the
+(PUT `/userhistory`)[#put-user-history] service.
+
 ### [TODO] PUT /userhistory/:id
 ### [TODO] DELETE /userhistory/:id
-### [TODO] POST /userscenarios
+### POST `/userscenarios`
+
+- **Authentication** User
+- **Normal HTTP Response Code** 200
+- **Error HTTP Response Codes**
+  . 401 Authentication failed
+  . 422 Rating is out of range, or bad scenario ID
+
+Creates or updates the user's scenario rating.
+
+Example input payload:
+
+```json
+{
+  "user_scenario": {
+    "scenario_id": 385,
+    "rating": 4
+  }
+}
+```
+
+The `scenario_id` is the ID of the scenario as returned by the [GET `scenarios`](#get-scenarios)
+service.
+
+The `rating` should be 1, 2, 3, 4, or 5 to set the user's rating for the given scenario, or 0
+to remove the user's rating altogether (to allow unintended ratings to be "erased").
+
+Example success return payload:
+
+```json
+{
+  "avg_rating": 4.0,
+  "num_votes": 1,
+  "owned": 53,
+  "painted": 53,
+  "rating": 4
+}
+```
+
+On a successful call, the service recomputes the vote count and rating for the scenario using the
+ratings submitted by all users, and returns them as `num_votes` and `avg_rating`, respectively.
+
+`rating` is always the same input payload rating.
+
+`owned` and `painted` are the number of figures required for the scenario which the user has collected
+and painted, respectively.  They are here through happenstance and shouldn't be relied on to always
+be included here.
+
+
 ### POST `/users`
 
 - **Authentication** None
