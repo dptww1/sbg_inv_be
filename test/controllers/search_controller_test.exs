@@ -3,7 +3,7 @@ defmodule SbgInv.Web.SearchControllerTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{Character, Figure, Scenario}
+  alias SbgInv.Web.{Character, Figure, Scenario, ScenarioResource}
 
   setup _context do
     amon_hen_id     = declare_scenario("Amon Hen")
@@ -110,6 +110,12 @@ defmodule SbgInv.Web.SearchControllerTest do
     }
 
     TestHelper.create_scenario_source(struct.id)
+    Repo.insert! %ScenarioResource{
+      scenario_id: struct.id,
+      resource_type: :video_replay,
+      url: "http://www.example.com",
+      updated_at: ~N[2020-10-19 00:00:00]
+    }
 
     struct.id
   end

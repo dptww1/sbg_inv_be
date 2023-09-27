@@ -29,6 +29,6 @@ defmodule SbgInv.Web.Search do
     from s in Scenario,
     join: res in assoc(s, :scenario_resources), on: (res.scenario_id == s.id),
     select: %{id: s.id, name: s.name, plural_name: "", book: res.book, type: "s"},
-    where: ilike(s.name, ^wildcarded_query_str)
+    where: ilike(s.name, ^wildcarded_query_str) and res.resource_type == :source
   end
 end
