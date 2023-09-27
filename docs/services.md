@@ -471,7 +471,7 @@ Example (truncated) return payload:
 `user_id` is always the ID of the authenticated user.
 
 The other fields are the same as the input payload of the
-(PUT `/userhistory`)[#put-user-history] service.
+[PUT `/userhistory`](#put-user-history-id) service.
 
 ### [TODO] PUT /userhistory/:id
 ### [TODO] DELETE /userhistory/:id
