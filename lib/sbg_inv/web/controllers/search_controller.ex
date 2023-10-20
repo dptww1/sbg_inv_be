@@ -14,7 +14,6 @@ defmodule SbgInv.Web.SearchController do
 
     results =
       Repo.all(search_query)
-      |> Enum.map(fn res -> add_substring_match_position(res, q) end)
       |> Enum.sort(&sort_by_pos_then_name/2)
 
     render(conn, "search.json", %{rows: results})
@@ -35,15 +34,6 @@ defmodule SbgInv.Web.SearchController do
   defp unionize(nil, q2), do: q2
   defp unionize(q1, nil), do: q1
   defp unionize(q1, q2), do: from q1, union: ^q2
-
-  defp add_substring_match_position(row, q) do
-    Map.put(row, :pos,
-      # Apparently String.split is the best way to find the location within a string of a substring /shrug
-      String.split(row.name, ~r/#{q}/i, parts: 2)
-      |> Enum.at(0)
-      |> String.length
-    )
-  end
 
   defp sort_by_pos_then_name(a, b) when a.pos < b.pos, do: true
   defp sort_by_pos_then_name(a, b) when a.pos > b.pos, do: false

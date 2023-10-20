@@ -31,6 +31,35 @@ defmodule SbgInv.Web.SearchControllerTest do
     }}}
   end
 
+  test "search for figures uses unaccented query", %{conn: conn} = context do
+    conn = get conn, Routes.search_path(conn, :index, q: "Thráin", type: "f")
+    assert json_response(conn, 200)["data"] == [
+             %{
+               "id" => context.ids.thrain_id,
+               "name" => "Thrain",
+               "plural_name" => "Thrains",
+               "type" => "f",
+               "start" => 0,
+               "book" => ""
+             }
+    ]
+  end
+
+  test "search for figures uses unaccented name", %{conn: conn} do
+    fid = declare_figure("The Númenorian", "The Númenorians")
+    conn = get conn, Routes.search_path(conn, :index, q: "umen")
+    assert json_response(conn, 200)["data"] == [
+             %{
+               "id" => fid,
+               "name" => "The Númenorian",
+               "plural_name" => "The Númenorians",
+               "type" => "f",
+               "start" => 5,
+               "book" => ""
+             }
+    ]
+  end
+
   test "search for figures works (characters are excluded by default) ", %{conn: conn} = context do
     conn = get conn, Routes.search_path(conn, :index, q: "Gimli")
     assert json_response(conn, 200)["data"] == [
@@ -81,6 +110,21 @@ defmodule SbgInv.Web.SearchControllerTest do
            ]
   end
 
+  test "search for scenario uses unaccented search", %{conn: conn} do
+    sid = declare_scenario("The Hunt for Thrór")
+    conn = get conn, Routes.search_path(conn, :index, q: "thror", type: "s")
+    assert json_response(conn, 200)["data"] == [
+             %{
+               "id" => sid,
+               "name" => "The Hunt for Thrór",
+               "plural_name" => "",
+               "type" => "s",
+               "start" => 13,
+               "book" => "gaw"
+             }
+    ]
+  end
+
   test "search can filter by character", %{conn: conn} = context do
     conn = get conn, Routes.search_path(conn, :index, q: "Gimli", type: "c")
     assert json_response(conn, 200)["data"] == [
@@ -93,6 +137,22 @@ defmodule SbgInv.Web.SearchControllerTest do
                "book" => ""
              }
            ]
+  end
+
+  test "search for character uses unaccented search", %{conn: conn} do
+    fid = declare_figure("Thrór", "Thrórs")
+    chid = declare_character("King Thrór", [fid])
+    conn = get conn, Routes.search_path(conn, :index, q: "thror", type: "c")
+    assert json_response(conn, 200)["data"] == [
+             %{
+               "id" => chid,
+               "name" => "King Thrór",
+               "plural_name" => "",
+               "type" => "c",
+               "start" => 5,
+               "book" => ""
+             }
+    ]
   end
 
   defp declare_scenario(name) do

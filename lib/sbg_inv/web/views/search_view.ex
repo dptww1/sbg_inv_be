@@ -13,7 +13,7 @@ defmodule SbgInv.Web.SearchView do
       name: row.name,
       book: book_str(row.book),
       plural_name: row.plural_name,
-      start: row.pos
+      start: row.pos - 1 # convert Postgres POSITION() return value from 1-based to 0-based
     }
   end
 
