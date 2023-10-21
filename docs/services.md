@@ -68,15 +68,444 @@ the [Database Documentation](database.md)
 * [PUT `/users/:id`](#put-users-id)
 
 ## Service Call Details
-### [TODO] GET /character/:id
-### [TODO] POST /character
-### [TODO] PUT /character/:id
-### [TODO] GET /faction
-### [TODO] GET /faction/:id
-### [TODO] GET /figure/:id
+### GET `/character/:id`
+
+- ** Authentication** Admin
+- ** Normal HTTP Response Code** 200
+- ** Error HTTP Reponse Codes**
+    . 401 Authentication error
+    . 422 Unknown ID
+
+Retrieves the [character](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#characters)
+with the given ID.
+
+Example return payload:
+
+```json
+{
+  "data": {
+    "book": "alotr",
+    "faction": "fellowship",
+    "figures": [
+      {
+        "id": 155,
+        "name": "Frodo (Barrow Downs)"
+      },
+      {
+        "id": 151,
+        "name": "Frodo (Breaking)"
+      },
+      {
+        "id": 157,
+        "name": "Frodo (Captured)"
+      }
+    ],
+    "id": 4,
+    "name": "Frodo Baggins",
+    "num_analyses": 1,
+    "num_painting_guides": 2,
+    "page": 12,
+    "resources": [
+      {
+        "book": "fotn",
+        "issue": "3",
+        "page": 23,
+        "title": "BSiME",
+        "type": "painting_guide"
+      },
+      {
+        "title": "Green Dragon",
+        "type": "analysis",
+        "url": "http://www.example.com"
+      },
+      {
+        "book": "fotr_jb",
+        "page": 12,
+        "title": "Planet Mithril\n",
+        "type": "painting_guide"
+      }
+    ]
+  }
+}
+```
+
+### POST `/character`
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 200
+- **Error HTTP Response Codes**
+    . 401 Unauthorized
+    . 422 bad input payload
+
+Creates a new [character](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#characters).
+
+Example input payload:
+
+```json
+{
+  "character": {
+    "name": "Test New Character",
+    "faction": "arnor",
+    "book": "dotn",
+    "page": 9,
+    "figures_ids": ["500", "369"],
+    "resources": [
+      {
+        "title": "Sample Painting Guide",
+        "book": "",
+        "issue": "",
+        "page": null,
+        "type": "painting_guide",
+        "url": "https://www.example.com"
+      }
+    ]
+  }
+}
+```
+
+Example return payload:
+
+```json
+{
+  "data": {
+    "id": 1234,
+    "name": "Test New Character",
+    "faction": "arnor",
+    "book": "dotn",
+    "page": 9,
+    "figures": [
+      { "id": 500, name: "Gollum (Fish)" },
+      { "id": 369, name: "Watcher of Karna" }
+    ],
+    "num_analyses": 0,
+    "num_painting_guides": 1,
+    "resources": [
+      {
+        "title": "Sample Painting Guide",
+        "book": "",
+        "issue": "",
+        "page": null,
+        "type": "painting_guide",
+        "url": "https://www.example.com"
+      }
+    ]
+  }
+}
+```
+
+Most of the fields are the same as the input payload.  Note the new fields `"id"`,
+`"num_analyses"`, and `"num_painting_guides"`.  The latter two values are calculated by
+the service and are just counts of the items in the `"resources"` field.
+
+Also note `"figures"` vs `"figure_ids"` and the different root name, `"character"` vs `"data"`.
+
+### PUT `/character/:id`
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 200
+- **Error HTTP Response Codes**
+    . 401 Unauthorized
+    . 422 bad input payload
+
+Updates an existing [character](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#characters)
+with the given `:id`.
+
+Example input payload:
+
+```json
+{
+  "character": {
+    "id": 1234,
+    "name": "Test New Character, New Name",
+    "faction": "arnor",
+    "book": "dotn",
+    "page": 9,
+    "figure_ids": ["500", "369"],
+    "resources": [
+      {
+        "title": "Sample Painting Guide",
+        "book":"",
+        "issue":"",
+        "page":null,
+        "type":"painting_guide",
+        "url":"https://www.example.com"
+      }
+    ]
+  }
+}
+```
+
+Example return payload:
+
+```json
+{
+  "data": {
+    "book": "dotn",
+    "faction": "arnor",
+    "figures": [
+      { "id": 1,"name": "Bûhrdur" },
+      { "id": 500,"name": "Gollum (Fish)" },
+      { "id":369,"name":"Watcher of Karna" }
+    ],
+    "id": 1234,
+    "name": "Test New Character, New Name",
+    "num_analyses": 0,
+    "num_painting_guides": 1,
+    "page": 9,
+    "resources": [
+      {
+        "title": "Sample Painting Guide",
+        "type": "painting_guide",
+        "url": "https://www.example.com"
+      }
+    ]
+  }
+}
+```
+
+Most of the fields are the same as the input payload.  Note the new fields
+`"num_analyses"` and `"num_painting_guides"`.  Those two values are calculated by
+the service and are just counts of the items in the `"resources"` field.
+
+Also note `"figures"` vs `"figure_ids"` and the different root name, `"character"` vs `"data"`.
+
+### GET `/faction`
+
+- **Authentication** User
+- **Normal HTTP Response Code** 200
+- **Error HTTP Resonse Code** 401 Unauthorized
+
+Gets a list of factions, with the number of figures the users in that faction.
+
+Example return payload:
+
+```json
+{
+  "data":
+    {
+      "thranduil": { "owned": 30, "painted": 24 },
+      "rangers": { "owned":30, "painted": 8 },
+      "dunharrow": { "owned": 0, "painted": 0 },
+      ...
+      "Totals": { "owned": 2216, "painted": 1276 }
+    }
+}
+```
+
+The above results are truncated for brevity. The results always have an entry in `"data"`
+for each [faction](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#faction)
+whether the user has any figures or not in that faction.
+
+The special entry `"Totals"` is the number of figures in the user's entire collection.  Since
+figures can belong to multiple factions, the amounts here are *not* a simple sum of the
+faction figures!
+
+### GET `/faction/:id`
+
+- **Authentication** User (Optional)
+- **Normal HTTP Response Code** 200
+- **Error HTTP Response Code** 404 Bad faction id
+
+Gets a list of the figures belonging to the given faction, organized by type.  If the request
+has an authenticated user token, the list includes the users collected and painted inventory as well.
+
+Example return payload:
+
+```json
+{
+  "data": {
+    "heroes": [
+      {
+        "id": 13,
+        "name": "Erebor Captain",
+        "needed": 2,
+        "num_analyses": 0,
+        "num_painting_guides": 0,
+        "owned": 2,
+        "painted": 2,
+        "plural_name": "Erebor Captains",
+        "slug": null,
+        "type": "hero",
+        "unique": false
+      },
+      {
+        "id": 14,
+        "name": "Grim Hammer Captain",
+        "needed": 2,
+        "num_analyses": 0,
+        "num_painting_guides": 0,
+        "owned": 12,
+        "painted": 4,
+        "plural_name": "Grim Hammer Captains",
+        "slug": null,
+        "type": "hero",
+        "unique": false
+      },
+      ...
+    ],
+    "monsters": [],
+    "siegers": [],
+    "warriors": [
+      {
+        "id": 19,
+        "name": "Grim Hammer Warrior",
+        "needed": 36,
+        "num_analyses": 0,
+        "num_painting_guides": 0,
+        "owned": 0,
+        "painted": 0,
+        "plural_name": "Grim Hammer Warriors",
+        "slug": null,
+        "type": "warrior",
+        "unique": false
+      },
+      ...
+    ]
+  }
+}
+```
+
+The example payload has been severely elided for space purposes.  The `"monsters"` and `"siegers"`
+keys are empty here, but would have the same object formats as `"heroes"` and/or `"warriors"`.
+
+Within each figure type, the lists are sorted by the figure name.
+
+The `"owned"` and `"painted"` keys will always be present, even for requests without an authenticated
+user token.  (Of course in such cases they are always zero.)
+
+### GET `/figure/:id`
+
+- **Authentication** User (Optional)
+- **Normal HTTP Response Code** 200
+- **Error HTTP Response Code** 404 Bad figure id
+
+Gets the details for a given figure.  If the request
+has an authenticated user token, the details include the users collected and painted inventory as well.
+
+Example return payload:
+
+```json
+{
+  "data": {
+    "factions": [
+      "arnor"
+    ],
+    "history": [
+      {
+        "amount": 1,
+        "figure_id": 21,
+        "id": 631,
+        "new_owned": 1,
+        "new_painted": 1,
+        "notes": "",
+        "op": "paint",
+        "op_date": "2018-12-23"
+      },
+      {
+        "amount": 1,
+        "figure_id": 21,
+        "id": 11,
+        "new_owned": 1,
+        "new_painted": 0,
+        "notes": "",
+        "op": "buy_unpainted",
+        "op_date": "2018-12-01"
+      }
+    ],
+    "id": 21,
+    "name": "Arvedui, Last King of Arnor",
+    "owned": 1,
+    "painted": 1,
+    "plural_name": null,
+    "resources": [
+      {
+        "book": null,
+        "issue": null,
+        "page": null,
+        "title": "SomePainter",
+        "type": "painting_guide",
+        "url":"https://www.example.com"
+      }
+    ],
+    "rules": [
+      {
+        "book": "alotr",
+        "faction": "arnor",
+        "name": "Arvedui, Last King of Arnor",
+        "page": 57
+      }
+    ],
+    "scenarios": [
+      {
+        "amount": 1,
+        "name": "The Fall of Arnor",
+        "scenario_id": 253,
+        "source": {
+          "book": "alotr",
+          "date": "2019-01-19",
+          "id": 392,
+          "issue": null,
+          "notes": null,
+          "page": 218,
+          "resource_type": "source",
+          "scenario_id": 253,
+          "sort_order": 3,
+          "title": "Armies of the Lord of the Rings",
+          "url": null
+        }
+      },
+      {
+        "amount": 1,
+        "name": "Flight Into the North",
+        "scenario_id": 146,
+        "source": {
+          "book": "roa",
+          "date": "2019-01-19",
+          "id": 229,
+          "issue": null,
+          "notes": null,
+          "page": 52,
+          "resource_type": "source",
+          "scenario_id": 146,
+          "sort_order": 2,
+          "title": "The Ruin of Arnor",
+          "url": null
+        }
+      },
+      {
+        "amount": 1,
+        "name": "To Kill a King",
+        "scenario_id": 145,
+        "source": {
+          "book": "roa",
+          "date": "2019-01-19",
+          "id": 226,
+          "issue": null,
+          "notes": null,
+          "page": 50,
+          "resource_type": "source",
+          "scenario_id": 145,
+          "sort_order": 1,
+          "title": "The Ruin of Arnor",
+          "url": null
+        }
+      }
+    ],
+    "slug": "/arnor/arvedui",
+    "type": "hero",
+    "unique": true
+  }
+}
+```
+
+If there is no user token accompanying the request, the `"history"` array will be empty, and the
+`"owned"` and `"painted"` keys will be 0.
+
+
+
 ### [TODO] POST /figure
 ### [TODO] PUT /figure/:id
-### GET /newsitem
+### GET `/newsitem`
 
 - **Authentication** None
 - **Normal HTTP Response Code** 200
@@ -89,6 +518,7 @@ the [Database Documentation](database.md)
 | to | end date in "yyyy-mm-dd" format (default: 3000-01-01)
 
 Retrieves news items, always with the most recent news item first.
+All three parameters are optional.
 
 Example return payload:
 
@@ -128,7 +558,11 @@ Example input payload:
 
 There is no return payload, only the 202 HTTP response code.
 
-### [TODO] POST /reset-password
+### POST `/reset-password`
+
+This service does not work in production because I never succeeded in getting an email
+server configured.  So it is not documented here.  Maybe someday.
+
 ### GET `/search`
 
 - **Authentication** None
@@ -139,7 +573,9 @@ There is no return payload, only the 202 HTTP response code.
 |--------------|-----|
 | q | the search string |
 
-Searches the scenarios and figures for the given search parameter.
+Searches the scenarios, characters, and figures for the given search parameter.  The
+search is accent-insensitive (so searching "Dáin" finds "Dain", and vice versa) thanks
+to some Postgres infrastructure.
 
 Example (truncated) return payload when `q=oromi`:
 
@@ -182,9 +618,10 @@ Example (truncated) return payload when `q=oromi`:
 }
 ```
 
-The `type` field determines whether the object in the list is a scenario (`"s"`) or a figure (`"f"`).
+The `type` field determines whether the object in the list is a scenario (`"s"`), figure (`"f"`),
+or a character (`"c"`).
 
-The `id` and `name` fields are for the relevant scenario or figure, depending on `type`.
+The `id` and `name` fields are for the relevant scenari, character, o or figure, depending on `type`.
 
 The `start` field is the 0-based index within the object's `name` of the search string.
 
@@ -192,7 +629,8 @@ The `plural_name` field is non-`null` only for figures which have that field in 
 
 The `book` field is filled in only for scenarios and is the
 [book abbreviation](https://github.com/dptww1/sbg_inv_be/blob/master/lib/sbg_inv/ecto_enums.ex#L88)
-wherein the scenario is found.
+wherein the scenario is found.  For example, a scenario from **Gondor at War** will have `"gaw"`
+in the `book` field.
 
 ### [TODO] PUT /scenario-faction/:id
 ### [TODO] GET /scenarios
@@ -409,7 +847,7 @@ Example return payload:
 ```
 
 ### [TODO] POST /userfigure
-### [TODO] GET `/userhistory`
+### GET `/userhistory`
 
 - **Authentication** User
 - **Normal HTTP Response Code** 200
@@ -473,8 +911,48 @@ Example (truncated) return payload:
 The other fields are the same as the input payload of the
 [PUT `/userhistory`](#put-user-history-id) service.
 
-### [TODO] PUT /userhistory/:id
-### [TODO] DELETE /userhistory/:id
+### PUT `/userhistory/:id`
+
+- **Authentication** User
+- **Normal HTTP Response Code** 204 (not 200)
+- **Error HTTP Response Codes**
+    . 401 Authentication failed
+    . 422 Bad payload
+
+Updates an existing
+[user_figure_history](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_figure_history)
+record identified by the `:id` part of the URL, assuming it is owned by the authenticated user.
+
+Example input payload:
+
+```json
+"history": {
+  "user_id": 123,
+  "amount": 4,
+  "figure_id": 456,
+  "op": "buy_unpainted",
+  "op_date": "2023-04-02",
+  "notes": "ordered 2023-03-15"
+}
+```
+
+All of of the fields except `notes` are required.
+
+This service has no effect on the user's actual inventory numbers. So using this method means the user's inventory
+in the `user_figures` table may no longer match the sum of the user's `user_figure_history` records.
+
+### DELETE `/userhistory/:id`
+
+- **Authentication** User
+- **Normal HTTP Response Code** 204 (not 200)
+- **Error HTTP Response Code** 401 Authentication failed
+
+Deletes the [user_figure_history](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_figure_history)
+record identified by the `:id` part of the URL, assuming it is owned by the authentication user.
+
+This service has no effect on the user's actual inventory numbers. So using this method means the user's inventory
+in the `user_figures` table may no longer match the sum of the user's `user_figure_history` records.
+
 ### POST `/userscenarios`
 
 - **Authentication** User
