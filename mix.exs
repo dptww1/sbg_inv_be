@@ -4,7 +4,7 @@ defmodule SbgInv.Mixfile do
   def project do
     [app: :sbg_inv,
      version: "0.0.1",
-     elixir: "1.14.5",
+     elixir: "1.15.7",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
