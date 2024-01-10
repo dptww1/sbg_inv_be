@@ -3,7 +3,7 @@
 #
 # This configuration file is loaded before any dependency and
 # is restricted to this project.
-use Mix.Config
+import Config
 
 # Configures the endpoint
 config :sbg_inv, SbgInv.Web.Endpoint,
@@ -19,10 +19,6 @@ config :sbg_inv,
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
-
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
 
 # Configure phoenix generators
 config :phoenix, :generators,
@@ -43,3 +39,8 @@ config :sbg_inv,
 
 config :bamboo,
        :json_library, Jason
+
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{config_env()}.exs"
+
