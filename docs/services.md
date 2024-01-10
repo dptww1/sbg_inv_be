@@ -174,8 +174,8 @@ Example return payload:
     "book": "dotn",
     "page": 9,
     "figures": [
-      { "id": 500, name: "Gollum (Fish)" },
-      { "id": 369, name: "Watcher of Karna" }
+      { "id": 500, "name": "Gollum (Fish)" },
+      { "id": 369, "name": "Watcher of Karna" }
     ],
     "num_analyses": 0,
     "num_painting_guides": 1,
@@ -243,9 +243,9 @@ Example return payload:
     "book": "dotn",
     "faction": "arnor",
     "figures": [
-      { "id": 1,"name": "Bûhrdur" },
-      { "id": 500,"name": "Gollum (Fish)" },
-      { "id":369,"name":"Watcher of Karna" }
+      { "id": 1, "name": "Bûhrdur" },
+      { "id": 500, "name": "Gollum (Fish)" },
+      { "id":369, "name":"Watcher of Karna" }
     ],
     "id": 1234,
     "name": "Test New Character, New Name",
