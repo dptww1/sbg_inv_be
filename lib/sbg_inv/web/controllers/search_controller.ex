@@ -33,7 +33,7 @@ defmodule SbgInv.Web.SearchController do
 
   defp unionize(nil, q2), do: q2
   defp unionize(q1, nil), do: q1
-  defp unionize(q1, q2), do: from q1, union: ^q2
+  defp unionize(q1, q2), do: (from q1, union: ^q2)
 
   defp sort_by_pos_then_name(a, b) when a.pos < b.pos, do: true
   defp sort_by_pos_then_name(a, b) when a.pos > b.pos, do: false

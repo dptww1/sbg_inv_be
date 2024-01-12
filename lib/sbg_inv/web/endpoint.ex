@@ -6,6 +6,8 @@ defmodule SbgInv.Web.Endpoint do
       websocket: true,
       longpoll: false
 
+  plug Corsica, origins: "*", allow_headers: ["content-type", "authorization", "accept", "origin"]
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
@@ -38,6 +40,5 @@ defmodule SbgInv.Web.Endpoint do
     key: "_sbg_inv_key",
     signing_salt: "hBU7VwCM"
 
-  plug Corsica, origins: "*", allow_headers: ["content-type", "authorization", "accept", "origin"]
   plug SbgInv.Web.Router
 end
