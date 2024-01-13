@@ -68,16 +68,16 @@ config :logger, level: :info
 #     config :sbg_inv, SbgInv.Endpoint, root: "."
 config :sbg_inv, SbgInv.Web.Endpoint,
        load_from_system_env: true,
-       http: [port: {:system, "PORT"}],
+       http: [port: System.get_env("PORT")],
        server: true,
-       secret_key_base: "${SECRET_KEY_BASE}",
+       secret_key_base: System.get_env("SECRET_KEY_BASE"),
        url: [host: "${APP_NAME}.gigalixirapp.com", port: 443],
        version: Mix.Project.config[:version]
 
 
 config :sbg_inv, SbgInv.Repo,
        adapter: Ecto.Adapters.Postgres,
-       url: "${DATABASE_URL}",
+       url: System.get_env("DATABASE_URL"),
        database: "",
        ssl: true,
        pool_size: 2 # Free tier db only allows 4 connections. Rolling deploys need pool_size*(n+1) connections.

@@ -50,7 +50,7 @@ defmodule SbgInv.Mixfile do
      {:secure_random, "~> 0.2"},
      {:bamboo, "~> 2.1.0"},
      {:bamboo_smtp, "~> 4.0.1"},
-     {:distillery, "~> 2.1.1"}
+     {:ssl_verify_fun, "~> 1.1.6"}
     ]
   end
 

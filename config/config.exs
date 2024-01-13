@@ -34,9 +34,6 @@ config :phoenix, :format_encoders,
 config :sbg_inv,
        ecto_repos: [SbgInv.Repo]
 
-config :sbg_inv,
-       namespace: SbgInv.Web
-
 config :bamboo,
        :json_library, Jason
 
