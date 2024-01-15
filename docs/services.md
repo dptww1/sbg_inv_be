@@ -35,44 +35,44 @@ the [Database Documentation](database.md)
 
 ## Table of Contents
 
-* [GET /character/:id](#get-character-id)
-* [POST /character](#post-character)
-* [PUT /character/:id](#put-character)
-* [GET /faction](#get-faction)
-* [GET /faction/:id](#get-faction-id)
-* [GET /figure/:id](#get-figure-id)
-* [POST /figure](#post-figure)
-* [PUT /figure/:id](#put-figure-id)
-* [GET `/newsitem`](#get-newsitem)
-* [POST /newsitem](#post-newsitem)
-* [POST /reset-password](#post-reset-password)
-* [GET `/search`](#get-search)
-* [PUT /scenario-faction/:id](#put-scenario-faction-id)
-* [GET /scenarios](#get-scenarios)
-* [GET /scenarios/:id](#get-scenarios-id)
-* [GET /scenarios/:id/edit](#get-scenarios-id-edit)
-* [GET /scenarios/new](#get-scenerios-new)
-* [POST /scenarios](#post-scenarios)
-* [PUT /scenarios/:id](#put-scenarios-id)
-* [GET /scenarios/:scenario_id/resource](#get-scenarios-scenario-id-resource)
-* [POST /scenarios/:scenario_id/resource](#post-scenarios-scenario-id-resource)
-* [PUT /scenarios/:scenario_id/resource/:id](#put-scenarios-scenario-id-resource-id)
-* [POST `/sessions`](#post-sessions)
-* [GET `/stats`](#get-stats)
-* [POST /userfigure](#post-userfigure)
-* [GET `/userhistory`](#get-userhistory)
-* [PUT /userhistory/:id](#put-userhistory-id)
-* [DELETE /userhistory/:id](#delete-userhistory-id)
-* [POST `/userscenarios`](#post-userscenarios)
-* [POST `/users`](#post-users)
-* [PUT `/users/:id`](#put-users-id)
+* [`GET /character/:id`](#get-character-id)
+* [`POST /character`](#post-character)
+* [`PUT /character/:id`](#put-character)
+* [`GET /faction`](#get-faction)
+* [`GET /faction/:id`](#get-faction-id)
+* [`GET /figure/:id`](#get-figure-id)
+* [`POST /figure`](#post-figure)
+* [`PUT /figure/:id`](#put-figure-id)
+* [`GET /newsitem`](#get-newsitem)
+* [`POST /newsitem`](#post-newsitem)
+* [`POST /reset-password`](#post-reset-password)
+* [`GET /search`](#get-search)
+* [`PUT /scenario-faction/:id`](#put-scenario-faction-id)
+* [`GET /scenarios`](#get-scenarios)
+* [`GET /scenarios/:id`](#get-scenarios-id)
+* [`GET /scenarios/:id/edit`](#get-scenarios-id-edit)
+* [`GET /scenarios/new`](#get-scenarios-new)
+* [`POST /scenarios`](#post-scenarios)
+* [`PUT /scenarios/:id`](#put-scenarios-id)
+* [`GET /scenarios/:scenario_id/resource`](#get-scenarios-scenario-id-resource)
+* [`POST /scenarios/:scenario_id/resource`](#post-scenarios-scenario-id-resource)
+* [`PUT /scenarios/:scenario_id/resource/:id`](#put-scenarios-scenario-id-resource-id)
+* [`POST /sessions`](#post-sessions)
+* [`GET /stats`](#get-stats)
+* [`POST /userfigure`](#post-userfigure)
+* [`GET /userhistory`](#get-userhistory)
+* [`PUT /userhistory/:id`](#put-userhistory-id)
+* [`DELETE /userhistory/:id`](#delete-userhistory-id)
+* [`POST /userscenarios`](#post-userscenarios)
+* [`POST /users`](#post-users)
+* [`PUT /users/:id`](#put-users-id)
 
 ## Service Call Details
-### GET `/character/:id`
+### `GET /character/:id`
 
-- ** Authentication** Admin
-- ** Normal HTTP Response Code** 200
-- ** Error HTTP Reponse Codes**
+- **Authentication** Admin
+- **Normal HTTP Response Code** 200
+- **Error HTTP Reponse Codes**
     . 401 Authentication error
     . 422 Unknown ID
 
@@ -121,7 +121,7 @@ Example return payload:
       {
         "book": "fotr_jb",
         "page": 12,
-        "title": "Planet Mithril\n",
+        "title": "Planet Mithril",
         "type": "painting_guide"
       }
     ]
@@ -129,13 +129,13 @@ Example return payload:
 }
 ```
 
-### POST `/character`
+### `POST /character`
 
 - **Authentication** Admin
 - **Normal HTTP Response Code** 200
 - **Error HTTP Response Codes**
-    . 401 Unauthorized
-    . 422 bad input payload
+    + 401 Unauthorized
+    + 422 bad input payload
 
 Creates a new [character](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#characters).
 
@@ -199,13 +199,13 @@ the service and are just counts of the items in the `"resources"` field.
 
 Also note `"figures"` vs `"figure_ids"` and the different root name, `"character"` vs `"data"`.
 
-### PUT `/character/:id`
+### `PUT /character/:id`
 
 - **Authentication** Admin
 - **Normal HTTP Response Code** 200
 - **Error HTTP Response Codes**
-    . 401 Unauthorized
-    . 422 bad input payload
+    + 401 Unauthorized
+    + 422 bad input payload
 
 Updates an existing [character](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#characters)
 with the given `:id`.
@@ -269,7 +269,7 @@ the service and are just counts of the items in the `"resources"` field.
 
 Also note `"figures"` vs `"figure_ids"` and the different root name, `"character"` vs `"data"`.
 
-### GET `/faction`
+### `GET /faction`
 
 - **Authentication** User
 - **Normal HTTP Response Code** 200
@@ -284,7 +284,7 @@ Example return payload:
   "data":
     {
       "thranduil": { "owned": 30, "painted": 24 },
-      "rangers": { "owned":30, "painted": 8 },
+      "rangers": { "owned": 30, "painted": 8 },
       "dunharrow": { "owned": 0, "painted": 0 },
       ...
       "Totals": { "owned": 2216, "painted": 1276 }
@@ -300,7 +300,7 @@ The special entry `"Totals"` is the number of figures in the user's entire colle
 figures can belong to multiple factions, the amounts here are *not* a simple sum of the
 faction figures!
 
-### GET `/faction/:id`
+### `GET /faction/:id`
 
 - **Authentication** User (Optional)
 - **Normal HTTP Response Code** 200
@@ -370,10 +370,13 @@ keys are empty here, but would have the same object formats as `"heroes"` and/or
 
 Within each figure type, the lists are sorted by the figure name.
 
-The `"owned"` and `"painted"` keys will always be present, even for requests without an authenticated
-user token.  (Of course in such cases they are always zero.)
+The `"unique"` field is only true within the `"heroes"` array.  It indicates unique heroes such as Aragorn
+that cannot be fielded more than once in an army.
 
-### GET `/figure/:id`
+The `"owned"` and `"painted"` keys will always be present, even for requests without an authenticated
+user token.  Of course in such cases they are always zero.
+
+### `GET /figure/:id`
 
 - **Authentication** User (Optional)
 - **Normal HTTP Response Code** 200
@@ -503,9 +506,141 @@ If there is no user token accompanying the request, the `"history"` array will b
 
 
 
-### [TODO] POST /figure
-### [TODO] PUT /figure/:id
-### GET `/newsitem`
+### `POST /figure`
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 200
+- **Error HTTP Response Code** 401 (unauthenticated)
+
+Creates a new [figures](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#figures)
+record.
+
+Example input payload:
+
+```json
+{
+  "figure": {
+    "factions": [
+      "arnor"
+    ],
+    "name": "New Figure",
+    "plural_name": "New Figure Names",
+    "slug": "/arnor/new-figure",
+    "type": "hero",
+    "unique": true
+  }
+}
+```
+
+`"name"` and `"type"` are required, the other fields are optional.
+
+`"type"` is one of the [figure type](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#figure-type)
+strings.
+
+`"unique"` should be `true` for unique named figures (Frodo, Imrahil) and false for everything else.
+
+`"slug"` is an arbitrary unique string for the figure.  It's currently used by the front end to
+construct a URL for the figure's silhouette, so it's only populated for those figures for which
+the front end actually has silhouettes.
+
+`"factions"` is an array of [faction](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#faction)
+strings.
+
+Example response payload:
+
+```json
+{
+  "data": {
+    "factions": [
+      "arnor"
+    ],
+    "history": [],
+    "id": 920,
+    "name": "New Figure",
+    "owned": 0,
+    "painted": 0,
+    "plural_name": "New Figure Names",
+    "resources": [],
+    "rules": [],
+    "scenarios": [],
+    "slug": "/arnor/new-figure",
+    "type": "hero",
+    "unique": true
+  }
+}
+```
+
+The `"id"` field is the figure ID, which is needed for subsequent operations on this figure.
+
+The `"history"`, `"owned"`, `"painted"`, `"resources"`, and `"rules"` fields will always be empty.
+
+Use [`POST /userfigure`](#post-userfigure) to modify `"owned"`, `"painted"`, and `"history"`.
+
+Use [`POST /character`](#post-character) and [`PUT /character`](#put-character) to modify
+`"resources"` and `"rules"`.
+
+To associate a figure with a scenario, use the [`PUT /scenario-faction/:id](#put-scenariofactionid) service.
+
+### `PUT /figure/:id`
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 200
+- **Error HTTP Response Code** 401 (unauthenticated)
+
+Updates the generic, non user-specific and non-character-specific fields for
+[figure](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#figures) record.
+
+Example input payload:
+
+```json
+{
+  "figure": {
+    "factions": [
+      "arnor",
+      "beornings",
+      "trolls"
+    ],
+    "id": 920,
+    "name": "New Figure2",
+    "plural_name": "New Figure2 Names",
+    "slug": "/arnor/new-figure2",
+    "type": "hero",
+    "unique": true
+  }
+}
+```
+
+The fields are the same as the [`POST`](#put-figureid) service, with the addition of `"id"` to determine
+which figure to update.
+
+Example response:
+
+```json
+{
+  "data": {
+    "factions": [
+      "arnor",
+      "beornings",
+      "trolls"
+    ],
+    "history": [],
+    "id": 920,
+    "name": "New Figure2",
+    "owned": 0,
+    "painted": 0,
+    "plural_name": "New Figure2 Names",
+    "resources": [],
+    "rules": [],
+    "scenarios": [],
+    "slug": "/arnor/new-figure2",
+    "type": "hero",
+    "unique": true
+  }
+}```
+
+Fields and notes are per the [`POST`](#put-figureid) service.
+
+### `GET /newsitem`
 
 - **Authentication** None
 - **Normal HTTP Response Code** 200
@@ -541,7 +676,7 @@ Example return payload:
 }
 ```
 
-### POST `/newsitem`
+### `POST /newsitem`
 
 - **Authentication** Admin
 - **Normal HTTP Response Code** 202 (not 200)
@@ -558,12 +693,12 @@ Example input payload:
 
 There is no return payload, only the 202 HTTP response code.
 
-### POST `/reset-password`
+### `POST /reset-password`
 
 This service does not work in production because I never succeeded in getting an email
 server configured.  So it is not documented here.  Maybe someday.
 
-### GET `/search`
+### `GET /search`
 
 - **Authentication** None
 - **Normal HTTP Response Code** 200
@@ -632,17 +767,17 @@ The `book` field is filled in only for scenarios and is the
 wherein the scenario is found.  For example, a scenario from **Gondor at War** will have `"gaw"`
 in the `book` field.
 
-### [TODO] PUT /scenario-faction/:id
-### [TODO] GET /scenarios
-### [TODO] GET /scenarios/:id/edit
-### [TODO] GET /scenarios/new
-### [TODO] GET /scenarios/:id
-### [TODO] POST /scenarios
-### [TODO] PUT /scenarios/:id
-### [TODO] GET /scenarios/:scenario_id/resource
-### [TODO] POST /scenarios/:scenario_id/resource
-### [TODO] PUT /scenarios/:scenario_id/resource/:id
-### POST `/sessions`
+### [TODO] `PUT /scenario-faction/:id`
+### [TODO] `GET /scenarios`
+### [TODO] `GET /scenarios/:id/edit`
+### [TODO] `GET /scenarios/new`
+### [TODO] `GET /scenarios/:id`
+### [TODO] `POST /scenarios`
+### [TODO] `PUT /scenarios/:id`
+### [TODO] `GET /scenarios/:scenario_id/resource`
+### [TODO] `POST /scenarios/:scenario_id/resource`
+### [TODO] `PUT /scenarios/:scenario_id/resource/:id`
+### `POST /sessions`
 
 - **Authentication** None
 - **Normal HTTP Response Code** 201 (not 200!)
@@ -683,7 +818,7 @@ The `token` value should be passed as part of an HTTP `Authorization` header, li
 
 Tokens do not expire.
 
-### GET `/stats`
+### `GET /stats`
 
 - **Authentication** None
 - **Normal HTTP Response Code** 200
@@ -846,8 +981,45 @@ Example return payload:
 }
 ```
 
-### [TODO] POST /userfigure
-### GET `/userhistory`
+### `POST /userfigure`
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 204 (not 200!)
+- **Error HTTP Response Code**
+    . 401 unauthenticated
+    . 422 unknown figure ID
+
+Updates the user's inventory for a given figure.
+
+```json
+{
+  "user_figure": {
+    "id": 920,
+    "new_owned": 3,
+    "new_painted": 0,
+    "notes": "asdf",
+    "op": "buy_unpainted",
+    "op_date": "2024-01-15"
+  }
+}
+```
+
+The `"id"` field is the ID of the figure being adjusted.
+
+The `"new_owned"` and `"new_painted"` fields are the new *totals* for that category for the figure,
+not just a relative change.
+
+In addition to adjusting the
+[user_figures](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_figures)
+record, the service adds a
+[user_figure_history](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_figure_history)
+record using the `"notes"`, `"op"`, and `"op_date"` fields.
+
+This service also launches the
+[RecalcUserScenarioTask](https://github.com/dptww1/sbg_inv_be/blob/master/lib/sbg_inv/web/tasks/recalc_user_scenario_task.ex) to recalculate the [user_scenario](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_scenarios) rollups for each scenario based on the newly-adjusted inventory.  This task works in the background and so
+results will not be immediately available.  It seems to work quickly enough for human users, though.
+
+### `GET /userhistory`
 
 - **Authentication** User
 - **Normal HTTP Response Code** 200
@@ -909,15 +1081,15 @@ Example (truncated) return payload:
 `user_id` is always the ID of the authenticated user.
 
 The other fields are the same as the input payload of the
-[PUT `/userhistory`](#put-user-history-id) service.
+[`PUT /userhistory`](#put-userhistoryid) service.
 
-### PUT `/userhistory/:id`
+### `PUT /userhistory/:id`
 
 - **Authentication** User
 - **Normal HTTP Response Code** 204 (not 200)
 - **Error HTTP Response Codes**
-    . 401 Authentication failed
-    . 422 Bad payload
+    + 401 Authentication failed
+    + 422 Bad payload
 
 Updates an existing
 [user_figure_history](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_figure_history)
@@ -941,7 +1113,7 @@ All of of the fields except `notes` are required.
 This service has no effect on the user's actual inventory numbers. So using this method means the user's inventory
 in the `user_figures` table may no longer match the sum of the user's `user_figure_history` records.
 
-### DELETE `/userhistory/:id`
+### `DELETE /userhistory/:id`
 
 - **Authentication** User
 - **Normal HTTP Response Code** 204 (not 200)
@@ -953,13 +1125,13 @@ record identified by the `:id` part of the URL, assuming it is owned by the auth
 This service has no effect on the user's actual inventory numbers. So using this method means the user's inventory
 in the `user_figures` table may no longer match the sum of the user's `user_figure_history` records.
 
-### POST `/userscenarios`
+### `POST /userscenarios`
 
 - **Authentication** User
 - **Normal HTTP Response Code** 200
 - **Error HTTP Response Codes**
-  . 401 Authentication failed
-  . 422 Rating is out of range, or bad scenario ID
+  + 401 Authentication failed
+  + 422 Rating is out of range, or bad scenario ID
 
 Creates or updates the user's scenario rating.
 
@@ -1002,7 +1174,7 @@ and painted, respectively.  They are here through happenstance and shouldn't be 
 be included here.
 
 
-### POST `/users`
+### `POST /users`
 
 - **Authentication** None
 - **Normal HTTP Response Code** 200
@@ -1047,13 +1219,13 @@ Example error return payload:
 }
 ```
 
-### PUT `/users/:id`
+### `PUT /users/:id`
 
 - **Authentication** Required
 - **Normal HTTP Response Code** 200
 - **Error HTTP Response Codes**
-  . 401 Authentication failed
-  . 422 Can't update email to another user's email address
+  + 401 Authentication failed
+  + 422 Can't update email to another user's email address
 
 Updates an existing user's account, either the password, or the email address, or both.
 

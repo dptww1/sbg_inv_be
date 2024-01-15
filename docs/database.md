@@ -140,62 +140,71 @@ ORDER BY s.name;
 
 ### Faction
 
-| Value | Location |
-|-------|----------|
-| 0 |  Angmar
-| 1 |  Army of Thror
-| 2 |  Arnor
-| 3 |  Azogs Hunters
-| 4 |  Azogs Legion
-| 5 |  Barad Dur
-| 6 |  Garrison of Dale
-| 7 |  Desolator of the North
-| 8 |  Dark Powers of Dol Guldur
-| 9 |  Dead of Dunharrow
-| 10 |  Easterlings
-| 11 |  Erebor Reclaimed
-| 12 |  Fangorn
-| 13 |  Far Harad
-| 14 |  The Fellowship
-| 15 |  Fiefdoms
-| 16 |  Goblin-town
-| 17 |  THe Serpent Horde
-| 18 |  Iron Hills
-| 19 |  Isengard
-| 20 |  Variags of Khand
-| 21 |  Khazad Dûm
-| 22 |  Army of Laketown
-| 23 |  Lothlórien
-| 24 |  Minas Tirith
-| 25 |  Dark Denizens of Mirkwood
-| 26 |  Misty Mountains
-| 27 |  Mordor
-| 28 |  Moria
-| 29 |  Númenor
-| 30 |  Radagast's Alliance
-| 31 |  Rangers
-| 32 |  Rivendell
-| 33 |  Sharkey's Rogues
-| 34 |  Rohan
-| 35 |  The Shire
-| 36 |  Survivors of Lake-town
-| 37 |  Thorin's Company
-| 38 |  Halls of Thranduil
-| 39 |  The Trolls
-| 40 |  Corsairs of Umbar
-| 41 |  Wanderers in the Wild
-| 42 |  White Council
-| 43 |  Wildmen of Drúadan
-| 44 |  Beornings
+Factions are groups of characters/figures which can be mustered as part of the
+same army list.
+
+In the database, the values below are what is actually stored.  Often the services
+use the strings instead.
+
+| Value | Faction | String
+|-------|----------|--------
+| 0 |  Angmar | `"angmar"`
+| 1 |  Army of Thror| `"army_thror"`
+| 2 |  Arnor | `"arnor"`
+| 3 |  Azogs Hunters | `"azogs_hunters"`
+| 4 |  Azogs Legion | `"azogs_legion"`
+| 5 |  Barad Dur | `"barad_dur"`
+| 6 |  Garrison of Dale | `"dale"`
+| 7 |  Desolator of the North | "desolator_north"`
+| 8 |  Dark Powers of Dol Guldur | `"dol_guldur"`
+| 9 |  Dead of Dunharrow | `"dunharrow"`
+| 10 |  Easterlings | `"easterlings"`
+| 11 |  Erebor Reclaimed | `"erebor"`
+| 12 |  Fangorn | `"fangorn"`
+| 13 |  Far Harad | `"far_harad"`
+| 14 |  The Fellowship | `"fellowship"`
+| 15 |  Fiefdoms | `"fiefdoms"`
+| 16 |  Goblin-town | `"goblintown"`
+| 17 |  The Serpent Horde | `"harad"`
+| 18 |  Iron Hills | `"iron_hills"`
+| 19 |  Isengard | `"isengard"`
+| 20 |  Variags of Khand | `"khand"`
+| 21 |  Khazad Dûm | `"khazad_dum"`
+| 22 |  Army of Laketown | `"laketown"`
+| 23 |  Lothlórien | `"lothlorien"`
+| 24 |  Minas Tirith | `"minas_tirith"`
+| 25 |  Dark Denizens of Mirkwood | `"mirkwood"`
+| 26 |  Misty Mountains | `"misty_mountains"`
+| 27 |  Mordor | `"mordor"`
+| 28 |  Moria | `"moria"`
+| 29 |  Númenor | `"numenor"`
+| 30 |  Radagast's Alliance | `"radagast"`
+| 31 |  Rangers | `"rangers"`
+| 32 |  Rivendell | `"rivendell"`
+| 33 |  Sharkey's Rogues | `"rogues"`
+| 34 |  Rohan | `"rohan"`
+| 35 |  The Shire | `"shire"`
+| 36 |  Survivors of Lake-town | `"survivors"`
+| 37 |  Thorin's Company | `"thorins_co"`
+| 38 |  Halls of Thranduil | `"thranduil"`
+| 39 |  The Trolls | `"trolls"`
+| 40 |  Corsairs of Umbar | `"umbar"`
+| 41 |  Wanderers in the Wild | `"wanderers"`
+| 42 |  White Council | `"white_council"`
+| 43 |  Wildmen of Drúadan | `"wildmen"`
+| 44 |  Beornings | `"beornings"`
 
 ### Figure Type
 
-| Value | Location | Notes |
+The the database, the values below are what is actually stored. Often the services
+use the strings instead.
+
+| Value | Location | String | Notes |
 |-------|----------|-------|
-| 0 | Hero |
-| 1 | Warrior |
-| 2 | Monster |
-| 3 | Sieger | siege weapons & crew |
+| 0 | Hero | `"hero"` |
+| 1 | Warrior | `"warrior"` |
+| 2 | Monster | `"monster"` |
+| 3 | Sieger | `"sieger"` | siege weapons & crew |
 
 ### Location
 
