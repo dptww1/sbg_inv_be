@@ -155,7 +155,7 @@ use the strings instead.
 | 4 |  Azogs Legion | `"azogs_legion"`
 | 5 |  Barad Dur | `"barad_dur"`
 | 6 |  Garrison of Dale | `"dale"`
-| 7 |  Desolator of the North | "desolator_north"`
+| 7 |  Desolator of the North | `"desolator_north"`
 | 8 |  Dark Powers of Dol Guldur | `"dol_guldur"`
 | 9 |  Dead of Dunharrow | `"dunharrow"`
 | 10 |  Easterlings | `"easterlings"`
@@ -196,11 +196,11 @@ use the strings instead.
 
 ### Figure Type
 
-The the database, the values below are what is actually stored. Often the services
+In the database, the values below are what is actually stored. Often the services
 use the strings instead.
 
 | Value | Location | String | Notes |
-|-------|----------|-------|
+|-------|----------|-------|--------|
 | 0 | Hero | `"hero"` |
 | 1 | Warrior | `"warrior"` |
 | 2 | Monster | `"monster"` |
@@ -254,13 +254,17 @@ use the strings instead.
 
 ### User Figure Op
 
-| Value | Location | Notes |
-|-------|----------|-------|
-| 0 | Add Unpainted |
-| 1 | Remove Unpainted |
-| 2 | Add Painted |
-| 3 | Remove Unpainted |
-| 4 | Paint | converting unpainted to painted |
+These values represent the things that a user can do with a figure.
+In the database, the values below are what is actually stored. Often the services
+use the strings instead.
+
+| Value | Operation | String |Notes |
+|-------|----------|-------|------|
+| 0 | Add Unpainted | `"buy_unpainted"` |
+| 1 | Remove Unpainted | `"sell_unpainted"` |
+| 2 | Add Painted | `"buy_painted"` |
+| 3 | Remove Painted | `"sell_painted"` |
+| 4 | Paint | `"paint"` | converting unpainted to painted |
 
 ## Tables
 

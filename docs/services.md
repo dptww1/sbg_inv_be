@@ -1009,6 +1009,9 @@ The `"id"` field is the ID of the figure being adjusted.
 The `"new_owned"` and `"new_painted"` fields are the new *totals* for that category for the figure,
 not just a relative change.
 
+The `"op"` field is one of the
+[user_figure_op](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user-figure-op) strings.
+
 In addition to adjusting the
 [user_figures](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_figures)
 record, the service adds a
@@ -1016,8 +1019,10 @@ record, the service adds a
 record using the `"notes"`, `"op"`, and `"op_date"` fields.
 
 This service also launches the
-[RecalcUserScenarioTask](https://github.com/dptww1/sbg_inv_be/blob/master/lib/sbg_inv/web/tasks/recalc_user_scenario_task.ex) to recalculate the [user_scenario](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_scenarios) rollups for each scenario based on the newly-adjusted inventory.  This task works in the background and so
-results will not be immediately available.  It seems to work quickly enough for human users, though.
+[RecalcUserScenarioTask](https://github.com/dptww1/sbg_inv_be/blob/master/lib/sbg_inv/web/tasks/recalc_user_scenario_task.ex) to recalculate the
+[user_scenario](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_scenarios)
+rollups for each scenario for the current user, based on the newly-adjusted inventory.  This task works in the
+background and so results will not be immediately available.  It seems to work quickly enough for human users, though.
 
 ### `GET /userhistory`
 
