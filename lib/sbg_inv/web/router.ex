@@ -25,7 +25,7 @@ defmodule SbgInv.Web.Router do
     resources "/reset-password",   ResetPasswordController, only: [:create]
     resources "/search",           SearchController,        only: [:index]
     resources "/scenario-faction", ScenarioFactionController, only: [:update]
-    resources "/scenarios",        ScenarioController do
+    resources "/scenarios",        ScenarioController,      except: [:new, :edit] do
       resources "/resource",       ScenarioResourceController, only: [:index, :create, :update]
     end
     resources "/sessions",         SessionController,       only: [:create]
