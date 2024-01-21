@@ -247,7 +247,7 @@ In the database, the values below are what is actually stored. Often the service
 use the strings instead.
 
 | Value | Type | String | Notes |
-|-------|------|------_-|-------|
+|-------|------|--------|-------|
 | 0 |  Source | `"source"` | where the scenario can be found |
 | 1 |  Video Replay | `"video_replay"` |
 | 2 |  Web Replay | `"web_replay"` |
