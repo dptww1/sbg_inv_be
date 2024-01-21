@@ -247,11 +247,11 @@ In the database, the values below are what is actually stored. Often the service
 use the strings instead.
 
 | Value | Type | String | Notes |
-|-------|------|-------|
-| 0 |  Source | `"source"` | where the scenario can be found
+|-------|------|------_-|-------|
+| 0 |  Source | `"source"` | where the scenario can be found |
 | 1 |  Video Replay | `"video_replay"` |
 | 2 |  Web Replay | `"web_replay"` |
-| 3 |  Terrain Building | `"terrain_building"` | not currently used
+| 3 |  Terrain Building | `"terrain_building"` | not currently used |
 | 4 |   Podcast | `"podcast"` |
 | 5 |  Magazine Replay | `"magazine_replay"` |
 
