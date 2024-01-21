@@ -208,49 +208,52 @@ use the strings instead.
 
 ### Location
 
-| Value | Location |
-|-------|----------|
-| 0 | Amon Hen |
-| 1 | Arnor |
-| 2 | Dale |
-| 3 | Dol Guldur |
-| 4 | Erebor |
-| 5 | Eriador |
-| 6 | Fangorn |
-| 7 | Fornost |
-| 8 | Goblintown |
-| 9 | Gondor |
-| 10 | Harad |
-| 11 | Harondor |
-| 12 | Helms Deep |
-| 13 | Isengard |
-| 14 | Ithilien |
-| 15 | Laketown |
-| 16 | Lothlorien |
-| 17 | Minas Morgul |
-| 18 | Minas Tirith |
-| 19 | Mirkwood |
-| 20 | Mordor |
-| 21 | Moria |
-| 22 | Morannon |
-| 23 | Osgiliath |
-| 24 | Rhovanion |
-| 25 | Rhun |
-| 26 | Rohan |
-| 27 | The Shire |
-| 28 | Weathertop |
-| 29 | Orthanc |
+| Value | Location | String |
+|-------|----------|--------|
+| 0 | Amon Hen | `"amon_hen"` |
+| 1 | Arnor | `"arnor"` |
+| 2 | Dale | `"dale"` |
+| 3 | Dol Guldur | `"dol_guldur"` |
+| 4 | Erebor | `"erebor"` |
+| 5 | Eriador | `"eriador"` |
+| 6 | Fangorn | `"fangorn"` |
+| 7 | Fornost | `"fornost"` |
+| 8 | Goblintown | `"goblintown"` |
+| 9 | Gondor | `"gondor"` |
+| 10 | Harad | `"harad"` |
+| 11 | Harondor | `"harondor"` |
+| 12 | Helms Deep | `"helms_deep"` |
+| 13 | Isengard | `"isengard"` |
+| 14 | Ithilien | `"ithilien"` |
+| 15 | Laketown | `"laketown"` |
+| 16 | Lothlorien | `"lothlorien"` |
+| 17 | Minas Morgul | `"minas_morgul"` |
+| 18 | Minas Tirith | `"minas_tirith"` |
+| 19 | Mirkwood | `"mirkwood"` |
+| 20 | Mordor | `"mordor"` |
+| 21 | Moria | `"moria"` |
+| 22 | Morannon | `"morannon"` |
+| 23 | Osgiliath | `"osgiliath"` |
+| 24 | Rhovanion | `"rhovanion"` |
+| 25 | Rhun | `"rhun"` |
+| 26 | Rohan | `"rohan"` |
+| 27 | The Shire | `"the_shire"` |
+| 28 | Weathertop | `"weathertop"` |
+| 29 | Orthanc | `"orthanc"` |
 
 ### Scenario Resource Type
 
-| Value | Type | Notes |
+In the database, the values below are what is actually stored. Often the services
+use the strings instead.
+
+| Value | Type | String | Notes |
 |-------|------|-------|
-| 0 |  Source | where the scenario can be found
-| 1 |  Video Replay |
-| 2 |  Web Replay |
-| 3 |  Terrain Building | not currently used
-| 4 |   Podcast |
-| 5 |  Magazine Replay |
+| 0 |  Source | `"source"` | where the scenario can be found
+| 1 |  Video Replay | `"video_replay"` |
+| 2 |  Web Replay | `"web_replay"` |
+| 3 |  Terrain Building | `"terrain_building"` | not currently used
+| 4 |   Podcast | `"podcast"` |
+| 5 |  Magazine Replay | `"magazine_replay"` |
 
 ### User Figure Op
 

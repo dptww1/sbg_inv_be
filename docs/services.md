@@ -73,7 +73,7 @@ the [Database Documentation](database.md)
 - **Authentication** Admin
 - **Normal HTTP Response Code** 200
 - **Error HTTP Reponse Codes**
-    . 401 Authentication error
+    . 401 Authorization error
     . 422 Unknown ID
 
 Retrieves the [character](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#characters)
@@ -134,7 +134,7 @@ Example return payload:
 - **Authentication** Admin
 - **Normal HTTP Response Code** 200
 - **Error HTTP Response Codes**
-    + 401 Unauthorized
+    + 401 Authorization error
     + 422 bad input payload
 
 Creates a new [character](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#characters).
@@ -204,7 +204,7 @@ Also note `"figures"` vs `"figure_ids"` and the different root name, `"character
 - **Authentication** Admin
 - **Normal HTTP Response Code** 200
 - **Error HTTP Response Codes**
-    + 401 Unauthorized
+    + 401 Authorization error
     + 422 bad input payload
 
 Updates an existing [character](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#characters)
@@ -273,7 +273,7 @@ Also note `"figures"` vs `"figure_ids"` and the different root name, `"character
 
 - **Authentication** User
 - **Normal HTTP Response Code** 200
-- **Error HTTP Resonse Code** 401 Unauthorized
+- **Error HTTP Resonse Code** 401 Authorization error
 
 Gets a list of factions, with the number of figures the users in that faction.
 
@@ -510,7 +510,7 @@ If there is no user token accompanying the request, the `"history"` array will b
 
 - **Authentication** Admin
 - **Normal HTTP Response Code** 200
-- **Error HTTP Response Code** 401 (unauthenticated)
+- **Error HTTP Response Code** 401 Authorization error
 
 Creates a new [figures](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#figures)
 record.
@@ -585,7 +585,7 @@ To associate a figure with a scenario, use the [`PUT /scenario-faction/:id](#put
 
 - **Authentication** Admin
 - **Normal HTTP Response Code** 200
-- **Error HTTP Response Code** 401 (unauthenticated)
+- **Error HTTP Response Code** 401 Authorization error
 
 Updates the generic, non user-specific and non-character-specific fields for
 [figure](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#figures) record.
@@ -680,7 +680,7 @@ Example return payload:
 
 - **Authentication** Admin
 - **Normal HTTP Response Code** 202 (not 200)
-- **Error HTTP Response Code** 401 (unauthenticated)
+- **Error HTTP Response Code** 401 Authorization error
 
 Example input payload:
 
@@ -763,25 +763,526 @@ The `start` field is the 0-based index within the object's `name` of the search 
 The `plural_name` field is non-`null` only for figures which have that field in the database.
 
 The `book` field is filled in only for scenarios and is the
-[book abbreviation](https://github.com/dptww1/sbg_inv_be/blob/master/lib/sbg_inv/ecto_enums.ex#L88)
+[book](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#books) string
 wherein the scenario is found.  For example, a scenario from **Gondor at War** will have `"gaw"`
 in the `book` field.
 
-### [TODO] `PUT /scenario-faction/:id`
-### [TODO] `GET /scenarios`
-### [TODO] `GET /scenarios/:id/edit`
-### [TODO] `GET /scenarios/new`
-### [TODO] `GET /scenarios/:id`
-### [TODO] `POST /scenarios`
-### [TODO] `PUT /scenarios/:id`
-### [TODO] `GET /scenarios/:scenario_id/resource`
-### [TODO] `POST /scenarios/:scenario_id/resource`
-### [TODO] `PUT /scenarios/:scenario_id/resource/:id`
+### `PUT /scenario-faction/:id`
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 200
+- **Error HTTP Response Code**
+  . 401 Authorization error
+  . 422 bad data
+
+Updates a [`scenario_factions`](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenario_factions)
+record.
+
+There is no separate `POST` service to create a faction because factions must be associated with
+scenarios and so are created as a side effect when a scenario is created via
+[`POST /scenarios`](https://github.com/dptww1/sbg_inv_be/blob/master/docs/services.md#todo-post-scenarios).
+
+Example input payload:
+
+```json
+{
+  "scenario_faction": {
+    "actual_points": "0",
+    "faction": "fellowship",
+    "id": 1001,
+    "roles": [
+      {
+        "_expanded": false,
+        "amount": "1",
+        "figures": [
+          {
+            "figure_id": "724",
+            "name": "Bilbo Baggins (Goblintown)",
+            "plural_name": "null",
+            "type": "f",
+            "unique": false
+          },
+          {
+            "figure_id": "725",
+            "name": "Bilbo Baggins (Riddles)",
+            "plural_name": "null",
+            "type": "f",
+            "unique": false
+          }
+        ],
+        "name": "Bilbo Baggins",
+        "plural_name": "",
+        "scenario_faction_id": 1001,
+        "sort_order": 1
+      },
+      {
+        "_expanded": false,
+        "amount": "1",
+        "figures": [
+          {
+            "figure_id": "763",
+            "name": "Thorin Oakenshield",
+            "plural_name": "null",
+            "type": "f",
+            "unique": false
+          }
+        ],
+        "name": "Thorin Oakenshield",
+        "plural_name": "",
+        "scenario_faction_id": 1001,
+        "sort_order": 2
+      }
+    ],
+    "sort_order": "1",
+    "suggested_points": "0"
+  }
+}
+```
+
+The return payload is the contents of the input `"scenario_faction"` object.  There is no root
+`"data"` field containing the object, which is how most/all of the other services return their
+data.
+
+After adjusting the roles and figures assigned to the faction, the owning scenario's
+`"size"` is updated to reflect the new total number of figures in that scenario.
+
+### `GET /scenarios`
+
+- **Authentication** User (Optional)
+- **Normal HTTP Response Code** 200
+
+Gets all the scenarios in the system, ordered by increasing "historical" date.
+
+Example response, limited to a single scenario for space reasons:
+
+```json
+{
+  "data": [
+    {
+      "blurb": "Sauron's forces seek the Elven haven of Imladris.",
+      "date_age": 2,
+      "date_day": 0,
+      "date_month": 0,
+      "date_year": 3431,
+      "id": 336,
+      "location": "eriador",
+      "map_height": 48,
+      "map_width": 48,
+      "name": "Watchpost Attack",
+      "num_votes": 9,
+      "rating": 3.444444417953491,
+      "scenario_factions": [
+        {
+          "actual_points": 0,
+          "faction": "rivendell",
+          "id": 671,
+          "sort_order": 1,
+          "suggested_points": 0
+        },
+        {
+          "actual_points": 0,
+          "faction": "mordor",
+          "id": 672,
+          "sort_order": 2,
+          "suggested_points": 0
+        }
+      ],
+      "scenario_resources": {
+        "magazine_replay": [],
+        "podcast": [],
+        "source": [
+          {
+            "book": "bgime",
+            "date": "2019-05-23",
+            "id": 563,
+            "issue": "36",
+            "notes": null,
+            "page": 6,
+            "resource_type": "source",
+            "scenario_id": 336,
+            "sort_order": 335,
+            "title": "BGiME",
+            "url": null
+          }
+        ],
+        "terrain_building": [],
+        "video_replay": [],
+        "web_replay": []
+      },
+      "size": 71,
+      "user_scenario": {
+        "avg_rating": 3.444444417953491,
+        "num_votes": 9,
+        "owned": 71,
+        "painted": 68,
+        "rating": 0
+      }
+    },
+    {
+      ...
+    },
+    ...
+  ]
+}
+```
+
+Most of the fields come directly from the
+[scenarios](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenarios) table.
+
+The `"scenario_factions"` fields come directly from the
+[scenario_factions](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenario_factions) table.
+
+The `"scenario_resources"` fields come from the
+[scenario_resources](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenario_resources) table.
+The back end breaks the resources out by
+[type](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenario-resource-type)
+as a convenience for the front end.
+
+If the request doesn't have a legitimate authorization token, the `"owned"`, `"painted"`, and `"rating"`
+fields of the `"user_scenario"` object within each scenario will be 0.
+
+### `GET /scenarios/:id`
+
+- **Authentication** User (Optional)
+- **Normal HTTP Response Code** 200
+
+Gets the details of a specific scenario.
+
+```json
+{
+  "data": {
+    "blurb": "Gandalf and Saruman face off in the tower of Orthanc in this non-SBG scenario.",
+    "date_age": 3,
+    "date_day": 10,
+    "date_month": 7,
+    "date_year": 3018,
+    "id": 318,
+    "location": "orthanc",
+    "map_height": 12,
+    "map_width": 12,
+    "name": "Wizards' Duel",
+    "num_votes": 1,
+    "rating": 5,
+    "rating_breakdown": [ 0, 0, 0, 0, 1 ],
+    "scenario_factions": [
+      {
+        "actual_points": 0,
+        "faction": "fellowship",
+        "id": 635,
+        "roles": [
+          {
+            "amount": 1,
+            "figures": [
+              {
+                "figure_id": 217,
+                "name": "Gandalf the Grey (Hobbit)",
+                "owned": 0,
+                "painted": 0
+              },
+              {
+                "figure_id": 213,
+                "name": "Gandalf the Grey (with Bilbo)",
+                "owned": 1,
+                "painted": 0
+              }
+            ],
+            "id": 4188,
+            "name": "Gandalf the Grey",
+            "num_owned": 1,
+            "num_painted": 1,
+            "sort_order": 1
+          }
+        ],
+        "sort_order": 1,
+        "suggested_points": 0
+      },
+      {
+        "actual_points": 0,
+        "faction": "isengard",
+        "id": 636,
+        "roles": [
+          {
+            "amount": 1,
+            "figures": [
+              {
+                "figure_id": 845,
+                "name": "Saruman the White (Middle Earth)",
+                "owned": 1,
+                "painted": 1
+              },
+              {
+                "figure_id": 241,
+                "name": "Saruman (Orthanc)",
+                "owned": 1,
+                "painted": 0
+              }
+            ],
+            "id": 4189,
+            "name": "Saruman",
+            "num_owned": 1,
+            "num_painted": 1,
+            "sort_order": 1
+          }
+        ],
+        "sort_order": 2,
+        "suggested_points": 0
+      }
+    ],
+    "scenario_resources": {
+      "magazine_replay": [],
+      "podcast": [],
+      "source": [
+          {
+            "book": "bgime",
+            "date": "2019-05-18",
+            "id": 545,
+            "issue": "13",
+            "notes": null,
+            "page": 8,
+            "resource_type": "source",
+            "scenario_id": 318,
+            "sort_order": 317,
+            "title": "BGiME",
+            "url": null
+          }
+      ],
+      "terrain_building": [],
+      "video_replay": [],
+      "web_replay": []
+    },
+    "size": 2,
+    "user_scenario": {
+        "avg_rating": 5,
+        "num_votes": 1,
+        "owned": 2,
+        "painted": 2,
+        "rating": 0
+    }
+  }
+}
+```
+
+Most of the attributes come directly from the
+[`scenarios`](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenarios),
+[`scenario_factions`](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenario_factions),
+[`figures`](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#figures),
+and [`user_scenarios`](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_scenarios) tables.
+
+The `"rating"` is the average rating of the scenario among all user ratings for the scenario.  It
+will be between 1-5, but can be (and often is) a floating point value, not just an integer.
+
+The `"ratings_breakdown"` is always an array of five elements, with element `n`
+being the number of ratings for the scenario of value `n + 1`.
+
+For unauthenticated requests, the `"num_owned"`, `"num_painted"`,
+`"owned"`, and `"painted"` fields throughout the return payload will be 0.
+
+The `"user_scenario.rating"` field will only be non-zero for scenarios
+rated (1-5) by the currently-authenticated user.  Otherwise it will be 0.
+
+The `"scenario_resources"` are sorted into type-specific buckets for the
+convenience of the front end.
+
+### `POST /scenarios`
+- **Authentication** Admin
+- **Normal HTTP Response Code** 201 (not 200)
+- **Error HTTP Response Code**
+  . 401 Authorization error
+  . 422 Bad data
+
+Creates a new [scenario](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenarios).
+
+Example input payload:
+
+```json
+{
+  "scenario": {
+    "blurb": "Some descriptive text.",
+    "date_age": "3",
+    "date_day": "2",
+    "date_month": "4",
+    "date_year": "3018",
+    "location": "eriador",
+    "map_height": "48",
+    "map_width": "48",
+    "name": "Another Test Scenario",
+    "scenario_factions": [
+      {
+        "actual_points": "0",
+        "faction": "fellowship",
+        "sort_order": "1",
+        "suggested_points": "0"
+      },
+      {
+        "actual_points": "0",
+        "faction": "angmar",
+        "sort_order": "2",
+        "suggested_points": "0"
+      }
+    ],
+    "size": "0"
+  }
+}
+```
+
+All of the shown fields are required and map directly to fields in the
+(scenarios)[https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenarios] and
+(scenario_factions)[https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenario_factions]
+tables.
+
+There should always be exactly two factions.
+
+`"location"` is a [Location](#https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#location) string.
+
+`"faction"` is a [Faction](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#faction) string.
+
+The response payload matches the return from the
+[`GET /scenarios/:id`](https://github.com/dptww1/sbg_inv_be/blob/master/docs/services.md#todo-get-scenariosid)
+service, with `"id"` fields provided for the `"scenario"` and `"scenario_factions"`.  Of course since the
+scenario is new, the returned `"scenario_resources"` and `"user_scenario"` fields in the main object and the
+`"roles"` fields in the `"scenario_factions"` will no have actual data.
+
+### `PUT /scenarios/:id`
+- **Authentication** Admin
+- **Normal HTTP Response Code** 201 (not 200)
+- **Error HTTP Response Code**
+  . 401 Authorization error
+  . 422 Bad data
+
+Updates a [scenario](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenarios).
+
+Identical to [`POST /scenarios`](https://github.com/dptww1/sbg_inv_be/blob/master/docs/services.md#todo-post-scenarios)
+except that the `"scenario"` and `"scenario_factions"` objects must have their `"id"` fields set.
+
+### `GET /scenarios/:scenario_id/resource`
+
+- **Authentication** None
+- **Normal HTTP Response Code** 200
+- **Query Parameters**
+
+|Parameter Name|Notes|
+|--------------|-----|
+| n | number resources to return, default 5
+| from | starting date, yyyy-MM-dd, default 2000-01-01
+| to | ending date, yyyy-MM-dd, default 3001-01-01
+
+Gets the most recent
+[resources](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenario-resources)
+The resources are ordered by modification date, newest to oldest.
+
+The `":scenario_id"` path part is irrelevant to the service.  It's only present due to how Phoenix
+wants to set up resources.  I probably overlooked a better way to do this.
+
+Example response:
+
+```json
+{
+  "data": [
+    {
+      "book": null,
+      "date": "2024-01-13",
+      "id": 1065,
+      "issue": null,
+      "notes": null,
+      "page": null,
+      "resource_type": "video_replay",
+      "scenario_id": 456,
+      "scenario_name": "Osgiliath",
+      "sort_order": 399,
+      "title": "An SBG Club",
+      "url": "https://www.youtube.com/not_a_real_id"
+    },
+    {
+      "book": null,
+      "date": "2024-01-06",
+      "id": 1064,
+      "issue": null,
+      "notes": null,
+      "page": null,
+      "resource_type": "web_replay",
+      "scenario_id": 237,
+      "scenario_name": "Weathertop",
+      "sort_order": 398,
+      "title": "Some Guy",
+      "url": "https://www.example.com/replay"
+    }
+  ]
+}
+```
+
+The `"scenario_id"` and `"scenario_name"` give the scenario the resource is for.
+
+The remaining fields correspond directly with the fields in the
+[scenario_resources](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenario_resources)
+table.
+
+### `POST /scenarios/:scenario_id/resource`
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 204 (not 200)
+- **Error HTTP Response Code**
+  . 401 Authorization error
+  . 422 bad data
+
+Creates a [resource](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenario_resources)
+associated with a scenario.
+
+Example input payload:
+
+```json
+{
+    "resource": {
+        "book": "sbg",
+        "issue": 99,
+        "page": 10,
+        "resource_type": 5,
+        "title": "Some Guy"
+    }
+}
+```
+
+`"resource_type"` is a
+[Scenario Resource Type](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenario-resource-type)
+value.
+
+The above would be an example of input for a physical resource, in this case a magazine replay.  For online
+resource types, supply a `"url"` field within the `"resource"` and the `"book"`, `"issue"`, and `"page"`
+values can be `null`.
+
+### `PUT /scenarios/:scenario_id/resource/:id`
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 204 (not 200)
+- **Error HTTP Response Code**
+  . 401 Authorization error
+  . 422 bad data
+
+Updates a [resource](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenario_resources)
+associated with a scenario.
+
+Example input payload:
+
+```json
+{
+    "resource": {
+        "id": 1067,
+        "book": "sbg",
+        "issue": 99,
+        "page": 10,
+        "resource_type": 5,
+        "title": "Some Guy"
+    }
+}
+```
+
+The same notes as [`POST /scenarios/:scenario_id/resource`](#todo-post-scenariosscenario_idresource)
+service except that the scenario resource ID must be specified as the `"id"` field within the `"resource"`.
+
 ### `POST /sessions`
 
 - **Authentication** None
 - **Normal HTTP Response Code** 201 (not 200!)
-- **Error HTTP Response Code** 401 (unauthenticated)
+- **Error HTTP Response Code** 401 Authorization error
 
 Logs a created user into the system and creates a bearer token which can
 be used to authenticate subsequent service calls.
@@ -986,7 +1487,7 @@ Example return payload:
 - **Authentication** Admin
 - **Normal HTTP Response Code** 204 (not 200!)
 - **Error HTTP Response Code**
-    . 401 unauthenticated
+    . 401 Authorization error
     . 422 unknown figure ID
 
 Updates the user's inventory for a given figure.
@@ -1028,7 +1529,7 @@ background and so results will not be immediately available.  It seems to work q
 
 - **Authentication** User
 - **Normal HTTP Response Code** 200
-- **Error HTTP Response Code** 401 (unauthenticated)
+- **Error HTTP Response Code** 401 Authorization error
 - **Query Parameters**
 
 |Parameter Name|Notes|
@@ -1093,7 +1594,7 @@ The other fields are the same as the input payload of the
 - **Authentication** User
 - **Normal HTTP Response Code** 204 (not 200)
 - **Error HTTP Response Codes**
-    + 401 Authentication failed
+    + 401 Authorization error
     + 422 Bad payload
 
 Updates an existing
@@ -1122,7 +1623,7 @@ in the `user_figures` table may no longer match the sum of the user's `user_figu
 
 - **Authentication** User
 - **Normal HTTP Response Code** 204 (not 200)
-- **Error HTTP Response Code** 401 Authentication failed
+- **Error HTTP Response Code** 401 Authorization error
 
 Deletes the [user_figure_history](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_figure_history)
 record identified by the `:id` part of the URL, assuming it is owned by the authentication user.
@@ -1135,7 +1636,7 @@ in the `user_figures` table may no longer match the sum of the user's `user_figu
 - **Authentication** User
 - **Normal HTTP Response Code** 200
 - **Error HTTP Response Codes**
-  + 401 Authentication failed
+  + 401 Authorization error
   + 422 Rating is out of range, or bad scenario ID
 
 Creates or updates the user's scenario rating.
@@ -1229,7 +1730,7 @@ Example error return payload:
 - **Authentication** Required
 - **Normal HTTP Response Code** 200
 - **Error HTTP Response Codes**
-  + 401 Authentication failed
+  + 401 Authorization error
   + 422 Can't update email to another user's email address
 
 Updates an existing user's account, either the password, or the email address, or both.
