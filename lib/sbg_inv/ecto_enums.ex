@@ -124,7 +124,8 @@ defenum ScenarioResourceBook,
   qrb:     35,   # Quest of the Ringbearer
   fotn2:   36,   # Fall of the Necromancer (v2)
   dotn:    37,   # Defence of the North
-  bog:     38    # Battle of Osgiliath
+  bog:     38,   # Battle of Osgiliath
+  ang:     39    # Rise of Angmar
 
 defenum ScenarioResourceType,
   source:           0,
