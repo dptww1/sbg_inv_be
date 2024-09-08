@@ -130,6 +130,7 @@ ORDER BY s.name;
 | 36 | Fall of the Necromancer (2021)
 | 37 | Defence of the North (2022)
 | 38 | Battle of Osgiliath (2022)
+| 39 | Rise of Angmar (2024)
 
 ### Character Resource Type
 
