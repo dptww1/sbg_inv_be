@@ -579,7 +579,7 @@ Use [`POST /userfigure`](#post-userfigure) to modify `"owned"`, `"painted"`, and
 Use [`POST /character`](#post-character) and [`PUT /character`](#put-character) to modify
 `"resources"` and `"rules"`.
 
-To associate a figure with a scenario, use the [`PUT /scenario-faction/:id](#put-scenariofactionid) service.
+To associate a figure with a scenario, use the [`PUT /scenario-faction/:id`](#put-scenariofactionid) service.
 
 ### `PUT /figure/:id`
 
@@ -636,7 +636,8 @@ Example response:
     "type": "hero",
     "unique": true
   }
-}```
+}
+```
 
 Fields and notes are per the [`POST`](#put-figureid) service.
 
