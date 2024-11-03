@@ -40,7 +40,7 @@ defmodule SbgInv.Web.ScenarioResourceController do
   end
 
   defp update_or_create(conn, resource, params, scenario_id) do
-    params = add_sort_order_if_missing(params)
+    params = add_sort_order_if_missing(params, scenario_id)
     changeset = ScenarioResource.changeset(resource, Map.put(params, "scenario_id", scenario_id))
 
     case Repo.insert_or_update(changeset) do
@@ -52,19 +52,25 @@ defmodule SbgInv.Web.ScenarioResourceController do
     end
   end
 
-  defp add_sort_order_if_missing(params) do
-    if !Map.has_key? params, "sort_order" do
+  defp add_sort_order_if_missing(params, scenario_id) do
+    if Map.has_key? params, "sort_order" do
+      params
+    else
       type = Map.get(params, "resource_type")
 
       sort_order =
-        if is_nil type do
+        if (is_nil type) or (is_nil scenario_id) do
           1
         else
-          query = from sr in ScenarioResource,
-                  where: sr.scenario_id == sr.scenario_id and
-                         sr.resource_type == ^type,
-                  select: count(sr.id)
-          Repo.one(query) + 1
+          prev_max = Repo.one(
+                  from sr in ScenarioResource,
+                  where: sr.scenario_id == ^scenario_id,
+                  select: max(sr.sort_order))
+          if is_nil prev_max do
+            1
+          else
+            prev_max + 1
+          end
         end
 
       Map.put params, "sort_order", sort_order

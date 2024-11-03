@@ -87,17 +87,18 @@ defmodule SbgInv.ScenarioResourceControllerTest do
     assert conn.status == 401
   end
 
-  test "can update scenario resource if admin and valid data", %{conn: conn} do
+  test "updating scenario resource preserves sort order", %{conn: conn} do
     user = Repo.insert! %User{name: "abc", email: "def@example.com", is_admin: true}
     scenario = TestHelper.create_scenario()
-    resource = Repo.insert! %ScenarioResource{scenario_id: scenario.id, sort_order: 1, resource_type: 1}
+    resource = Repo.insert! %ScenarioResource{scenario_id: scenario.id, sort_order: 3, resource_type: 1}
     conn = TestHelper.create_session(conn, user)
     conn = put conn, Routes.scenario_scenario_resource_path(conn, :update, scenario.id, resource.id),
-               resource: %{scenario_id: scenario.id, id: resource.id, resource_type: 2, url: "http://www.foo.com"}
+               resource: %{scenario_id: scenario.id, id: resource.id, resource_type: 2, sort_order: 5, url: "http://www.foo.com"}
     assert conn.status == 204
     updated_resource = Repo.get! ScenarioResource, resource.id
     assert updated_resource.resource_type == :web_replay
     assert updated_resource.url == "http://www.foo.com"
+    assert updated_resource.sort_order == 5
   end
 
   test "can't update scenario resource if admin and invalid data", %{conn: conn} do
