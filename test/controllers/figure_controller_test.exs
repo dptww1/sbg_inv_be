@@ -174,6 +174,45 @@ defmodule SbgInv.Web.FigureControllerTest do
            }
   end
 
+  test "can create figure as 'copy' of existing figure", %{conn: conn} do
+    %{conn: conn, user: user, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
+    TestHelper.promote_user_to_admin(user)
+
+    other_fig_id = TestHelper.std_scenario_figure_id(const_data)
+    TestHelper.add_faction_figure(other_fig_id, :rohan)
+
+    conn = post conn, Routes.figure_path(conn, :create), figure: %{name: "X2", plural_name: "X3", same_as: other_fig_id}
+
+    check = Repo.all(Figure)
+            |> Enum.find(nil, &(&1.name == "X2"))
+
+    assert json_response(conn, 200)["data"] == %{
+             "id" => check.id,
+             "name" => "X2",
+             "plural_name" => "X3",
+             "type" => "hero", # copied from src
+             "unique" => true, # copied from src
+             "slug" => nil,
+             "history" => [],
+             "owned" => 0,
+             "painted" => 0,
+             "scenarios" => [ # copied fromsrc
+               %{
+                 "scenario_id" => const_data["id"],
+                 "name" => "A",
+                 "amount" => 9,
+                 "source" => nil
+               }
+             ],
+             "factions" => ["rohan"], # copied from src
+             "rules" => [%{"book" => "dos",  "faction" => "harad", "name" => "N1", "page" =>123}],
+             "resources" => [
+               %{"book" => "sbg", "issue" => "3", "page" => 37, "title" => "SBG #3", "type" => "painting_guide", "url" => nil},
+               %{"book" => nil, "issue" => nil, "page" => nil, "title" => "YouTube", "type" => "analysis", "url" => "http://www.example.com"}
+             ]
+           }
+  end
+
   test "can't create figure if anonymous", %{conn: conn} do
     conn = post conn, Routes.figure_path(conn, :create), figure: @valid_attrs
     assert conn.status == 401
@@ -244,5 +283,4 @@ defmodule SbgInv.Web.FigureControllerTest do
     conn = put conn, Routes.figure_path(conn, :update, figure.id), figure: @valid_attrs
     assert conn.status == 401
   end
-
 end

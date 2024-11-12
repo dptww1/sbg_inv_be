@@ -515,7 +515,9 @@ If there is no user token accompanying the request, the `"history"` array will b
 Creates a new [figures](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#figures)
 record.
 
-Example input payload:
+There are two possible types of payload:
+
+1. Example input payload for creating a new figure *ab initio*:
 
 ```json
 {
@@ -546,7 +548,22 @@ the front end actually has silhouettes.
 `"factions"` is an array of [faction](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#faction)
 strings.
 
-Example response payload:
+2. Example input payload for creating a new figure copied from another figure:
+
+```json
+{
+  "figure": {
+    "name": "New Figure Name",
+    "plural_name": "New Figure Names",
+    "same_as": 123
+  }
+}
+```
+
+`"name"` and `"same_as"` are required. `"plural_name"` is optional.  With this payload, the newly created
+figure will be assigned the same figure type, uniqueness, and associated faction(s), character(s), and scenario roles,
+
+Example response payload for either type of input payload:
 
 ```json
 {

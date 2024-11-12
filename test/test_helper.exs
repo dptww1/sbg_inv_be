@@ -7,7 +7,7 @@ defmodule SbgInv.TestHelper do
   use SbgInv.Web.ConnCase
   use Pathex
 
-  alias SbgInv.Web.{Character, CharacterResource, Figure, Role, RoleFigure, Scenario, ScenarioFaction}
+  alias SbgInv.Web.{Character, CharacterResource, FactionFigure, Figure, Role, RoleFigure, Scenario, ScenarioFaction}
   alias SbgInv.Web.{ScenarioResource, Session, User, UserScenario, UserFigure}
 
   def pinspect(conn, obj) do
@@ -59,6 +59,10 @@ defmodule SbgInv.TestHelper do
   # idx: 0
   def std_scenario_figure_id(const_data, idx \\ 0) do
     Pathex.get(const_data, path("scenario_factions" / 0 / "roles" / 0 / "figures" / idx / "figure_id"))
+  end
+
+  def add_faction_figure(figure_id, faction_id) do
+    Repo.insert! %FactionFigure{faction_id: faction_id, figure_id: figure_id}
   end
 
   def add_figure(name, plural_name \\ nil, type \\ :warrior, unique \\ false) do
