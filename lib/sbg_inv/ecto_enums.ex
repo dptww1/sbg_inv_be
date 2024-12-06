@@ -125,7 +125,8 @@ defenum ScenarioResourceBook,
   fotn2:   36,   # Fall of the Necromancer (v2)
   dotn:    37,   # Defence of the North
   bog:     38,   # Battle of Osgiliath
-  ang:     39    # Rise of Angmar
+  ang:     39,   # Rise of Angmar,
+  twotr:   40    # The War of the Rohirrim
 
 defenum ScenarioResourceType,
   source:           0,
