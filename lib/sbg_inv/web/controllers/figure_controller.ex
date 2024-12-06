@@ -9,17 +9,7 @@ defmodule SbgInv.Web.FigureController do
 
   def create(conn, %{"figure" => params}) do
     with_admin_user conn do
-      if (Map.get(params, "same_as")) do
-        src_figure = Figure.query_by_id(Map.get(params, "same_as"))
-          |> Figure.with_factions
-          |> Figure.with_scenarios
-          |> Figure.with_characters_and_resources()
-          |> Repo.one
-        create_similar_figure(conn, src_figure, params)
-
-      else
-        update_or_create(conn, %Figure{}, params)
-      end
+      create_similar_or_upsert(conn, params, Map.get(params, "same_as"))
     end
   end
 
@@ -43,6 +33,17 @@ defmodule SbgInv.Web.FigureController do
   end
   defp _show(conn, figure) do
     render(conn, "figure.json", %{figure: figure})
+  end
+
+  defp create_similar_or_upsert(conn, params, nil), do: update_or_create(conn, %Figure{}, params)
+  defp create_similar_or_upsert(conn, params, ""), do: update_or_create(conn, %Figure{}, params)
+  defp create_similar_or_upsert(conn, params, same_as) do
+    src_figure = Figure.query_by_id(same_as)
+                 |> Figure.with_factions
+                 |> Figure.with_scenarios
+                 |> Figure.with_characters_and_resources()
+                 |> Repo.one
+    create_similar_figure(conn, src_figure, params)
   end
 
   defp update_or_create(conn, figure, params) do

@@ -11,7 +11,8 @@ defmodule SbgInv.Web.FigureControllerTest do
     type: 1,
     unique: false,
     slug: "/rohan/the-name",
-    factions: ["rohan", "shire"]
+    factions: ["rohan", "shire"],
+    same_as: ""
   }
 
   setup %{conn: conn} do
