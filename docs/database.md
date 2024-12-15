@@ -131,6 +131,10 @@ ORDER BY s.name;
 | 37 | Defence of the North (2022)
 | 38 | Battle of Osgiliath (2022)
 | 39 | Rise of Angmar (2024)
+| 40 | The War of the Rohirrim (2024)
+| 41 | Armies of the Lord of the Rings (2024)
+| 42 | Armies of the Hobbit (2024)
+| 43 | Armies of Arnor and Angmar (PDF, 2024)
 
 ### Character Resource Type
 
@@ -194,6 +198,13 @@ use the strings instead.
 | 42 |  White Council | `"white_council"`
 | 43 |  Wildmen of Drúadan | `"wildmen"`
 | 44 |  Beornings | `"beornings"`
+| 45 | Battle of Fornost | `"fornost"`
+| 46 | Arathorn's Stand | `"arathorn"`
+| 47 | Host of the Witch King | `"witch_king"`
+| 48 | Shadows of Angmar | `"shadows"`
+| 49 | Buhrdûr's Horde | `"buhrdur"`
+| 50 | Wolf Pack of Angmar | `"wolf_angmar"`
+| 51 | Army of Carn Dûm | `"carn_dum"`
 
 ### Figure Type
 

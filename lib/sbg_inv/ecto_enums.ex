@@ -1,51 +1,58 @@
 import EctoEnum
 
 defenum Faction,
-  angmar:           0,
-  army_thror:       1,
-  arnor:            2,
-  azogs_hunters:    3,
-  azogs_legion:     4,
-  barad_dur:        5,
-  dale:             6,
-  desolator_north:  7,
-  dol_guldur:       8,
-  dunharrow:        9,
-  easterlings:     10,
-  erebor:          11,
-  fangorn:         12,
-  far_harad:       13,
-  fellowship:      14,
-  fiefdoms:        15,
-  goblintown:      16,
-  harad:           17,
-  iron_hills:      18,
-  isengard:        19,
-  khand:           20,
-  khazad_dum:      21,
-  laketown:        22,
-  lothlorien:      23,
-  minas_tirith:    24,
-  mirkwood:        25,
-  misty_mountains: 26,
-  mordor:          27,
-  moria:           28,
-  numenor:         29,
-  radagast:        30,
-  rangers:         31,
-  rivendell:       32,
-  rogues:          33,
-  rohan:           34,
-  shire:           35,
-  survivors:       36,
-  thorins_co:      37,
-  thranduil:       38,
-  trolls:          39,
-  umbar:           40,
-  wanderers:       41,
-  white_council:   42,
-  wildmen:         43,
-  beornings:       44
+  angmar:           0, # check
+  army_thror:       1, # check
+  arnor:            2, # Armies of Arnor and Angmar: Arnor p10
+  azogs_hunters:    3, # check
+  azogs_legion:     4, # check
+  barad_dur:        5, # check
+  dale:             6, # check
+  desolator_north:  7, # check
+  dol_guldur:       8, # check
+  dunharrow:        9, # check
+  easterlings:     10, # check
+  erebor:          11, # check
+  fangorn:         12, # check
+  far_harad:       13, # check
+  fellowship:      14, # check
+  fiefdoms:        15, # check
+  goblintown:      16, # check
+  harad:           17, # check
+  iron_hills:      18, # check
+  isengard:        19, # check
+  khand:           20, # check
+  khazad_dum:      21, # check
+  laketown:        22, # check
+  lothlorien:      23, # check
+  minas_tirith:    24, # check
+  mirkwood:        25, # check
+  misty_mountains: 26, # check
+  mordor:          27, # check
+  moria:           28, # check
+  numenor:         29, # check
+  radagast:        30, # check
+  rangers:         31, # check
+  rivendell:       32, # check
+  rogues:          33, # check
+  rohan:           34, # check
+  shire:           35, # check
+  survivors:       36, # check
+  thorins_co:      37, # check
+  thranduil:       38, # check
+  trolls:          39, # check
+  umbar:           40, # check
+  wanderers:       41, # check
+  white_council:   42, # check
+  wildmen:         43, # check
+  beornings:       44, # check
+  fornost:         45, # Armies of Arnor and Angmar: Battle of Fornost p11
+  arathorn:        46, # Armies of Arnor and Angmar: Arathorn's Stand p12
+  witch_king:      47, # Armies of Arnor and Angmar: Host of the Witch King p22
+  shadows:         48, # Armies of Arnor and Angmar: Shadows of Angmar p23
+  buhrdur:         49, # Armies of Arnor and Angmar: Burhdur's Horde p24
+  wolf_angmar:     50, # Armies of Arnor and Angmar: Wolf Pack of Angmar p25
+  carn_dum:        51  # Armies of Arnor and Angmar: Army of Carn Dum p26
 
 defenum FigureType,
   hero:    0,
@@ -126,7 +133,10 @@ defenum ScenarioResourceBook,
   dotn:    37,   # Defence of the North
   bog:     38,   # Battle of Osgiliath
   ang:     39,   # Rise of Angmar,
-  twotr:   40    # The War of the Rohirrim
+  twotr:   40,   # The War of the Rohirrim
+  alotr2:  41,   # Armies of the Lord of the Rings v2
+  ah2:     42,   # Armies of the Hobbit v2
+  aaa:     43    # Armies of Arnor and Angmar (PDF)
 
 defenum ScenarioResourceType,
   source:           0,
