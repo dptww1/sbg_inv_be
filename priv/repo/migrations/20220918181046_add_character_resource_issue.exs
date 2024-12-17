@@ -4,7 +4,7 @@ defmodule SbgInv.Repo.Migrations.AddCharacterResourceIssue do
   def change do
     alter table(:character_resources) do
       add :issue, :text
-      timestamps
+      timestamps()
     end
   end
 end
