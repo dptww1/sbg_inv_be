@@ -145,59 +145,60 @@ ORDER BY s.name;
 
 ### Faction
 
-Factions are groups of characters/figures which can be mustered as part of the
-same army list.
+Factions are now essentially army lists.  They used to be independent of the army list until
+GW came out with the 2024 **Armies of** books, in which they reduced the factions to so few
+that switching to army lists seemed to make sense.
 
 In the database, the values below are what is actually stored.  Often the services
 use the strings instead.
 
-| Value | Faction | String
-|-------|----------|--------
-| 0 |  Angmar | `"angmar"`
+| Value | Faction | String | Notes
+|-------|----------|--------|---------
+| 0 |  Angmar | `"angmar"` | no longer used
 | 1 |  Army of Thror| `"army_thror"`
 | 2 |  Arnor | `"arnor"`
-| 3 |  Azogs Hunters | `"azogs_hunters"`
-| 4 |  Azogs Legion | `"azogs_legion"`
-| 5 |  Barad Dur | `"barad_dur"`
+| 3 |  Azog's Hunters | `"azogs_hunters"`
+| 4 |  Army of Gundabad | `"azogs_legion"`
+| 5 |  Barad-Dûr | `"barad_dur"`
 | 6 |  Garrison of Dale | `"dale"`
 | 7 |  Desolator of the North | `"desolator_north"`
-| 8 |  Dark Powers of Dol Guldur | `"dol_guldur"`
-| 9 |  Dead of Dunharrow | `"dunharrow"`
-| 10 |  Easterlings | `"easterlings"`
+| 8 |  Pits of Dol Guldur | `"dol_guldur"`
+| 9 |  Dead of Dunharrow | `"dunharrow"` | no longer used
+| 10 |  Easterlings | `"easterlings"` | no longer used
 | 11 |  Erebor Reclaimed | `"erebor"`
 | 12 |  Fangorn | `"fangorn"`
-| 13 |  Far Harad | `"far_harad"`
+| 13 |  Far Harad | `"far_harad"` | no longer used
 | 14 |  The Fellowship | `"fellowship"`
-| 15 |  Fiefdoms | `"fiefdoms"`
+| 15 |  Fiefdoms | `"fiefdoms"` | no longer used
 | 16 |  Goblin-town | `"goblintown"`
-| 17 |  The Serpent Horde | `"harad"`
-| 18 |  Iron Hills | `"iron_hills"`
-| 19 |  Isengard | `"isengard"`
-| 20 |  Variags of Khand | `"khand"`
-| 21 |  Khazad Dûm | `"khazad_dum"`
-| 22 |  Army of Laketown | `"laketown"`
+| 17 |  Harad | `"harad"`
+| 18 |  The Iron Hills | `"iron_hills"`
+| 19 |  Muster of Isengard | `"isengard"`
+| 20 |  Variags of Khand | `"khand"` | no longer used
+| 21 |  Khazad-Dûm | `"khazad_dum"` | no longer used
+| 22 |  Army of Lake-town | `"laketown"`
 | 23 |  Lothlórien | `"lothlorien"`
 | 24 |  Minas Tirith | `"minas_tirith"`
-| 25 |  Dark Denizens of Mirkwood | `"mirkwood"`
-| 26 |  Misty Mountains | `"misty_mountains"`
-| 27 |  Mordor | `"mordor"`
-| 28 |  Moria | `"moria"`
+| 25 |  Dark Denizens of Mirkwood | `"mirkwood"` | no longer used
+| 26 |  Misty Mountains | `"misty_mountains"` | no longer used
+| 27 |  Legions of Mordor | `"mordor"`
+| 28 |  Depths of Moria | `"moria"`
 | 29 |  Númenor | `"numenor"`
 | 30 |  Radagast's Alliance | `"radagast"`
-| 31 |  Rangers | `"rangers"`
+| 31 |  Rangers of Mirkwood | `"rangers"`
 | 32 |  Rivendell | `"rivendell"`
-| 33 |  Sharkey's Rogues | `"rogues"`
-| 34 |  Rohan | `"rohan"`
+| 33 |  Sharkey's Rogues | `"rogues"` | no longer used
+| 34 |  Kingdom of Rohan | `"rohan"`
 | 35 |  The Shire | `"shire"`
 | 36 |  Survivors of Lake-town | `"survivors"`
 | 37 |  Thorin's Company | `"thorins_co"`
 | 38 |  Halls of Thranduil | `"thranduil"`
-| 39 |  The Trolls | `"trolls"`
-| 40 |  Corsairs of Umbar | `"umbar"`
-| 41 |  Wanderers in the Wild | `"wanderers"`
-| 42 |  White Council | `"white_council"`
-| 43 |  Wildmen of Drúadan | `"wildmen"`
-| 44 |  Beornings | `"beornings"`
+| 39 |  The Three Trolls | `"trolls"`
+| 40 |  Corsair Fleets | `"umbar"`
+| 41 |  Wanderers in the Wild | `"wanderers"` | no longer used
+| 42 |  The White Council | `"white_council"`
+| 43 |  Wildmen of Drúadan | `"wildmen"` | no longer used
+| 44 |  Beornings | `"beornings"` | no longer used
 | 45 | Battle of Fornost | `"fornost"`
 | 46 | Arathorn's Stand | `"arathorn"`
 | 47 | Host of the Witch King | `"witch_king"`
@@ -205,6 +206,41 @@ use the strings instead.
 | 49 | Buhrdûr's Horde | `"buhrdur"`
 | 50 | Wolf Pack of Angmar | `"wolf_angmar"`
 | 51 | Army of Carn Dûm | `"carn_dum"`
+| 52 | Road to Rivendell | `"road_rivendell"`
+| 53 | Breaking of the Fellowship | `"breaking"`
+| 54 | Road to Helm's Deep | `"road_helms"`
+| 55 | Defenders of Helm's Deep | `"helms_deep"`
+| 56 | Ride Out | `"ride_out"`
+| 57 | Riders of Éomer | `"riders_eomer"`
+| 58 | Riders of Théoden | `"riders_theoden"`
+| 59 | Army of Edoras | `"army_edoras"`
+| 60 | Defenders of the Hornburg | `"hornburg"`
+| 61 | Garrison of Ithilien | `"ithilien"`
+| 62 | Reclamation of Osgiliath | `"reclaim_osg"`
+| 63 | Atop the Walls | `"atop_walls"`
+| 64 | Return of the King | `"return_king"`
+| 65 | Defenders of the Pelennor | `"defend_pelennor"`
+| 66 | Men of the West | `"men_west"`
+| 67 | Lindon | `"lindon"`
+| 68 | The Last Alliance | `"last_alliance"`
+| 69 | The Eagles | `"eagles"`
+| 70 | The Black Riders | `"black_riders"`
+| 71 | Wraiths on Wings | `"wraiths_wings"`
+| 72 | Army of Gothmog | `"army_gothmog"`
+| 73 | Minas Morgul | `"minas_morgul"`
+| 74 | Cirith Ungol | `"cirith_ungol"`
+| 75 | The Black Gate | `"black_gate"`
+| 76 | Army of the White Hand | `"white_hand"`
+| 77 | Lurtz's Scouts | `"lurtz_scouts"`
+| 78 | Ugluk's Scouts | `"ugluk_scouts"`
+| 79 | Wolves of Isengard | `"wolves_isengard"`
+| 80 | Assault on Helm's Deep | `"assault_helms"`
+| 81 | Usurpers of Edoras | `"usurpers_edoras"`
+| 82 | Besiegers of the Hornburg | `"besieger_horn"`
+| 83 | Erebor & Dale | `"erebor_dale"`
+| 84 | The Battle of Five Armies | `"battle_5_armies"`
+| 85 | Assault on Ravenhill | `"assault_raven"`
+| 86 | Rise of the Necromancer | `"necromancer"`
 
 ### Figure Type
 
