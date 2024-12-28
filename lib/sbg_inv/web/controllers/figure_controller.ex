@@ -41,7 +41,7 @@ defmodule SbgInv.Web.FigureController do
     src_figure = Figure.query_by_id(same_as)
                  |> Figure.with_factions
                  |> Figure.with_scenarios
-                 |> Figure.with_characters_and_resources()
+                 |> Figure.with_characters_and_resources_and_rules()
                  |> Repo.one
     create_similar_figure(conn, src_figure, params)
   end
@@ -92,7 +92,7 @@ defmodule SbgInv.Web.FigureController do
     |> Figure.with_scenarios
     |> Figure.with_user(user_id)
     |> Figure.with_user_history(user_id)
-    |> Figure.with_characters_and_resources()
+    |> Figure.with_characters_and_resources_and_rules()
     |> Repo.one
   end
 end

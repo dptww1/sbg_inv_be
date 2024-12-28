@@ -28,30 +28,14 @@ defmodule SbgInv.Web.FigureView do
 
   defp rules(nil), do: []
   defp rules(ary) do
-    Enum.map(ary, fn char ->
-      %{
-        "name" => char.name,
-        "faction" => char.faction,
-        "book" => char.book,
-        "page" => char.page
-      }
-    end)
+    Enum.flat_map(ary, fn char -> char.rules end)
+    |> render_many(SbgInv.Web.CharacterRuleView, "rule.json", as: :rule)
   end
 
   defp resources(nil), do: []
   defp resources(ary) do
     Enum.flat_map(ary, fn char -> char.resources end)
-    |> Enum.map(fn rsrc ->
-         %{
-           "title" => rsrc.title,
-           "book" => rsrc.book,
-           "issue" => rsrc.issue,
-           "page" => rsrc.page,
-           "type" => rsrc.type,
-           "url" => rsrc.url
-         }
-       end)
-    |> Enum.uniq
+    |> render_many(SbgInv.Web.CharacterResourceView, "resource.json", as: :resource)
   end
 
   defp sorted_scenarios(role_list) do

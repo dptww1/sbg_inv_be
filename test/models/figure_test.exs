@@ -13,7 +13,7 @@ defmodule SbgInv.FigureTest do
 
   setup do
     # Create Figures and Characters
-    decoy_char = Repo.insert!(%Character{name: "stu", faction: :minas_tirith, book: :sots, page: 42})
+    decoy_char = Repo.insert!(%Character{name: "stu", faction: :minas_tirith})
     decoy_figure = Repo.insert!(Figure.changeset_with_characters(%Figure{}, Map.put(@valid_attrs, :character_ids, [decoy_char.id])))
 
     resources = [
@@ -21,7 +21,7 @@ defmodule SbgInv.FigureTest do
       %CharacterResource{title: "CR2", type: :analysis, url: "http://example.com"}
     ]
 
-    check_char = Repo.insert!(%Character{name: "xyz", faction: :rohan, book: :gaw, page: 123, resources: resources})
+    check_char = Repo.insert!(%Character{name: "xyz", faction: :rohan, resources: resources})
     check_figure = Repo.insert!(Figure.changeset_with_characters(%Figure{}, Map.put(@valid_attrs, :character_ids, [check_char.id])))
 
     user = TestHelper.create_user()
@@ -83,7 +83,7 @@ defmodule SbgInv.FigureTest do
 
   test "with_characters_and_resources() works with valid id", context do
     fig = Figure.query_by_id(context.figure.id)
-          |> Figure.with_characters_and_resources
+          |> Figure.with_characters_and_resources_and_rules
           |> Repo.one!
 
     assert fig.name == @valid_attrs.name

@@ -193,8 +193,6 @@ defmodule SbgInv.Web.SearchControllerTest do
   defp declare_character(name, figure_id_list) do
     struct = Repo.insert! %Character{
       name: name,
-      book: 12,
-      page: 14,
       figures: Enum.map(figure_id_list, fn fid -> Repo.get!(Figure, fid) end)
     }
 

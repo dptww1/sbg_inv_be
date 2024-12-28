@@ -82,7 +82,6 @@ Example return payload:
 ```json
 {
   "data": {
-    "book": "alotr",
     "faction": "fellowship",
     "figures": [
       {
@@ -102,25 +101,50 @@ Example return payload:
     "name": "Frodo Baggins",
     "num_analyses": 1,
     "num_painting_guides": 2,
-    "page": 12,
     "resources": [
       {
+        "title": "BSiME",
         "book": "fotn",
         "issue": "3",
         "page": 23,
-        "title": "BSiME",
-        "type": "painting_guide"
+        "type": "painting_guide",
+        "url": null
       },
       {
         "title": "Green Dragon",
+        "book": null,
+        "issue": null,
+        "page": null,
         "type": "analysis",
         "url": "http://www.example.com"
       },
       {
+        "title": null,
         "book": "fotr_jb",
+        "issue": null,
         "page": 12,
-        "title": "Planet Mithril",
         "type": "painting_guide"
+        "url": null
+      }
+    ],
+    "rules": [
+      {
+        "override_name": null,
+        "book": "alotr",
+        "issue": null,
+        "page": 134,
+        "url": null,
+        "sort_order": 1,
+        "obsolete": false
+      },
+      {
+        "override_name": "Nandor the Relentless",
+        "book": "mordor",
+        "issue": null,
+        "page": 13,
+        "url": null,
+        "sort_order": 2,
+        "obsolete": true
       }
     ]
   }
@@ -222,11 +246,11 @@ Example input payload:
     "resources": [
       {
         "title": "Sample Painting Guide",
-        "book":"",
-        "issue":"",
-        "page":null,
-        "type":"painting_guide",
-        "url":"https://www.example.com"
+        "book": "",
+        "issue": "",
+        "page": null,
+        "type": "painting_guide",
+        "url": "https://www.example.com"
       }
     ]
   }
@@ -253,6 +277,9 @@ Example return payload:
     "resources": [
       {
         "title": "Sample Painting Guide",
+        "book": null,
+        "issue": null,
+        "page": null,
         "type": "painting_guide",
         "url": "https://www.example.com"
       }
@@ -420,20 +447,23 @@ Example return payload:
     "plural_name": null,
     "resources": [
       {
+        "title": "SomePainter",
         "book": null,
         "issue": null,
         "page": null,
-        "title": "SomePainter",
         "type": "painting_guide",
         "url":"https://www.example.com"
       }
     ],
     "rules": [
       {
+        "override_name": null,
         "book": "alotr",
-        "faction": "arnor",
-        "name": "Arvedui, Last King of Arnor",
-        "page": 57
+        "issue": null,
+        "page": 57,
+        "url": null,
+        "sort_order": null,
+        "obsolete": false
       }
     ],
     "scenarios": [

@@ -7,8 +7,8 @@ defmodule SbgInv.TestHelper do
   use SbgInv.Web.ConnCase
   use Pathex
 
-  alias SbgInv.Web.{Character, CharacterResource, FactionFigure, Figure, Role, RoleFigure, Scenario, ScenarioFaction}
-  alias SbgInv.Web.{ScenarioResource, Session, User, UserScenario, UserFigure}
+  alias SbgInv.Web.{Character, CharacterResource, CharacterRule, FactionFigure, Figure, Role, RoleFigure}
+  alias SbgInv.Web.{Scenario, ScenarioFaction, ScenarioResource, Session, User, UserScenario, UserFigure}
 
   def pinspect(conn, obj) do
     IO.puts "---"
@@ -115,8 +115,6 @@ defmodule SbgInv.TestHelper do
     ch1 = Repo.insert! %Character{
       name: "N1",
       faction: :harad,
-      book: :dos,
-      page: 123,
       figures: [figure1],
       resources: [
         %CharacterResource{
@@ -132,11 +130,20 @@ defmodule SbgInv.TestHelper do
           url: "http://www.example.com"
         }
       ],
+      rules: [
+        %CharacterRule{
+          book: :tba,
+          issue: "3",
+          page: 34,
+          obsolete: true,
+          sort_order: 2
+       }
+      ],
       num_painting_guides: 1,
       num_analyses: 1
     }
-    ch2 = Repo.insert! %Character{name: "N2", faction: :minas_tirith, book: :gaw, page: 456}
-    ch3 = Repo.insert! %Character{name: "N2b", faction: :rohan, book: :wfr, page: 789}
+    ch2 = Repo.insert! %Character{name: "N2", faction: :minas_tirith}
+    ch3 = Repo.insert! %Character{name: "N2b", faction: :rohan}
 
     %{
       conn: conn,

@@ -69,12 +69,7 @@ defmodule SbgInv.Web.FigureControllerTest do
       "painted" => 0,
       "history" => [],
       "rules" => [
-        %{
-          "name" => "N1",
-          "faction" => "harad",
-          "book" => "dos",
-          "page" => 123
-        }
+        %{ "name_override" => nil, "book" => "tba", "page" => 34, "issue" => "3", "obsolete" => true, "sort_order" => 2, "url" => nil}
       ],
       "resources" => [
         %{"title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
@@ -133,12 +128,7 @@ defmodule SbgInv.Web.FigureControllerTest do
       "owned" => 4,
       "painted" => 2,
       "rules" => [
-        %{
-          "name" => "N1",
-          "faction" => "harad",
-          "book" => "dos",
-          "page" => 123
-         }
+        %{ "book" => "tba", "page" => 34, "issue" => "3", "obsolete" => true, "sort_order" => 2, "name_override" => nil, "url" => nil},
       ],
       "history" => [
         %{"op" => "sell_unpainted", "amount" => 2, "new_owned" => 3, "new_painted" => 3, "op_date" => "2017-08-10", "notes" => "", "id" => h1.id, "figure_id" => figure.id},
@@ -206,7 +196,9 @@ defmodule SbgInv.Web.FigureControllerTest do
                }
              ],
              "factions" => ["rohan"], # copied from src
-             "rules" => [%{"book" => "dos",  "faction" => "harad", "name" => "N1", "page" =>123}],
+             "rules" => [
+               %{ "book" => "tba", "page" => 34, "issue" => "3", "obsolete" => true, "sort_order" => 2, "name_override" => nil, "url" => nil},
+             ],
              "resources" => [
                %{"book" => "sbg", "issue" => "3", "page" => 37, "title" => "SBG #3", "type" => "painting_guide", "url" => nil},
                %{"book" => nil, "issue" => nil, "page" => nil, "title" => "YouTube", "type" => "analysis", "url" => "http://www.example.com"}
@@ -241,7 +233,7 @@ defmodule SbgInv.Web.FigureControllerTest do
     conn = put conn, Routes.figure_path(conn, :update, figure_id), figure: @valid_attrs
 
     check = Figure.query_by_id(figure_id)
-            |> Figure.with_characters_and_resources
+            |> Figure.with_characters_and_resources_and_rules
             |> Figure.with_factions
             |> Repo.one!
 
@@ -258,12 +250,7 @@ defmodule SbgInv.Web.FigureControllerTest do
              "scenarios" => [%{"amount" => 9, "name" => "A", "scenario_id" => const_data["id"], "source" => nil}],
              "factions" => ["rohan", "shire"],
              "rules" => [
-               %{
-                 "name" => "N1",
-                 "faction" => "harad",
-                 "book" => "dos",
-                 "page" => 123
-               }
+               %{ "book" => "tba", "page" => 34, "issue" => "3", "obsolete" => true, "sort_order" => 2, "name_override" => nil, "url" => nil},
              ],
              "resources" => [
                %{"title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},

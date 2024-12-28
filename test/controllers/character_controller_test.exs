@@ -7,9 +7,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
 
   @valid_attrs %{
     "name" => "char name",
-    "faction" => "harad",
-    "book" => "fotr_jb",
-    "page" => 12
+    "faction" => "harad"
   }
 
   test "anonymous user can't create character", %{conn: conn} do
@@ -39,6 +37,13 @@ defmodule SbgInv.Web.CharacterControllerTest do
                          title: "ABC",
                          url: "http://www.example.com"
                       }
+                    ],
+                    "rules" => [
+                      %{
+                        name_override: "OVER",
+                        book: :aaa,
+                        page: 82
+                      }
                     ]
                 })
 
@@ -51,8 +56,6 @@ defmodule SbgInv.Web.CharacterControllerTest do
              "id" => check.id,
              "name" => @valid_attrs["name"],
              "faction" => "harad",
-             "book" => "fotr_jb",
-             "page" => 12,
              "figures" => [
                %{ "id" => f2.id, "name" => f2.name },
                %{ "id" => f1.id, "name" => f1.name }
@@ -63,7 +66,21 @@ defmodule SbgInv.Web.CharacterControllerTest do
                %{
                  "type" => "painting_guide",
                  "title" => "ABC",
-                 "url" => "http://www.example.com"
+                 "url" => "http://www.example.com",
+                 "book" => nil,
+                 "issue" => nil,
+                 "page" => nil
+               }
+             ],
+             "rules" => [
+               %{
+                 "name_override" => "OVER",
+                 "book" => "aaa",
+                 "issue" => nil,
+                 "page" => 82,
+                 "url" => nil,
+                 "obsolete" => nil,
+                 "sort_order" => nil
                }
              ]
            }
@@ -78,12 +95,11 @@ defmodule SbgInv.Web.CharacterControllerTest do
 
     assert json_response(conn, 201)["data"] == %{
              "id" => check.id,
-             "book" => "fotr_jb",
              "faction" => "harad",
-             "page" => 12,
              "name" => @valid_attrs["name"],
              "figures" => [],
              "resources" => [],
+             "rules" => [],
              "num_analyses" => 0,
              "num_painting_guides" => 0
            }
@@ -124,6 +140,13 @@ defmodule SbgInv.Web.CharacterControllerTest do
                         book: :sbg,
                         page: 12
                       }
+                    ],
+                    rules: [
+                      %{
+                        name_override: "OVER",
+                        book: :tba,
+                        page: 64
+                      }
                     ]
                   })
 
@@ -135,9 +158,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
     assert json_response(conn, 200)["data"] == %{
              "id" => check.id,
              "name" => @valid_attrs["name"],
-             "book" => "fotr_jb",
              "faction" => "harad",
-             "page" => 12,
              "figures" => [
                %{ "id" => f2.id, "name" => f2.name },
                %{ "id" => f1.id, "name" => f1.name }
@@ -152,19 +173,30 @@ defmodule SbgInv.Web.CharacterControllerTest do
                  "page" => 12
                }
              ],
+             "rules" => [
+               %{
+                 "name_override" => "OVER",
+                 "book" => "tba",
+                 "issue" => nil,
+                 "page" => 64,
+                 "url" => nil,
+                 "obsolete" => nil,
+                 "sort_order" => nil
+               }
+             ],
              "num_painting_guides" => 1,
              "num_analyses" => 0
            }
   end
 
   test "anonymous user can't read character", %{conn: conn} do
-    ch = Repo.insert! %Character{name: "A", book: 1, page: 1}
+    ch = Repo.insert! %Character{name: "A"}
     conn = get conn, Routes.character_path(conn, :show, ch.id)
     assert conn.status == 401
   end
 
-  test "non-admin user can't read character", %{conn: conn} do
-    ch = Repo.insert! %Character{name: "A", book: 1, page: 1}
+  test "non-admin user can't show character", %{conn: conn} do
+    ch = Repo.insert! %Character{name: "A"}
     conn = TestHelper.create_logged_in_user(conn, "abc", "xyz@example.com")
     conn = get conn, Routes.character_path(conn, :show, ch.id)
     assert conn.status == 401
@@ -179,8 +211,6 @@ defmodule SbgInv.Web.CharacterControllerTest do
              "id" => ch_id,
              "name" => "N1",
              "faction" => "harad",
-             "book" => "dos",
-             "page" => 123,
              "figures" => [
                %{"id" => TestHelper.std_scenario_figure_id(const_data, 0), "name" => "ABC"}
              ],
@@ -190,13 +220,20 @@ defmodule SbgInv.Web.CharacterControllerTest do
                  "title" => "SBG #3",
                  "book" => "sbg",
                  "issue" => "3",
-                 "page" => 37
+                 "page" => 37,
+                 "url" => nil
                },
                %{
                  "type" => "analysis",
                  "title" => "YouTube",
-                 "url" => "http://www.example.com"
+                 "url" => "http://www.example.com",
+                 "book" => nil,
+                 "issue" => nil,
+                 "page" => nil
                }
+             ],
+             "rules" => [
+               %{ "book" => "tba", "page" => 34, "issue" => "3", "obsolete" => true,  "sort_order" => 2, "name_override" => nil, "url" => nil},
              ],
              "num_painting_guides" => 1,
              "num_analyses" => 1

@@ -2,18 +2,17 @@ defmodule SbgInv.Web.Character do
 
   use SbgInv.Web, :model
 
-  alias SbgInv.Web.{Character, CharacterResource, Figure}
+  alias SbgInv.Web.{Character, CharacterResource, CharacterRule, Figure}
 
   schema "characters" do
     field :name, :string
     field :faction, Faction
-    field :book, ScenarioResourceBook
-    field :page, :integer
     field :num_painting_guides, :integer
     field :num_analyses, :integer
 
     timestamps()
 
+    has_many :rules, CharacterRule, on_replace: :delete
     has_many :resources, CharacterResource, on_replace: :delete
     many_to_many :figures, Figure,
              join_through: "character_figures",
@@ -28,8 +27,9 @@ defmodule SbgInv.Web.Character do
 
     changeset =
       character
-      |> cast(params, [:name, :faction, :book, :page])
+      |> cast(params, [:name, :faction])
       |> cast_assoc(:resources)
+      |> cast_assoc(:rules)
       |> put_assoc(:figures, figures)
       |> validate_required([:name])
 
@@ -57,6 +57,13 @@ defmodule SbgInv.Web.Character do
 
     from q in query,
     preload: [resources: ^rq]
+  end
+
+  def with_rules(query) do
+    rq = from cr in CharacterRule, order_by: cr.sort_order
+
+    from q in query,
+    preload: [rules: ^rq]
   end
 
   defp load_figures([]), do: []

@@ -348,6 +348,31 @@ For online resources, only `url` and `title` are needed.
 
 For printed resources, `title`, `book`, and `page` are required.
 
+### character_rules
+
+Associates [characters](#characters) to their profiles.
+
+| Field | Type | Notes |
+|-------|------|--------
+| character_id | int4 | FK to [characters](#characters) |
+| name_override | text |
+| book | int4 | one of the [Books](#books) |
+| issue | text | magazine issue ("2", "Summer", etc.) |
+| page | int4 | page in the book |
+| url | text | URL of resource |
+| obsolete | boolean
+| sort_order | int4
+| inserted_at | timestamp |
+| updated_at | timestamp |
+
+`name_override` is set when the profile name doesn't match the character name.n
+
+For online resources, only `url` is needed.
+
+For printed resources, `title`, `book`, and `page` are required.
+
+`obsolete` is `true` for profile references which are no longer current.
+
 ### characters
 
 Characters are pose- and equipment-independent individuals or types.
@@ -363,8 +388,8 @@ labeling purposes and has nothing to do with this table.
 | Field | Type | Notes |
 |-------|------|--------
 | name | text |
-| book | int4 | the [Books](#books) with the character's stats |
-| page | int4 | the page within the book |
+| book | int4 | the [Books](#books) with the character's stats (now obsolete, slated for removal) |
+| page | int4 | the page within the book (now obsolete, slated for removal) |
 | inserted_at | timestamp |
 | updated_at | timestamp |
 | faction | int4 | a [Faction](#faction) |
