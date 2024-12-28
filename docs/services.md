@@ -31,41 +31,39 @@ data (figure names, counts, etc.) should be treated as examples and may not
 match the actual data on the server.
 
 Many of the app-specific terms and concepts used here are more fully explained in
-the [Database Documentation](database.md)
+the [Database Documentation](database.md).
 
 ## Table of Contents
 
-* [`GET /character/:id`](#get-character-id)
+* [`GET /character/:id`](#get-characterid)
 * [`POST /character`](#post-character)
-* [`PUT /character/:id`](#put-character)
+* [`PUT /character/:id`](#put-characterid)
 * [`GET /faction`](#get-faction)
-* [`GET /faction/:id`](#get-faction-id)
-* [`GET /figure/:id`](#get-figure-id)
+* [`GET /faction/:id`](#get-factionid)
+* [`GET /figure/:id`](#get-figureid)
 * [`POST /figure`](#post-figure)
-* [`PUT /figure/:id`](#put-figure-id)
+* [`PUT /figure/:id`](#put-figureid)
 * [`GET /newsitem`](#get-newsitem)
 * [`POST /newsitem`](#post-newsitem)
 * [`POST /reset-password`](#post-reset-password)
 * [`GET /search`](#get-search)
-* [`PUT /scenario-faction/:id`](#put-scenario-faction-id)
+* [`PUT /scenario-faction/:id`](#put-scenario-factionid)
 * [`GET /scenarios`](#get-scenarios)
-* [`GET /scenarios/:id`](#get-scenarios-id)
-* [`GET /scenarios/:id/edit`](#get-scenarios-id-edit)
-* [`GET /scenarios/new`](#get-scenarios-new)
+* [`GET /scenarios/:id`](#get-scenariosid)
 * [`POST /scenarios`](#post-scenarios)
-* [`PUT /scenarios/:id`](#put-scenarios-id)
-* [`GET /scenarios/:scenario_id/resource`](#get-scenarios-scenario-id-resource)
-* [`POST /scenarios/:scenario_id/resource`](#post-scenarios-scenario-id-resource)
-* [`PUT /scenarios/:scenario_id/resource/:id`](#put-scenarios-scenario-id-resource-id)
+* [`PUT /scenarios/:id`](#put-scenariosid)
+* [`GET /scenarios/:scenario_id/resource`](#get-scenariosscenario_idresource)
+* [`POST /scenarios/:scenario_id/resource`](#post-scenariosscenario_idresource)
+* [`PUT /scenarios/:scenario_id/resource/:id`](#put-scenariosscenario_idresourceid)
 * [`POST /sessions`](#post-sessions)
 * [`GET /stats`](#get-stats)
 * [`POST /userfigure`](#post-userfigure)
 * [`GET /userhistory`](#get-userhistory)
-* [`PUT /userhistory/:id`](#put-userhistory-id)
-* [`DELETE /userhistory/:id`](#delete-userhistory-id)
+* [`PUT /userhistory/:id`](#put-userhistoryid)
+* [`DELETE /userhistory/:id`](#delete-userhistoryid)
 * [`POST /userscenarios`](#post-userscenarios)
 * [`POST /users`](#post-users)
-* [`PUT /users/:id`](#put-users-id)
+* [`PUT /users/:id`](#put-usersid)
 
 ## Service Call Details
 ### `GET /character/:id`
