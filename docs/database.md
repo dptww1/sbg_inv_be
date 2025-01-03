@@ -388,8 +388,6 @@ labeling purposes and has nothing to do with this table.
 | Field | Type | Notes |
 |-------|------|--------
 | name | text |
-| book | int4 | the [Books](#books) with the character's stats (now obsolete, slated for removal) |
-| page | int4 | the page within the book (now obsolete, slated for removal) |
 | inserted_at | timestamp |
 | updated_at | timestamp |
 | faction | int4 | a [Faction](#faction) |
