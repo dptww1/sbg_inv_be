@@ -339,6 +339,12 @@ Example return payload:
 ```json
 {
   "data": {
+    "sources": [
+      "book": "alotr2",
+      "issue": null,
+      "page": 18,
+      "url": null
+    ],
     "heroes": [
       {
         "id": 13,

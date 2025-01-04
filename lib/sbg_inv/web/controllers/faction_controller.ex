@@ -4,13 +4,13 @@ defmodule SbgInv.Web.FactionController do
 
   import SbgInv.Web.ControllerMacros
 
-  alias SbgInv.Web.{Authentication, FactionFigure}
+  alias SbgInv.Web.{ArmyList, Authentication, FactionFigure}
 
   def index(conn, _params) do
     # Ordinarily `index` operations wouldn't require an authenticated user.
     # But without a user, the only thing that can be shown is the list of
     # faction names, so the FE saves a network call and uses its own
-    # data structures to show that.
+    # data structures to show that.  # TODO: make the network call to remove hardwiring in FE
     with_auth_user conn do
       totals =
         Authentication.user_id(conn)
@@ -36,12 +36,13 @@ defmodule SbgInv.Web.FactionController do
     end
   end
 
+  def show(conn, %{"id" => "-1"}), do: _show(conn, -1)
   def show(conn, %{"id" => id}) do
-    if id === "-1" do
-      _show(conn, -1)
-    else
-      _show(conn, Enum.find(Faction.__valid_values__(), fn(x) -> x == String.to_integer(id) end))
-    end
+    army_list = ArmyList.query_by_id(id)
+    |> ArmyList.with_sources()
+    |> Repo.one
+
+    _show(conn, army_list)
   end
 
   defp _show(conn, nil) do
@@ -55,12 +56,12 @@ defmodule SbgInv.Web.FactionController do
 
     render(conn, "show.json", figures: list)
   end
-  defp _show(conn, faction_id) do
+  defp _show(conn, army_list) do
     list =
       Authentication.user_id(conn)
-      |> FactionFigure.query_figures_by_faction_id(faction_id)
+      |> FactionFigure.query_figures_by_faction_id(army_list.id)
       |> Repo.all
 
-    render(conn, "show.json", figures: list)
+    render(conn, "show.json", figures: list, army_list: army_list)
   end
 end

@@ -2,36 +2,18 @@ defmodule SbgInv.Web.FactionView do
 
   use SbgInv.Web, :view
 
-  defp filtered_sorted_fig_list(list, type) do
-    Enum.filter(list, fn(f) -> f.type == type end)
-    |> Enum.sort(&(&1.name <= &2.name))
-  end
-
-  defp stringify_id(-1), do: "Totals"
-  defp stringify_id(id), do: Atom.to_string(id)
-
-  def render("index.json", %{factions: list}) do
-    %{data: Enum.reduce(list,
-                        %{},
-                        fn(f, acc) ->
-                          Map.put(acc,
-                                  stringify_id(f.id),
-                                  %{
-                                    "owned" => f.owned,
-                                    "painted" => f.painted
-                                   })
-                        end)
+  def render("show.json", %{figures: figures, army_list: army_list}) do
+    %{
+    data:
+      figures_map(figures)
+      |> Map.put("sources", render_many(army_list.sources, __MODULE__, "source.json", as: :source))
     }
   end
 
   def render("show.json", %{figures: figures}) do
-    %{data: %{
-         "heroes"   => render_many(filtered_sorted_fig_list(figures, :hero    ), __MODULE__, "figure.json"),
-         "warriors" => render_many(filtered_sorted_fig_list(figures, :warrior ), __MODULE__, "figure.json"),
-         "monsters" => render_many(filtered_sorted_fig_list(figures, :monster ), __MODULE__, "figure.json"),
-         "siegers"  => render_many(filtered_sorted_fig_list(figures, :sieger  ), __MODULE__, "figure.json"),
-        }
-     }
+    %{
+      data: figures_map(figures)
+    }
   end
 
   def render("figure.json", %{faction: figure}) do
@@ -49,6 +31,47 @@ defmodule SbgInv.Web.FactionView do
       num_analyses:        normalize_int(figure.num_analyses)
     }
   end
+
+  def render("index.json", %{factions: list}) do
+    %{data: Enum.reduce(list,
+      %{},
+      fn(f, acc) ->
+        Map.put(acc,
+          stringify_id(f.id),
+          %{
+            "owned" => f.owned,
+            "painted" => f.painted
+          })
+      end)
+    }
+  end
+
+  def render("source.json", %{source: source}) do
+    %{
+      book: source.book,
+      issue: source.issue,
+      page: source.page,
+      url: source.url
+    }
+  end
+
+  defp figures_map(figures) do
+    %{
+      "heroes"   => render_many(filtered_sorted_fig_list(figures, :hero    ), __MODULE__, "figure.json"),
+      "warriors" => render_many(filtered_sorted_fig_list(figures, :warrior ), __MODULE__, "figure.json"),
+      "monsters" => render_many(filtered_sorted_fig_list(figures, :monster ), __MODULE__, "figure.json"),
+      "siegers"  => render_many(filtered_sorted_fig_list(figures, :sieger  ), __MODULE__, "figure.json")
+    }
+  end
+
+  defp filtered_sorted_fig_list(list, type) do
+    list
+    |> Enum.filter(&(&1.type == type))
+    |> Enum.sort(&(&1.name <= &2.name))
+  end
+
+  defp stringify_id(-1), do: "Totals"
+  defp stringify_id(id), do: Atom.to_string(id)
 
   defp normalize_int(nil), do: 0
   defp normalize_int(x), do: x

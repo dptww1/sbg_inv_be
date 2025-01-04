@@ -17,7 +17,7 @@ defmodule SbgInv.Web.FactionControllerTest do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
 
-  test "errors out on summary when user is not logged in", %{conn: conn} do
+  test "errors out on summary when user is not logged in", %{conn: conn} do # TODO: must work!
     conn = get conn, Routes.faction_path(conn, :index)
     assert conn.status == 401
   end
@@ -62,24 +62,27 @@ defmodule SbgInv.Web.FactionControllerTest do
 
     conn = get conn, Routes.faction_path(conn, :show, TestHelper.faction_as_int(:rohan))
     assert json_response(conn, 200)["data"] == %{
-        "heroes" => [
-            %{
-              "id" => fid,
-              "name" => "ABC",
-              "plural_name" => "ABCs",
-              "type" => "hero",
-              "unique" => true,
-              "needed" => 9,
-              "owned" => 4,
-              "painted" => 2,
-              "slug" => "/azogs-legion/abc",
-              "num_painting_guides" => 1,
-              "num_analyses" => 1
-            }
-        ],
-        "monsters" => [],
-        "siegers" => [],
-        "warriors" => []
+      "sources" => [
+        %{ "book" => "alotr2", "issue" => nil, "page" => 90, "url" => nil }
+      ],
+      "heroes" => [
+        %{
+          "id" => fid,
+          "name" => "ABC",
+          "plural_name" => "ABCs",
+          "type" => "hero",
+          "unique" => true,
+          "needed" => 9,
+          "owned" => 4,
+          "painted" => 2,
+          "slug" => "/azogs-legion/abc",
+          "num_painting_guides" => 1,
+          "num_analyses" => 1
+        }
+      ],
+      "monsters" => [],
+      "siegers" => [],
+      "warriors" => []
     }
   end
 
@@ -87,26 +90,29 @@ defmodule SbgInv.Web.FactionControllerTest do
     scenario = Repo.insert! %Scenario{name: "A", blurb: "B", date_age: 3, date_year: 1, date_month: 1, date_day: 1, size: 5,
                                       map_width: 7, map_height: 9, location: :eriador}
 
-    faction1 = Repo.insert! %ScenarioFaction{faction: :mirkwood,  scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 1}
+    faction1 = Repo.insert! %ScenarioFaction{faction: :lindon,  scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 1}
     _faction2 = Repo.insert! %ScenarioFaction{faction: :white_council, scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 2}
 
     role1 = Repo.insert! %Role{scenario_faction_id: faction1.id, amount: 1, sort_order: 1, name: "ABC"}
     role2 = Repo.insert! %Role{scenario_faction_id: faction1.id, amount: 4, sort_order: 2, name: "DEF"}
 
     _1 = insert_figure(:white_council, "??", "??s", :hero)  # verify only selected faction figures show up
-    f2 = insert_figure(:mirkwood, "h2", "h2s", :hero)
-    f3 = insert_figure(:mirkwood, "h1", "h1s", :hero, true, "h1s_slug")
-    f4 = insert_figure(:mirkwood, "w3", "w3s", :warrior)
-    f5 = insert_figure(:mirkwood, "w1", "w1s", :warrior)
-    f6 = insert_figure(:mirkwood, "m3", "m3s", :monster)
-    f7 = insert_figure(:mirkwood, "m1", "m1s", :monster, true)
-    f8 = insert_figure(:mirkwood, "s3", "s3s", :sieger)
+    f2 = insert_figure(:lindon, "h2", "h2s", :hero)
+    f3 = insert_figure(:lindon, "h1", "h1s", :hero, true, "h1s_slug")
+    f4 = insert_figure(:lindon, "w3", "w3s", :warrior)
+    f5 = insert_figure(:lindon, "w1", "w1s", :warrior)
+    f6 = insert_figure(:lindon, "m3", "m3s", :monster)
+    f7 = insert_figure(:lindon, "m1", "m1s", :monster, true)
+    f8 = insert_figure(:lindon, "s3", "s3s", :sieger)
 
     Repo.insert! %RoleFigure{role_id: role1.id, figure_id: f2.id}
     Repo.insert! %RoleFigure{role_id: role2.id, figure_id: f4.id}
 
-    conn = get conn, Routes.faction_path(conn, :show, TestHelper.faction_as_int(:mirkwood))
+    conn = get conn, Routes.faction_path(conn, :show, TestHelper.faction_as_int(:lindon))
     assert json_response(conn, 200)["data"] == %{
+      "sources" => [
+        %{ "book" => "alotr2", "issue" => nil, "page" => 122, "url" => nil }
+      ],
       "heroes" => [
           %{"name" => "h1", "plural_name" => "h1s", "type" => "hero", "unique" => true,  "id" => f3.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => "h1s_slug", "num_painting_guides" => 0, "num_analyses" => 0},
           %{"name" => "h2", "plural_name" => "h2s", "type" => "hero", "unique" => false, "id" => f2.id, "needed" => 1, "owned" => 0, "painted" => 0, "slug" => nil, "num_painting_guides" => 0, "num_analyses" => 0},
@@ -143,7 +149,7 @@ defmodule SbgInv.Web.FactionControllerTest do
     Repo.insert! %UserFigure{figure_id: f1.id, user_id: user1.id, owned: 8, painted: 4}
     Repo.insert! %UserFigure{figure_id: f7.id, user_id: user2.id, owned: 3, painted: 1}
 
-    conn = get conn, Routes.faction_path(conn, :show, -1)
+    conn = get conn, Routes.faction_path(conn, :show, "-1")
     assert json_response(conn, 200)["data"] == %{
       "heroes"   => [
         %{"name" => "??", "plural_name" => "??s", "type" => "hero",    "unique" => false, "id" => f1.id, "needed" => 0, "owned" => 8, "painted" => 4, "slug" => nil, "num_painting_guides" => 0, "num_analyses" => 0 },

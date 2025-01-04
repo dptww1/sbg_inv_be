@@ -26,6 +26,8 @@ which I omit in the tables below to save space.
   * [Scenario Resource Type](#scenario-resource-type)
   * [User Figure Op](#user-figure-op)
 * [Tables](#tables)
+*** [army_lists](#army_lists)
+*** [army_lists_sources](#army_lists_sources)
   * [character_figures](#character_figures)
   * [character_resources](#character_resources)
   * [characters](#characters)
@@ -34,7 +36,7 @@ which I omit in the tables below to save space.
   * [news_item](#news_item)
   * [role_figures](#role_figures)
   * [roles](#roles)
-  * [schema_migrations](#schema-migrations)
+  * [schema_migrations](#schema_migrations)
   * [scenario_factions](#scenario_factions)
   * [scenario_resources](#scenario_resources)
   * [scenarios](#scenarios)
@@ -318,6 +320,38 @@ use the strings instead.
 | 4 | Paint | `"paint"` | converting unpainted to painted |
 
 ## Tables
+
+### army_lists
+
+A lookup table for an army list (what used to be a [faction](#faction)).  This table is slated
+to replace the `faction` enumeration at some point in the future.  The [faction_figures](#faction_figures)
+`faction_id` will eventually be an FK to this table's `id`.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| name | string | name of the army list, e.g. "Battle of Fornost"
+| abbrev | string | the equivalent [faction](#faction) string, e.g. "fornost"
+| alignment | integer | 0 = Good, 1 = Evil
+| legacy | boolean | if true, army list is now obsolete
+
+`name`, `abbrev`, and `alignment` are required.
+
+### army_lists_sources
+
+One or more references to the place where an [army_lists](#army_lists)'s specs are defined.
+An army list can have more than one reference (e.g. Rivendell) which makes this table
+necessary.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| army_list_id | int8 | FK to [army_lists](#army_lists) `id`
+| book | int8 | one of the [Books](#books)
+| issue | string | issue number if `book` is a magazine
+| page | int8 | page number
+| url | string | URL of the reference
+| sort_order | int8 | ordering of the sources, lower values first
+
+`army_list_id`, `sort_order`, and either (`book` & `page`) or `url` are required.
 
 ### character_figures
 
