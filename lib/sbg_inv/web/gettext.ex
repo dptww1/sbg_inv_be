@@ -20,5 +20,5 @@ defmodule SbgInv.Web.Gettext do
 
   See the [Gettext Docs](http://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :sbg_inv
+  use Gettext.Backend, otp_app: :sbg_inv
 end

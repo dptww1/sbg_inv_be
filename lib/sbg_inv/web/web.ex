@@ -47,7 +47,7 @@ defmodule SbgInv.Web do
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
 
       # Use all HTML functionality (forms, tags, etc)
-      use Phoenix.HTML
+      import Phoenix.HTML
 
       alias SbgInv.Web.Router.Helpers, as: Routes
       import SbgInv.Web.ErrorHelpers
