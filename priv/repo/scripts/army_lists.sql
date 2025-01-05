@@ -1,3 +1,5 @@
+/* Initial population of the army_lists and army_lists_sources table.
+   Doesn't not account for now-obsolete lists (e.g. Far Harad). */
 delete from army_lists;
 insert into army_lists (id, name, abbrev, alignment, inserted_at, updated_at) values
 (2, 'Arnor', 'arnor', 0, current_timestamp, current_timestamp),
