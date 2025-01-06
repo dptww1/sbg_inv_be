@@ -1,3 +1,9 @@
+# OBSOLETE! This file has not been maintained since the initial site release in 2019.
+# Table structures may have changed, new tables have certainly been added, data bugs
+# have been fixed, and new figures have been added which are not reflected in this file.
+# As such, this file is probably not runnable and is useful only for whatever historical
+# interest it may have, or as a rough guide to example data.
+
 # Script for populating the database. You can run it as:
 #
 #     mix run priv/repo/seeds.exs
