@@ -50,11 +50,15 @@ which I omit in the tables below to save space.
 
 ### Add a new figure pose to the relevant scenarios
 
-As of this writing, the services provide no way to link a new figure being
+~~As of this writing, the services provide no way to link a new figure being
 added to the scenarios in which it should appear other than editing each
 scenario one by one.  This is sometimes onerous for frequently-appearing
 characters (think Aragorn) and so it's easier just to manipulate the database
-directly.
+directly.~~
+
+The SQL here still works, but now when adding a figure through the admin UI
+you can select a "Same As" figure which associates the new figure with the same scenario
+roles and character as the chosen "Same As" figure.
 
 Given the `old_figure_id` is the `id` of an existing [Figure](#figures)
 and `new_figure_id` is the `id` of the new [Figure](#figures) being added,
