@@ -45,6 +45,8 @@ the [Database Documentation](database.md).
 * [`PUT /figure/:id`](#put-figureid)
 * [`GET /newsitem`](#get-newsitem)
 * [`POST /newsitem`](#post-newsitem)
+* [`PUT /newsitem/:id`](#put-newsitemid)
+* [`DELETE /newsitem/:id`](#delete-newsitemid)
 * [`POST /reset-password`](#post-reset-password)
 * [`GET /search`](#get-search)
 * [`PUT /scenario-faction/:id`](#put-scenario-factionid)
@@ -731,8 +733,10 @@ Example return payload:
 ### `POST /newsitem`
 
 - **Authentication** Admin
-- **Normal HTTP Response Code** 202 (not 200)
+- **Normal HTTP Response Code** 200
 - **Error HTTP Response Code** 401 Authorization error
+
+Create a news item, returning the created item:
 
 Example input payload:
 
@@ -743,7 +747,44 @@ Example input payload:
 }
 ```
 
-There is no return payload, only the 202 HTTP response code.
+Example return payload:
+
+```json
+{
+  "id": 1873,
+  "item_text": "News headline",
+  "item_date": "2023-04-20"
+}
+```
+
+
+### `PUT /newsitem/:id`
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 200
+- **Error HTTP Response Code** 401 Authorization error
+
+Edit a news item, returning the edited item.
+
+Example input payload:
+
+```json
+{
+  "id": 1278,
+  "item_text": "New News headline",
+  "item_date": "2024-05-21"
+}
+```
+
+The return payload is the same as the input payload.
+
+### `DELETE /newsitem/:id`
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 204 (not 200)
+- **Error HTTP Response Code** 401 Authorization error
+
+Deletes the given news item.  There is no return payload.
 
 ### `POST /reset-password`
 
