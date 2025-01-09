@@ -24,4 +24,9 @@ defmodule SbgInv.Web.NewsItem do
     order_by: [desc: n.item_date],
     limit: ^limit
   end
+
+  def query_by_id(id) do
+    from n in SbgInv.Web.NewsItem,
+    where: n.id == ^id
+  end
 end

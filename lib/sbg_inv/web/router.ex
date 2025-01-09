@@ -20,7 +20,7 @@ defmodule SbgInv.Web.Router do
     resources "/character",        CharacterController,     only: [:create, :show, :update]
     resources "/faction",          FactionController,       only: [:index, :show]
     resources "/figure",           FigureController,        only: [:create, :show, :update]
-    resources "/newsitem",         NewsItemController,      only: [:create, :index]
+    resources "/newsitem",         NewsItemController,      only: [:create, :index, :update, :delete]
     resources "/recalc",           RecalcController,        only: [:index]
     resources "/reset-password",   ResetPasswordController, only: [:create]
     resources "/search",           SearchController,        only: [:index]

@@ -24,12 +24,37 @@ defmodule SbgInv.Web.NewsItemController do
     end
   end
 
-  def update_or_create(conn, news_item, params) do
+  def update(conn, %{"id" => id, "news_item" => params}) do
+    with_admin_user conn do
+      item =
+        NewsItem.query_by_id(id)
+        |> Repo.one
+
+      update_or_create(conn, item, params)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    with_admin_user conn do
+      item =
+        NewsItem.query_by_id(id)
+        |> Repo.one
+
+      if item do
+        Repo.delete!(item)
+        send_resp conn, :no_content, ""
+      else
+        send_resp conn, :not_found, ""
+      end
+    end
+  end
+
+  defp update_or_create(conn, news_item, params) do
     changeset = NewsItem.changeset(news_item, params)
 
     case Repo.insert_or_update(changeset) do
-    {:ok, _news_item} ->
-        send_resp(conn, :accepted, "")
+    {:ok, news_item} ->
+      render(conn, "news_item.json", news_item: news_item)
 
     {:error, _changeset} ->
         send_resp(conn, :unprocessable_entity, "")

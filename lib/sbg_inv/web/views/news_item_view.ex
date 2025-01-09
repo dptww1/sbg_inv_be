@@ -8,6 +8,7 @@ defmodule SbgInv.Web.NewsItemView do
 
   def render("news_item.json", %{news_item: news_item}) do
     %{
+      id: news_item.id,
       item_text: news_item.item_text,
       item_date: news_item.item_date
     }
