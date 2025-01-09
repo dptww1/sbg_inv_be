@@ -80,4 +80,5 @@ config :sbg_inv, SbgInv.Repo,
        url: System.get_env("DATABASE_URL"),
        database: "",
        ssl: true,
-       pool_size: 2 # Free tier db only allows 4 connections. Rolling deploys need pool_size*(n+1) connections.
+       ssl_opts: [verify: :verify_none],
+       pool_size: 10 # Free tier db only allows 4 connections. Rolling deploys need pool_size*(n+1) connections.
