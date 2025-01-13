@@ -75,36 +75,70 @@ the [Database Documentation](database.md).
 - **Authentication** none
 - **Normal HTTP Response Code** 200
 
-Retrieves the text for the "about this site"-type text.  The text will contain
-HTML markup that should be protected from escaping when rendered.
+Retrieves the text for the "about this site"-type text and the FAQs
+appearing on the same page.
 
 Example return payload:
 
 ```json
 {
   "data": {
-    "about": "This web site..."
+    "about": "This web site...",
+    "faqs": [
+      {
+        "id": 1,
+        "question": "Why don't you...",
+        "answer": "Because ....",
+        "sort_order": 1
+      },
+      {
+        "id": 2,
+        "question": "How do I ...",
+        "answer": "By clicking the ...",
+        "sort_order": 2
+      }
+    ]
   }
 }
 ```
 
+Any or all of text data will contain
+HTML markup that should be protected from escaping when rendered.
+
 ### `PUT /about/:id
 
 - **Authentication** Admin
-- **Normal HTTP Response Code** 204 No change (not 200!)
+- **Normal HTTP Response Code** 200
 - **Error HTTP Response Code** 401 Unauthorized
 
-Updates the "about this site" text.
+Updates the "about this site" text and/or the FAQs.
 
 Example input payload:
 
 ```json
 {
-  "body_text": "Updated this web site..."
+  "body_text": "Updated this web site...",
+  "faqs": [
+    {
+      "question": "How come you...",
+      "answer": "Because ....",
+      "sort_order": 1
+    },
+      {
+        "id": 2,
+        "question": "How do I ...",
+        "answer": "By clicking the ...",
+        "sort_order": 2
+      }
+    ]
 }
 ```
 
 Since there is only one "about" text, the actual `:id` passed to this service is irrelevant.
+Both `body_text` and `faqs` must be supplied, even if unchanged.  Of course new FAQ entries
+won't have an `id`, as in the first FAQ in the example payload.
+
+The return payload is the same as [`GET /about`](#get-about).
 
 ### `GET /character/:id`
 

@@ -9,6 +9,7 @@ defmodule SbgInv.Repo.Migrations.AddAboutAndFaqs do
     end
 
     create table(:faqs) do
+      add :about_id, references(:about, on_delete: :delete_all)
       add :question, :text
       add :answer, :text
       add :sort_order, :integer

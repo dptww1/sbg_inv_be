@@ -6,25 +6,29 @@ defmodule SbgInv.Web.AboutController do
   alias SbgInv.Web.About
 
   def index(conn, _params) do
-    about = About.query_singleton() |> Repo.one!
-
-    render(conn, "index.json", about: about)
+    render(conn, "index.json", about: load_about())
   end
 
   # as About is effectively a singleton, the "id" parameter can be ignored
   def update(conn, %{"about" => about_params}) do
     with_admin_user conn do
-      about = About.query_singleton() |> Repo.one!
+      about = load_about()
 
       changeset = About.changeset(about, about_params)
 
       case Repo.insert_or_update(changeset) do
         {:ok, _about} ->
-          send_resp(conn, :no_content, "")
+          render(conn, "index.json", about: load_about())
 
         {:error, _changeset} ->
           send_resp(conn, :unprocessable_entity, "")
       end
     end
+  end
+
+  defp load_about do
+    About.query_singleton()
+    |> About.with_faqs()
+    |> Repo.one!
   end
 end

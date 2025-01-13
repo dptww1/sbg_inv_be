@@ -33,6 +33,7 @@ which I omit in the tables below to save space.
   * [character_resources](#character_resources)
   * [characters](#characters)
   * [faction_figures](#faction_figures)
+  * [faqs](#faqs)
   * [figures](#figures)
   * [news_item](#news_item)
   * [role_figures](#role_figures)
@@ -330,9 +331,9 @@ use the strings instead.
 
 A place to store the "Welcome!" text on the About tab.
 
-| Field | Type |
-|-------|------|
-| body_text | text |
+| Field | Type | Notes |
+|-------|------|-------|
+| body_text | text | may contain HTML markup |
 
 There should be only a single row.
 
@@ -451,6 +452,19 @@ Links [Figures](#figures) to their factions.
 |-------|------|--------
 | faction_id | int4 | a [Faction](#faction)
 | figure_id | int4 | FK to [Figures](#figures)
+
+### faqs
+
+Stores Frequently Asked Questions.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| about_id | int4 | FK to the [about][#about] singleton |
+| question | text | may contain HTML markup |
+| answer | text | may contain HTML markup|
+| sort_order | integer | |
+
+All fields are required. `sort_order` runs 1..n, first to last.
 
 ### figures
 
