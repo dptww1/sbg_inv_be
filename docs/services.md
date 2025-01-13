@@ -35,6 +35,8 @@ the [Database Documentation](database.md).
 
 ## Table of Contents
 
+* [`GET /about`](#get-about)
+* [`PUT /about/:id`](#put-aboutid)
 * [`GET /character/:id`](#get-characterid)
 * [`POST /character`](#post-character)
 * [`PUT /character/:id`](#put-characterid)
@@ -68,6 +70,42 @@ the [Database Documentation](database.md).
 * [`PUT /users/:id`](#put-usersid)
 
 ## Service Call Details
+### `GET /about`
+
+- **Authentication** none
+- **Normal HTTP Response Code** 200
+
+Retrieves the text for the "about this site"-type text.  The text will contain
+HTML markup that should be protected from escaping when rendered.
+
+Example return payload:
+
+```json
+{
+  "data": {
+    "about": "This web site..."
+  }
+}
+```
+
+### `PUT /about/:id
+
+- **Authentication** Admin
+- **Normal HTTP Response Code** 204 No change (not 200!)
+- **Error HTTP Response Code** 401 Unauthorized
+
+Updates the "about this site" text.
+
+Example input payload:
+
+```json
+{
+  "body_text": "Updated this web site..."
+}
+```
+
+Since there is only one "about" text, the actual `:id` passed to this service is irrelevant.
+
 ### `GET /character/:id`
 
 - **Authentication** Admin

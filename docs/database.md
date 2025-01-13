@@ -26,6 +26,7 @@ which I omit in the tables below to save space.
   * [Scenario Resource Type](#scenario-resource-type)
   * [User Figure Op](#user-figure-op)
 * [Tables](#tables)
+  * [about][#about]
   * [army_lists](#army_lists)
   * [army_lists_sources](#army_lists_sources)
   * [character_figures](#character_figures)
@@ -324,6 +325,16 @@ use the strings instead.
 | 4 | Paint | `"paint"` | converting unpainted to painted |
 
 ## Tables
+
+### about
+
+A place to store the "Welcome!" text on the About tab.
+
+| Field | Type |
+|-------|------|
+| body_text | text |
+
+There should be only a single row.
 
 ### army_lists
 
