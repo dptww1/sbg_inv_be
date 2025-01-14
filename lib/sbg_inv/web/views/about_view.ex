@@ -6,7 +6,7 @@ defmodule SbgInv.Web.AboutView do
   def render("index.json", %{about: about}) do
     %{
       data: %{
-        about: about.body_text,
+        body_text: about.body_text,
         faqs: render_many(about.faqs, FAQView, "faq.json", as: :faq)
       }
     }

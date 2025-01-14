@@ -33,7 +33,7 @@ defmodule SbgInv.Web.AboutControllerTest do
   test "anonymous user can get About text + FAQs", %{conn: conn} = context do
     conn = get conn, Routes.about_path(conn, :index)
     assert json_response(conn, 200)["data"] == %{
-             "about" => "<p>first</p><p>second</p>",
+             "body_text" => "<p>first</p><p>second</p>",
              "faqs" => [
                %{"id" => context.ids.faq1_id, "question" => "Q1", "answer" => "A1", "sort_order" => 1},
                %{"id" => context.ids.faq2_id, "question" => "Q2", "answer" => "A2", "sort_order" => 2}
@@ -56,7 +56,7 @@ defmodule SbgInv.Web.AboutControllerTest do
                   |> Repo.one!
 
     assert json_response(conn, 200)["data"] == %{
-             "about" => @valid_attrs.body_text,
+             "body_text" => @valid_attrs.body_text,
              "faqs" => [
                %{
                  "id" => context.ids.faq1_id,
