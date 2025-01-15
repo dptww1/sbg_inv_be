@@ -105,7 +105,7 @@ Example return payload:
 Any or all of text data will contain
 HTML markup that should be protected from escaping when rendered.
 
-### `PUT /about/:id
+### `PUT /about/:id`
 
 - **Authentication** Admin
 - **Normal HTTP Response Code** 200
