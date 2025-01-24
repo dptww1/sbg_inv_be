@@ -349,8 +349,11 @@ to replace the `faction` enumeration at some point in the future.  The [faction_
 | abbrev | string | the equivalent [faction](#faction) string, e.g. "fornost"
 | alignment | integer | 0 = Good, 1 = Evil
 | legacy | boolean | if true, army list is now obsolete
+| keywords | string | space-separated list of keywords, e.g. "hobbits menOfTheNorth"
 
 `name`, `abbrev`, and `alignment` are required.
+
+`keywords` is one or more words used for filtering the army lists.
 
 ### army_lists_sources
 

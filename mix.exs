@@ -34,6 +34,8 @@ defmodule SbgInv.Mixfile do
     [{:phoenix, "~> 1.7.18"},
      {:phoenix_pubsub, "~> 2.0"},
      {:phoenix_view, "~> 2.0.4"},
+     {:phoenix_live_view, "~> 1.0.2"},
+     {:phoenix_live_dashboard, "~> 0.8.6"},
      {:postgrex, ">= 0.19.3"},
      {:ecto_sql, "~> 3.12.1"},
      {:phoenix_ecto, "~> 4.6.3"},

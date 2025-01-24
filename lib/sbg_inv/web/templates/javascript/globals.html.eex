@@ -1,0 +1,51 @@
+const FACTION_INFO = (() => {
+
+  const factionsByAbbrev = {};
+  const factionsByAlignment = [];
+  const factionsById = {};
+  const factionsByName = {};
+  const sortedNames = [];
+
+  let factions = [
+    <%= for army <- army_lists() do %>
+      <%= { :safe, "{ \"abbrev\": \"#{army.abbrev}\", \"id\": #{army.id}, \"name\": \"#{army.name}\", \"alignment\": #{army.alignment}, \"legacy\": #{if army.legacy, do: "true", else: "false"}, \"keywords\": \"#{army.keywords}\" }," } %>
+    <% end %>
+  ];
+
+  const getWithRefresh = (getter, param) => {
+    const res = getter.call(window, param);
+    if (!res) {
+        console.log("no", param, "so need to reload!"); // TODO REMOVE
+        alert("OOPS");
+        //location.reload();
+    }
+
+    return res;
+  };
+
+  factionsByAlignment[0] = [];
+  factionsByAlignment[1] = [];
+
+  factions.forEach(f => {
+    factionsByAbbrev[f.abbrev] = f;
+    factionsByAlignment[f.alignment].push(f);
+    factionsById[f.id] = f;
+    factionsByName[f.name] = f;
+    sortedNames.push(f.name);
+  });
+
+  sortedNames.sort();
+
+  return {
+    byAbbrev: abbrev => getWithRefresh(s => factionsByAbbrev[s], abbrev),
+
+    byAlignment: align => getWithRefresh(n => factionsByAlignment[n], align),
+
+    byId: id => getWithRefresh(s => factionsById[s], id),
+
+    byName: name => getWithRefresh(s => factionsByName[s], name),
+
+    sortedFactionNames: () => sortedNames
+  };
+})();
+

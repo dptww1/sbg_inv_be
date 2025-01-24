@@ -9,9 +9,20 @@ defmodule SbgInv.Web.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :dynamic_js do
+    plug :accepts, ["javascript"]
+    plug :put_secure_browser_headers
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
     plug SbgInv.Web.Authentication
+  end
+
+  scope "/", SbgInv.Web do
+    pipe_through :dynamic_js
+
+    resources "/js", JavascriptController, only: [:show]
   end
 
   scope "/api", SbgInv.Web do

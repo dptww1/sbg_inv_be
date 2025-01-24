@@ -11,10 +11,16 @@ defmodule SbgInv.Web.ArmyList do
     field :abbrev, :string
     field :alignment, :integer
     field :legacy, :boolean
+    field :keywords, :string
 
     timestamps()
 
     has_many :sources, ArmyListSource, on_replace: :delete
+  end
+
+  def query_all() do
+    from f in ArmyList,
+    order_by: :name
   end
 
   def query_by_id(id) do

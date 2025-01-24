@@ -32,6 +32,14 @@ defmodule SbgInv.Web.FactionView do
     }
   end
 
+  def render("bare_index.json", %{factions: list}) do
+    %{
+      data: %{
+        factions: render_many(list, __MODULE__, "bare_index_entry.json")
+      }
+    }
+  end
+
   def render("index.json", %{factions: list}) do
     %{data: Enum.reduce(list,
       %{},
@@ -52,6 +60,17 @@ defmodule SbgInv.Web.FactionView do
       issue: source.issue,
       page: source.page,
       url: source.url
+    }
+  end
+
+  def render("bare_index_entry.json", %{faction: faction}) do
+    %{
+      id: faction.id,
+      name: faction.name,
+      abbrev: faction.abbrev,
+      alignment: faction.alignment,
+      legacy: !!faction.legacy, # normalize from true/nil to true/false
+      keywords: faction.keywords
     }
   end
 

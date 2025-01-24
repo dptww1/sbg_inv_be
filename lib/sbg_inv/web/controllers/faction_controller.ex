@@ -2,38 +2,10 @@ defmodule SbgInv.Web.FactionController do
 
   use SbgInv.Web, :controller
 
-  import SbgInv.Web.ControllerMacros
-
   alias SbgInv.Web.{ArmyList, Authentication, FactionFigure}
 
   def index(conn, _params) do
-    # Ordinarily `index` operations wouldn't require an authenticated user.
-    # But without a user, the only thing that can be shown is the list of
-    # faction names, so the FE saves a network call and uses its own
-    # data structures to show that.  # TODO: make the network call to remove hardwiring in FE
-    with_auth_user conn do
-      totals =
-        Authentication.user_id(conn)
-        |> FactionFigure.query_user_figure_totals
-        |> Repo.one
-
-      list =
-        (Authentication.user_id(conn)
-         |> FactionFigure.query_collection_figures_by_faction
-         |> Repo.all)
-        ++ [%{
-          id: -1,
-          name: "Totals",
-          plural_name: "Totals",
-          type: 0,
-          unique: true,
-          needed: 0,
-          owned: totals.owned,
-          painted: totals.painted
-        }]
-
-      render(conn, "index.json", factions: list)
-    end
+    _index(conn, Map.get(conn.assigns, :current_user))
   end
 
   def show(conn, %{"id" => "-1"}), do: _show(conn, -1)
@@ -43,6 +15,33 @@ defmodule SbgInv.Web.FactionController do
     |> Repo.one
 
     _show(conn, army_list)
+  end
+
+  defp _index(conn, nil) do
+    render(conn, "bare_index.json", factions: ArmyList.query_all() |> Repo.all)
+  end
+  defp _index(conn, _user) do
+    totals =
+      Authentication.user_id(conn)
+      |> FactionFigure.query_user_figure_totals
+      |> Repo.one
+
+    list =
+      (Authentication.user_id(conn)
+       |> FactionFigure.query_collection_figures_by_faction
+       |> Repo.all)
+      ++ [%{
+        id: -1,
+        name: "Totals",
+        plural_name: "Totals",
+        type: 0,
+        unique: true,
+        needed: 0,
+        owned: totals.owned,
+        painted: totals.painted
+      }]
+
+    render(conn, "index.json", factions: list)
   end
 
   defp _show(conn, nil) do

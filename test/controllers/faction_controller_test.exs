@@ -17,12 +17,17 @@ defmodule SbgInv.Web.FactionControllerTest do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
 
-  test "errors out on summary when user is not logged in", %{conn: conn} do # TODO: must work!
+  test "shows army lists / factions when user is not logged in", %{conn: conn} do
     conn = get conn, Routes.faction_path(conn, :index)
-    assert conn.status == 401
+    assert json_response(conn, 200)["data"]["factions"] |> Enum.slice(0, 4) == [
+             %{ "id" => 46, "name" => "Arathorn's Stand", "abbrev" => "arathorn",     "alignment" => 0, "legacy" => false, "keywords" => "menOfTheNorth" },
+             %{ "id" => 51, "name" => "Army of Carn Dûm", "abbrev" => "carn_dum",     "alignment" => 1, "legacy" => false, "keywords" => "angmar" },
+             %{ "id" => 59, "name" => "Army of Edoras",   "abbrev" => "army_edoras",  "alignment" => 0, "legacy" => false, "keywords" => "rohan" },
+             %{ "id" => 72, "name" => "Army of Gothmog",  "abbrev" => "army_gothmog", "alignment" => 1, "legacy" => false, "keywords" => "mordorAndAllies" }
+           ]
   end
 
-  test "factions summary returned for logged in user", %{conn: conn} do
+  test "shows army list with figure counts for logged in user", %{conn: conn} do
     user = TestHelper.create_user()
     user2 = TestHelper.create_user("og", "other_guy@example.com")
     conn = TestHelper.create_session(conn, user)

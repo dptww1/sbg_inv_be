@@ -370,13 +370,43 @@ Also note `"figures"` vs `"figure_ids"` and the different root name, `"character
 
 ### `GET /faction`
 
-- **Authentication** User
+- **Authentication** User (Optional)
 - **Normal HTTP Response Code** 200
-- **Error HTTP Resonse Code** 401 Authorization error
 
-Gets a list of factions, with the number of figures the users in that faction.
+Gets a list of factions.  Exact results depend on whether an authentication token is passed or not.
 
-Example return payload:
+Example return payload when no authentication token is passed:
+
+```json
+{
+  "data": {
+    "factions": [
+      {
+        "id": 46,
+        "abbrev": "arathorn",
+        "name": "Arathorn's Stand",
+        "alignment": 0,
+        "legacy": false,
+        "keywords": "menOfTheNorth"
+      },
+      {
+        "id": 51,
+        "abbrev": "carn_dum",
+        "name": "Army of Carn Dûm",
+        "alignment": 1,
+        "legacy": false,
+        "keywords": "angmar"
+      },
+      ...
+   }
+}
+```
+
+The factions are returns in alphabetical order by `"name"`.
+
+The fields correspond exactly to the [army_lists](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#army-lists) table.
+
+Example return payload when an authentication token is passed:
 
 ```json
 {
@@ -392,7 +422,7 @@ Example return payload:
 ```
 
 The above results are truncated for brevity. The results always have an entry in `"data"`
-for each [faction](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#faction)
+for each [army_list](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#army-lists)
 whether the user has any figures or not in that faction.
 
 The special entry `"Totals"` is the number of figures in the user's entire collection.  Since
