@@ -170,7 +170,7 @@ defmodule SbgInv.Web.FigureControllerTest do
     TestHelper.promote_user_to_admin(user)
 
     other_fig_id = TestHelper.std_scenario_figure_id(const_data)
-    TestHelper.add_faction_figure(other_fig_id, :rohan)
+    TestHelper.add_faction_figure(other_fig_id, 34)
 
     conn = post conn, Routes.figure_path(conn, :create), figure: %{name: "X2", plural_name: "X3", same_as: other_fig_id}
 
@@ -224,9 +224,9 @@ defmodule SbgInv.Web.FigureControllerTest do
 
     figure_id = TestHelper.std_scenario_figure_id(const_data, 0)
 
-    Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: :minas_tirith}
-    Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: :fiefdoms}
-    Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: :shire}
+    Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: 24}
+    Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: 15}
+    Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: 35}
 
     # We only edit the Figure<->Character relation from the Character side,
     # so updating the figure should preserve any Character relation

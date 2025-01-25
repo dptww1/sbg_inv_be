@@ -96,7 +96,7 @@ defmodule SbgInv.TestHelper do
     Repo.insert!(%UserScenario{user_id: user1.id, scenario_id: scenario.id, painted: 6, owned: 8})
     Repo.insert!(%UserScenario{user_id: user2.id, scenario_id: scenario.id, painted: 5, owned: 7})
 
-    faction = Repo.insert! %ScenarioFaction{faction: :rohan, scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 1}
+    faction = Repo.insert! %ScenarioFaction{faction: 34, scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 1}
 
     role1 = Repo.insert! %Role{scenario_faction_id: faction.id, amount: 9, sort_order: 1, name: "ABC"}
     role2 = Repo.insert! %Role{scenario_faction_id: faction.id, amount: 7, sort_order: 2, name: "DEF"}
@@ -142,8 +142,8 @@ defmodule SbgInv.TestHelper do
       num_painting_guides: 1,
       num_analyses: 1
     }
-    ch2 = Repo.insert! %Character{name: "N2", faction: :minas_tirith}
-    ch3 = Repo.insert! %Character{name: "N2b", faction: :rohan}
+    ch2 = Repo.insert! %Character{name: "N2", faction: 24}
+    ch3 = Repo.insert! %Character{name: "N2b", faction: 34}
 
     %{
       conn: conn,

@@ -70,7 +70,10 @@ defmodule SbgInv.Web.Figure do
   end
 
   def with_factions(query) do
-    ff_query = from ff in FactionFigure, order_by: :faction_id
+    ff_query =
+      from ff in FactionFigure,
+           preload: :army_list,
+           order_by: :faction_id
 
     from q in query,
     preload: [faction_figure: ^ff_query]

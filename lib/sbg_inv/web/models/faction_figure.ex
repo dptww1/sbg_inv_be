@@ -2,11 +2,10 @@ defmodule SbgInv.Web.FactionFigure do
 
   use SbgInv.Web, :model
 
-  alias SbgInv.Web.{FactionFigure, Figure, UserFigure}
+  alias SbgInv.Web.{ArmyList, FactionFigure, Figure, UserFigure}
 
   schema "faction_figures" do
-    field :faction_id, Faction
-
+    belongs_to :army_list, ArmyList, foreign_key: :faction_id
     belongs_to :figure, Figure
   end
 
@@ -40,11 +39,12 @@ defmodule SbgInv.Web.FactionFigure do
   def query_collection_figures_by_faction(user_id) do
     from ff in FactionFigure,
     left_join: uf in UserFigure, on: uf.figure_id == ff.figure_id,
-    group_by: [ff.faction_id, uf.user_id],
+    left_join: al in ArmyList, on: al.id == ff.faction_id,
+    group_by: [al.abbrev, uf.user_id],
     having: uf.user_id == ^user_id,
-    order_by: ff.faction_id,
+    order_by: al.abbrev,
     select: %{
-      id: ff.faction_id,
+      id: al.abbrev,
       owned: sum(uf.owned),
       painted: sum(uf.painted)
     }

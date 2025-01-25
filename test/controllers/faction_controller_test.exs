@@ -32,10 +32,10 @@ defmodule SbgInv.Web.FactionControllerTest do
     user2 = TestHelper.create_user("og", "other_guy@example.com")
     conn = TestHelper.create_session(conn, user)
 
-    fig1 = insert_figure(:rohan, "fig1", nil, :warrior)
-    fig2 = insert_figure(:rohan, "fig2", nil, :hero)
-    fig3 = insert_figure(:rivendell, "fig3", nil, :warrior)
-    fig4 = insert_figure(:mordor, "fig4", nil, :monster)
+    fig1 = insert_figure(34, "fig1", nil, :warrior)
+    fig2 = insert_figure(34, "fig2", nil, :hero)
+    fig3 = insert_figure(32, "fig3", nil, :warrior)
+    fig4 = insert_figure(27, "fig4", nil, :monster)
 
     Repo.insert! %UserFigure{user_id: user.id, figure_id: fig1.id, owned: 4, painted: 2}
     Repo.insert! %UserFigure{user_id: user.id, figure_id: fig2.id, owned: 3, painted: 3}
@@ -58,12 +58,12 @@ defmodule SbgInv.Web.FactionControllerTest do
     assert conn.status == 404
   end
 
-  test "shows faction list with user's collection info when user is logged in", %{conn: conn} do
+  test "shows army list details with user's collection info when user is logged in", %{conn: conn} do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
 
     fid = TestHelper.std_scenario_figure_id(const_data, 0)
 
-    Repo.insert! %FactionFigure{faction_id: :rohan, figure_id: fid}
+    Repo.insert! %FactionFigure{faction_id: 34, figure_id: fid}
 
     conn = get conn, Routes.faction_path(conn, :show, TestHelper.faction_as_int(:rohan))
     assert json_response(conn, 200)["data"] == %{
@@ -101,14 +101,14 @@ defmodule SbgInv.Web.FactionControllerTest do
     role1 = Repo.insert! %Role{scenario_faction_id: faction1.id, amount: 1, sort_order: 1, name: "ABC"}
     role2 = Repo.insert! %Role{scenario_faction_id: faction1.id, amount: 4, sort_order: 2, name: "DEF"}
 
-    _1 = insert_figure(:white_council, "??", "??s", :hero)  # verify only selected faction figures show up
-    f2 = insert_figure(:lindon, "h2", "h2s", :hero)
-    f3 = insert_figure(:lindon, "h1", "h1s", :hero, true, "h1s_slug")
-    f4 = insert_figure(:lindon, "w3", "w3s", :warrior)
-    f5 = insert_figure(:lindon, "w1", "w1s", :warrior)
-    f6 = insert_figure(:lindon, "m3", "m3s", :monster)
-    f7 = insert_figure(:lindon, "m1", "m1s", :monster, true)
-    f8 = insert_figure(:lindon, "s3", "s3s", :sieger)
+    _1 = insert_figure(42, "??", "??s", :hero)  # verify only selected faction figures show up
+    f2 = insert_figure(67, "h2", "h2s", :hero)
+    f3 = insert_figure(67, "h1", "h1s", :hero, true, "h1s_slug")
+    f4 = insert_figure(67, "w3", "w3s", :warrior)
+    f5 = insert_figure(67, "w1", "w1s", :warrior)
+    f6 = insert_figure(67, "m3", "m3s", :monster)
+    f7 = insert_figure(67, "m1", "m1s", :monster, true)
+    f8 = insert_figure(67, "s3", "s3s", :sieger)
 
     Repo.insert! %RoleFigure{role_id: role1.id, figure_id: f2.id}
     Repo.insert! %RoleFigure{role_id: role2.id, figure_id: f4.id}

@@ -5,7 +5,7 @@ defmodule SbgInv.Web.FigureController do
   import SbgInv.Web.ControllerMacros
 
   alias Ecto.Changeset
-  alias SbgInv.Web.{Authentication, Figure}
+  alias SbgInv.Web.{ArmyList, Authentication, Figure}
 
   def create(conn, %{"figure" => params}) do
     with_admin_user conn do
@@ -47,7 +47,12 @@ defmodule SbgInv.Web.FigureController do
   end
 
   defp update_or_create(conn, figure, params) do
-    ffs = Enum.map(Map.get(params, "factions", []), fn f -> %{:faction_id => f} end)
+    ffs = Map.get(params, "factions", [])
+    |> Enum.map(&ArmyList.query_by_abbrev/1)
+    |> Enum.map(&Repo.one/1)
+    |> Enum.map(&(%{:faction_id => &1.id}))
+    |> Enum.into([])
+
     changeset = Figure.changeset(figure, Map.put(params, "faction_figure", ffs))
 
     case Repo.insert_or_update(changeset) do

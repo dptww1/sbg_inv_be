@@ -28,9 +28,9 @@ defmodule SbgInv.FigureTest do
     user2 = TestHelper.create_user("b", "c@d.com")
 
     # Create FactionFigures
-    Repo.insert!(%FactionFigure{figure_id: check_figure.id, faction_id: :shire})
-    Repo.insert!(%FactionFigure{figure_id: check_figure.id, faction_id: :rohan})
-    Repo.insert!(%FactionFigure{figure_id: decoy_figure.id, faction_id: :angmar})
+    Repo.insert!(%FactionFigure{figure_id: check_figure.id, faction_id: 35})
+    Repo.insert!(%FactionFigure{figure_id: check_figure.id, faction_id: 34})
+    Repo.insert!(%FactionFigure{figure_id: decoy_figure.id, faction_id: 0})
 
     # Create UserFigures
     Repo.insert!(%UserFigure{user_id: user.id, figure_id: check_figure.id, owned: 2, painted: 7})
@@ -118,8 +118,8 @@ defmodule SbgInv.FigureTest do
 
     assert fig.name == @valid_attrs.name
     assert length(fig.faction_figure) == 2
-    assert Enum.at(fig.faction_figure, 0).faction_id == :rohan
-    assert Enum.at(fig.faction_figure, 1).faction_id == :shire
+    assert Enum.at(fig.faction_figure, 0).faction_id == 34
+    assert Enum.at(fig.faction_figure, 1).faction_id == 35
   end
 
   test "with_user_history() works with a valid id", context do

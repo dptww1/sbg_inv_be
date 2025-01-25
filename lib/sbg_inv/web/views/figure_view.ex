@@ -12,7 +12,7 @@ defmodule SbgInv.Web.FigureView do
          "type" => figure.type,
          "plural_name" => figure.plural_name,
          "slug" => figure.slug,
-         "factions" => Enum.map(figure.faction_figure, &(&1.faction_id)) |> Enum.sort(&(&1 <= &2)),
+         "factions" => Enum.map(figure.faction_figure, &(&1.army_list.abbrev)) |> Enum.sort(&(&1 <= &2)),
          "scenarios" => sorted_scenarios(figure.role),
          "owned" => user_figure_attr(figure.user_figure, :owned),
          "painted" => user_figure_attr(figure.user_figure, :painted),

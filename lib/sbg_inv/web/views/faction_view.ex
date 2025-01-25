@@ -90,7 +90,7 @@ defmodule SbgInv.Web.FactionView do
   end
 
   defp stringify_id(-1), do: "Totals"
-  defp stringify_id(id), do: Atom.to_string(id)
+  defp stringify_id(id), do: id
 
   defp normalize_int(nil), do: 0
   defp normalize_int(x), do: x

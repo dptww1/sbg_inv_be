@@ -15,9 +15,8 @@ const FACTION_INFO = (() => {
   const getWithRefresh = (getter, param) => {
     const res = getter.call(window, param);
     if (!res) {
-        console.log("no", param, "so need to reload!"); // TODO REMOVE
-        alert("OOPS");
-        //location.reload();
+        alert("Your army lists are out of date.  Click [OK] to reload the page.");
+        location.reload();
     }
 
     return res;
