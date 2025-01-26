@@ -6,7 +6,6 @@ defmodule SbgInv.Web.CharacterView do
     %{data: %{
       "id" => char.id,
       "name" => char.name,
-      "faction" => char.faction,
       "figures" => figure_list(char.figures),
       "resources" => render_many(char.resources, SbgInv.Web.CharacterResourceView, "resource.json", as: :resource),
       "rules" => render_many(char.rules, SbgInv.Web.CharacterRuleView, "rule.json", as: :rule),

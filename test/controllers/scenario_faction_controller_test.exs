@@ -43,7 +43,6 @@ defmodule SbgInv.RoleControllerTest do
 
     assert json_response(conn, 200) == %{
       "id" => faction_id,
-      "faction" => "fellowship",
       "suggested_points" => 2,
       "actual_points" => 1,
       "sort_order" => 2,
@@ -96,7 +95,6 @@ defmodule SbgInv.RoleControllerTest do
 
     assert json_response(conn, 200) == %{
       "id" => hd(data["scenario_factions"])["id"],
-      "faction" => "fangorn",
       "suggested_points" => 10,
       "actual_points" => 2,
       "sort_order" => 2,

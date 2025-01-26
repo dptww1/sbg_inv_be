@@ -55,7 +55,6 @@ defmodule SbgInv.Web.CharacterControllerTest do
     assert json_response(conn, 201)["data"] == %{
              "id" => check.id,
              "name" => @valid_attrs["name"],
-             "faction" => "harad",
              "figures" => [
                %{ "id" => f2.id, "name" => f2.name },
                %{ "id" => f1.id, "name" => f1.name }
@@ -95,7 +94,6 @@ defmodule SbgInv.Web.CharacterControllerTest do
 
     assert json_response(conn, 201)["data"] == %{
              "id" => check.id,
-             "faction" => "harad",
              "name" => @valid_attrs["name"],
              "figures" => [],
              "resources" => [],
@@ -158,7 +156,6 @@ defmodule SbgInv.Web.CharacterControllerTest do
     assert json_response(conn, 200)["data"] == %{
              "id" => check.id,
              "name" => @valid_attrs["name"],
-             "faction" => "harad",
              "figures" => [
                %{ "id" => f2.id, "name" => f2.name },
                %{ "id" => f1.id, "name" => f1.name }
@@ -210,7 +207,6 @@ defmodule SbgInv.Web.CharacterControllerTest do
     assert json_response(conn, 200)["data"] == %{
              "id" => ch_id,
              "name" => "N1",
-             "faction" => "harad",
              "figures" => [
                %{"id" => TestHelper.std_scenario_figure_id(const_data, 0), "name" => "ABC"}
              ],

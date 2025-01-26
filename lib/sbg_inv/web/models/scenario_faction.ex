@@ -5,7 +5,6 @@ defmodule SbgInv.Web.ScenarioFaction do
   alias SbgInv.Web.{Role, Scenario, ScenarioFaction}
 
   schema "scenario_factions" do
-    field :faction, Faction
     field :suggested_points, :integer
     field :actual_points, :integer
     field :sort_order, :integer
@@ -16,7 +15,7 @@ defmodule SbgInv.Web.ScenarioFaction do
     has_many :roles, Role, on_replace: :delete
   end
 
-  @required_fields [:faction, :suggested_points, :actual_points, :sort_order]
+  @required_fields [:suggested_points, :actual_points, :sort_order]
 
   @doc """
   Creates a changeset based on the `model` and `params`.

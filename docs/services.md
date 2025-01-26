@@ -156,7 +156,6 @@ Example return payload:
 ```json
 {
   "data": {
-    "faction": "fellowship",
     "figures": [
       {
         "id": 155,
@@ -241,7 +240,6 @@ Example input payload:
 {
   "character": {
     "name": "Test New Character",
-    "faction": "arnor",
     "book": "dotn",
     "page": 9,
     "figures_ids": ["500", "369"],
@@ -266,7 +264,6 @@ Example return payload:
   "data": {
     "id": 1234,
     "name": "Test New Character",
-    "faction": "arnor",
     "book": "dotn",
     "page": 9,
     "figures": [
@@ -313,7 +310,6 @@ Example input payload:
   "character": {
     "id": 1234,
     "name": "Test New Character, New Name",
-    "faction": "arnor",
     "book": "dotn",
     "page": 9,
     "figure_ids": ["500", "369"],
@@ -337,7 +333,6 @@ Example return payload:
 {
   "data": {
     "book": "dotn",
-    "faction": "arnor",
     "figures": [
       { "id": 1, "name": "Bûhrdur" },
       { "id": 500, "name": "Gollum (Fish)" },
@@ -983,7 +978,6 @@ Example input payload:
 {
   "scenario_faction": {
     "actual_points": "0",
-    "faction": "fellowship",
     "id": 1001,
     "roles": [
       {
@@ -1069,14 +1063,12 @@ Example response, limited to a single scenario for space reasons:
       "scenario_factions": [
         {
           "actual_points": 0,
-          "faction": "rivendell",
           "id": 671,
           "sort_order": 1,
           "suggested_points": 0
         },
         {
           "actual_points": 0,
-          "faction": "mordor",
           "id": 672,
           "sort_order": 2,
           "suggested_points": 0
@@ -1162,7 +1154,6 @@ Gets the details of a specific scenario.
     "scenario_factions": [
       {
         "actual_points": 0,
-        "faction": "fellowship",
         "id": 635,
         "roles": [
           {
@@ -1193,7 +1184,6 @@ Gets the details of a specific scenario.
       },
       {
         "actual_points": 0,
-        "faction": "isengard",
         "id": 636,
         "roles": [
           {
@@ -1304,13 +1294,11 @@ Example input payload:
     "scenario_factions": [
       {
         "actual_points": "0",
-        "faction": "fellowship",
         "sort_order": "1",
         "suggested_points": "0"
       },
       {
         "actual_points": "0",
-        "faction": "angmar",
         "sort_order": "2",
         "suggested_points": "0"
       }

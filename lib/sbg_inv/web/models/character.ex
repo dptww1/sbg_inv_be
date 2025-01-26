@@ -6,7 +6,6 @@ defmodule SbgInv.Web.Character do
 
   schema "characters" do
     field :name, :string
-    field :faction, Faction
     field :num_painting_guides, :integer
     field :num_analyses, :integer
 
@@ -27,7 +26,7 @@ defmodule SbgInv.Web.Character do
 
     changeset =
       character
-      |> cast(params, [:name, :faction])
+      |> cast(params, [:name])
       |> cast_assoc(:resources)
       |> cast_assoc(:rules)
       |> put_assoc(:figures, figures)

@@ -17,13 +17,6 @@ defmodule SbgInv.TestHelper do
     conn
   end
 
-  def faction_as_int(faction) do
-    case Faction.dump(faction) do
-      {:ok, int} -> int
-      {:error, _} -> raise "No such faction #{faction}"
-    end
-  end
-
   def clear_sessions(conn) do
     Repo.delete_all(Session)
     conn |> delete_req_header("authorization")
@@ -96,7 +89,7 @@ defmodule SbgInv.TestHelper do
     Repo.insert!(%UserScenario{user_id: user1.id, scenario_id: scenario.id, painted: 6, owned: 8})
     Repo.insert!(%UserScenario{user_id: user2.id, scenario_id: scenario.id, painted: 5, owned: 7})
 
-    faction = Repo.insert! %ScenarioFaction{faction: 34, scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 1}
+    faction = Repo.insert! %ScenarioFaction{scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 1}
 
     role1 = Repo.insert! %Role{scenario_faction_id: faction.id, amount: 9, sort_order: 1, name: "ABC"}
     role2 = Repo.insert! %Role{scenario_faction_id: faction.id, amount: 7, sort_order: 2, name: "DEF"}
@@ -114,7 +107,6 @@ defmodule SbgInv.TestHelper do
 
     ch1 = Repo.insert! %Character{
       name: "N1",
-      faction: :harad,
       figures: [figure1],
       resources: [
         %CharacterResource{
@@ -142,8 +134,8 @@ defmodule SbgInv.TestHelper do
       num_painting_guides: 1,
       num_analyses: 1
     }
-    ch2 = Repo.insert! %Character{name: "N2", faction: 24}
-    ch3 = Repo.insert! %Character{name: "N2b", faction: 34}
+    ch2 = Repo.insert! %Character{name: "N2"}
+    ch3 = Repo.insert! %Character{name: "N2b"}
 
     %{
       conn: conn,
@@ -168,7 +160,6 @@ defmodule SbgInv.TestHelper do
             "id" => faction.id,
             "actual_points" => 0,
             "suggested_points" => 0,
-            "faction" => "rohan",
             "sort_order" => 1,
             "roles" => [
               %{"id" => role1.id, "name" => "ABC", "amount" => 9, "num_owned" => 2, "num_painted" => 2, "sort_order" => 1, "figures" => [

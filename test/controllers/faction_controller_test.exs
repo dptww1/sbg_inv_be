@@ -65,7 +65,7 @@ defmodule SbgInv.Web.FactionControllerTest do
 
     Repo.insert! %FactionFigure{faction_id: 34, figure_id: fid}
 
-    conn = get conn, Routes.faction_path(conn, :show, TestHelper.faction_as_int(:rohan))
+    conn = get conn, Routes.faction_path(conn, :show, 34)
     assert json_response(conn, 200)["data"] == %{
       "sources" => [
         %{ "book" => "alotr2", "issue" => nil, "page" => 90, "url" => nil }
@@ -95,8 +95,8 @@ defmodule SbgInv.Web.FactionControllerTest do
     scenario = Repo.insert! %Scenario{name: "A", blurb: "B", date_age: 3, date_year: 1, date_month: 1, date_day: 1, size: 5,
                                       map_width: 7, map_height: 9, location: :eriador}
 
-    faction1 = Repo.insert! %ScenarioFaction{faction: :lindon,  scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 1}
-    _faction2 = Repo.insert! %ScenarioFaction{faction: :white_council, scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 2}
+    faction1 = Repo.insert! %ScenarioFaction{scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 1}
+    _faction2 = Repo.insert! %ScenarioFaction{scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 2}
 
     role1 = Repo.insert! %Role{scenario_faction_id: faction1.id, amount: 1, sort_order: 1, name: "ABC"}
     role2 = Repo.insert! %Role{scenario_faction_id: faction1.id, amount: 4, sort_order: 2, name: "DEF"}
@@ -113,7 +113,7 @@ defmodule SbgInv.Web.FactionControllerTest do
     Repo.insert! %RoleFigure{role_id: role1.id, figure_id: f2.id}
     Repo.insert! %RoleFigure{role_id: role2.id, figure_id: f4.id}
 
-    conn = get conn, Routes.faction_path(conn, :show, TestHelper.faction_as_int(:lindon))
+    conn = get conn, Routes.faction_path(conn, :show, 67)
     assert json_response(conn, 200)["data"] == %{
       "sources" => [
         %{ "book" => "alotr2", "issue" => nil, "page" => 122, "url" => nil }

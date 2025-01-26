@@ -13,7 +13,7 @@ defmodule SbgInv.FigureTest do
 
   setup do
     # Create Figures and Characters
-    decoy_char = Repo.insert!(%Character{name: "stu", faction: :minas_tirith})
+    decoy_char = Repo.insert!(%Character{name: "stu"})
     decoy_figure = Repo.insert!(Figure.changeset_with_characters(%Figure{}, Map.put(@valid_attrs, :character_ids, [decoy_char.id])))
 
     resources = [
@@ -21,7 +21,7 @@ defmodule SbgInv.FigureTest do
       %CharacterResource{title: "CR2", type: :analysis, url: "http://example.com"}
     ]
 
-    check_char = Repo.insert!(%Character{name: "xyz", faction: :rohan, resources: resources})
+    check_char = Repo.insert!(%Character{name: "xyz", resources: resources})
     check_figure = Repo.insert!(Figure.changeset_with_characters(%Figure{}, Map.put(@valid_attrs, :character_ids, [check_char.id])))
 
     user = TestHelper.create_user()
@@ -50,7 +50,7 @@ defmodule SbgInv.FigureTest do
     Repo.insert!(%ScenarioResource{scenario_id: scenario.id, resource_type: :source, sort_order: 1})
 
     # Create ScenarioFaction
-    sf = Repo.insert!(%ScenarioFaction{scenario_id: scenario.id, faction: :rohan, suggested_points: 0, actual_points: 0, sort_order: 1})
+    sf = Repo.insert!(%ScenarioFaction{scenario_id: scenario.id, suggested_points: 0, actual_points: 0, sort_order: 1})
 
     # Create Role
     Repo.insert!(%Role{scenario_faction_id: sf.id, amount: 3, sort_order: 1, name: "t", figures: [check_figure]})
@@ -140,7 +140,6 @@ defmodule SbgInv.FigureTest do
 
     assert fig.name == @valid_attrs.name
     assert Pathex.get(fig, path(:role / 0 / :name)) == "t"
-    assert Pathex.get(fig, path(:role / 0 / :scenario_faction / :faction)) == :rohan
     assert Pathex.get(fig, path(:role / 0 / :scenario_faction / :scenario / :name)) == "a"
   end
 end
