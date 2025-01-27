@@ -225,7 +225,7 @@ defmodule SbgInv.Web.FigureControllerTest do
     figure_id = TestHelper.std_scenario_figure_id(const_data, 0)
 
     Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: 24}
-    Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: 15}
+    Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: 14}
     Repo.insert! %FactionFigure{figure_id: figure_id, faction_id: 35}
 
     # We only edit the Figure<->Character relation from the Character side,

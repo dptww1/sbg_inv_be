@@ -30,7 +30,7 @@ defmodule SbgInv.FigureTest do
     # Create FactionFigures
     Repo.insert!(%FactionFigure{figure_id: check_figure.id, faction_id: 35})
     Repo.insert!(%FactionFigure{figure_id: check_figure.id, faction_id: 34})
-    Repo.insert!(%FactionFigure{figure_id: decoy_figure.id, faction_id: 0})
+    Repo.insert!(%FactionFigure{figure_id: decoy_figure.id, faction_id: 47})
 
     # Create UserFigures
     Repo.insert!(%UserFigure{user_id: user.id, figure_id: check_figure.id, owned: 2, painted: 7})

@@ -15,6 +15,7 @@ defmodule SbgInv.Web.FactionFigure do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields_insert)
+    |> foreign_key_constraint(:faction_id, name: "army_list")
     |> validate_required(@required_fields_insert)
     |> cast_assoc(:figure)
   end
@@ -22,6 +23,7 @@ defmodule SbgInv.Web.FactionFigure do
   def changeset_for_figure(model, params \\ %{}) do
     model
     |> cast(params, @required_fields_for_figure)
+    |> foreign_key_constraint(:faction_id, name: "army_list")
     |> validate_required(@required_fields_for_figure)
     |> cast_assoc(:figure)
   end
