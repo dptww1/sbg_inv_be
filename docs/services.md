@@ -662,7 +662,8 @@ There are two possible types of payload:
     "plural_name": "New Figure Names",
     "slug": "/arnor/new-figure",
     "type": "hero",
-    "unique": true
+    "unique": true,
+    "create_char": false
   }
 }
 ```
@@ -680,6 +681,9 @@ the front end actually has silhouettes.
 
 `"factions"` is an array of [faction](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#faction)
 strings.
+
+If `"create_char"` is `true`, then a [character](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#character)
+named `"name"` is created, and the new figure is associated with that character.
 
 2. Example input payload for creating a new figure copied from another figure:
 

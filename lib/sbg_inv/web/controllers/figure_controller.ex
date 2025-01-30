@@ -5,7 +5,7 @@ defmodule SbgInv.Web.FigureController do
   import SbgInv.Web.ControllerMacros
 
   alias Ecto.Changeset
-  alias SbgInv.Web.{ArmyList, Authentication, Figure}
+  alias SbgInv.Web.{ArmyList, Authentication, Character, Figure}
 
   def create(conn, %{"figure" => params}) do
     with_admin_user conn do
@@ -58,6 +58,7 @@ defmodule SbgInv.Web.FigureController do
     case Repo.insert_or_update(changeset) do
       {:ok, figure} ->
         figure = load_figure(conn, figure.id)
+        if Map.get(params, "create_char"), do: create_character(figure)
         render(conn, "figure.json", figure: figure)
 
       {:error, _changeset} ->
@@ -87,6 +88,15 @@ defmodule SbgInv.Web.FigureController do
       {:ok, figure}        -> render(conn, "figure.json", figure: load_figure(conn, figure.id))
       {:error, _changeset} -> send_resp(conn, :unprocessable_entity, "")
     end
+  end
+
+  defp create_character(figure) do
+    changeset = Character.changeset(%Character{}, %{
+      "name" => figure.name,
+      "figure_ids" => [ figure.id ]
+    })
+
+    Repo.insert(changeset)
   end
 
   defp load_figure(conn, id) do

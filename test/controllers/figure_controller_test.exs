@@ -3,7 +3,7 @@ defmodule SbgInv.Web.FigureControllerTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{FactionFigure, Figure, User, UserFigureHistory}
+  alias SbgInv.Web.{Character, FactionFigure, Figure, User, UserFigureHistory}
 
   @valid_attrs %{
     name: "The Name",
@@ -163,6 +163,39 @@ defmodule SbgInv.Web.FigureControllerTest do
              "rules" => [],
              "resources" => []
            }
+
+    # Make sure no stray character was created
+    assert 0 == Repo.all(Character) |> length
+  end
+
+  test "can create figure with character", %{conn: conn} do
+    user = Repo.insert! %User{name: "abc", email: "xyz@example.com", is_admin: true}
+    conn = TestHelper.create_session(conn, user)
+    conn = post conn, Routes.figure_path(conn, :create), figure: Map.merge(@valid_attrs, %{ create_char: true})
+
+    check = Repo.one!(Figure) |> Repo.preload([:faction_figure, [characters: :figures]])
+
+    assert json_response(conn, 200)["data"] == %{
+             "id" => check.id,
+             "name" => "The Name",
+             "plural_name" => "The Plural Name",
+             "type" => "warrior",
+             "unique" => false,
+             "slug" => "/rohan/the-name",
+             "history" => [],
+             "owned" => 0,
+             "painted" => 0,
+             "scenarios" => [],
+             "factions" => ["rohan", "shire"],
+             "rules" => [],
+             "resources" => []
+           }
+
+    # Characters aren't reflected directly in figure_view, except through the character's rules and resources
+    # But the service creates a character with neither of those. So we need separate checks.
+    assert length(check.characters) == 1
+    assert hd(check.characters).name == Map.get(@valid_attrs, :name)
+    assert length(hd(check.characters).figures) == 1
   end
 
   test "can create figure as 'copy' of existing figure", %{conn: conn} do
