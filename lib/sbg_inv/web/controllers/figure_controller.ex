@@ -75,8 +75,8 @@ defmodule SbgInv.Web.FigureController do
       name: Map.get(params, "name"),
       plural_name: Map.get(params, "plural_name"),
       type: src_figure.type,
-      unique: src_figure.unique
-      #slug: src_figure.slug, # don't copy slug -- that's unique per figure
+      unique: src_figure.unique,
+      slug: Map.get(params, "slug")
     }
 
     changeset = Figure.changeset(new_figure, %{"faction_figure" => ffs})

@@ -172,7 +172,7 @@ defmodule SbgInv.Web.FigureControllerTest do
     other_fig_id = TestHelper.std_scenario_figure_id(const_data)
     TestHelper.add_faction_figure(other_fig_id, 34)
 
-    conn = post conn, Routes.figure_path(conn, :create), figure: %{name: "X2", plural_name: "X3", same_as: other_fig_id}
+    conn = post conn, Routes.figure_path(conn, :create), figure: %{name: "X2", plural_name: "X3", same_as: other_fig_id, slug: "ZZZ"}
 
     check = Repo.all(Figure)
             |> Enum.find(nil, &(&1.name == "X2"))
@@ -183,7 +183,7 @@ defmodule SbgInv.Web.FigureControllerTest do
              "plural_name" => "X3",
              "type" => "hero", # copied from src
              "unique" => true, # copied from src
-             "slug" => nil,
+             "slug" => "ZZZ",
              "history" => [],
              "owned" => 0,
              "painted" => 0,
