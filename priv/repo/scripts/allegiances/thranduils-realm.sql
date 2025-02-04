@@ -7,7 +7,6 @@ INSERT INTO faction_figures (faction_id, figure_id) VALUES
 (106, 477),
 (106, 480),
 (106, 479),
-(106, 171),
 (106, 172),
 (106, 173),
 (106, 174),
