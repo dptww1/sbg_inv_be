@@ -32,5 +32,5 @@ INSERT INTO faction_figures (faction_id, figure_id) VALUES
 (95, 903),
 (95, 52),
 (95, 40),
-(95, 41),
+(95, 41)
 ;
