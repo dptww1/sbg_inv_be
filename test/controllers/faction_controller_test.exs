@@ -20,10 +20,10 @@ defmodule SbgInv.Web.FactionControllerTest do
   test "shows army lists / factions when user is not logged in", %{conn: conn} do
     conn = get conn, Routes.faction_path(conn, :index)
     assert json_response(conn, 200)["data"]["factions"] |> Enum.slice(0, 4) == [
-             %{ "id" => 46, "name" => "Arathorn's Stand", "abbrev" => "arathorn",     "alignment" => 0, "legacy" => false, "keywords" => "menOfTheNorth" },
-             %{ "id" => 51, "name" => "Army of Carn Dûm", "abbrev" => "carn_dum",     "alignment" => 1, "legacy" => false, "keywords" => "angmar" },
-             %{ "id" => 59, "name" => "Army of Edoras",   "abbrev" => "army_edoras",  "alignment" => 0, "legacy" => false, "keywords" => "rohan" },
-             %{ "id" => 72, "name" => "Army of Gothmog",  "abbrev" => "army_gothmog", "alignment" => 1, "legacy" => false, "keywords" => "mordorAndAllies" }
+             %{ "id" => 0,  "name" => "Angmar",           "abbrev" => "n_angmar",    "alignment" => 1, "legacy" => true,  "keywords" => "" },
+             %{ "id" => 46, "name" => "Arathorn's Stand", "abbrev" => "arathorn",    "alignment" => 0, "legacy" => false, "keywords" => "menOfTheNorth" },
+             %{ "id" => 51, "name" => "Army of Carn Dûm", "abbrev" => "carn_dum",    "alignment" => 1, "legacy" => false, "keywords" => "angmar" },
+             %{ "id" => 59, "name" => "Army of Edoras",   "abbrev" => "army_edoras", "alignment" => 0, "legacy" => false, "keywords" => "rohan" }
            ]
   end
 
@@ -137,14 +137,16 @@ defmodule SbgInv.Web.FactionControllerTest do
   end
 
   test "shows unaffiliated figures with user info for special value -1", %{conn: conn} do
-    f1 = insert_figure(0, "??", "??s", :hero)  # verify only non faction figures show up
+    # verify only figures with legacy-only (or no) faction_figures entry show
+    # first #: 9 => legacy (Dunharrow), 3 => non-legacy (Azog's Hunters)
+    f1 = insert_figure(9, "??", "??s", :hero)
     _2 = insert_figure(3, "h2", "h2s", :hero)
-    f3 = insert_figure(0, "h1", "h1s", :hero, true, "h1slug")
-    _4 = insert_figure(4, "w3", "w3s", :warrior)
-    f5 = insert_figure(0, "w1", "w1s", :warrior)
-    _6 = insert_figure(4, "m3", "m3s", :monster)
-    f7 = insert_figure(0, "m1", "m1s", :monster, true)
-    _8 = insert_figure(4, "s3", "s3s", :sieger)
+    f3 = insert_figure(9, "h1", "h1s", :hero, true, "h1slug")
+    _4 = insert_figure(3, "w3", "w3s", :warrior)
+    f5 = insert_figure(9, "w1", "w1s", :warrior)
+    _6 = insert_figure(3, "m3", "m3s", :monster)
+    f7 = insert_figure(9, "m1", "m1s", :monster, true)
+    _8 = insert_figure(3, "s3", "s3s", :sieger)
 
     user1 = TestHelper.create_user("user1", "user1@example.com")
     user2 = TestHelper.create_user("user2", "user2@example.com")

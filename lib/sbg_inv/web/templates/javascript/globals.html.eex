@@ -3,8 +3,6 @@ const FACTION_INFO = (() => {
   const factionsByAbbrev = {};
   const factionsByAlignment = [];
   const factionsById = {};
-  const factionsByName = {};
-  const sortedNames = [];
 
   let factions = [
     <%= for army <- army_lists() do %>
@@ -29,11 +27,14 @@ const FACTION_INFO = (() => {
     factionsByAbbrev[f.abbrev] = f;
     factionsByAlignment[f.alignment].push(f);
     factionsById[f.id] = f;
-    factionsByName[f.name] = f;
-    sortedNames.push(f.name);
   });
 
-  sortedNames.sort();
+  factions.sort((a, b) =>
+    a.name < b.name
+      ? -1
+      : b.name < a.name
+        ? 1
+        : 0);
 
   return {
     byAbbrev: abbrev => getWithRefresh(s => factionsByAbbrev[s], abbrev),
@@ -42,9 +43,7 @@ const FACTION_INFO = (() => {
 
     byId: id => getWithRefresh(s => factionsById[s], id),
 
-    byName: name => getWithRefresh(s => factionsByName[s], name),
-
-    sortedFactionNames: () => sortedNames
+    all: () => factions
   };
 })();
 

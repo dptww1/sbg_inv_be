@@ -58,8 +58,11 @@ defmodule SbgInv.Web.FactionFigure do
   end
 
   def query_figures_with_no_faction(user_id) do
+    # the fragment here is way too long, but attempting to break it up with string
+    # concatenation -- even to a separate variable -- runs afoul of Ecto with a
+    # "fragment(...) does not allow strings to be interpolated" error at runtime.
     from q in faction_query(user_id),
-    where: fragment("f0.id NOT IN (SELECT figure_id FROM faction_figures)")
+    where: fragment("f0.id NOT IN (SELECT DISTINCT figure_id FROM faction_figures ff INNER JOIN army_lists al on al.id = ff.faction_id AND al.legacy IS NOT TRUE)")
   end
 
   defp faction_query(user_id) do
