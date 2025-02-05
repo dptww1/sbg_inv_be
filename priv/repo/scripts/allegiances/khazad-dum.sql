@@ -22,7 +22,7 @@ INSERT INTO faction_figures (faction_id, figure_id) VALUES
 (21, 89),
 (21, 90),
 (21, 91),
-(21, 99),
+(21, 97),
 (21, 98),
 (21, 990),
 (21, 991),
