@@ -1338,7 +1338,7 @@ scenario is new, the returned `"scenario_resources"` and `"user_scenario"` field
 
 Updates a [scenario](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#scenarios).
 
-Identical to [`POST /scenarios`](https://github.com/dptww1/sbg_inv_be/blob/master/docs/services.md#todo-post-scenarios)
+Identical to [`POST /scenarios`](https://github.com/dptww1/sbg_inv_be/blob/master/docs/services.md#post-scenarios)
 except that the `"scenario"` and `"scenario_factions"` objects must have their `"id"` fields set.
 
 ### `GET /scenarios/:scenario_id/resource`
