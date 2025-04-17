@@ -4,7 +4,7 @@ const FACTION_INFO = (() => {
   const factionsByAlignment = [];
   const factionsById = {};
 
-  let factions = [
+  const factions = [
     <%= for army <- army_lists() do %>
       <%= { :safe, "{ \"abbrev\": \"#{army.abbrev}\", \"id\": #{army.id}, \"name\": \"#{army.name}\", \"alignment\": #{army.alignment}, \"legacy\": #{if army.legacy, do: "true", else: "false"}, \"keywords\": \"#{army.keywords}\" }," } %>
     <% end %>
@@ -13,7 +13,7 @@ const FACTION_INFO = (() => {
   const getWithRefresh = (getter, param) => {
     const res = getter.call(window, param);
     if (!res) {
-        alert("Your army lists are out of date.  Click [OK] to reload the page.");
+        alert("Your army lists are out of date.  Click [OK] to reload the app.");
         location.reload();
     }
 
@@ -47,3 +47,42 @@ const FACTION_INFO = (() => {
   };
 })();
 
+const BOOK_INFO = (() => {
+
+  const booksByKey = {};
+
+  const books = [
+    <%= for book <- books() do %>
+      <%= { :safe, "{ \"key\": \"#{book.key}\", \"shortName\": \"#{book.short_name}\", \"year\": \"#{book.year}\", \"name\": \"#{book.name}\" }," } %>
+    <% end %>
+  ];
+
+  const getWithRefresh = (getter, param) => {
+    const res = getter.call(window, param);
+    if (!res) {
+      alert("Your app is out of date. Click [OK] to reload the app. " + param);
+      location.reload();
+    }
+
+    return res;
+  };
+
+  books.forEach(b => {
+    booksByKey[b.key] = b;
+
+    if (b.year) {
+      b.shortName += " (" + b.year + ")";
+      b.name += " (" + b.year + ")";
+    }
+  });
+
+  return {
+    all: () => books,
+
+    allAsHash: () => booksByKey,
+
+    byId: id => getWithRefresh(s => books[s], id),
+
+    byKey: key => getWithRefresh(s => booksByKey[s], key)
+  };
+})();

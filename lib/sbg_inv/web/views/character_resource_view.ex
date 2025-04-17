@@ -5,7 +5,7 @@ defmodule SbgInv.Web.CharacterResourceView do
   def render("resource.json", %{resource: resource}) do
     %{
       "title" => resource.title,
-      "book" => resource.book,
+      "book" => (if is_nil(resource.book), do: nil, else: resource.book.key),
       "issue" => resource.issue,
       "page" => resource.page,
       "type" => resource.type,

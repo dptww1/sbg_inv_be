@@ -90,7 +90,7 @@ defmodule SbgInv.Web.Scenario do
     sr = from sr in ScenarioResource, order_by: :sort_order
 
     from q in query,
-    preload: [scenario_resources: ^sr]
+    preload: [scenario_resources: ^{sr, :book}]
   end
 
   def with_user(query, user_id) do

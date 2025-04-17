@@ -5,7 +5,7 @@ defmodule SbgInv.Web.CharacterRuleView do
   def render("rule.json", %{rule: rule}) do
     %{
       "name_override" => rule.name_override,
-      "book" => rule.book,
+      "book" => (if is_nil(rule.book), do: nil, else: rule.book.key),
       "issue" => rule.issue,
       "page" => rule.page,
       "url" => rule.url,

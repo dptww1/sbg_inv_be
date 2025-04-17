@@ -2,10 +2,9 @@ defmodule SbgInv.Web.ArmyListSource do
 
   use SbgInv.Web, :model
 
-  alias SbgInv.Web.{ArmyList}
+  alias SbgInv.Web.{ArmyList, Book}
 
   schema "army_lists_sources" do
-    field :book, ScenarioResourceBook
     field :issue, :string
     field :page, :integer
     field :url, :string
@@ -13,6 +12,7 @@ defmodule SbgInv.Web.ArmyListSource do
 
     timestamps()
 
+    belongs_to :book, Book, source: :book
     belongs_to :army_list, ArmyList
   end
 end

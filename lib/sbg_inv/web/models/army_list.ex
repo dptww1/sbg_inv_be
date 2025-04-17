@@ -36,6 +36,6 @@ defmodule SbgInv.Web.ArmyList do
 
   def with_sources(query) do
     from q in query,
-    preload: [:sources]
+    preload: [sources: :book]
   end
 end

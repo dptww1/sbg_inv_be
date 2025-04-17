@@ -66,7 +66,7 @@ defmodule SbgInv.Web.Figure do
 
     from q in query,
     preload: [characters: ^ch_query],
-    preload: [characters: [:resources, :rules]]
+    preload: [characters: [[resources: :book], [rules: :book]]]
   end
 
   def with_factions(query) do
@@ -81,7 +81,7 @@ defmodule SbgInv.Web.Figure do
 
   def with_scenarios(query) do
     from q in query,
-    preload: [role: [scenario_faction: [scenario: :scenario_resources]]]
+    preload: [role: [scenario_faction: [scenario: [scenario_resources: :book]]]]
   end
 
   def with_user(query, user_id) do

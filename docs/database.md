@@ -18,7 +18,6 @@ which I omit in the tables below to save space.
   * [Add a new figure pose to the relevant scenarios](#add-a-new-figure-pose-to-the-relevant-scenarios)
   * [Detect scenarios with incorrect sizes](#detect-scenarios-with-incorrect-size-rollups)
 * [Enumerated Values](#enumerated-values)
-  * [Books](#books)
   * [Character Resource Type](#character-resource-type)
   * [Figure Type](#figure-type)
   * [Location](#location)
@@ -28,6 +27,7 @@ which I omit in the tables below to save space.
   * [about][#about]
   * [army_lists](#army_lists)
   * [army_lists_sources](#army_lists_sources)
+  * [books](#books)
   * [character_figures](#character_figures)
   * [character_resources](#character_resources)
   * [characters](#characters)
@@ -93,55 +93,6 @@ ORDER BY s.name;
 ```
 
 ## Enumerated Values
-
-### Books
-
-| Value | Book |
-|-------|------|
-|  0 | Battle of the Five Armies (2014)
-|  1 | Battle of the Pelennor Fields (2004)
-|  2 | The Desolation of Smaug (2013)
-|  3 | The Fall of the Necromancer (2006)
-|  4 | Fellowship of the Ring (2001)
-|  5 | Fellowship of the Ring Journeybook (2005)
-|  6 | Free Peoples (2011)
-|  7 | Fallen Realms (2011)
-|  8 | Gondor in Flames (2007)
-|  9 | Escape from Goblintown (2012)
-| 10 | Harad (2007)
-| 11 | The Hobbit: An Unexpected Journey (2012)
-| 12 | Khazad-dûm (2007)
-| 13 | Kingdoms of Men (2011)
-| 14 | Moria & Angmar (2011)
-| 15 | Mordor (2011)
-| 16 | Mordor (2007)
-| 17 | The Ruin of Arnor (2006)
-| 18 | Return of the King (2003)
-| 19 | Return of the King Journeybook (2007)
-| 20 | Shadow & Flame (2003)
-| 21 | SBG Magazine
-| 22 | A Shadow in the East (2005)
-| 23 | Siege of Gondor (2004)
-| 24 | The Scouring of the Shire (2004)
-| 25 | There and Back Again (2016)
-| 26 | The Two Towers (2002)
-| 27 | The Two Towers Journeybook (2006)
-| 28 | Battle of the Pelennor Fields (2018)
-| 29 | Armies of the Lord of the Rings (2018)
-| 30 | Armies of the Hobbit (2018)
-| 31 | Gondor at War (2019)
-| 32 | Battle Games in Middle Earth
-| 33 | Scouring of the Shire (2019)
-| 34 | War in Rohan (2019)
-| 35 | Quest of the Ringbearer (2020)
-| 36 | Fall of the Necromancer (2021)
-| 37 | Defence of the North (2022)
-| 38 | Battle of Osgiliath (2022)
-| 39 | Rise of Angmar (2024)
-| 40 | The War of the Rohirrim (2024)
-| 41 | Armies of the Lord of the Rings (2024)
-| 42 | Armies of the Hobbit (2024)
-| 43 | Armies of Arnor and Angmar (PDF, 2024)
 
 ### Character Resource Type
 
@@ -264,13 +215,32 @@ necessary.
 | Field | Type | Notes |
 |-------|------|-------|
 | army_list_id | int8 | FK to [army_lists](#army_lists) `id`
-| book | int8 | one of the [Books](#books)
+| book | int8 | FK to [books](#books)
 | issue | string | issue number if `book` is a magazine
 | page | int8 | page number
 | url | string | URL of the reference
 | sort_order | int8 | ordering of the sources, lower values first
 
+`book` should be named `book_id` but it used to be an enumerated type and so the legacy name persists.
+
 `army_list_id`, `sort_order`, and either (`book` & `page`) or `url` are required.
+
+### books
+
+A lookup table for a sourcebook or rules book, replacing the previous hardwired `Book` enumeration.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| key | string | very short internal identifier
+| short_name | string | abbreviated name for use in small display spaces
+| name | string | full name
+| year | string | year of publication
+| inserted_at | timestamp |
+| updated_at | timestamp |
+
+`key` is an artifact of the services, which often used this value to identify a book instead of the numeric id.
+
+`year` is useful for distinguishing books with the same name (e.g. the two "Fall of the Necromancer"s and "Mordor"s).
 
 ### character_figures
 
@@ -289,13 +259,15 @@ Associates [characters](#characters) to their resources.
 |-------|------|--------
 | character_id | int4 | FK to [characters](#characters) |
 | url | text | URL of resource |
-| book | int4 | one of the [Books](#books) |
+| book | int4 | FK to [books](#books) |
 | page | int4 | page in the book |
 | type | int4 | a [Character Resource Type](#character-resource-type) |
 | issue | text | magazine issue ("2", "Summer", etc.) |
 | inserted_at | timestamp |
 | updated_at | timestamp |
 | title | text | display name for this resource |
+
+`book` should be named `book_id` but it used to be an enumerated type and so the legacy name persists.
 
 For online resources, only `url` and `title` are needed.
 
@@ -309,7 +281,7 @@ Associates [characters](#characters) to their profiles.
 |-------|------|--------
 | character_id | int4 | FK to [characters](#characters) |
 | name_override | text |
-| book | int4 | one of the [Books](#books) |
+| book | int4 | FK to [books](#books) |
 | issue | text | magazine issue ("2", "Summer", etc.) |
 | page | int4 | page in the book |
 | url | text | URL of resource |
@@ -318,7 +290,9 @@ Associates [characters](#characters) to their profiles.
 | inserted_at | timestamp |
 | updated_at | timestamp |
 
-`name_override` is set when the profile name doesn't match the character name.n
+`name_override` is set when the profile name doesn't match the character name.
+
+`book` should be named `book_id` but it used to be an enumerated type and so the legacy name persists.
 
 For online resources, only `url` is needed.
 

@@ -3,7 +3,7 @@ defmodule SbgInv.ScenarioControllerTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{Scenario, ScenarioResource, User, UserScenario}
+  alias SbgInv.Web.{Book, Scenario, ScenarioResource, User, UserScenario}
 
   @valid_attrs %{blurb: "some content", date_age: 42, date_year: 42, date_month: 7, date_day: 15, name: "some name", size: 42,
                  map_width: 48, map_height: 48, location: :the_shire,
@@ -264,7 +264,9 @@ defmodule SbgInv.ScenarioControllerTest do
 
   test "scenario source with no issue number is returned correctly", %{conn: conn} do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
-    Repo.insert! %ScenarioResource{scenario_id: const_data["id"], resource_type: :source, book: :fp, title: "Free Peoples", sort_order: 1}
+
+    fp = Repo.get_by!(Book, key: "fp")
+    Repo.insert! %ScenarioResource{scenario_id: const_data["id"], resource_type: :source, book: fp, title: "Free Peoples", sort_order: 1}
 
     conn = get conn, Routes.scenario_path(conn, :show, const_data["id"])
 
@@ -273,7 +275,9 @@ defmodule SbgInv.ScenarioControllerTest do
 
   test "scenario source with issue number is returned correctly", %{conn: conn} do
     %{conn: conn, const_data: const_data} = TestHelper.set_up_std_scenario(conn)
-    Repo.insert! %ScenarioResource{scenario_id: const_data["id"], resource_type: :source, book: :fp, issue: "321", title: "Free Peoples", sort_order: 1}
+
+    fp = Repo.get_by!(Book, key: "fp")
+    Repo.insert! %ScenarioResource{scenario_id: const_data["id"], resource_type: :source, book: fp, issue: "321", title: "Free Peoples", sort_order: 1}
 
     conn = get conn, Routes.scenario_path(conn, :show, const_data["id"])
 

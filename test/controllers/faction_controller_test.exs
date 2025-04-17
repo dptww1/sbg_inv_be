@@ -68,7 +68,7 @@ defmodule SbgInv.Web.FactionControllerTest do
     conn = get conn, Routes.faction_path(conn, :show, 34)
     assert json_response(conn, 200)["data"] == %{
       "sources" => [
-        %{ "book" => "alotr2", "issue" => nil, "page" => 90, "url" => nil }
+        %{ "book" => "ah2", "issue" => nil, "page" => 90, "url" => nil }
       ],
       "heroes" => [
         %{
@@ -116,7 +116,7 @@ defmodule SbgInv.Web.FactionControllerTest do
     conn = get conn, Routes.faction_path(conn, :show, 67)
     assert json_response(conn, 200)["data"] == %{
       "sources" => [
-        %{ "book" => "alotr2", "issue" => nil, "page" => 122, "url" => nil }
+        %{ "book" => "ah2", "issue" => nil, "page" => 122, "url" => nil }
       ],
       "heroes" => [
           %{"name" => "h1", "plural_name" => "h1s", "type" => "hero", "unique" => true,  "id" => f3.id, "needed" => 0, "owned" => 0, "painted" => 0, "slug" => "h1s_slug", "num_painting_guides" => 0, "num_analyses" => 0},

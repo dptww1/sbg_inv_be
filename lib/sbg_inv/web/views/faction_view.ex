@@ -56,7 +56,7 @@ defmodule SbgInv.Web.FactionView do
 
   def render("source.json", %{source: source}) do
     %{
-      book: source.book,
+      book: (if is_nil(source.book), do: nil, else: source.book.key),
       issue: source.issue,
       page: source.page,
       url: source.url

@@ -4,7 +4,7 @@ defmodule SbgInv.FigureTest do
   use Pathex
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{Character, CharacterResource, FactionFigure, Figure, Role}
+  alias SbgInv.Web.{Book, Character, CharacterResource, FactionFigure, Figure, Role}
   alias SbgInv.Web.{ScenarioFaction, Scenario, ScenarioResource}
   alias SbgInv.Web.{UserFigure, UserFigureHistory}
 
@@ -16,8 +16,10 @@ defmodule SbgInv.FigureTest do
     decoy_char = Repo.insert!(%Character{name: "stu"})
     decoy_figure = Repo.insert!(Figure.changeset_with_characters(%Figure{}, Map.put(@valid_attrs, :character_ids, [decoy_char.id])))
 
+    fotr_book = Book.query_by_key("fotr") |> Repo.one!
+
     resources = [
-      %CharacterResource{title: "CR1", type: :painting_guide, book: :fotr, page: 43},
+      %CharacterResource{title: "CR1", type: :painting_guide, book: fotr_book, page: 43},
       %CharacterResource{title: "CR2", type: :analysis, url: "http://example.com"}
     ]
 

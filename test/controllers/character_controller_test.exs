@@ -41,7 +41,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
                     "rules" => [
                       %{
                         name_override: "OVER",
-                        book: :aaa,
+                        book: "aaa",
                         page: 82
                       }
                     ]
@@ -135,14 +135,14 @@ defmodule SbgInv.Web.CharacterControllerTest do
                         title: "ABC",
                         url: "http://www.example.com",
                         issue: "42",
-                        book: :sbg,
+                        book: "sbg",
                         page: 12
                       }
                     ],
                     rules: [
                       %{
                         name_override: "OVER",
-                        book: :tba,
+                        book: "tba",
                         page: 64
                       }
                     ]

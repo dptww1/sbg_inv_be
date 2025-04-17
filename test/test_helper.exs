@@ -7,7 +7,7 @@ defmodule SbgInv.TestHelper do
   use SbgInv.Web.ConnCase
   use Pathex
 
-  alias SbgInv.Web.{Character, CharacterResource, CharacterRule, FactionFigure, Figure, Role, RoleFigure}
+  alias SbgInv.Web.{Book, Character, CharacterResource, CharacterRule, FactionFigure, Figure, Role, RoleFigure}
   alias SbgInv.Web.{Scenario, ScenarioFaction, ScenarioResource, Session, User, UserScenario, UserFigure}
 
   def pinspect(conn, obj) do
@@ -76,7 +76,8 @@ defmodule SbgInv.TestHelper do
   end
 
   def create_scenario_source(scenario_id) do
-    Repo.insert! %ScenarioResource{scenario_id: scenario_id, resource_type: :source, book: :gaw, page: 12, sort_order: 1, updated_at: ~N[2019-10-12 00:00:00]}
+    gaw = Repo.get_by!(Book, key: "gaw")
+    Repo.insert! %ScenarioResource{scenario_id: scenario_id, resource_type: :source, book: gaw, page: 12, sort_order: 1, updated_at: ~N[2019-10-12 00:00:00]}
   end
 
   # user: :user1 or :user2
@@ -105,6 +106,9 @@ defmodule SbgInv.TestHelper do
     Repo.insert! %UserFigure{user_id: user2.id, figure_id: figure1.id, owned: 2, painted: 2}
     Repo.insert! %UserFigure{user_id: user2.id, figure_id: figure2.id, owned: 1, painted: 0}
 
+    there_and_back_again = Repo.get!(Book, 25)
+    sbg_mag = Repo.get!(Book, 21)
+
     ch1 = Repo.insert! %Character{
       name: "N1",
       figures: [figure1],
@@ -112,7 +116,7 @@ defmodule SbgInv.TestHelper do
         %CharacterResource{
           type: :painting_guide,
           title: "SBG #3",
-          book: :sbg,
+          book: sbg_mag,
           issue: "3",
           page: 37
         },
@@ -124,7 +128,7 @@ defmodule SbgInv.TestHelper do
       ],
       rules: [
         %CharacterRule{
-          book: :tba,
+          book: there_and_back_again,
           issue: "3",
           page: 34,
           obsolete: true,

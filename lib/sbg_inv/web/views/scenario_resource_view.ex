@@ -22,7 +22,7 @@ defmodule SbgInv.Web.ScenarioResourceView do
       id: resource.id,
       scenario_id: resource.scenario_id,
       resource_type: resource.resource_type,
-      book: resource.book,
+      book: (if is_nil(resource.book), do: nil, else: resource.book.key),
       issue: resource.issue,
       title: resource.title,
       url:  resource.url,

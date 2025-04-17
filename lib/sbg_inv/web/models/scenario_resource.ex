@@ -4,11 +4,10 @@ defmodule SbgInv.Web.ScenarioResource do
 
   import Ecto.Query
 
-  alias SbgInv.Web.{Scenario, ScenarioResource}
+  alias SbgInv.Web.{Book, Scenario, ScenarioResource}
 
   schema "scenario_resources" do
     field :resource_type, ScenarioResourceType
-    field :book, ScenarioResourceBook
     field :issue, :string
     field :page, :integer
     field :title, :string
@@ -19,10 +18,11 @@ defmodule SbgInv.Web.ScenarioResource do
     timestamps()
 
     belongs_to :scenario, Scenario
+    belongs_to :book, Book, source: :book
   end
 
   @required_fields [:scenario_id, :resource_type, :sort_order]
-  @optional_fields [:book, :issue, :page, :title, :url, :notes]
+  @optional_fields [:issue, :page, :title, :url, :notes]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -33,12 +33,15 @@ defmodule SbgInv.Web.ScenarioResource do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields ++ @optional_fields)
+    |> put_assoc(:book, Map.get(params, "book"))
     |> validate_required(@required_fields)
   end
 
   def query_by_id(id) do
     from sr in ScenarioResource,
-    where: sr.id == ^id
+    where: sr.id == ^id,
+    preload: :book
+
   end
 
   def query_by_date_range(from_date, to_date, limit) do
@@ -48,6 +51,6 @@ defmodule SbgInv.Web.ScenarioResource do
        and sr.resource_type != :source,
     order_by: [desc: sr.updated_at],
     limit: ^limit,
-    preload: :scenario
+    preload: [:scenario, :book]
   end
 end

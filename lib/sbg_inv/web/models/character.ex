@@ -36,6 +36,8 @@ defmodule SbgInv.Web.Character do
       changeset
       |> put_change(:num_painting_guides, resource_count(params["resources"], "painting_guide"))
       |> put_change(:num_analyses, resource_count(params["resources"], "analysis"))
+    else
+      changeset
     end
   end
 
@@ -55,14 +57,14 @@ defmodule SbgInv.Web.Character do
     rq = from cr in CharacterResource, order_by: cr.title
 
     from q in query,
-    preload: [resources: ^rq]
+    preload: [resources: ^{rq, [:book]}]
   end
 
   def with_rules(query) do
     rq = from cr in CharacterRule, order_by: cr.sort_order
 
     from q in query,
-    preload: [rules: ^rq]
+    preload: [rules: ^{rq, [:book]}]
   end
 
   defp load_figures([]), do: []

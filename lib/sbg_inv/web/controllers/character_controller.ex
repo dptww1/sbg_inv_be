@@ -4,7 +4,7 @@ defmodule SbgInv.Web.CharacterController do
 
   import SbgInv.Web.ControllerMacros
 
-  alias SbgInv.Web.{Character}
+  alias SbgInv.Web.{BookUtils, Character}
 
   def show(conn, %{"id" => id}) do
     with_admin_user conn do
@@ -33,6 +33,10 @@ defmodule SbgInv.Web.CharacterController do
   defp update_or_create(conn, nil, _), do: send_resp(conn, :unprocessable_entity, "")
   defp update_or_create(conn, char, params) do
     success_status = if char.id, do: :ok, else: :created
+
+    params = params
+    |> Map.put("rules", BookUtils.add_book_refs(params["rules"]))
+    |> Map.put("resources", BookUtils.add_book_refs(params["resources"]))
 
     with {:ok, char} <- Repo.insert_or_update(Character.changeset(char, params)),
          {:ok, char} <- load_character(char.id)

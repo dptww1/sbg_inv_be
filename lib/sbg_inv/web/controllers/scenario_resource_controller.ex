@@ -2,7 +2,7 @@ defmodule SbgInv.Web.ScenarioResourceController do
 
   use SbgInv.Web, :controller
 
-  alias SbgInv.Web.{ScenarioResource}
+  alias SbgInv.Web.{BookUtils, ScenarioResource}
 
   import SbgInv.Web.ControllerMacros
 
@@ -14,6 +14,7 @@ defmodule SbgInv.Web.ScenarioResourceController do
     resources =
       ScenarioResource.query_by_date_range(from, to, limit)
       |> Repo.all
+      |> BookUtils.add_book_refs()
 
     render(conn, "index.json", resources: resources)
   end
@@ -40,7 +41,9 @@ defmodule SbgInv.Web.ScenarioResourceController do
   end
 
   defp update_or_create(conn, resource, params, scenario_id) do
-    params = add_sort_order_if_missing(params, scenario_id)
+    params = params
+    |> add_sort_order_if_missing(scenario_id)
+    |> BookUtils.add_book_ref()
     changeset = ScenarioResource.changeset(resource, Map.put(params, "scenario_id", scenario_id))
 
     case Repo.insert_or_update(changeset) do

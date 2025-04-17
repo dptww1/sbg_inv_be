@@ -42,11 +42,12 @@ defmodule SbgInv.Web.Search do
 
     from s in Scenario,
     join: res in assoc(s, :scenario_resources), on: (res.scenario_id == s.id),
+    join: book in assoc(res, :book), on: (res.book_id == book.id),
     select: %{
       id: s.id,
       name: s.name,
       plural_name: "",
-      book: res.book,
+      book: book.key,
       type: "s",
       pos: fragment("POSITION(LOWER(f_unaccent(?)) IN LOWER(f_unaccent(?)))", ^query_str, s.name)
     },
