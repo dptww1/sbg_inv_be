@@ -7,6 +7,12 @@ import Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :sbg_inv, SbgInv.Web.Endpoint,
+  https: [
+    port: 4001,
+    cipher_suite: :strong,
+    keyfile: "priv/cert/selfsigned_key.pem",
+    certfile: "priv/cert/selfsigned.pem"
+  ],
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
