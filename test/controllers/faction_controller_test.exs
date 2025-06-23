@@ -3,7 +3,21 @@ defmodule SbgInv.Web.FactionControllerTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{FactionFigure, Figure, Role, RoleFigure, Scenario, ScenarioFaction, UserFigure}
+  alias SbgInv.Web.{ArmyList, ArmyListSource, Book, FactionFigure, Figure, Role, RoleFigure, Scenario, ScenarioFaction, UserFigure}
+
+  @valid_attrs %{
+     "name" => "New Army List",
+     "abbrev" => "nal",
+     "alignment" => 1,
+     "legacy" => false,
+     "keywords" => "a c b",
+     "sources" => [
+       %{
+         "book" => "sots",
+         "page" => 13
+       }
+     ]
+   }
 
   defp insert_figure(faction_id, name, plural_name, type, unique \\ false, slug \\ nil) do
     fig = Repo.insert! %Figure{name: name, plural_name: plural_name, type: type, unique: unique, slug: slug}
@@ -170,5 +184,115 @@ defmodule SbgInv.Web.FactionControllerTest do
       ],
       "siegers"  => [ ]
     }
+  end
+
+  test "Admin user can create army list", %{conn: conn} do
+    conn = TestHelper.create_logged_in_user(conn, "admin", "admin@test.com", true)
+    f1 = insert_figure(-1, "ABC", "ABCs", :hero)
+    _2 = insert_figure(-1, "DEF", "DEFs", :warrior)
+    f3 = insert_figure(-1, "GHI", "GHIs", :monster)
+
+    conn = post conn, Routes.faction_path(conn, :create),
+                army_list: Map.merge(@valid_attrs, %{
+                             "faction_figures" => [
+                               %{ "figure_id" => f1.id },
+                               %{ "figure_id" => f3.id }
+                             ]
+                           })
+
+    check_army_list = Repo.get_by!(ArmyList, abbrev: @valid_attrs["abbrev"])
+
+    assert json_response(conn, 200)["data"] == %{
+             "id"        => check_army_list.id,
+             "name"      => @valid_attrs["name"],
+             "abbrev"    => @valid_attrs["abbrev"],
+             "alignment" => @valid_attrs["alignment"],
+             "legacy"    => @valid_attrs["legacy"],
+             "keywords"  => @valid_attrs["keywords"],
+             "sources"   => [
+               %{
+                 "book"  => "sots",
+                 "page"  => 13,
+                 "issue" => nil,
+                 "url"   => nil
+               }
+             ],
+             "figures" => %{
+               "heroes"   => [ %{ "id" => f1.id, "name" => "ABC", "plural_name" => "ABCs", "needed" => 0, "slug" => nil, "type" => "hero", "unique" => false } ],
+               "warriors" => [],
+               "monsters" => [ %{ "id" => f3.id, "name" => "GHI", "plural_name" => "GHIs", "needed" => 0, "slug" => nil, "type" => "monster", "unique" => false } ],
+               "siegers"  => []
+             }
+           }
+  end
+
+  test "Non-admin user cannot create army list", %{conn: conn} do
+    conn = conn
+    |> TestHelper.create_logged_in_user("nonadmin", "regularjoe@test.com")
+    |> post(Routes.faction_path(conn, :create), army_list: @valid_attrs)
+
+    assert conn.status == 401
+  end
+
+  test "Anonymous user cannot create army list", %{conn: conn} do
+    conn = post conn, Routes.faction_path(conn, :create), army_list: @valid_attrs
+    assert conn.status == 401
+  end
+
+  test "Admin user can update army list", %{conn: conn} do
+    conn = TestHelper.create_logged_in_user(conn, "admin", "admin@test.com", true)
+    army_list = Repo.insert!(%ArmyList{name: "ABC", abbrev: "A", alignment: 0, legacy: true, keywords: "a b c"})
+    book = Repo.get!(Book, 2)
+    source = Repo.insert!(%ArmyListSource{army_list_id: army_list.id, page: 37, book: book})
+
+    f1 = insert_figure(-1, "ABC", "ABCs", :hero)
+    f2 = insert_figure(-1, "DEF", "DEFs", :warrior)
+    f3 = insert_figure(-1, "GHI", "GHIs", :monster)
+
+    Repo.insert!(%FactionFigure{faction_id: army_list.id, figure_id: f1.id})
+    Repo.insert!(%FactionFigure{faction_id: army_list.id, figure_id: f3.id})
+
+    conn = put conn, Routes.faction_path(conn, :update, army_list.id),
+               army_list:
+                 Map.merge(@valid_attrs,
+                           %{
+                             alignment: 0,
+                             sources: [ source ],
+                             faction_figures: [
+                               %{faction_id: army_list.id, figure_id: f2.id},
+                               %{faction_id: army_list.id, figure_id: f3.id}
+                             ]
+                           })
+
+    assert json_response(conn, 200)["data"] == %{
+             "id" => army_list.id,
+             "name" => "New Army List",
+             "abbrev" => "nal",
+             "alignment" => 1,
+             "legacy" => false,
+             "keywords" => "a c b",
+             "sources" => [
+               %{"book" => "sots", "issue" => nil, "page" => 13, "url" => nil }
+             ],
+             "figures" => %{
+               "heroes" => [],
+               "warriors" => [ %{ "id" => f2.id, "name" => "DEF", "plural_name" => "DEFs", "slug" => nil, "type" => "warrior", "unique" => false, "needed" => 0} ],
+               "monsters" => [ %{ "id" => f3.id, "name" => "GHI", "plural_name" => "GHIs", "slug" => nil, "type" => "monster", "unique" => false, "needed" => 0} ],
+               "siegers" => []
+             }
+    }
+  end
+
+  test "Non-admin user cannot update army list", %{conn: conn} do
+    conn = conn
+    |> TestHelper.create_logged_in_user("nonadmin", "regularjoe@test.com")
+    |> post(Routes.faction_path(conn, :create), army_list: @valid_attrs)
+
+    assert conn.status == 401
+  end
+
+  test "Anonymous user cannot update army list", %{conn: conn} do
+    conn = post conn, Routes.faction_path(conn, :create), army_list: @valid_attrs
+    assert conn.status == 401
   end
 end

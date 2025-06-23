@@ -14,5 +14,13 @@ defmodule SbgInv.Web.ArmyListSource do
 
     belongs_to :book, Book, source: :book
     belongs_to :army_list, ArmyList
+
+    @optional_params [:issue, :page, :url, :sort_order]
+  end
+
+  def changeset(model, params \\ %{}) do
+    model
+    |> cast(params, @optional_params)
+    |> put_assoc(:book, Map.get(params, "book"))
   end
 end

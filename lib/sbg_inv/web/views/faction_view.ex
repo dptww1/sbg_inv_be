@@ -5,18 +5,33 @@ defmodule SbgInv.Web.FactionView do
   def render("show.json", %{figures: figures, army_list: army_list}) do
     %{
     data:
-      figures_map(figures)
+      figures_map(figures, "figure.json")
       |> Map.put("sources", render_many(army_list.sources, __MODULE__, "source.json", as: :source))
     }
   end
 
   def render("show.json", %{figures: figures}) do
     %{
-      data: figures_map(figures)
+      data: figures_map(figures, "figure.json")
     }
   end
 
-  def render("figure.json", %{faction: figure}) do
+  def render("show-army-list.json", %{army_list: army_list}) do
+    %{
+      data: %{
+        id:        army_list.id,
+        name:      army_list.name,
+        abbrev:    army_list.abbrev,
+        alignment: army_list.alignment,
+        legacy:    army_list.legacy,
+        keywords:  army_list.keywords,
+        sources:   render_many(army_list.sources, __MODULE__, "source.json", as: :source),
+        figures:   figures_map(army_list.faction_figures |> Enum.map(&(&1.figure)), "figure_base.json")
+      }
+    }
+  end
+
+  def render("figure_base.json", %{faction: figure}) do
     %{
       id:                  figure.id,
       name:                figure.name,
@@ -25,11 +40,18 @@ defmodule SbgInv.Web.FactionView do
       type:                figure.type,
       unique:              figure.unique,
       needed:              normalize_int(figure.max_needed),
+    }
+  end
+
+  def render("figure.json", %{faction: figure}) do
+    Map.merge(
+      render_one(figure, __MODULE__, "figure_base.json"),
+      %{
       owned:               normalize_int(figure.owned),
       painted:             normalize_int(figure.painted),
       num_painting_guides: normalize_int(figure.num_painting_guides),
       num_analyses:        normalize_int(figure.num_analyses)
-    }
+      })
   end
 
   def render("bare_index.json", %{factions: list}) do
@@ -74,12 +96,12 @@ defmodule SbgInv.Web.FactionView do
     }
   end
 
-  defp figures_map(figures) do
+  defp figures_map(figures, figure_json_str) do
     %{
-      "heroes"   => render_many(filtered_sorted_fig_list(figures, :hero    ), __MODULE__, "figure.json"),
-      "warriors" => render_many(filtered_sorted_fig_list(figures, :warrior ), __MODULE__, "figure.json"),
-      "monsters" => render_many(filtered_sorted_fig_list(figures, :monster ), __MODULE__, "figure.json"),
-      "siegers"  => render_many(filtered_sorted_fig_list(figures, :sieger  ), __MODULE__, "figure.json")
+      "heroes"   => render_many(filtered_sorted_fig_list(figures, :hero    ), __MODULE__, figure_json_str),
+      "warriors" => render_many(filtered_sorted_fig_list(figures, :warrior ), __MODULE__, figure_json_str),
+      "monsters" => render_many(filtered_sorted_fig_list(figures, :monster ), __MODULE__, figure_json_str),
+      "siegers"  => render_many(filtered_sorted_fig_list(figures, :sieger  ), __MODULE__, figure_json_str)
     }
   end
 

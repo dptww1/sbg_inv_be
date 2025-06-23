@@ -2,7 +2,7 @@ defmodule SbgInv.Web.FallbackController do
 
   use Phoenix.Controller
 
-  alias SbgInv.Web.ErrorView
+  alias SbgInv.Web.{ChangesetView, ErrorView}
 
   def call(conn, {:error, :unauthorized}) do
     conn
@@ -24,4 +24,11 @@ defmodule SbgInv.Web.FallbackController do
     |> put_view(ErrorView)
     |> render(:"500")
   end
+
+  def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
+  conn
+  |> put_status(:unprocessable_entity)
+  |> put_view(ChangesetView)
+  |> render("error.json", changeset: changeset)
+end
 end

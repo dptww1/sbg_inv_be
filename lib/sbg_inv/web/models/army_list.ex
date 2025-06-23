@@ -19,6 +19,19 @@ defmodule SbgInv.Web.ArmyList do
     has_many :faction_figures, FactionFigure, foreign_key: :faction_id, on_replace: :delete
   end
 
+  @required_fields [:name, :abbrev, :alignment, :legacy]
+  @optional_fields [:keywords]
+
+  def changeset(model, params \\ %{}) do
+    model
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> cast_assoc(:sources, required: true)
+    |> cast_assoc(:faction_figures, required: true, with: &FactionFigure.changeset_for_army_list/2)
+    |> validate_required(@required_fields)
+    |> unique_constraint(:name)
+    |> unique_constraint(:abbrev)
+  end
+
   def query_all() do
     from f in ArmyList,
     order_by: :name
@@ -37,5 +50,10 @@ defmodule SbgInv.Web.ArmyList do
   def with_sources(query) do
     from q in query,
     preload: [sources: :book]
+  end
+
+  def with_figures(query) do
+    from q in query,
+    preload: [faction_figures: :figure]
   end
 end

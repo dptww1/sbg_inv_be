@@ -2,7 +2,17 @@ defmodule SbgInv.Web.FactionController do
 
   use SbgInv.Web, :controller
 
-  alias SbgInv.Web.{ArmyList, Authentication, FactionFigure}
+  import SbgInv.Web.ControllerMacros
+
+  alias SbgInv.Web.{ArmyList, Authentication, BookUtils, FactionFigure}
+
+  action_fallback SbgInv.Web.FallbackController
+
+  def create(conn, %{"army_list" => params}) do
+    with_admin_user conn do
+      _create_or_update(conn, %ArmyList{}, params)
+    end
+  end
 
   def index(conn, _params) do
     _index(conn, Map.get(conn.assigns, :current_user))
@@ -15,6 +25,24 @@ defmodule SbgInv.Web.FactionController do
     |> Repo.one
 
     _show(conn, army_list)
+  end
+
+  def update(conn, %{"id" => id, "army_list" => params}) do
+    with_admin_user conn do
+      army_list = load(id)
+      _create_or_update(conn, army_list, params)
+    end
+  end
+
+  defp _create_or_update(conn, army_list, params) do
+    params = params
+    |> Map.put("sources", BookUtils.add_book_refs(params["sources"]))
+
+    changeset = ArmyList.changeset(army_list, params)
+
+    with {:ok, army_list} <- Repo.insert_or_update(changeset) do
+      render(conn, "show-army-list.json", army_list: load(army_list.id))
+    end
   end
 
   defp _index(conn, nil) do
@@ -62,5 +90,12 @@ defmodule SbgInv.Web.FactionController do
       |> Repo.all
 
     render(conn, "show.json", figures: list, army_list: army_list)
+  end
+
+  defp load(id) do
+    ArmyList.query_by_id(id)
+    |> ArmyList.with_sources
+    |> ArmyList.with_figures()
+    |> Repo.one!
   end
 end
