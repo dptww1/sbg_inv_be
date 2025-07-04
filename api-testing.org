@@ -1,0 +1,122 @@
+# -*- auto-fill-function: nil; line-spacing: 0.15; org-odd-levels-only: t; -*-
+#+STARTUP: hidestars top-level
+#
+# Reminders:
+#   Headers must have :verb: tag, either on themselves or a parent; C-c C-c on header to create
+#   C-c C-r C-r : run request at point
+#   C-c C-r C-k : kill all response buffers
+
+* Prod Tests                                                           :verb:
+template https://homely-uncomfortable-wreckfish.gigalixirapp.com/api
+Accept: application/json
+
+*** GET scenario resources (Attack at Tuckborough)
+get /scenarios/403/resource
+
+*** GET scenario Shelob's Lair
+get /scenarios/361
+
+*** GET faction [Lothlorien]
+get /faction/23
+
+*** GET figure [Great Beast of Gorgoroth]
+get /figure/570
+
+*** GET figure [one of the Frodos]
+get /figure/151
+
+*** GET figure [Hurin the Tall, Warden of the Keys]
+get /figure/777
+
+*** GET newsitem
+get /newsitem
+
+* Prod jsglobals                                                       :verb:
+get https://homely-uncomfortable-wreckfish.gigalixirapp.com/js/globals
+* Local Tests                                                          :verb:
+template http://localhost:4000/api
+Accept: application/json
+*** POST Session
+:properties:
+:Verb-Store: session
+:end:
+
+post /sessions
+Content-Type: application/json
+
+{
+  "user": {
+    "email": "dave@davetownsend.org",
+    "password": "{{(read-string "Password for dave@davetownsend.org: ")}}"
+  }
+}
+
+*** GET scenario Flies and Spiders Part I
+get /scenarios/186
+
+*** GET scenario Shelob's Lair
+get /scenarios/361
+
+*** GET scenario Shelob's Lair (authenticated)
+# Must run [[POST Session]] first
+get /scenarios/361
+Authorization: Token token={{(verb-json-get (oref (verb-stored-response "session") body) "data" "token")}}
+
+*** GET character
+get /character/4
+Authorization: Token token={{(verb-json-get (oref (verb-stored-response "session") body) "data" "token")}}
+
+*** GET faction
+get /faction
+
+*** GET faction/1
+get /faction/1
+
+*** GET figure [Khandish Charioteer]
+get /figure/135
+
+*** GET figure [Arvedui]'s "history" records
+get /figure/21
+Authorization: Token token={{(verb-json-get (oref (verb-stored-response "session") body) "data" "token")}}
+
+*** GET figure [Arvedui]
+get /figure/21
+
+*** GET figure [Hurin the Tall, Warden of the Keys]
+get /figure/777
+
+*** GET User History
+get /userhistory?from=2022-01-01&to=2022-12-31
+Authorization: Token token={{(verb-json-get (oref (verb-stored-response "session") body) "data" "token")}}
+
+* Local jsglobals
+get http://localhost:4000/js/globals
+* Old Restclient Examples
+
+See also https://isamert.net/2022/01/04/dealing-with-apis-jsons-and-databases-in-org-mode.html
+See also https://erick.navarro.io/blog/testing-an-api-with-emacs-and-restclient/
+
+*** Example TODO API call
+#+BEGIN_SRC http :pretty :wrap src json
+GET https://jsonplaceholder.typicode.com/todos/1
+#+END_SRC
+
+#+RESULTS:
+#+begin_src json
+{
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
+}
+#+end_src
+
+*** Example Using JQ to get a specific field
+#+BEGIN_SRC http :pretty :wrap src json :select .title
+GET https://jsonplaceholder.typicode.com/todos/1
+#+END_SRC
+
+#+RESULTS:
+#+begin_src json
+delectus aut autem
+#+end_src
