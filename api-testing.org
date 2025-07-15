@@ -72,6 +72,12 @@ get /faction
 *** GET faction/1
 get /faction/1
 
+*** GET faction/32 [Rivendell]
+get /faction/32
+
+*** GET figure [Arathorn]
+get /figure/20
+
 *** GET figure [Khandish Charioteer]
 get /figure/135
 
