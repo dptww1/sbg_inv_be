@@ -11,6 +11,7 @@ defmodule SbgInv.Web.Book do
     field :short_name, :string
     field :year, :string
     field :name, :string
+    field :has_scenarios, :boolean
 
     timestamps()
 

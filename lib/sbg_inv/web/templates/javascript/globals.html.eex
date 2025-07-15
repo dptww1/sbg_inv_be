@@ -53,7 +53,7 @@ const BOOK_INFO = (() => {
 
   const books = [
     <%= for book <- books() do %>
-      <%= { :safe, "{ \"key\": \"#{book.key}\", \"shortName\": \"#{book.short_name}\", \"year\": \"#{book.year}\", \"name\": \"#{book.name}\" }," } %>
+      <%= { :safe, "{ \"key\": \"#{book.key}\", \"shortName\": \"#{book.short_name}\", \"year\": \"#{book.year}\", \"name\": \"#{book.name}\", \"hasScenarios\": #{book.has_scenarios} }," } %>
     <% end %>
   ];
 
