@@ -89,7 +89,7 @@ get /figure/777
 get /userhistory?from=2022-01-01&to=2022-12-31
 Authorization: Token token={{(verb-json-get (oref (verb-stored-response "session") body) "data" "token")}}
 
-* Local jsglobals
+* Local jsglobals                                                      :verb:
 get http://localhost:4000/js/globals
 * Old Restclient Examples
 
