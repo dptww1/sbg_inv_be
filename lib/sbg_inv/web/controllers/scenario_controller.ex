@@ -24,22 +24,7 @@ defmodule SbgInv.Web.ScenarioController do
 
   def create(conn, %{"scenario" => scenario_params}) do
     with_admin_user conn do
-      changeset = Scenario.changeset(%Scenario{}, scenario_params)
-
-      case Repo.insert(changeset) do
-        {:ok, scenario} ->
-          scenario = load_scenario(conn, scenario.id)
-          conn
-          |> put_status(:created)
-          |> put_resp_header("location", Routes.scenario_path(conn, :show, scenario))
-          |> render("show.json", scenario: scenario, rating_breakdown: [])
-
-        {:error, changeset} ->
-          conn
-          |> put_status(:unprocessable_entity)
-          |> put_view(SbgInv.Web.ChangesetView)
-          |> render("error.json", changeset: changeset)
-      end
+      _create_or_update(conn, %Scenario{}, scenario_params)
     end
   end
 
@@ -48,7 +33,7 @@ defmodule SbgInv.Web.ScenarioController do
       conn
 
     else
-      scenario = load_scenario(conn, id)
+      scenario = _load_scenario(conn, id)
 
       rating_breakdown =
         Repo.all(Scenario.ratings_breakdown_query(id))
@@ -76,19 +61,7 @@ defmodule SbgInv.Web.ScenarioController do
         |> Scenario.with_figures(Authentication.user_id(conn))
         |> Repo.one
 
-      changeset = Scenario.changeset(scenario, scenario_params)
-
-      case Repo.update(changeset) do
-        {:ok, scenario} ->
-          scenario = load_scenario(conn, scenario.id)
-          render(conn, "show.json", scenario: scenario, rating_breakdown: [])
-
-        {:error, changeset} ->
-          conn
-          |> put_status(:unprocessable_entity)
-          |> put_view(SbgInv.Web.ChangesetView)
-          |> render("error.json", changeset: changeset)
-      end
+      _create_or_update(conn, scenario, scenario_params)
     end
   end
 
@@ -104,7 +77,23 @@ defmodule SbgInv.Web.ScenarioController do
     end
   end
 
-  defp load_scenario(conn, id) do
+  defp _create_or_update(conn, scenario, params) do
+    changeset = Scenario.changeset(scenario, params)
+
+    case Repo.insert_or_update(changeset) do
+      {:ok, scenario} ->
+        scenario = _load_scenario(conn, scenario.id)
+        render(conn, "show.json", scenario: scenario, rating_breakdown: [])
+
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> put_view(SbgInv.Web.ChangesetView)
+        |> render("error.json", changeset: changeset)
+    end
+  end
+
+  defp _load_scenario(conn, id) do
     user_id = Authentication.user_id(conn)
 
     Scenario.query_by_id(id)

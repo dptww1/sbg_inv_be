@@ -71,7 +71,7 @@ defmodule SbgInv.ScenarioControllerTest do
 
     check = Repo.one!(Scenario) |> Repo.preload(:scenario_factions)
 
-    assert json_response(conn, 201)["data"] == %{
+    assert json_response(conn, 200)["data"] == %{
       "id" => check.id,
       "blurb" => "some content",
       "date_age" => 42,

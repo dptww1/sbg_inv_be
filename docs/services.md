@@ -1274,7 +1274,7 @@ convenience of the front end.
 
 ### `POST /scenarios`
 - **Authentication** Admin
-- **Normal HTTP Response Code** 201 (not 200)
+- **Normal HTTP Response Code** 200
 - **Error HTTP Response Code**
   . 401 Authorization error
   . 422 Bad data
