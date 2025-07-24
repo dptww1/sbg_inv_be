@@ -237,10 +237,13 @@ A lookup table for a sourcebook or rules book, replacing the previous hardwired 
 | year | string | year of publication
 | inserted_at | timestamp |
 | updated_at | timestamp |
+| has_scenarios | boolean | `true` if this book contains at least one scenario, else `false`
 
 `key` is an artifact of the services, which often used this value to identify a book instead of the numeric id.
 
 `year` is useful for distinguishing books with the same name (e.g. the two "Fall of the Necromancer"s and "Mordor"s).
+
+`has_scenarios` is maintained manually.
 
 ### character_figures
 
