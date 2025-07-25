@@ -40,6 +40,7 @@ defmodule SbgInv.Web.Scenario do
     |> cast_assoc(:scenario_factions,
                   Map.get(params, "scenario_factions", [])
                   |> Enum.map(fn (sf_params) -> ScenarioFaction.changeset(%ScenarioFaction{}, sf_params) end))
+    |> cast_assoc(:scenario_resources)
   end
 
   def base_changeset(model, params \\ %{}) do

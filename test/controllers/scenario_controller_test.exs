@@ -10,6 +10,10 @@ defmodule SbgInv.ScenarioControllerTest do
                  scenario_factions: [
                    %{faction: :shire, suggested_points: 100, actual_points: 0, sort_order: 1},
                    %{faction: :moria, suggested_points:  70, actual_points: 0, sort_order: 2}
+                 ],
+                 scenario_resources: [
+                   %{resource_type: 0, book: "harad", page: 17, sort_order: 1},
+                   %{resource_type: 2, url: "http://www.example.com", title: "Replay", sort_order: 2},
                  ]}
   @invalid_attrs %{}
 
@@ -69,7 +73,11 @@ defmodule SbgInv.ScenarioControllerTest do
     conn = TestHelper.create_session(conn, user)
     conn = post conn, Routes.scenario_path(conn, :create), scenario: @valid_attrs
 
-    check = Repo.one!(Scenario) |> Repo.preload(:scenario_factions)
+    check = Repo.one!(Scenario)
+    |> Repo.preload(:scenario_factions)
+    |> Repo.preload(:scenario_resources)
+
+    now = NaiveDateTime.utc_now |> Calendar.strftime("%Y-%m-%d")
 
     assert json_response(conn, 200)["data"] == %{
       "id" => check.id,
@@ -94,10 +102,16 @@ defmodule SbgInv.ScenarioControllerTest do
       "scenario_resources" => %{
         "magazine_replay" => [],
         "podcast" => [],
-        "source" => [],
+        "source" => [
+          %{"resource_type" => "source", "book" => "harad", "page" => 17, "sort_order" => 1, "date" => now, "id" => hd(check.scenario_resources).id,
+            "issue" => nil, "notes" => nil, "scenario_id" => check.id, "title" => nil, "url" => nil }
+        ],
         "terrain_building" => [],
         "video_replay" => [],
-        "web_replay" => []
+        "web_replay" => [
+          %{"resource_type" => "web_replay", "book" => nil, "issue" => nil, "page" => nil, "sort_order" => 2, "title" => "Replay", "url" => "http://www.example.com",
+            "scenario_id" => check.id, "notes" => nil, "id" => hd(tl(check.scenario_resources)).id, "date" => now}
+        ]
       },
       "size" => 42,
       "user_scenario" => %{

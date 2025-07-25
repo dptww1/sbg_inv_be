@@ -4,7 +4,7 @@ defmodule SbgInv.Web.ScenarioController do
 
   import SbgInv.Web.ControllerMacros
 
-  alias SbgInv.Web.{Authentication, Scenario}
+  alias SbgInv.Web.{Authentication, BookUtils, Scenario}
 
   plug :scrub_params, "scenario" when action in [:create, :update]
 
@@ -78,6 +78,9 @@ defmodule SbgInv.Web.ScenarioController do
   end
 
   defp _create_or_update(conn, scenario, params) do
+    params = params
+    |> Map.put("scenario_resources", BookUtils.add_book_refs(params["scenario_resources"]))
+
     changeset = Scenario.changeset(scenario, params)
 
     case Repo.insert_or_update(changeset) do

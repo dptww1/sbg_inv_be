@@ -21,7 +21,7 @@ defmodule SbgInv.Web.ScenarioResource do
     belongs_to :book, Book, source: :book
   end
 
-  @required_fields [:scenario_id, :resource_type, :sort_order]
+  @required_fields [:resource_type, :sort_order]
   @optional_fields [:issue, :page, :title, :url, :notes]
 
   @doc """
