@@ -51,7 +51,10 @@ defmodule SbgInv.Web.ScenarioResourceController do
         send_resp(conn, :no_content, "")
 
       {:error, _changeset} ->
-        send_resp(conn, :unprocessable_entity, "")
+        conn
+        |> put_status(:unprocessable_entity)
+        |> put_view(SbgInv.Web.ChangesetView)
+        |> render("error.json", changeset: changeset)
     end
   end
 

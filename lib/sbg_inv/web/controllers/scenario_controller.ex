@@ -78,8 +78,7 @@ defmodule SbgInv.Web.ScenarioController do
   end
 
   defp _create_or_update(conn, scenario, params) do
-    params = params
-    |> Map.put("scenario_resources", BookUtils.add_book_refs(params["scenario_resources"]))
+    params = Map.put(params, "scenario_resources", _normalize_resources(Map.get(params, "scenario_resources")))
 
     changeset = Scenario.changeset(scenario, params)
 
@@ -105,4 +104,15 @@ defmodule SbgInv.Web.ScenarioController do
     |> Scenario.with_figures(user_id)
     |> Repo.one
   end
+
+  # scenario_view.ex converts the simple list of resources into a map of typed lists.
+  # In retrospect, this should have been done in the front end.  But we make things
+  # easier here for front end editing by accepting the view's organization of the
+  # resources within the "scenario_resources" parameter.
+  defp _normalize_resources(map) when is_map(map) do
+    Enum.reduce(["magazine_replay", "podcast", "source", "terrain_building", "video_replay", "web_replay"],
+                [],
+                fn x, acc -> acc ++ BookUtils.add_book_refs(Map.get(map, x)) end)
+  end
+  defp _normalize_resources(_), do: []
 end

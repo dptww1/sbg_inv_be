@@ -20,7 +20,7 @@ defmodule SbgInv.Web.Scenario do
 
     timestamps()
 
-    has_many :scenario_resources, ScenarioResource
+    has_many :scenario_resources, ScenarioResource, on_replace: :delete
     has_many :scenario_factions, ScenarioFaction, on_replace: :delete
     has_many :user_scenarios, UserScenario
   end

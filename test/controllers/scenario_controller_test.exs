@@ -11,10 +11,10 @@ defmodule SbgInv.ScenarioControllerTest do
                    %{faction: :shire, suggested_points: 100, actual_points: 0, sort_order: 1},
                    %{faction: :moria, suggested_points:  70, actual_points: 0, sort_order: 2}
                  ],
-                 scenario_resources: [
-                   %{resource_type: 0, book: "harad", page: 17, sort_order: 1},
-                   %{resource_type: 2, url: "http://www.example.com", title: "Replay", sort_order: 2},
-                 ]}
+                 scenario_resources: %{
+                   "source" => [ %{resource_type: 0, book: "harad", page: 17, sort_order: 1} ],
+                   "web_replay" => [ %{resource_type: 2, url: "http://www.example.com", title: "Replay", sort_order: 2} ]
+                 }}
   @invalid_attrs %{}
 
   setup %{conn: conn} do
@@ -103,14 +103,16 @@ defmodule SbgInv.ScenarioControllerTest do
         "magazine_replay" => [],
         "podcast" => [],
         "source" => [
-          %{"resource_type" => "source", "book" => "harad", "page" => 17, "sort_order" => 1, "date" => now, "id" => hd(check.scenario_resources).id,
-            "issue" => nil, "notes" => nil, "scenario_id" => check.id, "title" => nil, "url" => nil }
+          %{"resource_type" => "source", "book" => "harad", "page" => 17, "issue" => nil, "sort_order" => 1, "date" => now,
+            "id" => Enum.find(check.scenario_resources, fn elt -> elt.resource_type == :source end).id,
+            "notes" => nil, "scenario_id" => check.id, "title" => nil, "url" => nil}
         ],
         "terrain_building" => [],
         "video_replay" => [],
         "web_replay" => [
-          %{"resource_type" => "web_replay", "book" => nil, "issue" => nil, "page" => nil, "sort_order" => 2, "title" => "Replay", "url" => "http://www.example.com",
-            "scenario_id" => check.id, "notes" => nil, "id" => hd(tl(check.scenario_resources)).id, "date" => now}
+          %{"resource_type" => "web_replay", "book" => nil, "page" => nil, "issue" => nil, "sort_order" => 2, "date" => now,
+            "id" => Enum.find(check.scenario_resources, fn elt -> elt.resource_type == :web_replay end).id,
+            "notes" => nil, "scenario_id" => check.id, "title" => "Replay", "url" => "http://www.example.com"}
         ]
       },
       "size" => 42,
@@ -146,17 +148,73 @@ defmodule SbgInv.ScenarioControllerTest do
   test "updates and renders chosen resource when data is valid and user is admin", %{conn: conn} do
     %{conn: conn, user: user, const_data: const_data} = TestHelper.set_up_std_scenario(conn, :user2)
 
-    user
-    |> Ecto.Changeset.change(%{:is_admin => true})
-    |> Repo.update!
+    TestHelper.promote_user_to_admin(user)
+
+    # Create the source; it will be removed since it's not in the update data that we're about to send
+    TestHelper.create_scenario_source(const_data["id"])
 
     conn = put conn,
                Routes.scenario_path(conn, :update, const_data["id"]),
                scenario: put_in(@valid_attrs, [ :scenario_factions ], [
-                                  %{faction: :fangorn, suggested_points: 2, actual_points: 1, sort_order: 1, id: hd(const_data["scenario_factions"])["id"]} #,
-                                  #%{faction: :mordor, suggested_points: 3, actual_points: 4, sort_order: 2}
-                                ])
-    assert json_response(conn, 200)["data"]["id"]
+                                  %{faction: :fangorn, suggested_points: 2, actual_points: 1, sort_order: 1, id: hd(const_data["scenario_factions"])["id"]}
+                         ])
+                         |> put_in([ :scenario_resources ], %{
+                              web_replay: [ %{resource_type: :web_replay, url: "http://www.example.com", title: "FOO", sort_order: 2} ]
+                         })
+
+    check = Repo.one!(Scenario)
+    |> Repo.preload(:scenario_factions)
+    |> Repo.preload(:scenario_resources)
+
+    now = NaiveDateTime.utc_now |> Calendar.strftime("%Y-%m-%d")
+
+    assert json_response(conn, 200)["data"] == %{
+      "id" => check.id,
+      "blurb" => "some content",
+      "date_age" => 42,
+      "date_day" => 15,
+      "date_month" => 7,
+      "date_year" => 42,
+      "location" => "the_shire",
+      "map_height" => 48,
+      "map_width" => 48,
+      "name" => "some name",
+      "num_votes" => 0,
+      "rating" => 0,
+      "rating_breakdown" => [],
+      "scenario_factions" => [
+        %{"sort_order" => 1, "suggested_points" => 2, "actual_points" => 1, "id" => hd(check.scenario_factions).id,
+          "roles" => [
+            %{"amount" => 9, "name" => "ABC", "num_owned" => 2, "num_painted" => 2, "sort_order" => 1, "id" => TestHelper.std_scenario_role_id(const_data, 0, 0),
+            "figures" => [
+                %{"name" => "ABCs", "owned" => 2, "painted" => 2, "figure_id" => TestHelper.std_scenario_figure_id(const_data, 0, 0)}
+              ]},
+            %{"amount" => 7, "name" => "DEF", "num_owned" => 1, "num_painted" => 0, "sort_order" => 2, "id" => TestHelper.std_scenario_role_id(const_data, 0, 1),
+              "figures" => [
+                %{"name" => "DEF", "owned" => 1, "painted" => 0, "figure_id" => TestHelper.std_scenario_figure_id(const_data, 1, 0)}
+              ]},
+          ]},
+      ],
+      "scenario_resources" => %{
+        "magazine_replay" => [],
+        "podcast" => [],
+        "source" => [],
+        "terrain_building" => [],
+        "video_replay" => [],
+        "web_replay" => [
+          %{"resource_type" => "web_replay", "book" => nil, "issue" => nil, "page" => nil, "sort_order" => 2, "title" => "FOO", "url" => "http://www.example.com",
+            "scenario_id" => check.id, "notes" => nil, "id" => hd(check.scenario_resources).id, "date" => now}
+        ]
+      },
+      "size" => 42,
+      "user_scenario" => %{
+        "avg_rating" => 0,
+        "num_votes" => 0,
+        "owned" => 7,
+        "painted" => 5,
+        "rating" => 0
+      }
+    }
   end
 
   test "does not update chosen resource when user is anonymous", %{conn: conn} do

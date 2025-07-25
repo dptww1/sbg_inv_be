@@ -53,6 +53,9 @@ defmodule SbgInv.TestHelper do
   def std_scenario_figure_id(const_data, idx \\ 0) do
     Pathex.get(const_data, path("scenario_factions" / 0 / "roles" / 0 / "figures" / idx / "figure_id"))
   end
+  def std_scenario_figure_id(const_data, role_idx, figure_idx) do
+    Pathex.get(const_data, path("scenario_factions" / 0 / "roles" / role_idx / "figures" / figure_idx / "figure_id"))
+  end
 
   def add_faction_figure(figure_id, faction_id) do
     Repo.insert! %FactionFigure{faction_id: faction_id, figure_id: figure_id}

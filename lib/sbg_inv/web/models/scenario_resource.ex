@@ -18,11 +18,14 @@ defmodule SbgInv.Web.ScenarioResource do
     timestamps()
 
     belongs_to :scenario, Scenario
-    belongs_to :book, Book, source: :book
+    belongs_to :book, Book, source: :book, on_replace: :nilify
   end
 
+  # :scenario_id is required by ScenarioResourceController but can't
+  # be provided by ScenarioController#create/update, so it has to
+  # be optional.
   @required_fields [:resource_type, :sort_order]
-  @optional_fields [:issue, :page, :title, :url, :notes]
+  @optional_fields [:scenario_id, :issue, :page, :title, :url, :notes]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
