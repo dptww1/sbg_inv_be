@@ -14,6 +14,7 @@ defmodule SbgInv.Web.BookUtils do
   end
 
   defp add_book_ref_maybe(map, nil), do: map
+  defp add_book_ref_maybe(map, ""), do: Map.put(map, "book", nil)
   defp add_book_ref_maybe(map, key) do
     Map.put(map, "book",
             key
