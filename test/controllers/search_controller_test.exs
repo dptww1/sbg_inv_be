@@ -126,6 +126,7 @@ defmodule SbgInv.Web.SearchControllerTest do
   end
 
   test "search can filter by character", %{conn: conn} = context do
+    conn = TestHelper.create_logged_in_user(conn, "ABC", "A@A", true)
     conn = get conn, Routes.search_path(conn, :index, q: "Gimli", type: "c")
     assert json_response(conn, 200)["data"] == [
              %{
@@ -140,6 +141,7 @@ defmodule SbgInv.Web.SearchControllerTest do
   end
 
   test "search for character uses unaccented search", %{conn: conn} do
+    conn = TestHelper.create_logged_in_user(conn, "ABC", "A@A", true)
     fid = declare_figure("Thrór", "Thrórs")
     chid = declare_character("King Thrór", [fid])
     conn = get conn, Routes.search_path(conn, :index, q: "thror", type: "c")
@@ -153,6 +155,12 @@ defmodule SbgInv.Web.SearchControllerTest do
                "book" => ""
              }
     ]
+  end
+
+  test "non-admin user searches do not return character results", %{conn: conn} do
+    conn = TestHelper.create_logged_in_user(conn) # non-admin
+    conn = get conn, Routes.search_path(conn, :index, q: "gimli", type: "c")
+    assert json_response(conn, 200)["data"] == []
   end
 
   defp declare_scenario(name) do

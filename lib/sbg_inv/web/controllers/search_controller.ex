@@ -7,21 +7,27 @@ defmodule SbgInv.Web.SearchController do
   def index(conn, %{"q" => q} = params) do
     type = Map.get(params, "type")
 
+    current_user = Map.get(conn.assigns, :current_user)
+    user_is_admin = !is_nil(current_user) && current_user.is_admin
+
     search_query =
       scenario_query(type, q)
       |> unionize(figure_query(type, q))
-      |> unionize(character_query(type, q))
+      |> unionize(character_query(user_is_admin, type, q))
 
-    results =
-      Repo.all(search_query)
-      |> Enum.sort(&sort_by_pos_then_name/2)
+    results = if is_nil(search_query) do
+                []
+              else
+                Repo.all(search_query)
+                |> Enum.sort(&sort_by_pos_then_name/2)
+    end
 
     render(conn, "search.json", %{rows: results})
   end
 
-  # character_query not used when type == nil
-  defp character_query("c", q), do: Search.character_search(q)
-  defp character_query(_, _), do: nil
+  defp character_query(true, nil, q), do: Search.character_search(q)
+  defp character_query(true, "c", q), do: Search.character_search(q)
+  defp character_query(_, _, _), do: nil
 
   defp figure_query(nil, q), do: Search.figure_search(q)
   defp figure_query("f", q), do: Search.figure_search(q)
