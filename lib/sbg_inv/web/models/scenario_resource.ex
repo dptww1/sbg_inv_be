@@ -12,7 +12,6 @@ defmodule SbgInv.Web.ScenarioResource do
     field :page, :integer
     field :title, :string
     field :url, :string
-    field :notes, :string
     field :sort_order, :integer
 
     timestamps()
@@ -25,7 +24,7 @@ defmodule SbgInv.Web.ScenarioResource do
   # be provided by ScenarioController#create/update, so it has to
   # be optional.
   @required_fields [:resource_type, :sort_order]
-  @optional_fields [:scenario_id, :issue, :page, :title, :url, :notes]
+  @optional_fields [:scenario_id, :issue, :page, :title, :url]
 
   @doc """
   Creates a changeset based on the `model` and `params`.

@@ -27,7 +27,6 @@ defmodule SbgInv.Web.ScenarioResourceView do
       title: resource.title,
       url:  resource.url,
       page: resource.page,
-      notes: resource.notes,
       sort_order: resource.sort_order,
       date: String.slice(NaiveDateTime.to_string(resource.updated_at), 0..9)
     }

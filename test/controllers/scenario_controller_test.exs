@@ -105,14 +105,14 @@ defmodule SbgInv.ScenarioControllerTest do
         "source" => [
           %{"resource_type" => "source", "book" => "harad", "page" => 17, "issue" => nil, "sort_order" => 1, "date" => now,
             "id" => Enum.find(check.scenario_resources, fn elt -> elt.resource_type == :source end).id,
-            "notes" => nil, "scenario_id" => check.id, "title" => nil, "url" => nil}
+            "scenario_id" => check.id, "title" => nil, "url" => nil}
         ],
         "terrain_building" => [],
         "video_replay" => [],
         "web_replay" => [
           %{"resource_type" => "web_replay", "book" => nil, "page" => nil, "issue" => nil, "sort_order" => 2, "date" => now,
             "id" => Enum.find(check.scenario_resources, fn elt -> elt.resource_type == :web_replay end).id,
-            "notes" => nil, "scenario_id" => check.id, "title" => "Replay", "url" => "http://www.example.com"}
+            "scenario_id" => check.id, "title" => "Replay", "url" => "http://www.example.com"}
         ]
       },
       "size" => 42,
@@ -203,7 +203,7 @@ defmodule SbgInv.ScenarioControllerTest do
         "video_replay" => [],
         "web_replay" => [
           %{"resource_type" => "web_replay", "book" => nil, "issue" => nil, "page" => nil, "sort_order" => 2, "title" => "FOO", "url" => "http://www.example.com",
-            "scenario_id" => check.id, "notes" => nil, "id" => hd(check.scenario_resources).id, "date" => now}
+            "scenario_id" => check.id, "id" => hd(check.scenario_resources).id, "date" => now}
         ]
       },
       "size" => 42,

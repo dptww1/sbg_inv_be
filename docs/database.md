@@ -484,7 +484,6 @@ Records represent a resource for a scenario.
 | book | int4 | a [Books](#books) value
 | page | int4 |
 | url | text |
-| notes | text | unused |
 | sort_order | int4 | 1..n
 | inserted_at | timestamp
 | updated_at | timestamp
