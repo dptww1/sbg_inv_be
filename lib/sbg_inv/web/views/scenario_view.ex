@@ -54,10 +54,11 @@ defmodule SbgInv.Web.ScenarioView do
   defp massage_resources(scenario_resources) do
     %{
       source:           Enum.filter(scenario_resources, &(&1.resource_type == :source)),
-      video_replay:     Enum.filter(scenario_resources, fn r -> r.resource_type == :video_replay end),
-      web_replay:       Enum.filter(scenario_resources, fn r -> r.resource_type == :web_replay end),
-      terrain_building: Enum.filter(scenario_resources, fn r -> r.resource_type == :terrain_building end),
-      podcast:          Enum.filter(scenario_resources, fn r -> r.resource_type == :podcast end),
+      cheatsheet:       Enum.filter(scenario_resources, &(&1.resource_type == :cheatsheet)),
+      video_replay:     Enum.filter(scenario_resources, &(&1.resource_type == :video_replay)),
+      web_replay:       Enum.filter(scenario_resources, &(&1.resource_type == :web_replay)),
+      terrain_building: Enum.filter(scenario_resources, &(&1.resource_type == :terrain_building)),
+      podcast:          Enum.filter(scenario_resources, &(&1.resource_type == :podcast)),
       magazine_replay:  Enum.filter(scenario_resources, &(&1.resource_type == :magazine_replay))
     }
   end

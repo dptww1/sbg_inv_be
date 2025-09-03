@@ -44,7 +44,8 @@ defenum ScenarioResourceType,
   web_replay:       2,
   terrain_building: 3,
   podcast:          4,
-  magazine_replay:  5
+  magazine_replay:  5,
+  cheatsheet:       6
 
 defenum UserFigureOp,
   buy_unpainted:  0,

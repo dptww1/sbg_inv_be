@@ -110,7 +110,7 @@ defmodule SbgInv.Web.ScenarioController do
   # easier here for front end editing by accepting the view's organization of the
   # resources within the "scenario_resources" parameter.
   defp _normalize_resources(map) when is_map(map) do
-    Enum.reduce(["magazine_replay", "podcast", "source", "terrain_building", "video_replay", "web_replay"],
+    Enum.reduce(["magazine_replay", "podcast", "source", "terrain_building", "video_replay", "web_replay", "cheatsheet"],
                 [],
                 fn x, acc -> acc ++ BookUtils.add_book_refs(Map.get(map, x)) end)
   end

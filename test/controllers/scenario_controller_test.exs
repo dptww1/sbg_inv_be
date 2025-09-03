@@ -50,7 +50,8 @@ defmodule SbgInv.ScenarioControllerTest do
         "web_replay" => [],
         "video_replay" => [],
         "terrain_building" => [],
-        "podcast" => []
+        "podcast" => [],
+        "cheatsheet" => []
        },
       "scenario_factions" => [],
       "user_scenario" => %{ "rating" => 0, "owned" => 0, "painted" => 0, "avg_rating" => 0, "num_votes" => 0 }
@@ -112,8 +113,9 @@ defmodule SbgInv.ScenarioControllerTest do
         "web_replay" => [
           %{"resource_type" => "web_replay", "book" => nil, "page" => nil, "issue" => nil, "sort_order" => 2, "date" => now,
             "id" => Enum.find(check.scenario_resources, fn elt -> elt.resource_type == :web_replay end).id,
-            "scenario_id" => check.id, "title" => "Replay", "url" => "http://www.example.com"}
-        ]
+          "scenario_id" => check.id, "title" => "Replay", "url" => "http://www.example.com"},
+        ],
+        "cheatsheet" => []
       },
       "size" => 42,
       "user_scenario" => %{
@@ -204,7 +206,8 @@ defmodule SbgInv.ScenarioControllerTest do
         "web_replay" => [
           %{"resource_type" => "web_replay", "book" => nil, "issue" => nil, "page" => nil, "sort_order" => 2, "title" => "FOO", "url" => "http://www.example.com",
             "scenario_id" => check.id, "id" => hd(check.scenario_resources).id, "date" => now}
-        ]
+        ],
+        "cheatsheet" => []
       },
       "size" => 42,
       "user_scenario" => %{

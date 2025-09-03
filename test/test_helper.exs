@@ -192,7 +192,8 @@ defmodule SbgInv.TestHelper do
           "source" => [],
           "terrain_building" => [],
           "video_replay" => [],
-          "web_replay" => []
+          "web_replay" => [],
+          "cheatsheet" => []
         },
         "user_scenario" =>
           if user == :user1 do

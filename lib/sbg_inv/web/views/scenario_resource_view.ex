@@ -9,6 +9,7 @@ defmodule SbgInv.Web.ScenarioResourceView do
   def render("resources.json", %{scenario_resource: resources}) do
     %{
       source:           render_many(Enum.sort(resources.source,           &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
+      cheatsheet:       render_many(Enum.sort(resources.cheatsheet,       &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
       video_replay:     render_many(Enum.sort(resources.video_replay,     &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
       web_replay:       render_many(Enum.sort(resources.web_replay,       &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
       terrain_building: render_many(Enum.sort(resources.terrain_building, &(&1.sort_order < &2.sort_order)), __MODULE__, "resource.json"),
