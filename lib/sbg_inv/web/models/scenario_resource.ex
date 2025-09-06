@@ -50,7 +50,8 @@ defmodule SbgInv.Web.ScenarioResource do
     from sr in ScenarioResource,
     where: sr.updated_at >= ^from_date
        and sr.updated_at <= ^to_date
-       and sr.resource_type != :source,
+       and sr.resource_type != :source
+       and sr.resource_type != :cheatsheet,
     order_by: [desc: sr.updated_at],
     limit: ^limit,
     preload: [:scenario, :book]
