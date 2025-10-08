@@ -32,6 +32,7 @@ defmodule SbgInv.Web.RoleView do
           %{
             figure_id: uf.figure.id,
             name: if(user_figure.owned > 1 && uf.figure.plural_name, do: uf.figure.plural_name, else: uf.figure.name),
+            plural_name: uf.figure.plural_name, # Bit of a hack: only FE role editing needs this
             owned: user_figure.owned,
             painted: user_figure.painted
           }

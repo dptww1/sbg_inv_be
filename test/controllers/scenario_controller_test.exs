@@ -189,11 +189,11 @@ defmodule SbgInv.ScenarioControllerTest do
           "roles" => [
             %{"amount" => 9, "name" => "ABC", "num_owned" => 2, "num_painted" => 2, "sort_order" => 1, "id" => TestHelper.std_scenario_role_id(const_data, 0, 0),
             "figures" => [
-                %{"name" => "ABCs", "owned" => 2, "painted" => 2, "figure_id" => TestHelper.std_scenario_figure_id(const_data, 0, 0)}
+                %{"name" => "ABCs", "owned" => 2, "painted" => 2, "figure_id" => TestHelper.std_scenario_figure_id(const_data, 0, 0), "plural_name" => "ABCs"}
               ]},
             %{"amount" => 7, "name" => "DEF", "num_owned" => 1, "num_painted" => 0, "sort_order" => 2, "id" => TestHelper.std_scenario_role_id(const_data, 0, 1),
               "figures" => [
-                %{"name" => "DEF", "owned" => 1, "painted" => 0, "figure_id" => TestHelper.std_scenario_figure_id(const_data, 1, 0)}
+                %{"name" => "DEF", "owned" => 1, "painted" => 0, "figure_id" => TestHelper.std_scenario_figure_id(const_data, 1, 0), "plural_name" => "DEFs"}
               ]},
           ]},
       ],
@@ -299,8 +299,8 @@ defmodule SbgInv.ScenarioControllerTest do
       "num_painted" => 2,
       "sort_order" => 1,
       "figures" => [
-        %{"figure_id" => TestHelper.std_scenario_figure_id(const_data), "name" => "ABCs", "owned" => 2, "painted" => 2},
-        %{"figure_id" => second_figure.id, "name" => "new", "owned" => 0, "painted" => 0}
+        %{"figure_id" => TestHelper.std_scenario_figure_id(const_data), "name" => "ABCs", "owned" => 2, "painted" => 2, "plural_name" => "ABCs"},
+        %{"figure_id" => second_figure.id, "name" => "new", "owned" => 0, "painted" => 0, "plural_name" => "news"}
       ]
     }
   end

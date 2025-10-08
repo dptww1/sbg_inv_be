@@ -1163,20 +1163,23 @@ Gets the details of a specific scenario.
                 "figure_id": 217,
                 "name": "Gandalf the Grey (Hobbit)",
                 "owned": 0,
-                "painted": 0
+                "painted": 0,
+                "plural_name": null
               },
               {
                 "figure_id": 213,
                 "name": "Gandalf the Grey (with Bilbo)",
                 "owned": 1,
-                "painted": 0
+                "painted": 0,
+                "plural_name": null,
               }
             ],
             "id": 4188,
             "name": "Gandalf the Grey",
             "num_owned": 1,
             "num_painted": 1,
-            "sort_order": 1
+            "sort_order": 1,
+            "plural_name": null
           }
         ],
         "sort_order": 1,
@@ -1193,20 +1196,23 @@ Gets the details of a specific scenario.
                 "figure_id": 845,
                 "name": "Saruman the White (Middle Earth)",
                 "owned": 1,
-                "painted": 1
+                "painted": 1,
+                "plural_name": null
               },
               {
                 "figure_id": 241,
                 "name": "Saruman (Orthanc)",
                 "owned": 1,
-                "painted": 0
+                "painted": 0,
+                "plural_name": null
               }
             ],
             "id": 4189,
             "name": "Saruman",
             "num_owned": 1,
             "num_painted": 1,
-            "sort_order": 1
+            "sort_order": 1,
+            "plural_name": null
           }
         ],
         "sort_order": 2,

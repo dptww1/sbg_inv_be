@@ -171,16 +171,16 @@ defmodule SbgInv.TestHelper do
             "roles" => [
               %{"id" => role1.id, "name" => "ABC", "amount" => 9, "num_owned" => 2, "num_painted" => 2, "sort_order" => 1, "figures" => [
                if user == :user1 do
-                 %{"figure_id" => figure1.id, "name" => "ABCs", "owned" => 4, "painted" => 2}
+                 %{"figure_id" => figure1.id, "name" => "ABCs", "owned" => 4, "painted" => 2, "plural_name" => "ABCs"}
                else
-                 %{"figure_id" => figure1.id, "name" => "ABCs", "owned" => 2, "painted" => 2}
+                 %{"figure_id" => figure1.id, "name" => "ABCs", "owned" => 2, "painted" => 2, "plural_name" => "ABCs"}
                end
                ]},
               %{"id" => role2.id, "name" => "DEF", "amount" => 7, "num_owned" => 1, "num_painted" => 0, "sort_order" => 2, "figures" => [
                if user == :user1 do
-                 %{"figure_id" => figure2.id, "name" => "DEF", "owned" => 3, "painted" => 1}
+                 %{"figure_id" => figure2.id, "name" => "DEF", "owned" => 3, "painted" => 1, "plural_name" => "DEFs"}
                else
-                 %{"figure_id" => figure2.id, "name" => "DEF", "owned" => 1, "painted" => 0}
+                 %{"figure_id" => figure2.id, "name" => "DEF", "owned" => 1, "painted" => 0, "plural_name" => "DEFs"}
                end
                ]},
             ]
