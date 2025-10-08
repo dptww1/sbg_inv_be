@@ -161,6 +161,7 @@ use the strings instead.
 | 3 |  Terrain Building | `"terrain_building"` | not currently used |
 | 4 |   Podcast | `"podcast"` |
 | 5 |  Magazine Replay | `"magazine_replay"` |
+| 6 | Cheatsheet | `"cheatsheet"` |
 
 ### User Figure Op
 
