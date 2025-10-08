@@ -21,7 +21,6 @@ defmodule SbgInv.Web.ScenarioController do
     render(conn, "index.json", scenarios: scenarios)
   end
 
-
   def create(conn, %{"scenario" => scenario_params}) do
     with_admin_user conn do
       _create_or_update(conn, %Scenario{}, scenario_params)
