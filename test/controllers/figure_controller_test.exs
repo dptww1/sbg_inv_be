@@ -66,6 +66,8 @@ defmodule SbgInv.Web.FigureControllerTest do
       ],
       "owned" => 0,
       "painted" => 0,
+      "total_owned" => 6,
+      "total_painted" => 4,
       "history" => [],
       "rules" => [
         %{ "name_override" => nil, "book" => "tba", "page" => 34, "issue" => "3", "obsolete" => true, "sort_order" => 2, "url" => nil}
@@ -135,7 +137,9 @@ defmodule SbgInv.Web.FigureControllerTest do
       "resources" => [
         %{"title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
         %{"title" => "YouTube", "type" => "analysis", "book" => nil, "issue" => nil, "page" => nil, "url" => "http://www.example.com"}
-      ]
+      ],
+      "total_owned" => 6,
+      "total_painted" => 4
     }
   end
 
@@ -159,7 +163,9 @@ defmodule SbgInv.Web.FigureControllerTest do
              "scenarios" => [],
              "factions" => ["rohan", "shire"],
              "rules" => [],
-             "resources" => []
+             "resources" => [],
+             "total_owned" => 0,
+             "total_painted" => 0
            }
 
     # Make sure no stray character was created
@@ -186,7 +192,9 @@ defmodule SbgInv.Web.FigureControllerTest do
              "scenarios" => [],
              "factions" => ["rohan", "shire"],
              "rules" => [],
-             "resources" => []
+             "resources" => [],
+             "total_owned" => 0,
+             "total_painted" => 0
            }
 
     # Characters aren't reflected directly in figure_view, except through the character's rules and resources
@@ -233,7 +241,9 @@ defmodule SbgInv.Web.FigureControllerTest do
              "resources" => [
                %{"book" => "sbg", "issue" => "3", "page" => 37, "title" => "SBG #3", "type" => "painting_guide", "url" => nil},
                %{"book" => nil, "issue" => nil, "page" => nil, "title" => "YouTube", "type" => "analysis", "url" => "http://www.example.com"}
-             ]
+             ],
+             "total_owned" => 0,
+             "total_painted" => 0
            }
   end
 
@@ -286,7 +296,9 @@ defmodule SbgInv.Web.FigureControllerTest do
              "resources" => [
                %{"title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
                %{"title" => "YouTube", "type" => "analysis", "book" => nil, "issue" => nil, "page" => nil, "url" => "http://www.example.com"}
-             ]
+             ],
+             "total_owned" => 0,
+             "total_painted" => 0
            }
   end
 

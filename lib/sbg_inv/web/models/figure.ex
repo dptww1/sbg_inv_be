@@ -61,6 +61,16 @@ defmodule SbgInv.Web.Figure do
     where: f.id == ^figure_id
   end
 
+  def query_stats(figure_id) do
+    from uf in UserFigure,
+    where: uf.figure_id == ^figure_id,
+    group_by: uf.figure_id,
+    select: %{
+      total_owned: sum(uf.owned),
+      total_painted: sum(uf.painted)
+    }
+  end
+
   def with_characters_and_resources_and_rules(query) do
     ch_query = from ch in Character, order_by: :name
 

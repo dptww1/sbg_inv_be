@@ -4,7 +4,10 @@ defmodule SbgInv.Web.FigureView do
 
   alias SbgInv.Web.ScenarioResourceView
 
-  def render("figure.json", %{figure: figure}) do
+  def render("figure.json", params_map) do
+    figure = params_map.figure
+    stats = Map.get(params_map, :figure_stats, %{total_owned: 0, total_painted: 0})
+    #def render("figure.json", %{figure: figure, figure_stats: stats \\ %{total_owned: 0, total_painted: 0}}) do
     %{data: %{
          "id" => figure.id,
          "name" => figure.name,
@@ -18,7 +21,9 @@ defmodule SbgInv.Web.FigureView do
          "painted" => user_figure_attr(figure.user_figure, :painted),
          "history" => sorted_history(figure.user_figure_history),
          "rules" => rules(figure.characters),
-         "resources" => resources(figure.characters)
+         "resources" => resources(figure.characters),
+         "total_owned" => stats.total_owned,
+         "total_painted" => stats.total_painted
       }
     }
   end

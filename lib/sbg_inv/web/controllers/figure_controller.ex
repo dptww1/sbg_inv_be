@@ -32,7 +32,10 @@ defmodule SbgInv.Web.FigureController do
     put_status(conn, :not_found)
   end
   defp _show(conn, figure) do
-    render(conn, "figure.json", %{figure: figure})
+    stats = figure.id
+    |> Figure.query_stats
+    |> Repo.one!
+    render(conn, "figure.json", %{figure: figure, figure_stats: stats})
   end
 
   defp create_similar_or_upsert(conn, params, nil), do: update_or_create(conn, %Figure{}, params)

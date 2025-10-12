@@ -625,6 +625,8 @@ Example return payload:
       }
     ],
     "slug": "/arnor/arvedui",
+    "total_owned": 12,
+    "total_painted": 3,
     "type": "hero",
     "unique": true
   }
@@ -634,7 +636,7 @@ Example return payload:
 If there is no user token accompanying the request, the `"history"` array will be empty, and the
 `"owned"` and `"painted"` keys will be 0.
 
-
+The `"total_owned"` and `"total_painted"` fields reflect the amounts from all users in the system.
 
 ### `POST /figure`
 
