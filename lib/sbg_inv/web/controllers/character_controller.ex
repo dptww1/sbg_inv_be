@@ -46,7 +46,6 @@ defmodule SbgInv.Web.CharacterController do
         render(conn, "character.json", character: character)
 
       {:error, changeset} ->
-        IO.inspect changeset
         conn
         |> put_status(:unprocessable_entity)
         |> put_view(SbgInv.Web.ChangesetView)
