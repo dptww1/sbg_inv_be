@@ -3,7 +3,7 @@ defmodule SbgInv.StatsTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.{Repo, TestHelper}
-  alias SbgInv.Web.Figure
+  alias SbgInv.Web.{Figure, UserFigureHistory}
 
   test "site stats are returned", %{conn: conn} do
     TestHelper.set_up_std_scenario(conn)
@@ -39,6 +39,11 @@ defmodule SbgInv.StatsTest do
 
     fig0_id = Repo.get_by!(Figure, name: "ABC").id
     fig1_id = Repo.get_by!(Figure, name: "DEF").id
+
+    Repo.insert! %UserFigureHistory{user_id: u3.id, figure_id: warrior1_id, op: :buy_unpainted, amount: 9, op_date: ~D[2025-10-08]}
+    Repo.insert! %UserFigureHistory{user_id: u4.id, figure_id: warrior1_id, op: :buy_unpainted, amount: 8, op_date: ~D[2025-11-06]}
+    Repo.insert! %UserFigureHistory{user_id: u3.id, figure_id: warrior1_id, op: :paint,         amount: 3, op_date: ~D[2025-11-05]}
+    Repo.insert! %UserFigureHistory{user_id: u4.id, figure_id: warrior1_id, op: :paint,         amount: 1, op_date: ~D[2025-11-07]}
 
     conn = get conn, Routes.stats_path(conn, :index)
 
@@ -82,7 +87,11 @@ defmodule SbgInv.StatsTest do
                    %{"id" => monster2_id, "name" => "MONSTER2", "slug" => nil, "total" => 2},
                    %{"id" => monster1_id, "name" => "MONSTER1", "slug" => nil, "total" => 1}
                  ]
-               }
+               },
+               "recentlyPainted" => [
+                 %{"id" => warrior1_id, "amt" => 3, "name" => "WARRIOR1", "slug" => nil},
+                 %{"id" => warrior1_id, "amt" => 1, "name" => "WARRIOR1", "slug" => nil}
+               ]
              }
            }
   end

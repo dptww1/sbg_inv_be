@@ -23,7 +23,8 @@ defmodule SbgInv.Web.StatsController do
           hero: Repo.all(Stats.query_most_painted_hero),
           warrior: Repo.all(Stats.query_most_painted_warrior),
           monster: Repo.all(Stats.query_most_painted_monster)
-        }
+        },
+        recentlyPainted: Repo.all(Stats.query_recently_painted_figures)
       }
     })
   end

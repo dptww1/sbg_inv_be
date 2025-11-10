@@ -1660,6 +1660,11 @@ Example return payload:
           }
         ]
       },
+      "recentlyPainted": [
+        { "id": 561, "name": "Orc with banner",    "date": "2025-10-12", "slug": null, "amt": 1 },
+        { "id": 954, "name": "Lief, Page of Helm", "date": "2025-10-12", "slug": null, "amt": 9 },
+        { "id": 729, "name": "Bofur the Dwarf",    "date": "2025-10-11", "slug": null, "amt": 3 }
+      ]
       "totalOwned": 194991,
       "totalPainted": 79550
     },

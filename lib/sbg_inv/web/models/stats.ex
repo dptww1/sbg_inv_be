@@ -5,7 +5,22 @@ defmodule SbgInv.Web.Stats do
 
   import Ecto.Query
 
-  alias SbgInv.Web.Figure
+  alias SbgInv.Web.{Figure, UserFigureHistory}
+
+  def query_recently_painted_figures do
+    from ufh in UserFigureHistory,
+    join: f in assoc(ufh, :figure),
+    where: ufh.op == :paint,
+    select: %{
+      id: f.id,
+      name: f.name,
+      date: ufh.op_date,
+      slug: f.slug,
+      amt: ufh.amount
+    },
+    limit: 20,
+    order_by: [desc: ufh.op_date]
+  end
 
   def query_most_collected_character do
     from q in most_collected_query(),
