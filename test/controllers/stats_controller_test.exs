@@ -89,8 +89,8 @@ defmodule SbgInv.StatsTest do
                  ]
                },
                "recentlyPainted" => [
-                 %{"id" => warrior1_id, "amt" => 3, "name" => "WARRIOR1", "slug" => nil},
-                 %{"id" => warrior1_id, "amt" => 1, "name" => "WARRIOR1", "slug" => nil}
+                 %{"id" => warrior1_id, "amt" => 1, "name" => "WARRIOR1", "slug" => nil, "date" => "2025-11-07"},
+                 %{"id" => warrior1_id, "amt" => 3, "name" => "WARRIOR1", "slug" => nil, "date" => "2025-11-05"}
                ]
              }
            }
