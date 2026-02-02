@@ -29,7 +29,7 @@ defmodule SbgInv.Web.FigureController do
   end
 
   defp _show(conn, nil) do
-    put_status(conn, :not_found)
+    send_resp(conn, :not_found, err_msg_obj("Bad figure ID!!!!"))
   end
   defp _show(conn, figure) do
     stats = figure.id
@@ -70,7 +70,7 @@ defmodule SbgInv.Web.FigureController do
   end
 
   defp create_similar_figure(conn, nil, _) do
-    put_status(conn, :not_found)
+    send_resp(conn, :not_found, err_msg_obj("Bad similar figure ID!"))
   end
   defp create_similar_figure(conn, src_figure, params) do
     ffs = Enum.map(src_figure.faction_figure, &(%{faction_id: &1.faction_id}))

@@ -41,4 +41,9 @@ defmodule SbgInv.Web.ControllerMacros do
       end
     end
   end
+
+  # Yes, I know, not a macro
+  def err_msg_obj(msg) do
+    "{ \"errors\": { \"errors\": \"#{msg}\" } }"
+  end
 end

@@ -18,8 +18,7 @@ defmodule SbgInv.Web.UserScenarioController do
         |> Repo.one
 
       if scenario == nil do
-        put_status conn, :unprocessable_entity
-        halt conn
+        send_resp(conn, :unprocessable_entity, "bad scenario ID!")
 
       else
         result =

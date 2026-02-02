@@ -73,7 +73,7 @@ defmodule SbgInv.Web.FactionController do
   end
 
   defp _show(conn, nil) do
-    put_status(conn, :not_found)
+    send_resp(conn, :not_found, "Bad faction ID!")
   end
   defp _show(conn, -1) do
     list =

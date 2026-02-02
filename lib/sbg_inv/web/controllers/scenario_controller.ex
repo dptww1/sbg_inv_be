@@ -45,7 +45,7 @@ defmodule SbgInv.Web.ScenarioController do
   end
 
   defp _show_render(conn, nil, _) do
-    put_status(conn, :not_found)
+    send_resp(conn, :not_found, err_msg_obj("Bad scenario ID!"))
   end
   defp _show_render(conn, scenario, rating_breakdown) do
     render(conn, "show.json", %{scenario: scenario, rating_breakdown: rating_breakdown})
