@@ -34,7 +34,7 @@ defmodule SbgInv.Web.FigureController do
   defp _show(conn, figure) do
     stats = figure.id
     |> Figure.query_stats
-    |> Repo.one!
+    |> Repo.one
     render(conn, "figure.json", %{figure: figure, figure_stats: stats})
   end
 

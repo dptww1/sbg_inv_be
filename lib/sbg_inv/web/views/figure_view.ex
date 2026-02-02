@@ -6,8 +6,10 @@ defmodule SbgInv.Web.FigureView do
 
   def render("figure.json", params_map) do
     figure = params_map.figure
-    stats = Map.get(params_map, :figure_stats, %{total_owned: 0, total_painted: 0})
-    #def render("figure.json", %{figure: figure, figure_stats: stats \\ %{total_owned: 0, total_painted: 0}}) do
+
+    # Can't use Map.get/3 here because the :figure_stats key exists in the map (even though nil for new figures)
+    stats = Map.get(params_map, :figure_stats) || %{total_owned: 0, total_painted: 0}
+
     %{data: %{
          "id" => figure.id,
          "name" => figure.name,
