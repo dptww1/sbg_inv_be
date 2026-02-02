@@ -28,7 +28,7 @@ defmodule SbgInv.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: SbgInv.Web
+      use Phoenix.Controller, formats: [json: "View", html: "View"]
 
       alias SbgInv.Repo
       import Ecto

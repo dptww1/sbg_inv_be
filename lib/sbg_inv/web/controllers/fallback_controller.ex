@@ -1,6 +1,6 @@
 defmodule SbgInv.Web.FallbackController do
 
-  use Phoenix.Controller
+  use SbgInv.Web, :controller
 
   alias SbgInv.Web.{ChangesetView, ErrorView}
 
