@@ -87,6 +87,8 @@ Authorization: Token token={{(verb-json-get (oref (verb-stored-response "session
 
 *** GET figure [Arvedui]
 get /figure/21
+*** GET figure [Warrior of Rohan with horn]
+get /figure/697
 
 *** GET figure [Hurin the Tall, Warden of the Keys]
 get /figure/777
