@@ -38,6 +38,7 @@ the [Database Documentation](database.md).
 * [`GET /about`](#get-about)
 * [`PUT /about/:id`](#put-aboutid)
 * [`GET /character/:id`](#get-characterid)
+* [`GET /character/:id/resource`](#get-characteridresource)
 * [`POST /character`](#post-character)
 * [`PUT /character/:id`](#put-characterid)
 * [`GET /faction`](#get-faction)
@@ -221,6 +222,50 @@ Example return payload:
       }
     ]
   }
+}
+```
+
+### `GET /character/:id/resource`
+
+- **Authentication** None
+- **Normal HTTP Response Code** 200
+- **Query Parameters**
+|Parameter Name|Notes|
+|--------------|-----|
+| n | # of resources to retrieve (default: 5)
+
+Retrieves recent [character resources](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#character_resources)
+
+The `n` parameter is optional.
+
+Example return payload:
+
+```
+{
+  "data": [
+    {
+      "book": null,
+      "character_name": "War Drake of Rhûn",
+      "date": "2025-10-11",
+      "id": 945,
+      "issue": null,
+      "page": null,
+      "title": "PlanetMithril",
+      "type": "painting_guide",
+      "url": "https://www.youtube.com/watch?v=Hk6sBX5-rTU"
+    },
+    {
+      "book": null,
+      "character_name": "Helm Hammerhand, King of Rohan",
+      "date": "2025-10-07",
+      "id": 943,
+      "issue": null,
+      "page": null,
+      "title": "PlanetMithril (Wraith of the Hornburg)",
+      "type": "painting_guide",
+      "url": "https://www.youtube.com/watch?v=zXkXvw7T4RM"
+    }
+  ]
 }
 ```
 

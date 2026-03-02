@@ -29,7 +29,9 @@ defmodule SbgInv.Web.Router do
     pipe_through :api
 
     resources "/about",            AboutController,         only: [:index, :update]
-    resources "/character",        CharacterController,     only: [:create, :show, :update]
+    resources "/character",        CharacterController,     only: [:create, :show, :update] do
+      resources "/resource",       CharacterResourceController, only: [:index]
+    end
     resources "/faction",          FactionController,       only: [:index, :show, :create, :update]
     resources "/figure",           FigureController,        only: [:create, :show, :update]
     resources "/newsitem",         NewsItemController,      only: [:create, :index, :update, :delete]

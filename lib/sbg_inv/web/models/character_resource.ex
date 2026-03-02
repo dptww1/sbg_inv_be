@@ -2,7 +2,9 @@ defmodule SbgInv.Web.CharacterResource do
 
   use SbgInv.Web, :model
 
-  alias SbgInv.Web.{Book, Character}
+  import Ecto.Query
+
+  alias SbgInv.Web.{Book, Character, CharacterResource}
 
   schema "character_resources" do
     field :title, :string
@@ -23,5 +25,12 @@ defmodule SbgInv.Web.CharacterResource do
     |> cast(params, [:type, :title, :issue, :url, :page])
     |> put_assoc(:book, Map.get(params, "book"))
     |> validate_required([:type])
+  end
+
+  def query_recent(limit) do
+    from cr in CharacterResource,
+         order_by: [desc: cr.inserted_at],
+         preload: [:book, :character],
+         limit: ^limit
   end
 end
