@@ -1,6 +1,7 @@
 defmodule SbgInv.Web.CharacterControllerTest do
 
   use SbgInv.Web.ConnCase
+  use Pathex
 
   alias SbgInv.TestHelper
   alias SbgInv.Web.{Character, Figure}
@@ -49,7 +50,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
 
     check_query =
       from c in Character,
-      preload: [figures: ^from(f in Figure, order_by: f.name)]
+      preload: [:resources, figures: ^from(f in Figure, order_by: f.name)]
     check = Repo.one!(check_query)
 
     assert json_response(conn, 201)["data"] == %{
@@ -63,6 +64,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
              "num_analyses" => 0,
              "resources" => [
                %{
+                 "id" => hd(check.resources).id,
                  "type" => "painting_guide",
                  "title" => "ABC",
                  "url" => "http://www.example.com",
@@ -150,7 +152,8 @@ defmodule SbgInv.Web.CharacterControllerTest do
 
     check_query =
       from c in Character,
-      where: c.id == ^ch_id
+      where: c.id == ^ch_id,
+      preload: [:resources]
     check = Repo.one!(check_query)
 
     assert json_response(conn, 200)["data"] == %{
@@ -162,6 +165,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
              ],
              "resources" => [
                %{
+                 "id" => hd(check.resources).id,
                  "type" => "painting_guide",
                  "title" => "ABC",
                  "url" => "http://www.example.com",
@@ -204,6 +208,9 @@ defmodule SbgInv.Web.CharacterControllerTest do
     TestHelper.promote_user_to_admin(user)
     ch_id = hd(const_data["character_ids"])
     conn = get conn, Routes.character_path(conn, :show, ch_id)
+
+    check = Repo.one!(from c in Character, where: c.id == ^ch_id, preload: [:resources])
+
     assert json_response(conn, 200)["data"] == %{
              "id" => ch_id,
              "name" => "N1",
@@ -212,6 +219,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
              ],
              "resources" => [
                %{
+                 "id" => Pathex.get(check.resources, path(0 / :id)),
                  "type" => "painting_guide",
                  "title" => "SBG #3",
                  "book" => "sbg",
@@ -220,6 +228,7 @@ defmodule SbgInv.Web.CharacterControllerTest do
                  "url" => nil
                },
                %{
+                 "id" => Pathex.get(check.resources, path(1 / :id)),
                  "type" => "analysis",
                  "title" => "YouTube",
                  "url" => "http://www.example.com",

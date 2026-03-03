@@ -1,6 +1,7 @@
 defmodule SbgInv.Web.FigureControllerTest do
 
   use SbgInv.Web.ConnCase
+  use Pathex
 
   alias SbgInv.TestHelper
   alias SbgInv.Web.{Character, FactionFigure, Figure, User, UserFigureHistory}
@@ -37,6 +38,9 @@ defmodule SbgInv.Web.FigureControllerTest do
     Repo.insert! %FactionFigure{figure: figure, faction_id: 4}
 
     conn = get conn, Routes.figure_path(conn, :show, fid)
+
+    check = Repo.one!(Figure.query_by_id(fid) |> Figure.with_characters_and_resources_and_rules)
+
     assert json_response(conn, 200)["data"] == %{
       "id" => fid,
       "type" => "hero",
@@ -73,8 +77,8 @@ defmodule SbgInv.Web.FigureControllerTest do
         %{ "name_override" => nil, "book" => "tba", "page" => 34, "issue" => "3", "obsolete" => true, "sort_order" => 2, "url" => nil}
       ],
       "resources" => [
-        %{"title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
-        %{"title" => "YouTube", "type" => "analysis", "book" => nil, "issue" => nil, "page" => nil, "url" => "http://www.example.com"}
+        %{"id" => Pathex.get(check.characters, path(0 / :resources / 0 / :id)), "title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
+        %{"id" => Pathex.get(check.characters, path(0 / :resources / 1 / :id)), "title" => "YouTube", "type" => "analysis", "book" => nil, "issue" => nil, "page" => nil, "url" => "http://www.example.com"}
       ]
     }
   end
@@ -98,6 +102,9 @@ defmodule SbgInv.Web.FigureControllerTest do
                                          op_date: ~D[2017-08-02], notes: "ABCD"}
 
     conn = get conn, Routes.figure_path(conn, :show, fid)
+
+    check = Repo.one!(Figure.query_by_id(fid) |> Figure.with_characters_and_resources_and_rules)
+
     assert json_response(conn, 200)["data"] == %{
       "id" => fid,
       "type" => "hero",
@@ -135,8 +142,8 @@ defmodule SbgInv.Web.FigureControllerTest do
         %{"op" => "sell_unpainted", "amount" => 3, "new_owned" => 4, "new_painted" => 4, "op_date" => "2017-08-02", "notes" => "ABCD", "id" => h2.id, "figure_id" => figure.id}
       ],
       "resources" => [
-        %{"title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
-        %{"title" => "YouTube", "type" => "analysis", "book" => nil, "issue" => nil, "page" => nil, "url" => "http://www.example.com"}
+        %{"id" => Pathex.get(check.characters, path(0 / :resources / 0 / :id)), "title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
+        %{"id" => Pathex.get(check.characters, path(0 / :resources / 1 / :id)), "title" => "YouTube", "type" => "analysis", "book" => nil, "issue" => nil, "page" => nil, "url" => "http://www.example.com"}
       ],
       "total_owned" => 6,
       "total_painted" => 4
@@ -213,8 +220,9 @@ defmodule SbgInv.Web.FigureControllerTest do
 
     conn = post conn, Routes.figure_path(conn, :create), figure: %{name: "X2", plural_name: "X3", same_as: other_fig_id, slug: "ZZZ"}
 
-    check = Repo.all(Figure)
-            |> Enum.find(nil, &(&1.name == "X2"))
+    check = Repo.one!(from f in Figure,
+                           where: f.name == "X2",
+                           preload: [characters: :resources])
 
     assert json_response(conn, 200)["data"] == %{
              "id" => check.id,
@@ -239,8 +247,8 @@ defmodule SbgInv.Web.FigureControllerTest do
                %{ "book" => "tba", "page" => 34, "issue" => "3", "obsolete" => true, "sort_order" => 2, "name_override" => nil, "url" => nil},
              ],
              "resources" => [
-               %{"book" => "sbg", "issue" => "3", "page" => 37, "title" => "SBG #3", "type" => "painting_guide", "url" => nil},
-               %{"book" => nil, "issue" => nil, "page" => nil, "title" => "YouTube", "type" => "analysis", "url" => "http://www.example.com"}
+               %{"id" => Pathex.get(check.characters, path(0 / :resources / 0 / :id)), "book" => "sbg", "issue" => "3", "page" => 37, "title" => "SBG #3", "type" => "painting_guide", "url" => nil},
+               %{"id" => Pathex.get(check.characters, path(0 / :resources / 1 / :id)), "book" => nil, "issue" => nil, "page" => nil, "title" => "YouTube", "type" => "analysis", "url" => "http://www.example.com"}
              ],
              "total_owned" => 0,
              "total_painted" => 0
@@ -294,8 +302,8 @@ defmodule SbgInv.Web.FigureControllerTest do
                %{ "book" => "tba", "page" => 34, "issue" => "3", "obsolete" => true, "sort_order" => 2, "name_override" => nil, "url" => nil},
              ],
              "resources" => [
-               %{"title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
-               %{"title" => "YouTube", "type" => "analysis", "book" => nil, "issue" => nil, "page" => nil, "url" => "http://www.example.com"}
+               %{"id" => Pathex.get(check.characters, path(0 / :resources / 0 / :id)), "title" => "SBG #3", "type" => "painting_guide", "book" => "sbg", "issue" => "3", "page" => 37, "url" => nil},
+               %{"id" => Pathex.get(check.characters, path(0 / :resources / 1 / :id)), "title" => "YouTube", "type" => "analysis", "book" => nil, "issue" => nil, "page" => nil, "url" => "http://www.example.com"}
              ],
              "total_owned" => 0,
              "total_painted" => 0
