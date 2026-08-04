@@ -1866,8 +1866,12 @@ in the `user_figures` table may no longer match the sum of the user's `user_figu
 Deletes the [user_figure_history](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_figure_history)
 record identified by the `:id` part of the URL, assuming it is owned by the authentication user.
 
-This service has no effect on the user's actual inventory numbers. So using this method means the user's inventory
-in the `user_figures` table may no longer match the sum of the user's `user_figure_history` records.
+This service updates the
+[user_figure](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_figure)
+table to "undo" the action that the deleted history record represents.
+To avoid complicating that action, only the most recent `user_figure_history` for a given user/figure
+combination can be deleted.  Because recency is determined using user-input `op_date`, malicious and/or
+confused users can still get their `user_figure` record out of sync.
 
 ### `POST /userscenarios`
 

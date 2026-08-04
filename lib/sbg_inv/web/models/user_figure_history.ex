@@ -40,4 +40,12 @@ defmodule SbgInv.Web.UserFigureHistory do
     order_by: [asc: :op_date],
     preload: [:figure]
   end
+
+  def query_latest_for_figure_id(user_id, figure_id) do
+    from ufh in UserFigureHistory,
+         where: ufh.user_id == ^user_id,
+         where: ufh.figure_id == ^figure_id,
+         order_by: [desc: :op_date],
+         limit: 1
+  end
 end

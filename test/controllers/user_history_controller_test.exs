@@ -3,7 +3,7 @@ defmodule SbgInv.Web.UserHistoryControllerTest do
   use SbgInv.Web.ConnCase
 
   alias SbgInv.TestHelper
-  alias SbgInv.Web.{User, UserFigureHistory}
+  alias SbgInv.Web.{UserFigure, UserFigureHistory}
 
   defp addHistory(fig_id, user_id, op, amt, notes, op_date \\ ~D[2014-03-04]) do
     Repo.insert! %UserFigureHistory{
@@ -16,14 +16,60 @@ defmodule SbgInv.Web.UserHistoryControllerTest do
     }
   end
 
+  test "user cannot delete history if not the most recent record", %{conn: conn} do
+    fig = TestHelper.add_figure("fig1")
+    user = TestHelper.create_user("u1", "u1@example.com")
+    TestHelper.promote_user_to_admin(user)
+    hist1 = addHistory(fig.id, user.id, :buy_unpainted, 8, nil, ~D[2026-07-31]);
+    addHistory(fig.id, user.id, :buy_unpainted, 8, nil, ~D[2026-08-01]);
+
+    conn = TestHelper.create_session(conn, user)
+
+    conn = delete conn, Routes.user_history_path(conn, :delete, hist1.id)
+    assert conn.status == 401
+  end
+
+  test "user can delete history of their most recent record for a figure", %{conn: conn} do
+    fig1 = TestHelper.add_figure("fig1")
+    fig2 = TestHelper.add_figure("fig2")
+
+    user1 = TestHelper.create_user("u1", "u1@example.com")
+    user2 = TestHelper.create_user("u2", "u2@example.com")
+    TestHelper.promote_user_to_admin(user1)
+
+    conn = TestHelper.create_session(conn, user1)
+
+    # older record, same user & figure
+    addHistory(fig1.id, user1.id, :buy_unpainted, 4, nil, ~D[2026-07-21])
+
+    # the target record to be deleted
+    hist = addHistory(fig1.id, user1.id, :buy_unpainted, 4, nil, ~D[2026-08-01])
+
+    # same figure but different user, with more recent date
+    addHistory(fig1.id, user2.id, :buy_unpainted, 2, nil, ~D[2026-08-02])
+
+    # same user, different figure_id, more recent history
+    addHistory(fig2.id, user1.id, :buy_unpainted, 1, nil, ~D[2026-08-02])
+
+    TestHelper.add_user_figure(user1.id, fig1.id, 8, 0)
+
+    conn = delete conn, Routes.user_history_path(conn, :delete, hist.id)
+    assert conn.status == 204
+    assert nil == Repo.one(UserFigureHistory.query_by_id(hist.id))
+    assert 3 == length Repo.all(UserFigureHistory)
+
+    user_figure = Repo.one(UserFigure.query_by_id_for_user(fig1.id, user1.id))
+    assert 4 == user_figure.owned
+  end
+
+
   test "delete user history works if admin", %{conn: conn} do
     fig = TestHelper.add_figure("fig1", "fig1s")
     user = TestHelper.create_user("u1", "u1@example.com")
+    TestHelper.promote_user_to_admin(user)
     hist = addHistory(fig.id, user.id, :buy_unpainted, 12, "Notes")
 
-    admin = Repo.insert! %User{name: "a", email: "a@a", is_admin: true}
-
-    conn = TestHelper.create_session(conn, admin)
+    conn = TestHelper.create_session(conn, user)
 
     conn = delete conn, Routes.user_history_path(conn, :delete, hist.id)
     assert conn.status == 204
