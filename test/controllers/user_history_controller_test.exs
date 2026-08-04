@@ -103,63 +103,6 @@ defmodule SbgInv.Web.UserHistoryControllerTest do
     assert conn.status == 401
   end
 
-  test "edit history fails if not record owner and not admin", %{conn: conn} do
-    fig = TestHelper.add_figure("fig1", "fig1s")
-    user = TestHelper.create_user("u1", "u1@example.com")
-    hist = addHistory(fig.id, user.id, :buy_unpainted, 12, "Notes")
-
-    user2 = TestHelper.create_user
-
-    conn = TestHelper.create_session(conn, user2)
-
-    conn = put conn, Routes.user_history_path(conn, :update, hist.id), history: %{}
-    assert conn.status == 401
-  end
-
-  test "user can edit history if record owner", %{conn: conn} do
-    fig = TestHelper.add_figure("fig1", "fig1s")
-    user = TestHelper.create_user("u1", "u1@example.com")
-    hist = addHistory(fig.id, user.id, :buy_unpainted, 12, "Notes")
-
-    conn = TestHelper.create_session(conn, user)
-
-    new_data = %{op: :sell_unpainted, op_date: ~D[2019-03-01], amount: 8, notes: "ABC"}
-
-    conn = put conn, Routes.user_history_path(conn, :update, hist.id), history: new_data
-
-    assert conn.status == 204
-    assert Repo.all(UserFigureHistory) |> Enum.count == 1
-
-    hist_check = Repo.get!(UserFigureHistory, hist.id)
-
-    new_data
-    |> Map.keys
-    |> Enum.each(&(assert new_data[&1] == Map.get(hist_check, &1)))
-  end
-
-  test "user can edit history if admin", %{conn: conn} do
-    fig = TestHelper.add_figure("fig1", "fig1s")
-    user = TestHelper.create_user("u1", "u1@example.com")
-    hist = addHistory(fig.id, user.id, :buy_unpainted, 12, "Notes")
-
-    admin = Repo.insert! %User{name: "a", email: "a@a", is_admin: true}
-
-    conn = TestHelper.create_session(conn, admin)
-
-    new_data = %{op: :sell_unpainted, op_date: ~D[2019-03-01], amount: 8, notes: "ABC"}
-
-    conn = put conn, Routes.user_history_path(conn, :update, hist.id), history: new_data
-
-    assert conn.status == 204
-    assert Repo.all(UserFigureHistory) |> Enum.count == 1
-
-    hist_check = Repo.get!(UserFigureHistory, hist.id)
-
-    new_data
-    |> Map.keys
-    |> Enum.each(&(assert new_data[&1] == Map.get(hist_check, &1)))
-  end
-
   test "user can get history list", %{conn: conn} do
     fig1 = TestHelper.add_figure("fig1", "fig1s")
     fig2 = TestHelper.add_figure("fig2", "fig2s")

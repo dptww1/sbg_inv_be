@@ -64,7 +64,6 @@ the [Database Documentation](database.md).
 * [`GET /stats`](#get-stats)
 * [`POST /userfigure`](#post-userfigure)
 * [`GET /userhistory`](#get-userhistory)
-* [`PUT /userhistory/:id`](#put-userhistoryid)
 * [`DELETE /userhistory/:id`](#delete-userhistoryid)
 * [`POST /userscenarios`](#post-userscenarios)
 * [`POST /users`](#post-users)
@@ -1823,39 +1822,6 @@ Example (truncated) return payload:
 `id` is the ID of the history record itself.
 
 `user_id` is always the ID of the authenticated user.
-
-The other fields are the same as the input payload of the
-[`PUT /userhistory`](#put-userhistoryid) service.
-
-### `PUT /userhistory/:id`
-
-- **Authentication** User
-- **Normal HTTP Response Code** 204 (not 200)
-- **Error HTTP Response Codes**
-    + 401 Authorization error
-    + 422 Bad payload
-
-Updates an existing
-[user_figure_history](https://github.com/dptww1/sbg_inv_be/blob/master/docs/database.md#user_figure_history)
-record identified by the `:id` part of the URL, assuming it is owned by the authenticated user.
-
-Example input payload:
-
-```json
-"history": {
-  "user_id": 123,
-  "amount": 4,
-  "figure_id": 456,
-  "op": "buy_unpainted",
-  "op_date": "2023-04-02",
-  "notes": "ordered 2023-03-15"
-}
-```
-
-All of of the fields except `notes` are required.
-
-This service has no effect on the user's actual inventory numbers. So using this method means the user's inventory
-in the `user_figures` table may no longer match the sum of the user's `user_figure_history` records.
 
 ### `DELETE /userhistory/:id`
 
