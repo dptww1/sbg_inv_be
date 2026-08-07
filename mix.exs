@@ -32,17 +32,17 @@ defmodule SbgInv.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.8.3"},
-     {:phoenix_pubsub, "~> 2.0"},
+    [{:phoenix, "~> 1.8.9"},
+     {:phoenix_pubsub, "~> 2.2.0"},
      {:phoenix_view, "~> 2.0.4"},
      #{:phoenix_live_view, "~> 1.0.2"},
      #{:phoenix_live_dashboard, "~> 0.8.6"},
      {:postgrex, ">= 0.19.3"},
-     {:ecto_sql, "~> 3.12.1"},
-     {:phoenix_ecto, "~> 4.6.3"},
-     {:phoenix_html, "~> 4.2.0"},
+     {:ecto_sql, "~> 3.14.0"},
+     {:phoenix_ecto, "~> 4.7.0"},
+     {:phoenix_html, "~> 4.3.0"},
      {:phoenix_html_helpers, "~> 1.0"},
-     {:phoenix_live_reload, "~> 1.5.3", only: :dev},
+     {:phoenix_live_reload, "~> 1.7.0", only: :dev},
      {:gettext, "~> 0.26.2"},
      {:pathex, "~> 2.6.0"},
      {:plug_cowboy, "~> 2.9.0"},
