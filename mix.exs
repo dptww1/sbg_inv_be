@@ -43,18 +43,18 @@ defmodule SbgInv.Mixfile do
      {:phoenix_html, "~> 4.3.0"},
      {:phoenix_html_helpers, "~> 1.0"},
      {:phoenix_live_reload, "~> 1.7.0", only: :dev},
-     {:gettext, "~> 0.26.2"},
-     {:pathex, "~> 2.6.0"},
+     {:gettext, "~> 1.0.2"},                           # https://github.com/elixir-gettext/gettext/blob/main/mix.exs
+     {:pathex, "~> 2.6.1"},                            # https://github.com/hissssst/pathex/blob/master/mix.exs
      {:plug_cowboy, "~> 2.9.0"},
      {:plug, "~> 1.20.3"},
-     {:corsica, "~> 2.1.3"},
-     {:jason, "~> 1.4.4"},
+     {:corsica, "~> 2.1.3"},                           # https://hex.pm/packages/corsica
+     {:jason, "~> 1.4.5"},                             # https://hex.pm/packages/jason
      {:ecto_enum, "~> 1.4"},
-     {:pbkdf2_elixir, "~> 2.3.0"},
-     {:secure_random, "~> 0.2"},
-     {:bamboo, "~> 2.2.0"},
-     {:bamboo_smtp, "~> 4.1.0"},
-     {:ssl_verify_fun, "~> 1.1.6"}
+     {:pbkdf2_elixir, "~> 2.3.1"},                     # https://github.com/riverrun/pbkdf2_elixir/blob/master/mix.exs
+     {:secure_random, "~> 0.5.1"},                     # https://github.com/patricksrobertson/secure_random.ex/blob/master/mix.exs
+     {:bamboo, "~> 2.2.0"},                            # https://github.com/beam-community/bamboo/blob/main/mix.exs
+     {:bamboo_smtp, "~> 4.2.2"},                       # https://hex.pm/packages/bamboo_smtp
+     {:ssl_verify_fun, "~> 1.1.7"}                     # https://github.com/deadtrickster/ssl_verify_fun.erl
     ]
   end
 
