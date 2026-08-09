@@ -43,7 +43,6 @@ defmodule SbgInv.Web.UserScenarioController do
     end
   end
 
-  defp get_or_create_user_scenario(nil, _), do: nil
   defp get_or_create_user_scenario(scenario, user_id) do
     if length(scenario.user_scenarios) > 0 do
       hd(scenario.user_scenarios)

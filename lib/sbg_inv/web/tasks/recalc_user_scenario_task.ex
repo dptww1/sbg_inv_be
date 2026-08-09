@@ -93,11 +93,6 @@ defmodule SbgInv.Web.RecalcUserScenarioTask do
   end
 
   #========================================================================
-  defp user_scenario_changed(nil, _) do
-    true
-  end
-
-  #========================================================================
   defp user_scenario_changed(existing, calculated) do
     existing.owned != calculated.owned || existing.painted != calculated.painted
   end
