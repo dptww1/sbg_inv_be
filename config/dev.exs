@@ -18,17 +18,6 @@ config :sbg_inv, SbgInv.Web.Endpoint,
   code_reloader: true,
   check_origin: false
 
-# Watch static and templates for browser reloading.
-config :sbg_inv, SbgInv.Web.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
-      ~r{priv/gettext/.*(po)$},
-      ~r{lib/sbg_inv/web/views/.*(ex)$},
-      ~r{lib/sbg_inv/web/templates/.*(eex)$}
-    ]
-  ]
-
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 

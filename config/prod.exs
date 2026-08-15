@@ -15,6 +15,8 @@ config :sbg_inv, SbgInv.Mailer,
   adapter: Swoosh.Adapters.Resend,
   api_key: System.get_env("RESEND_API_KEY") || raise "RESEND_API_KEY not set"
 
+config :swoosh, :api_client, Swoosh.ApiClient.Req
+
 # Do not print debug messages in production
 config :logger, level: :info
 
