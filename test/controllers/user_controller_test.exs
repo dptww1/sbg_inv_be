@@ -12,7 +12,7 @@ defmodule SbgInv.Web.UserControllerTest do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
 
-  test "creates and renders resource when data is valid", %{conn: conn} do
+  test "creates and returns user when data is valid", %{conn: conn} do
     conn = post conn, Routes.user_path(conn, :create), user: @valid_attrs
     body = json_response(conn, 201)
     assert body["data"]["id"]
@@ -21,12 +21,12 @@ defmodule SbgInv.Web.UserControllerTest do
     assert Repo.get_by(User, email: "foo@bar.com")
   end
 
-  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+  test "does not create user and returns error when data is invalid", %{conn: conn} do
     conn = post conn, Routes.user_path(conn, :create), user: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 
-  test "updates user's email and password with proper credentials", %{conn: conn} do
+  test "updates logged-in user's email and password", %{conn: conn} do
     user = TestHelper.create_user
     conn = TestHelper.create_session(conn, user)
     conn = put conn, Routes.user_path(conn, :update, user), user: %{email: "abc@example.com", password: "123456" }
@@ -37,7 +37,7 @@ defmodule SbgInv.Web.UserControllerTest do
     assert user_chk.password_hash != user.password_hash
   end
 
-  test "updates email only when no password supplied", %{conn: conn} do
+  test "updates logged-in user's email only when no password supplied", %{conn: conn} do
     user = TestHelper.create_user
     conn = TestHelper.create_session(conn, user)
     conn = put conn, Routes.user_path(conn, :update, user), user: %{email: "abc@example.com" }
@@ -48,7 +48,7 @@ defmodule SbgInv.Web.UserControllerTest do
     assert user_chk.password_hash == user.password_hash
   end
 
-  test "updates password only when no email supplied", %{conn: conn} do
+  test "updates logged-in user's password only when no email supplied", %{conn: conn} do
     user = TestHelper.create_user
     conn = TestHelper.create_session(conn, user)
     conn = put conn, Routes.user_path(conn, :update, user), user: %{password: "random string" }

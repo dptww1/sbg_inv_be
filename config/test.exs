@@ -18,6 +18,7 @@ config :sbg_inv, SbgInv.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :sbg_inv, SbgInv.Mailer,
-  adapter: Bamboo.TestAdapter
+  adapter: Swoosh.Adapters.Test,
+  api_key: "abc123"
 
 config :pbkdf2_elixir, rounds: 1

@@ -932,8 +932,25 @@ Deletes the given news item.  There is no return payload.
 
 ### `POST /reset-password`
 
-This service does not work in production because I never succeeded in getting an email
-server configured.  So it is not documented here.  Maybe someday.
+Begins or completes the process of resetting a user's password.
+
+- **Authentication** None
+- **Normal HTTP Response Code** 204 (not 200)
+- **Error HTTP Response Code** 401 Unauthorized
+- **Query Parameters**
+
+|Parameter Name|Notes|
+|--------------|-----|
+| email | the email address for the account being reset |
+| password | the new password for the account; only needed after reset token has been generated |
+| token | string matching the reset token for the account being reset |
+
+If only the `email` parameter is provided, a new randomized reset token is generated for the
+given account and an email with a reset link (using that token) is sent to that address.
+
+If all three parameters are provided and the `token` matches the stored reset token saved for the
+email account, the password is saved as the new password for the account.
+
 
 ### `GET /search`
 

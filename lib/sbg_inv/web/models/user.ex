@@ -12,8 +12,14 @@ defmodule SbgInv.Web.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :is_admin, :boolean
+    field :reset_token, :string
 
     timestamps()
+  end
+
+  def reset_token_changeset(struct, params) do
+    struct
+    |> cast(params, [:reset_token])
   end
 
   def registration_changeset(struct, params \\ %{}) do
@@ -27,7 +33,7 @@ defmodule SbgInv.Web.User do
 
   def update_password_changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:password])
+    |> cast(params, [:password, :reset_token])
     |> validate_required([:password])
     |> validate_length(:password, min: 3)
     |> put_password_hash

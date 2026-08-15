@@ -4,7 +4,7 @@ defmodule SbgInv.Mixfile do
   def project do
     [app: :sbg_inv,
      version: "0.0.1",
-     elixir: "1.18.1",
+     elixir: "1.20.3",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:yecc] ++ Mix.compilers(),
      build_embedded: Mix.env == :prod,
@@ -52,8 +52,8 @@ defmodule SbgInv.Mixfile do
      {:ecto_enum, "~> 1.4"},
      {:pbkdf2_elixir, "~> 2.3.1"},                     # https://github.com/riverrun/pbkdf2_elixir/blob/master/mix.exs
      {:secure_random, "~> 0.5.1"},                     # https://github.com/patricksrobertson/secure_random.ex/blob/master/mix.exs
-     {:bamboo, "~> 2.2.0"},                            # https://github.com/beam-community/bamboo/blob/main/mix.exs
-     {:bamboo_smtp, "~> 4.2.2"},                       # https://hex.pm/packages/bamboo_smtp
+     {:swoosh, "~> 1.27"},
+     {:hackney, "~> 4.7.2"},                           # needed by swoosh
      {:ssl_verify_fun, "~> 1.1.7"}                     # https://github.com/deadtrickster/ssl_verify_fun.erl
     ]
   end

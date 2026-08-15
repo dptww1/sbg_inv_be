@@ -621,6 +621,7 @@ Records represent users.
 | inserted_at | timestamp | |
 | updated_at | timestamp | |
 | is_admin | bool | |
+| reset_token | string | token needed in URL to reset password |
 
 `name` is never actually used in the system, but is there so at least theoretically
 I have a name if I need to contact folks in case of emergency.  Plus I find it

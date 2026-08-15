@@ -46,12 +46,5 @@ config :sbg_inv, SbgInv.Repo,
   pool_size: 10
 
 config :sbg_inv, SbgInv.Mailer,
-  adapter: Bamboo.SMTPAdapter,
-  server: "smtp.davetownsend.org",
-  #server: "smtp.sendgrid.net",
-  port: 587,
-  username: System.get_env("SMTP_USERNAME"),
-  password: System.get_env("SMTP_PASSWORD"),
-  tls: true,
-  ssl: false,
-  retries: 3
+  adapter: Swoosh.Adapters.Local,
+  api_key: System.get_env("RESEND_API_KEY") # || raise "RESEND_API_KEY not set"

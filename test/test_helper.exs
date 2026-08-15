@@ -22,8 +22,8 @@ defmodule SbgInv.TestHelper do
     conn |> delete_req_header("authorization")
   end
 
-  def create_user(name \\ "anonymous", email \\ "anonymous@example.com", is_admin \\ false) do
-    Repo.insert! %User{name: name, email: email, is_admin: is_admin}
+  def create_user(name \\ "anonymous", email \\ "anonymous@example.com", is_admin \\ false, reset_token \\ nil) do
+    Repo.insert! %User{name: name, email: email, is_admin: is_admin, reset_token: reset_token}
   end
 
   def create_logged_in_user(conn, name \\ "anonymous", email \\ "anonymous@example.com", is_admin \\ false) do

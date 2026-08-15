@@ -1,11 +1,23 @@
 defmodule SbgInv.Email do
-  import Bamboo.Email
+  import Swoosh.Email
 
-  def forgot_password_email(email_address, new_password) do
-    new_email()
+  alias SbgInv.Mailer
+
+  def forgot_password_email(email_address, reset_token) do
+    new()
     |> to(email_address)
-    |> from(System.get_env("SMTP_SENDER"))
-    |> subject("Password Reset")
-    |> text_body("Your new password is #{new_password}")
+    |> from("dave@sbginventory.com")
+    |> bcc("dave@davetownsend.org")
+    |> subject("SBG Inventory Password Reset Request")
+    |> html_body("""
+    <p>The SBG Inventory site received a request to reset the password for the email account.</p>
+    <p>If you did not initiate the request, you can ignore this email and continue to log in normally.</p>
+    <p>To reset your password, fill out your email and password on
+    <a href="#{System.get_env("SBG_INV_FE_URL")}/?#/reset-password?token=#{reset_token}">this form</a>
+    and click Reset Password.</p>
+    <p>Thanks for using SBG Inventory.  Please consider supporting the site on
+    <a href="https://www.patreon.com/SBGInventory">Patreon</a>.</p>
+    """)
+    |> Mailer.deliver()
   end
 end
