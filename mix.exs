@@ -47,6 +47,7 @@ defmodule SbgInv.Mixfile do
      {:pathex, "~> 2.6.1"},                            # https://github.com/hissssst/pathex/blob/master/mix.exs
      {:plug_cowboy, "~> 2.9.0"},
      {:plug, "~> 1.20.3"},
+     {:req, "~> 0.4"},
      {:corsica, "~> 2.1.3"},                           # https://hex.pm/packages/corsica
      {:jason, "~> 1.4.5"},                             # https://hex.pm/packages/jason
      {:ecto_enum, "~> 1.4"},
