@@ -12,7 +12,5 @@ their current collection.
 I expect most users would want to use these services through a front end providing a friendlier interface.  That's
 what the [sbg_inv_fe](https://github.com/dptww1/sbg_inv_fe) project is for.
 
-I hope eventually to provide API documentation, but you know how that goes.
-
 This project was written in Elixir so that I could experiment with functional programming and see what all the
 Elixir buzz was about.
